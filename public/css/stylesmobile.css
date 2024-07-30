@@ -1,0 +1,42 @@
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 1150px) {
+    .slogan-header{
+        display: none;
+    }
+}
+  
+@media (max-width: 992px) {
+    .total-header{
+        display: none;
+    }
+    .topnav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 10px;
+    }
+    .wrap-criteria{
+        gap: 30px;
+    }
+}
+  
+@media (max-width: 768px) {
+    .wrap-criteria{
+        display: none;
+    }
+}
+  
+@media (max-width: 576px) {
+   
+}
+
+@media (max-width: 500px) {
+    #main-footer h2{
+        font-size: 16px;
+    }
+}
+
+  
