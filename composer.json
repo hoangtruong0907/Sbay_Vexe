@@ -9,9 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "filament/filament": "^3.2",
-        "filament/forms": "^3.2",
         "laravel/framework": "^11.9",
+        "laravel/passport": "*",
         "laravel/tinker": "^2.9"
     },
     "require-dev": {
