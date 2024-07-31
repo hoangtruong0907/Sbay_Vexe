@@ -1,243 +1,9 @@
 @extends('layouts.app')
 
-<style>
-  .custom-input-col {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .custom-select-wrapper {
-    position: relative;
-  }
-
-  .custom-select-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .custom-input-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .custom-icon-container {
-    margin-left: 10px;
-  }
-
-  .custom-input-section {
-    flex-grow: 1;
-  }
-
-  .custom-dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    z-index: 1000;
-    list-style-type: none;
-    padding-left: 0px;
-    margin-top: 43px;
-  }
-
-  .custom-dropdown-item-group {
-    min-width: 800px;
-    display: block !important;
-  }
-
-  .custom-dropdown-item-group-title {
-    font-weight: bold;
-    padding: 8px 8px 8px 25px;
-    background: #f0f0f0;
-  }
-
-  .custom-dropdown-item-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  .custom-dropdown-item {
-    padding: 8px;
-    cursor: pointer;
-    background: #f0f0f0;
-  }
-
-  .custom-dropdown-item:hover{
-    background: #fff;
-  }
-
-  .custom-item-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .custom-icon-section {
-    margin-right: 8px;
-  }
-
-  .custom-city-title {
-    font-weight: bold;
-  }
-
-  .custom-swap-container {
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    z-index: 1;
-  }
-
-  .custom-switch-icon-container i {
-    padding-right: 14px !important;
-    padding-left: 15px !important;
-  }
-
-  .custom-switch-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f0f0f0;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .flex-sum-left {
-    position: relative;
-  }
-
-  #airlinetickets {
-    background: rgb(242, 242, 242);
-    padding: 20px 0px;
-  }
-
-  .container-airlinetickets {
-    max-width: 1026px;
-    margin: auto;
-    display: block;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 10px 0px 0px;
-  }
-
-  .nav-airline {
-    justify-content: center;
-    border-bottom: 1px solid #ccc;
-  }
-
-  .nav-airline .nav-link.active {
-    background-color: #fff !important;
-    color: #000 !important;
-    border-bottom: 2px solid blue;
-    border-radius: 0px;
-  }
-
-  .nav-airline .nav-link {
-    color: #000 !important;
-    font-size: 17px !important;
-  }
-
-  .nav-airline li {
-    margin: 0px 10px;
-  }
-
-  .tab-content .active {
-    padding: 12px 12px 16px;
-    border-radius: 0px 0px 12px 12px;
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-  }
-
-  .ant-row-flex {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: row wrap;
-    flex-flow: row wrap;
-    display: flex;
-  }
-
-  .left-ant-row-flex {
-    border: 1px solid rgb(224, 224, 224);
-    border-radius: 8px;
-    margin-right: 12px !important;
-    margin: 0px;
-    width: calc(100% - 152px);
-  }
-
-  .wrap-left-ant-row-flex {
-    display: flex;
-    color: #000;
-    align-items: center;
-    height: 100%;
-    flex-wrap: wrap;
-  }
-
-  .right-search-widget-inner-content button {
-    height: 100%;
-    padding: 12px 32px;
-    border-radius: 8px;
-    background: rgb(255, 211, 51);
-    text-transform: unset;
-    font-size: 17px;
-    font-weight: bold;
-    border: 0px;
-  }
-
-  .flex-sum-left {
-    width: calc(100% / 4);
-    display: flex;
-    align-items: center;
-  }
-
-  .flex-sum-left input {
-    width: 100%;
-    border: 0px;
-    padding: 5px 0px 5px 10px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .flex-sum-left i {
-    padding-right: 7px;
-    padding-left: 25px;
-    font-size: 17px;
-  }
-
-  .departure-bus-flex i {
-    color: #2474E5;
-  }
-
-  .destination-bus-flex i {
-    color: #EB5757;
-  }
-
-  .departure-train-flex i {
-    color: #2A9D8F;
-  }
-
-  .destination-train-flex i {
-    color: #E76F51;
-  }
-
-  .custom-dropdown-item-group-xe-tau{
-    min-width: 100%;
-    max-width: 100%;
-  }
-
-  .custom-icon-container i{
-    color: #E76F51;
-  }
-
-  .custom-content-section p{
-    margin-bottom: 0rem !important;
-  }
-</style>
+@section('styles')
+    <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
+@endsection
 
 @section('content')
   <div id="airlinetickets">
@@ -306,10 +72,10 @@
                                   </div>
                               </div>
                               <div class="departure-bus-date flex-sum-left">
-                                  <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name="" id="" placeholder="">
+                                  <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name="" id="date-from" placeholder="">
                               </div>
                               <div class="departure-bus-date-right flex-sum-left">
-                                  <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name="" id="" placeholder="Thêm ngày về">
+                                  <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name="" id="date-to" placeholder="Thêm ngày về">
                               </div>
                           </div>
                       </div>
@@ -436,7 +202,7 @@
                                   </div>
                               </div>
                               <div class="departure-train-date flex-sum-left">
-                                  <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name="" id="" placeholder="">
+                                  <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name="" id="" placeholder="">
                               </div>
                               <div class="departure-train-date-right flex-sum-left">
                                   <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name="" id="" placeholder="Thêm ngày về">
@@ -703,6 +469,52 @@
   // Khởi tạo danh sách dropdown ban đầu
   updateTrainDropdownList(trainFromInput, trainFromDropdownList, '');
   updateTrainDropdownList(trainToInput, trainToDropdownList, '');
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
+<script>
+    const vn = {
+        days: ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'],
+        daysShort: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+        daysMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+        months: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy',
+            'Tháng Tám', 'Tháng Chín', 'Tháng Mười', 'Tháng Mười Một', 'Tháng Mười Hai'
+        ],
+        monthsShort: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11', 'Th12'],
+        today: 'Hôm Nay',
+        clear: 'Xóa',
+        dateFormat: 'dd/mm/yyyy',
+        timeFormat: 'HH:ii',
+        firstDay: 1
+    };
+    new AirDatepicker('#date-from', {
+        // inline: true,
+        locale: vn,
+        timeFormat: 'hh:mm AA',
+        // position: "center",
+        onRenderCell({
+            date,
+            cellType
+        }) {
+            if (cellType === 'day') {
+                const lunarDate = moonTime({
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate()
+                });
+                return {
+                    html: `
+                    <div class="wrap-cell">
+                        <div class="fw-bold">${date.getDate()}</div>
+                        <div class="lunar-date">${lunarDate.day}</div>
+                    </div>
+                    <div class="price-cell">1999k</div>
+                    `
+                };
+            }
+        }
+    });
 </script>
 
 @endsection
