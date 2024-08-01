@@ -152,6 +152,7 @@ body .material-icons-wrapper.md-20 {
     position: absolute;
     bottom: 0px;
     left: 0px;
+    z-index: 1;
 }
 
 .criteria-slide{
@@ -315,9 +316,10 @@ body .material-icons-wrapper.md-20 {
     left: 0;
     width: 100%;
     background: white;
-    z-index: 1000;
+    z-index: 1000 !important;
     list-style-type: none;
     padding-left: 0px;
+    margin-top: 16px;
   }
 
   .custom-dropdown-item-group {
@@ -397,7 +399,8 @@ body .material-icons-wrapper.md-20 {
   }
 
   .container-airlinetickets {
-    max-width: 1026px;
+    z-index: 100;
+    min-width: 1026px;
     margin: auto;
     display: block;
     background-color: #fff;
@@ -1382,7 +1385,7 @@ body .material-icons-wrapper.md-20 {
 .from-to-l,
 .social-proof-l {
   margin-top: 10px;
-  
+
 }
 
 .social-proof-l{
