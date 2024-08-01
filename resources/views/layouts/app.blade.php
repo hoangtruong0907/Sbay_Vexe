@@ -15,6 +15,7 @@
     <meta property="og:url" content="url san pham">
     <meta property="og:image" content="hinh anh">
     <meta property="og:type" content="website" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/stylesmobile.css') }}">
@@ -30,8 +31,9 @@
     </div>
 
     @include('layouts.footer')
-    @yield('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    @yield('scripts')
 
     <script>
         document.querySelector('.Navbar2__ButtonHotline-sa2air-8').addEventListener('click', function(event) {
