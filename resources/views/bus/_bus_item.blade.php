@@ -1,9 +1,9 @@
-<div id="item-bus-1">
+<div id="item-bus-{{$key}}">
     <div class="container-l">
         <div class="ticket-container-l">
             <div class="ticket-body-l">
                 <div class="ticket-image-l">
-                    <img class="operator-l" src="//static.vexere.com/production/images/1685360757314.jpeg?w=250&amp;h=250"
+                    <img class="operator-l" src="{{$route['company']['images'][0]['files']['1000x600']}}"
                         alt="Đình Nhân">
                     <div class="ticket-confirm-l">
                         <i class="fa-solid fa-ticket"></i>Xác nhận tức thì
@@ -11,7 +11,7 @@
                 </div>
                 <div class="ticket-info-l">
                     <div class="ticket-bus-info-l">
-                        <div class="bus-name-l">Đình Nhân
+                        <div class="bus-name-l">{{$route['company']['name']}}
                             <button type="button" class="ant-btn bus-rating-button-l">
                                 <div class="bus-rating-l">
                                     <i class="fa-solid fa-star"></i>
@@ -57,7 +57,7 @@
                         <div class="action-l">
                             <button type="button" class="ant-btn btn-detail-l ant-btn-link-l">
                                 <span>Thông tin chi tiết 1</span>
-                                <i aria-label="icon: caret-down" class="anticon anticon-caret-down-l">
+                                <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
                                     <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
                                         width="1em" height="1em" fill="currentColor" aria-hidden="true">
                                         <path
@@ -65,6 +65,13 @@
                                         </path>
                                     </svg>
                                 </i>
+                                <i aria-label="icon: caret-up" class="anticon anticon-caret-up" ><svg
+                                        viewBox="0 0 1024 1024" class="" data-icon="caret-up" width="1em"
+                                        height="1em" fill="currentColor" aria-hidden="true" focusable="false">
+                                        <path
+                                            d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z">
+                                        </path>
+                                    </svg></i>
                             </button>
                             <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l">
                                 <span>Chọn chuyến</span>
@@ -89,9 +96,9 @@
                 <div>Không cần thanh toán trước</div>
             </div>
         </div>
-        <div class="collapse ticket-step-collapse" id="ticket-step-collapse" data-bs-parent="#item-bus-1">
+        <div class="collapse ticket-step-collapse" data-bs-parent="#item-bus-1">
             <div class="card card-body card-body-new">
-                <div id="step1" class="wizard-step active">
+                <div id="step1-{{$key}}" class="wizard-step active">
                     <div class="wrap-card-body">
                         <div class="steps-container">
                             <div class="step step-active">
@@ -116,7 +123,7 @@
                     </div>
                     <div class="coupon-container">
                         <div class="wrap-coupon">
-                            <input id="coupon-code-FS060824VXR10" class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
                                 value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
@@ -147,7 +154,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input id="coupon-code-FS060824VXR10" class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
                                 value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
@@ -178,7 +185,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input id="coupon-code-FS060824VXR10" class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
                                 value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
@@ -209,7 +216,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input id="coupon-code-FS060824VXR10" class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
                                 value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
@@ -240,7 +247,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input id="coupon-code-FS060824VXR10" class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
                                 value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
@@ -921,7 +928,8 @@
                                                                 <rect x="2.75" y="2.75" width="22.5"
                                                                     height="34.5" rx="2.25" fill="#FFF"
                                                                     stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
+                                                                    stroke-linejoin="round">
+                                                                </rect>
                                                                 <rect x="5.75" y="27.75" width="16.5"
                                                                     height="6.5" rx="2.25" fill="#FFF"
                                                                     stroke="#B8B8B8" stroke-width="1.5"
@@ -999,7 +1007,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="step2" class="wizard-step">
+                <div id="step2-{{$key}}" class="wizard-step">
                     <div class="wrap-card-body">
                         <div class="steps-container">
                             <div class="step step-active">
@@ -1162,42 +1170,199 @@
                 </div>
             </div>
         </div>
-        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse" data-bs-parent="#item-bus-1">
+        <div class="collapse ticket-detail-collapse" data-bs-parent="#item-bus-1">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
-                <ul class="nav nav-pills mb-1" id="pills-ticket-tab" role="tablist">
+                <ul class="nav nav-pills mb-1 pills-ticket-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="coupon-tab" data-bs-toggle="pill" data-bs-target="#coupon"
-                            type="button" role="tab" aria-controls="coupon" aria-selected="true">Giảm
+                        <button class="nav-link active" id="coupon-tab-{{$key}}" data-bs-toggle="pill"
+                            data-bs-target="#coupon-{{$key}}" type="button" role="tab" aria-controls="coupon-{{$key}}"
+                            aria-selected="true">Giảm
                             giá</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pickup-tab" data-bs-toggle="pill" data-bs-target="#pickup"
-                            type="button" role="tab" aria-controls="pickup" aria-selected="false">Điểm đón,
+                        <button class="nav-link" id="pickup-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#pickup-{{$key}}"
+                            type="button" role="tab" aria-controls="pickup-{{$key}}" aria-selected="false">Điểm đón,
                             trả</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="rating-tab" data-bs-toggle="pill" data-bs-target="#rating"
-                            type="button" role="tab" aria-controls="rating" aria-selected="false">Đánh
+                        <button class="nav-link" id="rating-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#rating-{{$key}}"
+                            type="button" role="tab" aria-controls="rating-{{$key}}" aria-selected="false">Đánh
                             giá</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="thumb-tab" data-bs-toggle="pill"
-                            data-bs-target="#image" type="button" role="tab" aria-controls="image"
-                            aria-selected="false">Hình ảnh</button>
+                        <button class="nav-link" id="thumb-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#image-{{$key}}"
+                            type="button" role="tab" aria-controls="image-{{$key}}" aria-selected="false">Hình
+                            ảnh</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="policy-tab" data-bs-toggle="pill" data-bs-target="#policy"
-                            type="button" role="tab" aria-controls="policy" aria-selected="false">Chính
+                        <button class="nav-link" id="policy-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#policy-{{$key}}"
+                            type="button" role="tab" aria-controls="policy-{{$key}}" aria-selected="false">Chính
                             sách</button>
                     </li>
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
-                    <div class="tab-pane fade coupon-tab" id="coupon" role="tabpanel"
+                    <div class="tab-pane fade show active coupon-tab" id="coupon-{{$key}}" role="tabpanel"
                         aria-labelledby="coupon-tab" tabindex="0">
-                        Mã giảm giá
+                        <div class="coupon-container">
+                            <div class="wrap-coupon">
+                                <input
+                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <div class="kNCupL">
+                                    <div class="border-coupon">
+                                        <div class="flex-coupon">
+                                            <div class="img-coupon">
+                                                <div class="icon-tau-coupon">
+                                                    <i class="fa fa-train" aria-hidden="true"></i>
+                                                </div>
+                                                <img src="{{ asset('images/img-coupon.jpg') }}" alt="logo">
+                                                <div class="coupon-image-title">
+                                                    <p class="coupon-image-title-t">Giảm</p>
+                                                    <p class="coupon-image-title-b">10%</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-coupon">
+                                                <div class="coupon-exp">
+                                                    Giờ vàng <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <p class="text-coupon-reduce">Giảm 10%</p>
+                                                <p class="text-coupon-reduce-b">Đơn hàng tối đa 1 vé </p>
+                                                <div class="wrap-expiry">
+                                                    <div class="text-expiry">HSD:</div>
+                                                    <p class="date-expiry">T3, 06/08 14:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wrap-coupon">
+                                <input
+                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <div class="kNCupL">
+                                    <div class="border-coupon">
+                                        <div class="flex-coupon">
+                                            <div class="img-coupon">
+                                                <div class="icon-tau-coupon">
+                                                    <i class="fa fa-train" aria-hidden="true"></i>
+                                                </div>
+                                                <img src="{{ asset('images/img-coupon.jpg') }}" alt="logo">
+                                                <div class="coupon-image-title">
+                                                    <p class="coupon-image-title-t">Giảm</p>
+                                                    <p class="coupon-image-title-b">10%</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-coupon">
+                                                <div class="coupon-exp">
+                                                    Giờ vàng <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <p class="text-coupon-reduce">Giảm 10%</p>
+                                                <p class="text-coupon-reduce-b">Đơn hàng tối đa 1 vé </p>
+                                                <div class="wrap-expiry">
+                                                    <div class="text-expiry">HSD:</div>
+                                                    <p class="date-expiry">T3, 06/08 14:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wrap-coupon">
+                                <input
+                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <div class="kNCupL">
+                                    <div class="border-coupon">
+                                        <div class="flex-coupon">
+                                            <div class="img-coupon">
+                                                <div class="icon-tau-coupon">
+                                                    <i class="fa fa-train" aria-hidden="true"></i>
+                                                </div>
+                                                <img src="{{ asset('images/img-coupon.jpg') }}" alt="logo">
+                                                <div class="coupon-image-title">
+                                                    <p class="coupon-image-title-t">Giảm</p>
+                                                    <p class="coupon-image-title-b">10%</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-coupon">
+                                                <div class="coupon-exp">
+                                                    Giờ vàng <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <p class="text-coupon-reduce">Giảm 10%</p>
+                                                <p class="text-coupon-reduce-b">Đơn hàng tối đa 1 vé </p>
+                                                <div class="wrap-expiry">
+                                                    <div class="text-expiry">HSD:</div>
+                                                    <p class="date-expiry">T3, 06/08 14:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wrap-coupon">
+                                <input
+                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <div class="kNCupL">
+                                    <div class="border-coupon">
+                                        <div class="flex-coupon">
+                                            <div class="img-coupon">
+                                                <div class="icon-tau-coupon">
+                                                    <i class="fa fa-train" aria-hidden="true"></i>
+                                                </div>
+                                                <img src="{{ asset('images/img-coupon.jpg') }}" alt="logo">
+                                                <div class="coupon-image-title">
+                                                    <p class="coupon-image-title-t">Giảm</p>
+                                                    <p class="coupon-image-title-b">10%</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-coupon">
+                                                <div class="coupon-exp">
+                                                    Giờ vàng <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <p class="text-coupon-reduce">Giảm 10%</p>
+                                                <p class="text-coupon-reduce-b">Đơn hàng tối đa 1 vé </p>
+                                                <div class="wrap-expiry">
+                                                    <div class="text-expiry">HSD:</div>
+                                                    <p class="date-expiry">T3, 06/08 14:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wrap-coupon">
+                                <input
+                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <div class="kNCupL">
+                                    <div class="border-coupon">
+                                        <div class="flex-coupon">
+                                            <div class="img-coupon">
+                                                <div class="icon-tau-coupon">
+                                                    <i class="fa fa-train" aria-hidden="true"></i>
+                                                </div>
+                                                <img src="{{ asset('images/img-coupon.jpg') }}" alt="logo">
+                                                <div class="coupon-image-title">
+                                                    <p class="coupon-image-title-t">Giảm</p>
+                                                    <p class="coupon-image-title-b">10%</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-coupon">
+                                                <div class="coupon-exp">
+                                                    Giờ vàng <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <p class="text-coupon-reduce">Giảm 10%</p>
+                                                <p class="text-coupon-reduce-b">Đơn hàng tối đa 1 vé </p>
+                                                <div class="wrap-expiry">
+                                                    <div class="text-expiry">HSD:</div>
+                                                    <p class="date-expiry">T3, 06/08 14:00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tab-pane fade pickup-tab" id="pickup" role="tabpanel"
+                    <div class="tab-pane fade pickup-tab" id="pickup-{{$key}}" role="tabpanel"
                         aria-labelledby="pickup-tab" tabindex="1">
                         <div class="d-flex flex-column">
                             <div class="fw-bold">Lưu ý</div>
@@ -1256,8 +1421,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="rating" role="tabpanel" aria-labelledby="rating-tab"
-                        tabindex="2">
+                    <div class="tab-pane fade rating-tab" id="rating-{{$key}}" role="tabpanel"
+                        aria-labelledby="rating-tab" tabindex="2">
                         <div class="d-flex align-items-center">
                             <div class="d-flex align-items-center rating-info">
                                 <button class="btn btn-primary p-1"><i class="fa-solid fa-star"></i>
@@ -1370,7 +1535,7 @@
                                 </div>
                             </div>
                         </div>
-                        <ul class="nav nav-pills mb-1 pill-rating-filter" id="pills-ticket-tab" role="tablist">
+                        <ul class="nav nav-pills mb-1 pill-rating-filter" role="tablist">
                             <li class="nav-item filter-rating" role="presentation">
                                 <button class="nav-link active" data-bs-toggle="pill">Tất cả
                                     (100)</button>
@@ -1530,7 +1695,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade image-tab" id="image" role="tabpanel"
+                    <div class="tab-pane fade image-tab" id="image-{{$key}}" role="tabpanel"
                         aria-labelledby="image-tab" tabindex="3">
                         <div class="d-flex flex-column m-2">
                             <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
@@ -1606,36 +1771,40 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade show active policy-tab" id="policy" role="tabpanel"
+                    <div class="tab-pane fade policy-tab" id="policy-{{$key}}" role="tabpanel"
                         aria-labelledby="policy" tabindex="4">
                         <div class="d-flex flex-column m-2">
                             <div class="d-flex flex-column policy-content-f">
                                 <h6>Chính sách huỷ đơn hàng</h6>
-                                <div class="timeline-policy row">
-                                    <div class="col-06">
-                                        20:16 <br />
-                                        10/08/2024
+                                <div class="timeline-policy position-relative">
+                                    <div class="text-center time-sa">
+                                        <div class="fw-bold">8:00</div>
+                                        <div>13/08</div>
                                     </div>
-                                    <div class="col-06">
-                                        20:16 <br />
-                                        10/08/2024
+                                    <div class="text-center time-ch">
+                                        <div class="fw-bold">8:00</div>
+                                        <div>13/08</div>
                                     </div>
                                 </div>
-                                <div class="w-100 d-flex flex-row">
+                                <div class="w-100 d-flex flex-row position-relative">
+                                    <div class="check-point">
+                                        <div class="tag-dot">Hôm nay</div>
+                                        <div class="dot"></div>
+                                    </div>
                                     <div class="cancellation-policy-period w-100">
                                         <div class="cancellation-line w-100" style="background:rgb(0, 96, 196)">
                                         </div>
-                                        <p>Phí huỷ 50%</p>
+                                        <p class="text-center">Phí huỷ 50%</p>
                                     </div>
                                     <div class="cancellation-policy-period w-100">
                                         <div class="cancellation-line w-100" style="background: rgb(255, 199, 0);">
                                         </div>
-                                        <p>Phí huỷ 50%</p>
+                                        <p class="text-center">Phí huỷ 50%</p>
                                     </div>
                                     <div class="cancellation-policy-period w-100">
                                         <div class="cancellation-line w-100" style="background: rgb(241, 0, 0)">
                                         </div>
-                                        <p>Phí huỷ 50%</p>
+                                        <p class="text-center">Phí huỷ 50%</p>
                                     </div>
                                 </div>
                             </div>

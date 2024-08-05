@@ -10,7 +10,9 @@
     <!-- slide -->
     <div class="total-slide position-relative">
         <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
-            @include('components.search_component')
+            @include('components.search_component', [
+                'params' => [],
+            ])
         </div>
         <div class="img-slide">
             <img src="{{ asset('images/slide.jpg') }}" alt="slide">
@@ -43,6 +45,7 @@
         // data load search component
         // list data areas
         const busCities = @json($list_areas ?? []);
+        const dateTo = @json($params->dateTo ?? "");
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush
