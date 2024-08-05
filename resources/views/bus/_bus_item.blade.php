@@ -1,4 +1,4 @@
-<div id="">
+<div id="item-bus-1">
     <div class="container-l">
         <div class="ticket-container-l">
             <div class="ticket-body-l">
@@ -55,9 +55,7 @@
                     <div class="action-p">
                         <div class="seat-available">Còn 23 chỗ trống</div>
                         <div class="action-l">
-                            <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse"
-                                data-bs-target="#ticket-detail-collapse" aria-expanded="false"
-                                aria-controls="ticket-detail-collapse">
+                            <button type="button" class="ant-btn btn-detail-l ant-btn-link-l">
                                 <span>Thông tin chi tiết 1</span>
                                 <i aria-label="icon: caret-down" class="anticon anticon-caret-down-l">
                                     <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
@@ -68,9 +66,7 @@
                                     </svg>
                                 </i>
                             </button>
-                            <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l"
-                                data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-                                aria-controls="collapseExample">
+                            <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l">
                                 <span>Chọn chuyến</span>
                             </button>
                         </div>
@@ -93,7 +89,7 @@
                 <div>Không cần thanh toán trước</div>
             </div>
         </div>
-        <div class="collapse" id="collapseExample">
+        <div class="collapse ticket-step-collapse" id="ticket-step-collapse" data-bs-parent="#item-bus-1">
             <div class="card card-body card-body-new">
                 <div id="step1" class="wizard-step active">
                     <div class="wrap-card-body">
@@ -1166,7 +1162,7 @@
                 </div>
             </div>
         </div>
-        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse">
+        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse" data-bs-parent="#item-bus-1">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
                 <ul class="nav nav-pills mb-1" id="pills-ticket-tab" role="tablist">

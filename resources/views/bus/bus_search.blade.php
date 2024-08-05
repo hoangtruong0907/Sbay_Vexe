@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section("title", "Tím kiếm chuyến xe")
+@section('title', 'Tím kiếm chuyến xe')
 @section('styles')
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
@@ -12,7 +12,7 @@
 @section('content')
     <div id="airlinetickets">
         <div class="container-airlinetickets">
-            @include("components.search_component")
+            @include('components.search_component')
         </div>
         <div class="wrap-filter">
             <div class="left-filter">
@@ -707,8 +707,7 @@
             </div>
             <div class="right-filter">
                 {{-- Load item is here --}}
-                @include("bus._bus_item");
-
+                @include('bus._bus_item');
             </div>
         </div>
     </div>
@@ -716,7 +715,7 @@
 @endsection
 
 
-@section('scripts')
+@push('page-scripts')
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"
@@ -1125,5 +1124,16 @@
             document.querySelector('.wizard-step.active').classList.remove('active');
             document.getElementById('step' + step).classList.add('active');
         }
+
+        // Colapse slide
+        $(document).ready(function() {
+            $(".btn-detail-l").on('click', function() {
+                $('.ticket-detail-collapse').collapse('toggle');
+            });
+
+            $(".btn-booking-l").on('click', function() {
+                $('.ticket-step-collapse').collapse('toggle');
+            });
+        });
     </script>
-@endsection
+@endpush

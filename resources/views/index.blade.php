@@ -36,7 +36,7 @@
     </div>
 
 @endsection
-@section('scripts')
+@push('page-scripts')
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
     <script>
@@ -45,4 +45,4 @@
         const busCities = @json($list_areas ?? []);
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
-@endsection
+@endpush
