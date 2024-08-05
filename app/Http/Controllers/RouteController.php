@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\View\View;
 use App\Helpers\Helpers;
 
 class RouteController extends Controller
@@ -127,9 +128,20 @@ class RouteController extends Controller
             ], 500);
         }
 
+        $res_cidi = Http::withToken($token)->get($this->main_url . '/v3/area/city_district');
+
+        if ($res_cidi->successful()) {
+            $responseData = $res_cidi->json();
+            $list_areas = isset($responseData['data']) && is_array($responseData['data']) ? $responseData['data'] : [];
+        } else {
+            $list_areas = [];
+        }
+
         $res_route = Http::withToken($token)->get($url)->json();
         $list_routes = isset($res_route['data']) && is_array($res_route['data']) ? $res_route['data'] : [];
 
-        dd(compact('list_routes'));
+        // dd(compact('list_routes'));
+
+        return view("bus.bus_search", compact('list_routes', 'list_areas'));
     }
 }

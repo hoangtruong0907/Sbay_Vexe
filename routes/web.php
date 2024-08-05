@@ -12,8 +12,4 @@ Route::prefix('/admin')->group(function () {
 
 Route::get('/', [RouteController::class, 'index']);
 
-Route::get('/route-search/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
-
-Route::get('/airline_tickets', function () {
-    return view('airline_tickets');
-});
+Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
