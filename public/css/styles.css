@@ -1635,24 +1635,24 @@ body .material-icons-wrapper.md-20 {
 }
 
 
-.ticket-detail-contentTab ::-webkit-scrollbar {
+.container-l ::-webkit-scrollbar {
     width: 20px;
     height: 8px;
 }
 
 
-.ticket-detail-contentTab ::-webkit-scrollbar-track {
+.container-l ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px rgb(59, 59, 59);
     border-radius: 8px;
 }
 
 
-.ticket-detail-contentTab ::-webkit-scrollbar-thumb {
+.container-l ::-webkit-scrollbar-thumb {
     background: #adb5bd;
     border-radius: 8px;
 }
 
-.ticket-detail-contentTab ::-webkit-scrollbar-thumb:hover {
+.container-l ::-webkit-scrollbar-thumb:hover {
     background: #6c757d;
 }
 
