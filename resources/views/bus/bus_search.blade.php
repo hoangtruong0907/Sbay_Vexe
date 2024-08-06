@@ -1139,25 +1139,5 @@
             document.getElementById('step' + step).classList.add('active');
         }
 
-        // Colapse slide
-        $(document).ready(function() {
-            $(".btn-detail-l").on('click', function() {
-                $('.ticket-detail-collapse').collapse('toggle');
-            });
-
-            $('.ticket-detail-collapse').on('shown.bs.collapse', function() {
-                $('.anticon-caret-down').hide();
-                $('.anticon-caret-up').show();
-            });
-
-            $('.ticket-detail-collapse').on('hidden.bs.collapse', function() {
-                $('.anticon-caret-up').hide();
-                $('.anticon-caret-down').show();
-            });
-
-            $(".btn-booking-l").on('click', function() {
-                $('.ticket-step-collapse').collapse('toggle');
-            });
-        });
     </script>
 @endpush

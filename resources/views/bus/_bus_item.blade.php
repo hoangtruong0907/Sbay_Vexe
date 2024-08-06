@@ -15,12 +15,12 @@
                             <button type="button" class="ant-btn bus-rating-button-l">
                                 <div class="bus-rating-l">
                                     <i class="fa-solid fa-star"></i>
-                                    <span>3.8 (282)</span>
+                                    <span>{{$route['company']['ratings']['overall']}} ({{$route['company']['ratings']['comments']}})</span>
                                 </div>
                             </button>
                         </div>
                     </div>
-                    <div class="seat-type-l">Cabin 22 Phòng</div>
+                    <div class="seat-type-l">{{$route['company']['images'][0]['caption']['vi']}}</div>
                     <div class="from-to-l">
                         <svg class="location-route-svg-l" xmlns="http://www.w3.org/2000/svg" width="14"
                             height="74" viewBox="0 0 14 74">
@@ -55,7 +55,7 @@
                     <div class="action-p">
                         <div class="seat-available">Còn 23 chỗ trống</div>
                         <div class="action-l">
-                            <button type="button" class="ant-btn btn-detail-l ant-btn-link-l">
+                            <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse" data-bs-target="#ticket-detail-collapse-{{$key}}" role="button" aria-expanded="false" aria-controls="ticket-detail-collapse-{{$key}}">
                                 <span>Thông tin chi tiết 1</span>
                                 <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
                                     <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
@@ -73,7 +73,7 @@
                                         </path>
                                     </svg></i>
                             </button>
-                            <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l">
+                            <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l" data-bs-toggle="collapse" data-bs-target="#ticket-step-collapse-{{$key}}" role="button" aria-expanded="false" aria-controls="ticket-step-collapse-{{$key}}">
                                 <span>Chọn chuyến</span>
                             </button>
                         </div>
@@ -96,7 +96,7 @@
                 <div>Không cần thanh toán trước</div>
             </div>
         </div>
-        <div class="collapse ticket-step-collapse" data-bs-parent="#item-bus-1">
+        <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{$key}}" data-bs-parent="#item-bus-{{$key}}">
             <div class="card card-body card-body-new">
                 <div id="step1-{{$key}}" class="wizard-step active">
                     <div class="wrap-card-body">
@@ -975,11 +975,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="exampleModal" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal-{{$key}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-new">
                             <div class="modal-content">
                                 <div class="wrap-content">
-                                    <h6 class="modal-title fs-5" id="exampleModalLabel">Mã giường</h6>
+                                    <h6 class="modal-title fs-5" id="exampleModalLabel-{{$key}}">Mã giường</h6>
                                     <button type="button" class="btn-close btn-modal-content"
                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -1076,21 +1076,21 @@
                                     </label> --}}
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault1">
-                                            <label class="form-check-label-title" for="flexRadioDefault1">
+                                                id="flexRadioDefault1-{{$key}}">
+                                            <label class="form-check-label-title" for="-{{$key}}">
                                                 19:00: Nội thành Tp. Đà Nẵng
                                             </label>
                                             <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ thể
                                                 muốn được trung chuyển</p>
                                             <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng</p>
                                             <b><i class="fa-solid fa-location-dot"></i> Đà Nẵng, Đà Nẵng</b>
-                                            <textarea id="transferAddress" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
+                                            <textarea id="transferAddress-{{$key}}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                                 style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                                         </div>
                                         <div class="form-check item point_id-1">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault2" checked>
-                                            <label class="form-check-label-title" for="flexRadioDefault2">
+                                                id="flexRadioDefault2-{{$key}}" checked>
+                                            <label class="form-check-label-title" for="flexRadioDefault2-{{$key}}">
                                                 19:30: Văn Phòng Đà Nẵng
                                             </label>
                                             <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường Hòa
@@ -1127,8 +1127,8 @@
                                     <div class="container-group-items-pick-up-point">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio"
-                                                name="flexRadioDefault2" id="flexRadioDefault3" checked>
-                                            <label class="form-check-label-title" for="flexRadioDefault3">
+                                                name="flexRadioDefault2" id="flexRadioDefault3-{{$key}}" checked>
+                                            <label class="form-check-label-title" for="flexRadioDefault3-{{$key}}">
                                                 19:30: Văn Phòng Đà Nẵng
                                             </label>
                                             <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường Hòa
@@ -1136,15 +1136,15 @@
                                         </div>
                                         <div class="form-check  item point_id-1">
                                             <input class="form-check-input" type="radio"
-                                                name="flexRadioDefault2" id="flexRadioDefault4">
-                                            <label class="form-check-label-title" for="flexRadioDefault4">
+                                                name="flexRadioDefault2" id="flexRadioDefault4-{{$key}}">
+                                            <label class="form-check-label-title" for="flexRadioDefault4-{{$key}}">
                                                 19:00: Nội thành Tp. Đà Nẵng
                                             </label>
                                             <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ thể
                                                 muốn được trung chuyển</p>
                                             <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng</p>
                                             <b><i class="fa-solid fa-location-dot"></i> Đà Nẵng, Đà Nẵng</b>
-                                            <textarea id="transferAddress1" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
+                                            <textarea id="transferAddress1--{{$key}}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                                 style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                                         </div>
                                     </div>
@@ -1170,7 +1170,7 @@
                 </div>
             </div>
         </div>
-        <div class="collapse ticket-detail-collapse" data-bs-parent="#item-bus-1">
+        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{$key}}" data-bs-parent="#item-bus-{{$key}}">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
                 <ul class="nav nav-pills mb-1 pills-ticket-tab" role="tablist">
@@ -1701,72 +1701,22 @@
                             <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
                                 class="swiper mySwiper2">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-                                    </div>
+                                    @foreach ($route['company']['images'] as $image)
+                                        <div class="swiper-slide">
+                                            <img src="{{$image['files']['1000x600']}}" />
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="swiper-button-next"></div>
                                 <div class="swiper-button-prev"></div>
                             </div>
                             <div thumbsSlider="" class="swiper mySwiper">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-                                    </div>
+                                    @foreach ($route['company']['images'] as $i => $image)
+                                        <div class="swiper-slide" id="{{$i}}">
+                                            <img src="{{$image['files']['1000x600']}}" alt="{{$image['alt']['vi']}}"/>
+                                        </div>
+                                     @endforeach
                                 </div>
                             </div>
                         </div>

@@ -117,11 +117,24 @@ class RouteController extends Controller
             'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
             'dateTo' => $dateTo,
         ]);
-
+        // Thông tim tuyến đường
         $res_route = Http::withToken($token)->get($url)->json();
         $list_routes = isset($res_route['data']) && is_array($res_route['data']) ? $res_route['data'] : [];
-        // dd(compact('res_route'));
 
-        return view("bus.bus_search", compact('res_route','list_routes', 'list_areas', 'params'));
+        // Thông tin ảnh nhà xe
+        $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
+        // dd(compact('list_routes'));
+
+        return view("bus.bus_search", compact('res_route', 'list_routes', 'list_areas', 'params'));
+    }
+
+    private function addBusImagesToRoutes($token, $list_routes)
+    {
+        foreach ($list_routes as &$route) {
+            $res = Http::withToken($token)->get($this->main_url . '/v3/company/' . $route['company']['id'] . '/image');
+            $route['company']['images'] = isset($res['data']) && is_array($res['data']) ? $res['data'] : [];
+        }
+
+        return $list_routes;
     }
 }
