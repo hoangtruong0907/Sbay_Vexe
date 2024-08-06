@@ -12,7 +12,9 @@
 @section('content')
     <div id="airlinetickets">
         <div class="container-airlinetickets">
-            @include('components.search_component')
+            @include('components.search_component', [
+                'params' => $params,
+            ])
         </div>
         <div class="wrap-filter">
             <div class="left-filter">
@@ -707,13 +709,17 @@
             </div>
             <div class="right-filter">
                 {{-- Load item is here --}}
-                @include('bus._bus_item');
+                @foreach ($list_routes as $key => $route)
+                    @include('bus._bus_item', [
+                        'route' => $route,
+                        'key' => (string)$key,
+                    ]);
+                @endforeach
             </div>
         </div>
     </div>
     </div>
 @endsection
-
 
 @push('page-scripts')
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
@@ -726,6 +732,7 @@
         // data load search component
         // list data areas
         const busCities = @json($list_areas ?? []);
+        const dateTo = @json($params->dateTo ?? '');
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
 
@@ -991,23 +998,30 @@
                 }
             });
 
-            var swiper = new Swiper(".mySwiper", {
-                loop: true,
-                spaceBetween: 10,
-                slidesPerView: 4,
-                freeMode: true,
-                watchSlidesProgress: true,
-            });
-            var swiper2 = new Swiper(".mySwiper2", {
-                loop: true,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-                thumbs: {
-                    swiper: swiper,
-                },
+            $('.swiper-container').each(function(index, element) {
+                if ($(element).hasClass('mySwiper')) {
+                    var swiper = new Swiper(element, {
+                        loop: true,
+                        spaceBetween: 10,
+                        slidesPerView: 4,
+                        freeMode: true,
+                        watchSlidesProgress: true,
+                    });
+                }
+
+                if ($(element).hasClass('mySwiper2')) {
+                    var swiper2 = new Swiper(element, {
+                        loop: true,
+                        spaceBetween: 10,
+                        navigation: {
+                            nextEl: $(element).find('.swiper-button-next')[0],
+                            prevEl: $(element).find('.swiper-button-prev')[0],
+                        },
+                        thumbs: {
+                            swiper: swiper,
+                        },
+                    });
+                }
             });
             // ------------- Filter -------------//
             // Lọc btn
@@ -1125,15 +1139,5 @@
             document.getElementById('step' + step).classList.add('active');
         }
 
-        // Colapse slide
-        $(document).ready(function() {
-            $(".btn-detail-l").on('click', function() {
-                $('.ticket-detail-collapse').collapse('toggle');
-            });
-
-            $(".btn-booking-l").on('click', function() {
-                $('.ticket-step-collapse').collapse('toggle');
-            });
-        });
     </script>
 @endpush

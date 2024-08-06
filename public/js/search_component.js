@@ -387,17 +387,17 @@ function convertToSlug(text) {
         .replace(/-+/g, "-"); // Loại bỏ các dấu gạch ngang thừa
 }
 // Placeholder data input
-function getFormattedDate() {
-    const today = new Date();
-    const day = vn.daysShort[today.getDay()];
+function getFormattedDate(dayInput) {
+    const today = dayInput ? new Date(dayInput) : new Date();
+    const dayName = vn.daysShort[today.getDay()];
     const date = today.getDate();
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
-    return `${day}, ${date}/${month}/${year}`;
+    return `${dayName}, ${date}/${month}/${year}`;
 }
 
 $(".date-input").attr("placeholder", getFormattedDate());
-$(".date-input.date-default-input").attr("value", getFormattedDate());
+$(".date-input.date-default-input").attr("value", getFormattedDate(dateTo));
 $(".date-input.data-add-input").attr("placeholder", "Thêm ngày về");
 
 $("#bus_search").click(() => {
@@ -409,11 +409,15 @@ $("#bus_search").click(() => {
     var dateFrom = $("#bus_date_from").val();
 
     var data = {
-        bus_to: busTo,
         bus_from: busFrom,
-        date_to: dateTo,
+        // busFromPlace,
+        bus_to: busTo,
+        // busToPlace,
         date_from: dateFrom,
+        date_to: dateTo,
     };
+    console.log(data);
+
     var url =
         "/route-search/xe-khach/" +
         convertToSlug(busFromPlace) +
@@ -443,9 +447,7 @@ $(document).ready(function () {
                         html: `
                             <div class="wrap-cell">
                                 <div class="fw-bold">${date.getDate()}</div>
-                                <div class="lunar-date">${
-                                    lunarDate.day
-                                }</div>
+                                <div class="lunar-date">${lunarDate.day}</div>
                             </div>
                             <div class="price-cell">1999k</div>
                             `,

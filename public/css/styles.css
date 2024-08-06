@@ -1753,6 +1753,72 @@ body .material-icons-wrapper.md-20 {
     height: 16px;
 }
 
+.policy-tab .time-sa {
+    position: absolute;
+    font-size: 12px;
+    left: calc(33.333% - 20px);
+}
+
+.policy-tab .time-ch {
+    position: absolute;
+    font-size: 13px;
+    left: calc(66.6666% - 20px);
+}
+
+.policy-tab .check-point {
+    position: absolute;
+    top: -34px;
+    left: 50px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.policy-tab .cancellation-policy-period {
+    font-size: 13px;
+    color: #666;
+}
+
+.policy-tab .tag-dot {
+    background-color: white;
+    color: #666;
+    height: 20px;
+    width: 60px;
+    border: #333 solid 1px;
+    padding-left: 4px;
+    margin: 8px 4px;
+    border-radius: 4px;
+}
+
+.policy-tab .dot {
+    background-color: white;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.anticon-caret-up {
+    display: none;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
+    border: none;
+    background-color: white;
+    color: #807d7d;
+    border-radius: 0px;
+    border-bottom: 1px solid #807d7d;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link.active {
+    border: none;
+    background-color: white;
+    color: #0d6efd;
+    font-weight: 600;
+    border-radius: 0px;
+    border-bottom: 2px solid #0d6efd;
+}
+
 .card-body-new{
   padding: 0px !important;
   border: 0px !important;
@@ -2661,3 +2727,4 @@ align-items: center;
 .left-total-amount span{
   font-size: 15px;
 }
+
