@@ -17,3 +17,6 @@ Route::get('/route-search/{fromtoPlace}',  [RouteController::class, 'routeSearch
 Route::get('/airline_tickets', function () {
     return view('airline_tickets');
 });
+
+
+Route::get('/route-search/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
