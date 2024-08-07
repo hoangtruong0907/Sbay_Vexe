@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- lightgallery plugins -->
+    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
+    <link type="text/css" rel="stylesheet" href="css/lightgallery-bundle.css" />
 @endsection
 
 @section('content')
@@ -712,7 +714,7 @@
                 @foreach ($list_routes as $key => $route)
                     @include('bus._bus_item', [
                         'route' => $route,
-                        'key' => (string)$key,
+                        'key' => (string) $key,
                     ]);
                 @endforeach
             </div>
@@ -727,7 +729,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"
         integrity="sha512-fCRpXk4VumjVNtE0j+OyOqzPxF1eZwacU3kN3SsznRPWHgMTSSo7INc8aY03KQDBWztuMo5KjKzCFXI/a5rVYQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- lightgallery plugins -->
+    <script src="js/lightgallery.umd.js"></script>
+    <script src="js/plugins/lg-thumbnail.umd.js"></script>
+    <script src="js/plugins/lg-zoom.umd.js"></script>
+
     <script>
         // data load search component
         // list data areas
@@ -981,47 +987,25 @@
                 $(this).find('.radio-input').prop('checked', true);
             });
             //Swipe image review
-            $('.list-img-review').magnificPopup({
-                delegate: 'img', // chọn các thẻ <img> thay vì <a>
-                type: 'image',
-                gallery: {
-                    enabled: true
-                },
-                image: {
-                    titleSrc: 'alt'
-                },
-                callbacks: {
-                    elementParse: function(item) {
-                        // Function để lấy src của thẻ img
-                        item.src = item.el.attr('src');
-                    }
-                }
+            let carouselEl = document.querySelector('bootstrap-gallery-container');
+
+            // Create a new Bootstrap 5 Carousel instance with specified options
+            const carousel = new bootstrap.Carousel(carouselEl, {
+                interval: 2000,
+                wrap: true,
             });
 
-            $('.swiper-container').each(function(index, element) {
-                if ($(element).hasClass('mySwiper')) {
-                    var swiper = new Swiper(element, {
-                        loop: true,
-                        spaceBetween: 10,
-                        slidesPerView: 4,
-                        freeMode: true,
-                        watchSlidesProgress: true,
-                    });
-                }
-
-                if ($(element).hasClass('mySwiper2')) {
-                    var swiper2 = new Swiper(element, {
-                        loop: true,
-                        spaceBetween: 10,
-                        navigation: {
-                            nextEl: $(element).find('.swiper-button-next')[0],
-                            prevEl: $(element).find('.swiper-button-prev')[0],
-                        },
-                        thumbs: {
-                            swiper: swiper,
-                        },
-                    });
-                }
+            // Add an event listener for the 'slide.bs.carousel' event, fires immediately when the slide instance method is invoked.
+            carouselEl.addEventListener('slide.bs.carousel', (event) => {
+                const container = document.querySelector('.carousel-inner');
+                lightGallery(container, {
+                    thumbnail: false,
+                    pager: false,
+                    plugins: [],
+                    hash: false,
+                    preload: 4,
+                    selector: '.lg-item',
+                });
             });
             // ------------- Filter -------------//
             // Lọc btn
@@ -1138,6 +1122,5 @@
             document.querySelector('.wizard-step.active').classList.remove('active');
             document.getElementById('step' + step).classList.add('active');
         }
-
     </script>
 @endpush
