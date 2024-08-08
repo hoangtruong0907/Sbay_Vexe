@@ -63,95 +63,102 @@
                 </div>
             </li>
             <li class="Navbar2__GroupItem-sa2air-4 hEFchp menu-group-item">
-                <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
-                    <p class="base__Headline03-sc-1tvbuqk-15 boemqK" data-bs-toggle="modal" data-bs-target="#loginModal"
-                        id="modal_login">
-                        Đăng nhập
-                    </p>
-                </div>
+                @guest
+                    <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
+                        <p class="base__Headline03-sc-1tvbuqk-15 boemqK" data-bs-toggle="modal" data-bs-target="#authModal">
+                            Đăng nhập
+                        </p>
+                    </div>
+                @else
+                    {{-- chưa style --}}
+                    <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
+                        <p class="base__Headline03-sc-1tvbuqk-15 boemqK">
+                            Xin chào, {{ Auth::user()->name }}
+                        </p>
+                    </div>
+                @endguest
             </li>
         </ul>
     </div>
 </header>
 
+<!-- Modal Login/Register -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="authModalLabel">Đăng nhập</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4">
+                    <label for="phoneNumber" class="form-label m-0">Số điện thoại</label>
+                    <div class="input-group mb-4">
+                        <select class="form-select flex-shrink-1" style="max-width: 120px" id="phoneCode"
+                            aria-label="Phone code">
+                            <option value="+84" selected>(Viet Nam) +84</option>
+                            <option value="+01">(A) +01</option>
+                            <option value="+02">(B) +02</option>
+                        </select>
+                        <input type="text" class="form-control flex-grow-1" id="phoneNumber"
+                            placeholder="Số điện thoại">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary w-100">Tiếp tục</button>
+                <div class="text-center my-1">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <hr class="flex-grow-1">
+                        <span class="text-muted mx-2">hoặc</span>
+                        <hr class="flex-grow-1">
+                    </div>
+                </div>
+                <a href="{{ route('auth.google') }}" class="btn btn-danger w-100" style="text-decoration: none;">
+                    Tiếp tục với Google
+                </a>
 
-<!-- Modal Login-->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-4">
-                    <label for="phoneNumber" class="form-label m-0">Số điện thoại</label>
-                    <div class="input-group mb-4">
-                        <select class="form-select flex-shrink-1" style="max-width: 120px" id="phoneCode"
-                            aria-label="Phone code">
-                            <option value="+84" selected>(Viet Nam) +84</option>
-                            <option value="+01">(A) +01</option>
-                            <option value="+02">(B) +02</option>
-                        </select>
-                        <input type="text" class="form-control flex-grow-1" style="flex-grow: 1;"
-                            id="phoneNumber" placeholder="Số điện thoại">
-                    </div>
-                </div>
-                <button id="btn-phone-auth" type="button" class="btn btn-primary w-100">Tiếp tục</button>
-                <div class="text-center my-1">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <hr class="flex-grow-1">
-                        <span class="text-muted mx-2">hoặc</span>
-                        <hr class="flex-grow-1">
-                    </div>
-                </div>
-                <button type="button" class="btn btn-danger w-100">Tiếp tục với Google</button>
-                <div class="mt-3 d-flex align-items-center justify-content-start">
+                <div class="mt-3 d-flex align-items-center justify-content-start" id="authSwitch">
                     <span>Bạn chưa có tài khoản?</span>
-                    <a class="btn btn-link" style="text-decoration: none;" data-bs-toggle="modal"
-                        data-bs-target="#registerModal" id="modal_register">Đăng ký</a>
+                    <button type="button" class="btn btn-link" id="toggleAuth" style="text-decoration: none;">
+                        Đăng ký
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal Register-->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="registerModalLabel">Đăng ký</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-4">
-                    <label for="phoneNumber" class="form-label m-0">Số điện thoại</label>
-                    <div class="input-group mb-4">
-                        <select class="form-select flex-shrink-1" style="max-width: 120px" id="phoneCode"
-                            aria-label="Phone code">
-                            <option value="+84" selected>(Viet Nam) +84</option>
-                            <option value="+01">(A) +01</option>
-                            <option value="+02">(B) +02</option>
-                        </select>
-                        <input type="text" class="form-control flex-grow-1" style="flex-grow: 1;"
-                            id="phoneNumber" placeholder="Số điện thoại">
+@auth
+    @php
+        $user = Auth::user();
+    @endphp
+
+    @if (is_null($user->phone))
+        <div class="modal fade" id="addPhonenumberModal" tabindex="-1" aria-labelledby="addPhonenumberModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addPhonenumberModalLabel">Xác thực số điện thoại</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <button id="btn-phone-auth" type="button" class="btn btn-primary w-100">Tiếp tục</button>
-                <div class="text-center my-1">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <hr class="flex-grow-1">
-                        <span class="text-muted mx-2">hoặc</span>
-                        <hr class="flex-grow-1">
+                    <div class="modal-body">
+                        <div class="mb-4">
+                            <label for="phoneNumber" class="form-label m-0">Số điện thoại</label>
+                            <div class="input-group mb-4">
+                                <select class="form-select flex-shrink-1" style="max-width: 120px" id="add_phoneCode"
+                                    aria-label="Phone code">
+                                    <option value="84" selected>(Viet Nam) +84</option>
+                                    <option value="01">(A) +01</option>
+                                    <option value="02">(B) +02</option>
+                                </select>
+                                <input type="text" name="phone" class="form-control flex-grow-1"
+                                    style="flex-grow: 1;" id="add_phoneNumber" placeholder="Số điện thoại">
+                            </div>
+                        </div>
+                        <button id="btn-phone-auth" type="button" class="btn btn-primary w-100"
+                            data-url="{{ route('auth.addPhone') }}">Tiếp tục</button>
                     </div>
-                </div>
-                <button type="button" class="btn btn-danger w-100">Tiếp tục với Google</button>
-                <div class="mt-3 d-flex align-items-center justify-content-start">
-                    <span>Bạn đã có tài khoản?</span>
-                    <a href="#" class="btn btn-link" style="text-decoration: none;" data-bs-toggle="modal"
-                        data-bs-target="#loginModal" id="modal_login">Đăng nhập</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    @endif
+@endauth
