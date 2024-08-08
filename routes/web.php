@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 // Admin page
@@ -18,5 +19,4 @@ Route::get('/airline_tickets', function () {
     return view('airline_tickets');
 });
 
-
-Route::get('/route-search/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
+Route::get('/bookingconfirmation',  [BookingController::class, 'index']);
