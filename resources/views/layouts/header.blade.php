@@ -62,22 +62,80 @@
                     <i class="fa fa-phone" aria-hidden="true"></i> Hotline 2:<a href="tel:0967041900"> 0967041900</a>
                 </div>
             </li>
-            <li class="Navbar2__GroupItem-sa2air-4 hEFchp menu-group-item">
-                @guest
+            @guest
+                <li class="Navbar2__GroupItem-sa2air-4 hEFchp menu-group-item">
                     <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
                         <p class="base__Headline03-sc-1tvbuqk-15 boemqK" data-bs-toggle="modal" data-bs-target="#authModal">
                             Đăng nhập
                         </p>
                     </div>
-                @else
-                    {{-- chưa style --}}
-                    <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
-                        <p class="base__Headline03-sc-1tvbuqk-15 boemqK">
-                            Xin chào, {{ Auth::user()->name }}
-                        </p>
+                </li>
+            @else
+                <li class="Navbar2__GroupItem-sa2air-4 hEFchp dropdown ms-2">
+                    <div class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="profile-icon">
+                            <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/user_profile.svg" width="32"
+                                height="32" alt="User Profile">
+                        </div>
+                        <div class="material-icons-wrapper md-16">
+                            <i class="material-icons-outlined dropdown-icon">arrow_drop_down</i>
+                        </div>
                     </div>
-                @endguest
-            </li>
+                    <!-- Dropdown menu -->
+                    <ul class="dropdown-menu dropdown-menu-end"
+                        style="border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.info') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/Auth/account-circle.svg"
+                                    width="16" height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Thông tin tài khoản</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.membership') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/loyalty.svg" width="16"
+                                    height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Thành viên <b> thường</b></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.ticket') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/ticket.svg" width="16"
+                                    height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Đơn hàng của tôi</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.reward') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/promotion.svg" width="16"
+                                    height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Ưu đãi</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.card') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/credit-card.svg" width="16"
+                                    height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Quản lý thẻ</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.review') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/review.svg" width="16"
+                                    height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Nhận xết chuyến đi</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.logout') }}">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/Auth/logout.svg" width="16"
+                                    height="16" alt="">
+                                <span class="ms-2 fw-medium" style="font-size: 14px;">Đăng xuất</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endguest
         </ul>
     </div>
 </header>
