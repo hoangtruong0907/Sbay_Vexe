@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\View\View;
+use App\Helpers\Helpers;;
+
 use Illuminate\Support\Facades\Cache;
-use App\Helpers\Helpers;
+use Illuminate\Support\Collection;
+
 
 class RouteController extends Controller
 {
@@ -22,40 +26,9 @@ class RouteController extends Controller
         $this->client_id = env('VEXERE_CLIENT_ID');
         $this->client_secret = env('VEXERE_CLIENT_SECRET');
     }
-
-    private function getToken()
-    {
-        $tokenData = Cache::get('api_token_vexere');
-        if ($tokenData && isset($tokenData['expires_at']) && $tokenData['expires_at'] > now()) {
-            return $tokenData['token'];
-        }
-        try {
-            $response = Http::asForm()->post($this->main_url . "/v3/token", [
-                'grant_type' => 'client_credentials',
-                'client_id' => $this->client_id,
-                'client_secret' => $this->client_secret,
-            ]);
-
-            if ($response->successful()) {
-                $tokenData = $response->json();
-                $expiresAt = now()->addSeconds($tokenData['expires_in']);
-                Cache::put('api_token_vexere', [
-                    'token' => $tokenData['access_token'],
-                    'expires_at' => $expiresAt,
-                ], $tokenData['expires_in']);
-
-                return $tokenData['access_token'];
-            } else {
-                return null;
-            }
-        } catch (\Exception $e) {
-            return null;
-        }
-    }
-
     public function index()
     {
-        $token = $this->getToken();
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
 
         if (!$token) {
             return response()->json([
@@ -77,16 +50,17 @@ class RouteController extends Controller
 
     public function routeSearch($fromtoPlace, Request $request)
     {
+        $cacheKey = 'list_routes';
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
         $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
         $dateTo = $request->query('date_to') ? Helpers::formatDate($request->query('date_to')) : "";
         $dateFrom = $request->query('date_from') ? Helpers::formatDate($request->query('date_from')) : "";
-        $token = $this->getToken();
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
 
         if ($busTo === null || $busFrom === null || $dateTo === null) {
             return response()->json(['error' => 'Missing required parameters.'], 400);
         }
-        $url = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
+        $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
 
         $queryParams = [
             'filter[online_ticket]' => $request->query('online_ticket', 1), // Lọc theo các chuyến đi trực tuyến (0 hoặc 1)
@@ -117,7 +91,7 @@ class RouteController extends Controller
         // Thêm các tham số vào URL nếu chúng tồn tại
         foreach ($queryParams as $key => $value) {
             if ($value !== null) {
-                $url .= '&' . $key . '=' . $value;
+                $urlRoute .= '&' . $key . '=' . $value;
             }
         }
 
@@ -127,9 +101,35 @@ class RouteController extends Controller
             ], 500);
         }
 
-        $res_route = Http::withToken($token)->get($url)->json();
-        $list_routes = isset($res_route['data']) && is_array($res_route['data']) ? $res_route['data'] : [];
+        $main_url = $this->main_url . '/v3/area/city_district';
+        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 20));
+        // Lấy thông tin điểm đón và điểm xả
+        $params = (object)([
+            'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
+            'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
+            'dateTo' => $dateTo,
+        ]);
+        // Thông tim tuyến đường
+        $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
+        // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);
+        $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20);
+        // Thông tin ảnh nhà xe
+        $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
+        // dd(compact('list_routes'));
 
-        dd(compact('list_routes'));
+        return view("bus.bus_search", compact('list_routes', 'list_areas', 'params'));
+    }
+
+    private function addBusImagesToRoutes($token, $list_routes)
+    {
+        foreach ($list_routes as &$route) {
+            $cacheKeyImages = 'company_images_' . $route['company']['id'];
+            $route['company']['images'] = Cache::remember($cacheKeyImages, 60 * 60, function () use ($token, $route) {
+                $res = Http::withToken($token)->get($this->main_url . '/v3/company/' . $route['company']['id'] . '/image');
+                return isset($res['data']) && is_array($res['data']) ? $res['data'] : [];
+            });
+        }
+
+        return $list_routes;
     }
 }
