@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
-    protected $table = 'blogs';
+    protected $table = 'blog';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'title',
+        'content',
+        'tag',
     ];
 }

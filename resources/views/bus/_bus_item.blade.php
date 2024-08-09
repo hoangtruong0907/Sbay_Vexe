@@ -1,9 +1,9 @@
-<div id="item-bus-{{$key}}">
+<div id="item-bus-{{ $key }}">
     <div class="container-l">
         <div class="ticket-container-l">
             <div class="ticket-body-l">
                 <div class="ticket-image-l">
-                    <img class="operator-l" src="{{$route['company']['images'][0]['files']['1000x600']}}"
+                    <img class="operator-l" src="{{ $route['company']['images'][0]['files']['1000x600'] }}"
                         alt="Đình Nhân">
                     <div class="ticket-confirm-l">
                         <i class="fa-solid fa-ticket"></i>Xác nhận tức thì
@@ -11,16 +11,17 @@
                 </div>
                 <div class="ticket-info-l">
                     <div class="ticket-bus-info-l">
-                        <div class="bus-name-l">{{$route['company']['name']}}
+                        <div class="bus-name-l">{{ $route['company']['name'] }}
                             <button type="button" class="ant-btn bus-rating-button-l">
                                 <div class="bus-rating-l">
                                     <i class="fa-solid fa-star"></i>
-                                    <span>{{$route['company']['ratings']['overall']}} ({{$route['company']['ratings']['comments']}})</span>
+                                    <span>{{ $route['company']['ratings']['overall'] }}
+                                        ({{ $route['company']['ratings']['comments'] }})</span>
                                 </div>
                             </button>
                         </div>
                     </div>
-                    <div class="seat-type-l">{{$route['company']['images'][0]['caption']['vi']}}</div>
+                    <div class="seat-type-l">{{ $route['company']['images'][0]['caption']['vi'] }}</div>
                     <div class="from-to-l">
                         <svg class="location-route-svg-l" xmlns="http://www.w3.org/2000/svg" width="14"
                             height="74" viewBox="0 0 14 74">
@@ -55,7 +56,9 @@
                     <div class="action-p">
                         <div class="seat-available">Còn 23 chỗ trống</div>
                         <div class="action-l">
-                            <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse" data-bs-target="#ticket-detail-collapse-{{$key}}" role="button" aria-expanded="false" aria-controls="ticket-detail-collapse-{{$key}}">
+                            <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse"
+                                data-bs-target="#ticket-detail-collapse-{{ $key }}" role="button"
+                                aria-expanded="false" aria-controls="ticket-detail-collapse-{{ $key }}">
                                 <span>Thông tin chi tiết 1</span>
                                 <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
                                     <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
@@ -65,7 +68,7 @@
                                         </path>
                                     </svg>
                                 </i>
-                                <i aria-label="icon: caret-up" class="anticon anticon-caret-up" ><svg
+                                <i aria-label="icon: caret-up" class="anticon anticon-caret-up"><svg
                                         viewBox="0 0 1024 1024" class="" data-icon="caret-up" width="1em"
                                         height="1em" fill="currentColor" aria-hidden="true" focusable="false">
                                         <path
@@ -73,7 +76,10 @@
                                         </path>
                                     </svg></i>
                             </button>
-                            <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l" data-bs-toggle="collapse" data-bs-target="#ticket-step-collapse-{{$key}}" role="button" aria-expanded="false" aria-controls="ticket-step-collapse-{{$key}}">
+                            <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l"
+                                data-bs-toggle="collapse" data-bs-target="#ticket-step-collapse-{{ $key }}"
+                                role="button" aria-expanded="false"
+                                aria-controls="ticket-step-collapse-{{ $key }}">
                                 <span>Chọn chuyến</span>
                             </button>
                         </div>
@@ -96,9 +102,10 @@
                 <div>Không cần thanh toán trước</div>
             </div>
         </div>
-        <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{$key}}" data-bs-parent="#item-bus-{{$key}}">
+        <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
+            data-bs-parent="#item-bus-{{ $key }}">
             <div class="card card-body card-body-new">
-                <div id="step1-{{$key}}" class="wizard-step active">
+                <div id="step1-{{ $key }}" class="wizard-step active">
                     <div class="wrap-card-body">
                         <div class="steps-container">
                             <div class="step step-active">
@@ -123,8 +130,7 @@
                     </div>
                     <div class="coupon-container">
                         <div class="wrap-coupon">
-                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
-                                value="FS060824VXR10">
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
                                     <div class="flex-coupon">
@@ -154,8 +160,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
-                                value="FS060824VXR10">
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
                                     <div class="flex-coupon">
@@ -185,8 +190,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
-                                value="FS060824VXR10">
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
                                     <div class="flex-coupon">
@@ -216,8 +220,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
-                                value="FS060824VXR10">
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
                                     <div class="flex-coupon">
@@ -247,8 +250,7 @@
                             </div>
                         </div>
                         <div class="wrap-coupon">
-                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh"
-                                value="FS060824VXR10">
+                            <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
                                 <div class="border-coupon">
                                     <div class="flex-coupon">
@@ -975,11 +977,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="exampleModal-{{$key}}" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal-{{ $key }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-new">
                             <div class="modal-content">
                                 <div class="wrap-content">
-                                    <h6 class="modal-title fs-5" id="exampleModalLabel-{{$key}}">Mã giường</h6>
+                                    <h6 class="modal-title fs-5" id="exampleModalLabel-{{ $key }}">Mã
+                                        giường</h6>
                                     <button type="button" class="btn-close btn-modal-content"
                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -1007,7 +1010,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="step2-{{$key}}" class="wizard-step">
+                <div id="step2-{{ $key }}" class="wizard-step">
                     <div class="wrap-card-body">
                         <div class="steps-container">
                             <div class="step step-active">
@@ -1076,21 +1079,22 @@
                                     </label> --}}
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault1-{{$key}}">
-                                            <label class="form-check-label-title" for="-{{$key}}">
+                                                id="flexRadioDefault1-{{ $key }}">
+                                            <label class="form-check-label-title" for="-{{ $key }}">
                                                 19:00: Nội thành Tp. Đà Nẵng
                                             </label>
                                             <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ thể
                                                 muốn được trung chuyển</p>
                                             <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng</p>
                                             <b><i class="fa-solid fa-location-dot"></i> Đà Nẵng, Đà Nẵng</b>
-                                            <textarea id="transferAddress-{{$key}}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
+                                            <textarea id="transferAddress-{{ $key }}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                                 style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                                         </div>
                                         <div class="form-check item point_id-1">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault2-{{$key}}" checked>
-                                            <label class="form-check-label-title" for="flexRadioDefault2-{{$key}}">
+                                                id="flexRadioDefault2-{{ $key }}" checked>
+                                            <label class="form-check-label-title"
+                                                for="flexRadioDefault2-{{ $key }}">
                                                 19:30: Văn Phòng Đà Nẵng
                                             </label>
                                             <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường Hòa
@@ -1127,8 +1131,10 @@
                                     <div class="container-group-items-pick-up-point">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio"
-                                                name="flexRadioDefault2" id="flexRadioDefault3-{{$key}}" checked>
-                                            <label class="form-check-label-title" for="flexRadioDefault3-{{$key}}">
+                                                name="flexRadioDefault2" id="flexRadioDefault3-{{ $key }}"
+                                                checked>
+                                            <label class="form-check-label-title"
+                                                for="flexRadioDefault3-{{ $key }}">
                                                 19:30: Văn Phòng Đà Nẵng
                                             </label>
                                             <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường Hòa
@@ -1136,15 +1142,17 @@
                                         </div>
                                         <div class="form-check  item point_id-1">
                                             <input class="form-check-input" type="radio"
-                                                name="flexRadioDefault2" id="flexRadioDefault4-{{$key}}">
-                                            <label class="form-check-label-title" for="flexRadioDefault4-{{$key}}">
+                                                name="flexRadioDefault2"
+                                                id="flexRadioDefault4-{{ $key }}">
+                                            <label class="form-check-label-title"
+                                                for="flexRadioDefault4-{{ $key }}">
                                                 19:00: Nội thành Tp. Đà Nẵng
                                             </label>
                                             <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ thể
                                                 muốn được trung chuyển</p>
                                             <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng</p>
                                             <b><i class="fa-solid fa-location-dot"></i> Đà Nẵng, Đà Nẵng</b>
-                                            <textarea id="transferAddress1--{{$key}}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
+                                            <textarea id="transferAddress1--{{ $key }}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                                 style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                                         </div>
                                     </div>
@@ -1170,44 +1178,48 @@
                 </div>
             </div>
         </div>
-        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{$key}}" data-bs-parent="#item-bus-{{$key}}">
+        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{ $key }}"
+            data-bs-parent="#item-bus-{{ $key }}">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
                 <ul class="nav nav-pills mb-1 pills-ticket-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="coupon-tab-{{$key}}" data-bs-toggle="pill"
-                            data-bs-target="#coupon-{{$key}}" type="button" role="tab" aria-controls="coupon-{{$key}}"
-                            aria-selected="true">Giảm
+                        <button class="nav-link active" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
+                            data-bs-target="#coupon-{{ $key }}" type="button" role="tab"
+                            aria-controls="coupon-{{ $key }}" aria-selected="true">Giảm
                             giá</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pickup-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#pickup-{{$key}}"
-                            type="button" role="tab" aria-controls="pickup-{{$key}}" aria-selected="false">Điểm đón,
+                        <button class="nav-link" id="pickup-tab-{{ $key }}" data-bs-toggle="pill"
+                            data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
+                            aria-controls="pickup-{{ $key }}" aria-selected="false">Điểm đón,
                             trả</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="rating-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#rating-{{$key}}"
-                            type="button" role="tab" aria-controls="rating-{{$key}}" aria-selected="false">Đánh
+                        <button class="nav-link" id="rating-tab-{{ $key }}" data-bs-toggle="pill"
+                            data-bs-target="#rating-{{ $key }}" type="button" role="tab"
+                            aria-controls="rating-{{ $key }}" aria-selected="false">Đánh
                             giá</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="thumb-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#image-{{$key}}"
-                            type="button" role="tab" aria-controls="image-{{$key}}" aria-selected="false">Hình
+                        <button class="nav-link" id="thumb-tab-{{ $key }}" data-bs-toggle="pill"
+                            data-bs-target="#image-{{ $key }}" type="button" role="tab"
+                            aria-controls="image-{{ $key }}" aria-selected="false">Hình
                             ảnh</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="policy-tab-{{$key}}" data-bs-toggle="pill" data-bs-target="#policy-{{$key}}"
-                            type="button" role="tab" aria-controls="policy-{{$key}}" aria-selected="false">Chính
+                        <button class="nav-link" id="policy-tab-{{ $key }}" data-bs-toggle="pill"
+                            data-bs-target="#policy-{{ $key }}" type="button" role="tab"
+                            aria-controls="policy-{{ $key }}" aria-selected="false">Chính
                             sách</button>
                     </li>
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
-                    <div class="tab-pane fade show active coupon-tab" id="coupon-{{$key}}" role="tabpanel"
-                        aria-labelledby="coupon-tab" tabindex="0">
+                    <div class="tab-pane fade show active coupon-tab" id="coupon-{{ $key }}"
+                        role="tabpanel" aria-labelledby="coupon-tab" tabindex="0">
                         <div class="coupon-container">
                             <div class="wrap-coupon">
-                                <input
-                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <div class="kNCupL">
                                     <div class="border-coupon">
                                         <div class="flex-coupon">
@@ -1237,8 +1249,7 @@
                                 </div>
                             </div>
                             <div class="wrap-coupon">
-                                <input
-                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <div class="kNCupL">
                                     <div class="border-coupon">
                                         <div class="flex-coupon">
@@ -1268,8 +1279,7 @@
                                 </div>
                             </div>
                             <div class="wrap-coupon">
-                                <input
-                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <div class="kNCupL">
                                     <div class="border-coupon">
                                         <div class="flex-coupon">
@@ -1299,8 +1309,7 @@
                                 </div>
                             </div>
                             <div class="wrap-coupon">
-                                <input
-                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <div class="kNCupL">
                                     <div class="border-coupon">
                                         <div class="flex-coupon">
@@ -1330,8 +1339,7 @@
                                 </div>
                             </div>
                             <div class="wrap-coupon">
-                                <input
-                                    class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
+                                <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <div class="kNCupL">
                                     <div class="border-coupon">
                                         <div class="flex-coupon">
@@ -1362,7 +1370,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade pickup-tab" id="pickup-{{$key}}" role="tabpanel"
+                    <div class="tab-pane fade pickup-tab" id="pickup-{{ $key }}" role="tabpanel"
                         aria-labelledby="pickup-tab" tabindex="1">
                         <div class="d-flex flex-column">
                             <div class="fw-bold">Lưu ý</div>
@@ -1421,7 +1429,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade rating-tab" id="rating-{{$key}}" role="tabpanel"
+                    <div class="tab-pane fade rating-tab" id="rating-{{ $key }}" role="tabpanel"
                         aria-labelledby="rating-tab" tabindex="2">
                         <div class="d-flex align-items-center">
                             <div class="d-flex align-items-center rating-info">
@@ -1695,33 +1703,107 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade image-tab" id="image-{{$key}}" role="tabpanel"
+                    <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel"
                         aria-labelledby="image-tab" tabindex="3">
-                        <div class="d-flex flex-column m-2">
-                            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
-                                class="swiper mySwiper2">
-                                <div class="swiper-wrapper">
-                                    @foreach ($route['company']['images'] as $image)
-                                        <div class="swiper-slide">
-                                            <img src="{{$image['files']['1000x600']}}" />
+                        <div class="d-flex flex-column w-100 h-100 m-2">
+                            <div class="row" id="slider">
+                                <div class="col-md-12">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <div class="carousel-inner">
+                                            <div class="active item" data-slide-number="0">
+                                                <img src="http://placehold.it/1200x480&amp;text=1">
+                                            </div>
+                                            <div class="item" data-slide-number="1">
+                                                <img src="http://placehold.it/1200x480&amp;text=2">
+                                            </div>
+                                            <div class="item" data-slide-number="2">
+                                                <img src="http://placehold.it/1200x480&amp;text=3">
+                                            </div>
+                                            <div class="item" data-slide-number="3">
+                                                <img src="http://placehold.it/1200x480&amp;text=4">
+                                            </div>
+                                            <div class="item" data-slide-number="4">
+                                                <img src="http://placehold.it/1200x480&amp;text=5">
+                                            </div>
+                                            <div class="item" data-slide-number="5">
+                                                <img src="http://placehold.it/1200x480&amp;text=6">
+                                            </div>
+                                            <div class="item" data-slide-number="6">
+                                                <img src="http://placehold.it/1200x480&amp;text=7">
+                                            </div>
+                                            <div class="item" data-slide-number="7">
+                                                <img src="http://placehold.it/1200x480&amp;text=8">
+                                            </div>
                                         </div>
-                                    @endforeach
+
+                                        <!-- Controls-->
+                                        <a class="left carousel-control" href="#myCarousel" role="button"
+                                            data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#myCarousel" role="button"
+                                            data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+
+                                    </div>
                                 </div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
                             </div>
-                            <div thumbsSlider="" class="swiper mySwiper">
-                                <div class="swiper-wrapper">
-                                    @foreach ($route['company']['images'] as $i => $image)
-                                        <div class="swiper-slide" id="{{$i}}">
-                                            <img src="{{$image['files']['1000x600']}}" alt="{{$image['alt']['vi']}}"/>
-                                        </div>
-                                     @endforeach
+
+                            <div class="row">
+                                <div class="col-md-12" id="slider-thumbs">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a id="carousel-thumb-0" class="selected">
+                                                <img src="http://placehold.it/80x60&amp;text=1">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-1">
+                                                <img src="http://placehold.it/80x60&amp;text=2">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-2">
+                                                <img src="http://placehold.it/80x60&amp;text=3">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-3">
+                                                <img src="http://placehold.it/80x60&amp;text=4">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-4">
+                                                <img src="http://placehold.it/80x60&amp;text=5">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-5">
+                                                <img src="http://placehold.it/80x60&amp;text=6">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-6">
+                                                <img src="http://placehold.it/80x60&amp;text=7">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-7">
+                                                <img src="http://placehold.it/80x60&amp;text=8">
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <div class="tab-pane fade policy-tab" id="policy-{{$key}}" role="tabpanel"
+                    <div class="tab-pane fade policy-tab" id="policy-{{ $key }}" role="tabpanel"
                         aria-labelledby="policy" tabindex="4">
                         <div class="d-flex flex-column m-2">
                             <div class="d-flex flex-column policy-content-f">
