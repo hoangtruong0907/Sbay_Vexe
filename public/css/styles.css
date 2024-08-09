@@ -1798,6 +1798,21 @@ body .material-icons-wrapper.md-20 {
     border-radius: 50%;
 }
 
+.image-tab .carousel-item {
+    width: fit-content !important;
+}
+
+.image-tab .carousel-item.active {
+    padding: 0;
+}
+
+.image-tab .carousel-item .lg-item>img {
+    margin: 2px;
+    padding: 4px;
+    height: 500px;
+    object-fit: contain;
+}
+
 .anticon-caret-up {
     display: none;
 }
@@ -2724,6 +2739,10 @@ body .material-icons-wrapper.md-20 {
     border-radius: 3px;
     border: 0px;
     padding: 0px 15px;
+}
+
+.left-total-amount span {
+    font-size: 15px;
 }
 
 .left-total-amount span {

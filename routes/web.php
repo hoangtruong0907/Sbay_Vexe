@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\InfoController;
@@ -14,6 +15,9 @@ Route::prefix('/admin')->group(function () {
 
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
+Route::get('/', [RouteController::class, 'index']);
+Route::get('/test', [TestController::class, 'test']);
+
 
 Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
 
