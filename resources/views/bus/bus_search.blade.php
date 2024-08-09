@@ -7,8 +7,9 @@
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- lightgallery plugins -->
-    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
-    <link type="text/css" rel="stylesheet" href="css/lightgallery-bundle.css" />
+    <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7/css/lightgallery.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css"
+        integrity="sha256-Eg8Gfr1vMiM54szM1+h+M018fqWyvVU/Ml8q48Oub+g=" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -715,7 +716,7 @@
                     @include('bus._bus_item', [
                         'route' => $route,
                         'key' => (string) $key,
-                    ]);
+                    ])
                 @endforeach
             </div>
         </div>
@@ -730,9 +731,12 @@
         integrity="sha512-fCRpXk4VumjVNtE0j+OyOqzPxF1eZwacU3kN3SsznRPWHgMTSSo7INc8aY03KQDBWztuMo5KjKzCFXI/a5rVYQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- lightgallery plugins -->
-    <script src="js/lightgallery.umd.js"></script>
-    <script src="js/plugins/lg-thumbnail.umd.js"></script>
-    <script src="js/plugins/lg-zoom.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"
+        integrity="sha256-feKFTnlUEF8rkf9Zg3ScTjx69R4FquJ5+KXWaZSoV3c=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"
+        integrity="sha256-ghoq24AFURwK2e9vOVwbdL6swtoZTNE6SsQ9NBJG4IU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
+        integrity="sha256-T7w+wYeOkDSLcbNZTY7yfE8QoaTG1edJSNDuWQGP2Hw=" crossorigin="anonymous"></script>
 
     <script>
         // data load search component
@@ -986,27 +990,7 @@
                 $(this).addClass('checked');
                 $(this).find('.radio-input').prop('checked', true);
             });
-            //Swipe image review
-            let carouselEl = document.querySelector('bootstrap-gallery-container');
 
-            // Create a new Bootstrap 5 Carousel instance with specified options
-            const carousel = new bootstrap.Carousel(carouselEl, {
-                interval: 2000,
-                wrap: true,
-            });
-
-            // Add an event listener for the 'slide.bs.carousel' event, fires immediately when the slide instance method is invoked.
-            carouselEl.addEventListener('slide.bs.carousel', (event) => {
-                const container = document.querySelector('.carousel-inner');
-                lightGallery(container, {
-                    thumbnail: false,
-                    pager: false,
-                    plugins: [],
-                    hash: false,
-                    preload: 4,
-                    selector: '.lg-item',
-                });
-            });
             // ------------- Filter -------------//
             // Lọc btn
             const filterHeaders = $('.filter-header-container');
@@ -1122,5 +1106,29 @@
             document.querySelector('.wizard-step.active').classList.remove('active');
             document.getElementById('step' + step).classList.add('active');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy tất cả các phần tử carousel
+            document.querySelectorAll('.carousel').forEach(function(carouselEl) {
+                // Khởi tạo Bootstrap Carousel cho mỗi phần tử
+                const carousel = new bootstrap.Carousel(carouselEl, {
+                    // interval: 2000,
+                    wrap: true,
+                });
+
+                // Lấy phần tử .carousel-inner bên trong carousel
+                const container = carouselEl.querySelector('.carousel-inner');
+
+                // Khởi tạo LightGallery cho mỗi carousel
+                lightGallery(container, {
+                    thumbnail: false,
+                    pager: false,
+                    plugins: [],
+                    hash: false,
+                    preload: 4,
+                    selector: '.carousel-item .lg-item',
+                });
+            });
+        });
     </script>
 @endpush

@@ -1706,122 +1706,170 @@
                     <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel"
                         aria-labelledby="image-tab" tabindex="3">
                         <div class="d-flex flex-column w-100 h-100 m-2">
-                            <div class="carousel slide bootstrap-gallery-container" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#bootstrap-gallery-container"
-                                        data-bs-slide-to="0" class="active" aria-current="true"
-                                        aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#bootstrap-gallery-container"
-                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#bootstrap-gallery-container"
-                                        data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <a data-lg-size="1600-1144" class="lg-item"
-                                            data-src="https://images.unsplash.com/photo-1476842384041-a57a4f124e2e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1600&q=80">
-                                            <img class="img-responsive"
-                                                src="https://images.unsplash.com/photo-1476842384041-a57a4f124e2e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1200&q=80" />
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a data-lg-size="1600-1067" class="lg-item"
-                                            data-src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1600&q=80">
-                                            <img class="img-responsive"
-                                                src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1200&q=80" />
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a data-lg-size="1600-1067" class="lg-item"
-                                            data-src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1600&q=80">
-                                            <img class="img-responsive"
-                                                src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1200&q=80" />
-                                        </a>
-                                    </div>
+                            <div class="row" id="slider">
+                                <div class="col-md-12">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <div class="carousel-inner">
+                                            <div class="active item" data-slide-number="0">
+                                                <img src="http://placehold.it/1200x480&amp;text=1">
+                                            </div>
+                                            <div class="item" data-slide-number="1">
+                                                <img src="http://placehold.it/1200x480&amp;text=2">
+                                            </div>
+                                            <div class="item" data-slide-number="2">
+                                                <img src="http://placehold.it/1200x480&amp;text=3">
+                                            </div>
+                                            <div class="item" data-slide-number="3">
+                                                <img src="http://placehold.it/1200x480&amp;text=4">
+                                            </div>
+                                            <div class="item" data-slide-number="4">
+                                                <img src="http://placehold.it/1200x480&amp;text=5">
+                                            </div>
+                                            <div class="item" data-slide-number="5">
+                                                <img src="http://placehold.it/1200x480&amp;text=6">
+                                            </div>
+                                            <div class="item" data-slide-number="6">
+                                                <img src="http://placehold.it/1200x480&amp;text=7">
+                                            </div>
+                                            <div class="item" data-slide-number="7">
+                                                <img src="http://placehold.it/1200x480&amp;text=8">
+                                            </div>
+                                        </div>
 
+                                        <!-- Controls-->
+                                        <a class="left carousel-control" href="#myCarousel" role="button"
+                                            data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#myCarousel" role="button"
+                                            data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
 
+                                    </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#bootstrap-gallery-container" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#bootstrap-gallery-container" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12" id="slider-thumbs">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a id="carousel-thumb-0" class="selected">
+                                                <img src="http://placehold.it/80x60&amp;text=1">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-1">
+                                                <img src="http://placehold.it/80x60&amp;text=2">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-2">
+                                                <img src="http://placehold.it/80x60&amp;text=3">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-3">
+                                                <img src="http://placehold.it/80x60&amp;text=4">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-4">
+                                                <img src="http://placehold.it/80x60&amp;text=5">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-5">
+                                                <img src="http://placehold.it/80x60&amp;text=6">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-6">
+                                                <img src="http://placehold.it/80x60&amp;text=7">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="carousel-thumb-7">
+                                                <img src="http://placehold.it/80x60&amp;text=8">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="tab-pane fade policy-tab" id="policy-{{ $key }}" role="tabpanel"
-                            aria-labelledby="policy" tabindex="4">
-                            <div class="d-flex flex-column m-2">
-                                <div class="d-flex flex-column policy-content-f">
-                                    <h6>Chính sách huỷ đơn hàng</h6>
-                                    <div class="timeline-policy position-relative">
-                                        <div class="text-center time-sa">
-                                            <div class="fw-bold">8:00</div>
-                                            <div>13/08</div>
-                                        </div>
-                                        <div class="text-center time-ch">
-                                            <div class="fw-bold">8:00</div>
-                                            <div>13/08</div>
-                                        </div>
+                    </div>
+                    <div class="tab-pane fade policy-tab" id="policy-{{ $key }}" role="tabpanel"
+                        aria-labelledby="policy" tabindex="4">
+                        <div class="d-flex flex-column m-2">
+                            <div class="d-flex flex-column policy-content-f">
+                                <h6>Chính sách huỷ đơn hàng</h6>
+                                <div class="timeline-policy position-relative">
+                                    <div class="text-center time-sa">
+                                        <div class="fw-bold">8:00</div>
+                                        <div>13/08</div>
                                     </div>
-                                    <div class="w-100 d-flex flex-row position-relative">
-                                        <div class="check-point">
-                                            <div class="tag-dot">Hôm nay</div>
-                                            <div class="dot"></div>
-                                        </div>
-                                        <div class="cancellation-policy-period w-100">
-                                            <div class="cancellation-line w-100" style="background:rgb(0, 96, 196)">
-                                            </div>
-                                            <p class="text-center">Phí huỷ 50%</p>
-                                        </div>
-                                        <div class="cancellation-policy-period w-100">
-                                            <div class="cancellation-line w-100"
-                                                style="background: rgb(255, 199, 0);">
-                                            </div>
-                                            <p class="text-center">Phí huỷ 50%</p>
-                                        </div>
-                                        <div class="cancellation-policy-period w-100">
-                                            <div class="cancellation-line w-100" style="background: rgb(241, 0, 0)">
-                                            </div>
-                                            <p class="text-center">Phí huỷ 50%</p>
-                                        </div>
+                                    <div class="text-center time-ch">
+                                        <div class="fw-bold">8:00</div>
+                                        <div>13/08</div>
                                     </div>
                                 </div>
-                                <hr />
-                                <div class="d-flex flex-column policy-content-b">
-                                    <h5 class="mb-2">Chính sách nhà xe</h5>
-                                    <div class="d-flex flex-column ms-2">
-                                        <div class="policy-content-l">
-                                            <h6>Chính sách đặt vé</h6>
-                                            <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
-                                                đây. Chính sách đặt vé của Vexere như sau:</p>
-                                            <ul>
-                                                <li>Quý khách vui lòng đảm bảo thông tin đầy đủ và chính xác khi
-                                                    đặt
-                                                    vé.</li>
-                                                <li>Vexere sẽ chủ động đảm bảo đầy đủ thông tin về chuyến bay,
-                                                    điểm
-                                                    đến, ngày đi, giờ</li>
-                                            </ul>
+                                <div class="w-100 d-flex flex-row position-relative">
+                                    <div class="check-point">
+                                        <div class="tag-dot">Hôm nay</div>
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="cancellation-policy-period w-100">
+                                        <div class="cancellation-line w-100" style="background:rgb(0, 96, 196)">
                                         </div>
-                                        <hr />
-                                        <div class="policy-content-l">
-                                            <h6>Chính sách đặt vé</h6>
-                                            <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
-                                                đây. Chính sách đặt vé của Vexere như sau:</p>
-                                            <ul>
-                                                <li>Quý khách vui lòng đảm bảo thông tin đầy đủ và chính xác khi
-                                                    đặt
-                                                    vé.</li>
-                                                <li>Vexere sẽ chủ động đảm bảo đầy đủ thông tin về chuyến bay,
-                                                    điểm
-                                                    đến, ngày đi, giờ</li>
-                                            </ul>
+                                        <p class="text-center">Phí huỷ 50%</p>
+                                    </div>
+                                    <div class="cancellation-policy-period w-100">
+                                        <div class="cancellation-line w-100" style="background: rgb(255, 199, 0);">
                                         </div>
+                                        <p class="text-center">Phí huỷ 50%</p>
+                                    </div>
+                                    <div class="cancellation-policy-period w-100">
+                                        <div class="cancellation-line w-100" style="background: rgb(241, 0, 0)">
+                                        </div>
+                                        <p class="text-center">Phí huỷ 50%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="d-flex flex-column policy-content-b">
+                                <h5 class="mb-2">Chính sách nhà xe</h5>
+                                <div class="d-flex flex-column ms-2">
+                                    <div class="policy-content-l">
+                                        <h6>Chính sách đặt vé</h6>
+                                        <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
+                                            đây. Chính sách đặt vé của Vexere như sau:</p>
+                                        <ul>
+                                            <li>Quý khách vui lòng đảm bảo thông tin đầy đủ và chính xác khi
+                                                đặt
+                                                vé.</li>
+                                            <li>Vexere sẽ chủ động đảm bảo đầy đủ thông tin về chuyến bay,
+                                                điểm
+                                                đến, ngày đi, giờ</li>
+                                        </ul>
+                                    </div>
+                                    <hr />
+                                    <div class="policy-content-l">
+                                        <h6>Chính sách đặt vé</h6>
+                                        <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
+                                            đây. Chính sách đặt vé của Vexere như sau:</p>
+                                        <ul>
+                                            <li>Quý khách vui lòng đảm bảo thông tin đầy đủ và chính xác khi
+                                                đặt
+                                                vé.</li>
+                                            <li>Vexere sẽ chủ động đảm bảo đầy đủ thông tin về chuyến bay,
+                                                điểm
+                                                đến, ngày đi, giờ</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -1831,3 +1879,4 @@
             </div>
         </div>
     </div>
+</div>
