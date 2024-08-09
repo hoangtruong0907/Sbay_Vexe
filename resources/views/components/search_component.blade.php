@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="departure-plane-date flex-sum-left">
-                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name="" value="{{$params->dateTo}}"
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name="" value="{{ $params->dateTo ?? ""}}"
                             class="date-input" placeholder="">
                     </div>
                     <div class="departure-plane-date-right flex-sum-left">
