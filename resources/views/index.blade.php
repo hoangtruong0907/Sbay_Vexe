@@ -102,10 +102,11 @@
                 </li>
             </ul>
         </div>
+
         <!-- slide -->
         <div class="total-slide">
             <div class="img-slide">
-                <img src="{{ asset('images/slide.jpg') }}" alt="slide">
+                <img src="{{ asset('images/slide.jpg') }}" alt="slide" height="20px">
             </div>
             <div class="wrap-criteria">
                 <div class="criteria-slide">
@@ -128,212 +129,108 @@
 
             <!-- slide -->
             <div class="total-slide position-relative">
-                <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
+                <div class="container-airlinetickets position-absolute   start-50 translate-middle" style="margin-top:-200px;">
                     @include('components.search_component', [
                     'params' => [],
                     ])
                 </div>
             </div>
-            <!-- <div class="blogs">
-        <div class="blog">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-color:white">
-                        <div class="card-list">
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
+        </div>
+    </div>
+    <div class="formCard">
+        <div class="nigt">
+            <div class="text-card">
+                <h1 class="PopularRoute__LabelH1-sc-3v0dez-4 jDtSKN color--light-dark" style="margin-left: 80px;">Tuyến đường phổ biến</h1>
+            </div>
+            <div class="blogs">
+                <div class="blog scroll-container">
+                    <div class="container item-card-list">
+                        @if($blogs->isEmpty())
+                        <p>No blog posts found.</p>
+                        @else
+                        @foreach($blogs as $blog)
+                        <div>
+                            <a href="{{ route('vxr', ['id' => $blog->id]) }}" class="native">
+                                <div class="card card-item">
+                                    <!-- Use the 'picture' attribute for the image -->
+                                    <img src="{{ Storage::url($blog->picture) }}" alt="Picture" class="card-image">
+                                    <div class="card-content">
+                                        <div class="text-nvc">
+                                            <h4 class="card-title  item-horizontal-content-container item-title">{{ $blog->title }}</h4>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="carousel-item" style="background-color:white">
-                        <div class="card-list">
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item" style="background-color:white">
-                        <div class="card-list">
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
+    </div>
 
-    </div> -->
+    <!-- Footer -->
+    <div id="main-footer">
+        <h2>Công ty TNHH Thương Mại Dịch Vụ Vexere</h2>
+        <p>Địa chỉ đăng ký kinh doanh: 8C Chữ Đồng Tử, Phường 7, Quận Tân Bình, Thành Phố Hồ Chí Minh, Việt Nam</p>
+        <p>Địa chỉ: Lầu 2, tòa nhà H3 Circo Hoàng Diệu, 384 Hoàng Diệu, Phường 6, Quận 4, Tp. Hồ Chí Minh, Việt Nam</p>
+        <p>Tầng 3, Toà nhà 101 Láng Hạ, Phường Láng Hạ, Quận Đống Đa, Hà Nội, Việt Nam </p>
+        <p>Giấy chứng nhận ĐKKD số 0315133726 do Sở KH và ĐT TP. Hồ Chí Minh cấp lần đầu ngày 27/6/2018</p>
+        <p>Bản quyền © 2024 thuộc về <a href="">Vexere.com</a></p>
+    </div>
 
 
-    <div class="formCard">
-                <div class="nigt">
-                    <div class="text-card">
-                        <h1 class="PopularRoute__LabelH1-sc-3v0dez-4 jDtSKN color--light-dark" style="margin-left: 80px;">Tuyến đường phổ biến</h1>
-                    </div>
-                    <div class="blogs">
-                        <div class="blog scroll-container">
-                            <div class="container item-card-list">
-                                @if($blogs->isEmpty())
-                                <p>No blog posts found.</p>
-                                @else
-                                @foreach($blogs as $blog)
-                                <div>
-                                    <a href="{{ route('vxr', ['id' => $blog->id]) }}" class="native">
-                                        <div class="card card-item">
-                                            <!-- Use the 'picture' attribute for the image -->
-                                            <img src="{{ Storage::url($blog->picture) }}" alt="Picture" class="card-image">
-                                            <div class="card-content">
-                                                <div class="text-nvc">
-                                                    <h4 class="card-title  item-horizontal-content-container item-title">{{ $blog->title }}</h4>
-                                                </div>
 
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                @endforeach
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <script>
+        document.querySelector('.Navbar2__ButtonHotline-sa2air-8').addEventListener('click', function(event) {
+            event.stopPropagation();
+            this.nextElementSibling.classList.toggle('show');
+        });
 
-            <!-- Footer -->
-            <div id="main-footer">
-                <h2>Công ty TNHH Thương Mại Dịch Vụ Vexere</h2>
-                <p>Địa chỉ đăng ký kinh doanh: 8C Chữ Đồng Tử, Phường 7, Quận Tân Bình, Thành Phố Hồ Chí Minh, Việt Nam</p>
-                <p>Địa chỉ: Lầu 2, tòa nhà H3 Circo Hoàng Diệu, 384 Hoàng Diệu, Phường 6, Quận 4, Tp. Hồ Chí Minh, Việt Nam</p>
-                <p>Tầng 3, Toà nhà 101 Láng Hạ, Phường Láng Hạ, Quận Đống Đa, Hà Nội, Việt Nam </p>
-                <p>Giấy chứng nhận ĐKKD số 0315133726 do Sở KH và ĐT TP. Hồ Chí Minh cấp lần đầu ngày 27/6/2018</p>
-                <p>Bản quyền © 2024 thuộc về <a href="">Vexere.com</a></p>
-            </div>
+        document.querySelector('.contact-dropdown').addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-            <script>
-                document.querySelector('.Navbar2__ButtonHotline-sa2air-8').addEventListener('click', function(event) {
-                    event.stopPropagation();
-                    this.nextElementSibling.classList.toggle('show');
-                });
-
-                document.querySelector('.contact-dropdown').addEventListener('click', function(event) {
-                    event.stopPropagation();
-                });
-
-                // Đóng dropdown nếu người dùng nhấp ra ngoài
-                window.onclick = function(event) {
-                    var dropdowns = document.getElementsByClassName("contact-dropdown");
-                    for (var i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
+        // Đóng dropdown nếu người dùng nhấp ra ngoài
+        window.onclick = function(event) {
+            var dropdowns = document.getElementsByClassName("contact-dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
                 }
+            }
+        }
 
-                function toggleNav() {
-                    const sidenav = document.getElementById("mySidenav");
-                    if (sidenav.style.width === "100%") {
-                        sidenav.style.width = "0";
-                    } else {
-                        sidenav.style.width = "100%";
-                    }
-                }
+        function toggleNav() {
+            const sidenav = document.getElementById("mySidenav");
+            if (sidenav.style.width === "100%") {
+                sidenav.style.width = "0";
+            } else {
+                sidenav.style.width = "100%";
+            }
+        }
 
-                function closeNav() {
-                    document.getElementById("mySidenav").style.width = "0";
-                }
-            </script>
-</body>
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
 
-</html>
+    @push('page-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
+    <script>
+        // data load search component
+        // list data areas
+        const busCities = @json($list_areas ?? []);
+        const dateTo = @json($params -> dateTo ?? "");
+    </script>
+    <script src="{{ asset('js/search_component.js') }}"></script>
+    @endpush
 
-@push('page-scripts')
-<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
-<script>
-    // data load search component
-    // list data areas
-    const busCities = @json($list_areas ?? []);
-    const dateTo = @json($params -> dateTo ?? "");
-</script>
-<script src="{{ asset('js/search_component.js') }}"></script>
-@endpush
 
-</div>
 </body>
 
 </html>
