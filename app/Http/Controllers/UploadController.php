@@ -14,7 +14,7 @@ class UploadController extends Controller
         ]);
 
         $file = $request->file('file');
-        $path = $file->store('public/uploads');
+        $path = $file->store('public/uploads-image');
 
         return response()->json([
             'url' => Storage::url($path)

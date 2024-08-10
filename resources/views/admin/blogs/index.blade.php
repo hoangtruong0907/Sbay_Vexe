@@ -2,13 +2,13 @@
 
 @section('title', 'Dashboard')
 @section('contents')
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Blog List Layout</title>
     <style>
         .blog-list {
@@ -33,12 +33,10 @@
             color: white;
             border-radius: 5px;
             transition: background-color 0.3s ease;
-            /* Smooth transition for color change */
         }
 
         .button-blog button:hover {
-            background-color: #6610f2;
-            color: white;
+            background-color: #5208b8;
         }
 
         .container-table {
@@ -51,6 +49,21 @@
 
         .table-list-navicat {
             max-width: 80%;
+            border-collapse: collapse;
+        }
+
+        /* Apply max-height and handle overflow */
+        td, th {
+            max-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Add padding and border */
+        td, th {
+            padding: 8px;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
@@ -86,8 +99,8 @@
                 @foreach ($blogs as $blog)
                 <tr>
                     <td>{{ $blog->id }}</td>
-                    <td>{{ $blog->title }}</td>
-                    <td>{!! $blog->content !!}</td>
+                    <td>{{ Str::limit($blog->title, 20, '...') }}</td>
+                    <td>{{ Str::limit($blog->content, 50, '...') }}</td>
                     <td>{{ $blog->created_at->format('Y-m-d H:i:s') }}</td>
                     <td>{{ $blog->updated_at->format('Y-m-d H:i:s') }}</td>
                     <td>{{ $blog->author }}</td>
@@ -108,4 +121,5 @@
 </body>
 
 </html>
+
 @endsection

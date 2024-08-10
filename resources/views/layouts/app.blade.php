@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SbayVeXe | @yield("title", "Trang chủ")</title>
+    <title>SbayVeXe | @yield('title', 'Trang chủ')</title>
 
     <meta name="title" content="tieu de" />
     <meta name="description" content="mo ta" />
@@ -19,10 +20,16 @@
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/stylesmobile.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        crossorigin="anonymous" />
+
+    {{-- icon --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     @yield('styles')
 </head>
+
 <body>
     @include('layouts.header')
 
@@ -32,9 +39,10 @@
 
     @include('layouts.footer')
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    @yield('scripts')
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    @stack('page-scripts')
     <script>
         document.querySelector('.Navbar2__ButtonHotline-sa2air-8').addEventListener('click', function(event) {
             event.stopPropagation();
@@ -69,5 +77,22 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
+    {{-- user account --}}
+    <script src="{{ asset('js/frontend/user.js') }}"></script>
+    {{-- login with google  --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @auth
+            var userPhone = '{{ Auth::user()->phone ?? 'null' }}';
+
+            if (userPhone === 'null') {
+                var myModal = new bootstrap.Modal(document.getElementById('addPhonenumberModal'));
+                myModal.show();
+            }
+        @endauth
+        });
+    </script>
+
 </body>
+
 </html>

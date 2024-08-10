@@ -1,312 +1,61 @@
 @extends('admin.layouts.default')
-
-@section('title', 'Danh Sách Blog')
-
+<script src="/ckeditor/ckeditor.js"></script>
+@section('title', ' Dashboard')
 @section('contents')
-<!DOCTYPE html>
-<html lang="en">
+<script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vé Xe Rẻ</title>
-
-    <meta name="title" content="tieu de" />
-    <meta name="description" content="mo ta" />
-    <meta name="keywords" content="tu khoa tim kiem 1, tu khoa tim kiem 2,... " />
-
-    <meta property="og:title" content="tieu de">
-    <meta property="og:description" content="mo ta" />
-    <meta property="og:keywords" content="tu khoa tim kiem 1, tu khoa tim kiem 2,... ">
-    <meta property="og:url" content="url san pham">
-    <meta property="og:image" content="hinh anh">
-    <meta property="og:type" content="website" />
-
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/stylesmobile.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
-</head>
-
-<body>
-
-    <!-- header-mobile -->
-    <div class="topnav">
-        <div class="togglenav-mobile">
-            <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
-        </div>
-        <div class="logo-mobi">
-            <a href="#">
-                <img src="{{ asset('images/logo-header.svg') }}" alt="logo">
-            </a>
-        </div>
-        <div class="login-mobi">
-            <a href="">Đăng Nhập</a>
-        </div>
-    </div>
-
-    <!-- menu-mobile -->
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href=""><i class="fas fa-home"></i> Trang chủ</a>
-        <a href=""><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập/Đăng ký</a>
-        <a href=""><i class="fa fa-car" aria-hidden="true"></i> Thuê xe</a>
-        <a href=""><i class="fa fa-plane" aria-hidden="true"></i> Vé máy bay</a>
-        <a href=""><i class="fa fa-gift" aria-hidden="true"></i> Khám phá ưu đãi</a>
-    </div>
-
-    <!-- body -->
-    <div id="main">
-        <div class="total-header">
-            <div class="left-header">
-                <div class="logo-header">
-                    <a href="#">
-                        <img src="{{ asset('images/logo-header.svg') }}" alt="logo">
-                    </a>
-                </div>
-                <div class="slogan-header">
-                    Cam kết hoàn 150% nếu nhà xe không cung cấp dịch vụ vận chuyển
+<div class="body d-flex py-lg-3 py-md-2">
+    <div class="container-xxl">
+        <div class="row align-items-center">
+            <div class="border-0 mb-4">
+                <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                    <h3 class="fw-bold mb-0"> </h3>
                 </div>
             </div>
-            <ul class="right-header nav">
-                <li class="nav-item">
-                    <a href="" class="nav-link nav-link-header">
-                        Đơn hàng của tôi
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link nav-link-header">
-                        Mở bán vé trên Vexere
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-link-header dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Trở thành đối tác
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item dropdown-item-header" href="#link1"> Phần mềm nhà xe</a></li>
-                        <li><a class="dropdown-item dropdown-item-header" href="#link2"> Phần mềm đại lý</a></li>
-                    </ul>
-                </li>
-                <li class="Navbar2__GroupItem-sa2air-4 hEFchp menu-group-item">
-                    <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
-                        <div class="material-icons-wrapper md-20 icon-phone">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
+        </div>
+        <!-- Add post-->
+        <div class="modal-body">
+            <div class="deadline-form">
+                <div class="row">
+                    <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
+                        {{ @csrf_field() }}
+                        <div class=" col-md-6">
+                            <label class="form-label">Tiều đề</label>
+                            <input type="text" name="title" id="title" value="" class="form-control">
                         </div>
-                        <p class="base__Headline03-sc-1tvbuqk-15 boemqK">Hotline 24/7</p>
-                    </div>
-                    <div class="contact-dropdown">
-                        <i class="fa fa-phone" aria-hidden="true"></i> Hotline 1:<a href="tel:"> 0967041900</a><br>
-                        <i class="fa fa-phone" aria-hidden="true"></i> Hotline 2:<a href="tel:"> 123-456-7890</a>
-                    </div>
-                </li>
-                <li class="Navbar2__GroupItem-sa2air-4 hEFchp menu-group-item">
-                    <div class="Navbar2__ButtonHotline-sa2air-8 ijyXqH">
-                        <p class="base__Headline03-sc-1tvbuqk-15 boemqK">Đăng nhập</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!-- slide -->
-        <div class="total-slide">
-            <div class="img-slide">
-                <img src="{{ asset('images/slide.jpg') }}" alt="slide">
-            </div>
-            <div class="wrap-criteria">
-                <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria1.svg') }}" alt="criteria">
-                    <p>Chắc chắn có chỗ</p>
-                </div>
-                <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria2.svg') }}" alt="criteria">
-                    <p>Hỗ Trợ 24/7</p>
-                </div>
-                <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria3.svg') }}" alt="criteria">
-                    <p>Nhiều ưu đãi</p>
-                </div>
-                <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria4.svg') }}" alt="criteria">
-                    <p>Thanh toán đa dạng</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="blogs">
-        <div class="blog">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-color:white">
-                        <div class="card-list">
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item" style="background-color:white">
-                        <div class="card-list">
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item" style="background-color:white">
-                        <div class="card-list">
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 265px;">
-                                <img src="images/img_card.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
 
-    </div> -->
+                        <div class="col-md-6">
+                            <label for="menu" class="form-label"> Hình ảnh</label>
+                            <input class="form-control" type="file" id="picture" name="picture" multiple="" required="">
+                        </div>
+                        <div class="mb-3">
+                                <label class="form-label">Nội dung</label>
+                                <textarea  id="content" name="content"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày tạo</label>
+                            <input type="datetime-local" name="created_at" id="created_at" value="" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Cập nhật</label>
+                            <input type="datetime-local" name="updated_at" id="updated_at" value="" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Người tạo</label>
+                            <input type="text" name="author" id="author" value="" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ route('admin.blogs.index') }}" class="btn btn-secondary" style="margin-right:20px;">Hủy</a>
+                            <button type="submit" class="btn btn-primary" style="background-color: #6610f2;color: white;">Thêm Bài Viết</button>
+                        </div>
+                    </form>
 
 
-    <div class="formCard">
-        <div class="nigt">
-            <div class="text-card">
-                <h1 class="PopularRoute__LabelH1-sc-3v0dez-4 jDtSKN color--light-dark" style="margin-left: 80px;">Tuyến đường phổ biến</h1>
-            </div>
-            <div class="blogs">
-                <div class="blog scroll-container">
-                    <div class="container item-card-list">
-                        @foreach($blogs as $blog)
-                        <a href="{{ route('blogs.show', $blog->id) }}">
-                            <div class="card card-item">
-                                <!-- Sử dụng đúng thuộc tính 'picture' cho ảnh -->
-                                <img src="{{ asset('storage/' . $blog->picture) }}" alt="Picture" class="card-image" style="width: 100px;">
-                                <div class="card-content">
-                                    <h2 class="card-title">{{ $blog->title }}</h2>
-                                </div>
-                            </div>
-                        </a>
-                        @endforeach
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <div id="main-footer">
-        <h2>Công ty TNHH Thương Mại Dịch Vụ Vexere</h2>
-        <p>Địa chỉ đăng ký kinh doanh: 8C Chữ Đồng Tử, Phường 7, Quận Tân Bình, Thành Phố Hồ Chí Minh, Việt Nam</p>
-        <p>Địa chỉ: Lầu 2, tòa nhà H3 Circo Hoàng Diệu, 384 Hoàng Diệu, Phường 6, Quận 4, Tp. Hồ Chí Minh, Việt Nam</p>
-        <p>Tầng 3, Toà nhà 101 Láng Hạ, Phường Láng Hạ, Quận Đống Đa, Hà Nội, Việt Nam </p>
-        <p>Giấy chứng nhận ĐKKD số 0315133726 do Sở KH và ĐT TP. Hồ Chí Minh cấp lần đầu ngày 27/6/2018</p>
-        <p>Bản quyền © 2024 thuộc về <a href="">Vexere.com</a></p>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <script>
-        document.querySelector('.Navbar2__ButtonHotline-sa2air-8').addEventListener('click', function(event) {
-            event.stopPropagation();
-            this.nextElementSibling.classList.toggle('show');
-        });
-
-        document.querySelector('.contact-dropdown').addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
-
-        // Đóng dropdown nếu người dùng nhấp ra ngoài
-        window.onclick = function(event) {
-            var dropdowns = document.getElementsByClassName("contact-dropdown");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-
-        function toggleNav() {
-            const sidenav = document.getElementById("mySidenav");
-            if (sidenav.style.width === "100%") {
-                sidenav.style.width = "0";
-            } else {
-                sidenav.style.width = "100%";
-            }
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
-</body>
-
-</html>
-@endsection
+    @endsection
+    

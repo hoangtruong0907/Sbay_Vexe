@@ -1,8 +1,19 @@
 @extends('admin.layouts.default')
 
-@section('title', 'Edit Blog Post')
-
+@section('title', ' Dashboard')
 @section('contents')
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" />
+</head>
+
+<body>
 <div class="container">
     <h1>Edit Blog Post</h1>
     <form action="{{ route('admin.blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
@@ -22,7 +33,7 @@
 
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea id="editor" name="content" class="form-control">{{ $blog->content }}</textarea>
+            <textarea id="content" name="content" class="form-control">{{ $blog->content }}</textarea>
         </div>
 
         <div class="form-group">
@@ -35,12 +46,76 @@
     </form>
 </div>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor.js"></script>
-<script>
+<script type="importmap">
+            {
+                "imports": {
+                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",
+                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/"
+                }
+            }
+        </script>
+
+        <script type="module">
+    import {
+        ClassicEditor,
+        Essentials,
+        Bold,
+        Italic,
+        Font,
+        Paragraph,
+        Table,
+        TableToolbar,
+        Image,
+        ImageUpload,
+        ImageToolbar,
+        ImageCaption,
+        ImageStyle
+    } from 'ckeditor5';
+
     ClassicEditor
-        .create(document.querySelector('#editor'))
+        .create(document.querySelector('#content'), {
+            plugins: [
+                Essentials,
+                Bold,
+                Italic,
+                Font,
+                Paragraph,
+                Table,
+                TableToolbar,
+                Image,
+                ImageUpload,
+                ImageToolbar,
+                ImageCaption,
+                ImageStyle
+            ],
+            toolbar: {
+                items: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+                    'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|',
+                    'imageUpload'
+                ]
+            },
+            image: {
+                toolbar: [
+                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
+                ],
+                upload: {
+                    url: '/upload-image', 
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                }
+            }
+        })
+        .then(editor => {
+            console.log('Editor was initialized', editor);
+        })
         .catch(error => {
-            console.error(error);
+            console.error('There was a problem initializing the editor.', error);
         });
 </script>
 @endsection
+</body>
+
+</html>
