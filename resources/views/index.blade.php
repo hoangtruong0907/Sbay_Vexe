@@ -1,5 +1,5 @@
-
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -237,7 +237,7 @@
     </div> -->
 
 
-            <div class="formCard">
+    <div class="formCard">
                 <div class="nigt">
                     <div class="text-card">
                         <h1 class="PopularRoute__LabelH1-sc-3v0dez-4 jDtSKN color--light-dark" style="margin-left: 80px;">Tuyến đường phổ biến</h1>
@@ -245,26 +245,26 @@
                     <div class="blogs">
                         <div class="blog scroll-container">
                             <div class="container item-card-list">
-                            @if($blogs->isEmpty())
-        <p>No blog posts found.</p>
-    @else
-        @foreach($blogs as $blog)
-        <div>
-            <a href="{{ route('vxr', ['id' => $blog->id]) }}" class="native">
-                <div class="card card-item">
-                    <!-- Use the 'picture' attribute for the image -->
-                    <img src="{{ Storage::url($blog->picture) }}" alt="Picture" class="card-image" >
-                    <div class="card-content">
-                        <div class="text-nvc">
-                        <h4 class="card-title  item-horizontal-content-container item-title">{{ $blog->title }}</h4>
-                        </div>
-                        
-                    </div>
-                </div>
-            </a>
-        </div>
-        @endforeach
-    @endif
+                                @if($blogs->isEmpty())
+                                <p>No blog posts found.</p>
+                                @else
+                                @foreach($blogs as $blog)
+                                <div>
+                                    <a href="{{ route('vxr', ['id' => $blog->id]) }}" class="native">
+                                        <div class="card card-item">
+                                            <!-- Use the 'picture' attribute for the image -->
+                                            <img src="{{ Storage::url($blog->picture) }}" alt="Picture" class="card-image">
+                                            <div class="card-content">
+                                                <div class="text-nvc">
+                                                    <h4 class="card-title  item-horizontal-content-container item-title">{{ $blog->title }}</h4>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -328,11 +328,12 @@
     // data load search component
     // list data areas
     const busCities = @json($list_areas ?? []);
-    const dateTo = @json($params->dateTo ?? "");
+    const dateTo = @json($params -> dateTo ?? "");
 </script>
 <script src="{{ asset('js/search_component.js') }}"></script>
-@endpush    
+@endpush
 
 </div>
 </body>
+
 </html>
