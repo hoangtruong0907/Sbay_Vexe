@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
-use App\Helpers\Helpers;;
+use App\Helpers\helpers;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
@@ -102,8 +102,8 @@ class RouteController extends Controller
         }
 
         $main_url = $this->main_url . '/v3/area/city_district';
-        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 20));
-        // Lấy thông tin điểm đón và điểm xả
+        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 *24));
+        // Lấy thông tin từ params
         $params = (object)([
             'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
             'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
@@ -117,7 +117,7 @@ class RouteController extends Controller
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
         // dd(compact('list_routes'));
 
-        return view("bus.bus_search", compact('list_routes', 'list_areas', 'params'));
+        return view("bus.bus_search", compact('list_routes', 'list_areas', 'params', 'token'));
     }
 
     private function addBusImagesToRoutes($token, $list_routes)

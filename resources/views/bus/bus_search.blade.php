@@ -715,6 +715,9 @@
                 @foreach ($list_routes as $key => $route)
                     @include('bus._bus_item', [
                         'route' => $route,
+                        'dataRoute' => $route['route'],
+                        'pickupData' => $route['route']['pickup_points'],
+                        'dropoffData' => $route['route']['dropoff_points'],
                         'key' => (string) $key,
                     ])
                 @endforeach
@@ -1107,46 +1110,42 @@
             document.getElementById('step' + step).classList.add('active');
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lấy tất cả các phần tử carousel
-            document.querySelectorAll('.carousel').forEach(function(carouselEl) {
-                // Khởi tạo Bootstrap Carousel cho mỗi phần tử
-                const carousel = new bootstrap.Carousel(carouselEl, {
-                    // interval: 2000,
-                    wrap: true,
-                });
+        // Click popup gg map by lat & lon
+        $('.list-distance-item').on('click', function() {
+            const lat = $(this).data('map-lat');
+            const lon = $(this).data('map-lon');
+            const googleMapsUrl = `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
+            window.open(googleMapsUrl, '_blank');
+        });
 
-                $('#myCarousel').carousel({
-                    interval: 3500
-                });
+        //
+        let useProfileUrl = "{{ env('VXR_USER_PROFILE_URL_TEST', ' ')}}"
+        let token = @json($token ?? '');
+        $('.rating-tab').on('click', function() {
+            console.log("Clicked");
+            let companyId = $(this).data('company-id');
+            const url = `${useProfileUrl}/company/${companyId}/reviews`;
 
-                // This event fires immediately when the slide instance method is invoked.
-                $('#myCarousel').on('slide.bs.carousel', function(e) {
-                    var id = $('.item.active').data('slide-number');
-
-                    // Added a statement to make sure the carousel loops correct
-                    if (e.direction == 'right') {
-                        id = parseInt(id) - 1;
-                        if (id == -1) id = 7;
-                    } else {
-                        id = parseInt(id) + 1;
-                        if (id == $('[id^=carousel-thumb-]').length) id = 0;
+            // Fetch dữ liệu từ URL với header chứa token
+            fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
                     }
-
-                    $('[id^=carousel-thumb-]').removeClass('selected');
-                    $('[id=carousel-thumb-' + id + ']').addClass('selected');
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json(); // Chuyển đổi phản hồi thành JSON
+                })
+                .then(data => {
+                    console.log(data); // Hiển thị dữ liệu trong console hoặc xử lý dữ liệu tùy ý
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
                 });
-
-                // Thumb control
-                $('[id^=carousel-thumb-]').click(function() {
-                    var id_selector = $(this).attr("id");
-                    var id = id_selector.substr(id_selector.length - 1);
-                    id = parseInt(id);
-                    $('#myCarousel').carousel(id);
-                    $('[id^=carousel-thumb-]').removeClass('selected');
-                    $(this).addClass('selected');
-                });
-            });
         });
     </script>
 @endpush
