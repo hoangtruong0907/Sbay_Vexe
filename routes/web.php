@@ -15,4 +15,9 @@ Route::get('/', [RouteController::class, 'index']);
 Route::get('/test', [TestController::class, 'test']);
 
 
+Route::get('/slidebanner', function () {
+    return view('slidebanner');
+});
+
+
 Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
