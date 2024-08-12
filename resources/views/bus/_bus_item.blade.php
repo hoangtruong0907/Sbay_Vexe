@@ -89,9 +89,12 @@
                         </div>
                     </div>
                     <div class="fare-info-l">
-                        <div class="fare-l">{{ formatCurrency($dataRoute['schedules'][0]['fare']['original']) }}</div>
+                        <div class="fare-l">Từ {{ formatCurrency($dataRoute['schedules'][0]['fare']['original']) }}
+                        </div>
                         <div class="fareSmall">
-                            <div class="small">{{ formatCurrency($dataRoute['schedules'][0]['fare']['max']) }}</div>
+                            <div class="small">
+                                {{ $dataRoute['schedules'][0]['fare']['original'] !== $dataRoute['schedules'][0]['fare']['max'] ? formatCurrency($dataRoute['schedules'][0]['fare']['max']) : '' }}
+                            </div>
                         </div>
                     </div>
 
@@ -1205,9 +1208,10 @@
                             trả</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link rating-tab" id="rating-tab-{{ $key }}" data-bs-toggle="pill"
-                            data-bs-target="#rating-{{ $key }}" type="button" role="tab"
-                            aria-controls="rating-{{ $key }}" aria-selected="false" data-company-id="{{$route['company']['id']}}">Đánh
+                        <button class="nav-link rating-tab" id="rating-tab-{{ $key }}"
+                            data-bs-toggle="pill" data-bs-target="#rating-{{ $key }}" type="button"
+                            role="tab" aria-controls="rating-{{ $key }}" aria-selected="false"
+                            data-company-id="{{ $route['company']['id'] }}" data-key="{{$key}}">Đánh
                             giá</button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -1392,7 +1396,9 @@
                                 <div class="fw-bold">Điểm đón</div>
                                 <div class="list-group">
                                     @foreach ($pickupData as $i => $pickup)
-                                        <div class="list-group-item list-group-item-action list-distance-item" data-map-lat="{{$pickup['location']['lat']}}" data-map-lon="{{$pickup['location']['lon']}}"
+                                        <div class="list-group-item list-group-item-action list-distance-item"
+                                            data-map-lat="{{ $pickup['location']['lat'] }}"
+                                            data-map-lon="{{ $pickup['location']['lon'] }}"
                                             data-key="{{ $i }}">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1">
@@ -1409,7 +1415,7 @@
                                                     @endif
                                                 </small>
                                             </div>
-                                            <p class="mb-1">{{$pickup['name']}}</p>
+                                            <p class="mb-1">{{ $pickup['name'] }}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -1418,7 +1424,9 @@
                                 <div class="fw-bold">Điểm trả</div>
                                 <div class="list-group">
                                     @foreach ($dropoffData as $i => $dropoff)
-                                        <div class="list-group-item list-group-item-action list-distance-item" data-map-lat="{{$dropoff['location']['lat']}}" data-map-lon="{{$dropoff['location']['lon']}}"
+                                        <div class="list-group-item list-group-item-action list-distance-item"
+                                            data-map-lat="{{ $dropoff['location']['lat'] }}"
+                                            data-map-lon="{{ $dropoff['location']['lon'] }}"
                                             data-key="{{ $i }}">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1">
@@ -1427,13 +1435,11 @@
                                                     @else
                                                         {{ $dataRoute['departure_time'] }}
                                                     @endif
-                                                    {{-- <span class="badge text-bg-success">Có trung chuyển</span> --}}
                                                 </h6>
                                                 <small class="text-muted">
-
                                                 </small>
                                             </div>
-                                            <p class="mb-1">{{$dropoff['name']}}</p>
+                                            <p class="mb-1">{{ $dropoff['name'] }}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -1442,275 +1448,10 @@
                     </div>
                     <div class="tab-pane fade rating-tab" id="rating-{{ $key }}" role="tabpanel"
                         aria-labelledby="rating-tab" tabindex="2">
-                        <div class="d-flex align-items-center">
-                            <div class="d-flex align-items-center rating-info">
-                                <button class="btn btn-primary p-1"><i class="fa-solid fa-star"></i>
-                                    4.5</button>
-                                <div class="d-flex align-items-center star-rating ms-2 me-2"
-                                    style="color: rgb(255, 199, 0);">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                <div class="text-wrap">73 Đánh giá</div>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column mt-2 mb-2">
-                            <div class="row d-flex w-100 ps-2 pe-2">
-                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                                    <div class="card item-card-rating">
-                                        <div class="card-body p-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="fw-bold">An toàn</div>
-                                                <div class="fw-bold">3.6</div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
-                                                    aria-label="Basic example" style="width: 50%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                                    <div class="card item-card-rating">
-                                        <div class="card-body p-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="fw-bold">An toàn</div>
-                                                <div class="fw-bold">3.6</div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
-                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                                    <div class="card item-card-rating">
-                                        <div class="card-body p-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="fw-bold">An toàn</div>
-                                                <div class="fw-bold">3.6</div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
-                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row d-flex w-100 ps-2 pe-2">
-                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                                    <div class="card item-card-rating">
-                                        <div class="card-body p-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="fw-bold">An toàn</div>
-                                                <div class="fw-bold">3.6</div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
-                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                                    <div class="card item-card-rating">
-                                        <div class="card-body p-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="fw-bold">An toàn</div>
-                                                <div class="fw-bold">3.6</div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
-                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                                    <div class="card item-card-rating">
-                                        <div class="card-body p-0">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="fw-bold">An toàn</div>
-                                                <div class="fw-bold">3.6</div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
-                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="nav nav-pills mb-1 pill-rating-filter" role="tablist">
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link active" data-bs-toggle="pill">Tất cả
-                                    (100)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">Có nhận xét
-                                    (100)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">Có hình ảnh
-                                    (100)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">5<i
-                                        class="fa-solid fa-star"></i>(12)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">4<i
-                                        class="fa-solid fa-star"></i>(12)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">3<i
-                                        class="fa-solid fa-star"></i>(12)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">2<i
-                                        class="fa-solid fa-star"></i>(12)</button>
-                            </li>
-                            <li class="nav-item filter-rating" role="presentation">
-                                <button class="nav-link" data-bs-toggle="pill">1<i
-                                        class="fa-solid fa-star"></i>(12)</button>
-                            </li>
-                        </ul>
-
-                        <div class="list-group w-100 list-gr-review">
-                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <div class="d-flex user-review">
-                                        <img class="avatar-review"
-                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                            alt="anh-dai-dien" srcset="">
-                                        <div class="d-flex flex-column mt-1 ms-1">
-                                            <h6 class="mb-1">List group item heading</h6>
-                                            <div class="d-flex align-items-center star-rating"
-                                                style="color: rgb(255, 199, 0);">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star-half-stroke"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">The single cabin was nice. The bed was a little short,
-                                    but it was wide and pleasant. Each cabin was provided with bottled
-                                    water, wet wipes and blankets. The bed was clean and the staff was very
-                                    friendly, so I had a great experience.</p>
-                                <div class="d-flex list-img-review flex-row">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                        alt="thumb-1">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                        alt="thumb-1">
-                                </div>
-
-                                <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày 29/07/2024</small>
-                                    <div class="item-check-review ms-1">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        <small>Đã mua vé</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <div class="d-flex user-review">
-                                        <img class="avatar-review"
-                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                            alt="anh-dai-dien" srcset="">
-                                        <div class="d-flex flex-column mt-1 ms-1">
-                                            <h6 class="mb-1">List group item heading</h6>
-                                            <div class="d-flex align-items-center star-rating"
-                                                style="color: rgb(255, 199, 0);">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star-half-stroke"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">The single cabin was nice. The bed was a little short,
-                                    but it was wide and pleasant. Each cabin was provided with bottled
-                                    water, wet wipes and blankets. The bed was clean and the staff was very
-                                    friendly, so I had a great experience.</p>
-                                <div class="d-flex list-img-review flex-row">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                        alt="thumb-1">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                        alt="thumb-1">
-                                </div>
-
-                                <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày 29/07/2024</small>
-                                    <div class="item-check-review ms-1">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        <small>Đã mua vé</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <div class="d-flex user-review">
-                                        <img class="avatar-review"
-                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                            alt="anh-dai-dien" srcset="">
-                                        <div class="d-flex flex-column mt-1 ms-1">
-                                            <h6 class="mb-1">List group item heading</h6>
-                                            <div class="d-flex align-items-center star-rating"
-                                                style="color: rgb(255, 199, 0);">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star-half-stroke"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">The single cabin was nice. The bed was a little short,
-                                    but it was wide and pleasant. Each cabin was provided with bottled
-                                    water, wet wipes and blankets. The bed was clean and the staff was very
-                                    friendly, so I had a great experience.</p>
-                                <div class="d-flex list-img-review flex-row">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                        alt="thumb-1">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                        alt="thumb-1">
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày 29/07/2024</small>
-                                    <div class="item-check-review ms-1">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        <small>Đã mua vé</small>
-                                    </div>
-                                </div>
+                        {{-- Loading rating tab --}}
+                        <div class="d-flex justify-content-center mt-4">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Đang tải...</span>
                             </div>
                         </div>
                     </div>
@@ -1786,35 +1527,48 @@
                                     </div>
                                 </div>
                             </div>
+                            <p><b>Ghi Chú: </b>Phí huỷ sẽ được tính trên giá gốc, không giảm trừ khuyến mãi hoặc giảm giá; đồng thời không vượt quá số tiền quý khách đã thanh toán.</p>
                             <hr />
                             <div class="d-flex flex-column policy-content-b">
                                 <h5 class="mb-2">Chính sách nhà xe</h5>
+                                <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
+                                    đây. Chính sách đặt vé của Vexere như sau:</p>
                                 <div class="d-flex flex-column ms-2">
                                     <div class="policy-content-l">
-                                        <h6>Chính sách đặt vé</h6>
-                                        <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
-                                            đây. Chính sách đặt vé của Vexere như sau:</p>
+                                        <h6>Yêu cầu khi lên xe</h6>
                                         <ul>
-                                            <li>Quý khách vui lòng đảm bảo thông tin đầy đủ và chính xác khi
-                                                đặt
-                                                vé.</li>
-                                            <li>Vexere sẽ chủ động đảm bảo đầy đủ thông tin về chuyến bay,
-                                                điểm
-                                                đến, ngày đi, giờ</li>
+                                            <li>Có mặt tại văn phòng/quầy vé/bến xe trước 20 phút để làm thủ tục lên xe</li>
+                                            <li>Xuất trình SMS/Email đặt vé trước khi lên xe</li>
+                                            <li>Không mang đồ ăn, thức ăn có mùi lên xe </li>
+                                            <li>Không hút thuốc, uống rượu, sử dụng chất kích thích trên xe</li>
+                                            <li>Không mang các vật dễ cháy nổ lên xe</li>
+                                            <li>Không vứt rác trên xe</li>
+                                            <li>Không làm ồn, gây mất trật tự trên xe</li>
                                         </ul>
                                     </div>
-                                    <hr />
                                     <div class="policy-content-l">
-                                        <h6>Chính sách đặt vé</h6>
-                                        <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
-                                            đây. Chính sách đặt vé của Vexere như sau:</p>
+                                        <h6>Hành lý xách tay</h6>
                                         <ul>
-                                            <li>Quý khách vui lòng đảm bảo thông tin đầy đủ và chính xác khi
-                                                đặt
-                                                vé.</li>
-                                            <li>Vexere sẽ chủ động đảm bảo đầy đủ thông tin về chuyến bay,
-                                                điểm
-                                                đến, ngày đi, giờ</li>
+                                            <li>Tổng trọng lượng hành lý không vượt quá 3 kg</li>
+                                        </ul>
+                                    </div>
+                                    <div class="policy-content-l">
+                                        <h6>Trẻ em và phụ nữ có thai</h6>
+                                        <ul>
+                                            <li>Trẻ em dưới 3 tuổi hoặc dưới 110 cm được miễn phí vé nếu ngồi cùng ghế/giường với bố mẹ</li>
+                                            <li>Trẻ em từ 3 tuổi hoặc cao từ 110 cm trở lên mua vé như người lớn</li>
+                                        </ul>
+                                    </div>
+                                    <div class="policy-content-l">
+                                        <h6>Động vật cảnh/Thú cưng</h6>
+                                        <ul>
+                                            <li>Hãng xe chỉ chấp nhận vận chuyển động vật như là một hành lý ký gửi; không cho phép mang lên xe cùng hành khách</li>
+                                        </ul>
+                                    </div>
+                                    <div class="policy-content-l">
+                                        <h6>Xuất hóa đơn GTGT</h6>
+                                        <ul>
+                                            <li>Nhà xe từ chối xuất lại hóa đơn nếu hành khách cung cấp sai thông tin</li>
                                         </ul>
                                     </div>
                                 </div>

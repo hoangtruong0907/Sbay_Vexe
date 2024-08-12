@@ -1118,34 +1118,30 @@
             window.open(googleMapsUrl, '_blank');
         });
 
-        //
-        let useProfileUrl = "{{ env('VXR_USER_PROFILE_URL_TEST', ' ')}}"
-        let token = @json($token ?? '');
-        $('.rating-tab').on('click', function() {
-            console.log("Clicked");
+        // Rating tab
+        $('.nav-link.rating-tab').on('click', function() {
             let companyId = $(this).data('company-id');
-            const url = `${useProfileUrl}/company/${companyId}/reviews`;
-
-            // Fetch dữ liệu từ URL với header chứa token
+            // let itemKey = $(this).data('key') + 1;
+            const url = `/api/info/xe-khach/${companyId}/reviews`;
+            // console.log(url);
             fetch(url, {
                     method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
                 })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    return response.json(); // Chuyển đổi phản hồi thành JSON
+                    return response.json();
                 })
                 .then(data => {
-                    console.log(data); // Hiển thị dữ liệu trong console hoặc xử lý dữ liệu tùy ý
+                    // console.log(data);
+                    $($(this).attr('data-bs-target')).html(data.dataHTML);
+
                 })
                 .catch(error => {
-                    console.error('There has been a problem with your fetch operation:', error);
+                    console.error('Eror:', error);
                 });
         });
+
     </script>
 @endpush

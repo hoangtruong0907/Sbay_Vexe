@@ -1598,6 +1598,10 @@ body .material-icons-wrapper.md-20 {
     border: none;
 }
 
+.ticket-detail-contentTab .list-group-item:hover {
+    cursor: pointer;
+}
+
 .ticket-detail-contentTab .item-card-rating {
     width: 100%;
     border: none;
@@ -1609,7 +1613,7 @@ body .material-icons-wrapper.md-20 {
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     color: rgb(77, 77, 77);
-    margin: 1px;
+    margin: 2px;
     padding: 8px 12px;
 }
 

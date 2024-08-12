@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 use App\Helpers\helpers;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
 
@@ -18,11 +18,13 @@ class RouteController extends Controller
     private $route_url;
     private $client_id;
     private $client_secret;
+    private $use_profile_url;
 
     public function __construct()
     {
         $this->main_url = env('VXR_ACOUNT_SERVICE_URL_TEST');
         $this->route_url = env('VXR_ROUTE_URL_TEST');
+        $this->use_profile_url = env('VXR_USER_PROFILE_URL_TEST');
         $this->client_id = env('VEXERE_CLIENT_ID');
         $this->client_secret = env('VEXERE_CLIENT_SECRET');
     }
@@ -48,7 +50,7 @@ class RouteController extends Controller
         return view('index', ["list_areas" => $list_areas]);
     }
 
-    public function routeSearch($fromtoPlace, Request $request)
+    public function routeBusSearch($fromtoPlace, Request $request)
     {
         $cacheKey = 'list_routes';
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
@@ -73,7 +75,7 @@ class RouteController extends Controller
             'filter[available_seat][max]' => $request->query('available_seat_max') ?? null, // Lọc theo số lượng ghế trống tối đa
             'filter[rating][min]' => $request->query('rating_min') ?? null, // Lọc theo rating tối thiểu
             'filter[rating][max]' => $request->query('rating_max') ?? null, // Lọc theo rating tối đa
-            'filter[time][min]' => $request->query('time_min') ?? null, // Lọc theo thời gian bắt đầu
+            'filter[time][min]' => $request->query('time_min') ?? null, // Lọc theo thời gian bắt đầu HH:mm
             'filter[time][max]' => $request->query('time_max') ?? null, // Lọc theo thời gian kết thúc
             'filter[limousine]' => $request->query('limousine') ?? null, // Lọc theo loại xe limousine (0 hoặc 1)
             'filter[seat_type][index]' => $request->query('seat_type_index') ?? null, // Lọc theo loại ghế ngồi (1 - AC Seater, 2 - AC Sleeper, 7 - AC Double Sleeper)
@@ -85,7 +87,7 @@ class RouteController extends Controller
             'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district') ?? null, // Lọc theo điểm xả theo quận huyện
             'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name') ?? null, // Lọc theo điểm xả theo tên
             'page' => $request->query('page', 1), // Phân trang (mặc định là trang 1)
-            'pagesize' => $request->query('pagesize', 10), // Số phần tử mỗi trang (mặc định là 20)
+            'pagesize' => $request->query('pagesize', 20), // Số phần tử mỗi trang (mặc định là 20)
         ];
 
         // Thêm các tham số vào URL nếu chúng tồn tại
@@ -102,7 +104,7 @@ class RouteController extends Controller
         }
 
         $main_url = $this->main_url . '/v3/area/city_district';
-        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 *24));
+        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 * 24));
         // Lấy thông tin từ params
         $params = (object)([
             'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
@@ -113,11 +115,22 @@ class RouteController extends Controller
         $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
         // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);
         $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20);
+        $list_routes = collect($list_routes)->sortBy(function ($route) {
+            $date = Carbon::parse($route['route']['departure_date']); // Parse ngày
+            $time = Carbon::createFromFormat('H:i', $route['route']['departure_time']); // Parse giờ
+
+            // Kết hợp ngày và giờ thành một đối tượng DateTime
+            return Carbon::create(
+                $date->year, $date->month, $date->day,
+                $time->hour, $time->minute, 0,
+                $date->timezone // Sử dụng timezone của ngày
+            );
+        })->values()->all();
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
         // dd(compact('list_routes'));
 
-        return view("bus.bus_search", compact('list_routes', 'list_areas', 'params', 'token'));
+        return view("bus.bus_search", compact('list_routes', 'list_areas', 'params'));
     }
 
     private function addBusImagesToRoutes($token, $list_routes)
@@ -131,5 +144,76 @@ class RouteController extends Controller
         }
 
         return $list_routes;
+    }
+
+    public function busInfo($companyId, $type, Request $request)
+    {
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        // $itemKey = $request->query('itemKey') ? $request->query('itemKey') : null;
+        if ($companyId === null || $type === null) {
+            return response()->json(['error' => 'Missing required parameters.'], 400);
+        }
+
+        if (!$token) {
+            return response()->json([
+                'error' => 'Failed to retrieve token',
+            ], 500);
+        }
+
+        if ($type === "reviews") {
+            $url = $this->use_profile_url . "/company/" . $companyId . '/reviews?';
+            $urlRPoint = $this->use_profile_url . "/company/" . $companyId;
+            $queryParams = [
+                'per_page' => $request->query('per_page') ?? null,
+                'page' => $request->query('page') ?? 1,
+                'rating[min]' => $request->query('rating_min') ?? null,
+                'rating[max]' => $request->query('rating_max') ?? null,
+            ];
+
+            // Thêm các tham số vào URL nếu chúng tồn tại
+            foreach ($queryParams as $key => $value) {
+                if ($value !== null) {
+                    $url .= '&' . $key . '=' . $value;
+                }
+            }
+            $reviewPoint = Helpers::cacheData("company-bus-'.$companyId.'-ratingpoint", $token, $urlRPoint, 60 * 20);
+            $reviews = Helpers::cacheData("company-bus-'.$companyId.'-reviews", $token, $url, $queryParams, 60 * 20);
+
+            if (isset($reviews)) {
+                $reviewByType = [
+                    "1" => [],
+                    "2" => [],
+                    "3" => [],
+                    "4" => [],
+                    "5" => [],
+                    "detail_review" => [],
+                    "image_review_count" => []
+                ];
+
+                foreach ($reviews['items'] as $item) {
+                    if (isset($item['rating']) && in_array($item['rating'], [1, 2, 3, 4, 5])) {
+                        $reviewByType[(string)$item['rating']][] = $item;
+                    }
+                    if (isset($item['detail_review']) && $item['detail_review']) {
+                        $reviewByType['detail_review'][] = $item;
+                    }
+                    if (isset($item['image_review_count']) && $item['image_review_count'] > 0) {
+                        $reviewByType['image_review'][] = $item;
+                    }
+                }
+            }
+
+            return response()->json([
+                "message" => "success",
+                'type' => $type,
+                // 'data' => compact('reviewPoint', 'reviews'),
+                'dataHTML' => view('bus._bus_reviewTab', compact('companyId', 'queryParams', 'reviews', 'reviewPoint', 'reviewByType'))->render(),
+            ]);
+        }
+
+        return response()->json([
+            "message" => "No type",
+            'data' => "",
+        ]);
     }
 }
