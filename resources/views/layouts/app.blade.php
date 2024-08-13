@@ -41,24 +41,25 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     @stack('page-scripts')
     <script>
-        $(document).ready(function () {
-            $('.banner-slider').slick({
-                
-                infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                prevArrow: '<button type="button" class="slick-prev">Previous</button>',
-                nextArrow: '<button type="button" class="slick-next">Next</button>',
-            });
+    $(document).ready(function () {
+        $('.banner-slider').slick({
+            infinite: true,
+            speed: 1500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            cssEase: 'ease',  // Thêm thuộc tính mượt
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next</button>',
         });
-    </script>
+    });
+</script>
+
        <script>
         $(document).ready(function() {
     $('.faq-question').click(function() {
         
         $('.faq-answer').slideUp();
-        $('.faq-icon').text('+');
+        $('.faq-icon').text('▼');
         
         // Kiểm tra nếu phần trả lời của câu hỏi này đang mở
         if ($(this).next('.faq-answer').is(':visible')) {
@@ -68,7 +69,7 @@
             
             $(this).next('.faq-answer').slideDown();
             
-            $(this).find('.faq-icon').text('-');
+            $(this).find('.faq-icon').text('▲');
         }
     });
 });
