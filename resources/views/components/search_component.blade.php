@@ -32,10 +32,11 @@
                                                 alt="pickup-icon" width="24" height="24">
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="bus_from" hidden value="{!! $params->busFrom->id ?? "" !!}"/>
+                                            <input type="text" id="bus_from" hidden
+                                                value="{!! $params->busFrom->id ?? '' !!}" />
                                             <input type="text" id="bus_from_input" placeholder="Điểm Đi"
                                                 data-testid="SearchWidget.bus_from" data-id="SearchWidget.bus_from"
-                                                autocomplete="off" value="{!! $params->busFrom->name ?? "" !!}">
+                                                autocomplete="off" value="{!! $params->busFrom->name ?? '' !!}">
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu bus-dropdown-menu">
@@ -62,10 +63,11 @@
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="bus_to" hidden value="{!! $params->busTo->id ?? "" !!}"/>
+                                            <input type="text" id="bus_to" hidden
+                                                value="{!! $params->busTo->id ?? '' !!}" />
                                             <input type="text" id="bus_to_input" placeholder="Điểm Đến"
                                                 data-testid="SearchWidget.bus_to" data-id="SearchWidget.bus_to"
-                                                autocomplete="off" value="{!! $params->busTo->name ?? "" !!}">
+                                                autocomplete="off" value="{!! $params->busTo->name ?? '' !!}">
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu bus-dropdown-menu">
@@ -79,8 +81,9 @@
                         </div>
                     </div>
                     <div class="departure-bus-date flex-sum-left">
-                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name="" value="{!! $params->dateTo ?? "" !!}"
-                            class="date-input date-default-input" id="bus_date_to" placeholder="Chọn ngày bắt đầu">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name=""
+                            value="{!! $params->dateTo ?? '' !!}" class="date-input date-default-input" id="bus_date_to"
+                            placeholder="Chọn ngày bắt đầu">
                     </div>
                     <div class="departure-bus-date-right flex-sum-left">
                         <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name=""
@@ -155,8 +158,8 @@
                         </div>
                     </div>
                     <div class="departure-plane-date flex-sum-left">
-                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name="" value="{{ $params->dateTo ?? ""}}"
-                            class="date-input" placeholder="">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name=""
+                            value="{{ $params->dateTo ?? '' }}" class="date-input" placeholder="">
                     </div>
                     <div class="departure-plane-date-right flex-sum-left">
                         <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name=""
@@ -169,6 +172,7 @@
             </div>
         </div>
     </div>
+    <!-- Train Tab -->
     <div class="tab-pane fade" id="pills-train" role="tabpanel" aria-labelledby="pills-train-tab" tabindex="0">
         <div class="ant-row-flex search-widget-inner-content">
             <div class="left-ant-row-flex">
@@ -184,9 +188,12 @@
                                                 alt="pickup-icon" width="24" height="24">
                                         </div>
                                         <div class="custom-input-section">
+                                            <input type="text" id="train_from" hidden
+                                                value="{!! $params->trainFrom->station_code ?? '' !!}" />
                                             <input type="text" id="train_from_input" placeholder="Ga Đi"
                                                 data-testid="SearchWidget.train_from"
-                                                data-id="SearchWidget.train_from">
+                                                data-id="SearchWidget.train_from" autocomplete="off"
+                                                value="{!! $params->trainFrom->station_name ?? '' !!}">
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu train-dropdown-menu">
@@ -212,8 +219,11 @@
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="custom-input-section">
+                                            <input type="text" id="train_to" hidden
+                                                value="{!! $params->trainTo->station_code ?? '' !!}" />
                                             <input type="text" id="train_to_input" placeholder="Ga Đến"
-                                                data-testid="SearchWidget.train_to" data-id="SearchWidget.train_to">
+                                                data-testid="SearchWidget.train_to" data-id="SearchWidget.train_to"
+                                                autocomplete="off" value="{!! $params->trainTo->station_name ?? '' !!}">
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu train-dropdown-menu">
@@ -226,18 +236,21 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Date Train -->
                     <div class="departure-train-date flex-sum-left">
-                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name=""
-                            class="date-input" placeholder="">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <input type="text" name="" value="{!! $params->trainDate ?? '' !!}"
+                            class="date-input date-default-input" id="train_date_to" placeholder="Chọn ngày bắt đầu">
                     </div>
                     <div class="departure-train-date-right flex-sum-left">
-                        <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name=""
-                            class="date-input" placeholder="Thêm ngày về">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <input type="text" name="" class="date-input data-add-input" id="train_date_from"
+                            placeholder="Thêm ngày về">
                     </div>
                 </div>
             </div>
             <div class="right-search-widget-inner-content">
-                <button>Tìm kiếm</button>
+                <button id="train_search">Tìm kiếm</button>
             </div>
         </div>
     </div>

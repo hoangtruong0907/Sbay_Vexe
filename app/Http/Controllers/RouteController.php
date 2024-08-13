@@ -45,7 +45,21 @@ class RouteController extends Controller
             $list_areas = [];
         }
 
-        return view('index', ["list_areas" => $list_areas]);
+        // route list
+        $get_config = Http::withToken($token)->get($this->route_url . '/v2/agent/train/get_config');
+        if ($get_config->successful()) {
+            $responseData = $get_config->json();
+            $trainStations = isset($responseData['data']['train_stations_list']) && is_array($responseData['data']['train_stations_list'])
+                ? $responseData['data']['train_stations_list']
+                : [];
+        } else {
+            $trainStations = [];
+        }
+
+        return view('index', [
+            "list_areas" => $list_areas,
+            "trainStations" => $trainStations,
+        ]);
     }
 
     public function routeSearch($fromtoPlace, Request $request)
@@ -62,31 +76,8 @@ class RouteController extends Controller
         }
         $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
 
-        $queryParams = [
-            'filter[online_ticket]' => $request->query('online_ticket', 1), // Lọc theo các chuyến đi trực tuyến (0 hoặc 1)
-            'filter[online_reserved]' => $request->query('online_reserved') ?? null, // Lọc theo vị trí ghế đã chọn trước (0 hoặc 1)
-            'filter[is_promotion]' => $request->query('is_promotion') ?? null, // Tham khảo chuyến đi giảm giá (0 hoặc 1)
-            'filter[companies][index]' => $request->query('companies_index') ?? null, // Lọc theo ID công ty xe bus
-            'filter[fare][min]' => $request->query('fare_min') ?? null, // Lọc theo giá vé tối thiểu
-            'filter[fare][max]' => $request->query('fare_max') ?? null, // Lọc theo giá vé tối đa
-            'filter[available_seat][min]' => $request->query('available_seat_min') ?? null, // Lọc theo số lượng ghế trống tối thiểu
-            'filter[available_seat][max]' => $request->query('available_seat_max') ?? null, // Lọc theo số lượng ghế trống tối đa
-            'filter[rating][min]' => $request->query('rating_min') ?? null, // Lọc theo rating tối thiểu
-            'filter[rating][max]' => $request->query('rating_max') ?? null, // Lọc theo rating tối đa
-            'filter[time][min]' => $request->query('time_min') ?? null, // Lọc theo thời gian bắt đầu
-            'filter[time][max]' => $request->query('time_max') ?? null, // Lọc theo thời gian kết thúc
-            'filter[limousine]' => $request->query('limousine') ?? null, // Lọc theo loại xe limousine (0 hoặc 1)
-            'filter[seat_type][index]' => $request->query('seat_type_index') ?? null, // Lọc theo loại ghế ngồi (1 - AC Seater, 2 - AC Sleeper, 7 - AC Double Sleeper)
-            'filter[covid_utility]' => $request->query('covid_utility') ?? null, // Đảm bảo COVID-19 (0 hoặc 1)
-            'filter[enabled_gps]' => $request->query('enabled_gps') ?? null, // Theo dõi vị trí xe (0 hoặc 1)
-            'filter[full_trip]' => $request->query('full_trip') ?? null, // Lọc full chuyến (0 hoặc 1)
-            'filter[pickup_points][index][district]' => $request->query('pickup_points_index_district') ?? null, // Lọc theo điểm đón theo quận huyện
-            'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name') ?? null, // Lọc theo điểm đón theo tên
-            'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district') ?? null, // Lọc theo điểm xả theo quận huyện
-            'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name') ?? null, // Lọc theo điểm xả theo tên
-            'page' => $request->query('page', 1), // Phân trang (mặc định là trang 1)
-            'pagesize' => $request->query('pagesize', 10), // Số phần tử mỗi trang (mặc định là 20)
-        ];
+        // Apply filters
+        $queryParams = $this->getRouteFilters($request);
 
         // Thêm các tham số vào URL nếu chúng tồn tại
         foreach ($queryParams as $key => $value) {
@@ -115,11 +106,84 @@ class RouteController extends Controller
         $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20);
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
-        // dd(compact('list_routes'));
-
         return view("bus.bus_search", compact('list_routes', 'list_areas', 'params'));
     }
 
+    public function trainRouteSearch($fromtoPlace, Request $request)
+    {
+        $trainTo = $request->query('train_to', '');
+        $trainFrom = $request->query('train_from', '');
+        $dateTo = $request->query('date_to') ? Helpers::formatDate($request->query('date_to')) : '';
+        $dateFrom = $request->query('date_from') ? Helpers::formatDate($request->query('date_from')) : '';
+        $quantity = 2;
+        $page = 1;
+        $pagesize = 10;
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+
+        if (empty($trainTo) || empty($trainFrom) || empty($dateTo)) {
+            return response()->json(['error' => 'Missing required parameters.'], 400);
+        }
+
+        if (!$token) {
+            return response()->json(['error' => 'Failed to retrieve token.'], 500);
+        }
+
+        $urlRoute = $this->route_url . '/v2/agent/train/route?from=' . $trainFrom . '&to=' . $trainTo . '&time=' . $dateTo . '&quantity=' . $quantity . '&page=' . $page . '&pagesize=' . $pagesize;
+        // Apply filters
+        $queryParams = $this->getRouteFilters($request);
+
+        foreach ($queryParams as $key => $value) {
+            if ($value !== null) {
+                $urlRoute .= '&' . $key . '=' . $value;
+            }
+        }
+
+        $main_url = $this->route_url . '/v2/agent/train/get_config';
+
+        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 20));
+        $train_stations_list = collect($list_areas->get('train_stations_list'));
+        // Lấy thông tin điểm đón và điểm xả
+        $params = (object)([
+            'trainFrom' => (object)$train_stations_list->where('station_code', $trainFrom)->first(),
+            'trainTo' => (object)$train_stations_list->where('station_code', $trainTo)->first(),
+            'dateTo' => $dateTo,
+        ]);
+
+        $cacheKeyRoute = 'route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo;
+
+        $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 20);
+        dd($list_routes);
+        return view("train.train_search", compact('list_routes', 'list_areas', 'params'));
+    }
+
+    private function getRouteFilters(Request $request)
+    {
+        return [
+            'filter[online_ticket]' => $request->query('online_ticket', 1),
+            'filter[online_reserved]' => $request->query('online_reserved'),
+            'filter[is_promotion]' => $request->query('is_promotion'),
+            'filter[companies][index]' => $request->query('companies_index'),
+            'filter[fare][min]' => $request->query('fare_min'),
+            'filter[fare][max]' => $request->query('fare_max'),
+            'filter[available_seat][min]' => $request->query('available_seat_min'),
+            'filter[available_seat][max]' => $request->query('available_seat_max'),
+            'filter[rating][min]' => $request->query('rating_min'),
+            'filter[rating][max]' => $request->query('rating_max'),
+            'filter[time][min]' => $request->query('time_min'),
+            'filter[time][max]' => $request->query('time_max'),
+            'filter[limousine]' => $request->query('limousine'),
+            'filter[seat_type][index]' => $request->query('seat_type_index'),
+            'filter[covid_utility]' => $request->query('covid_utility'),
+            'filter[enabled_gps]' => $request->query('enabled_gps'),
+            'filter[full_trip]' => $request->query('full_trip'),
+            'filter[pickup_points][index][district]' => $request->query('pickup_points_index_district'),
+            'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name'),
+            'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district'),
+            'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name'),
+            'page' => $request->query('page', 1),
+            'pagesize' => $request->query('pagesize', 10),
+        ];
+    }
     private function addBusImagesToRoutes($token, $list_routes)
     {
         foreach ($list_routes as &$route) {

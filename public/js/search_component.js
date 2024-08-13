@@ -221,33 +221,16 @@ planeSwapButton.addEventListener("click", function () {
 // Khởi tạo danh sách dropdown ban đầu
 updatePlaneDropdownList(planeFromInput, planeFromDropdownList, "");
 updatePlaneDropdownList(planeToInput, planeToDropdownList, "");
-
-// Tàu hoả
-const trainCities = [
-    {
-        name: "Hồ Chí Minh",
-    },
-    {
-        name: "Hà Nội",
-    },
-    {
-        name: "Đà Nẵng",
-    },
-    {
-        name: "Đà Lạt",
-    },
-    {
-        name: "Nha Trang",
-    },
-    {
-        name: "Phú Quốc",
-    },
-];
-
-function updateTrainDropdownList(inputElement, dropdownListElement, filter) {
+// Tàu hoả 
+function updateTrainDropdownList(
+    inputValue,
+    inputElement,
+    dropdownListElement,
+    filter
+) {
     dropdownListElement.innerHTML = "";
-    const filteredCities = trainCities.filter((city) =>
-        city.name.toLowerCase().includes(filter.toLowerCase())
+    const filteredCities = trainStations.filter((city) =>
+        city.station_name.toLowerCase().includes(filter.toLowerCase())
     );
     filteredCities.forEach((city) => {
         const item = document.createElement("li");
@@ -255,26 +238,31 @@ function updateTrainDropdownList(inputElement, dropdownListElement, filter) {
         item.innerHTML = `
                         <div class="custom-item-container">
                         <div class="custom-icon-section">
-                            <i class="fa fa-train" aria-hidden="true"></i>
+                            <i class="fa-solid fa-train-simple"></i>
                         </div>
                         <div class="custom-content-section">
-                            <div class="custom-city-title"><b>${city.name}</b></div>
+                            <div class="custom-city-title"><b>${city.station_code} - ${city.station_name}</b></div>
                         </div>
                         </div>
                     `;
         item.addEventListener("mousedown", function (event) {
             event.preventDefault();
-            inputElement.value = city.name;
+            inputElement.value = city.station_name;
+            inputValue.value = city.station_code;
             dropdownListElement.parentElement.style.display = "none";
         });
         dropdownListElement.appendChild(item);
     });
 }
-
-function setupTrainInput(inputElement, dropdownMenu, dropdownList) {
+function setupTrainInput(inputValue, inputElement, dropdownMenu, dropdownList) {
     inputElement.addEventListener("focus", function () {
         dropdownMenu.style.display = "block";
-        updateTrainDropdownList(inputElement, dropdownList, inputElement.value);
+        updateTrainDropdownList(
+            inputValue,
+            inputElement,
+            dropdownList,
+            inputElement.value
+        );
     });
 
     inputElement.addEventListener("blur", function () {
@@ -284,33 +272,43 @@ function setupTrainInput(inputElement, dropdownMenu, dropdownList) {
     });
 
     inputElement.addEventListener("input", function () {
-        updateTrainDropdownList(inputElement, dropdownList, inputElement.value);
+        updateTrainDropdownList(
+            inputValue,
+            inputElement,
+            dropdownList,
+            inputElement.value
+        );
     });
 
     inputElement.addEventListener("click", function () {
         dropdownMenu.style.display = "block";
-        updateTrainDropdownList(inputElement, dropdownList, inputElement.value);
+        updateTrainDropdownList(
+            inputValue,
+            inputElement,
+            dropdownList,
+            inputElement.value
+        );
     });
 }
-
+$(document).on("mousedown", ".custom-dropdown-item", function () {
+    $(this).closest(".train-dropdown-menu").hide();
+});
+// train Form
+const trainFrom = document.getElementById("train_from");
 const trainFromInput = document.getElementById("train_from_input");
 const trainFromDropdownMenu = document.querySelector(
     ".custom-train-from-select-wrapper .train-dropdown-menu"
 );
-const trainFromDropdownList = document.getElementById(
-    "dropdown_list_train_from"
-);
-
-setupTrainInput(trainFromInput, trainFromDropdownMenu, trainFromDropdownList);
-
+const trainFromDropdownList = document.getElementById("dropdown_list_train_from");
+setupTrainInput(trainFrom, trainFromInput, trainFromDropdownMenu, trainFromDropdownList);
+// train To 
+const trainTo = document.getElementById("train_to");
 const trainToInput = document.getElementById("train_to_input");
 const trainToDropdownMenu = document.querySelector(
     ".custom-train-to-select-wrapper .train-dropdown-menu"
 );
 const trainToDropdownList = document.getElementById("dropdown_list_train_to");
-
-setupTrainInput(trainToInput, trainToDropdownMenu, trainToDropdownList);
-
+setupTrainInput(trainTo, trainToInput, trainToDropdownMenu, trainToDropdownList);
 // Hoán đổi giá trị của hai ô nhập liệu
 const trainSwapButton = document.getElementById("train_swap_button");
 trainSwapButton.addEventListener("click", function () {
@@ -318,11 +316,16 @@ trainSwapButton.addEventListener("click", function () {
     const toValue = trainToInput.value;
     trainFromInput.value = toValue;
     trainToInput.value = fromValue;
+    //Hiden value
+    const fromValHD = trainFrom.value;
+    const toValHD = trainTo.value;
+    trainFrom.value = toValHD;
+    trainTo.value = fromValHD;
 });
 
 // Khởi tạo danh sách dropdown ban đầu
-updateTrainDropdownList(trainFromInput, trainFromDropdownList, "");
-updateTrainDropdownList(trainToInput, trainToDropdownList, "");
+updateTrainDropdownList(trainFrom, trainFromInput, trainFromDropdownList, "");
+updateTrainDropdownList(trainTo, trainToInput, trainToDropdownList, "");
 
 // Config
 const vn = {
@@ -461,4 +464,54 @@ $(document).ready(function () {
             },
         });
     });
+});
+
+$("#bus_search").click(() => {
+    var busTo = $("#bus_to").val();
+    var busToPlace = $("#bus_to_input").val();
+    var busFrom = $("#bus_from").val();
+    var busFromPlace = $("#bus_from_input").val();
+    var dateTo = $("#bus_date_to").val();
+    var dateFrom = $("#bus_date_from").val();
+
+    var data = {
+        bus_from: busFrom,
+        // busFromPlace,
+        bus_to: busTo,
+        // busToPlace,
+        date_from: dateFrom,
+        date_to: dateTo,
+    };
+
+    var url =
+        "/route-search/xe-khach/" +
+        convertToSlug(busFromPlace) +
+        "-to-" +
+        convertToSlug(busToPlace);
+    var queryString = $.param(data);
+    url += "?" + queryString;
+    window.location.href = url;
+});
+$("#train_search").click(() => {
+    var trainTo = $("#train_to").val();
+    var trainToPlace = $("#train_to_input").val();
+    var trainFrom = $("#train_from").val();
+    var trainFromPlace = $("#train_from_input").val();
+    var dateTo = $("#train_date_to").val();
+    var dateFrom = $("#train_date_from").val();
+
+    var data = {
+        train_from: trainFrom,
+        train_to: trainTo,
+        date_from: dateFrom,
+        date_to: dateTo,
+    };
+    var url =
+        "/route-search/tau-hoa/" +
+        convertToSlug(trainFromPlace) +
+        "-to-" +
+        convertToSlug(trainToPlace);
+    var queryString = $.param(data);
+    url += "?" + queryString;
+    window.location.href = url;
 });

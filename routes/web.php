@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
 // Admin page
 Route::prefix('/admin')->group(function () {
@@ -16,3 +17,5 @@ Route::get('/test', [TestController::class, 'test']);
 
 
 Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
+#Train Search
+Route::get('/route-search/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch']);
