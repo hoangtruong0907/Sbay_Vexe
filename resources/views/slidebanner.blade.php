@@ -68,10 +68,15 @@
 }
    
         .slick-prev:before{
-    content: url(images/left-arrow-slick.svg);
+            background-image: url(https://storage.googleapis.com/vxrd/left-arrow-slick.svg);
+            color: #00000003;
 }
+
+
 .slick-next:before{
-    content: url(images/right-arrow-slick.svg);
+    background-image: url(https://storage.googleapis.com/vxrd/right-arrow-slick.svg);
+    color: #00000003;
+    
 }
         .slick-prev {
             left: 10px;
@@ -105,9 +110,6 @@
     text-align: left;
     padding: 15px;
     font-weight: 500;
-    
-    
-    
     border: none;
     cursor: pointer;
     outline: none;
@@ -160,10 +162,48 @@
     color: #999; /* Màu nhạt hơn cho mũi tên */
     font-size: 12px; /* Bạn có thể điều chỉnh kích thước nếu cần */
 }
+.bosss{
+            margin: 0 auto;
+            display: flex;
+            justify-content: center; /* Căn giữa nội dung bên trong theo chiều ngang */
+            align-items: center;
+        }
+        .image-container {
+   width: 404px;
+   
+    overflow-x: scroll; /* Hiển thị thanh cuộn ngang khi vượt quá chiều rộng */
+    white-space: nowrap; /* Đảm bảo các hình ảnh không xuống dòng */
+    
+}
+
+.image-container img {
+    width: calc(100% / 3); /* Mỗi hình ảnh chiếm 1/3 chiều rộng của khung chứa */
+    display: inline-block;
+    border-radius: 10px; /* Bo tròn 4 góc với bán kính 10px */
+    object-fit: cover; 
+}
+.sspan{
+    width: 72px;
+    height: 62px;
+    font-weight: bold;
+    font-variant: tabular-nums;
+    color: rgba(0, 0, 0, .65);
+    margin-right: 20px;
+}
     </style>
 @endsection
 
 @section('content')
+<div class="bosss">
+        <div class="sspan">Tiêu chí lọc nhanh phổ biến</div>
+        <div class="image-container">
+            <img src="https://f1e425bd6cd9ac6.cmccloud.com.vn/dynamic-filter-auto/images/1/banner.png?v=65" alt="Image 1">
+            <img src="https://f1e425bd6cd9ac6.cmccloud.com.vn/dynamic-filter-auto/images/3/banner.png?v=12" alt="Image 2">
+            <img src="https://f1e425bd6cd9ac6.cmccloud.com.vn/dynamic-filter-auto/images/3/banner.png?v=12" alt="Image 3">
+            <img src="image4.jpg" alt="Image 4">
+            <img src="image5.jpg" alt="Image 5">
+        </div>
+    </div>
 <div class="banner-slider">
         <div class="banner">
             <img src="https://static.vexere.com/production/banners/1051/banner-pc_1170x155-(8).jpg" alt="Banner 1">
