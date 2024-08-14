@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\InfoController;
@@ -26,6 +27,8 @@ Route::get('/airline_tickets', function () {
 
 Route::get('/bookingconfirmation',  [BookingController::class, 'index']);
 Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
+#Train Search
+Route::get('/route-search/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch']);
 
 #Login with google and add phone number
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
