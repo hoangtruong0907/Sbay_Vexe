@@ -139,26 +139,61 @@
     </div>
     <div class="formCard">
         <div class="nigt">
+            <!-- Tiêu đề cho phần bài viết phổ biến -->
             <div class="text-card">
-                <h1 class="PopularRoute__LabelH1-sc-3v0dez-4 jDtSKN color--light-dark" style="margin-left: 80px;">Tuyến đường phổ biến</h1>
+                <h1 class="popular-route-label" style="margin-top:30px;">Tuyến đường phổ biến</h1>
             </div>
-            <div class="blogs">
+            <!-- resources/views/index.blade.php -->
+<div class="blogs">
+    <div class="scroll-container popular-route-label">
+        <div class="container item-card-list">
+            @if($blogs->isEmpty())
+                <p>No popular blog posts found.</p>
+            @else
+                @foreach($blogs as $blog)
+                    <div class="card-wrapper">
+                        <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($blog->title, '-')]) }}">
+                            <div class="card card-item">
+                                <img src="{{ Storage::url($blog->picture) }}" alt="{{ $blog->title }}" class="card-image">
+                                <div class="card-content">
+                                    <div class="text-nvc">
+                                        <h4 class="card-title">{{ $blog->title }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+</div>
+
+
+
+
+
+            <!-- Tiêu đề cho phần bài viết mới -->
+            <div class="text-card">
+                <h1 class="popular-route-label">Tin tức mới</h1>
+            </div>
+            <div class="news blogs">
                 <div class="blog scroll-container">
                     <div class="container item-card-list">
-                        @if($blogs->isEmpty())
-                        <p>No blog posts found.</p>
+                        @if($news->isEmpty())
+                        <p>No news posts found.</p>
                         @else
-                        @foreach($blogs as $blog)
-                        <div>
-                            <a href="{{ route('vxr', ['id' => $blog->id]) }}" class="native">
+                        @foreach($news as $item)
+                        <div class="card-wrapper">
+                            <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}">
+
                                 <div class="card card-item">
                                     <!-- Use the 'picture' attribute for the image -->
-                                    <img src="{{ Storage::url($blog->picture) }}" alt="Picture" class="card-image">
+                                    <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
                                     <div class="card-content">
                                         <div class="text-nvc">
-                                            <h4 class="card-title  item-horizontal-content-container item-title">{{ $blog->title }}</h4>
+                                            <h4 class="card-title">{{ $item->title }}</h4>
                                         </div>
-
                                     </div>
                                 </div>
                             </a>
@@ -168,8 +203,77 @@
                     </div>
                 </div>
             </div>
+
+            <div class="text-card">
+                <h1 class="popular-route-label">Các ưu đãi</h1>
+            </div>
+            <div class="incentive"> 
+                <div class="incentives  blogs">
+                    <div class="blog scroll-container">
+                        <div class="container item-card-list">
+                            @if($incentives->isEmpty())
+                            <p>No incentives posts found.</p>
+                            @else
+                            @foreach($incentives as $item)
+                            <div class="card-wrapper">
+                                <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}">
+
+                                    <div class="card card-item">
+                                        <!-- Use the 'picture' attribute for the image -->
+                                        <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
+                                        <div class="card-content">
+                                            <div class="text-nvc">
+                                                <h4 class="card-title">{{ $item->title }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+
+            <div class="text-card">
+                <h1 class="popular-route-label">Vexere tip</h1>
+            </div>
+            
+            <div class="vexeretip blogs">
+                <div class="blog scroll-container">
+                    <div class="container item-card-list">
+                        @if($vexeretip->isEmpty())
+                        <p>No vexeretip posts found.</p>
+                        @else
+                        @foreach($vexeretip as $item)
+                        <div class="card-wrapper">
+                            <a href="{{ route('admin.blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}">
+
+                                <div class="card card-item">
+                                    <!-- Use the 'picture' attribute for the image -->
+                                    <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
+                                    <div class="card-content">
+                                        <div class="text-nvc">
+                                            <h4 class="card-title">{{ $item->title }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            
+
         </div>
     </div>
+
 
     <!-- Footer -->
     <div id="main-footer">
@@ -229,8 +333,6 @@
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
     @endpush
-
-
 </body>
 
 </html>

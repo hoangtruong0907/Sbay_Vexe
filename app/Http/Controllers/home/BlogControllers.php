@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\home;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\Controller;
 use App\Models\BlogPostModel;
-use Illuminate\Http\Request;
 use App\Models\PostType;
-class BlogController extends Controller
+use Illuminate\Http\Request;
+
+class BlogControllers extends Controller
 {
     public function index()
     {
@@ -18,39 +19,35 @@ class BlogController extends Controller
         $vexeretip = BlogPostModel::where('type', 'vexeretip')->get();
         $relatedContent = BlogPostModel::where('type', 'relatedContent')->get();
 
-        // Gộp các kết quả lại và phân trang cho toàn bộ bài viết
+        // Gộp các kết quả lại
         $allPosts = $blogs->merge($news)->merge($incentives)->merge($vexeretip)->merge($relatedContent);
 
+        // Tạo phân trang tùy chỉnh cho tất cả các bài viết
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 10; // Số lượng mục mỗi trang
         $currentItems = $allPosts->forPage($currentPage, $perPage);
-
-        $paginator = new LengthAwarePaginator(
-            $currentItems,
-            $allPosts->count(),
-            $perPage,
-            $currentPage,
-            ['path' => LengthAwarePaginator::resolveCurrentPath()]
-        );
-
-        return view('admin.blogs.index', [
+        $paginator = new LengthAwarePaginator($currentItems, $allPosts->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+        // $postTypes = PostType::all();
+        return view('index', [
             'allPosts' => $paginator,
-            'blogs' => $blogs,
-            'news' => $news,
-            'incentives' => $incentives,
-            'vexeretip' => $vexeretip,
-            'relatedContent' => $relatedContent
+        'blogs' => $blogs->slice(0, 10),
+        'news' => $news->slice(0, 10),
+        'incentives' => $incentives->slice(0, 10),
+        'vexeretip' => $vexeretip->slice(0, 10),
+        'relatedContent' => $relatedContent->slice(0, 10),
+
         ]);
     }
     
-
     public function show($slug)
     {
         $blog = BlogPostModel::where('slug', $slug)->firstOrFail();
-        $relatedContent = BlogPostModel::where('type', 'relatedContent')->paginate(10); // Hoặc bất kỳ điều kiện nào khác để lấy nội dung liên quan
-        $showButtonOnly = $blog->type === 'blog';
-        // $showButtonIncentives = $blog->type === 'incentives';
-        return view('admin.blogs.index', compact('blog', 'relatedContent','showButtonOnly'));
+        $relatedContent = BlogPostModel::where('type', 'relatedContent')->where('id', '!=', $blog->id)->paginate(10); ; // Hoặc bất kỳ điều kiện nào khác để lấy nội dung liên quan
+        $showButtonOnly = $blog->type === 'incentives';
+        
+        return view('blog.content', compact('blog', 'relatedContent','showButtonOnly'));
     }
     public function edit($id)
     {
@@ -95,22 +92,7 @@ class BlogController extends Controller
         $blog->delete();
         return redirect()->route('admin.blogs.index')->with('success', 'Blog successfully deleted.');
     }
-    public function showContent($title)
-    {
-        // Tìm blog theo title
-        $blog = BlogPostModel::where('title', $title)->firstOrFail();
-
-        // Lấy nội dung liên quan và lọc các bài viết có ID không trùng với blog hiện tại
-        $relatedContent = BlogPostModel::where('type', 'relatedContent')->get();
-        $filteredContent = $relatedContent->filter(function ($item) use ($blog) {
-            return $item->id !== $blog->id;
-        });
-
-        return view('blog.content', [
-            'blog' => $blog,
-            'relatedContent' => $filteredContent
-        ]);
-    }
+    
     public function store(Request $request)
     {
         $request->validate([

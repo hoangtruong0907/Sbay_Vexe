@@ -2,124 +2,72 @@
 
 @section('title', 'Dashboard')
 @section('contents')
-
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog List Layout</title>
-    <style>
-        .blog-list {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .text {
-            flex: 1;
-        }
-
-        .button-blog button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background-color: #6610f2;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .button-blog button:hover {
-            background-color: #5208b8;
-        }
-
-        .container-table {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .table-list-navicat {
-            max-width: 80%;
-            border-collapse: collapse;
-        }
-
-        /* Apply max-height and handle overflow */
-        td, th {
-            max-height: 40px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* Add padding and border */
-        td, th {
-            padding: 8px;
-            border: 1px solid #ddd;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
-
 <body>
-    <div class="blog-list">
-        @include('admin.profile._message')
-        <div class="text">
-            <h4>Blog list</h4>
-        </div>
-
-        <div class="button-blog">
-            <form action="{{ route('admin.blogs.create') }}">
-                <button type="submit" class="btn">Add blog</button>
-            </form>
-        </div>
+<div class="blog-list">
+    @include('admin.profile._message')
+    <div class="text container-table " style="margin-top:30px;">
+        <h4>Blog List</h4>
     </div>
 
-    <div class="container-table">
-        <table class="table table-list-navicat">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Author</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($blogs as $blog)
-                <tr>
-                    <td>{{ $blog->id }}</td>
-                    <td>{{ Str::limit($blog->title, 20, '...') }}</td>
-                    <td>{{ Str::limit($blog->content, 50, '...') }}</td>
-                    <td>{{ $blog->created_at->format('Y-m-d H:i:s') }}</td>
-                    <td>{{ $blog->updated_at->format('Y-m-d H:i:s') }}</td>
-                    <td>{{ $blog->author }}</td>
-                    <td>
-                        <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('admin.blogs.destroy', $blog->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="button-blog ssss">
+        <form action="{{ route('admin.blogs.create') }}">
+            <button type="submit" class="btnsss">Add Blog</button>
+        </form>
     </div>
+</div>
 
+<!-- All Posts Section -->
+<div class="container-table ffff">
+    <table class="table table-list-navicat">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Author</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($allPosts as $post)
+            <tr>
+                <td>{{ $post->id }}</td>
+                <td>{{ Str::limit($post->title, 20, '...') }}</td>
+                <td>{{ Str::limit($post->content, 50, '...') }}</td>
+                <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
+                <td>{{ $post->updated_at->format('Y-m-d H:i:s') }}</td>
+                <td>{{ $post->author }}</td>
+                <td>{{ $post->type }}</td>
+                <td>
+                    <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btnsss">Edit</a>
+                    <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btnsss buttondelete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- Pagination Links -->
+    <div class="pagination">
+        {{ $allPosts->links() }}
+    </div>
+</div>
 </body>
-
 </html>
+
+
 
 @endsection

@@ -10,7 +10,7 @@
             <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
         </li>
         <li>
-            <a href="{{ route('admin.blogs.index') }}"><i class="fas fa-file-alt"></i> Blog</a>
+        <a href="{{ route('admin.blogs.index') }}"><i class="fas fa-file-alt"></i> Blog</a>
 
         </li>
         <li>

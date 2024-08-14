@@ -1591,10 +1591,9 @@ body .material-icons-wrapper.md-20 {
 
 .item-card-list .card {
   width: 314px; 
-  height:240px;
-  border-radius: 10px;
+  height:270px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   text-align: center;
   display: flex;
@@ -1605,7 +1604,7 @@ body .material-icons-wrapper.md-20 {
 
 .card-image {
   width: 100%;
-  height: 10rem; 
+  height: auto; 
   object-fit: cover; 
 }
 .card-content {
@@ -1765,17 +1764,31 @@ body .color--darkness {
   letter-spacing: 0px;
   margin-bottom: 0px;
 }
+.jvMYTT {
+    position: sticky;
+    -webkit-box-align: center;
+    align-items: center;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px -4px 16px;
+    z-index: 1;
+    background-color: white;
+}
+.jvMYTT .cta-button {
+    height: auto;
+    background-color: rgb(255, 211, 51);
+    padding: 12px 16px;
+    border-radius: 8px;
+}
 .jvMYTT .post-footer {
-  width: 688px;
-  display: flex;
-  padding: 12px 0px;
-  -webkit-box-pack: end;
-  justify-content: flex-end;
-}.jvMYTT .cta-button {
-  height: auto;
-  background-color: rgb(255, 211, 51);
-  padding: 12px 16px;
-  border-radius: 8px;
+    width: 688px;
+    display: flex;
+    padding: 12px 0px;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
 }
 
 [type=reset], [type=submit], button, html [type=button] {
@@ -3037,3 +3050,85 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
 .left-total-amount span {
     font-size: 15px;
 }
+
+.text-card{
+    width:100%;
+}
+.text-card {
+    width: 100%;
+    padding: 20px; /* Thêm padding nếu cần */
+    box-sizing: border-box; /* Để padding được tính trong width */
+}
+
+.popular-route-label {
+    width: 80%;
+    margin: 0 auto; /* Căn giữa trong .text-card */
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.64px;
+    color: rgb(72, 72, 72);
+    margin-bottom: 16px;
+}
+.route-label{
+    width: 56%;
+}
+.post-title{
+    margin-top: 30px;
+}
+.iavTwq{
+    margin-top: 20px; 
+}
+.incentive{
+    display: flex;
+    justify-content: center;
+
+}
+.incentives{
+    width:80%;
+    display: inline-block;}
+
+.blogs{
+    margin-top: -20px;
+}
+
+.container-table {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+.ssss{
+    text-align: right; /* Căn chỉnh nội dung của .button-blog sang bên phải */
+    margin-bottom: 20px;
+    width:95%;
+    
+}
+.btnsss{
+    padding:7px;
+   background-color: rgb(230, 229, 229);
+   border: 1px solid rgb(180, 180, 180);
+   color:black;
+   text-decoration: none;
+}
+.btnsss:hover {
+    text-decoration: none; 
+    background-color: rgb(203, 203, 203);
+  }
+
+.hidden{
+    display: none;
+  }

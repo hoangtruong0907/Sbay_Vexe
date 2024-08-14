@@ -40,7 +40,16 @@
             <label for="author">Author</label>
             <input type="text" name="author" id="author" value="{{ $blog->author }}" class="form-control">
         </div>
-
+        <div class="col-md-6" style="width:100%; margin-bottom:50px;">
+                            <label class="form-label">Loại bài viết</label>
+                            <select name="type" class="form-control">
+                                <option value="blog"{{ $blog->type == 'blog' ? 'selected' : '' }}>Blog</option>
+                                <option value="news"{{ $blog->type == 'news' ? 'selected' : '' }}>Tin tức</option>
+                                <option value="incentives"{{ $blog->type == 'incentives' ? 'selected' : '' }}>Ưu đãi</option>
+                                <option value="vexeretip"{{ $blog->type == 'vexeretip' ? 'selected' : '' }}>Vexere tip</option>
+                                <option value="relatedContent"{{ $blog->type == 'relatedContent' ? 'selected' : '' }}>Nội dung liên quan</option>
+                            </select>
+                        </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('admin.blogs.index') }}" class="btn btn-secondary">Cancel</a>
     </form>

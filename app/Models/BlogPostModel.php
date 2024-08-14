@@ -4,12 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str; // Thêm dòng này
 
 class BlogPostModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'blog_posts';
+    protected $table = 'blogs';
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($blog) {
+            $blog->slug = Str::slug($blog->title);
+        });
+    }
 
     // Đặt các thuộc tính có thể gán giá trị hàng loạt
     protected $fillable = [
@@ -18,7 +28,11 @@ class BlogPostModel extends Model
         'content',
         'created_at',
         'updated_at',
-        'author'
+        'author',
+        'type',
+        'slug', // Đảm bảo 'slug' nằm trong danh sách fillable
     ];
+
     public $timestamps = true;
 }
+

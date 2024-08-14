@@ -6,53 +6,49 @@ use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BlogController;
-use App\Http\Controllers\BlogControllers;
-use App\Http\Controllers\VXRController;
-use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
+use App\Http\Controllers\Auth\GoogleController;
+
 
 
 // Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    });
+    });    
+    Route::get('/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
+    Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
+    Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
+    Route::post('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.admin.show');
+    Route::get('/blogs/create', [BlogController::class, 'create'])->name('admin.blogs.create');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
+    Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+    Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
+    Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
 
-// General routes
-Route::get('/', [RouteController::class, 'index']);
+
+Route::get('/', [BlogControllers::class, 'index'])->name('index');
+
+Route::post('/blog/store', [BlogControllers::class, 'store'])->name('admin.blog.store');
+
 Route::get('/route-search/{fromtoPlace}', [RouteController::class, 'routeSearch']);
-
-Route::get('/', [RouteController::class, 'index'])->name('home');
-Route::get('/', [RouteController::class, 'index']);
 Route::get('/test', [TestController::class, 'test']);
-
-
 Route::get('/airline_tickets', function () {
     return view('airline_tickets');
 });
-Route::prefix('blogs')->name('blogs.')->group(function () {
-    Route::get('/', [BlogController::class, 'index'])->name('index');
-    Route::get('/{id}', [BlogController::class, 'show'])->name('show'); 
-});
+
+
+// routes/web.php
+Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
 
 
 
-Route::get('/', [BlogControllers::class, 'index']); // Hiển thị danh sách blogs
-Route::get('/vxr/{id}', [VXRController::class, 'showVxr'])->name('vxr'); // Hiển thị chi tiết blog
-// Admin Blog routes
-Route::get('/', [BlogControllers::class, 'index'])->name('post.index');
-Route::get('/post/{id}', [BlogControllers::class, 'show'])->name('post.show');
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
-    Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
-    Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
-    Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-    Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
-    Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
-});
+
+
 // Nếu là API
-// Route::post('/upload', [ImageUploadController::class, 'store'])->name('upload.store');
+
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
 
