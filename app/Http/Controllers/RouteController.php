@@ -151,8 +151,8 @@ class RouteController extends Controller
     {
         $trainTo = $request->query('train_to', '');
         $trainFrom = $request->query('train_from', '');
-        $dateTo = $request->query('date_to') ? Helpers::formatDate($request->query('date_to')) : '';
-        $dateFrom = $request->query('date_from') ? Helpers::formatDate($request->query('date_from')) : '';
+        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : '';
+        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
         $quantity = 2;
         $page = 1;
         $pagesize = 10;

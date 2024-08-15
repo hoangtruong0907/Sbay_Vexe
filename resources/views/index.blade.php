@@ -46,8 +46,8 @@
 // data load search component
 // list data areas
 const busCities = @json($list_areas ?? []);
-const dateTo = @json($params - > dateTo ?? "");
-const dateFrom = @json($params - > dateFrom ?? "");
+const dateTo = @json($params->dateTo ?? "");
+const dateFrom = @json($params->dateFrom ?? "");
 
 // list data route
 const trainStations = @json($trainStations ?? []);
