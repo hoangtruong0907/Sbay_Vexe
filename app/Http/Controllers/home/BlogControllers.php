@@ -22,7 +22,7 @@ class BlogControllers extends Controller
     $typeMapping = [
         'blog' => 'Thông tin mới',
         'news' => 'Tin tức',
-        'incentives' => 'Ưu đãi',
+        'incentives' => 'Ưu đãi nổi bật',
         'vexeretip' => 'Vexere Tip',
         'relatedContent' => 'Nội dung liên quan',
        
