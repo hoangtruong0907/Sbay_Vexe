@@ -20,7 +20,7 @@ class BlogControllers extends Controller
     $allPosts = BlogPostModel::where('status', 'published')->orderBy('created_at', 'desc')->where('type', '!=', 'relatedContent')->paginate(10);
 
     $typeMapping = [
-        'blog' => 'Thông tin',
+        'blog' => 'Thông tin mới',
         'news' => 'Tin tức',
         'incentives' => 'Ưu đãi',
         'vexeretip' => 'Vexere Tip',
