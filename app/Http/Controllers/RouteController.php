@@ -65,7 +65,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public function routeBusSearch($fromtoPlace, Request $request)
+    public function busRouteSearch($fromtoPlace, Request $request)
     {
         $cacheKey = 'list_routes';
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
