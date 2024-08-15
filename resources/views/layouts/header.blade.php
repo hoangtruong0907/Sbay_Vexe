@@ -14,12 +14,13 @@
             <a href="">Đăng Nhập</a>
         </div>
     </div>
-    <div id="mySidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="">
-        <img src="{{ asset('images/vn-flag.svg') }}" alt="" class="flag-icon"> 
+    <div id="Sidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="" class="flag-img">
+        <div><img src="{{ asset('images/vn-flag.svg') }}" alt="" class="flag-icon"> 
         <div class="text-container">Tiếng Việt</div>
         <img src="{{ asset('images/en-flag.svg') }}" alt="" class="flag-icon2"> 
-        <div class="text-container">English</div>
+        <div class="text-container">English</div></div>
+        
     </a>
     <a href=""><i class="fas fa-home icon-header"></i> <span class="text-containerr">Trang chủ</span></a>
 <a href=""><i class="fa fa-sign-in icon-header" aria-hidden="true"></i> <span class="text-container k1">Đăng nhập/Đăng ký</span></a>
