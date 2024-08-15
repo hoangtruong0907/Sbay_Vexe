@@ -1,8 +1,8 @@
 <ul class="nav nav-pills nav-airline" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="pills-bus-tab" data-bs-toggle="pill" data-bs-target="#pills-bus" type="button"
-            role="tab" aria-controls="pills-bus" aria-selected="true"><i class="fa-solid fa-bus-simple"></i><span>Xe
-                khách</span></button>
+            role="tab" aria-controls="pills-bus" aria-selected="true"><i class="fa-solid fa-bus-simple"></i>
+            <span>Xe khách</span></button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-plane-tab" data-bs-toggle="pill" data-bs-target="#pills-plane" type="button"
