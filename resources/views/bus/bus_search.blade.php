@@ -774,6 +774,8 @@
         const busCities = @json($list_areas ?? []);
         const dateTo = @json($params->dateTo ?? '');
         const dateFrom = @json($params->dateFrom ?? '');
+        // list data route
+        const trainStations = @json($trainStations ?? []);
     </script>
     <script>
         // Lọc Giờ slide
