@@ -88,7 +88,7 @@
                 <div class="post-content">
                     <div class="color--darkness">
                         {!! $blog->content !!}
-                </div>
+                    </div>
                 </div>
             </div>
             @else
@@ -98,57 +98,59 @@
     </div>
 
 
-
-    <!-- <p>Show Button Only: {{ $showButtonOnly ? 'True' : 'False' }}</p> -->
-
-    @if($showButtonOnly)
-        {{-- Hiển thị nút "DÙNG ƯU ĐÃI NGAY" nếu loại bài viết là "incentives" --}}
-        <div class="CMSPostpage__PostFooter-sc-1mccuz3-4 jvMYTT">
-            <div class="post-footer">
-                <button type="button" class="ant-btn cta-button">
-                    <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">DÙNG ƯU ĐÃI NGAY</p>
-                </button>
-            </div>
-        </div>
-    @else
-        {{-- Hiển thị nút "ĐẶT VÉ NGAY" nếu không phải là bài viết loại "incentives" --}}
-        <div class="CMSPostpage__PostFooter-sc-1mccuz3-4 jvMYTT">
-            <div class="post-footer">
-                <button type="button" class="ant-btn cta-button">
-                    <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">ĐẶT VÉ NGAY</p>
-                </button>
-            </div>
-        </div>
-    @endif
-    @if(!$relatedContent->isEmpty())
-    <div class="text-card CMSPostpage__PostPage-sc-1mccuz3-1" style="margin-right:40px;">
-        <div class="Layout__Container-vf1wbr-0 hCVqtJ layout-container CMSPostpage__Container-sc-1mccuz3-2 ">
-            <h1 class="popular-route-label route-label" style="margin-top:30px;">Nội dung liên quan</h1>
-        </div>
-    </div>
-
-    <div class="relatedContent blogs">
-        <div class="blog scroll-container">
+    <div class="relatedContent ">
+        <div class=" scroll-container">
             <div class="container item-card-list">
                 @foreach($relatedContent as $item)
-                    <div class="card-wrapper" id="card-{{ $item->id }}">
-                        <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native">
-                            <div class="card card-item">
-                                <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
-                                <div class="card-content">
-                                    <div class="text-nvc">
-                                        <h4 class="card-title">{{ $item->title }}</h4>
-                                    </div>
+                <div class="text-card " >
+                    <div class="hCVqtJ">
+                        <h1 class="popular-route-label route-label">Nội dung liên quan</h1>
+                    </div>
+                </div>
+                <div class="card-wrapper" id="card-{{ $item->id }}">
+                    <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native">
+                        <div class="card card-item">
+                            <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
+                            <div class="card-content">
+                                <div class="text-nvc">
+                                    <h4 class="card-title">{{ $item->title }}</h4>
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
                 {{ $relatedContent->links() }} <!-- Hiển thị phân trang -->
             </div>
         </div>
     </div>
-@endif
+
+
+    <!-- <p>Show Button Only: {{ $showButtonOnly ? 'True' : 'False' }}</p> -->
+
+    @if($showButtonOnly)
+    {{-- Hiển thị nút "DÙNG ƯU ĐÃI NGAY" nếu loại bài viết là "incentives" --}}
+    <div class="CMSPostpage__PostFooter-sc-1mccuz3-4 jvMYTT">
+        <div class="post-footer">
+            <button type="button" class="ant-btn cta-button">
+                <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">DÙNG ƯU ĐÃI NGAY</p>
+            </button>
+        </div>
+    </div>
+    @else
+    {{-- Hiển thị nút "ĐẶT VÉ NGAY" nếu không phải là bài viết loại "incentives" --}}
+    <div class="CMSPostpage__PostFooter-sc-1mccuz3-4 jvMYTT">
+        <div class="post-footer">
+            <button type="button" class="ant-btn cta-button">
+                <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">ĐẶT VÉ NGAY</p>
+            </button>
+        </div>
+    </div>
+    @endif
+    @if(!$relatedContent->isEmpty())
+
+
+    @endif
 
 
 

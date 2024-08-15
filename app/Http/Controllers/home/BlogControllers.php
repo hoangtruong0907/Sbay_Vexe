@@ -6,38 +6,39 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\Controller;
 use App\Models\BlogPostModel;
 use App\Models\PostType;
+
 use Illuminate\Http\Request;
 
 class BlogControllers extends Controller
 {
     public function index()
     {
-        // Lấy các bài viết theo loại
-        $blogs = BlogPostModel::where('type', 'blog')->get();
-        $news = BlogPostModel::where('type', 'news')->get();
-        $incentives = BlogPostModel::where('type', 'incentives')->get();
-        $vexeretip = BlogPostModel::where('type', 'vexeretip')->get();
-        $relatedContent = BlogPostModel::where('type', 'relatedContent')->get();
+       
+        $postTypes = BlogPostModel::distinct()->pluck('type');
 
-        // Gộp các kết quả lại
-        $allPosts = $blogs->merge($news)->merge($incentives)->merge($vexeretip)->merge($relatedContent);
+    // Lấy tất cả các bài viết đã xuất bản và phân trang
+    $allPosts = BlogPostModel::where('status', 'published')->orderBy('created_at', 'desc')->where('type', '!=', 'relatedContent')->paginate(10);
 
-        // Tạo phân trang tùy chỉnh cho tất cả các bài viết
+    $typeMapping = [
+        'blog' => 'Thông tin',
+        'news' => 'Tin tức',
+        'incentives' => 'Ưu đãi',
+        'vexeretip' => 'Vexere Tip',
+        'relatedContent' => 'Nội dung liên quan',
+       
+    ];
+        
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 10; // Số lượng mục mỗi trang
         $currentItems = $allPosts->forPage($currentPage, $perPage);
         $paginator = new LengthAwarePaginator($currentItems, $allPosts->count(), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
-        // $postTypes = PostType::all();
+        
         return view('index', [
             'allPosts' => $paginator,
-        'blogs' => $blogs->slice(0, 10),
-        'news' => $news->slice(0, 10),
-        'incentives' => $incentives->slice(0, 10),
-        'vexeretip' => $vexeretip->slice(0, 10),
-        'relatedContent' => $relatedContent->slice(0, 10),
-
+            'typeMapping' => $typeMapping,
+            'postTypes' => $postTypes,
         ]);
     }
     
@@ -67,7 +68,9 @@ class BlogControllers extends Controller
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'content' => 'required',
             'author' => 'required|string|max:255',
-            'type' => 'required|in:blog,news,incentives,vexeretip,relatedContent'
+            'type' => 'required|in:blog,news,incentives,vexeretip,relatedContent',
+            'status' => 'required|in:published,draft,archived',
+            
         ]);
 
         $blog = BlogPostModel::findOrFail($id);
@@ -80,6 +83,7 @@ class BlogControllers extends Controller
         $blog->title = trim($request->title);
         $blog->content = trim($request->content);
         $blog->author = trim($request->author);
+        $blog->status = trim($request->status);
         $blog->type = $request->type; 
         $blog->save();
 
@@ -95,24 +99,37 @@ class BlogControllers extends Controller
     
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'title' => 'required|string|max:255',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'content' => 'required',
             'author' => 'required|string|max:255',
             'type' => 'required|in:blog,news,incentives,vexeretip,relatedContent',
-            'new_post_type' => 'nullable|string|max:255',
+            'status' => 'required|in:published,draft,archived',
+            'new_type' => 'nullable|string|max:255'
         ]);
         $type = $request->input('type');
-        if ($type === 'new' && $request->filled('new_post_type')) {
-            $type = trim($request->input('new_post_type'));
-            
-            // Kiểm tra xem loại bài viết mới đã tồn tại chưa
-            if (!PostType::where('name', $type)->exists()) {
-                // Tạo loại bài viết mới
-                PostType::create(['name' => $type]);
-            }
+        if ($type !== 'new') {
+            return redirect()->back()->withErrors(['type' => 'Bạn chỉ có thể tạo bài viết bằng cách chọn "Tạo loại mới..."']);
         }
+    
+        // Kiểm tra và lưu loại bài viết mới
+        $newType = trim($request->input('new_type'));
+        if (!empty($newType)) {
+            $existingType = PostType::where('name', $newType)->first();
+            if (!$existingType) {
+                $postType = new PostType();
+                $postType->name = $newType;
+                $postType->save();
+                $type = $postType->name;
+            } else {
+                $type = $existingType->name;
+            }
+        } else {
+            return redirect()->back()->withErrors(['new_type' => 'Loại bài viết mới không được để trống.']);
+        }
+        
         $blog = new BlogPostModel();
 
         if ($request->hasFile('picture')) {
@@ -123,9 +140,9 @@ class BlogControllers extends Controller
         $blog->title = trim($request->title);
         $blog->content = trim($request->content);
         $blog->author = trim($request->author);
+        $blog->status = $request->status;
         $blog->type = $type;
-
-        // Tạo giá trị slug từ tiêu đề
+        
         $blog->slug = \Illuminate\Support\Str::slug($blog->title, '-');
 
         $blog->save();

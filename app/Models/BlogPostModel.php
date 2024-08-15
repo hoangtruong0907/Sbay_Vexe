@@ -30,9 +30,16 @@ class BlogPostModel extends Model
         'updated_at',
         'author',
         'type',
-        'slug', // Đảm bảo 'slug' nằm trong danh sách fillable
+        'slug', 
+        'status',
     ];
 
     public $timestamps = true;
+
+    public function isActive()
+    {
+        return $this->status;
+    }
+    
 }
 

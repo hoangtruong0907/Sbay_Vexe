@@ -34,6 +34,7 @@
                 <th>Updated At</th>
                 <th>Author</th>
                 <th>Type</th>
+                <th>Status</th> 
                 <th>Actions</th>
             </tr>
         </thead>
@@ -47,14 +48,18 @@
                 <td>{{ $post->updated_at->format('Y-m-d H:i:s') }}</td>
                 <td>{{ $post->author }}</td>
                 <td>{{ $post->type }}</td>
+                <td>{{ ucfirst($post->status) }}</td> 
                 <td>
-                    <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btnsss">Edit</a>
-                    <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btnsss buttondelete">Delete</button>
-                    </form>
-                </td>
+    <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btn-action">Edit</a>
+    
+    <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn-action delete">Delete</button>
+    </form>
+
+    <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($post->title, '-')]) }}" class="btn-action">Link</a>
+</td>
             </tr>
             @endforeach
         </tbody>
@@ -67,7 +72,4 @@
 </div>
 </body>
 </html>
-
-
-
 @endsection
