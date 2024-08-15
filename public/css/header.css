@@ -1,0 +1,98 @@
+#mySidenav {
+    background-color: #ffffff; /* Màu nền trắng */
+    margin-top: 20px;
+    height: 620px;
+    
+
+}
+#mySidenav{
+width: 100%;    
+height: 91%;
+
+}
+
+/* Đặt màu chữ và bỏ gạch chân cho tất cả các liên kết trong sidenav */
+#mySidenav a {
+    color: #000000; /* Màu chữ đen */
+    text-decoration: none; /* Bỏ gạch chân */
+    display: block; /* Để các liên kết chiếm toàn bộ chiều rộng */
+    padding-top: 25px; /* Thêm khoảng cách bên trong */
+    border:0;
+    
+}
+#mySidenav .icon-header {
+    color: rgb(36, 116, 229);
+}
+#mySidenav a i {
+    margin-right: 20px; /* Khoảng cách giữa icon và chữ (thay đổi giá trị theo nhu cầu) */
+    margin-left: 10px;
+    vertical-align: middle;
+}
+#mySidenav .label{
+    margin-right: -5px;
+}
+ 
+#mySidenav img {
+    height: auto;
+    width: 24px;
+}
+#mySidenav .flag-icon {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between
+}
+#mySidenav .flag-icon2{
+    margin-left: 60px;
+}
+#mySidenav .flag-icon{
+    margin-left: 10px;
+}
+.fas-fa-briefcase-icon-header{
+    margin-left: 10px!important;
+
+}
+.menu-item-container {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    margin-left: 24px;
+}
+.menu-item-container li {
+    list-style: none;
+}
+#mySidenav .text-container {
+    display: inline-block; /* Đảm bảo text nằm cùng dòng với icon */
+}
+.text-container{
+    margin-left: 10px;
+}
+.menu-item-container {
+    margin-bottom: 300px;
+}
+
+.k1, .k2, .k3, .k4, .k5, .k6, .k7, .k8, .k9, .k11, .k13, .k14 {
+    margin-left: 5px !important;
+}
+
+.k11, .k13, .k14 {
+    margin-left: 10px !important ;
+}
+
+.menu-item-container {
+    margin-bottom: 300px;
+}
+.k10{
+    margin-left: 10px !important;
+}
+.k12{
+    margin-left: 15px;
+}
+.k15{
+    margin-left: 5px;
+}
+.k16{
+    margin-left: 5px;
+}
