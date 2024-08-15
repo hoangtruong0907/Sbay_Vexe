@@ -6,10 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- lightgallery plugins -->
-    <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7/css/lightgallery.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css"
-        integrity="sha256-Eg8Gfr1vMiM54szM1+h+M018fqWyvVU/Ml8q48Oub+g=" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -721,6 +717,45 @@
                         'key' => (string) $key,
                     ])
                 @endforeach
+                @if ($totalPages > 1)
+                    <nav class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            {{-- Previous Page Link --}}
+                            @if ($currentPage > 1)
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage - 1, 'pagesize' => $pageSize]) }}"
+                                        rel="prev"><i class="fa-solid fa-chevron-left"></i></a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fa-solid fa-chevron-left"></i></span>
+                                </li>
+                            @endif
+
+                            {{-- Pagination Elements --}}
+                            @for ($i = 1; $i <= $totalPages; $i++)
+                                <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
+                                    <a class="page-link"
+                                        href="{{ request()->fullUrlWithQuery(['page' => $i, 'pagesize' => $pageSize]) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+
+                            {{-- Next Page Link --}}
+                            @if ($currentPage < $totalPages)
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage + 1, 'pagesize' => $pageSize]) }}"
+                                        rel="next"><i class="fa-solid fa-chevron-right"></i></a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fa-solid fa-chevron-right"></i></span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                @endif
             </div>
         </div>
     </div>
@@ -733,22 +768,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"
         integrity="sha512-fCRpXk4VumjVNtE0j+OyOqzPxF1eZwacU3kN3SsznRPWHgMTSSo7INc8aY03KQDBWztuMo5KjKzCFXI/a5rVYQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- lightgallery plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"
-        integrity="sha256-feKFTnlUEF8rkf9Zg3ScTjx69R4FquJ5+KXWaZSoV3c=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"
-        integrity="sha256-ghoq24AFURwK2e9vOVwbdL6swtoZTNE6SsQ9NBJG4IU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
-        integrity="sha256-T7w+wYeOkDSLcbNZTY7yfE8QoaTG1edJSNDuWQGP2Hw=" crossorigin="anonymous"></script>
-
     <script>
         // data load search component
         // list data areas
         const busCities = @json($list_areas ?? []);
         const dateTo = @json($params->dateTo ?? '');
+        const dateFrom = @json($params->dateFrom ?? '');
     </script>
-    <script src="{{ asset('js/search_component.js') }}"></script>
-
     <script>
         // Lọc Giờ slide
         document.addEventListener('DOMContentLoaded', function() {
@@ -1143,5 +1169,31 @@
                 });
         });
 
+        $('.nav-link.policy-tab').on('click', function() {
+            let tripCode = $(this).data('trip-code');
+            let seatTemplateId = $(this).data('seat-template-id');
+
+            const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
+            // console.log(url);
+
+            fetch(url, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log(data);
+                    $($(this).attr('data-bs-target')).html(data.dataHTML);
+
+                })
+                .catch(error => {
+                    console.error('Eror:', error);
+                });
+        });
     </script>
+    <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush

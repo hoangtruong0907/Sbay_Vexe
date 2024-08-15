@@ -37,14 +37,16 @@
                         </svg>
                         <div class="from-to-content-l">
                             <div class="content-l from-l">
-                                <div class="hour-l">{{ $dataRoute['departure_time'] }}</div>
-                                <div class="place-l">• {{ $dataRoute['departure_place'] }}</div>
+                                {{-- formatDateTime($dataRoute['schedules'][0]['pickup_date'], 'H:i') --}}
+                                <div class="hour-l">
+                                    {{ formatDateTime($dataRoute['schedules'][0]['pickup_date'], 'H:i') }}</div>
+                                <div class="place-l">• {{ $dataRoute['from']['name'] }}</div>
                             </div>
                             <div class="duration-l">{{ getDuration($dataRoute['duration']) }}</div>
                             <div class="content-l to-l">
                                 <div class="content-to-info-l">
                                     <div class="hour-l">
-                                        {{ formatDateTime($dataRoute['schedules'][0]['arrival_time'], 'H:m') }}</div>
+                                        {{ formatDateTime($dataRoute['schedules'][0]['arrival_time'], 'H:i') }}</div>
                                     <div class="place-l">• {{ $dataRoute['to']['name'] }}</div>
                                 </div>
                             </div>
@@ -63,7 +65,7 @@
                             <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse"
                                 data-bs-target="#ticket-detail-collapse-{{ $key }}" role="button"
                                 aria-expanded="false" aria-controls="ticket-detail-collapse-{{ $key }}">
-                                <span>Thông tin chi tiết 1</span>
+                                <span>Thông tin chi tiết</span>
                                 <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
                                     <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
                                         width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -103,7 +105,8 @@
         </div>
         <div class="notify-trip-l">
             <div class="full-trip-l">
-                <span>*</span> Vé chặng thuộc chuyến {{ formatDateTime($dataRoute['schedules'][0]['pickup_date']) }}
+                <span>*</span> Vé chặng thuộc chuyến {{ $dataRoute['departure_time'] }}
+                {{ formatDateTime($dataRoute['departure_date'], 'd-m-Y') }}
                 {{ $dataRoute['name'] }}
             </div>
             <div class="content-has-cop">
@@ -1211,7 +1214,7 @@
                         <button class="nav-link rating-tab" id="rating-tab-{{ $key }}"
                             data-bs-toggle="pill" data-bs-target="#rating-{{ $key }}" type="button"
                             role="tab" aria-controls="rating-{{ $key }}" aria-selected="false"
-                            data-company-id="{{ $route['company']['id'] }}" data-key="{{$key}}">Đánh
+                            data-company-id="{{ $route['company']['id'] }}" data-key="{{ $key }}">Đánh
                             giá</button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -1221,10 +1224,12 @@
                             ảnh</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="policy-tab-{{ $key }}" data-bs-toggle="pill"
+                        <button class="nav-link policy-tab" id="policy-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#policy-{{ $key }}" type="button" role="tab"
-                            aria-controls="policy-{{ $key }}" aria-selected="false">Chính
-                            sách</button>
+                            aria-controls="policy-{{ $key }}" aria-selected="false"
+                            data-trip-code="{{ $dataRoute['schedules'][0]['trip_code'] }}"
+                            data-seat-template-id="{{ $dataRoute['schedules'][0]['seat_template_id'] }}">
+                            Chính sách</button>
                     </li>
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
@@ -1492,86 +1497,10 @@
                     </div>
                     <div class="tab-pane fade policy-tab" id="policy-{{ $key }}" role="tabpanel"
                         aria-labelledby="policy" tabindex="4">
-                        <div class="d-flex flex-column m-2">
-                            <div class="d-flex flex-column policy-content-f">
-                                <h6>Chính sách huỷ đơn hàng</h6>
-                                <div class="timeline-policy position-relative">
-                                    <div class="text-center time-sa">
-                                        <div class="fw-bold">8:00</div>
-                                        <div>13/08</div>
-                                    </div>
-                                    <div class="text-center time-ch">
-                                        <div class="fw-bold">8:00</div>
-                                        <div>13/08</div>
-                                    </div>
-                                </div>
-                                <div class="w-100 d-flex flex-row position-relative">
-                                    <div class="check-point">
-                                        <div class="tag-dot">Hôm nay</div>
-                                        <div class="dot"></div>
-                                    </div>
-                                    <div class="cancellation-policy-period w-100">
-                                        <div class="cancellation-line w-100" style="background:rgb(0, 96, 196)">
-                                        </div>
-                                        <p class="text-center">Phí huỷ 50%</p>
-                                    </div>
-                                    <div class="cancellation-policy-period w-100">
-                                        <div class="cancellation-line w-100" style="background: rgb(255, 199, 0);">
-                                        </div>
-                                        <p class="text-center">Phí huỷ 50%</p>
-                                    </div>
-                                    <div class="cancellation-policy-period w-100">
-                                        <div class="cancellation-line w-100" style="background: rgb(241, 0, 0)">
-                                        </div>
-                                        <p class="text-center">Phí huỷ 50%</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p><b>Ghi Chú: </b>Phí huỷ sẽ được tính trên giá gốc, không giảm trừ khuyến mãi hoặc giảm giá; đồng thời không vượt quá số tiền quý khách đã thanh toán.</p>
-                            <hr />
-                            <div class="d-flex flex-column policy-content-b">
-                                <h5 class="mb-2">Chính sách nhà xe</h5>
-                                <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
-                                    đây. Chính sách đặt vé của Vexere như sau:</p>
-                                <div class="d-flex flex-column ms-2">
-                                    <div class="policy-content-l">
-                                        <h6>Yêu cầu khi lên xe</h6>
-                                        <ul>
-                                            <li>Có mặt tại văn phòng/quầy vé/bến xe trước 20 phút để làm thủ tục lên xe</li>
-                                            <li>Xuất trình SMS/Email đặt vé trước khi lên xe</li>
-                                            <li>Không mang đồ ăn, thức ăn có mùi lên xe </li>
-                                            <li>Không hút thuốc, uống rượu, sử dụng chất kích thích trên xe</li>
-                                            <li>Không mang các vật dễ cháy nổ lên xe</li>
-                                            <li>Không vứt rác trên xe</li>
-                                            <li>Không làm ồn, gây mất trật tự trên xe</li>
-                                        </ul>
-                                    </div>
-                                    <div class="policy-content-l">
-                                        <h6>Hành lý xách tay</h6>
-                                        <ul>
-                                            <li>Tổng trọng lượng hành lý không vượt quá 3 kg</li>
-                                        </ul>
-                                    </div>
-                                    <div class="policy-content-l">
-                                        <h6>Trẻ em và phụ nữ có thai</h6>
-                                        <ul>
-                                            <li>Trẻ em dưới 3 tuổi hoặc dưới 110 cm được miễn phí vé nếu ngồi cùng ghế/giường với bố mẹ</li>
-                                            <li>Trẻ em từ 3 tuổi hoặc cao từ 110 cm trở lên mua vé như người lớn</li>
-                                        </ul>
-                                    </div>
-                                    <div class="policy-content-l">
-                                        <h6>Động vật cảnh/Thú cưng</h6>
-                                        <ul>
-                                            <li>Hãng xe chỉ chấp nhận vận chuyển động vật như là một hành lý ký gửi; không cho phép mang lên xe cùng hành khách</li>
-                                        </ul>
-                                    </div>
-                                    <div class="policy-content-l">
-                                        <h6>Xuất hóa đơn GTGT</h6>
-                                        <ul>
-                                            <li>Nhà xe từ chối xuất lại hóa đơn nếu hành khách cung cấp sai thông tin</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                        {{-- Loading tab policy --}}
+                        <div class="d-flex justify-content-center mt-4">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Đang tải...</span>
                             </div>
                         </div>
                     </div>

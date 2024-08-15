@@ -46,6 +46,8 @@
         // list data areas
         const busCities = @json($list_areas ?? []);
         const dateTo = @json($params->dateTo ?? "");
+        const dateFrom = @json($params->dateFrom ?? "");
+
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush

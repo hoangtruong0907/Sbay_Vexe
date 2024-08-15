@@ -1,4 +1,4 @@
-@if (!empty($reviewPoint) && !empty($reviews))
+@if (!empty($reviewPoint) && !empty($reviews) && !empty($reviewPoint['overall']))
     <div id="review-tab-{{$companyId}}">
         <div class="d-flex align-items-center">
             <div class="d-flex align-items-center rating-info">

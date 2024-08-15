@@ -2,14 +2,30 @@
 
 use Carbon\Carbon;
 
-function formatDateTime($dateTimeStr, $format = 'H:m d-m-Y')
+function formatDateTime($dateTimeStr, string $format = 'H:i d-m-Y', $hours = 0, $addDate = 0)
 {
     try {
         $date = Carbon::parse($dateTimeStr);
+
+        if ($hours != 0) {
+            $date->subHours((int)$hours);
+        }
+        if ($addDate != 0) {
+            $date->addDay((int)$addDate);
+        }
+
         return $date->format($format);
     } catch (\Exception $e) {
         return null;
     }
+}
+
+function formatDate($date)
+{
+    if (strpos($date, ',') !== false) {
+        $date = trim(substr($date, strpos($date, ',') + 1));
+    }
+    return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
 }
 
 function timeAgo($dateTimeStr)
@@ -101,7 +117,7 @@ function underscoreToStr($str)
             return 'Có đánh giá';
             break;
         default:
-            return $str.'<i class="fa-solid fa-star ms-1"></i>';
+            return $str . '<i class="fa-solid fa-star ms-1"></i>';
             break;
     }
 }

@@ -14,7 +14,6 @@ Route::prefix('/admin')->group(function () {
 Route::get('/', [RouteController::class, 'index']);
 Route::get('/test', [TestController::class, 'test']);
 
-
-Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeBusSearch']);
+Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeBusSearch'])->name('route.search.xe-khach');
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
-
+Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 use App\Helpers\helpers;
 use Carbon\Carbon;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
 
@@ -55,8 +56,8 @@ class RouteController extends Controller
         $cacheKey = 'list_routes';
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
         $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
-        $dateTo = $request->query('date_to') ? Helpers::formatDate($request->query('date_to')) : "";
-        $dateFrom = $request->query('date_from') ? Helpers::formatDate($request->query('date_from')) : "";
+        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : "";
+        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : "";
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
 
         if ($busTo === null || $busFrom === null || $dateTo === null) {
@@ -86,11 +87,12 @@ class RouteController extends Controller
             'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name') ?? null, // Lọc theo điểm đón theo tên
             'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district') ?? null, // Lọc theo điểm xả theo quận huyện
             'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name') ?? null, // Lọc theo điểm xả theo tên
+            'sort' => $request->query('sort') ?? "time:asc", // Sort theo giờ (time:asc/time:desc), rating (rating:asc), giá (fare:asc),
             'page' => $request->query('page', 1), // Phân trang (mặc định là trang 1)
-            'pagesize' => $request->query('pagesize', 20), // Số phần tử mỗi trang (mặc định là 20)
+            'pagesize' => $request->query('pagesize', 8), // Số phần tử mỗi trang (mặc định là 20)
         ];
 
-        // Thêm các tham số vào URL nếu chúng tồn tại
+        // Thêm các tham số vào URL
         foreach ($queryParams as $key => $value) {
             if ($value !== null) {
                 $urlRoute .= '&' . $key . '=' . $value;
@@ -110,27 +112,25 @@ class RouteController extends Controller
             'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
             'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
             'dateTo' => $dateTo,
+            'dateFrom' => $dateFrom,
         ]);
         // Thông tim tuyến đường
         $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
-        // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);
-        $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20);
-        $list_routes = collect($list_routes)->sortBy(function ($route) {
-            $date = Carbon::parse($route['route']['departure_date']); // Parse ngày
-            $time = Carbon::createFromFormat('H:i', $route['route']['departure_time']); // Parse giờ
-
-            // Kết hợp ngày và giờ thành một đối tượng DateTime
-            return Carbon::create(
-                $date->year, $date->month, $date->day,
-                $time->hour, $time->minute, 0,
-                $date->timezone // Sử dụng timezone của ngày
-            );
-        })->values()->all();
+        // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);\
+        $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
+        $list_routes = $res_routes['data'];
+        // dd($list_routes);
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
-        // dd(compact('list_routes'));
-
-        return view("bus.bus_search", compact('list_routes', 'list_areas', 'params'));
+        return view("bus.bus_search", [
+            "list_routes" => $list_routes,
+            "list_areas" => $list_areas,
+            "params" => $params,
+            'currentPage' => $res_routes['page'],
+            'pageSize' => $res_routes['page_size'],
+            'total' => $res_routes['total'],
+            'totalPages' => $res_routes['total_pages']
+        ]);
     }
 
     private function addBusImagesToRoutes($token, $list_routes)
@@ -206,7 +206,6 @@ class RouteController extends Controller
             return response()->json([
                 "message" => "success",
                 'type' => $type,
-                // 'data' => compact('reviewPoint', 'reviews'),
                 'dataHTML' => view('bus._bus_reviewTab', compact('companyId', 'queryParams', 'reviews', 'reviewPoint', 'reviewByType'))->render(),
             ]);
         }
@@ -214,6 +213,31 @@ class RouteController extends Controller
         return response()->json([
             "message" => "No type",
             'data' => "",
+        ]);
+    }
+
+    function busCancellationPolicy($tripCode, $seatTemplateMap, Request $request)
+    {
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        if ($tripCode === null) {
+            return response()->json(['error' => 'Missing required parameters.'], 400);
+        }
+
+        if (!$token) {
+            return response()->json([
+                'error' => 'Failed to retrieve token',
+            ], 500);
+        }
+
+        $urlCancel = $this->main_url . "/v3/cancellation/policy?trip_code=" . $tripCode;
+        $urlPolicy = $this->main_url . "/v3/company_policy/config_detail?seat_template_id=" . $seatTemplateMap . "&trip_code=" . $tripCode;
+        $cancelPolicy = Helpers::cacheData("cancellation-policy-bus-" . $tripCode, $token, $urlCancel, 60 * 20);
+        $operatorPolicy = Helpers::cacheData("bus_operator_policy-bus-" . $tripCode . "-" . $seatTemplateMap, $token, $urlPolicy, 60 * 20);
+        // dd($operatorPolicy);
+        return response()->json([
+            "message" => "success",
+            'tripCode' => $tripCode,
+            'dataHTML' => view('bus._bus_policyTab', compact('tripCode', 'cancelPolicy', 'operatorPolicy'))->render(),
         ]);
     }
 }
