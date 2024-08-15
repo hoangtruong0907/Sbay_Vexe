@@ -17,7 +17,6 @@ Route::prefix('/admin')->group(function () {
 
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
-Route::get('/', [RouteController::class, 'index']);
 Route::get('/test', [TestController::class, 'test']);
 
 
