@@ -46,9 +46,11 @@
         // data load search component
         // list data areas
         const busCities = @json($list_areas ?? []);
+        const dateTo = @json($params->dateTo ?? "");
+        const dateFrom = @json($params->dateFrom ?? "");
+
         // list data route
         const trainStations = @json($trainStations ?? []);
-        const dateTo = @json($params->dateTo ?? '');
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush

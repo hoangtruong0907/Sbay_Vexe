@@ -30,10 +30,10 @@ class GoogleController extends Controller
                     'email' => $user->email
                 ], [
                     'name' => $user->name,
+                    'role' => 1,
                     'google_id' => $user->id,
                     'password' => encrypt('12345678')
                 ]);
-
                 Auth::login($newUser);
                 return redirect()->intended('/');
             }
