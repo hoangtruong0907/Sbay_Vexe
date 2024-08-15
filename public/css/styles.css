@@ -1443,7 +1443,7 @@ body .material-icons-wrapper.md-20 {
     padding: 10px 20px;
     border-radius: 5px;
     line-height: 18px !important;
-    color: #000 !important;
+    /* color: #000 !important; */
 }
 
 .btn-detail-l {
@@ -1500,8 +1500,12 @@ body .material-icons-wrapper.md-20 {
 }
 
 .place-l {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 65%;
 }
 
 .duration-l {
@@ -1901,6 +1905,10 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     border: none;
 }
 
+.ticket-detail-contentTab .list-group-item:hover {
+    cursor: pointer;
+}
+
 .ticket-detail-contentTab .item-card-rating {
     width: 100%;
     border: none;
@@ -1912,7 +1920,7 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     color: rgb(77, 77, 77);
-    margin: 1px;
+    margin: 2px;
     padding: 8px 12px;
 }
 
@@ -2078,6 +2086,22 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     align-items: center;
 }
 
+.policy-tab .check-point-end {
+    font-weight: 600;
+    position: absolute;
+    top: -34px;
+    right: 0;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+
+.policy-tab .check-point-end .tag-dot{
+    border: 0;
+}
+
 .policy-tab .cancellation-policy-period {
     font-size: 13px;
     color: #666;
@@ -2114,6 +2138,47 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     padding: 4px;
     height: 500px;
     object-fit: contain;
+}
+
+.image-tab .img-child {
+    height: 400px;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.image-tab .carousel-icon {
+    border-radius: 50%;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-tab .carousel-inner {
+    background-color: #333333c4;
+    border-radius: 8px;
+}
+
+.image-tab .carousel-caption:hover {
+    background-color: #181717c4;
+}
+
+.image-tab .carousel-caption {
+    background-color: #5858587e;
+    padding: 4px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.pagination .page-item {
+    padding: 2px;
+}
+
+.pagination .page-item .page-link {
+    border-radius: 8px;
 }
 
 .anticon-caret-up {

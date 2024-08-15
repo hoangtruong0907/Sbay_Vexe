@@ -4,15 +4,20 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
+<<<<<<< HEAD
 use App\Http\Controllers\Auth\GoogleController;
 
 
+=======
+use App\Http\Middleware\CheckAuthGoogle;
+>>>>>>> develop
 
-// Admin page
+# Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
@@ -28,6 +33,7 @@ Route::prefix('/admin')->group(function () {
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
 
+<<<<<<< HEAD
 
 Route::get('/', [BlogControllers::class, 'index'])->name('index');
 
@@ -37,7 +43,26 @@ Route::get('/route-search/{fromtoPlace}', [RouteController::class, 'routeSearch'
 Route::get('/test', [TestController::class, 'test']);
 Route::get('/airline_tickets', function () {
     return view('airline_tickets');
+=======
+Route::get('/', [RouteController::class, 'index'])->name('home');
+Route::get('/test', [TestController::class, 'test']);
+
+#Search route
+Route::prefix('/route-search')->group(function () {
+    Route::get('/', function () {
+        return view('admin/dashboard');
+    });
+    Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
+    Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
+
+    Route::get('/airline_tickets', function () {
+        return view('airline_tickets');
+    });
+>>>>>>> develop
 });
+Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
+Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
+
 
 
 // routes/web.php
@@ -53,17 +78,19 @@ Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upl
 
 
 Route::get('/bookingconfirmation',  [BookingController::class, 'index']);
-Route::get('/route-search/xe-khach/{fromtoPlace}',  [RouteController::class, 'routeSearch']);
 
-#Login with google and add phone number
+# user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 Route::post('/add-phone', [GoogleController::class, 'addPhone'])->name('auth.addPhone');
+
 #Account information
-Route::get('tai-khoan/thong-tin', [InfoController::class, 'index'])->name('auth.info');
-Route::get('tai-khoan/thanh-vien', [InfoController::class, 'membership'])->name('auth.membership');
-Route::get('tai-khoan/ve-cua-toi', [InfoController::class, 'ticket'])->name('auth.ticket');
-Route::get('tai-khoan/uu-dai', [InfoController::class, 'reward'])->name('auth.reward');
-Route::get('tai-khoan/the-cua-toi', [InfoController::class, 'card'])->name('auth.card');
-Route::get('tai-khoan/nhan-xet', [InfoController::class, 'review'])->name('auth.review');
-Route::get('tai-khoan/dang-xuat', [InfoController::class, 'logout'])->name('auth.logout');
+Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
+    Route::get('/thong-tin', [InfoController::class, 'index'])->name('auth.info');
+    Route::get('/thanh-vien', [InfoController::class, 'membership'])->name('auth.membership');
+    Route::get('/ve-cua-toi', [InfoController::class, 'ticket'])->name('auth.ticket');
+    Route::get('/uu-dai', [InfoController::class, 'reward'])->name('auth.reward');
+    Route::get('/the-cua-toi', [InfoController::class, 'card'])->name('auth.card');
+    Route::get('/nhan-xet', [InfoController::class, 'review'])->name('auth.review');
+    Route::get('/dang-xuat', [InfoController::class, 'logout'])->name('auth.logout');
+});
