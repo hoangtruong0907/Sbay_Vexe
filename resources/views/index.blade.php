@@ -2,6 +2,7 @@
 
 @section('title', 'Trang chủ')
 @section('styles')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
 @endsection
@@ -48,6 +49,8 @@
         const dateTo = @json($params->dateTo ?? "");
         const dateFrom = @json($params->dateFrom ?? "");
 
+        // list data route
+        const trainStations = @json($trainStations ?? []);
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush
