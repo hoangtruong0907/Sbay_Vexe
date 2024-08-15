@@ -369,7 +369,7 @@ const vn = {
         "Th12",
     ],
     today: "Hôm Nay",
-    clear: "Xóa",
+    clear: "Bỏ chọn ngày về",
     dateFormat: "dd/mm/yyyy",
     timeFormat: "HH:ii",
     firstDay: 1,
@@ -389,18 +389,21 @@ function convertToSlug(text) {
         .replace(/\s+/g, "-") // Thay thế khoảng trắng bằng dấu gạch ngang
         .replace(/-+/g, "-"); // Loại bỏ các dấu gạch ngang thừa
 }
-// Placeholder data input
 function getFormattedDate(dayInput) {
     const today = dayInput ? new Date(dayInput) : new Date();
     const dayName = vn.daysShort[today.getDay()];
     const date = today.getDate();
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
-    return `${dayName}, ${date}/${month}/${year}`;
+    const formattedDate = `${dayName}, ${date
+        .toString()
+        .padStart(2, "0")}/${month.toString().padStart(2, "0")}/${year}`;
+    return formattedDate;
 }
 
-$(".date-input").attr("placeholder", getFormattedDate());
 $(".date-input.date-default-input").attr("value", getFormattedDate(dateTo));
+$(".date-input.date-default-input").attr("placeholder", getFormattedDate());
+$(".date-input.data-add-input").attr("value",dateFrom != "" ? getFormattedDate(dateFrom) : "");
 $(".date-input.data-add-input").attr("placeholder", "Thêm ngày về");
 
 $("#bus_search").click(() => {
@@ -432,37 +435,71 @@ $("#bus_search").click(() => {
 });
 
 $(document).ready(function () {
-    $(".date-input").each(function () {
-        const $input = $(this);
-        new AirDatepicker(this, {
-            locale: vn,
-            dateFormat: "dd/MM/yyyy",
-            timeFormat: "hh:mm AA",
-            autoClose: true,
-            onRenderCell: function ({ date, cellType }) {
-                if (cellType === "day") {
-                    const lunarDate = moonTime({
-                        year: date.getFullYear(),
-                        month: date.getMonth() + 1,
-                        day: date.getDate(),
-                    });
-                    return {
-                        html: `
-                            <div class="wrap-cell">
-                                <div class="fw-bold">${date.getDate()}</div>
-                                <div class="lunar-date">${lunarDate.day}</div>
-                            </div>
-                            <div class="price-cell">1999k</div>
-                            `,
-                    };
-                }
-            },
-            onSelect: function ({ date, formattedDate }) {
-                const dayOfWeek = vn.daysShort[date.getDay()];
-                const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
-                $input.val(formattedWithDay);
-            },
-        });
+    let startToDay = new Date();
+    let dataSelected = dateTo ? dateTo : startToDay;
+    new AirDatepicker(".date-default-input", {
+        locale: vn,
+        dateFormat: "E, dd/MM/yyyy",
+        minDate: startToDay,
+        autoClose: true,
+        // isMobile: true,
+        selectedDates: [dateTo ? dateTo : startToDay],
+        onRenderCell: function ({ date, cellType }) {
+            if (cellType === "day") {
+                const lunarDate = moonTime({
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                });
+                return {
+                    html: `
+                        <div class="wrap-cell">
+                            <div class="fw-bold">${date.getDate()}</div>
+                            <div class="lunar-date">${lunarDate.day}</div>
+                        </div>
+                        <div class="price-cell">-</div>
+                        `,
+                };
+            }
+        },
+        onSelect: function ({ date, formattedDate }) {
+            const dayOfWeek = vn.daysShort[date.getDay()];
+            const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
+            dataSelected = date;
+            $(this).val(formattedWithDay);
+        },
+    });
+
+    new AirDatepicker(".data-add-input", {
+        locale: vn,
+        dateFormat: "E, dd/MM/yyyy",
+        autoClose: true,
+        minDate: dataSelected,
+        buttons: ['clear'],
+        // isMobile: true,
+        onRenderCell: function ({ date, cellType }) {
+            if (cellType === "day") {
+                const lunarDate = moonTime({
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                });
+                return {
+                    html: `
+                        <div class="wrap-cell">
+                            <div class="fw-bold">${date.getDate()}</div>
+                            <div class="lunar-date">${lunarDate.day}</div>
+                        </div>
+                        <div class="price-cell">-</div>
+                        `,
+                };
+            }
+        },
+        onSelect: function ({ date, formattedDate }) {
+            const dayOfWeek = vn.daysShort[date.getDay()];
+            const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
+            $(this).val(formattedWithDay);
+        },
     });
 });
 
