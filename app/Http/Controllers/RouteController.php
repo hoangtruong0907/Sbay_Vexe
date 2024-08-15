@@ -190,7 +190,7 @@ class RouteController extends Controller
         $cacheKeyRoute = 'route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo;
 
         $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 20);
-        dd($list_routes);
+        // dd($list_routes);
         return view("train.train_search", compact('list_routes', 'list_areas', 'params'));
     }
 
