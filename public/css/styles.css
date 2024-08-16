@@ -549,6 +549,7 @@ body .material-icons-wrapper.md-20 {
     flex-direction: column;
     border: 1px solid rgb(224, 224, 224);
     margin-bottom: 15px;
+   
 }
 
 .text-arrange h3 {
@@ -2747,4 +2748,198 @@ body .material-icons-wrapper.md-20 {
 
 .left-total-amount span {
     font-size: 15px;
+}
+
+
+/* ..... */
+.filter-item-mobile{
+        display: none;
+}
+
+.floating-filter-button{
+    position: fixed;
+    bottom: 20px;
+    left: 45%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 0 auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: none;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: calc(100% - 60px); 
+    overflow-y: auto;
+}
+
+.filter-content,
+.sort-content {
+    height: 100%; 
+    overflow-y: auto;
+}
+
+.close, .close-button {
+    color: #007bff;
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus, .close-button:hover, .close-button:focus {
+    color: #0056b3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.close-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+}
+
+.close-button:hover {
+    background-color: #0056b3;
+}
+.floating-sort-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+  
+  
+}
+
+/* CSS cho modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content-1 {
+    background-color: #fefefe;
+    margin: 0 auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Chiếm toàn bộ chiều ngang màn hình */
+    max-width: none; /* Bỏ giới hạn chiều rộng tối đa */
+    border-radius: 10px 10px 0 0; /* Làm tròn góc trên */
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2); /* Đổ bóng phía trên */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+}
+
+.close, .close-button {
+    color: #007bff;
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus, .close-button:hover, .close-button:focus {
+    color: #0056b3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal .sort-options {
+display: flex;
+color:black;
+flex-direction: column;
+gap: 10px;
+}
+
+.modal .sort-options label {
+display: flex;
+align-items: center;
+font-size: 16px;
+padding: 10px 0;
+cursor: pointer;
+width: 100%;
+}
+
+.modal .sort-options input[type="radio"] {
+margin-left: 10px;
+margin-right: 10px;
+cursor: pointer;
+}
+
+
+.modal .close-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+}
+
+.modal .close-button:hover {
+    background-color: #0056b3;
 }

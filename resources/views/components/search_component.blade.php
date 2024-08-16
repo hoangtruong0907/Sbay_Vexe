@@ -80,10 +80,10 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="departure-bus-date flex-sum-left">
+                    <div class="departure-bus-date flex-sum-left">
                         <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name="" value="{!! $params->dateTo ?? "" !!}"
                             class="date-input date-default-input" id="bus_date_to" placeholder="Chọn ngày bắt đầu">
-                    </div> --}}
+                    </div> 
                     <div class="departure-bus-date-right flex-sum-left">
                         <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name=""
                             class="date-input data-add-input" id="bus_date_from" placeholder="Thêm ngày về">
