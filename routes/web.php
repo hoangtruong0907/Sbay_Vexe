@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\loginController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
@@ -8,16 +9,24 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\InfoController;
 use App\Http\Middleware\CheckAuthGoogle;
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\CheckLoginAdminMiddleware;
 
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    });
+    })->name('admin')->middleware(AuthMiddleware::class);
 });
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
 Route::get('/test', [TestController::class, 'test']);
+
+
+// Login Admin
+Route::get('/admin/login', [loginController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
+Route::post('admin/doLogin', [loginController::class, 'doLogin'])->name('admin.doLogin');
+Route::get('/admin/doLogout', [loginController::class, 'doLogout'])->name('admin.doLogout');
 
 #Search route
 Route::prefix('/route-search')->group(function () {
@@ -31,6 +40,7 @@ Route::prefix('/route-search')->group(function () {
         return view('airline_tickets');
     });
 });
+
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
 
