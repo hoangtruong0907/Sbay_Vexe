@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- lightgallery plugins -->
-    <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7/css/lightgallery.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css"
-        integrity="sha256-Eg8Gfr1vMiM54szM1+h+M018fqWyvVU/Ml8q48Oub+g=" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -1424,9 +1420,51 @@
                 @foreach ($list_routes as $key => $route)
                     @include('bus._bus_item', [
                         'route' => $route,
+                        'dataRoute' => $route['route'],
+                        'pickupData' => $route['route']['pickup_points'],
+                        'dropoffData' => $route['route']['dropoff_points'],
                         'key' => (string) $key,
                     ])
                 @endforeach
+                @if ($totalPages > 1)
+                    <nav class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            {{-- Previous Page Link --}}
+                            @if ($currentPage > 1)
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage - 1, 'pagesize' => $pageSize]) }}"
+                                        rel="prev"><i class="fa-solid fa-chevron-left"></i></a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fa-solid fa-chevron-left"></i></span>
+                                </li>
+                            @endif
+
+                            {{-- Pagination Elements --}}
+                            @for ($i = 1; $i <= $totalPages; $i++)
+                                <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
+                                    <a class="page-link"
+                                        href="{{ request()->fullUrlWithQuery(['page' => $i, 'pagesize' => $pageSize]) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+
+                            {{-- Next Page Link --}}
+                            @if ($currentPage < $totalPages)
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage + 1, 'pagesize' => $pageSize]) }}"
+                                        rel="next"><i class="fa-solid fa-chevron-right"></i></a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fa-solid fa-chevron-right"></i></span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                @endif
             </div>
         </div>
 
@@ -1438,22 +1476,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"
         integrity="sha512-fCRpXk4VumjVNtE0j+OyOqzPxF1eZwacU3kN3SsznRPWHgMTSSo7INc8aY03KQDBWztuMo5KjKzCFXI/a5rVYQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- lightgallery plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"
-        integrity="sha256-feKFTnlUEF8rkf9Zg3ScTjx69R4FquJ5+KXWaZSoV3c=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"
-        integrity="sha256-ghoq24AFURwK2e9vOVwbdL6swtoZTNE6SsQ9NBJG4IU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
-        integrity="sha256-T7w+wYeOkDSLcbNZTY7yfE8QoaTG1edJSNDuWQGP2Hw=" crossorigin="anonymous"></script>
-
     <script>
         // data load search component
         // list data areas
         const busCities = @json($list_areas ?? []);
         const dateTo = @json($params->dateTo ?? '');
+        const dateFrom = @json($params->dateFrom ?? '');
+        // list data route
+        const trainStations = @json($trainStations ?? []);
     </script>
-    <script src="{{ asset('js/search_component.js') }}"></script>
-
     <script>
         // Lọc Giờ slide
         document.addEventListener('DOMContentLoaded', function() {
@@ -1815,46 +1846,63 @@
             document.getElementById('step' + step).classList.add('active');
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lấy tất cả các phần tử carousel
-            document.querySelectorAll('.carousel').forEach(function(carouselEl) {
-                // Khởi tạo Bootstrap Carousel cho mỗi phần tử
-                const carousel = new bootstrap.Carousel(carouselEl, {
-                    // interval: 2000,
-                    wrap: true,
-                });
+        // Click popup gg map by lat & lon
+        $('.list-distance-item').on('click', function() {
+            const lat = $(this).data('map-lat');
+            const lon = $(this).data('map-lon');
+            const googleMapsUrl = `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
+            window.open(googleMapsUrl, '_blank');
+        });
 
-                $('#myCarousel').carousel({
-                    interval: 3500
-                });
-
-                // This event fires immediately when the slide instance method is invoked.
-                $('#myCarousel').on('slide.bs.carousel', function(e) {
-                    var id = $('.item.active').data('slide-number');
-
-                    // Added a statement to make sure the carousel loops correct
-                    if (e.direction == 'right') {
-                        id = parseInt(id) - 1;
-                        if (id == -1) id = 7;
-                    } else {
-                        id = parseInt(id) + 1;
-                        if (id == $('[id^=carousel-thumb-]').length) id = 0;
+        // Rating tab
+        $('.nav-link.rating-tab').on('click', function() {
+            let companyId = $(this).data('company-id');
+            // let itemKey = $(this).data('key') + 1;
+            const url = `/api/info/xe-khach/${companyId}/reviews`;
+            // console.log(url);
+            fetch(url, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
                     }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log(data);
+                    $($(this).attr('data-bs-target')).html(data.dataHTML);
 
-                    $('[id^=carousel-thumb-]').removeClass('selected');
-                    $('[id=carousel-thumb-' + id + ']').addClass('selected');
+                })
+                .catch(error => {
+                    console.error('Eror:', error);
                 });
+        });
 
-                // Thumb control
-                $('[id^=carousel-thumb-]').click(function() {
-                    var id_selector = $(this).attr("id");
-                    var id = id_selector.substr(id_selector.length - 1);
-                    id = parseInt(id);
-                    $('#myCarousel').carousel(id);
-                    $('[id^=carousel-thumb-]').removeClass('selected');
-                    $(this).addClass('selected');
+        $('.nav-link.policy-tab').on('click', function() {
+            let tripCode = $(this).data('trip-code');
+            let seatTemplateId = $(this).data('seat-template-id');
+
+            const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
+            // console.log(url);
+
+            fetch(url, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log(data);
+                    $($(this).attr('data-bs-target')).html(data.dataHTML);
+
+                })
+                .catch(error => {
+                    console.error('Eror:', error);
                 });
-            });
         });
 // lọc//
 function openFilterModal() {
@@ -1897,6 +1945,11 @@ function openSortModal() {
    
 
     </script>
+<<<<<<< HEAD
     
     @endpush
 
+=======
+    <script src="{{ asset('js/search_component.js') }}"></script>
+@endpush
+>>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5

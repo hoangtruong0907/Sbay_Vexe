@@ -1,28 +1,41 @@
+<<<<<<< HEAD
 
 
 @media (min-width: 1200px) {
+=======
+/* Media Queries */
+>>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5
 
+@media (min-width: 1200px) {
+    /* Thêm các kiểu cho màn hình lớn (tuỳ chọn) */
 }
 
 @media (max-width: 1150px) {
-    .slogan-header{
+    .slogan-header {
         display: none;
     }
 }
+<<<<<<< HEAD
   
  @media (max-width: 1150px) {
     .total-header{
+=======
+
+@media (max-width: 992px) {
+    .total-header {
+>>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5
         display: none;
     }
-    .topnav{
+    .topnav {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0px 10px;
     }
-    .wrap-criteria{
+    .wrap-criteria {
         gap: 30px;
     }
+<<<<<<< HEAD
 } 
   
 
@@ -167,9 +180,25 @@
         gap: 10px; 
     }
     .filter-item-mobile{
+=======
+}
+
+
+
+
+@media (max-width: 768px) {
+    .wrap-criteria {
+>>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5
         display: none;
     }
+    .note {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
 }
+<<<<<<< HEAD
 
 
 /* ///lọc, sắp xếp */
@@ -194,6 +223,19 @@
     }
     .text-date-arrival-time-l{
         font-size: 15px;
+=======
+
+@media (max-width: 576px) {
+    .container {
+        width: auto !important;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    #main-footer h2 {
+        font-size: 16px;
+>>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5
     }
 }
 @media only screen and (max-width: 1040PX){
@@ -382,6 +424,213 @@
         background-color: #0056b3;
     }
 
+<<<<<<< HEAD
     
     
 }
+=======
+@media (max-width: 1100px) {
+    .container-airlinetickets {
+        width: 90%;
+        z-index: 3;
+    }
+    .ant-row-flex {
+        display: block;
+        text-align: center;
+    }
+    #pills-tab {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .nav-link span {
+        font-size: 12px;
+    }
+    .wrap-criteria {
+        z-index: 2;
+        display: flex;
+        gap: 10px;
+    }
+    .wrap-criteria p {
+        font-size: 10px;
+    }
+    .total-slide {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: 400px;
+        overflow: hidden;
+    }
+    #bus_search {
+        width: 100%;
+    }
+    .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease;
+    }
+    .left-ant-row-flex {
+        display: block;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+    .item {
+        flex: 1 1 auto;
+        min-width: 100px;
+        padding: 10px;
+        text-align: center;
+        background-color: #f0f0f0;
+    }
+    .flex-sum-left input {
+        width: 290px;
+    }
+    .wrap-left-ant-row-flex {
+        display: block;
+    }
+    .custom-icon-container {
+        margin-left: 10px;
+    }
+    .fa-solid {
+        margin-left: -20px;
+    }
+    .fa fa-plus {
+        margin-left: 10px;
+    }
+    .custom-swap-container {
+        display: none;
+    }
+    .fa-solid fa-bus-simple span {
+        margin-left: 10px;
+    }
+    .custom-icon-section {
+        margin-left: 20px;
+    }
+    .right-search-widget-inner-content button {
+        width: 100%;
+    }
+    .fa-solid fa-bus-simple {
+        margin-left: 20px;
+    }
+    .custom-input-container {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .departure-bus-date flex-sum-left {
+        padding-bottom: 5px;
+    }
+    .departure-bus-date {
+        margin-left: 9px;
+    }
+    .departure-bus-date-right {
+        margin-left: 9px;
+    }
+    .departure-plane-date-right {
+        margin-left: 9px;
+    }
+    .departure-train-date {
+        margin-left: 9px;
+    }
+    .departure-train-date-right {
+        margin-left: 9px;
+    }
+    .right-search-widget-inner-content {
+        padding-top: 10px;
+    }
+    #main-footer {
+        padding: 60px 10px;
+    }
+    .wrap-criteria {
+        height: 50px;
+    }
+    .custom-dropdown-item-group-title {
+        width: 300px;
+    }
+    .custom-dropdown-item-list {
+        width: 300px;
+    }
+    .img-slide {
+        width: 100%;
+        height: 500px;
+        max-height: 500px;
+        z-index: 0;
+    }
+    .sidenav {
+        z-index: 4;
+    }
+    .main-content {
+        flex-direction: column-reverse;
+        flex-direction: column;
+    }
+    .w-right-section {
+        order: -1;
+        width: unset !important;
+    }
+    .left-section {
+        width: 100%;
+    }
+    .bottom-left {
+        width: 100%;
+    }
+    .note {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .departure-bus-date .fa-calendar {
+        display: none;
+    }
+    .departure-bus-date-right .fa-plus {
+        display: none;
+    }
+    .departure-plane-date-right .fa-plus {
+        display: none;
+    }
+    .departure-train-date .fa-calendar {
+        display: none;
+    }
+    .departure-train-date-right .fa-plus {
+        display: none;
+    }
+    .container-airlinetickets {
+        width: 100%;
+    }
+    .container {
+        width: auto !important;
+        padding: 20px !important;
+    }
+    .main-content {
+        flex-direction: column-reverse;
+        flex-direction: column;
+    }
+    .w-right-section {
+        order: -1;
+    }
+    .right-section {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .login-mobi a {
+        font-size: 13px;
+    }
+    .wrap-criteria {
+        display: none;
+    }
+    .right-section {
+        min-width: auto !important;
+    }
+}
+
+.pills-bus-tab {
+    margin-right: 5px;
+}
+>>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5
