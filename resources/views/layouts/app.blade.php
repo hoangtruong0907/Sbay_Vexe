@@ -43,7 +43,7 @@
             slidesToShow: 1,
             slidesToScroll: 1,
             cssEase: 'ease',  // Thêm thuộc tính mượt
-            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',egphp
             nextArrow: '<button type="button" class="slick-next">Next</button>',
             
         });

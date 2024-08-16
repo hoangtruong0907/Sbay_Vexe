@@ -26,8 +26,8 @@ Route::prefix('/route-search')->group(function () {
     });
     Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
     Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
-
-Route::get('/slidebanner', function () {
+});
+Route::get('/slidebanner', function(){
     return view('slidebanner');
 });
 
