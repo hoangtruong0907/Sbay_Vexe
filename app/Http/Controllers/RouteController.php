@@ -151,8 +151,8 @@ class RouteController extends Controller
     {
         $trainTo = $request->query('train_to', '');
         $trainFrom = $request->query('train_from', '');
-        $dateTo = $request->query('date_to') ? Helpers::formatDate($request->query('date_to')) : '';
-        $dateFrom = $request->query('date_from') ? Helpers::formatDate($request->query('date_from')) : '';
+        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : '';
+        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
         $quantity = 2;
         $page = 1;
         $pagesize = 10;
@@ -190,7 +190,7 @@ class RouteController extends Controller
         $cacheKeyRoute = 'route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo;
 
         $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 20);
-        dd($list_routes);
+        // dd($list_routes);
         return view("train.train_search", compact('list_routes', 'list_areas', 'params'));
     }
 

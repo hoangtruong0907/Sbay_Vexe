@@ -742,7 +742,7 @@
 const busCities = @json($list_areas ?? []);
 // list data route
 const trainStations = @json($trainStations ?? []);
-const dateTo = @json($params - > dateTo ?? '');
+const dateTo = @json($params->dateTo ?? '');
 </script>
 <script src="{{ asset('js/search_component.js') }}"></script>
 
