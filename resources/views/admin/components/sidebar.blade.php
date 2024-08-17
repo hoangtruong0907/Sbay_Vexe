@@ -7,7 +7,7 @@
             <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
         </li>
         <li>
-            <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
+            <a href="{{route('admin.user')}}"><i class="fas fa-user-friends"></i> User Management</a>
         </li>
         <li>
             <a href="tables.html"><i class="fas fa-table"></i> Tables</a>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\loginController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
@@ -27,6 +28,17 @@ Route::get('/test', [TestController::class, 'test']);
 Route::get('/admin/login', [loginController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
 Route::post('admin/doLogin', [loginController::class, 'doLogin'])->name('admin.doLogin');
 Route::get('/admin/doLogout', [loginController::class, 'doLogout'])->name('admin.doLogout');
+
+// QL User admin
+Route::prefix('/admin/user')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('admin.user');
+    Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
+    Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+    Route::post('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+    Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+});
+
 
 #Search route
 Route::prefix('/route-search')->group(function () {

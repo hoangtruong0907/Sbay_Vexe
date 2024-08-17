@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Repository;
 
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Interface\AuthRepositoryInterface;
 
-class AuthReponsitory implements AuthRepositoryInterface
+class AuthRepository implements AuthRepositoryInterface
 {
 
     public function login(array $data) 
