@@ -31,6 +31,7 @@ Route::prefix('/route-search')->group(function () {
         return view('airline_tickets');
     });
 });
+Route::get('/api/info/xe-khach/seat-map/{tripCode}',  [RouteController::class, 'busSeatMap']);
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
 

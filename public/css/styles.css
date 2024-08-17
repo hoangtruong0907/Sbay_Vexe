@@ -1795,7 +1795,7 @@ body .material-icons-wrapper.md-20 {
     color: black;
 }
 
-.policy-tab .check-point-end .tag-dot{
+.policy-tab .check-point-end .tag-dot {
     border: 0;
 }
 
@@ -2249,6 +2249,22 @@ body .material-icons-wrapper.md-20 {
     height: auto;
 }
 
+.seat-thumbnail-couple {
+    width: 40px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seat-thumbnail-hor {
+    width: 40px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .seat-name {
     font-size: 14px;
 }
@@ -2267,14 +2283,24 @@ body .material-icons-wrapper.md-20 {
     color: #999;
 }
 
+.seat-available svg rect {
+    stroke: rgb(179, 179, 179);
+    fill: rgb(255, 255, 255);
+}
+
 .seat-unavailable svg rect {
-    stroke: rgb(242, 242, 242);
+    stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
 }
 
 .seat-selected svg rect {
     stroke: rgb(39, 174, 96);
     fill: rgb(139, 229, 176);
+}
+
+.seat-end svg rect {
+    stroke: rgb(57, 241, 134);
+    fill: rgb(255, 255, 255);
 }
 
 .seat-discount svg rect {
@@ -2286,7 +2312,7 @@ body .material-icons-wrapper.md-20 {
 }
 
 .icon-disabled-2 {
-    stroke: rgb(242, 242, 242);
+    stroke: rgb(151, 151, 151);
 }
 
 .icon-selected-chon {
@@ -2294,7 +2320,7 @@ body .material-icons-wrapper.md-20 {
 }
 
 .coach {
-    padding: 24px 12px 12px;
+    padding: 20px 8px 12px;
     background: rgb(242, 242, 242);
     border-radius: 25px 25px 5px 5px;
 }
@@ -2306,6 +2332,10 @@ body .material-icons-wrapper.md-20 {
 
 .wrap-coach span {
     font-size: 16px;
+}
+
+.coach-row .seat .modal-choose-chair {
+    margin: 4px;
 }
 
 .select-input {

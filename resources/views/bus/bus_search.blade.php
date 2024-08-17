@@ -1138,63 +1138,114 @@
             document.getElementById('step' + step).classList.add('active');
         }
 
-        // Click popup gg map by lat & lon
-        $('.list-distance-item').on('click', function() {
-            const lat = $(this).data('map-lat');
-            const lon = $(this).data('map-lon');
-            const googleMapsUrl = `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
-            window.open(googleMapsUrl, '_blank');
-        });
+        $(document).ready(function() {
+            // Click popup gg map by lat & lon
+            $('.list-distance-item').on('click', function() {
+                const lat = $(this).data('map-lat');
+                const lon = $(this).data('map-lon');
+                const googleMapsUrl =
+                    `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
+                window.open(googleMapsUrl, '_blank');
+            });
 
-        // Rating tab
-        $('.nav-link.rating-tab').on('click', function() {
-            let companyId = $(this).data('company-id');
-            // let itemKey = $(this).data('key') + 1;
-            const url = `/api/info/xe-khach/${companyId}/reviews`;
-            // console.log(url);
-            fetch(url, {
-                    method: 'GET',
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // console.log(data);
-                    $($(this).attr('data-bs-target')).html(data.dataHTML);
+            // Rating tab
+            $('.nav-link.rating-tab').on('click', function() {
+                let companyId = $(this).data('company-id');
+                // let itemKey = $(this).data('key') + 1;
+                const url = `/api/info/xe-khach/${companyId}/reviews`;
+                // console.log(url);
+                fetch(url, {
+                        method: 'GET',
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // console.log(data);
+                        $($(this).attr('data-bs-target')).html(data.dataHTML);
 
-                })
-                .catch(error => {
-                    console.error('Eror:', error);
-                });
-        });
+                    })
+                    .catch(error => {
+                        console.error('Eror:', error);
+                    });
+            });
 
-        $('.nav-link.policy-tab').on('click', function() {
-            let tripCode = $(this).data('trip-code');
-            let seatTemplateId = $(this).data('seat-template-id');
+            $('.nav-link.policy-tab').on('click', function() {
+                let tripCode = $(this).data('trip-code');
+                let seatTemplateId = $(this).data('seat-template-id');
 
-            const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
-            // console.log(url);
+                const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
+                // console.log(url);
 
-            fetch(url, {
-                    method: 'GET',
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // console.log(data);
-                    $($(this).attr('data-bs-target')).html(data.dataHTML);
+                fetch(url, {
+                        method: 'GET',
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // console.log(data);
+                        $($(this).attr('data-bs-target')).html(data.dataHTML);
 
-                })
-                .catch(error => {
-                    console.error('Eror:', error);
-                });
+                    })
+                    .catch(error => {
+                        console.error('Eror:', error);
+                    });
+            });
+
+            // show list seat
+            let visibilityState = {};
+            $(document).on('click', '.btn-booking-l.ticket-step', function() {
+                let keyId = $(this).data('key');
+                if (visibilityState[keyId] === undefined) {
+                    visibilityState[keyId] = false;
+                }
+
+                if (!visibilityState[keyId]) {
+                    let tripCode = $(this).data('trip-code');
+
+                    console.log(tripCode);
+                    const url = `/api/info/xe-khach/seat-map/${tripCode}`;
+
+                    fetch(url, {
+                            method: 'GET',
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            $(`.ticket-step-collapse #step1-${keyId}`).html(data.dataHTML);
+                            visibilityState[keyId] = true;
+                            // animation
+                            document.querySelector(`.ticket-step-collapse #step1-${keyId}`)
+                                .scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                } else {
+                    $(`.ticket-step-collapse #step1-${keyId}`).empty();
+                    visibilityState[keyId] = false;
+                }
+            });
+
+            // Choose seat
+            $(document).on('click', '.seat-choose-item.seat-container', function() {
+                console.log($(this));
+            });
         });
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
