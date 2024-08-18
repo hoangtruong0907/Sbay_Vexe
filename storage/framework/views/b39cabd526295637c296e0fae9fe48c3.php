@@ -1,14 +1,12 @@
-@extends('admin.layouts.default')
-
-@section('title', ' Dashboard')
-@section('contents')
+<?php $__env->startSection('title', ' Dashboard'); ?>
+<?php $__env->startSection('contents'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <link rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" />
 </head>
@@ -21,8 +19,8 @@
             <!-- Add post -->
             <div class="container">
                 <h1>Tạo Bài Viết Mới</h1>
-                <form id="blog-form" action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <form id="blog-form" action="<?php echo e(route('admin.blogs.store')); ?>" method="POST" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Tiêu đề</label>
@@ -46,9 +44,9 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Trạng thái</label>
                         <select name="status" id="status" class="form-control" required>
-                            <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Xuất bản</option>
-                            <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Nháp</option>
-                            <option value="archived" {{ old('status') === 'archived' ? 'selected' : '' }}>Lưu trữ</option>
+                            <option value="published" <?php echo e(old('status') === 'published' ? 'selected' : ''); ?>>Xuất bản</option>
+                            <option value="draft" <?php echo e(old('status') === 'draft' ? 'selected' : ''); ?>>Nháp</option>
+                            <option value="archived" <?php echo e(old('status') === 'archived' ? 'selected' : ''); ?>>Lưu trữ</option>
                         </select>
                     </div>
                     <div class="mb-3x">
@@ -68,7 +66,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="{{ route('admin.blogs.index') }}" class="btn btn-secondary" style="margin-right:20px;">Hủy</a>
+                        <a href="<?php echo e(route('admin.blogs.index')); ?>" class="btn btn-secondary" style="margin-right:20px;">Hủy</a>
                         <button type="submit" id="submit-btn" class="btn btn-primary">Thêm Bài Viết</button>
                     </div>
                 </form>
@@ -168,4 +166,6 @@
     </script>
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/sbayht copy 2/sbay_vexere/resources/views/admin/blogs/create.blade.php ENDPATH**/ ?>

@@ -17,8 +17,7 @@ class CreateBlogsTable extends Migration
             $table->string('author');
             $table->string('status');
             $table->string('type');
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+                
             $table->string('slug')->unique();
         });
     }

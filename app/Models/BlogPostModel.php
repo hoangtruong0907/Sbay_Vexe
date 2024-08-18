@@ -17,7 +17,15 @@ class BlogPostModel extends Model
         parent::boot();
 
         static::creating(function ($blog) {
-            $blog->slug = Str::slug($blog->title);
+            $slug = Str::slug($blog->title);
+            $originalSlug = $slug;
+            $counter = 1;
+    
+            while (BlogPostModel::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $counter++;
+            }
+    
+            $blog->slug = $slug;
         });
     }
 
