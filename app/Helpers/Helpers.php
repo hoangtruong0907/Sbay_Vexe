@@ -7,27 +7,20 @@ use Illuminate\Support\Facades\Http;
 
 class Helpers
 {
-    public static function formatDate($date)
-    {
-        $date = substr($date, strpos($date, ', ') + 2);
-        $date = str_replace('/', '-', $date);
-        return date('Y-m-d', strtotime($date));
-    }
-    public static function cacheData($nameCache, $token, $url, $queryParams = [], $time = 60 * 60)
+    public static function cacheData($nameCache, $token, $url, $queryParams = [], $time = 60 * 60, $pagination = false)
     {
         // Tạo cache key động dựa trên nameCache, url và queryParams
         $cacheKey = $nameCache . '_' . md5($url . json_encode($queryParams));
-
-        $data = Cache::remember($cacheKey, $time, function () use ($token, $url) {
+        // Cache::forget($cacheKey);
+        $data = Cache::remember($cacheKey, $time, function () use ($token, $url, $pagination) {
             $res = Http::withToken($token)->get($url);
             if ($res->successful()) {
                 $responseData = $res->json();
-                return isset($responseData['data']) && is_array($responseData['data']) ? $responseData['data'] : [];
+                return $pagination ? $responseData : (isset($responseData['data']) && is_array($responseData['data']) ? $responseData['data'] : []);
             } else {
                 return [];
             }
         });
-
         return $data;
     }
 

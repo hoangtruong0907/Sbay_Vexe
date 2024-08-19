@@ -24,18 +24,18 @@ class GoogleController extends Controller
 
             if ($finduser) {
                 Auth::login($finduser);
-                return redirect()->route('home');
+                return redirect()->intended('/');
             } else {
                 $newUser = User::updateOrCreate([
                     'email' => $user->email
                 ], [
                     'name' => $user->name,
+                    'role' => 1,
                     'google_id' => $user->id,
                     'password' => encrypt('12345678')
                 ]);
-
                 Auth::login($newUser);
-                return redirect()->route('home');
+                return redirect()->intended('/');
             }
         } catch (Exception $e) {
             dd($e->getMessage());
