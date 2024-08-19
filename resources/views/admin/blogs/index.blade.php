@@ -39,29 +39,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($allPosts as $post)
-            <tr>
-                <td>{{ $post->id }}</td>
-                <td>{{ Str::limit($post->title, 20, '...') }}</td>
-                <td>{{ Str::limit($post->content, 50, '...') }}</td>
-                <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
-                <td>{{ $post->updated_at->format('Y-m-d H:i:s') }}</td>
-                <td>{{ $post->author }}</td>
-                <td>{{ $post->type }}</td>
-                <td>{{ ucfirst($post->status) }}</td> 
-                <td>
-    <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btn-action">Edit</a>
-    
-    <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn-action delete">Delete</button>
-    </form>
+        @foreach ($allPosts as $post)
+    <tr>
+        <td>{{ $post->id }}</td>
+        <td>{{ Str::limit($post->title, 20, '...') }}</td>
+        <td>{{ Str::limit($post->content, 50, '...') }}</td>
+        <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
+        <td>{{ $post->updated_at->format('Y-m-d H:i:s') }}</td>
+        <td>{{ $post->author }}</td>
+        <td>{{ $post->type }}</td>
+        <td>{{ ucfirst($post->status) }}</td>
+        <td>
+            <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btn-action">Edit</a>
+            
+            <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this blog?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-action delete">Delete</button>
+            </form>
 
-    <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($post->title, '-')]) }}" class="btn-action">Link</a>
-</td>
-            </tr>
-            @endforeach
+            <a href="{{ route('blog.content', ['slug' => $post->slug]) }}" class="btn-action">Link</a>
+        </td>
+    </tr>
+    @endforeach
         </tbody>
     </table>
 

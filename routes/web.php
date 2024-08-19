@@ -9,13 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
-<<<<<<< HEAD
 use App\Http\Controllers\Auth\GoogleController;
-
-
-=======
 use App\Http\Middleware\CheckAuthGoogle;
->>>>>>> develop
 
 # Admin page
 Route::prefix('/admin')->group(function () {
@@ -23,30 +18,22 @@ Route::prefix('/admin')->group(function () {
         return view('admin/dashboard');
     });    
     Route::get('/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
     Route::post('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.admin.show');
     Route::get('/blogs/create', [BlogController::class, 'create'])->name('admin.blogs.create');
-    Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
+    // Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
     Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
     Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
 
-<<<<<<< HEAD
-
 Route::get('/', [BlogControllers::class, 'index'])->name('index');
-
-Route::post('/blog/store', [BlogControllers::class, 'store'])->name('admin.blog.store');
-
-Route::get('/route-search/{fromtoPlace}', [RouteController::class, 'routeSearch']);
 Route::get('/test', [TestController::class, 'test']);
-Route::get('/airline_tickets', function () {
-    return view('airline_tickets');
-=======
-Route::get('/', [RouteController::class, 'index'])->name('home');
-Route::get('/test', [TestController::class, 'test']);
+Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
+Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
 #Search route
 Route::prefix('/route-search')->group(function () {
     Route::get('/', function () {
@@ -58,23 +45,10 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/airline_tickets', function () {
         return view('airline_tickets');
     });
->>>>>>> develop
 });
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
 
-
-
-// routes/web.php
-Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
-
-
-
-
-
-// Nếu là API
-
-Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
 
 Route::get('/bookingconfirmation',  [BookingController::class, 'index']);
