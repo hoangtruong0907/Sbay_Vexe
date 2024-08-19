@@ -143,7 +143,8 @@
                         <p class="trust-message-text"><i class="fas fa-shield-alt"></i> Vexere cam kết giữ đúng chỗ
                             bạn đã chọn.</p>
                     </div>
-                    <div class="coupon-container">
+                    <div class="coupon-container" style="display: none
+                    ;">
                         <div class="wrap-coupon">
                             <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
@@ -1178,6 +1179,7 @@
                 </div>
                 <div class="total-amount">
                     <div class="left-total-amount">
+                        <div class="left-total"></div>
                         <button onclick="nextStep(1)" data-current="0"
                             data-tracking-event="completed_seat_selection" type="button"
                             class="ant-btn footer-nextstep ant-btn-primary"><span><i
@@ -1396,7 +1398,7 @@
                                 Lịch này có thể thay đổi tùy tình hình thưc tế.
                             </div>
                         </div>
-                        <div class="d-flex row mt-2">
+                        <div class="d-flex row mt-2" style="flex-direction: column;">
                             <div class="col-6 d-flex flex-column wrap-point">
                                 <div class="fw-bold">Điểm đón</div>
                                 <div class="list-group">

@@ -104,7 +104,7 @@
     .custom-icon-container {
         margin-left: 10px;
     }
-    .fa-solid {
+    .custom-icon-container .fa-solid {
         margin-left: -20px;
     }
     .fa fa-plus {
@@ -190,8 +190,10 @@
         display: none;
     }
     .departure-train-date-right .fa-plus{
+        display: none;  
+    }
+    .departure-plane-date .fa-calendar {
         display: none;
-        
     }
     .container-airlinetickets {
         width: 100%;
@@ -210,3 +212,153 @@
 .pills-bus-tab {
     margin-right: 5px;
 }
+
+
+
+
+
+/* /////////////////////// */
+
+@media (max-width: 768px) {
+    .filters-wrapper > *:not(.filter-title) {
+        display: none;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .wrap-filter {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1026px;
+        margin: auto;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        }
+        #item-bus-0 {
+            padding-top: 50px;
+        }
+        .right-filter {
+            width: 90%;
+            margin-left: 20px;
+        }
+        .coupon-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            overflow: auto;
+        }
+        .nav.nav-pills.mb-1.pills-ticket-tab {
+            display: flex;
+            overflow: auto;
+            flex-wrap: nowrap;
+            padding-bottom: 10px;
+        }
+        .ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
+            border-bottom: none;
+            white-space: nowrap;
+        }
+        .content-note-ticket {
+            font-size: 12px;
+        }
+        .d-flex .justify-content-between .mt-2 .d-flex flex-column{
+            font-size: 12px;
+        }
+        .flex-column {
+            padding-left: 20px;
+        }
+        .badge {
+            display: none;
+        }
+        .mb-1 .text-bg-success {
+            display: none;
+        }
+        .d-flex .align-items-center .star-rating i {
+            font-size: 15px;
+            margin: 0 0.1rem;
+        }
+        .d-flex .user-review .small ,small{
+            margin-top: 4px;
+            margin-inline-start: 5%;
+            white-space: nowrap;
+        }
+        .tab-content .list-group .w-100 .list-gr-review .mb-1 {
+            white-space: nowrap;
+            margin-left: -19px;
+        }
+        .tab-content list-group w-100 list-gr-review {
+            margin-right: -47px;
+        }
+        .d-flex .justify-content-between .mb-1 {
+            width: 280px;
+        }
+        .tag-dot {
+            display: none;
+        }
+        .policy-tab .dot  {
+            margin-top: 36px;
+            margin-left: -53px;
+          }
+        .policy-tab .time-sa {
+            margin-top: 3px;
+            margin-left: -15px;
+        }
+        .d-flex  .mb-1{
+            width: 280px;
+        }
+}
+
+@media (max-width: 600px) {
+    .mt-2{
+        font-size: 13px;
+    }
+    .tab-pane .fade .pickup-tab .active .show {
+        margin-left: -20px;
+    }
+    .tab-pane .fade {
+        margin-left: -47px;
+    }
+    .tab-pane .fade h6{
+        white-space: nowrap;
+        margin-left: -19px;
+    }
+    .rating {
+        font-size: 12px;
+        display: flex;
+        white-space: nowrap;
+    }
+    .fa-star {
+        margin-right: 5px;
+    }
+    .rating .fa-star:last-child {
+        margin-right: 0;
+    }
+    .list-gr-review .item-check-review {
+        display: flex;
+    }
+    .list-gr-review .item-check-review .fa-ticket {
+        padding-top: 6px;
+    }
+    .tag-dot .dot{
+        margin-left: -90px;
+    }
+    .text-muted {
+        display: none;
+    }
+    .time{
+        display: none;
+    }
+    .image-tab .img-child {
+        height: 150px;
+    }
+}
+    
+
+
+@media (max-width: 500px) {
+    .tab-content .list-group .w-100 .list-gr-review .mb-1 {
+        font-size: 20px;
+    }
+}
+

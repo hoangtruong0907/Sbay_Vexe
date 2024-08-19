@@ -1822,7 +1822,89 @@ body .material-icons-wrapper.md-20 {
     border-radius: 50%;
 }
 
+/* ///////////////////// */
 .image-tab .carousel-item {
+    transition: none !important;
+}
+
+.image-tab .carousel-item-next,
+.image-tab .carousel-item-prev,
+.image-tab .carousel-item.active {
+    transition: t !important;
+}
+
+.image-tab .carousel-item-next,
+.image-tab .carousel-item-prev {
+    opacity: 1; /* Đảm bảo không có hiệu ứng mờ dần */
+    transform: none; /* Loại bỏ hiệu ứng phóng to/thu nhỏ */
+}
+
+.image-tab .carousel-item.active {
+    opacity: 1;
+    transform: none;
+}
+
+.image-tab .carousel-item {
+    width: fit-content !important;
+    margin: auto; /* Đảm bảo carousel-item được căn giữa nếu nó nhỏ hơn khung chứa */
+}
+
+.image-tab .carousel-item.active {
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Căn giữa nội dung bên trong carousel-item */
+    align-items: center;
+}
+
+.image-tab .carousel-item .lg-item > img {
+    margin: 2px;
+    padding: 4px;
+    height: 500px;
+    object-fit: contain;
+}
+
+.image-tab .img-child {
+    height: 400px;
+    max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước khung chứa */
+    object-fit: contain;
+    display: block;
+    margin: auto; /* Căn giữa ảnh nhỏ trong khung chứa */
+}
+
+.image-tab .carousel-icon {
+    border-radius: 50%;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-tab .carousel-inner {
+    /* background-color: #333333c4; */
+    border-radius: 8px;
+    padding: 10px; /* Tạo khoảng cách giữa hình ảnh và viền carousel-inner */
+    display: flex;
+    justify-content: center; /* Căn giữa nội dung bên trong carousel-inner */
+    align-items: center;
+}
+
+.image-tab .carousel-caption:hover {
+    background-color: #181717c4;
+}
+
+.image-tab .carousel-caption {
+    background-color: #5858587e;
+    padding: 4px;
+    font-weight: 600;
+    border-radius: 8px;
+    max-width: 90%; /* Giới hạn chiều rộng của caption để không vượt quá kích thước ảnh */
+    margin: auto; /* Căn giữa caption nếu nó nhỏ hơn nội dung */
+}
+
+
+/* .image-tab .carousel-item {
     width: fit-content !important;
 }
 
@@ -1868,7 +1950,7 @@ body .material-icons-wrapper.md-20 {
     padding: 4px;
     font-weight: 600;
     border-radius: 8px;
-}
+} */
 
 .pagination .page-item {
     padding: 2px;

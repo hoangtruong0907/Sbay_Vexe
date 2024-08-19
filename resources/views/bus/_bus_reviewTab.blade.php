@@ -1,10 +1,13 @@
+
+
 @if (!empty($reviewPoint) && !empty($reviews) && !empty($reviewPoint['overall']))
     <div id="review-tab-{{$companyId}}">
         <div class="d-flex align-items-center">
             <div class="d-flex align-items-center rating-info">
-                <button class="btn btn-primary p-1"><i
+                <button class="btn btn-primary p-1" style="white-space: nowrap;"><i
                         class="fa-solid fa-star me-1"></i>{{ $reviewPoint['overall']['rv_main_value'] }}</button>
-                <div class="d-flex align-items-center star-rating ms-2 me-2" style="color: rgb(255, 199, 0);">
+                <div class="d-flex align-items-center star-rating ms-2 me-2"
+                 style="color: rgb(255, 199, 0);">
                     {!! renderRatingStars($reviewPoint['overall']['rv_main_value']) !!}
                 </div>
                 <div class="text-wrap">{{ $reviewPoint['overall']['total_reviews'] }} Đánh giá</div>
@@ -68,10 +71,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <small>{{ timeAgo($review['created_at']) }}</small>
+                            <small class="time">{{ timeAgo($review['created_at']) }}</small>
                         </div>
                         <p class="mb-1">{{ $review['comment'] ?? '' }}</p>
                         <div class="d-flex list-img-review flex-row">
+                        <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1"><img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1"><img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1">
                             @if (count($review['images']) > 0)
                                 @foreach ($review['images'] as $img)
                                     <img class="thumb-img-review"
