@@ -168,8 +168,4 @@
 </html>
 <?php $__env->stopSection(); ?>
 
-<<<<<<<< HEAD:storage/framework/views/129862f2db43a93439e590ed2d895401.php
-<?php echo $__env->make('admin.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/sbayht copy 4/sbay_vexere/resources/views/admin/blogs/create.blade.php ENDPATH**/ ?>
-========
-<?php echo $__env->make('admin.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/sbayht copy 2/sbay_vexere/resources/views/admin/blogs/create.blade.php ENDPATH**/ ?>
->>>>>>>> origin/feature/blog3:storage/framework/views/b39cabd526295637c296e0fae9fe48c3.php
+<?php echo $__env->make('admin.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/sbayht copy 6/sbay_vexere/resources/views/admin/blogs/create.blade.php ENDPATH**/ ?>

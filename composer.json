@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "doctrine/dbal": "^4.0",
         "laravel/framework": "^11.9",
         "laravel/passport": "*",
         "laravel/socialite": "^5.15",
@@ -71,7 +70,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    
-    "url": "https://example.com/images/foo.jpg"  
+    "prefer-stable": true
 }

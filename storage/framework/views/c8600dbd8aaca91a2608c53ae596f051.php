@@ -10,11 +10,7 @@
 <div class="blog-list">
     <?php echo $__env->make('admin.profile._message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="text container-table " style="margin-top:30px;">
-<<<<<<< HEAD
-        <h4>Blog List</h4>
-=======
         <h1>Blog List</h1>
->>>>>>> origin/feature/blog3
     </div>
 
     <div class="button-blog ssss">
@@ -22,8 +18,6 @@
             <button type="submit" class="btnsss">Add Blog</button>
         </form>
     </div>
-<<<<<<< HEAD
-=======
 
     <!-- Search Form -->
     <div class="search-blog ffff container-table">
@@ -34,7 +28,6 @@
     </form>
 </div>
     </div>
->>>>>>> origin/feature/blog3
 </div>
 
 <!-- All Posts Section -->
@@ -82,11 +75,7 @@
 
     <!-- Pagination Links -->
     <div class="pagination">
-<<<<<<< HEAD
-        <?php echo e($allPosts->links()); ?>
-=======
         <?php echo e($allPosts->appends(['search' => request('search')])->links()); ?>
->>>>>>> origin/feature/blog3
 
     </div>
 </div>
@@ -94,4 +83,4 @@
 </html>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/sbayht copy 2/sbay_vexere/resources/views/admin/blogs/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/sbayht copy 6/sbay_vexere/resources/views/admin/blogs/index.blade.php ENDPATH**/ ?>

@@ -1,9 +1,9 @@
-@extends('layouts.app')
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title>Vé Xe Rẻ</title>
 
     <meta name="title" content="tieu de" />
@@ -17,8 +17,8 @@
     <meta property="og:image" content="hinh anh">
     <meta property="og:type" content="website" />
 
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/stylesmobile.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/stylesmobile.css')); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
 </head>
@@ -32,58 +32,15 @@
         </div>
         <div class="logo-mobi">
             <a href="#">
-                <img src="{{ asset('images/logo-header.svg') }}" alt="logo">
+                <img src="<?php echo e(asset('images/logo-header.svg')); ?>" alt="logo">
             </a>
         </div>
         <div class="login-mobi">
             <a href="">Đăng Nhập</a>
-<<<<<<< HEAD
-=======
-=======
-@section('title', 'Trang chủ')
-@section('styles')
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
-@endsection
-
-@section('content')
-<!-- slide -->
-<div class="total-slide position-relative">
-    <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
-        @include('components.search_component', [
-        'params' => [],
-        ])
-    </div>
-    <div class="img-slide">
-        <img src="{{ asset('images/slide.jpg') }}" alt="slide">
-    </div>
-    <div class="wrap-criteria">
-        <div class="criteria-slide">
-            <img src="{{ asset('images/criteria1.svg') }}" alt="criteria">
-            <p>Chắc chắn có chỗ</p>
-        </div>
-        <div class="criteria-slide">
-            <img src="{{ asset('images/criteria2.svg') }}" alt="criteria">
-            <p>Hỗ Trợ 24/7</p>
-        </div>
-        <div class="criteria-slide">
-            <img src="{{ asset('images/criteria3.svg') }}" alt="criteria">
-            <p>Nhiều ưu đãi</p>
-        </div>
-        <div class="criteria-slide">
-            <img src="{{ asset('images/criteria4.svg') }}" alt="criteria">
-            <p>Thanh toán đa dạng</p>
->>>>>>> beb8248e1c110d736cb67a7f051a7c1932046e77
->>>>>>> origin/feature/blog3
         </div>
     </div>
 </div>
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/feature/blog3
 
     <!-- menu-mobile -->
     <div id="mySidenav" class="sidenav">
@@ -101,7 +58,7 @@
             <div class="left-header">
                 <div class="logo-header">
                     <a href="#">
-                        <img src="{{ asset('images/logo-header.svg') }}" alt="logo">
+                        <img src="<?php echo e(asset('images/logo-header.svg')); ?>" alt="logo">
                     </a>
                 </div>
                 <div class="slogan-header">
@@ -151,23 +108,23 @@
         <!-- slide -->
         <div class="total-slide">
             <div class="img-slide">
-                <img src="{{ asset('images/slide.jpg') }}" alt="slide" height="20px">
+                <img src="<?php echo e(asset('images/slide.jpg')); ?>" alt="slide" height="20px">
             </div>
             <div class="wrap-criteria">
                 <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria1.svg') }}" alt="criteria">
+                    <img src="<?php echo e(asset('images/criteria1.svg')); ?>" alt="criteria">
                     <p>Chắc chắn có chỗ</p>
                 </div>
                 <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria2.svg') }}" alt="criteria">
+                    <img src="<?php echo e(asset('images/criteria2.svg')); ?>" alt="criteria">
                     <p>Hỗ Trợ 24/7</p>
                 </div>
                 <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria3.svg') }}" alt="criteria">
+                    <img src="<?php echo e(asset('images/criteria3.svg')); ?>" alt="criteria">
                     <p>Nhiều ưu đãi</p>
                 </div>
                 <div class="criteria-slide">
-                    <img src="{{ asset('images/criteria4.svg') }}" alt="criteria">
+                    <img src="<?php echo e(asset('images/criteria4.svg')); ?>" alt="criteria">
                     <p>Thanh toán đa dạng</p>
                 </div>
             </div>
@@ -175,51 +132,51 @@
             <!-- slide -->
             <div class="total-slide position-relative">
                 <div class="container-airlinetickets position-absolute   start-50 translate-middle" style="margin-top:-200px;">
-                    @include('components.search_component', [
+                    <?php echo $__env->make('components.search_component', [
                     'params' => [],
-                    ])
+                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             </div>
         </div>
     </div>
     <div class="formCard">
-    @if($allPosts->isNotEmpty())
-        @php
+    <?php if($allPosts->isNotEmpty()): ?>
+        <?php
             $groupedPosts = $allPosts->groupBy('type');
-        @endphp
+        ?>
 
-        @foreach($groupedPosts as $type => $posts)
+        <?php $__currentLoopData = $groupedPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type => $posts): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="nigt">
                 <div class="text-card blogs">
-                    <p class="card-type popular-route-label">{{ $typeMapping[$type] ?? ucfirst($type) }}</p>
+                    <p class="card-type popular-route-label"><?php echo e($typeMapping[$type] ?? ucfirst($type)); ?></p>
                 </div>
                 <div class="blogs">
                     <div class="scroll-container popular">
                         <div class="container item-card-list">
-                            @foreach($posts as $post)
-                                @if($post->status !== 'archived')
+                            <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($post->status !== 'archived'): ?>
                                     <div class="card-wrapper">
-                                        <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($post->title, '-')]) }}">
+                                        <a href="<?php echo e(route('blog.content', ['slug' => \Illuminate\Support\Str::slug($post->title, '-')])); ?>">
                                             <div class="card card-item">
-                                                <img src="{{ Storage::url($post->picture) }}" alt="{{ $post->title }}" class="card-image">
+                                                <img src="<?php echo e(Storage::url($post->picture)); ?>" alt="<?php echo e($post->title); ?>" class="card-image">
                                                 <div class="card-content">
                                                     <div class="text-nvc">
-                                                        <h4 class="card-title">{{ $post->title }}</h4>
+                                                        <h4 class="card-title"><?php echo e($post->title); ?></h4>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
-                                @endif
-                            @endforeach
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
             </div>
-        @endforeach
-    @else
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php else: ?>
         <p>No popular blog posts found.</p>
-    @endif
+    <?php endif; ?>
 </div>
 
 
@@ -272,38 +229,18 @@
         }
     </script>
 
-    @push('page-scripts')
+    <?php $__env->startPush('page-scripts'); ?>
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
     <script>
         // data load search component
         // list data areas
-        const busCities = @json($list_areas ?? []);
-        const dateTo = @json($params -> dateTo ?? "");
+        const busCities = <?php echo json_encode($list_areas ?? [], 15, 512) ?>;
+        const dateTo = <?php echo json_encode($params -> dateTo ?? "", 15, 512) ?>;
     </script>
-    <script src="{{ asset('js/search_component.js') }}"></script>
-    @endpush
+    <script src="<?php echo e(asset('js/search_component.js')); ?>"></script>
+    <?php $__env->stopPush(); ?>
 </body>
 
 </html>
-<<<<<<< HEAD
-=======
-=======
-@endsection
-@push('page-scripts')
-<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
-<script>
-// data load search component
-// list data areas
-const busCities = @json($list_areas ?? []);
-const dateTo = @json($params->dateTo ?? "");
-const dateFrom = @json($params->dateFrom ?? "");
-
-// list data route
-const trainStations = @json($trainStations ?? []);
-</script>
-<script src="{{ asset('js/search_component.js') }}"></script>
-@endpush
->>>>>>> beb8248e1c110d736cb67a7f051a7c1932046e77
->>>>>>> origin/feature/blog3
+<?php /**PATH /Applications/sbayht copy 6/sbay_vexere/resources/views/index.blade.php ENDPATH**/ ?>

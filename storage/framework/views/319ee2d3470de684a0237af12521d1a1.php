@@ -243,4 +243,8 @@
 </body>
 
 </html>
+<<<<<<<< HEAD:storage/framework/views/319ee2d3470de684a0237af12521d1a1.php
 <?php /**PATH /Applications/sbayht copy 4/sbay_vexere/resources/views/index.blade.php ENDPATH**/ ?>
+========
+<?php /**PATH /Applications/sbayht copy 2/sbay_vexere/resources/views/index.blade.php ENDPATH**/ ?>
+>>>>>>>> origin/feature/blog3:storage/framework/views/88a749cbdb7c82b178f7ba7c426e8c50.php

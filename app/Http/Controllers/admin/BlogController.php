@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+<<<<<<< HEAD
     public function index()
 {
     $postTypes = BlogPostModel::distinct()->pluck('type');
@@ -35,6 +36,44 @@ class BlogController extends Controller
     ]);
     }
 
+=======
+    public function index(Request $request)
+{
+    $postTypes = BlogPostModel::distinct()->pluck('type');
+
+    // Lấy từ khóa tìm kiếm nếu có
+    $search = $request->input('search');
+
+    // Tạo một truy vấn cơ bản
+    $query = BlogPostModel::orderBy('created_at', 'desc');
+
+    // Nếu có từ khóa tìm kiếm, thêm điều kiện lọc
+    if (!empty($search)) {
+        $query->where('title', 'like', "%{$search}%");
+    }
+
+    // Lấy tất cả các bài viết theo điều kiện tìm kiếm và phân trang
+    $allPosts = $query->paginate(10);
+
+    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    $perPage = 10; // Số lượng mục mỗi trang
+    $currentItems = $allPosts->forPage($currentPage, $perPage);
+
+    $paginator = new LengthAwarePaginator(
+        $currentItems,
+        $allPosts->total(),
+        $perPage,
+        $currentPage,
+        ['path' => LengthAwarePaginator::resolveCurrentPath()]
+    );
+
+    return view('admin.blogs.index', [
+        'allPosts' => $paginator,
+        'postTypes' => $postTypes,
+    ]);
+}
+
+>>>>>>> origin/feature/blog3
 
     public function show($slug)
     {

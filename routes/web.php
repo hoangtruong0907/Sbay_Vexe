@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
@@ -28,8 +27,21 @@ Route::prefix('/admin')->group(function () {
     Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
+<<<<<<< HEAD
 
 Route::get('/', [BlogControllers::class, 'index'])->name('index');
+=======
+Route::get('/', [BlogControllers::class, 'index'])->name('index');
+
+Route::post('/blog/store', [BlogControllers::class, 'store'])->name('admin.blog.store');
+
+Route::get('/route-search/{fromtoPlace}', [RouteController::class, 'routeSearch']);
+Route::get('/test', [TestController::class, 'test']);
+Route::get('/airline_tickets', function () {
+    return view('airline_tickets');
+});
+Route::get('/', [RouteController::class, 'index'])->name('home');
+>>>>>>> origin/feature/blog3
 Route::get('/test', [TestController::class, 'test']);
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 

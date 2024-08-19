@@ -118,9 +118,6 @@ body .material-icons-wrapper.md-20 {
     opacity: 1;
     visibility: visible;
 }
-.card-css{
-    margin-top: 80px;
-} 
 
 .contact-dropdown a {
     text-decoration: none;
@@ -133,12 +130,11 @@ body .material-icons-wrapper.md-20 {
 
 .total-slide {
     position: relative;
-    margin-bottom: 40px;
 }
 
 .img-slide img {
     width: 100%;
-    height: 60%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -1578,6 +1574,7 @@ body .material-icons-wrapper.md-20 {
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 .card-wrapper a{
 color:#000;
 text-decoration: none;
@@ -1610,8 +1607,21 @@ text-decoration: none;
   align-items: center;
   flex-shrink: 0; 
   
+<<<<<<< HEAD
+=======
 }
-
+.search-blog{
+    text-align: right;
+}
+.vvvv{
+    padding: 7px;
+    background-color: rgb(230, 229, 229);
+    border: 1px solid rgb(180, 180, 180);
+    color: black;
+    text-decoration: none;
+    border-radius: 0;
+>>>>>>> origin/feature/blog3
+}
 .card-image {
   width: 100%;
   height: auto; 
@@ -1878,6 +1888,8 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     
     white-space: normal;
 }
+=======
+>>>>>>> beb8248e1c110d736cb67a7f051a7c1932046e77
 /* collapse detail  */
 .ticket-detail-container {
     /* min-height: 450px; */
@@ -2275,19 +2287,7 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
 .step-content1 {
     position: relative;
 }
-.btn-action {
-    display: inline-block;
-    background-color: rgb(230, 229, 229); 
-    color: rgb(6, 6, 6); 
-    padding: 8px 16px;
-    margin: 4px 2px; 
-    text-align: center; 
-    text-decoration: none; 
-    border-radius: 4px; 
-    border: 1px solid rgb(180, 180, 180);
-    font-size: 14px; 
-    transition: background-color 0.3s ease; 
-}
+
 .trust-message {
     display: flex;
     margin-top: 16px;
@@ -3128,107 +3128,4 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
 
 .left-total-amount span {
     font-size: 15px;
-}
-
-.text-card{
-    width:100%;
-}
-.text-card {
-    width: 100%;
-    
-    box-sizing: border-box; /* Để padding được tính trong width */
-}
-.popular{
-    width: 82%;
-    margin: 0 auto; /* Căn giữa trong .text-card */
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 28.64px;
-    color: rgb(72, 72, 72);
-    margin-bottom: 16px;
-}
-.popular-route-label {
-    width: 80%;
-    margin: 0 auto; /* Căn giữa trong .text-card */
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 28.64px;
-    color: rgb(72, 72, 72);
-    margin-bottom: 16px;
-}
-.route-label{
-    width: 56%;
-}
-.post-title{
-    margin-top: 30px;
-}
-.iavTwq{
-    margin-top: 20px; 
-}
-.incentive{
-    display: flex;
-    justify-content: center;
-
-}
-.incentives{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-
-
-.container-table {
-    width: 90%;
-    margin: 0 auto;
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-
-
-
-
-
-.pagination {
-    text-align: center;
-    margin-top: 20px;
-}
-.ssss{
-    text-align: right; /* Căn chỉnh nội dung của .button-blog sang bên phải */
-    margin-bottom: 20px;
-    width:95%;
-    
-}
-.btnsss{
-    padding:7px;
-   background-color: rgb(230, 229, 229);
-   border: 1px solid rgb(180, 180, 180);
-   color:black;
-   text-decoration: none;
-}
-.btnsss:hover {
-    text-decoration: none; 
-    background-color: rgb(203, 203, 203);
-  }
-
-.hidden{
-    display: none;
-  }
-.card-type{
-    text-align: left;
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: 0px;
-    opacity: 1;
-    margin-bottom: 16px;
-}
-.relatedContent {
-    width:80%;
-    display: flex;
-    justify-content: center;
 }

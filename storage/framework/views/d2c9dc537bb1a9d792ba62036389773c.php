@@ -114,8 +114,4 @@
         </div>
     </nav>
 <?php endif; ?>
-<<<<<<<< HEAD:storage/framework/views/4e402551a90e54212697fb82e074da65.php
-<?php /**PATH /Applications/sbayht copy 4/sbay_vexere/vendor/laravel/framework/src/Illuminate/Pagination/resources/views/tailwind.blade.php ENDPATH**/ ?>
-========
-<?php /**PATH /Applications/sbayht copy 2/sbay_vexere/vendor/laravel/framework/src/Illuminate/Pagination/resources/views/tailwind.blade.php ENDPATH**/ ?>
->>>>>>>> origin/feature/blog3:storage/framework/views/84aee26dc84922f33893acd7e872556e.php
+<?php /**PATH /Applications/sbayht copy 6/sbay_vexere/vendor/laravel/framework/src/Illuminate/Pagination/resources/views/tailwind.blade.php ENDPATH**/ ?>
