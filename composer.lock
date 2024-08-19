@@ -1856,12 +1856,8 @@
             ],
             "time": "2024-04-11T23:07:54+00:00"
         },
-        {
+            {
             "name": "league/commonmark",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/feature/blog3
             "version": "2.5.3",
             "source": {
                 "type": "git",
@@ -1872,9 +1868,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/b650144166dfa7703e62a22e493b853b58d874b0",
                 "reference": "b650144166dfa7703e62a22e493b853b58d874b0",
-<<<<<<< HEAD
-=======
-=======
             "version": "2.5.1",
             "source": {
                 "type": "git",
@@ -1885,8 +1878,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/ac815920de0eff6de947eac0a6a94e5ed0fb147c",
                 "reference": "ac815920de0eff6de947eac0a6a94e5ed0fb147c",
->>>>>>> beb8248e1c110d736cb67a7f051a7c1932046e77
->>>>>>> origin/feature/blog3
                 "shasum": ""
             },
             "require": {
@@ -1979,15 +1970,8 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
             "time": "2024-08-16T11:46:16+00:00"
-=======
-<<<<<<< HEAD
-            "time": "2024-08-16T11:46:16+00:00"
-=======
-            "time": "2024-07-24T12:52:09+00:00"
->>>>>>> beb8248e1c110d736cb67a7f051a7c1932046e77
->>>>>>> origin/feature/blog3
+
         },
         {
             "name": "league/config",
@@ -3580,11 +3564,6 @@
                 "source": "https://github.com/php-fig/cache/tree/3.0.0"
             },
             "time": "2021-02-03T23:26:27+00:00"
-<<<<<<< HEAD
-=======
-=======
->>>>>>> beb8248e1c110d736cb67a7f051a7c1932046e77
->>>>>>> origin/feature/blog3
         },
         {
             "name": "psr/clock",
