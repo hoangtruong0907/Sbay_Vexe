@@ -179,19 +179,19 @@
                 <div class="seat-groups">
                     <div class="note">Chú thích</div>
                     <div class="seat-info">
-                        {!! renderSeat('default', 'unselected') !!}
+                        {!! renderSeat($seatMap['vehicle']['seat_type'], 'unselected') !!}
                         <span class="seat-name">Ghế không bán</span>
                     </div>
                     <div class="seat-info">
-                        {!! renderSeat('bed', 'selected') !!}
+                        {!! renderSeat($seatMap['vehicle']['seat_type'], 'selected') !!}
                         <span class="seat-name">Đang chọn</span>
                     </div>
                     <div class="seat-info">
-                        {!! renderSeat('couple') !!}
+                        {!! renderSeat($seatMap['vehicle']['seat_type']) !!}
                         <span class="seat-name">Ghế trống</span>
                     </div>
                     <div class="seat-info">
-                        {!! renderSeat('default', '', 'seat-discount') !!}
+                        {!! renderSeat($seatMap['vehicle']['seat_type'], '', 'seat-discount') !!}
                         <span class="seat-name">
                             <div class="seat-name-group">CABIN ĐƠN</div>
                             <div class="seat-original">
@@ -201,7 +201,7 @@
                         </span>
                     </div>
                     <div class="seat-info">
-                        {!! renderSeat('default', '', 'seat-group') !!}
+                        {!! renderSeat($seatMap['vehicle']['seat_type'], '', 'seat-group') !!}
                         <span class="seat-name">
                             <div class="seat-name-group">CABIN ĐÔI</div>
                             <div class="seat-original">
@@ -245,7 +245,7 @@
                                                     <td class="seat">
                                                         <div class="seat-choose-item seat-container"
                                                             data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
-                                                            {!! renderSeat('default', 'unselected') !!}
+                                                            {!! renderSeat($seatMap['vehicle']['seat_type'], 'unselected') !!}
                                                         </div>
                                                     </td>
                                                 @elseif ($seat)
@@ -253,8 +253,9 @@
                                                         <div class="seat-choose-item seat-container"
                                                             data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}"
                                                             data-full-code="{{ $seat['full_code'] }}"
-                                                            data-seat-code="{{ $seat['seat_code'] }}">
-                                                            {!! renderSeat('default', $seat['seat_code']) !!}
+                                                            data-seat-code="{{ $seat['seat_code'] }}"
+                                                            data-fare-seat="{{ $seat['fares']['original'] ?? $seat['fare'] }}">
+                                                            {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
                                                         </div>
                                                     </td>
                                                 @else

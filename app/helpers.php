@@ -95,43 +95,35 @@ function renderRatingStars($rating)
 
 function renderSeat($type = "default", $action = "default", $status = "default", $color = "default",  $on = false)
 {
-    // $type: Loại ghế, $action: tích chọn hoặc kh chọn X, $status: màu khác, $on: onclick()
-    if (!$type || !in_array($type, ['default', 'couple', 'bed', 'helm'])) {
+    $typeMapping = [
+        2 => 'bed',
+        3 => 'bed',
+        7 => 'couple',
+    ];
+    $type = $typeMapping[$type] ?? 'default';
+    if (!in_array($type, ['default', 'couple', 'bed', 'helm'])) {
         return '';
-    }
-
-    switch ($type) {
-        case '1':
-            $class = 'default';
-            break;
-        case '2':
-            $class = 'checked';
-            break;
-            case '3':
-                $class = 'checked';
-                break;
-        default:
-            $class = 'default';
-            break;
     }
 
     $config = [
         'default' => [
-            'class' => 'seat-thumbnail',
-            'width' => 32,
-            'height' => 40,
-            'viewBox' => '0 0 28 40',
+            'class' => 'seat-thumbnail seat-thumbnail-hor',
+            'width' => 40,
+            'height' => 32,
+            'viewBox' => '0 0 40 32',
             'rects' => [
-                ['x' => 2.75, 'y' => 2.75, 'width' => 22.5, 'height' => 34.5],
-                ['x' => 5.75, 'y' => 27.75, 'width' => 16.5, 'height' => 6.5]
+                ['x' => 8.75, 'y' => 2.75, 'width' => 22.5, 'height' => 26.5],
+                ['x' => 10.25, 'y' => 11.75, 'width' => 14.5, 'height' => 5.5, 'transform' => 'rotate(90 10.25 11.75)'],
+                ['x' => 35.25, 'y' => 11.75, 'width' => 14.5, 'height' => 5.5, 'transform' => 'rotate(90 35.25 11.75)'],
+                ['x' => 8.75, 'y' => 22.75, 'width' => 22.5, 'height' => 6.5]
             ],
             'paths' => [
-                'selected' => 'M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z',
-                'disabled' => 'M18.96 11.46l-1.42-1.42L14 13.59l-3.54-3.55-1.42 1.42L12.59 15l-3.55 3.54 1.42 1.42L14 16.41l3.54 3.55 1.42-1.42L15.41 15l3.55-3.54z'
+                'selected' => 'M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z',
+                'disabled' => 'M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z'
             ]
         ],
         'couple' => [
-            'class' => 'seat-thumbnail-couple',
+            'class' => 'seat-thumbnail seat-thumbnail-couple',
             'width' => 40,
             'height' => 44,
             'viewBox' => '0 0 50 40',
@@ -146,19 +138,17 @@ function renderSeat($type = "default", $action = "default", $status = "default",
             ]
         ],
         'bed' => [
-            'class' => 'seat-thumbnail-hor',
-            'width' => 40,
-            'height' => 32,
-            'viewBox' => '0 0 40 32',
+            'class' => 'seat-thumbnail seat-thumbnail-bed',
+            'width' => 32,
+            'height' => 40,
+            'viewBox' => '0 0 28 40',
             'rects' => [
-                ['x' => 8.75, 'y' => 2.75, 'width' => 22.5, 'height' => 26.5],
-                ['x' => 10.25, 'y' => 11.75, 'width' => 14.5, 'height' => 5.5, 'transform' => 'rotate(90 10.25 11.75)'],
-                ['x' => 35.25, 'y' => 11.75, 'width' => 14.5, 'height' => 5.5, 'transform' => 'rotate(90 35.25 11.75)'],
-                ['x' => 8.75, 'y' => 22.75, 'width' => 22.5, 'height' => 6.5]
+                ['x' => 2.75, 'y' => 2.75, 'width' => 22.5, 'height' => 34.5],
+                ['x' => 5.75, 'y' => 27.75, 'width' => 16.5, 'height' => 6.5]
             ],
             'paths' => [
-                'selected' => 'M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z',
-                'disabled' => 'M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z'
+                'selected' => 'M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z',
+                'disabled' => 'M18.96 11.46l-1.42-1.42L14 13.59l-3.54-3.55-1.42 1.42L12.59 15l-3.55 3.54 1.42 1.42L14 16.41l3.54 3.55 1.42-1.42L15.41 15l3.55-3.54z'
             ]
         ],
         'helm' => [

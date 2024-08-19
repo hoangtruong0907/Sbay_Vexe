@@ -2236,7 +2236,7 @@ body .material-icons-wrapper.md-20 {
     gap: 10px;
 }
 
-.seat-thumbnail {
+.seat-thumbnail-bed {
     width: 32px;
     height: 40px;
     display: flex;
@@ -2244,7 +2244,7 @@ body .material-icons-wrapper.md-20 {
     justify-content: center;
 }
 
-.seat-thumbnail svg {
+.seat-thumbnail-bed svg {
     width: 100%;
     height: auto;
 }

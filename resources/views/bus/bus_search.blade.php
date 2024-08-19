@@ -1129,15 +1129,15 @@
             toggleTextarea34();
         });
 
-        function nextStep(step) {
-            document.querySelector('.wizard-step.active').classList.remove('active');
-            document.getElementById('step' + step).classList.add('active');
-        }
+        // function nextStep(step) {
+        //    $('#step1-' + step).removeClass('active');
+        //     $('#step2-' + step).addClass('active');
+        // }
 
-        function prevStep(step) {
-            document.querySelector('.wizard-step.active').classList.remove('active');
-            document.getElementById('step' + step).classList.add('active');
-        }
+        // function prevStep(step) {
+        //     $('#step1-' + step).removeClass('active');
+        //     $('#step2-' + step).addClass('active');
+        // }
 
         $(document).ready(function() {
             // Click popup gg map by lat & lon
@@ -1260,6 +1260,9 @@
                             $(`.ticket-step-collapse #step1-${keyId}`).html(data.dataHTML);
                             visibilityState[keyId] = true;
 
+                            let fareSeat = $(
+                                `.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`
+                                ).data('fare-seat');
                             $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
                                 .on('click', function() {
                                     let elThumb = $(this).children('.seat-thumbnail');
@@ -1271,6 +1274,7 @@
                                         delete proxies[keyId][seatCode];
                                     }
                                     // console.log(proxies[keyId]);
+                                    console.log(fareSeat);
                                 });
 
                             $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`).each(
