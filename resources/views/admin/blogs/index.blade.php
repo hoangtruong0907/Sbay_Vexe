@@ -1,0 +1,85 @@
+@extends('admin.layouts.default')
+
+@section('title', 'Dashboard')
+@section('contents')
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+</head>
+<body>
+<div class="blog-list">
+    @include('admin.profile._message')
+    <div class="text container-table " style="margin-top:30px;">
+        <h1>Blog List</h1>
+    </div>
+
+    <div class="button-blog ssss">
+        <form action="{{ route('admin.blogs.create') }}">
+            <button type="submit" class="btnsss">Add Blog</button>
+        </form>
+    </div>
+
+    <!-- Search Form -->
+    <div class="search-blog ffff container-table">
+    <div class="d-flex justify-content-end mb-3">
+    <form method="GET" action="{{ route('admin.blogs.index') }}" class="form-inline">
+        <input type="text" name="search" class="form-control mr-sm-2" placeholder="Tìm kiếm tiêu đề bài viết" value="{{ request('search') }}" style="width: 200px; margin-bottom:10px;">
+        <button type="submit" class="btn btn-primary vvvv">Tìm kiếm</button>
+    </form>
+</div>
+    </div>
+</div>
+
+<!-- All Posts Section -->
+<div class="container-table ffff">
+    <table class="table table-list-navicat">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Author</th>
+                <th>Type</th>
+                <th>Status</th> 
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ($allPosts as $post)
+    <tr>
+        <td>{{ $post->id }}</td>
+        <td>{{ Str::limit($post->title, 20, '...') }}</td>
+        <td>{{ Str::limit($post->content, 50, '...') }}</td>
+        <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
+        <td>{{ $post->updated_at->format('Y-m-d H:i:s') }}</td>
+        <td>{{ $post->author }}</td>
+        <td>{{ $post->type }}</td>
+        <td>{{ ucfirst($post->status) }}</td>
+        <td>
+            <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btn-action">Edit</a>
+            
+            <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this blog?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-action delete">Delete</button>
+            </form>
+
+            <a href="{{ route('blog.content', ['slug' => $post->slug]) }}" class="btn-action">Link</a>
+        </td>
+    </tr>
+    @endforeach
+        </tbody>
+    </table>
+
+    <!-- Pagination Links -->
+    <div class="pagination">
+        {{ $allPosts->appends(['search' => request('search')])->links() }}
+    </div>
+</div>
+</body>
+</html>
+@endsection
