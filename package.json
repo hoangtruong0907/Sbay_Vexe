@@ -16,23 +16,6 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-basic-styles": "^43.0.0",
-        "@ckeditor/ckeditor5-build-classic": "^43.0.0",
-        "@ckeditor/ckeditor5-core": "^43.0.0",
-        "@ckeditor/ckeditor5-dev-utils": "^42.0.0",
-        "@ckeditor/ckeditor5-editor-classic": "^43.0.0",
-        "@ckeditor/ckeditor5-essentials": "^43.0.0",
-        "@ckeditor/ckeditor5-heading": "^43.0.0",
-        "@ckeditor/ckeditor5-image": "^43.0.0",
-        "@ckeditor/ckeditor5-list": "^43.0.0",
-        "@ckeditor/ckeditor5-paragraph": "^43.0.0",
-        "@ckeditor/ckeditor5-table": "^43.0.0",
-        "@ckeditor/ckeditor5-theme-lark": "^43.0.0",
-        "@ckeditor/ckeditor5-ui": "^43.0.0",
-        "@ckeditor/ckeditor5-upload": "^43.0.0",
-        "@webspellchecker/wproofreader-ckeditor5": "^3.1.1",
-        "bootstrap-icons": "^1.11.3",
-        "ckeditor5": "^43.0.0",
-        "ckeditor5-premium-features": "^43.0.0"
+        "bootstrap-icons": "^1.11.3"
     }
 }

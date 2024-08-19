@@ -10,10 +10,6 @@
             <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
         </li>
         <li>
-        <a href="{{ route('admin.blogs.index') }}"><i class="fas fa-file-alt"></i> Blog</a>
-
-        </li>
-        <li>
             <a href="tables.html"><i class="fas fa-table"></i> Tables</a>
         </li>
         <li>
@@ -23,7 +19,8 @@
             <a href="icons.html"><i class="fas fa-icons"></i> Icons</a>
         </li>
         <li>
-            <a href="#uielementsmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-layer-group"></i> UI Elements</a>
+            <a href="#uielementsmenu" data-bs-toggle="collapse" aria-expanded="false"
+                class="dropdown-toggle no-caret-down"><i class="fas fa-layer-group"></i> UI Elements</a>
             <ul class="collapse list-unstyled" id="uielementsmenu">
                 <li>
                     <a href="ui-buttons.html"><i class="fas fa-angle-right"></i> Buttons</a>
@@ -46,7 +43,8 @@
             </ul>
         </li>
         <li>
-            <a href="#authmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-user-shield"></i> Authentication</a>
+            <a href="#authmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i
+                    class="fas fa-user-shield"></i> Authentication</a>
             <ul class="collapse list-unstyled" id="authmenu">
                 <li>
                     <a href="login.html"><i class="fas fa-lock"></i> Login</a>
@@ -60,7 +58,8 @@
             </ul>
         </li>
         <li>
-            <a href="#pagesmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-copy"></i> Pages</a>
+            <a href="#pagesmenu" data-bs-toggle="collapse" aria-expanded="false"
+                class="dropdown-toggle no-caret-down"><i class="fas fa-copy"></i> Pages</a>
             <ul class="collapse list-unstyled" id="pagesmenu">
                 <li>
                     <a href="blank.html"><i class="fas fa-file"></i> Blank page</a>
