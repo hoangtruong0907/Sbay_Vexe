@@ -18,6 +18,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-.DS_Store
-/storage/framework/views/*
-.DS_Store
