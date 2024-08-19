@@ -257,3 +257,503 @@
 .pills-bus-tab {
     margin-right: 5px;
 }
+
+
+/* //////////// */
+@media only screen and (max-width: 1040px) {
+    .airlinetickets{
+        width: 100%;
+    }
+    .container-airlinetickets{
+
+        width: 100%;
+        
+    }
+   
+    .left-filter{
+        display: none;
+        
+    }
+  
+    .right-filter{
+        width: 1150px;
+        white-space: normal; 
+    }
+    header{
+    width:100% ; 
+    max-width: 100vw; 
+    margin: 0 auto; 
+    padding: 0; 
+    box-sizing: border-box; 
+    }
+    .slogan-header{
+        display: none;
+    }
+    .full-trip-l{
+        display: none;
+    }
+    .container-l{
+        width: 97%;
+        padding: 40px;
+        margin-left: 10px;
+        padding: 10px;
+        
+    }
+    .ticket-info-l{
+        display: flex;
+        flex-direction: column;
+      
+    }
+    .action-p{
+        position: relative;
+    
+    }
+    .action-l{
+        /* transform: scale(0.6) translateX(100px);  */
+        margin-left: -18px;
+        padding-bottom: 5px;
+    }      
+    .social-proof-l{
+        position: relative; 
+        margin-left: -150px;
+        left: 0px;
+        display: none;
+ 
+    
+    }
+    .notify-trip-l{
+        position: absolute; 
+        right: 50px;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 12px;
+        white-space: nowrap; 
+        text-align: right; 
+        max-width: 40vw; 
+
+    }
+    .ticket-image-l img {
+        width: 60%;
+        height: 60%;
+        object-fit: revert;
+        border-radius: 50%;
+        margin-top: 4px;
+    }
+    .ticket-image-l {
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+    .ticket-confirm-l{
+        display: none;
+        
+    }
+    .bus-name-l {
+        margin-left: 50px;
+        margin-top: -155px;
+    }
+    
+    .bus-rating-l {
+        display: none;
+        
+    }
+    .fare-l { 
+        font-size: 12px;
+        /* margin-right: 25px; */
+       /* transform: scale(0.9) translateX(20px);  */
+       margin-top: -63px;
+    
+    }
+    .small{
+        /* margin-right: 25px;
+        transform: scale(0.9) translateX(20px);  */
+    }
+    .content-has-cop {
+    font-size: 10px; 
+    margin-right: 0; 
+    position: relative;
+    left: 8px; 
+    top: -10px; 
+    transform: scale(1); 
+    transition: transform 0.3s ease;
+    }
+    .seat-available {
+        /* margin-right: -10px; */
+        margin-bottom: 10px;
+         /* transform: scale(0.6) translateX(80px);  */
+            transition: transform 0.3s ease; 
+            font-size: 12px;
+    }
+    .location-route-svg-l {
+        margin-left: -55px;
+
+    } */
+    .fare-info-l {
+        font-size: 12px;
+        margin-right: -30px;
+    }
+    .seat-type-l {
+        flex-direction: column;
+        margin-left: 30px;
+        margin-top: -46px;
+        font-size: 12px;
+    }
+    .coupon-container {
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 10px; 
+    }
+    .filter-item-mobile{
+        display: none;
+    }
+}
+/* ////// màn 500px */
+@media only screen and (max-width: 500px) {
+    .place-l{
+        font-size: 13px;
+    }
+    .hour-l{
+        font-size: 15px;
+    }
+    .location-route-svg-l {
+        margin-top: 30px;
+        margin-left: -125px;
+    }
+    .duration-l{
+        font-size: 12px;
+    }
+    .text-date-arrival-time-l{
+        font-size: 15px;
+    }
+}
+
+/* địa điểm */
+@media only screen and (max-width:1040px){
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    
+    .custom-from-to-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* padding: 10px; */
+        max-width: 100%;
+        overflow-x: hidden;
+        border-bottom: 1px dashed #ccc;
+        border-top: 1px dashed #ccc;
+    }
+    
+    .custom-content-from,
+    .custom-content-to {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-grow: 1;
+        margin: 0 10px;
+        max-width: 13%;
+    }
+    
+    .custom-hour {
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+    }
+    
+    .custom-place {
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;
+    }
+    
+    .custom-timeline {
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        height: 0;
+    }
+    
+    .line {
+        position: absolute;
+        height: 2px;
+        background-color: #ccc;
+        top: 50%;
+        left: 0;
+        right: 0;
+        z-index: 0;
+    }
+    
+    .custom-duration {
+        background-color: white;
+        padding: 0 5px;
+        font-size: 14px;
+        color: #666;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .custom-arrival-date {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 2px;
+        display: none;
+    }
+    
+    .custom-status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    
+    .custom-green-dot {
+        background-color: green;
+    }
+    
+    .custom-red-dot {
+        background-color: red;
+    }
+    .from-to-content-l{
+        display: none;
+        
+    }
+    .from-to-l{
+        display: none;
+    }
+    .ticket-body-l {
+        display: inline-grid;
+        justify-content: normal;
+        border-bottom: 1px dashed #ccc;
+        /* border-top: 1px dashed #ccc; */
+    }
+    .custom-content-from .custom-hour{
+        margin-top: 30px;
+    }
+    .ant-btn-link-l span{
+        font-size: 12px;
+    }
+    .ticket-step-collapse-0 span{
+        font-size: 12px;
+    }
+}
+
+@media  (max-width:550px){
+    .container-l{
+        width: 100%;
+        margin-left: 0px;
+        padding: 10px;
+    }
+    .custom-hour {
+        font-size: 15px;
+    }
+    .floating-filter-button{
+        left: 41%;
+    }
+}
+/* //////////lọc sắp xếp//////// */
+@media only screen and (max-width: 1040PX){
+    .floating-filter-button{
+        position: fixed;
+        bottom: 20px;
+        left: 45%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        display: block;
+    }
+    
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1001; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.4); 
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: 0 auto; 
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%;
+        max-width: none;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: calc(100% - 60px); 
+        overflow-y: auto;
+    }
+    
+    .filter-content,
+    .sort-content {
+        height: 100%; 
+        overflow-y: auto;
+    }
+    .close, .close-button {
+        color: #007bff;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .close:hover, .close:focus, .close-button:hover, .close-button:focus {
+        color: #0056b3;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .modal h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .close-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        border: none;
+        margin-top: 10px;
+    }
+    
+    .close-button:hover {
+        background-color: #0056b3;
+    }
+        .floating-sort-button {
+         position: fixed;
+         bottom: 20px; 
+        left: 50%;
+            /* transform: translateX(-50%); */
+        z-index: 1000;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        display: block;
+    }
+    
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1001; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.4); 
+    }
+    
+    .modal-content-1 {
+        background-color: #fefefe;
+        margin: 0 auto; 
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%; 
+        max-width: none; 
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2); 
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    
+    }
+    
+    .close, .close-button {
+        color: #007bff;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .close:hover, .close:focus, .close-button:hover, .close-button:focus {
+        color: #0056b3;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .modal h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .modal .sort-options {
+    display: flex;
+    color:black;
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .modal .sort-options label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    }
+    
+    .modal .sort-options input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    }
+    
+    
+    .modal .close-button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        border: none;
+    }
+    
+    .modal .close-button:hover {
+        background-color: #0056b3;
+    }
+}
+@media  (max-width:550px){
+    .container-l{
+        width: 100%;
+        margin-left: 0px;
+        padding: 10px;
+    }
+    .custom-hour {
+        font-size: 15px;
+    }
+    .floating-filter-button{
+        left: 41%;
+    }
+}
+
