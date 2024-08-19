@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="{{ asset('css/header.css') }}">    
+
+<link rel="stylesheet" href="{{ asset('css/header.css') }}">
 <header>
     <!-- Nội dung header của bạn -->
     <div class="topnav">
@@ -14,38 +15,40 @@
             <a href="">Đăng Nhập</a>
         </div>
     </div>
-    <div id="Sidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="" class="flag-img">
-        <div><img src="{{ asset('images/vn-flag.svg') }}" alt="" class="flag-icon"> 
-        <div class="text-container">Tiếng Việt</div>
-        <img src="{{ asset('images/en-flag.svg') }}" alt="" class="flag-icon2"> 
-        <div class="text-container">English</div></div>
-        
-    </a>
-    <a href=""><i class="fas fa-home icon-header"></i> <span class="text-containerr">Trang chủ</span></a>
-<a href=""><i class="fa fa-sign-in icon-header" aria-hidden="true"></i> <span class="text-container k1">Đăng nhập/Đăng ký</span></a>
-<a href=""><i class="fa fa-car icon-header" aria-hidden="true"></i> <span class="text-container k2">Thuê xe</span></a>
-<a href=""><i class="fa fa-plane icon-header" aria-hidden="true"></i> <span class="text-container k3">Vé máy bay</span></a>
-<a href=""><i class="fa fa-download icon-header" aria-hidden="true"></i> <span class="text-container k4">Tải app Vexere</span></a>
-<a href=""><i class="fas fa-gift icon-header"></i> <span class="text-container k4">Khám phá ưu đãi</span></a>
-<a href=""><i class="label"></i> <span class="text-container"><b>Hợp tác cùng Vexere</b></span></a>
-<a href=""><i class="fas fa-handshake icon-header" aria-hidden="true"></i> <span class="text-container k5">Mở bán tại Vexere</span></a>
-<a href=""><i class="fas fa-bus icon-header" aria-hidden="true"></i> <span class="text-container k6">Phần mềm nhà xe</span></a>
-<a href=""><i class="fas fa-store icon-header" aria-hidden="true"></i> <span class="text-container k7">Phần mềm đại lý</span></a>
-<a href=""><i class="label"></i> <span class="text-container"><b>Về Vexere</b></span></a>
-<a href=""><i class="fas fa-star icon-header" aria-hidden="true"></i> <span class="text-container k8">Giới thiệu</span></a>
-<a href=""><i class="fas fa-wifi icon-header" aria-hidden="true"></i> <span class="text-container k9">Vexere Blog</span></a>
-<a href=""><i class="fas fa-briefcase icon-header" aria-hidden="true"></i> <span class="text-container k10">Tuyển dụng</span></a>
-<a href=""><i class="label"></i><span class="text-container"><b>Hỗ trợ</b></span></a>
-<a href=""><i class="fa fa-phone icon-header" aria-hidden="true"></i> <span class="text-container k11">Liên hệ</span></a>
-<a href=""><i class="fas fa-question icon-header" aria-hidden="true"></i> <span class="text-container k12">Câu hỏi thường gặp</span></a>
-<a href=""><i class="fas fa-gavel icon-header" aria-hidden="true"></i> <span class="text-container k13">Quy chế</span></a>
-<a href=""><i class="fas fa-lock icon-header" aria-hidden="true"></i> <span class="text-container k14">Chính sách bảo mật thông tin</span></a>
-<a href=""><i class="fas fa-credit-card icon-header" aria-hidden="true"></i> <span class="text-container k15">Chính sách bảo mật thanh toán</span></a>
-<a href=""><i class="fas fa-credit-card icon-header" aria-hidden="true"></i> <span class="text-container k16">Chính sách và quy trình giải quyết tranh chấp,khiếu nại</span></a>
-
-        
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="" class="flag-img">
+            <div>
+                <img src="{{ asset('images/vn-flag.svg') }}" alt="" class="flag-icon">
+                <div class="text-container">Tiếng Việt</div>
+                <img src="{{ asset('images/en-flag.svg') }}" alt="" class="flag-icon2">
+                <div class="text-container">English</div>
+            </div>
+        </a>
+        <a href=""><i class="fas fa-home icon-header"></i> <span class="text-containerr">Trang chủ</span></a>
+        <a href=""><i class="fa fa-sign-in icon-header" aria-hidden="true"></i> <span class="text-container k1">Đăng nhập/Đăng ký</span></a>
+        <a href=""><i class="fa fa-car icon-header" aria-hidden="true"></i> <span class="text-container k2">Thuê xe</span></a>
+        <a href=""><i class="fa fa-plane icon-header" aria-hidden="true"></i> <span class="text-container k3">Vé máy bay</span></a>
+        <a href=""><i class="fa fa-download icon-header" aria-hidden="true"></i> <span class="text-container k4">Tải app Vexere</span></a>
+        <a href=""><i class="fas fa-gift icon-header"></i> <span class="text-container k4">Khám phá ưu đãi</span></a>
+        <a href=""><i class="label"></i> <span class="text-container"><b>Hợp tác cùng Vexere</b></span></a>
+        <a href=""><i class="fas fa-handshake icon-header" aria-hidden="true"></i> <span class="text-container k5">Mở bán tại Vexere</span></a>
+        <a href=""><i class="fas fa-bus icon-header" aria-hidden="true"></i> <span class="text-container k6">Phần mềm nhà xe</span></a>
+        <a href=""><i class="fas fa-store icon-header" aria-hidden="true"></i> <span class="text-container k7">Phần mềm đại lý</span></a>
+        <a href=""><i class="label"></i> <span class="text-container"><b>Về Vexere</b></span></a>
+        <a href=""><i class="fas fa-star icon-header" aria-hidden="true"></i> <span class="text-container k8">Giới thiệu</span></a>
+        <a href=""><i class="fas fa-wifi icon-header" aria-hidden="true"></i> <span class="text-container k9">Vexere Blog</span></a>
+        <a href=""><i class="fas fa-briefcase icon-header" aria-hidden="true"></i> <span class="text-container k10">Tuyển dụng</span></a>
+        <a href=""><i class="label"></i><span class="text-container"><b>Hỗ trợ</b></span></a>
+        <a href=""><i class="fa fa-phone icon-header" aria-hidden="true"></i> <span class="text-container k11">Liên hệ</span></a>
+        <a href=""><i class="fas fa-question icon-header" aria-hidden="true"></i> <span class="text-container k12">Câu hỏi thường gặp</span></a>
+        <a href=""><i class="fas fa-gavel icon-header" aria-hidden="true"></i> <span class="text-container k13">Quy chế</span></a>
+        <a href=""><i class="fas fa-lock icon-header" aria-hidden="true"></i> <span class="text-container k14">Chính sách bảo mật thông tin</span></a>
+        <a href=""><i class="fas fa-credit-card icon-header" aria-hidden="true"></i> <span class="text-container k15">Chính sách bảo mật thanh toán</span></a>
+        <a href=""><i class="fas fa-credit-card icon-header" aria-hidden="true"></i> <span class="text-container k16">Chính sách và quy trình giải quyết tranh chấp, khiếu nại</span></a>
     </div>
+    </div>
+
     <div class="total-header">
         <div class="left-header">
             <div class="logo-header">
