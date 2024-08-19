@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+<link rel="stylesheet" href="{{ asset('css/headers.css') }}">
 <header>
     <!-- Nội dung header của bạn -->
     <div class="topnav">
