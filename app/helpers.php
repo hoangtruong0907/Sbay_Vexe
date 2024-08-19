@@ -93,11 +93,26 @@ function renderRatingStars($rating)
     return $starsHtml;
 }
 
-function renderSeat($type = "default", $action = "default", $status = "default", $on = false)
+function renderSeat($type = "default", $action = "default", $status = "default", $color = "default",  $on = false)
 {
     // $type: Loại ghế, $action: tích chọn hoặc kh chọn X, $status: màu khác, $on: onclick()
     if (!$type || !in_array($type, ['default', 'couple', 'bed', 'helm'])) {
         return '';
+    }
+
+    switch ($type) {
+        case '1':
+            $class = 'default';
+            break;
+        case '2':
+            $class = 'checked';
+            break;
+            case '3':
+                $class = 'checked';
+                break;
+        default:
+            $class = 'default';
+            break;
     }
 
     $config = [
@@ -159,24 +174,20 @@ function renderSeat($type = "default", $action = "default", $status = "default",
         . ($action === "selected" ? " seat-selected" : ($action === "unselected" ? " seat-unavailable" : ""))
         . ($status !== "default" ? " $status" : " seat-available");
 
-    if ($type === 'helm') {
-        return '<div class="' . ($on ? "seat-choose-item " : "") .'">' . $config[$type]['svg'] . '</div>';
-    }
+    $styleRec = ($color !== "default") ? 'style="stroke: ' . $color . ';"' : '';
 
+    if ($type === 'helm') {
+        return '<div class="' . ($on ? "seat-choose-item " : "") . '">' . $config[$type]['svg'] . '</div>';
+    }
 
     $svg = '<svg width="' . $config[$type]['width'] . '" height="' . $config[$type]['height'] . '" viewBox="' . $config[$type]['viewBox'] . '" fill="none" xmlns="http://www.w3.org/2000/svg">';
     foreach ($config[$type]['rects'] as $rect) {
         $transform = isset($rect['transform']) ? ' transform="' . $rect['transform'] . '"' : '';
-        $svg .= '<rect x="' . $rect['x'] . '" y="' . $rect['y'] . '" width="' . $rect['width'] . '" height="' . $rect['height'] . '" rx="2.25" fill="#FFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"' . $transform . '></rect>';
+        $svg .= '<rect x="' . $rect['x'] . '" y="' . $rect['y'] . '" width="' . $rect['width'] . '" height="' . $rect['height'] . '" rx="2.25" fill="#FFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"' . $transform . ' ' . $styleRec . '></rect>';
     }
 
-    if ($action === "selected" && isset($config[$type]['paths']['selected'])) {
-        $svg .= '<path class="icon-selected icon-selected-chon" d="' . $config[$type]['paths']['selected'] . '" fill="transparent"></path>';
-    }
-    if ($action === "unselected" && isset($config[$type]['paths']['disabled'])) {
-        $svg .= '<path class="icon-disabled icon-disabled-2" d="' . $config[$type]['paths']['disabled'] . '" fill="transparent"></path>';
-    }
-
+    $svg .= '<path class="icon-selected ' . ($action === "selected" ? 'icon-selected-chon' : '') . '" d="' . ($config[$type]['paths']['selected'] ?? '') . '" fill="transparent"></path>';
+    $svg .= '<path class="icon-disabled ' . ($action === "unselected" ? 'icon-disabled-2' : '') . '" d="' . ($config[$type]['paths']['disabled'] ?? '') . '" fill="transparent"></path>';
     $svg .= '</svg>';
 
     return '<div class="' . ($on ? "seat-choose-item " : "") . $seatClass . '">' . $svg . '</div>';

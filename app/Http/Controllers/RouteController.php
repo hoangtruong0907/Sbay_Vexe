@@ -346,11 +346,11 @@ class RouteController extends Controller
 
         $urlSeatMap = $this->main_url . "/v3/trip/seat_map?trip_code=" . $tripCode;
         $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 20);
-        // dd($seatMap);
         $seatTemplateMap = [];
         if (isset($seatMap['coach_seat_template']) && is_array($seatMap['coach_seat_template'])) {
             $seatTemplateMap = $seatMap['coach_seat_template'];
         }
+        // dd($seatTemplateMap);
 
         return response()->json([
             "message" => "success",

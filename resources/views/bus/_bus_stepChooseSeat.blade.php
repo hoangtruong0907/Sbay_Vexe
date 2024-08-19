@@ -175,19 +175,19 @@
 <div class="container-steps-content">
     <div class="wrap-steps-content">
         <div class="left-steps-content">
-            <div class="seat-groups">
-                <div class="note">Chú thích</div>
-                @if (count($seatTemplateMap) > 0)
+            @if (count($seatTemplateMap) > 0 && isset($seatMap['vehicle']['seat_type']))
+                <div class="seat-groups">
+                    <div class="note">Chú thích</div>
                     <div class="seat-info">
                         {!! renderSeat('default', 'unselected') !!}
                         <span class="seat-name">Ghế không bán</span>
                     </div>
                     <div class="seat-info">
-                        {!! renderSeat('default', 'selected') !!}
+                        {!! renderSeat('bed', 'selected') !!}
                         <span class="seat-name">Đang chọn</span>
                     </div>
                     <div class="seat-info">
-                        {!! renderSeat('default') !!}
+                        {!! renderSeat('couple') !!}
                         <span class="seat-name">Ghế trống</span>
                     </div>
                     <div class="seat-info">
@@ -210,10 +210,13 @@
                             </div>
                         </span>
                     </div>
-                @else
+                </div>
+            @else
+                <div class="seat-note">
+                    <div class="label">Lưu ý</div>
                     <div>Chuyến này không hỗ trợ chọn chỗ trước</div>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
         <div class="right-steps-content">
             @if (count($seatTemplateMap) > 0)
@@ -238,17 +241,25 @@
                                                     });
 
                                                 @endphp
-                                                @if ($seat)
+                                                @if (isset($seat['is_available']) && $seat['is_available'] == false)
                                                     <td class="seat">
                                                         <div class="seat-choose-item seat-container"
                                                             data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                            {!! renderSeat('default', 'unselected') !!}
+                                                        </div>
+                                                    </td>
+                                                @elseif ($seat)
+                                                    <td class="seat">
+                                                        <div class="seat-choose-item seat-container"
+                                                            data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}"
+                                                            data-full-code="{{ $seat['full_code'] }}"
+                                                            data-seat-code="{{ $seat['seat_code'] }}">
                                                             {!! renderSeat('default', $seat['seat_code']) !!}
                                                         </div>
                                                     </td>
                                                 @else
                                                     <td class="seat">
-                                                        <div class="seat-choose-item seat-container"
-                                                            data-disabled="true"
+                                                        <div class="seat-choose-item  seat-none" data-disabled="true"
                                                             style="background-color: transparent;">
                                                             <!-- Trường hợp không có ghế -->
                                                         </div>
@@ -263,9 +274,16 @@
                     </div>
                 @endforeach
             @else
-                <div>
-                    Số lượng khách
-                    Ghế thường · 250,000đ
+                <div class="online-note-selection">
+                    <div class="title">Số lượng khách</div>
+                    <div class="seat-group-selection">
+                        <div style="color: rgb(184, 184, 184);">Ghế thường · 250,000đ</div>
+                        <div class="unique-quantity-input">
+                            <i class="fas fa-minus-circle unique-sub-icon"></i>
+                            <span id="unique-quantity">0</span>
+                            <i class="fas fa-plus-circle unique-plus-icon"></i>
+                        </div>
+                    </div>
                 </div>
             @endif
         </div>

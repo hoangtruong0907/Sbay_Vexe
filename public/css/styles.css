@@ -2194,7 +2194,7 @@ body .material-icons-wrapper.md-20 {
 
 .container-steps-content {
     padding: 20px 0px;
-    min-height: 440px;
+    min-height: auto;
     display: flex;
     -webkit-box-align: center;
     -webkit-box-pack: center;
@@ -2298,6 +2298,10 @@ body .material-icons-wrapper.md-20 {
     fill: rgb(139, 229, 176);
 }
 
+.seat-selected svg .icon-selected {
+    stroke: rgb(39, 174, 96);
+}
+
 .seat-end svg rect {
     stroke: rgb(57, 241, 134);
     fill: rgb(255, 255, 255);
@@ -2337,6 +2341,69 @@ body .material-icons-wrapper.md-20 {
 .coach-row .seat .modal-choose-chair {
     margin: 4px;
 }
+
+.coach-row .seat-choose-item .seat-available {
+    cursor: pointer;
+}
+
+.coach-row .seat-choose-item .seat-unavailable {
+    cursor: not-allowed;
+}
+
+.seat-note .label {
+    color: rgb(0, 96, 196);
+    font-weight: bold;
+}
+
+.online-note-selection {
+    font-weight: bold;
+    padding: 16px;
+    -webkit-box-align: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.online-note-selection .title {
+    border-bottom: 1px solid rgb(192, 192, 192);
+    padding-bottom: 14px;
+}
+
+.seat-group-selection {
+    margin-top: 12px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 4px 0px;
+}
+
+
+.unique-quantity-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.unique-sub-icon,
+.unique-plus-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: #4389e3;
+    transition: transform 0.2s;
+}
+
+.unique-sub-icon:hover,
+.unique-plus-icon:hover {
+    transform: scale(1.1);
+}
+
+#unique-quantity {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 
 .select-input {
     position: relative;
@@ -2826,10 +2893,20 @@ body .material-icons-wrapper.md-20 {
     border-radius: 4px;
 }
 
-.left-total-amount button {
+.left-total-amount .ant-btn-primary {
     display: inline;
     height: 34px;
     background: rgb(0, 96, 196);
+    color: #fff;
+    border-radius: 3px;
+    border: 0px;
+    padding: 0px 15px;
+}
+
+.left-total-amount .ant-btn-close {
+    display: inline;
+    height: 34px;
+    background: rgb(196, 23, 0);
     color: #fff;
     border-radius: 3px;
     border: 0px;

@@ -124,10 +124,8 @@
             <div class="card card-body card-body-new">
                 <div id="step1-{{ $key }}" class="wizard-step active">
                     {{-- Load step 1  --}}
-                    <div class="d-flex justify-content-center mt-4">
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Đang tải...</span>
-                        </div>
+                    <div class="loading-wrap">
+                        @include('components._loading');
                     </div>
                 </div>
                 <div id="step2-{{ $key }}" class="wizard-step">
@@ -280,15 +278,15 @@
                     </div>
                 </div>
                 <div class="total-amount">
-                    <div class="left-total-amount">
-                        <button onclick="nextStep(1)" data-current="0" data-tracking-event="completed_seat_selection"
-                            type="button" class="ant-btn footer-nextstep ant-btn-primary"><span><i
-                                    class="fa-solid fa-arrow-left"></i> Quay lại </span></button>
+                    <div class="left-total-amount d-flex">
+                        <button onclick="nextStep(1)" type="button" class="ant-btn-close"><span><i
+                                    class="fa-solid fa-arrow-up-from-bracket"></i> Huỷ bỏ</span></button>
+                        {{-- load list seat choosed --}}
+                        <div class="left-total code-seat-choosed fw-bold"></div>
                     </div>
                     <div class="right-total-amount">
                         Tổng cộng: <div class="right-total">0đ</div>
-                        <button onclick="nextStep(2)" data-current="0" data-tracking-event="completed_seat_selection"
-                            type="button" class="ant-btn footer-nextstep ant-btn-primary"><span>Tiếp tục <i
+                        <button onclick="nextStep(2)" type="button" class="ant-btn-primary"><span>Tiếp tục <i
                                     class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>
@@ -556,8 +554,8 @@
                         aria-labelledby="rating-tab" tabindex="2">
                         {{-- Loading rating tab --}}
                         <div class="d-flex justify-content-center mt-4">
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Đang tải...</span>
+                            <div class="loading-wrap">
+                                @include('components._loading');
                             </div>
                         </div>
                     </div>
@@ -599,8 +597,8 @@
                         aria-labelledby="policy" tabindex="4">
                         {{-- Loading tab policy --}}
                         <div class="d-flex justify-content-center mt-4">
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Đang tải...</span>
+                            <div class="loading-wrap">
+                                @include('components._loading');
                             </div>
                         </div>
                     </div>

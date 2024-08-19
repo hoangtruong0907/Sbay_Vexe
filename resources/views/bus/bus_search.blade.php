@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/loading.css') }}">
 @endsection
 
 @section('content')
@@ -1199,18 +1200,51 @@
                     });
             });
 
-            // show list seat
             let visibilityState = {};
+            let proxies = {};
+            let listSeatChoosed = {};
+
+            // Hàm tạo Proxy mới cho từng keyId
+            function createProxyForSeatChoosed(keyId) {
+                return new Proxy({}, {
+                    set(target, property, value) {
+                        target[property] = value;
+                        this.updateUI(target, keyId);
+                        return true;
+                    },
+                    deleteProperty(target, property) {
+                        delete target[property];
+                        this.updateUI(target, keyId);
+                        return true;
+                    },
+                    updateUI(target, keyId) {
+                        let seatCodes = Object.keys(target);
+                        let seatCodesString = seatCodes.join(', ');
+
+                        if (seatCodes.length > 0) {
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).hide();
+                            $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
+                                .html(`Ghế: ${seatCodesString}`);
+                        } else {
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
+                            $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
+                                .html(``);
+                        }
+                    }
+                });
+            }
+
+            // Sự kiện click cho btn-booking-l.ticket-step
             $(document).on('click', '.btn-booking-l.ticket-step', function() {
                 let keyId = $(this).data('key');
-                if (visibilityState[keyId] === undefined) {
-                    visibilityState[keyId] = false;
+
+                // Kiểm tra và tạo proxy nếu chưa có
+                if (!proxies[keyId]) {
+                    proxies[keyId] = createProxyForSeatChoosed(keyId);
                 }
 
                 if (!visibilityState[keyId]) {
                     let tripCode = $(this).data('trip-code');
-
-                    console.log(tripCode);
                     const url = `/api/info/xe-khach/seat-map/${tripCode}`;
 
                     fetch(url, {
@@ -1225,7 +1259,42 @@
                         .then(data => {
                             $(`.ticket-step-collapse #step1-${keyId}`).html(data.dataHTML);
                             visibilityState[keyId] = true;
-                            // animation
+
+                            $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
+                                .on('click', function() {
+                                    let elThumb = $(this).children('.seat-thumbnail');
+                                    elThumb.toggleClass("seat-selected");
+                                    const seatCode = $(this).data('seat-code');
+                                    if (elThumb.hasClass("seat-selected")) {
+                                        proxies[keyId][seatCode] = $(this).data('full-code');
+                                    } else {
+                                        delete proxies[keyId][seatCode];
+                                    }
+                                    // console.log(proxies[keyId]);
+                                });
+
+                            $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`).each(
+                                function() {
+                                    const $quantity = $(this).find('#unique-quantity');
+                                    const $subIcon = $(this).find('.unique-sub-icon');
+                                    const $plusIcon = $(this).find('.unique-plus-icon');
+
+                                    $subIcon.off('click').on('click', function() {
+                                        console.log('Sub icon clicked');
+                                        let currentValue = parseInt($quantity.text(), 10);
+                                        if (currentValue > 0) {
+                                            $quantity.text(currentValue - 1);
+                                        }
+                                    });
+
+                                    $plusIcon.off('click').on('click', function() {
+                                        console.log('Plus icon clicked');
+                                        let currentValue = parseInt($quantity.text(), 10);
+                                        $quantity.text(currentValue + 1);
+                                    });
+                                });
+
+                            // Scroll into view
                             document.querySelector(`.ticket-step-collapse #step1-${keyId}`)
                                 .scrollIntoView({
                                     behavior: 'smooth',
@@ -1235,16 +1304,19 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-
                 } else {
                     $(`.ticket-step-collapse #step1-${keyId}`).empty();
+                    $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`).html(``);
+                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
                     visibilityState[keyId] = false;
-                }
-            });
 
-            // Choose seat
-            $(document).on('click', '.seat-choose-item.seat-container', function() {
-                console.log($(this));
+                    $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
+                        .off('click');
+
+                    listSeatChoosed = {};
+                    delete proxies[keyId];
+                    console.log(`Proxy for keyId ${keyId} has been removed.`);
+                }
             });
         });
     </script>
