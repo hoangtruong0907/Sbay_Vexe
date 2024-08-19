@@ -2814,6 +2814,7 @@ body .material-icons-wrapper.md-20 {
 .left-total-amount span {
     font-size: 15px;
 }
+<<<<<<< HEAD
 
 
 /* ..... */
@@ -3007,4 +3008,11 @@ cursor: pointer;
 
 .modal .close-button:hover {
     background-color: #0056b3;
+=======
+.floating-filter-button {
+    display: none;
+}
+.floating-sort-button {
+    display: none;
+>>>>>>> develop
 }

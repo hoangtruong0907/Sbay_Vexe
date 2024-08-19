@@ -18,6 +18,7 @@
             ])
         </div>
         <div class="wrap-filter">
+<<<<<<< HEAD
                     <!-- //////////////// -->
         <div class="filter-container"> 
                 <button class="floating-filter-button" onclick="openFilterModal()">Lọc</button>
@@ -27,6 +28,17 @@
     <div class="modal-content filter-content">
         <span class="close" onclick="closeFilterModal()">&times;</span>
     
+=======
+
+                 <!-- /////// lọc mobile///////// -->
+            <div class="filter-container"> 
+                <button class="floating-filter-button" onclick="openFilterModal()">Lọc</button>
+                <button class="floating-sort-button" onclick="openSortModal()">Sắp xếp</button>
+            </div>
+                       <div id="filterModal" class="modal">
+                       <div class="modal-content filter-content">
+                     <span class="close" onclick="closeFilterModal()">&times;</span>
+>>>>>>> develop
                         <div class="filter-title">
                             <div class="filter-header">Lọc</div>
                             <p class="btn-clear">Xóa lọc</p>
@@ -650,10 +662,91 @@
 
                             </div>
                         </div>
+<<<<<<< HEAD
     <div>
         <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
         <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
     </div>
+=======
+                       <div>
+        <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
+        <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
+                       </div>
+                    </div>
+    
+                       </div>
+                    <!-- ///////// sắp xếp/////////// -->
+                        <div id="sortModal" class="modal">
+                         <div class="modal-content-1">
+                           <span class="close" onclick="closeSortModal()">&times;</span>
+                           <h2>Sắp xếp</h2>
+                           <div class="radio-group sort-options">
+                            <label class="radio-wrapper checked">
+                                               <span class="radio checked">
+                                                   <input type="radio" class="radio-input" value="">
+                                                   <span class="radio-inner"></span>
+                                                </span>
+                                               <span>
+                                                   <p class="option-label">Mặc định</p>
+                                               </span>
+                                            </label>
+                                            <label class="radio-wrapper">
+                                               <span class="radio">
+                                                   <input type="radio" class="radio-input" value="time:asc">
+                                                   <span class="radio-inner"></span>
+                                               </span>
+                                               <span>
+                                                   <p class="option-label">Giờ đi sớm nhất</p>
+                                               </span>
+                                           </label>
+                                            <label class="radio-wrapper">
+                                               <span class="radio">
+                                                    <input type="radio" class="radio-input" value="time:desc">
+                                                   <span class="radio-inner"></span>
+                                               </span>
+                                               <span>
+                                                  <p class="option-label">Giờ đi muộn nhất</p>
+                                              </span>
+                                          </label>
+                                          <label class="radio-wrapper">
+                                               <span class="radio">
+                                                  <input type="radio" class="radio-input" value="rating:desc">
+                                                    <span class="radio-inner"></span>
+                                                </span>
+                                             <span>
+                                                 <p class="option-label">Đánh giá cao nhất</p>
+                                             </span>
+                                         </label>
+                                         <label class="radio-wrapper">
+                                             <span class="radio">
+                                                 <input type="radio" class="radio-input" value="fare:asc">
+                                                 <span class="radio-inner"></span>
+                                             </span>
+                                             <span>
+                                                 <p class="option-label">Giá tăng dần</p>
+                                             </span>
+                                         </label>
+                                         <label class="radio-wrapper">
+                                             <span class="radio">
+                                                  <input type="radio" class="radio-input" value="fare:desc">
+                                                    <span class="radio-inner"></span>
+                                               </span>
+                                                <span>
+                                                <p class="option-label">Giá giảm dần</p>
+                                               </span>
+                                           </label>
+                           </div>
+                          <button class="close-button" onclick="closeSortModal()">Đóng</button>
+                      </div>
+                      </div>
+    
+                      <!-- //////////////// -->
+
+            <div class="left-filter">
+                <div class="wrap-arrange-top">
+                    <div class="text-arrange">
+                        <h3>Sắp xếp</h3>
+>>>>>>> develop
                     </div>
     
     </div>
@@ -1904,7 +1997,13 @@
                     console.error('Eror:', error);
                 });
         });
+<<<<<<< HEAD
 // lọc//
+=======
+
+        // 
+        // lọc//
+>>>>>>> develop
 function openFilterModal() {
     document.getElementById("filterModal").style.display = "block";
 }
@@ -1929,6 +2028,7 @@ window.onclick = function(event) {
     }
 }
 //sắp xếp//
+<<<<<<< HEAD
 function openSortModal() {
         document.getElementById("sortModal").style.display = "block";
     }
@@ -1944,6 +2044,21 @@ function openSortModal() {
     }
    
 
+=======
+    function openSortModal() {
+            document.getElementById("sortModal").style.display = "block";
+        }
+
+        function closeSortModal() {
+            document.getElementById("sortModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("sortModal")) {
+                closeSortModal();
+            }
+        }
+>>>>>>> develop
     </script>
 <<<<<<< HEAD
     
