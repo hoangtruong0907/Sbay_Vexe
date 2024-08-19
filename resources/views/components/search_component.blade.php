@@ -81,15 +81,9 @@
                         </div>
                     </div>
                     <div class="departure-bus-date flex-sum-left">
-<<<<<<< HEAD
-                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text" name="" value="{!! $params->dateTo ?? "" !!}"
-                            class="date-input date-default-input" id="bus_date_to" placeholder="Chọn ngày bắt đầu">
-                    </div> 
-=======
                         <i class="fa fa-calendar" aria-hidden="true"></i> <input type="text"
                             class="date-input date-default-input" id="bus_date_to" placeholder="Chọn ngày bắt đầu" autocomplete="off">
                     </div>
->>>>>>> d85386ec9a72ad28d0da4f32bc46647d5cdd97d5
                     <div class="departure-bus-date-right flex-sum-left">
                         <i class="fa fa-plus" aria-hidden="true"></i> <input type="text"
                             class="date-input data-add-input" id="bus_date_from" placeholder="Thêm ngày về" autocomplete="off">
