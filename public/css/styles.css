@@ -1835,8 +1835,8 @@ body .material-icons-wrapper.md-20 {
 
 .image-tab .carousel-item-next,
 .image-tab .carousel-item-prev {
-    opacity: 1; /* Đảm bảo không có hiệu ứng mờ dần */
-    transform: none; /* Loại bỏ hiệu ứng phóng to/thu nhỏ */
+    opacity: 1;
+    transform: none;
 }
 
 .image-tab .carousel-item.active {
