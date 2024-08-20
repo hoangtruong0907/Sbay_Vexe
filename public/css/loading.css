@@ -13,6 +13,14 @@
     margin-bottom: 16px;
 }
 
+.loading-wrap-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    height: calc(100vh - 220px);
+}
+
 .truck {
     --dur: 3s;
     display: block;

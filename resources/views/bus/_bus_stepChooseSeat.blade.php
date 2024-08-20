@@ -188,28 +188,36 @@
                     </div>
                     <div class="seat-info">
                         {!! renderSeat($seatMap['vehicle']['seat_type']) !!}
-                        <span class="seat-name">Ghế trống</span>
-                    </div>
-                    <div class="seat-info">
-                        {!! renderSeat($seatMap['vehicle']['seat_type'], '', 'seat-discount') !!}
                         <span class="seat-name">
-                            <div class="seat-name-group">CABIN ĐƠN</div>
+                            <div class="seat-name-group">Ghế trống</div>
                             <div class="seat-original">
-                                <strong>315,000đ</strong>
-                                <span class="seat-fare-original">350,000đ</span>
+                                <strong>{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fare']) }}</strong>
+                                <span
+                                    class="seat-fare-original">{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fares']['original']) }}</span>
                             </div>
                         </span>
                     </div>
-                    <div class="seat-info">
-                        {!! renderSeat($seatMap['vehicle']['seat_type'], '', 'seat-group') !!}
+                    {{-- <div class="seat-info">
+                        {!! renderSeat($seatMap['vehicle']['seat_type'], '', 'seat-discount') !!}
                         <span class="seat-name">
+                            <div class="seat-name-group">Ghế trống</div>
+                            <div class="seat-original">
+                                <strong>{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fare']) }}</strong>
+                                <span
+                                    class="seat-fare-original">{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fares']['original'])}}</span>
+                            </div>
+                        </span>
+                    </div> --}}
+                    {{-- <div class="seat-info"> --}}
+                    {{-- {!! renderSeat($seatMap['vehicle']['seat_type'], '', 'seat-group') !!} --}}
+                    {{-- <span class="seat-name">
                             <div class="seat-name-group">CABIN ĐÔI</div>
                             <div class="seat-original">
                                 <strong>495,000đ</strong>
                                 <span class="seat-fare-original">550,000đ</span>
                             </div>
-                        </span>
-                    </div>
+                        </span> --}}
+                    {{-- </div> --}}
                 </div>
             @else
                 <div class="seat-note">

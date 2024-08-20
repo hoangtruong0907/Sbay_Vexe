@@ -83,7 +83,7 @@
                                     </svg></i>
                             </button>
                             <button data-tracking-event="selected_route" type="button"
-                                class="ant-btn btn-booking-l ticket-step" data-bs-toggle="collapse"
+                                class="ant-btn btn-booking-l ticket-step"
                                 data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
                                 aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}"
                                 data-trip-code="{{ $dataRoute['schedules'][0]['trip_code'] }}"
@@ -201,9 +201,11 @@
                                             <label class="form-check-label-title" for="-{{ $key }}">
                                                 19:00: Nội thành Tp. Đà Nẵng
                                             </label>
-                                            <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ thể
+                                            <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ
+                                                thể
                                                 muốn được trung chuyển</p>
-                                            <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng</p>
+                                            <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng
+                                            </p>
                                             <b><i class="fa-solid fa-location-dot"></i> Đà Nẵng, Đà Nẵng</b>
                                             <textarea id="transferAddress-{{ $key }}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                                 style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
@@ -215,7 +217,8 @@
                                                 for="flexRadioDefault2-{{ $key }}">
                                                 19:30: Văn Phòng Đà Nẵng
                                             </label>
-                                            <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường Hòa
+                                            <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường
+                                                Hòa
                                                 Minh, Liên Chiểu, Đà Nẵng</b>
                                         </div>
                                     </div>
@@ -254,7 +257,8 @@
                                                 for="flexRadioDefault3-{{ $key }}">
                                                 19:30: Văn Phòng Đà Nẵng
                                             </label>
-                                            <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường Hòa
+                                            <b><i class="fa-solid fa-location-dot"></i> 70 Hoàng Văn Thái, Phường
+                                                Hòa
                                                 Minh, Liên Chiểu, Đà Nẵng </b>
                                         </div>
                                         <div class="form-check  item point_id-1">
@@ -264,9 +268,11 @@
                                                 for="flexRadioDefault4-{{ $key }}">
                                                 19:00: Nội thành Tp. Đà Nẵng
                                             </label>
-                                            <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ thể
+                                            <p class="text-form-check-label-t">Miễn phí - Vui lòng nhập địa chỉ cụ
+                                                thể
                                                 muốn được trung chuyển</p>
-                                            <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng</p>
+                                            <p class="text-form-check-label-b">Đón tận nơi tại Thành phố Đà Nẵng
+                                            </p>
                                             <b><i class="fa-solid fa-location-dot"></i> Đà Nẵng, Đà Nẵng</b>
                                             <textarea id="transferAddress1--{{ $key }}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                                 style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
@@ -282,10 +288,11 @@
                         <button onclick="nextStep(1)" type="button" class="ant-btn-close"><span><i
                                     class="fa-solid fa-arrow-up-from-bracket"></i> Huỷ bỏ</span></button>
                         {{-- load list seat choosed --}}
-                        <div class="left-total code-seat-choosed fw-bold"></div>
+                        <div class="left-total code-seat-choosed"></div>
                     </div>
-                    <div class="right-total-amount">
-                        Tổng cộng: <div class="right-total">0đ</div>
+                    <div class="right-total-amount d-flex">
+                        {{-- Load fate total seatchoosed --}}
+                        <div class="fare-total"></div>
                         <button onclick="nextStep(2)" type="button" class="ant-btn-primary"><span>Tiếp tục <i
                                     class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
