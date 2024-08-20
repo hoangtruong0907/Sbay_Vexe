@@ -1846,13 +1846,13 @@ body .material-icons-wrapper.md-20 {
 
 .image-tab .carousel-item {
     width: fit-content !important;
-    margin: auto; /* Đảm bảo carousel-item được căn giữa nếu nó nhỏ hơn khung chứa */
+    margin: auto;
 }
 
 .image-tab .carousel-item.active {
     padding: 0;
     display: flex;
-    justify-content: center; /* Căn giữa nội dung bên trong carousel-item */
+    justify-content: center;
     align-items: center;
 }
 
@@ -1865,10 +1865,10 @@ body .material-icons-wrapper.md-20 {
 
 .image-tab .img-child {
     height: 400px;
-    max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước khung chứa */
+    max-width: 100%;
     object-fit: contain;
     display: block;
-    margin: auto; /* Căn giữa ảnh nhỏ trong khung chứa */
+    margin: auto;
 }
 
 .image-tab .carousel-icon {
@@ -1884,9 +1884,9 @@ body .material-icons-wrapper.md-20 {
 .image-tab .carousel-inner {
     /* background-color: #333333c4; */
     border-radius: 8px;
-    padding: 10px; /* Tạo khoảng cách giữa hình ảnh và viền carousel-inner */
+    padding: 10px;
     display: flex;
-    justify-content: center; /* Căn giữa nội dung bên trong carousel-inner */
+    justify-content: center;
     align-items: center;
 }
 
@@ -1899,8 +1899,8 @@ body .material-icons-wrapper.md-20 {
     padding: 4px;
     font-weight: 600;
     border-radius: 8px;
-    max-width: 90%; /* Giới hạn chiều rộng của caption để không vượt quá kích thước ảnh */
-    margin: auto; /* Căn giữa caption nếu nó nhỏ hơn nội dung */
+    max-width: 90%;
+    margin: auto;
 }
 
 
