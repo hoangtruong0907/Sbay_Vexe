@@ -293,20 +293,26 @@ body .material-icons-wrapper.md-20 {
 
 .custom-select-container {
     display: flex;
-    align-items: center;
+    align-items: center; 
 }
 
 .custom-input-container {
-    display: flex;
-    align-items: center;
+    display: flex; 
+    flex-direction: row;
+    padding-left: 16px;
 }
 
 .custom-icon-container {
     margin-left: 10px;
 }
 
-.custom-input-section {
-    flex-grow: 1;
+.custom-input-section { 
+    width: 100%;
+    -webkit-box-pack: center !important;
+    justify-content: center !important;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column-reverse;
 }
 
 .custom-dropdown-menu {
@@ -365,20 +371,35 @@ body .material-icons-wrapper.md-20 {
 }
 
 .custom-swap-container {
+    z-index: 4;
+    right: 0px;
+    top: 50%;
+    transform: translate(50%, -50%);
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute; 
+    background: unset;
+}
+/* .custom-swap-container {
     position: absolute;
     top: 50%;
     left: 100%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     z-index: 1;
-}
+} */
 
 .custom-switch-icon-container i {
     padding-right: 14px !important;
     padding-left: 15px !important;
+    color: #484848 !important;
 }
 
-.custom-switch-icon-container {
+/* .custom-switch-icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -387,6 +408,18 @@ body .material-icons-wrapper.md-20 {
     height: 36px;
     border-radius: 50%;
     cursor: pointer;
+} */
+.custom-switch-icon-container {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 100%;
+    /* transform: rotate(-90deg); */
+    background-color: rgb(242, 242, 242) !important;
 }
 
 .flex-sum-left {
@@ -413,10 +446,17 @@ body .material-icons-wrapper.md-20 {
     border-bottom: 1px solid #ccc;
 }
 
-.nav-airline .nav-link.active {
+/* .nav-airline .nav-link.active {
     background-color: #fff !important;
     color: #000 !important;
     border-bottom: 2px solid blue;
+    border-radius: 0px;
+} */
+/* ve-tau-hoa active*/
+.nav-airline .nav-item.active {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-bottom: 2px solid rgb(36, 116, 229);
     border-radius: 0px;
 }
 

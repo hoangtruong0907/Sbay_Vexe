@@ -24,13 +24,20 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
     });
+    #Bus route
     Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
-    Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
-
+    #Flight route
     Route::get('/airline_tickets', function () {
         return view('airline_tickets');
     });
 });
+
+#Train route
+Route::prefix('/ve-tau-hoa')->group(function () {
+    Route::get('/', [TrainController::class, 'index'])->name('train.index');
+    Route::get('/{fromtoPlace}', [TrainController::class, 'search'])->name('train.search'); 
+});
+
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
 

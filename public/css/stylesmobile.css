@@ -96,6 +96,7 @@
         transition: transform 0.3s ease;
     }
     .left-ant-row-flex {
+        border: none;
         display: block;
         justify-content: flex-start;
         align-items: center;
