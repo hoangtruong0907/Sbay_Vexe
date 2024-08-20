@@ -1111,16 +1111,6 @@
             toggleTextarea34();
         });
 
-        // function nextStep(step) {
-        //    $('#step1-' + step).removeClass('active');
-        //     $('#step2-' + step).addClass('active');
-        // }
-
-        // function prevStep(step) {
-        //     $('#step1-' + step).removeClass('active');
-        //     $('#step2-' + step).addClass('active');
-        // }
-
         $(document).ready(function() {
             // Click popup gg map by lat & lon
             $('.list-distance-item').on('click', function() {
@@ -1130,11 +1120,9 @@
                     `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
                 window.open(googleMapsUrl, '_blank');
             });
-
             // Rating tab
-            $('.nav-link.rating-tab').on('click', function() {
+            $('.wrap-filter').on('click', '.nav-link.rating-tab', function() {
                 let companyId = $(this).data('company-id');
-                // let itemKey = $(this).data('key') + 1;
                 const url = `/api/info/xe-khach/${companyId}/reviews`;
                 // console.log(url);
                 fetch(url, {
@@ -1156,13 +1144,11 @@
                     });
             });
 
-            $('.nav-link.policy-tab').on('click', function() {
+            $('.wrap-filter').on('click', '.nav-link.policy-tab', function() {
                 let tripCode = $(this).data('trip-code');
                 let seatTemplateId = $(this).data('seat-template-id');
-
                 const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
                 // console.log(url);
-
                 fetch(url, {
                         method: 'GET',
                     })
@@ -1182,11 +1168,18 @@
                     });
             });
 
-            let visibilityState = {};
+             function nextStep(step) {
+            $('#step1-' + step).removeClass('active');
+                $('#step2-' + step).addClass('active');
+            }
+
+            function prevStep(step) {
+                $('#step1-' + step).removeClass('active');
+                $('#step2-' + step).addClass('active');
+            }
+
             let proxies = {};
             let listSeatChoosed = {};
-
-            // Hàm tạo Proxy mới cho từng keyId
             function createProxyForSeatChoosed(keyId) {
                 return new Proxy({}, {
                     set(target, property, value) {
@@ -1227,34 +1220,40 @@
             }
 
             // Sự kiện click cho btn-booking-l.ticket-step
-            $(document).on('click', '.btn-booking-l.ticket-step', function() {
+            $('.wrap-filter').on('click', '.btn-booking-l.ticket-step', function() {
                 let keyId = $(this).data('key');
                 let target = $(this).data('bs-target'); // ID của collapse cần mở
                 let $currentCollapse = $(target); // jQuery object của collapse hiện tại
+                $('.collapse.ticket-step-collapse.show').not(target).collapse('hide');
                 $currentCollapse.collapse('toggle');
 
-                if (!$currentCollapse.hasClass('show')) {
-                    let tripCode = $(this).data('trip-code');
+                if (!proxies[keyId]) {
+                    proxies[keyId] = createProxyForSeatChoosed(keyId);
+                }
+
+                let tripCode = $(this).data('trip-code');
+                $currentCollapse.on('shown.bs.collapse', function() {
                     const url = `/api/info/xe-khach/seat-map/${tripCode}`;
+                    console.log(url);
 
                     fetch(url, {
                             method: 'GET',
                         })
                         .then(response => {
                             if (!response.ok) {
-                                throw new Error('Network response was not ok ' + response.statusText);
+                                throw new Error('Network response was not ok ' + response
+                                    .statusText);
                             }
                             return response.json();
                         })
                         .then(data => {
                             $(`.ticket-step-collapse #step1-${keyId}`).html(data.dataHTML);
-                            // visibilityState[keyId] = true;
-
                             $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
                                 .on('click', function() {
                                     let elThumb = $(this).children('.seat-thumbnail');
                                     elThumb.toggleClass("seat-selected");
                                     const seatCode = $(this).data('seat-code');
+
                                     if (elThumb.hasClass("seat-selected")) {
                                         proxies[keyId][seatCode] = {
                                             fullCode: $(this).data('full-code'),
@@ -1264,29 +1263,32 @@
                                     } else {
                                         delete proxies[keyId][seatCode];
                                     }
-                                    console.log(proxies[keyId]);
+                                    // console.log(proxies[keyId]);
                                 });
 
-                            $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`).each(
-                                function() {
-                                    const $quantity = $(this).find('#unique-quantity');
-                                    const $subIcon = $(this).find('.unique-sub-icon');
-                                    const $plusIcon = $(this).find('.unique-plus-icon');
+                            $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`)
+                                .each(
+                                    function() {
+                                        const $quantity = $(this).find('#unique-quantity');
+                                        const $subIcon = $(this).find('.unique-sub-icon');
+                                        const $plusIcon = $(this).find('.unique-plus-icon');
 
-                                    $subIcon.off('click').on('click', function() {
-                                        console.log('Sub icon clicked');
-                                        let currentValue = parseInt($quantity.text(), 10);
-                                        if (currentValue > 0) {
-                                            $quantity.text(currentValue - 1);
-                                        }
-                                    });
+                                        $subIcon.off('click').on('click', function() {
+                                            console.log('Sub icon clicked');
+                                            let currentValue = parseInt($quantity
+                                            .text(), 10);
+                                            if (currentValue > 0) {
+                                                $quantity.text(currentValue - 1);
+                                            }
+                                        });
 
-                                    $plusIcon.off('click').on('click', function() {
-                                        console.log('Plus icon clicked');
-                                        let currentValue = parseInt($quantity.text(), 10);
-                                        $quantity.text(currentValue + 1);
+                                        $plusIcon.off('click').on('click', function() {
+                                            console.log('Plus icon clicked');
+                                            let currentValue = parseInt($quantity
+                                            .text(), 10);
+                                            $quantity.text(currentValue + 1);
+                                        });
                                     });
-                                });
 
                             // Scroll into view
                             document.querySelector(`.ticket-step-collapse #step1-${keyId}`)
@@ -1298,47 +1300,46 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-                } else {
-                    $currentCollapse.collapse('hide');
+                })
+
+                $currentCollapse.on('hidden.bs.collapse', function() {
                     $(`.ticket-step-collapse #step1-${keyId}`).html(`
-                    <div class="loading-wrap">
-                        <svg class="truck" viewBox="0 0 48 24" width="48px" height="24px">
-                            <g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                transform="translate(0,2)">
-                                <g class="truck__body">
-                                    <g stroke-dasharray="105 105">
-                                        <polyline class="truck__outside1" points="2 17,1 17,1 11,5 9,7 1,39 1,39 6" />
-                                        <polyline class="truck__outside2" points="39 12,39 17,31.5 17" />
-                                        <polyline class="truck__outside3" points="22.5 17,11 17" />
-                                        <polyline class="truck__window1" points="6.5 4,8 4,8 9,5 9" />
-                                        <polygon class="truck__window2" points="10 4,10 9,14 9,14 4" />
+                        <div class="loading-wrap">
+                            <svg class="truck" viewBox="0 0 48 24" width="48px" height="24px">
+                                <g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    transform="translate(0,2)">
+                                    <g class="truck__body">
+                                        <g stroke-dasharray="105 105">
+                                            <polyline class="truck__outside1" points="2 17,1 17,1 11,5 9,7 1,39 1,39 6" />
+                                            <polyline class="truck__outside2" points="39 12,39 17,31.5 17" />
+                                            <polyline class="truck__outside3" points="22.5 17,11 17" />
+                                            <polyline class="truck__window1" points="6.5 4,8 4,8 9,5 9" />
+                                            <polygon class="truck__window2" points="10 4,10 9,14 9,14 4" />
+                                        </g>
+                                        <polyline class="truck__line" points="43 8,31 8" stroke-dasharray="10 2 10 2 10 2 10 2 10 2 10 26" />
+                                        <polyline class="truck__line" points="47 10,31 10" stroke-dasharray="14 2 14 2 14 2 14 2 14 18" />
                                     </g>
-                                    <polyline class="truck__line" points="43 8,31 8" stroke-dasharray="10 2 10 2 10 2 10 2 10 2 10 26" />
-                                    <polyline class="truck__line" points="47 10,31 10" stroke-dasharray="14 2 14 2 14 2 14 2 14 18" />
+                                    <g stroke-dasharray="15.71 15.71">
+                                        <g class="truck__wheel">
+                                            <circle class="truck__wheel-spin" r="2.5" cx="6.5" cy="17" />
+                                        </g>
+                                        <g class="truck__wheel">
+                                            <circle class="truck__wheel-spin" r="2.5" cx="27" cy="17" />
+                                        </g>
+                                    </g>
                                 </g>
-                                <g stroke-dasharray="15.71 15.71">
-                                    <g class="truck__wheel">
-                                        <circle class="truck__wheel-spin" r="2.5" cx="6.5" cy="17" />
-                                    </g>
-                                    <g class="truck__wheel">
-                                        <circle class="truck__wheel-spin" r="2.5" cx="27" cy="17" />
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>`);
+                            </svg>
+                        </div>`);
                     $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`).html(``);
                     $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
-                    // visibilityState[keyId] = false;
-
                     $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
                         .off('click');
-
                     listSeatChoosed = {};
                     delete proxies[keyId];
-                    console.log(`Proxy for keyId ${keyId} has been removed.`);
-                }
+                    // console.log(`Proxy for keyId ${keyId} has been removed.`);
+                });
             });
+
         });
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>

@@ -114,6 +114,7 @@ class RouteController extends Controller
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
         return view("bus.bus_search", [
+            "fromtoPlace" => $fromtoPlace,
             "list_routes" => $list_routes,
             "list_areas" => $list_areas,
             "params" => $params,
@@ -336,7 +337,8 @@ class RouteController extends Controller
         ]);
     }
 
-    function busListRouteSearch(Request $request) {
+    function busListRouteSearch(Request $request)
+    {
 
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
         $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
