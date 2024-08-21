@@ -56,6 +56,30 @@
                             </div>
                         </div>
                     </div>
+                    <!--  -->
+                    <!-- ///// địa điểm//// -->
+                    <div class="custom-from-to-content">
+                    <div class="custom-content-from">
+                        <div class="custom-hour">
+                            18:45 <span class="custom-status-dot custom-green-dot"></span>
+                        </div>
+                        <div class="custom-place">VP Đà Nẵng</div>
+                    </div>
+                    <div class="custom-timeline">
+                        <div class="line"></div>
+                       <div class="custom-duration">12 giờ</div>
+                   </div>
+                   <div class="custom-content-to">
+                        <div class="custom-arrival-date">(18/08)</div>
+                        <div class="custom-hour">
+                            <span class="custom-status-dot custom-red-dot"></span> 06:45
+                        </div>
+                        <div class="custom-place">VP Tân Bình</div>
+                    </div>
+                </div>
+                    <!--  -->
+
+
                     {{-- <div class="social-proof-l">7 người đặt trong 6 tiếng gần đây</div> --}}
                     <div class="action-p">
                         <div class="seat-available">
@@ -143,7 +167,8 @@
                         <p class="trust-message-text"><i class="fas fa-shield-alt"></i> Vexere cam kết giữ đúng chỗ
                             bạn đã chọn.</p>
                     </div>
-                    <div class="coupon-container">
+                    <div class="coupon-container" style="display: none
+                    ;">
                         <div class="wrap-coupon">
                             <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
@@ -1178,6 +1203,7 @@
                 </div>
                 <div class="total-amount">
                     <div class="left-total-amount">
+                        <div class="left-total"></div>
                         <button onclick="nextStep(1)" data-current="0"
                             data-tracking-event="completed_seat_selection" type="button"
                             class="ant-btn footer-nextstep ant-btn-primary"><span><i
@@ -1396,7 +1422,7 @@
                                 Lịch này có thể thay đổi tùy tình hình thưc tế.
                             </div>
                         </div>
-                        <div class="d-flex row mt-2">
+                        <div class="d-flex row mt-2" style="flex-direction: column;">
                             <div class="col-6 d-flex flex-column wrap-point">
                                 <div class="fw-bold">Điểm đón</div>
                                 <div class="list-group">
