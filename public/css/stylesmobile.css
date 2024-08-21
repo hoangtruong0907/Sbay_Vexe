@@ -271,7 +271,7 @@
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1040px) {
     .wrap-filter {
         display: flex;
         justify-content: space-between;
@@ -285,8 +285,7 @@
             padding-top: 50px;
         }
         .right-filter {
-            width: 90%;
-            margin-left: 20px;
+            width: 100%;
         }
         .coupon-container {
             display: flex;
@@ -430,6 +429,7 @@
         
     }
     .left-filter{
+        width: 1150px;
         display: none;
     }
     .right-filter{
@@ -616,7 +616,7 @@
         font-weight: bold;
         display: flex;
         align-items: center;
-        margin-top: 30px;
+        margin-top: 15px;
     }
     
     .custom-place {
@@ -699,6 +699,12 @@
         font-size: 12px;
     }
 }
+@media (max-width:605px) {
+    .custom-place {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+}
 
 @media  (max-width:550px){
     .container-l{
@@ -711,6 +717,10 @@
     }
     .floating-filter-button{
         left: 41%;
+    }
+    .custom-place {
+        font-size: 10px;
+        white-space: nowrap;
     }
 }
 /* //////////lọc sắp xếp//////// */
@@ -919,5 +929,8 @@
     }
     .floating-filter-button{
         left: 41%;
+    }
+    .custom-hour {
+        font-size: 13px;
     }
 }
