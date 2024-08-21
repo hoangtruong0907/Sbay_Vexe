@@ -504,6 +504,10 @@
         display: none;
         
     }
+    .bus-name-l button{
+        display: none;
+
+    }
    
     .bus-name-l {
         margin-left: 50px;

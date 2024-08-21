@@ -1903,6 +1903,9 @@ body .material-icons-wrapper.md-20 {
     max-width: 90%;
     margin: auto;
 }
+.floating-container {
+    display: none;
+}
 
 
 /* .image-tab .carousel-item {
@@ -3277,9 +3280,10 @@ text-decoration: none;
 
 .carousel-control-prev,
 .carousel-control-next {
+
     width: 5%; 
     height: 100%; 
-    top: 50%;
+    top: 50% !important;
     transform: translateY(-50%);
     position: absolute; 
     color: white; 
@@ -3795,7 +3799,7 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
 }
 
 .image-tab .carousel-inner {
-    background-color: #333333c4;
+    /* background-color: #333333c4; */
     border-radius: 8px;
 }
 
