@@ -4853,3 +4853,18 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     display: flex;
     justify-content: center;
 }
+.custom-from-to-content{
+    display: none;
+}
+.floating-filter-button {
+    display: none;
+}
+.floating-sort-button {
+    display: none;
+}
+.floating{
+    display: none;
+}
+.floating-container{
+    display: none;
+}
