@@ -1200,7 +1200,10 @@
                             return total + (target[seatCode].fareSeat || 0);
                         }, 0);
                         let formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare) + 'đ';
-
+                        if (seatCodes.length == 8) {
+                            $(`#item-bus-${keyId} #modals-warning`).show();
+                            console.log($(`#item-bus-${keyId} #modals-warning`));
+                        }
                         if (seatCodes.length > 0) {
                             $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).hide();
                             $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
@@ -1226,6 +1229,18 @@
                 let $currentCollapse = $(target); // jQuery object của collapse hiện tại
                 $('.collapse.ticket-step-collapse.show').not(target).collapse('hide');
                 $currentCollapse.collapse('toggle');
+
+                $(`#item-bus-${keyId} .next-step`).on('click', function() {
+                    console.log(keyId);
+                    $(`.ticket-step-collapse #step1-${keyId}`).removeClass('active');
+                    $(`.ticket-step-collapse #step2-${keyId}`).addClass('active');
+                });
+
+                $(`#item-bus-${keyId} .back-step`).on('click', function() {
+                    console.log(keyId);
+                    $(`.ticket-step-collapse #step2-${keyId}`).removeClass('active');
+                    $(`.ticket-step-collapse #step1-${keyId}`).addClass('active');
+                });
 
                 if (!proxies[keyId]) {
                     proxies[keyId] = createProxyForSeatChoosed(keyId);
@@ -1338,6 +1353,7 @@
                     delete proxies[keyId];
                     // console.log(`Proxy for keyId ${keyId} has been removed.`);
                 });
+
             });
 
         });

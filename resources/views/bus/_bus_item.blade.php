@@ -146,10 +146,10 @@
                                 <div class="step-tail"></div>
                             </div>
                         </div>
-                        <div class="trust-message">
-                            <p class="trust-message-text"><i class="fas fa-shield-alt"></i> An tâm được đón đúng
-                                nơi, trả đúng chỗ đã chọn và dễ dàng thay đổi khi cần.</p>
-                        </div>
+                    </div>
+                    <div class="trust-message">
+                        <p class="trust-message-text"><i class="fas fa-shield-alt"></i> An tâm được đón đúng
+                            nơi, trả đúng chỗ đã chọn và dễ dàng thay đổi khi cần.</p>
                     </div>
                     <div class="container-steps-content">
                         <div class="wrap-steps-content">
@@ -285,7 +285,7 @@
                 </div>
                 <div class="total-amount">
                     <div class="left-total-amount d-flex">
-                        <button onclick="nextStep(1)" type="button" class="ant-btn-close"><span><i
+                        <button type="button" class="ant-btn-close back-step"><span><i
                                     class="fa-solid fa-arrow-up-from-bracket"></i> Huỷ bỏ</span></button>
                         {{-- load list seat choosed --}}
                         <div class="left-total code-seat-choosed"></div>
@@ -293,7 +293,7 @@
                     <div class="right-total-amount d-flex">
                         {{-- Load fate total seatchoosed --}}
                         <div class="fare-total"></div>
-                        <button onclick="nextStep(2)" type="button" class="ant-btn-primary"><span>Tiếp tục <i
+                        <button type="button" class="ant-btn-primary next-step"><span>Tiếp tục <i
                                     class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>

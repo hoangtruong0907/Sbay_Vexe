@@ -299,7 +299,25 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" aria-hidden="true">
+<div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Cảnh báo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn được chọn tối đa 8 chỗ cho mỗi lần đặt
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show" id="exampleModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-new">
         <div class="modal-content">
             <div class="wrap-content">
@@ -308,10 +326,6 @@
                 <button type="button" class="btn-close btn-modal-content" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
-            {{-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        </div> --}}
             <div class="text-modal">
                 <p>Đây là giường có thể nằm tối đa 2 khách.<br>
                     Giá vé sẽ tương ứng với số lượng khách.</p>
