@@ -20,10 +20,34 @@
         <div class="wrap-filter">
 
                  <!-- /////// lọc mobile///////// -->
-            <div class="filter-container"> 
-                <button class="floating-filter-button" onclick="openFilterModal()">Lọc</button>
-                <button class="floating-sort-button" onclick="openSortModal()">Sắp xếp</button>
-            </div>
+                            <div id="floating" class="floating-container">
+                                <button onclick="openFilterModal()">
+                                    <span>&#9881;</span> Lọc
+                                </button>
+                                <button onclick="openSortModal()">
+                                    <span>&#9650;</span> Sắp xếp
+                                </button>
+                            </div>
+
+                            <script>
+                                // Hàm để mở các modal
+                                function openFilterModal() {
+                                    alert("Filter modal opened!");
+                                }
+                            
+                                function openSortModal() {
+                                    alert("Sort modal opened!");
+                                }
+                            
+                                function openTimeModal() {
+                                    alert("Time modal opened!");
+                                }
+                            
+                                function openBusModal() {
+                                    alert("Bus modal opened!");
+                                }
+                            </script>
+
                        <div id="filterModal" class="modal">
                        <div class="modal-content filter-content">
                      <span class="close" onclick="closeFilterModal()">&times;</span>

@@ -393,7 +393,7 @@
     }
     .seat-type-l {
         flex-direction: column;
-        margin-left: 30px;
+        margin-left: 50px;
         margin-top: -46px;
         font-size: 12px;
     }
@@ -558,21 +558,47 @@
 }
 /* //////////lọc sắp xếp//////// */
 @media only screen and (max-width: 1040PX){
-    .floating-filter-button{
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 200vh; /* Tạo trang dài để có thể cuộn */
+        background-color: #f0f2f5;
+    }
+
+    .floating-container {
         position: fixed;
-        bottom: 20px;
-        left: 45%;
+        bottom: 20px; /* Đặt ở gần cuối màn hình */
+        left: 50%;
         transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        background-color: #0d6efd;
+        border-radius: 50px;
+        padding: 5px 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         z-index: 1000;
-        padding: 10px 20px;
-        background-color: #007bff;
+    }
+
+    .floating-container button {
         color: white;
+        background: none;
         border: none;
-        border-radius: 5px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
         cursor: pointer;
-        font-size: 14px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        display: block;
+    }
+
+    .floating-container button:last-child {
+        margin-right: 0;
+        white-space: nowrap;
+    }
+
+    .floating-container button span {
+        margin-right: 8px;
+        font-size: 18px;
     }
     
     .modal {
@@ -641,23 +667,6 @@
     .close-button:hover {
         background-color: #0056b3;
     }
-        .floating-sort-button {
-         position: fixed;
-         bottom: 20px; 
-        left: 50%;
-            /* transform: translateX(-50%); */
-        z-index: 1000;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        display: block;
-    }
-    
     .modal {
         display: none; 
         position: fixed; 

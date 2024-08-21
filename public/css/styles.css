@@ -2823,3 +2823,9 @@ body .material-icons-wrapper.md-20 {
 .floating-sort-button {
     display: none;
 }
+.floating{
+    display: none;
+}
+.floating-container{
+    display: none;
+}
