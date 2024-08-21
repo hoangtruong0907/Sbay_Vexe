@@ -1,7 +1,4 @@
-/* Media Queries */
-
 @media (min-width: 1200px) {
-    /* Thêm các kiểu cho màn hình lớn (tuỳ chọn) */
 }
 
 @media (max-width: 1150px) {
@@ -400,6 +397,7 @@
     .image-tab .img-child {
         height: 150px;
     }
+    
 }
     
 
@@ -408,6 +406,19 @@
     .tab-content .list-group .w-100 .list-gr-review .mb-1 {
         font-size: 20px;
     }
+    .image-tab .carousel-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .carousel-icon .carousel-control-next-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+    .carousel-icon .carousel-control-prev-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+
 }
 
 
