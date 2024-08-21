@@ -250,19 +250,52 @@
         .arrow_icon.focus svg path {
             fill: rgb(36, 116, 229);
         }
+
+        .custom_h1 {
+            font-size: 34px;
+            font-weight: 500;
+            margin-bottom: 0px;
+            color: white;
+            text-align: center;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
+        }
+
+        .sub_ {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            font-feature-settings: "liga" 0;
+            color: rgb(255, 255, 255);
+            text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
+        }
+
+        .custom-text-shadow {
+            line-height: 24px;
+            font-feature-settings: "liga" 0;
+            text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
+        }
     </style>
 @endsection
 
 @section('content')
     <!-- slide -->
     <div class="total-slide position-relative">
+        <div class="d-flex flex-column align-items-center p-0 gap-2 mb-28">
+            <h1 class="m-0 p-0 custom_h1">
+                Đặt vé máy bay giá rẻ</h1>
+            <p class="m-0 p-0 fw-medium fs-5 text-center text-white custom-text-shadow">Giảm 20K/ghế cho vé rẻ nhất của
+                Vietjet Air</p>
+        </div>
         <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
             @include('train.components.search', [
                 'params' => [],
             ])
         </div>
         <div class="img-slide">
-            <img src="{{ asset('images/banner-main-vi.jpg') }}" alt="slide">
+            <img src="{{ asset('images/slide.jpg') }}" alt="slide">
         </div>
         <div class="wrap-criteria">
             <div class="criteria-slide">
@@ -292,6 +325,7 @@
         const dateFrom = @json($params->dateFrom ?? '');
         const trainStations = @json($trainStations ?? []);
     </script>
+    {{-- Active button --}}
     <script>
         // Thanh gạch ngang trong input
         document.addEventListener('DOMContentLoaded', () => {
@@ -379,61 +413,65 @@
         });
         //Xử lý sự kiện khi nhấn nút + hoặc -
         document.addEventListener('DOMContentLoaded', function() {
-    const maxTotal = 4; // Tổng số lượng tối đa
-    const alertMessage = "Mỗi lần đặt chỉ được tối đa 4 vé";
+            const maxTotal = 4; // Tổng số lượng tối đa
+            const alertMessage = "Mỗi lần đặt chỉ được tối đa 4 vé";
 
-    const updateTotalPassengerCount = () => {
-        const counts = [
-            parseInt(document.getElementById('numberValueAdult').value) || 0,
-            parseInt(document.getElementById('numberValueChildren').value) || 0,
-            parseInt(document.getElementById('numberValueSeniors').value) || 0,
-            parseInt(document.getElementById('numberValueStudent').value) || 0,
-            parseInt(document.getElementById('numberValueUnion_member').value) || 0
-        ];
-        const total = counts.reduce((acc, count) => acc + count, 0);
-        document.getElementById('passengerCount').textContent = `${total} Hành khách`;
-        
-        // Cập nhật trạng thái của các nút giảm và tăng
-        document.querySelectorAll('.decrement-btn').forEach(button => {
-            const input = document.querySelector(button.getAttribute('data-target'));
-            button.classList.toggle('custom_disabled', parseInt(input.value) <= parseInt(input.getAttribute('min')));
-        });
-        document.querySelectorAll('.increment-btn').forEach(button => {
-            button.classList.toggle('custom_disabled', total >= maxTotal);
-        });
-    };
+            const updateTotalPassengerCount = () => {
+                const counts = [
+                    parseInt(document.getElementById('numberValueAdult').value) || 0,
+                    parseInt(document.getElementById('numberValueChildren').value) || 0,
+                    parseInt(document.getElementById('numberValueSeniors').value) || 0,
+                    parseInt(document.getElementById('numberValueStudent').value) || 0,
+                    parseInt(document.getElementById('numberValueUnion_member').value) || 0
+                ];
+                const total = counts.reduce((acc, count) => acc + count, 0);
+                document.getElementById('passengerCount').textContent = `${total} Hành khách`;
 
-    document.querySelectorAll('.increment-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = document.querySelector(this.getAttribute('data-target'));
-            const currentTotal = Array.from(document.querySelectorAll('.custom-input_number'))
-                .reduce((acc, input) => acc + parseInt(input.value) || 0, 0);
-            
-            if (currentTotal < maxTotal) {
-                let value = parseInt(input.value) || 0;
-                input.value = value + 1;
-                updateTotalPassengerCount();
-            } else { 
-                alert(alertMessage); // Hiển thị thông báo khi đạt giá trị tối đa chưa chỉn sửa lại
-                
-            }
-        });
-    });
+                // Cập nhật trạng thái của các nút giảm và tăng
+                document.querySelectorAll('.decrement-btn').forEach(button => {
+                    const input = document.querySelector(button.getAttribute('data-target'));
+                    button.classList.toggle('custom_disabled', parseInt(input.value) <= parseInt(input
+                        .getAttribute('min')));
+                });
+                document.querySelectorAll('.increment-btn').forEach(button => {
+                    button.classList.toggle('custom_disabled', total >= maxTotal);
+                });
+            };
 
-    document.querySelectorAll('.decrement-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = document.querySelector(this.getAttribute('data-target'));
-            let value = parseInt(input.value) || 0;
-            if (value > parseInt(input.getAttribute('min'))) {
-                input.value = value - 1;
-                updateTotalPassengerCount();
-            }
-        });
-    });
+            document.querySelectorAll('.increment-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = document.querySelector(this.getAttribute('data-target'));
+                    const currentTotal = Array.from(document.querySelectorAll(
+                            '.custom-input_number'))
+                        .reduce((acc, input) => acc + parseInt(input.value) || 0, 0);
 
-    // Initialize total count on page load
-    updateTotalPassengerCount();
-});
-    </script> 
+                    if (currentTotal < maxTotal) {
+                        let value = parseInt(input.value) || 0;
+                        input.value = value + 1;
+                        updateTotalPassengerCount();
+                    } else {
+                        alert(
+                            alertMessage
+                        ); // Hiển thị thông báo khi đạt giá trị tối đa chưa chỉn sửa lại
+
+                    }
+                });
+            });
+
+            document.querySelectorAll('.decrement-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = document.querySelector(this.getAttribute('data-target'));
+                    let value = parseInt(input.value) || 0;
+                    if (value > parseInt(input.getAttribute('min'))) {
+                        input.value = value - 1;
+                        updateTotalPassengerCount();
+                    }
+                });
+            });
+
+            // Initialize total count on page load
+            updateTotalPassengerCount();
+        });
+    </script>
     <script src="{{ asset('js/search_train.js') }}"></script>
 @endpush

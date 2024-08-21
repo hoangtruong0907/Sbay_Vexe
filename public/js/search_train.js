@@ -1,9 +1,9 @@
-// Tàu hoả 
 function updateTrainDropdownList(
     inputValue,
     inputElement,
     dropdownListElement,
-    filter
+    filter,
+    stationDisplayElement // Thêm tham số này
 ) {
     dropdownListElement.innerHTML = "";
     const filteredCities = trainStations.filter((city) =>
@@ -18,27 +18,30 @@ function updateTrainDropdownList(
                                 <i class="material-icons-outlined text-secondary">train</i>
                             </div>
                             <div class="custom-content-section">
-                                <div class="custom-city-title"><b>${city.station_code} - Ga ${city.station_name}</b></div>
-                                <p class="text-secondary">30 km đến trung tâm Bắc Ninh - Bắc Ninh</p></div>
+                                <div class="custom-city-title"><b>${city.station_name} (Tỉnh/TP)</b></div>
+                                <p class="text-secondary">${city.station_code} - Ga ${city.station_name}</p></div>
                         </div>
                     `;
         item.addEventListener("mousedown", function (event) {
             event.preventDefault();
             inputElement.value = city.station_name;
             inputValue.value = city.station_code;
+            stationDisplayElement.textContent = `${city.station_code} - Ga ${city.station_name}`; // Cập nhật thẻ <p>
             dropdownListElement.parentElement.style.display = "none";
         });
         dropdownListElement.appendChild(item);
     });
 }
-function setupTrainInput(inputValue, inputElement, dropdownMenu, dropdownList) {
+
+function setupTrainInput(inputValue, inputElement, dropdownMenu, dropdownList, stationDisplayElement) {
     inputElement.addEventListener("focus", function () {
         dropdownMenu.style.display = "block";
         updateTrainDropdownList(
             inputValue,
             inputElement,
             dropdownList,
-            inputElement.value
+            inputElement.value,
+            stationDisplayElement
         );
     });
 
@@ -53,7 +56,8 @@ function setupTrainInput(inputValue, inputElement, dropdownMenu, dropdownList) {
             inputValue,
             inputElement,
             dropdownList,
-            inputElement.value
+            inputElement.value,
+            stationDisplayElement
         );
     });
 
@@ -63,13 +67,16 @@ function setupTrainInput(inputValue, inputElement, dropdownMenu, dropdownList) {
             inputValue,
             inputElement,
             dropdownList,
-            inputElement.value
+            inputElement.value,
+            stationDisplayElement
         );
     });
 }
+
 $(document).on("mousedown", ".custom-dropdown-item", function () {
     $(this).closest(".train-dropdown-menu").hide();
 });
+
 // train Form
 const trainFrom = document.getElementById("train_from");
 const trainFromInput = document.getElementById("train_from_input");
@@ -77,7 +84,10 @@ const trainFromDropdownMenu = document.querySelector(
     ".custom-train-from-select-wrapper .train-dropdown-menu"
 );
 const trainFromDropdownList = document.getElementById("dropdown_list_train_from");
-setupTrainInput(trainFrom, trainFromInput, trainFromDropdownMenu, trainFromDropdownList);
+const trainFromStationDisplay = document.querySelector(".custom-input-container #trainFrom_desciption"); // Chọn thẻ <p> để hiển thị station_code
+
+setupTrainInput(trainFrom, trainFromInput, trainFromDropdownMenu, trainFromDropdownList, trainFromStationDisplay);
+
 // train To 
 const trainTo = document.getElementById("train_to");
 const trainToInput = document.getElementById("train_to_input");
@@ -85,7 +95,8 @@ const trainToDropdownMenu = document.querySelector(
     ".custom-train-to-select-wrapper .train-dropdown-menu"
 );
 const trainToDropdownList = document.getElementById("dropdown_list_train_to");
-setupTrainInput(trainTo, trainToInput, trainToDropdownMenu, trainToDropdownList);
+const trainToStationDisplay = document.querySelector(".custom-input-container #trainTo_desciption"); // Chọn thẻ <p> để hiển thị station_code
+setupTrainInput(trainTo, trainToInput, trainToDropdownMenu, trainToDropdownList, trainToStationDisplay);
 // Hoán đổi giá trị của hai ô nhập liệu
 const trainSwapButton = document.getElementById("train_swap_button");
 trainSwapButton.addEventListener("click", function () {
@@ -250,7 +261,7 @@ $(document).ready(function () {
         },
     });
 });
- 
+
 $("#train_search").click(() => {
     var trainTo = $("#train_to").val();
     var trainToPlace = $("#train_to_input").val();
@@ -259,18 +270,30 @@ $("#train_search").click(() => {
     var dateTo = $("#train_date_to").val();
     var dateFrom = $("#train_date_from").val();
 
+    // Tính tổng số lượng người
+    var totalPassengers = 
+        parseInt($("#numberValueAdult").val()) +
+        parseInt($("#numberValueChildren").val()) +
+        parseInt($("#numberValueSeniors").val()) +
+        parseInt($("#numberValueStudent").val()) +
+        parseInt($("#numberValueUnion_member").val());
+
     var data = {
         train_from: trainFrom,
         train_to: trainTo,
         date_from: dateFrom,
         date_to: dateTo,
+        total_passengers: totalPassengers 
     };
-    var url =
-        "/route-search/tau-hoa/" +
-        convertToSlug(trainFromPlace) +
-        "-to-" +
-        convertToSlug(trainToPlace);
-    var queryString = $.param(data);
-    url += "?" + queryString;
-    window.location.href = url;
+    console.log(data);
+    
+    // var url = "/ve-tau-hoa/" + 
+    //           convertToSlug(trainFromPlace) + 
+    //           "-to-" + 
+    //           convertToSlug(trainToPlace);
+
+    // var queryString = $.param(data);
+    // url += "?" + queryString;
+
+    // window.location.href = url;
 });

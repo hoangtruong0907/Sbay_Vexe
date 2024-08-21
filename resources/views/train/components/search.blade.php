@@ -50,8 +50,7 @@
                                         </div>
                                         <div class="w-100">
                                             <p class="text-truncate text-muted mb-0 fw-normal"
-                                                style="font-size: 11px; line-height: 16px;">
-                                                {{-- HAN - Sân bay Nội Bài --}}
+                                                style="font-size: 11px; line-height: 16px;" id="trainFrom_desciption"> 
                                             </p>
                                         </div>
                                     </div>
@@ -97,9 +96,8 @@
                                                 for="train_to_input">Nơi đến</label>
                                         </div>
                                         <div class="w-100">
-                                            <p class="text-truncate text-muted mb-0 fw-normal"
-                                                style="font-size: 11px; line-height: 16px;">
-                                                {{-- HAN - Sân bay Nội Bài --}}
+                                            <p class="text-truncate text-muted mb-0 fw-normal" id="trainTo_desciption"
+                                                style="font-size: 11px; line-height: 16px;"> 
                                             </p>
                                         </div>
                                     </div>
@@ -134,7 +132,7 @@
                                         class="custom-font-medium date-input date-default-input m-0 p-0"
                                         style="outline: none;" id="train_date_to" placeholder="Chọn ngày bắt đầu"
                                         autocomplete="off">
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
