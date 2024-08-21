@@ -549,6 +549,7 @@ body .material-icons-wrapper.md-20 {
     flex-direction: column;
     border: 1px solid rgb(224, 224, 224);
     margin-bottom: 15px;
+   
 }
 
 .text-arrange h3 {
@@ -2894,4 +2895,19 @@ body .material-icons-wrapper.md-20 {
 
 .left-total-amount span {
     font-size: 15px;
+}
+.custom-from-to-content{
+    display: none;
+}
+.floating-filter-button {
+    display: none;
+}
+.floating-sort-button {
+    display: none;
+}
+.floating{
+    display: none;
+}
+.floating-container{
+    display: none;
 }
