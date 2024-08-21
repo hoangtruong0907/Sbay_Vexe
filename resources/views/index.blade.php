@@ -37,8 +37,45 @@
         </div>
     </div>
 </div>
+<div class="formCard">
+    @if($allPosts->isNotEmpty())
+        @php
+            $groupedPosts = $allPosts->groupBy('type');
+        @endphp
 
-
+        @foreach($groupedPosts as $type => $posts)
+            <div class="nigt">
+                <div class="text-card blogs">
+                    <p class="card-type popular-route-label">{{ $typeMapping[$type] ?? ucfirst($type) }}</p>
+                </div>
+                <div class="blogs">
+                    <div class="scroll-container popular">
+                        <div class="container item-card-list">
+                            @foreach($posts as $post)
+                                @if($post->status !== 'archived')
+                                    <div class="card-wrapper">
+                                        <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($post->title, '-')]) }}">
+                                            <div class="card card-item">
+                                                <img src="{{ Storage::url($post->picture) }}" alt="{{ $post->title }}" class="card-image">
+                                                <div class="card-content">
+                                                    <div class="text-nvc">
+                                                        <h4 class="card-title">{{ $post->title }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <p>No popular blog posts found.</p>
+    @endif
+</div>
 @endsection
 @push('page-scripts')
 <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
