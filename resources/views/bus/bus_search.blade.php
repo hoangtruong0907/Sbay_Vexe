@@ -1168,21 +1168,21 @@
                     });
             });
 
-             function nextStep(step) {
-            $('#step1-' + step).removeClass('active');
-                $('#step2-' + step).addClass('active');
-            }
-
-            function prevStep(step) {
-                $('#step1-' + step).removeClass('active');
-                $('#step2-' + step).addClass('active');
-            }
-
             let proxies = {};
             let listSeatChoosed = {};
+
             function createProxyForSeatChoosed(keyId) {
                 return new Proxy({}, {
                     set(target, property, value) {
+
+                        if (Object.keys(target).length >= 3) {
+                            let seatChoose = $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-full-code="${value.fullCode}"]`).find('.seat-thumbnail');
+                            seatChoose.removeClass('seat-selected');
+                            // Hiển thị modal cảnh báo
+                            $(`#item-bus-${keyId} #modals-warning`).modal('show');
+                            return true;
+                        }
+
                         target[property] = value;
                         this.updateUI(target, keyId);
                         return true;
@@ -1200,10 +1200,6 @@
                             return total + (target[seatCode].fareSeat || 0);
                         }, 0);
                         let formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare) + 'đ';
-                        if (seatCodes.length == 8) {
-                            $(`#item-bus-${keyId} #modals-warning`).show();
-                            console.log($(`#item-bus-${keyId} #modals-warning`));
-                        }
                         if (seatCodes.length > 0) {
                             $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).hide();
                             $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
@@ -1224,22 +1220,26 @@
 
             // Sự kiện click cho btn-booking-l.ticket-step
             $('.wrap-filter').on('click', '.btn-booking-l.ticket-step', function() {
+                let parent = $(this);
+                parent.html("<span>Đóng</span>");
                 let keyId = $(this).data('key');
                 let target = $(this).data('bs-target'); // ID của collapse cần mở
                 let $currentCollapse = $(target); // jQuery object của collapse hiện tại
                 $('.collapse.ticket-step-collapse.show').not(target).collapse('hide');
                 $currentCollapse.collapse('toggle');
 
+                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).hide();
+
                 $(`#item-bus-${keyId} .next-step`).on('click', function() {
-                    console.log(keyId);
                     $(`.ticket-step-collapse #step1-${keyId}`).removeClass('active');
                     $(`.ticket-step-collapse #step2-${keyId}`).addClass('active');
+                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).show();
                 });
 
                 $(`#item-bus-${keyId} .back-step`).on('click', function() {
-                    console.log(keyId);
                     $(`.ticket-step-collapse #step2-${keyId}`).removeClass('active');
                     $(`.ticket-step-collapse #step1-${keyId}`).addClass('active');
+                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).hide();
                 });
 
                 if (!proxies[keyId]) {
@@ -1274,11 +1274,9 @@
                                             fullCode: $(this).data('full-code'),
                                             fareSeat: $(this).data('fare-seat'),
                                         }
-
                                     } else {
                                         delete proxies[keyId][seatCode];
                                     }
-                                    // console.log(proxies[keyId]);
                                 });
 
                             $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`)
@@ -1291,7 +1289,7 @@
                                         $subIcon.off('click').on('click', function() {
                                             console.log('Sub icon clicked');
                                             let currentValue = parseInt($quantity
-                                            .text(), 10);
+                                                .text(), 10);
                                             if (currentValue > 0) {
                                                 $quantity.text(currentValue - 1);
                                             }
@@ -1300,7 +1298,7 @@
                                         $plusIcon.off('click').on('click', function() {
                                             console.log('Plus icon clicked');
                                             let currentValue = parseInt($quantity
-                                            .text(), 10);
+                                                .text(), 10);
                                             $quantity.text(currentValue + 1);
                                         });
                                     });
@@ -1318,6 +1316,7 @@
                 })
 
                 $currentCollapse.on('hidden.bs.collapse', function() {
+                    parent.html("<span>Chọn chuyến</span>");
                     $(`.ticket-step-collapse #step1-${keyId}`).html(`
                         <div class="loading-wrap">
                             <svg class="truck" viewBox="0 0 48 24" width="48px" height="24px">

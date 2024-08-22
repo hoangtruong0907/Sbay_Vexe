@@ -166,11 +166,13 @@
                                             </p>
                                         </div>
                                         <div class="value-container">
-                                            <button>
-                                                <p class="text-pick-up-point-arrange">
-                                                    Sớm nhất
-                                                </p>
-                                            </button>
+                                            <select class="form-select form-select-sm"
+                                                aria-label=".form-select-sm example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
                                             <button>
                                                 <p class="text-pick-up-point-arrange text-pick-up-point-maps">
                                                     Nhập địa chỉ tại đây
@@ -284,13 +286,15 @@
                     </div>
                 </div>
                 <div class="total-amount">
-                    <div class="left-total-amount d-flex">
-                        <button type="button" class="ant-btn-close back-step"><span><i
+                    <div class="left-total-amount d-flex align-items-center">
+                        <button type="button" class="ant-btn-close me-1"><span><i
                                     class="fa-solid fa-arrow-up-from-bracket"></i> Huỷ bỏ</span></button>
+                        <button type="button" class="ant-btn-primary back-step me-1"><span><i
+                                    class="fa-solid fa-arrow-left"></i> Quay lại</span></button>
                         {{-- load list seat choosed --}}
                         <div class="left-total code-seat-choosed"></div>
                     </div>
-                    <div class="right-total-amount d-flex">
+                    <div class="right-total-amount d-flex align-items-center">
                         {{-- Load fate total seatchoosed --}}
                         <div class="fare-total"></div>
                         <button type="button" class="ant-btn-primary next-step"><span>Tiếp tục <i

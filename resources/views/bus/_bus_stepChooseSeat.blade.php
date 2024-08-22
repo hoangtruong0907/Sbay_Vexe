@@ -301,16 +301,12 @@
 
 <div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Cảnh báo</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Bạn được chọn tối đa 8 chỗ cho mỗi lần đặt
-            </div>
-            <div class="modal-footer">
+            <div class="d-flex flex-column position-relative">
+                <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="conent-warning fw-bold">Thông báo</div>
+                <div class="conent-warning mt-2 mb-2 p-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt</div>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
             </div>
         </div>
