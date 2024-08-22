@@ -7,8 +7,10 @@ use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\CheckAuthGoogle;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckLoginAdminMiddleware;
@@ -19,8 +21,13 @@ Route::prefix('/admin')->group(function () {
         return view('admin/dashboard');
     })->name('admin')->middleware(AuthMiddleware::class);
 });
+Route::get('/', [BlogControllers::class, 'index'])->name('index');
+Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
+Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
-Route::get('/', [RouteController::class, 'index'])->name('home');
+
+
+
 Route::get('/test', [TestController::class, 'test']);
 
 
@@ -48,14 +55,10 @@ Route::prefix('/route-search')->group(function () {
     });
     Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
     Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
-});
-Route::get('/slidebanner', function(){
-    return view('slidebanner');
-});
 
-
-Route::get('/airline_tickets', function () {
-    return view('airline_tickets');
+    Route::get('/airline_tickets', function () {
+        return view('airline_tickets');
+    });
 });
 
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);

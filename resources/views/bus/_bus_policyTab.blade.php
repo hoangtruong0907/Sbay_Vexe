@@ -26,7 +26,7 @@
         </div>
         <div class="w-100 d-flex flex-row position-relative">
             <div class="check-point">
-                <div class="tag-dot">Hôm nay</div>
+                <div class="tag-dot" >Hôm nay</div>
                 <div class="dot"></div>
             </div>
             @if (count($cancelPolicy['detail']) == 3)
