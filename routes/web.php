@@ -25,6 +25,7 @@ Route::get('/test', [TestController::class, 'test']);
 
 
 // Login Admin
+
 Route::get('/admin/login', [loginController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
 Route::post('admin/doLogin', [loginController::class, 'doLogin'])->name('admin.doLogin');
 Route::get('/admin/doLogout', [loginController::class, 'doLogout'])->name('admin.doLogout');

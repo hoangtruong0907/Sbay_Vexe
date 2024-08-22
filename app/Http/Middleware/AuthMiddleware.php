@@ -16,20 +16,24 @@ class AuthMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->role == '2') {
-                return $next($request);
-            } if ($user->role == '1') {
-                Auth::logout(); 
-                toastr()->error('Tài khoản này đã bị chặn!');
-            }
-        } else {
-            Auth::logout(); 
-            toastr()->error('Vui lòng đăng nhập để sử dụng!');
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+        
+        if ($user->role == '2') {
+            // Nếu người dùng có vai trò '2', cho phép truy cập
+            return $next($request);
         }
 
+        // Nếu người dùng có vai trò khác, đăng xuất và thông báo lỗi
+        Auth::logout();
+        toastr()->error('Tài khoản này không có quyền truy cập!');
         return redirect()->route('admin.login.index');
     }
+
+    // Nếu người dùng chưa đăng nhập
+    return redirect()->route('admin.login.index')->with('error', 'Vui lòng đăng nhập để sử dụng!');
+}
+
+    
 }

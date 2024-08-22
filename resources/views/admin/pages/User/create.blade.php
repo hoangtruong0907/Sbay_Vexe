@@ -57,6 +57,9 @@
                         <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>On</option>
                         <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>Off</option>
                     </select>
+                    @error('status')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 
                 <div class="col-6 mt-3">
@@ -66,6 +69,9 @@
                         <option value="1" {{ old('role') == '1' ? 'selected' : '' }}>User</option>
                         <option value="2" {{ old('role') == '2' ? 'selected' : '' }}>Admin</option>
                     </select>
+                    @error('role')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 
                 <div class="mt-5">

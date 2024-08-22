@@ -48,7 +48,6 @@ class loginController extends Controller
         $this->authRepository->logout();
             toastr()->success('Đăng xuất thành công!'); 
             return redirect()->route('admin.login.index'); 
-
     }
 
     

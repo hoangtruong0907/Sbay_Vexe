@@ -14,6 +14,7 @@ class UserRepository implements UserRepositoryInterface
         $this->model = $user;
     }
 
+
     public function all()
     {
         return $this->model->all();
