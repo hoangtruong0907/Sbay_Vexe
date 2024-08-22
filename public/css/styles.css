@@ -315,19 +315,18 @@ body .material-icons-wrapper.md-20 {
     flex-direction: column-reverse;
 }
 
-.custom-dropdown-menu {
+.custom-dropdown-menu { 
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background: white;
+    background: rgb(249, 249, 249);
     z-index: 1000 !important;
     list-style-type: none;
-    padding-left: 0px;
-    margin-top: 16px;
+    /* padding-left: 0px; */
+    /* margin-top: 16px; */
 }
-
 .custom-dropdown-item-group {
     min-width: 800px;
     display: block !important;
@@ -350,11 +349,11 @@ body .material-icons-wrapper.md-20 {
 .custom-dropdown-item {
     padding: 8px;
     cursor: pointer;
-    background: #fff;
+    /* background: #fff; */
 }
 
 .custom-dropdown-item:hover {
-    background: #f0f0f0;
+    background: #fefefe;
 }
 
 .custom-item-container {
@@ -487,7 +486,7 @@ body .material-icons-wrapper.md-20 {
 .left-ant-row-flex {
     border: 1px solid rgb(224, 224, 224);
     border-radius: 8px;
-    margin-right: 12px !important;
+    /* margin-right: 12px !important; */
     margin: 0px;
     width: calc(100% - 152px);
 }
@@ -500,7 +499,7 @@ body .material-icons-wrapper.md-20 {
     flex-wrap: wrap;
 }
 
-.right-search-widget-inner-content button {
+ .custom-btn_search {
     height: 100%;
     padding: 12px 32px;
     border-radius: 8px;
@@ -510,6 +509,36 @@ body .material-icons-wrapper.md-20 {
     font-weight: bold;
     border: 0px;
 }
+ 
+@media (max-width: 768px) { 
+    .custom-btn_search_style{
+        width: 100%;
+    }
+    .custom-btn_search_style .custom-btn_search{
+        width: 100%;
+    }
+}
+@media (max-width: 991.98px) { 
+    .custom-btn_search_style{
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+    .custom-btn_search_style .custom-btn_search{
+        width: 100%;
+    }
+}
+@media (max-width: 1100px) { 
+    .custom-btn_search_style {
+        overflow: hidden; /* Đảm bảo phần tử con không bị tràn ra ngoài */
+    }
+    
+    .custom-btn_search { 
+        float: right; 
+    }
+}
+
+
 
 .flex-sum-left {
     width: calc(100% / 4);

@@ -5,291 +5,336 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
-
-    {{-- dropdown --}}
+    {{-- icon trong dropdown --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* bg button */
-        .bt-dropdown-background:hover {
-            background-color: #e6f2ff;
-        }
+<style>
+    /* search route component */
+ /* bg button */
+ .bt-dropdown-background:hover {
+    background-color: #e6f2ff;
+}
 
-        /* Nút tăng giảm */
-        .btn-circle {
-            width: 30px;
-            height: 30px;
-            padding: 0;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #e6f2ff;
-            position: relative;
-            overflow: hidden;
-            transition: background-color 0.3s ease;
-        }
+/* Nút tăng giảm */
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f2ff;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
 
-        .btn-circle:hover,
-        .btn-circle:focus {
-            background-color: #d9ecff;
-        }
+.btn-circle:hover,
+.btn-circle:focus {
+    background-color: #d9ecff;
+}
 
-        /* Hiệu ứng xung quanh */
-        .btn-circle:active::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 120%;
-            height: 120%;
-            background: rgba(0, 123, 255, 0.2);
-            /* Màu sắc xung quanh */
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 0.6s ease-out;
-            z-index: 0;
-        }
+/* Hiệu ứng xung quanh */
+.btn-circle:active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: rgba(0, 123, 255, 0.2);
+    /* Màu sắc xung quanh */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 0.6s ease-out;
+    z-index: 0;
+}
 
-        .btn-circle .bi {
-            position: relative;
-            z-index: 1;
-        }
+.btn-circle .bi {
+    position: relative;
+    z-index: 1;
+}
 
-        /* Hiệu ứng xung quanh */
-        @keyframes pulse {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
+/* Hiệu ứng xung quanh */
+@keyframes pulse {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
 
-            100% {
-                transform: scale(1);
-                opacity: 0;
-            }
-        }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
 
-        /* Nút bị vô hiệu hóa */
-        .btn-circle.custom_disabled {
-            background-color: #f0f0f0;
-            border-color: rgba(0, 0, 0, .65);
-        }
+/* Nút bị vô hiệu hóa */
+.btn-circle.custom_disabled {
+    background-color: #f0f0f0;
+    border-color: rgba(0, 0, 0, .65);
+}
 
-        .btn-circle.custom_disabled:hover,
-        .btn-circle.custom_disabled:focus {
-            border: none !important;
-        }
+.btn-circle.custom_disabled:hover,
+.btn-circle.custom_disabled:focus {
+    border: none !important;
+}
 
-        .btn-circle.custom_disabled .bi-dash {
-            color: rgba(0, 0, 0, .65) !important;
-        }
+.btn-circle.custom_disabled .bi-dash {
+    color: rgba(0, 0, 0, .65) !important;
+}
 
-        .btn-circle .active {
-            background: rgb(227, 237, 252);
-            color: rgb(36, 116, 229);
-        }
+.btn-circle .active {
+    background: rgb(227, 237, 252);
+    color: rgb(36, 116, 229);
+}
 
-        /* kích thước dropdown không bị thu nhỏ */
-        .dropdown-menu {
-            min-width: 400px;
-            width: auto;
-            max-width: 450px;
-        }
+/* kích thước dropdown không bị thu nhỏ */
+.dropdown-menu {
+    min-width: 400px;
+    width: auto;
+    max-width: 450px;
+}
 
-        .custom-input_number {
-            border: none;
-            outline: none;
-            -webkit-appearance: none;
-            /* Chrome */
-            appearance: none;
-        }
+.custom-input_number {
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    /* Chrome */
+    appearance: none;
+}
 
-        .custom-input_number::-webkit-inner-spin-button,
-        .custom-input_number::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+.custom-input_number::-webkit-inner-spin-button,
+.custom-input_number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
-        .custom-tab_pane {
-            padding: 12px 12px 16px;
-            border-radius: 0px 0px 12px 12px;
-            background: white;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-        }
+.custom-tab_pane {
+    padding: 12px 12px 16px;
+    border-radius: 0px 0px 12px 12px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+}
 
 
-        .custom-left_search {
-            border: 1px solid rgb(224, 224, 224);
-            border-radius: 8px;
-            margin-right: 12px !important;
-        }
+.custom-left_search {
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 8px;
+    margin-right: 12px !important;
+}
 
-        .custom-address_input {
-            z-index: 3;
-            min-height: 1px;
-            box-sizing: border-box;
-            padding-right: 0;
-            padding-left: 0;
-        }
+.custom-address_input {
+    z-index: 3;
+    min-height: 1px;
+    box-sizing: border-box;
+    padding-right: 0;
+    padding-left: 0;
+}
 
-        .custom-input_box {
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 16px;
-            margin-bottom: 0px;
-            height: 72px;
-            padding: 8px 32px 8px 12px;
-        }
+.custom-input_box {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 0px;
+    height: 72px;
+    padding: 8px 32px 8px 4px;
+}
 
-        /* input city*/
-        .custom-input_box input {
-            font-weight: 500;
-            outline: none;
-            width: 100%;
-            border: 0px;
-            padding: 0px;
-            background-color: unset;
-            font-size: 16px;
-            line-height: 16px;
-            color: rgb(20, 20, 20);
-        }
+/* input city*/
+.custom-input_box input {
+    font-weight: 500;
+    outline: none;
+    width: 100%;
+    border: 0px;
+    padding: 0px;
+    background-color: unset;
+    font-size: 16px;
+    line-height: 16px;
+    color: rgb(20, 20, 20);
+}
 
-        .departure-train-flex input {
-            border-radius: 3px 0px 0px 3px;
-        }
+.departure-train-flex input {
+    border-radius: 3px 0px 0px 3px;
+}
 
-        /* active input */
-        .forcut-bar {
-            display: none;
-            background: rgb(36, 116, 229);
-            height: 3px;
-            position: absolute;
-            left: 0px;
-            bottom: 0px;
-            width: 100%;
-        }
+/* active input */
+.forcut-bar {
+    display: none;
+    background: rgb(36, 116, 229);
+    height: 3px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+}
 
-        /* hiển thị active input */
-        .custom-input_box input:focus~.forcut-bar {
-            display: block;
-        }
+.forcut-border {
 
-        /* label */
-        .custom-input-container input:placeholder-shown~label {
-            transform: translate(0px, 0.9rem) scale(1.35);
-        }
+    background: rgb(224, 224, 224);
+    height: 0.5px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+}
 
-        .custom-input_box input:placeholder-shown~label {
-            cursor: text;
-            max-width: 66.66%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            transform-origin: left bottom;
-            transform: translate(0px, 0.8rem) scale(1.33);
-        }
+/* hiển thị active input */
+.custom-input_box input:focus~.forcut-bar {
+    display: block;
+}
 
-        .custom-input_box label {
-            letter-spacing: 0px;
-        }
+/* label */
+.custom-input-container input:placeholder-shown~label {
+    transform: translate(0px, 0.9rem) scale(1.35);
+}
 
-        .custom-input_box label,
-        .custom-input_box input {
-            transition: 0.2s;
-            touch-action: manipulation;
-        }
+.custom-input_box input:placeholder-shown~label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0px, 0.8rem) scale(1.33);
+}
 
-        .hTYbup {
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 16px;
-            margin-bottom: 0px;
-        }
+.custom-input_box label {
+    letter-spacing: 0px;
+}
 
-        .custom-input_box input:not(:placeholder-shown)+label,
-        .custom-input-container input:focus+label {
-            transform: translate(0px, 0px) scale(1);
-        }
+.custom-input_box label,
+.custom-input_box input {
+    transition: 0.2s;
+    touch-action: manipulation;
+}
 
-        .custom-input_box input:not(:placeholder-shown)+label,
-        .custom-input_box input:focus+label {
-            transform: translate(0px, 0px) scale(1);
-            cursor: pointer;
-        }
+.hTYbup {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 0px;
+}
 
-        .custome-departure-date-select {
-            height: 72px;
-            padding-left: 12px;
-            flex: 1 1 0%;
-        }
+.custom-input_box input:not(:placeholder-shown)+label,
+.custom-input-container input:focus+label {
+    transform: translate(0px, 0px) scale(1);
+}
 
-        .custom-font-medium {
-            font-weight: 500 !important;
-            font-size: 16px !important;
-            line-height: 24px !important;
-            color: rgb(20, 20, 20) !important;
-        }
+.custom-input_box input:not(:placeholder-shown)+label,
+.custom-input_box input:focus+label {
+    transform: translate(0px, 0px) scale(1);
+    cursor: pointer;
+}
 
-        .custom-placeholder-color::placeholder {
-            color: var(--bs-primary) !important;
-            opacity: 1;
-        }
+.custome-departure-date-select {
+    height: 72px;
+    padding-left: 12px;
+    flex: 1 1 0%;
+}
 
-        .arrow_icon {
-            margin-left: 4px;
-            display: flex;
-            -webkit-box-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            align-items: center;
-        }
+.custom-font-medium {
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: rgb(20, 20, 20) !important;
+}
 
-        .arrow_icon.focus {
-            transform: translateY(10%) rotateX(180deg);
-        }
+.custom-placeholder-color::placeholder {
+    color: var(--bs-primary) !important;
+    opacity: 1;
+}
 
-        .arrow_icon.focus svg path {
-            fill: rgb(36, 116, 229);
-        }
+.arrow_icon {
+    margin-left: 4px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
 
-        .custom_h1 {
-            font-size: 34px;
-            font-weight: 500;
-            margin-bottom: 0px;
-            color: white;
-            text-align: center;
-            line-height: 1;
-            white-space: nowrap;
-            text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
-        }
+.arrow_icon.focus {
+    transform: translateY(10%) rotateX(180deg);
+}
 
-        .sub_ {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 24px;
-            text-align: center;
-            font-feature-settings: "liga" 0;
-            color: rgb(255, 255, 255);
-            text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
-        }
+.arrow_icon.focus svg path {
+    fill: rgb(36, 116, 229);
+}
 
-        .custom-text-shadow {
-            line-height: 24px;
-            font-feature-settings: "liga" 0;
-            text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
-        }
-    </style>
-@endsection
+.custom_h1 {
+    font-size: 34px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    color: white;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
+}
+
+.sub_ {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    font-feature-settings: "liga" 0;
+    color: rgb(255, 255, 255);
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
+}
+
+.custom-text-shadow {
+    line-height: 24px;
+    font-feature-settings: "liga" 0;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px;
+} 
+/* responsive */
+/* box search component */
+@media (min-width: 992px) { 
+    .custom-dropdown-menu {
+        min-width: 424px;
+    } 
+}  
+@media (min-width: 1101px) {
+    .left-ant-row-flex {
+        margin-right: 12px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .left-ant-row-flex {
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .custom-swap-container {
+        top: 52%;
+        right: 0%;
+        display: inline-block; 
+    }
+}
+@media (max-width: 768px) {
+    .custom-swap-container {
+        top: 80%; 
+        right: 5%; 
+        transform: rotate(90deg);
+       
+    }
+} 
+</style>
+    @endsection
 
 @section('content')
     <!-- slide -->
     <div class="total-slide position-relative">
-        <div class="d-flex flex-column align-items-center p-0 gap-2 mb-28">
+        {{-- <div class="d-flex flex-column align-items-center p-0 gap-2 mb-28 d-none d-md-flex mt-sm-5">
             <h1 class="m-0 p-0 custom_h1">
                 Đặt vé máy bay giá rẻ</h1>
             <p class="m-0 p-0 fw-medium fs-5 text-center text-white custom-text-shadow">Giảm 20K/ghế cho vé rẻ nhất của
                 Vietjet Air</p>
-        </div>
-        <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
+        </div> --}}
+        <div
+            class="container-airlinetickets position-absolute top-50 start-50 translate-middle mt-xl-0">
             @include('train.components.search', [
                 'params' => [],
             ])
