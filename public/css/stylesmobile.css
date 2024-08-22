@@ -941,3 +941,97 @@
         font-size: 13px;
     }
 }
+
+/* Content */
+
+@media (max-width: 375px) {
+    .cta-button {
+        width: 375px;  
+        max-width: 375px; 
+        padding:375px;
+    }
+    
+    .post-footer {
+        text-align: center;  
+    }
+}
+@media (max-width: 768px) {
+    .hgcnFg {
+        width: 767px;
+    }
+    .topnav{
+        width: 767px;
+    }
+    .cta-button {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding: 15px 0;
+        font-size: 16px;
+        text-align: center;
+        box-sizing: border-box;
+        margin: 10px auto;
+        
+    }
+
+    .post-footer {
+        text-align: center;
+    }
+}
+.cta-button {
+    display: block;
+    width: 100%;
+    max-width: 300px;  /* Giới hạn chiều rộng tối đa của nút */
+    padding: 15px 0;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 10px auto;  /* Căn giữa nút trong phần tử chứa */
+}
+
+.post-footer {
+    text-align: center;
+    position: fixed;  
+    bottom: 0;  
+    left: 0;
+    right: 0;
+    background-color: white; 
+    
+}
+
+@media (max-width: 768px) {
+    .fg{
+        margin-top:-50px;
+    }
+    .relatedContent{
+        width: 690px;
+        margin-left: 35px;
+    }
+    .cta-button {
+        width: 90%;  /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
+    }
+}
+@media (max-width: 1400px) {
+    .fg{
+        margin-top:-50px;
+    }
+    .relatedContent{
+        width: 700px;
+        
+    }
+    .cta-button {
+        width: 90%;  /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
+    }
+}
+@media (max-width: 1676px) {
+    .fg{
+        margin-top:-50px;
+    }
+    .relatedContent{
+        width: 700px;
+        
+    }
+    .cta-button {
+        width: 90%;  /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
+    }
+}
