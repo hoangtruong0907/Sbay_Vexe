@@ -1,22 +1,39 @@
 <?php
 
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\CheckAuthGoogle;
 
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    });
+    });    
+    Route::get('/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
+    Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
+    Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
+    Route::post('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
+    Route::get('/blogs/create', [BlogController::class, 'create'])->name('admin.blogs.create');
+    Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+    Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
+    Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
+Route::get('/', [BlogControllers::class, 'index'])->name('index');
+Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
+Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
-Route::get('/', [RouteController::class, 'index'])->name('home');
+
+
+
 Route::get('/test', [TestController::class, 'test']);
 
 #Search route
