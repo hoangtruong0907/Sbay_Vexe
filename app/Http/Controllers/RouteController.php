@@ -145,54 +145,7 @@ class RouteController extends Controller
             'total' => $res_routes['total'],
             'totalPages' => $res_routes['total_pages']
         ]);
-    }
-
-    public function trainRouteSearch($fromtoPlace, Request $request)
-    {
-        $trainTo = $request->query('train_to', '');
-        $trainFrom = $request->query('train_from', '');
-        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : '';
-        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
-        $quantity = 2;
-        $page = 1;
-        $pagesize = 10;
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-
-        if (empty($trainTo) || empty($trainFrom) || empty($dateTo)) {
-            return response()->json(['error' => 'Missing required parameters.'], 400);
-        }
-
-        if (!$token) {
-            return response()->json(['error' => 'Failed to retrieve token.'], 500);
-        }
-
-        $urlRoute = $this->route_url . '/v2/agent/train/route?from=' . $trainFrom . '&to=' . $trainTo . '&time=' . $dateTo . '&quantity=' . $quantity . '&page=' . $page . '&pagesize=' . $pagesize;
-        // Apply filters
-        $queryParams = $this->getRouteFilters($request);
-
-        foreach ($queryParams as $key => $value) {
-            if ($value !== null) {
-                $urlRoute .= '&' . $key . '=' . $value;
-            }
-        }
-
-        $main_url = $this->route_url . '/v2/agent/train/get_config';
-
-        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 20));
-        $train_stations_list = collect($list_areas->get('train_stations_list'));
-        // Lấy thông tin điểm đón và điểm xả
-        $params = (object)([
-            'trainFrom' => (object)$train_stations_list->where('station_code', $trainFrom)->first(),
-            'trainTo' => (object)$train_stations_list->where('station_code', $trainTo)->first(),
-            'dateTo' => $dateTo,
-        ]);
-
-        $cacheKeyRoute = 'route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo;
-
-        $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 20);
-        // dd($list_routes);
-        return view("train.train_search", compact('list_routes', 'list_areas', 'params'));
-    }
+    } 
 
     private function getRouteFilters(Request $request)
     {

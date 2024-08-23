@@ -285,15 +285,15 @@ $("#train_search").click(() => {
         date_to: dateTo,
         total_passengers: totalPassengers 
     };
-    console.log(data);
+    // console.log(data);
     
-    // var url = "/ve-tau-hoa/" + 
-    //           convertToSlug(trainFromPlace) + 
-    //           "-to-" + 
-    //           convertToSlug(trainToPlace);
+    var url = "/ve-tau-hoa/" + 
+              convertToSlug(trainFromPlace) + 
+              "-to-" + 
+              convertToSlug(trainToPlace);
 
-    // var queryString = $.param(data);
-    // url += "?" + queryString;
+    var queryString = $.param(data);
+    url += "?" + queryString;
 
-    // window.location.href = url;
+    window.location.href = url;
 });
