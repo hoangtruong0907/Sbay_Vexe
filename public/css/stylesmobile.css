@@ -892,6 +892,9 @@
     .ticket-value-right {
         float: right;
     }
+    /* body p, body h1, body h2, body h3, body h4, body h5, body h6{
+        font-weight: bold;
+    } */
     body {
         margin: 0;
         padding: 0;
