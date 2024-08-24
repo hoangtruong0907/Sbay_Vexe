@@ -711,11 +711,27 @@
             <div class="right-filter">
                 {{-- Load list item is here --}}
                 <div class="container loading-wrap-page">
-                    @include('components._loading');
+                    @include('components._loading')
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex flex-column position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="conent-warning fw-bold">Thông báo</div>
+                    <div class="conent-warning mt-2 mb-2 p-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @push('page-scripts')
@@ -1170,16 +1186,17 @@
 
             let proxies = {};
             let listSeatChoosed = {};
-
             function createProxyForSeatChoosed(keyId) {
                 return new Proxy({}, {
-                    set(target, property, value) {
+                    set(target = targetData, property, value) {
 
                         if (Object.keys(target).length >= 3) {
-                            let seatChoose = $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-full-code="${value.fullCode}"]`).find('.seat-thumbnail');
+                            let seatChoose = $(
+                                `.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-full-code="${value.fullCode}"]`
+                            ).find('.seat-thumbnail');
                             seatChoose.removeClass('seat-selected');
                             // Hiển thị modal cảnh báo
-                            $(`#item-bus-${keyId} #modals-warning`).modal('show');
+                            $(`#modals-warning`).modal('show');
                             return true;
                         }
 
@@ -1228,44 +1245,27 @@
                 $('.collapse.ticket-step-collapse.show').not(target).collapse('hide');
                 $currentCollapse.collapse('toggle');
 
-                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).hide();
-
-                $(`#item-bus-${keyId} .next-step`).on('click', function() {
-                    $(`.ticket-step-collapse #step1-${keyId}`).removeClass('active');
-                    $(`.ticket-step-collapse #step2-${keyId}`).addClass('active');
-                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).show();
-                });
-
-                $(`#item-bus-${keyId} .back-step`).on('click', function() {
-                    $(`.ticket-step-collapse #step2-${keyId}`).removeClass('active');
-                    $(`.ticket-step-collapse #step1-${keyId}`).addClass('active');
-                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).hide();
-                });
-
                 if (!proxies[keyId]) {
                     proxies[keyId] = createProxyForSeatChoosed(keyId);
                 }
 
                 let tripCode = $(this).data('trip-code');
                 $currentCollapse.on('shown.bs.collapse', function() {
-                    const url = `/api/info/xe-khach/seat-map/${tripCode}`;
+                    const url = `/api/info/xe-khach/seat-map/${tripCode}/${keyId}`;
                     console.log(url);
 
-                    fetch(url, {
-                            method: 'GET',
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok ' + response
-                                    .statusText);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            $(`.ticket-step-collapse #step1-${keyId}`).html(data.dataHTML);
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $(`.ticket-step-collapse#ticket-step-collapse-${keyId}`)
+                                .html(data.dataHTML);
+
                             $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
                                 .on('click', function() {
-                                    let elThumb = $(this).children('.seat-thumbnail');
+                                    let elThumb = $(this).children(
+                                        '.seat-thumbnail');
                                     elThumb.toggleClass("seat-selected");
                                     const seatCode = $(this).data('seat-code');
 
@@ -1273,51 +1273,134 @@
                                         proxies[keyId][seatCode] = {
                                             fullCode: $(this).data('full-code'),
                                             fareSeat: $(this).data('fare-seat'),
-                                        }
+                                            seatCode: seatCode,
+
+                                        };
                                     } else {
                                         delete proxies[keyId][seatCode];
                                     }
                                 });
 
-                            $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`)
-                                .each(
-                                    function() {
-                                        const $quantity = $(this).find('#unique-quantity');
-                                        const $subIcon = $(this).find('.unique-sub-icon');
-                                        const $plusIcon = $(this).find('.unique-plus-icon');
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                .hide();
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                .hide();
 
-                                        $subIcon.off('click').on('click', function() {
-                                            console.log('Sub icon clicked');
-                                            let currentValue = parseInt($quantity
-                                                .text(), 10);
-                                            if (currentValue > 0) {
-                                                $quantity.text(currentValue - 1);
-                                            }
-                                        });
+                            $(`#item-bus-${keyId} .next-step`).on('click', function() {
+                                $(`.ticket-step-collapse #step1-${keyId}`)
+                                    .removeClass('active');
+                                $(`.ticket-step-collapse #step2-${keyId}`)
+                                    .addClass('active');
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                    .show();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                    .show();
+                                $(this).hide();
+                            });
 
-                                        $plusIcon.off('click').on('click', function() {
-                                            console.log('Plus icon clicked');
-                                            let currentValue = parseInt($quantity
-                                                .text(), 10);
-                                            $quantity.text(currentValue + 1);
-                                        });
+                            $(`#item-bus-${keyId} .confirm-step`).on("click",
+                                function() {
+                                    const checkDropElement = $(`input[name='rdioCheckDrop-${keyId}']:checked`);
+                                    const checkTransferElement = $(`input[name='rdioCheckTransfer-${keyId}']:checked`);
+
+                                    const checkDropValue = checkDropElement.val(),
+                                        checkDropName = checkDropElement.data('name');
+
+                                    const checkTransferValue = checkTransferElement.val(),
+                                        checkTransferName = checkTransferElement.data('name');
+                                    const seats = Object.assign({}, proxies[0]);
+                                    const fullCodeVal = Object.values(seats).map(seat => seat.fullCode);
+                                    const dataSeat = {
+                                        trip_code: tripCode,
+                                        seat: fullCodeVal.join(', '),
+                                        seatData: seats,
+                                        pickup: checkDropName,
+                                        pickup_id: checkDropValue,
+                                        drop_off_info:checkTransferName,
+                                        drop_off_point_id: checkTransferValue,
+                                    }
+
+                                    const form = $('<form>', {
+                                        method: 'POST',
+                                        action: '/bookingconfirmation/ve-xe-khach'
                                     });
 
+                                    $.each(dataSeat, function(key, value) {
+                                        form.append($('<input>', {
+                                            type: 'hidden',
+                                            name: key,
+                                            value: value
+                                        }));
+                                    });
+
+                                    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+                                    form.append($('<input>', {
+                                        type: 'hidden',
+                                        name: '_token',
+                                        value: csrfToken
+                                    }));
+                                    form.appendTo('body').submit();
+                                    console.log("tripCode: ", dataSeat);
+                                })
+
+                            $(`#item-bus-${keyId} .back-step`).on('click', function() {
+                                $(`.ticket-step-collapse #step2-${keyId}`)
+                                    .removeClass('active');
+                                $(`.ticket-step-collapse #step1-${keyId}`)
+                                    .addClass('active');
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                    .hide();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.next-step`)
+                                    .show();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                    .hide();
+                            });
+
+                            $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`)
+                                .each(function() {
+                                    const $quantity = $(this).find(
+                                        '#unique-quantity');
+                                    const $subIcon = $(this).find(
+                                        '.unique-sub-icon');
+                                    const $plusIcon = $(this).find(
+                                        '.unique-plus-icon');
+
+                                    $subIcon.off('click').on('click', function() {
+                                        console.log('Sub icon clicked');
+                                        let currentValue = parseInt(
+                                            $quantity.text(), 10);
+                                        if (currentValue > 0) {
+                                            $quantity.text(currentValue -
+                                                1);
+                                        }
+                                    });
+
+                                    $plusIcon.off('click').on('click', function() {
+                                        console.log('Plus icon clicked');
+                                        let currentValue = parseInt(
+                                            $quantity.text(), 10);
+                                        $quantity.text(currentValue + 1);
+                                    });
+                                });
+
                             // Scroll into view
-                            document.querySelector(`.ticket-step-collapse #step1-${keyId}`)
+                            document.querySelector(
+                                    `.ticket-step-collapse #step1-${keyId}`)
                                 .scrollIntoView({
                                     behavior: 'smooth',
                                     block: 'start'
                                 });
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('Error:', textStatus, errorThrown);
+                        }
+                    });
+
                 })
 
                 $currentCollapse.on('hidden.bs.collapse', function() {
                     parent.html("<span>Chọn chuyến</span>");
-                    $(`.ticket-step-collapse #step1-${keyId}`).html(`
+                    $(`.ticket-step-collapse#ticket-step-collapse-${keyId}`).html(`
                         <div class="loading-wrap">
                             <svg class="truck" viewBox="0 0 48 24" width="48px" height="24px">
                                 <g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"

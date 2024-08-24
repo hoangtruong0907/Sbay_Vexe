@@ -309,7 +309,7 @@ class RouteController extends Controller
         ]);
     }
 
-    function busSeatMap($tripCode, Request $request)
+    function busSeatMap($tripCode, $keyId, Request $request)
     {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
         if ($tripCode === null) {
@@ -324,16 +324,18 @@ class RouteController extends Controller
 
         $urlSeatMap = $this->main_url . "/v3/trip/seat_map?trip_code=" . $tripCode;
         $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 20);
-        $seatTemplateMap = [];
-        if (isset($seatMap['coach_seat_template']) && is_array($seatMap['coach_seat_template'])) {
-            $seatTemplateMap = $seatMap['coach_seat_template'];
-        }
         // dd($seatTemplateMap);
-
         return response()->json([
             "message" => "success",
             'tripCode' => $tripCode,
-            'dataHTML' => view('bus._bus_stepChooseSeat', compact('seatMap', 'seatTemplateMap', 'tripCode'))->render(),
+            'dataHTML' => view('bus._bus_stepChooseSeat', [
+                'tripCode' => $tripCode,
+                'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
+                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'],
+                "transferPoints" => $seatMap['transfer_points_at_arrive'],
+                "seatMap" => $seatMap,
+                "keyId" => $keyId,
+            ])->render(),
         ]);
     }
 
