@@ -11,36 +11,53 @@ use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\CheckAuthGoogle;
+use App\Http\Middleware\CheckLoginAdminMiddleware;
+use App\Http\Controllers\admin\AuthAdminController;
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Controllers\admin\UserController;
+
+
+// Login Admin
+
 
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    });    
-    Route::get('/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
-    Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
+    })->name('admin')->middleware(AuthMiddleware::class);
+
+    Route::get('/login', [AuthAdminController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
+    Route::post('/doLogin', [AuthAdminController::class, 'doLogin'])->name('admin.doLogin');
+    Route::get('/doLogout', [AuthAdminController::class, 'doLogout'])->name('admin.doLogout');
+
+    Route::prefix('/user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
+        Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+    });
+
+    Route::prefix('/blogs')->group(function () {
+        Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');
+        Route::post('/', [BlogController::class, 'store'])->name('admin.blogs.store');
+        Route::post('/{id}', [BlogController::class, 'show'])->name('blogs.show');
+        Route::get('/create', [BlogController::class, 'create'])->name('admin.blogs.create');
+        Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+        Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
+        Route::delete('/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
+    });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
-    Route::post('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
-    Route::get('/blogs/create', [BlogController::class, 'create'])->name('admin.blogs.create');
-    Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
-    Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
-    Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
-// Route::get('/', [BlogControllers::class, 'index'])->name('index');
+Route::get('/', [RouteController::class, 'index'])->name('home');
 Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
-
-
-Route::get('/blog', [BlogControllers::class, 'index'])->name('blog.index');
-Route::get('/', [RouteController::class, 'index'])->name('home');
 Route::get('/test', [TestController::class, 'test']);
 
 #Search route
 Route::prefix('/route-search')->group(function () {
-    Route::get('/', function () {
-        return view('admin/dashboard');
-    });
     Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
     Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
 
@@ -50,7 +67,6 @@ Route::prefix('/route-search')->group(function () {
 });
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
-
 
 Route::get('/bookingconfirmation',  [BookingController::class, 'index']);
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Repositories\Interface\AuthRepositoryInterface;
 
 
-class loginController extends Controller
+class AuthAdminController extends Controller
 {
 
     protected $authRepository;
@@ -16,14 +16,13 @@ class loginController extends Controller
     {
         $this->authRepository = $authRepository;
     }
-    
+
 
     public function index(){
         return view('admin.auth.login');
     }
 
     public function doLogin(Request $request){
-
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -34,8 +33,8 @@ class loginController extends Controller
         ]);
 
         if($this->authRepository->login($validated)) {
-            toastr()->success('Đăng nhập thành công!'); 
-            return redirect()->route('admin'); 
+            toastr()->success('Đăng nhập thành công!');
+            return redirect()->route('admin');
         }
 
         toastr()->error('Đăng nhập không thành công! ');
@@ -46,9 +45,9 @@ class loginController extends Controller
     public function doLogout() {
 
         $this->authRepository->logout();
-            toastr()->success('Đăng xuất thành công!'); 
-            return redirect()->route('admin.login.index'); 
+            toastr()->success('Đăng xuất thành công!');
+            return redirect()->route('admin.login.index');
     }
 
-    
+
 }
