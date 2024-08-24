@@ -537,9 +537,6 @@ body .material-icons-wrapper.md-20 {
         float: right; 
     }
 }
-
-
-
 .flex-sum-left {
     width: calc(100% / 4);
     display: flex;

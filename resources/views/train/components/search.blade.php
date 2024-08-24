@@ -107,8 +107,8 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="forcut-bar forcut-bar_to"></div>
-                                    <div class="forcut-border"></div>
+                                    <div class="forcut-bar forcut-bar_to md-left-border-custome"></div>
+                                    <div class="forcut-border md-left-border-custome"></div>
                                 </div>
                                 <ul class="custom-dropdown-menu train-dropdown-menu w-100 w-md-75">
                                     <li class="custom-dropdown-item-group custom-dropdown-item-group-xe-tau">
@@ -149,10 +149,11 @@
                             </div>
                             <div class="position-absolute top-10 end-0 bg-light" style="width: 2px;height: 100%;">
                             </div>
+                            
                         </div>
-                    </div>
-                    <div class="forcut-bar forcut-bar_date_to" style="left: auto;"></div>
-                    <div class="forcut-border" style="left: auto;"></div>
+                        <div class="forcut-bar forcut-bar_date_to" style="left: 12px; width: 97%"></div>
+                        <div class="forcut-border" style="left: 12px; width: 97%"></div>
+                    </div> 
                 </div>
                 {{-- Ngày về --}}
                 <div class="flex-sum-left position-relative col-lg-3 col-md-6 col-sm-6 col-6 py-4">
@@ -169,8 +170,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="forcut-bar forcut-bar_date_from"></div>
-                    <div class="forcut-border"></div>
+                    <div class="forcut-bar forcut-bar_date_from" style="width: 96%; left: -1px;"></div>
+                    <div class="forcut-border" style="width: 96%; "></div>
                 </div>
                 {{-- Số hành khách --}}
                 <div class="flex-sum-left justify-content-start col-lg-3 align-items-center position-relative py-3"
@@ -199,8 +200,8 @@
                             </div>
                         </button>
 
-                        <ul class="dropdown-menu p-3 shadow w-100" aria-labelledby="dropdownPassenger"
-                            id="personTypeList">
+                        <ul class="dropdown-menu p-3 shadow w-100 overflow-scroll" aria-labelledby="dropdownPassenger"
+                            id="personTypeList"> 
                             <li class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
                                 <div class="pe-3 d-flex flex-column">
                                     <div class="d-flex align-items-center">

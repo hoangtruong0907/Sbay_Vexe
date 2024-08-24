@@ -320,7 +320,27 @@
         transform: rotate(90deg);
        
     }
-} 
+}  
+@media (min-width: 768px) { 
+    .forcut-border {
+        width: 106%;  
+        left: -1px;
+    }
+    .md-left-border-custome{ 
+        left: -18px;
+    }
+}
+  @media (max-width: 1100px) {
+    .md-left-border-custome{ 
+        left: 0;
+    }
+}
+@media (min-width: 1100px) {
+    .forcut-border {
+        width: 112%;
+        left: -1px;
+    }
+}  
 </style>
     @endsection
 
