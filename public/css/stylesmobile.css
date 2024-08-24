@@ -258,7 +258,6 @@
 
 .pills-bus-tab {
     margin-right: 5px;
-<<<<<<< HEAD
 }
 
 
@@ -266,8 +265,6 @@
 
 
 /* ///////////Thông tin chi tiết//////////// */
-=======
->>>>>>> d64e31b501e541846ab7c234b91e2c5983d2da98
 
 @media (max-width: 768px) {
     .filters-wrapper > *:not(.filter-title) {
@@ -1162,7 +1159,7 @@
         margin-left: 35px;
     }
     .cta-button {
-        width: 90%;  /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
+        width: 90%;
     }
 }
 @media (max-width: 1400px) {
