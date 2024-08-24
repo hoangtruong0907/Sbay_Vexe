@@ -1111,6 +1111,12 @@
     }
 }
 @media (max-width: 768px) {
+    /* .hgcnFg {
+        width: 767px;
+    }
+    .topnav{
+        width: 767px;
+    } */
     .cta-button {
         display: block;
         width: 100%;
