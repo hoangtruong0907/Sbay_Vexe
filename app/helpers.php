@@ -20,34 +20,13 @@ function formatDateTime($dateTimeStr, string $format = 'H:i d-m-Y', $hours = 0, 
     }
 }
 
-// function formatDate($date)
-// {
-//     if (strpos($date, ',') !== false) {
-//         $date = trim(substr($date, strpos($date, ',') + 1));
-//     }
-//     return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
-// }
-
 function formatDate($date)
 {
     if (strpos($date, ',') !== false) {
         $date = trim(substr($date, strpos($date, ',') + 1));
     }
-
-    $formats = ['d/m/Y', 'm/d/Y', 'Y-m-d']; // Add other formats as needed
-
-    foreach ($formats as $format) {
-        try {
-            return Carbon::createFromFormat($format, $date)->format('Y-m-d');
-        } catch (\Exception $e) {
-            continue;
-        }
-    }
-
-    // If no format matches, throw an exception or return a default value
-    throw new \InvalidArgumentException("Invalid date format: $date");
+    return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
 }
-
 
 function timeAgo($dateTimeStr)
 {
