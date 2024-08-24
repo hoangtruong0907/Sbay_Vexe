@@ -27,13 +27,13 @@ Route::prefix('/admin')->group(function () {
     Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
-Route::get('/', [BlogControllers::class, 'index'])->name('index');
+// Route::get('/', [BlogControllers::class, 'index'])->name('index');
 Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
 
-
-
+Route::get('/blog', [BlogControllers::class, 'index'])->name('blog.index');
+Route::get('/', [RouteController::class, 'index'])->name('home');
 Route::get('/test', [TestController::class, 'test']);
 
 #Search route

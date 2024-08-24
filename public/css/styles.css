@@ -1440,6 +1440,7 @@ body .material-icons-wrapper.md-20 {
     padding: 10px 20px;
     border-radius: 5px;
     line-height: 18px !important;
+    border: none;
     /* color: #000 !important; */
 }
 

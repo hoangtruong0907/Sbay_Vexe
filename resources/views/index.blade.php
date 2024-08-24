@@ -38,7 +38,7 @@
     </div>
 </div>
 <div class="formCard">
-    @if($allPosts->isNotEmpty())
+    @if(isset($allPosts) && $allPosts->count())
         @php
             $groupedPosts = $allPosts->groupBy('type');
         @endphp
@@ -76,6 +76,7 @@
         <p>No popular blog posts found.</p>
     @endif
 </div>
+
 @endsection
 @push('page-scripts')
 <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>

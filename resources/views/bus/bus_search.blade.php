@@ -55,41 +55,33 @@
                             <div class="filter-header">Lọc</div>
                             <p class="btn-clear">Xóa lọc</p>
                         </div>
-                        <div class="filter-item">
-                            <div class="filter-group filter-times">
-                                <div class="filter-header-container">
-                                    <p class="filter-label">Giờ đi</p>
-                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                                </div>
-                                <div class="filter-content">
-                                    <div class="slider-container">
-                                        <div class="slider">
-                                            <div class="slider-rail"></div>
-                                            <div class="slider-track"></div>
-                                            <div class="slider-step"></div>
-                                            <div tabindex="0" class="slider-handle slider-handle-1" style="left: 0%;"
-                                                role="slider" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0">
-                                            </div>
-                                            <div tabindex="0" class="slider-handle slider-handle-2" style="left: 100%;"
-                                                role="slider" aria-valuemin="0" aria-valuemax="24" aria-valuenow="24">
-                                            </div>
-                                            <div class="slider-mark"></div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-item">
-                                            <p class="input-label">Từ</p>
-                                            <div><input type="text" value="00:00" class="input-time from-time"></div>
-                                        </div>
-                                        <div class="divider"></div>
-                                        <div class="input-item">
-                                            <p class="input-label">Đến</p>
-                                            <div><input type="text" value="24:00" class="input-time to-time"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="travel-time-group">
+    <div class="travel-time-header">
+        <p class="travel-time-label">Giờ đi</p>
+        <div class="toggle-arrow"><i class="fa fa-angle-down"></i></div>
+    </div>
+    <div class="travel-time-content">
+        <div class="travel-slider-container">
+            <div class="travel-slider">
+                <div class="travel-slider-background"></div>
+                <div class="travel-slider-active"></div>
+                <div class="travel-slider-handle travel-slider-handle-start" tabindex="0"></div>
+                <div class="travel-slider-handle travel-slider-handle-end" tabindex="0"></div>
+            </div>
+        </div>
+        <div class="travel-time-inputs">
+            <div class="travel-time-input-item">
+                <label class="travel-time-input-label">Từ</label>
+                <input type="text" value="00:00" class="travel-time-input travel-start-time">
+            </div>
+            <div class="travel-time-divider">-</div>
+            <div class="travel-time-input-item">
+                <label class="travel-time-input-label">Đến</label>
+                <input type="text" value="17:00" class="travel-time-input travel-end-time">
+            </div>
+        </div>
+    </div>
+</div>
                         <div class="filter-group filter-operator">
                             <div class="filter-header-container">
                                 <p class="filter-label">Nhà xe</p>
@@ -123,7 +115,7 @@
                                     <label class="checkbox-item">
                                         <span class="checkbox-wrapper">
                                             <input type="checkbox" class="checkbox-input" value="">
-                                            <span class="checkbox-inner"></span>
+                                         <span class="checkbox-inner"></span>
                                         </span>
                                         <span>Hà Sơn ( Hà Tĩnh - Sapa) (3)</span>
                                     </label>
@@ -221,114 +213,121 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-group filter-price">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Giá vé</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="custom-group-info">
-                                    <div class="custom-slider-container">
-                                        <div class="custom-slider">
-                                            <div class="custom-slider-rail"></div>
-                                            <div class="custom-slider-track custom-slider-track-1"
-                                                style="left: 0%; width: 100%;"></div>
-                                            <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
-                                                role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="0" style="left: 0%;"></div>
-                                            <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
-                                                role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="2000000" style="left: 100%;"></div>
-                                        </div>
-                                    </div>
-                                    <div class="custom-value-info custom-value-left">0 đ</div>
-                                    <div class="custom-value-info custom-value-right">2,000,000 đ</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-group filter-pickup">
+                        <div class="ticket-filter-group">
+    <div class="ticket-filter-header">
+        <p class="ticket-filter-label">Giá vé</p>
+        <div class="ticket-expand-icon">
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="ticket-filter-content">
+        <div class="ticket-slider-info">
+            <div class="ticket-slider-container">
+                <div class="ticket-slider">
+                    <div class="ticket-slider-rail"></div>
+                    <div class="ticket-slider-track ticket-slider-track-start" style="left: 0%; width: 100%;"></div>
+                    <div tabindex="0" class="ticket-slider-handle ticket-slider-handle-start"
+                        role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                        aria-valuenow="0" style="left: 0%;"></div>
+                    <div tabindex="0" class="ticket-slider-handle ticket-slider-handle-end"
+                        role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                        aria-valuenow="2000000" style="left: 100%;"></div>
+                </div>
+            </div>
+            <div class="ticket-value-info ticket-value-left">0 đ</div>
+            <div class="ticket-value-info ticket-value-right">2,000,000 đ</div>
+        </div>
+    </div>
+</div>
+                        <div class="filter-group filter-operator">
                             <div class="filter-header-container">
                                 <p class="filter-label">Điểm đón</p>
                                 <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                             </div>
-                            <div class="filter-content">
-                                <div class="custom-group-kind">
-                                    <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
-                                        value="">
-                                    <ul class="custom-tree" role="tree" unselectable="on">
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hoàng Mai (190)" class="custom-tree-title">Hoàng Mai (190)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Đống Đa (162)" class="custom-tree-title">Đống Đa (162)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hai Bà Trưng (104)" class="custom-tree-title">Hai Bà Trưng
-                                                (104)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Nam Từ Liêm (104)" class="custom-tree-title">Nam Từ Liêm
-                                                (104)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Cầu Giấy (95)" class="custom-tree-title">Cầu Giấy (95)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Thanh Xuân (53)" class="custom-tree-title">Thanh Xuân (53)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hoàn Kiếm (34)" class="custom-tree-title">Hoàn Kiếm (34)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Thường Tín (33)" class="custom-tree-title">Thường Tín (33)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Sóc Sơn (28)" class="custom-tree-title">Sóc Sơn (28)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Từ Liêm (24)" class="custom-tree-title">Từ Liêm (24)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hà Đông (23)" class="custom-tree-title">Hà Đông (23)</span>
-                                        </li>
-                                    </ul>
+                            <div class="filter-content filter-content-nhaxe">
+                                <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
+                                    value="">
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hoàng Mai (190)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Đống Đa (162)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hai Bà Trưng (104)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nam Từ Liêm (104)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Cầu Giấy (95)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Thanh Xuân (53)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hoàn Kiếm (34)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Thường Tín (33)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Sóc Sơn (28)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Từ Liêm (24)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hà Đông (23)</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
-
                         <div class="filter-group filter-dropoff">
                             <div class="filter-header-container">
                                 <p class="filter-label">Điểm trả</p>
@@ -337,120 +336,106 @@
                             <div class="filter-content filter-content-diemtra">
                                 <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
                                     value="">
-                                <ul class="custom-tree-special" role="tree" unselectable="on">
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Diễn Châu (283)" class="custom-tree-title-special">Diễn Châu
-                                            (283)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Vinh (239)" class="custom-tree-title-special">Vinh (239)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                </ul>
+                                    <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Diếm Châu (283)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Vinh(239)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
@@ -1076,85 +1061,92 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-group filter-pickup">
+                        <div class="filter-group filter-operator">
                             <div class="filter-header-container">
                                 <p class="filter-label">Điểm đón</p>
                                 <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                             </div>
-                            <div class="filter-content">
-                                <div class="custom-group-kind">
-                                    <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
-                                        value="">
-                                    <ul class="custom-tree" role="tree" unselectable="on">
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hoàng Mai (190)" class="custom-tree-title">Hoàng Mai (190)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Đống Đa (162)" class="custom-tree-title">Đống Đa (162)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hai Bà Trưng (104)" class="custom-tree-title">Hai Bà Trưng
-                                                (104)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Nam Từ Liêm (104)" class="custom-tree-title">Nam Từ Liêm
-                                                (104)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Cầu Giấy (95)" class="custom-tree-title">Cầu Giấy (95)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Thanh Xuân (53)" class="custom-tree-title">Thanh Xuân (53)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hoàn Kiếm (34)" class="custom-tree-title">Hoàn Kiếm (34)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Thường Tín (33)" class="custom-tree-title">Thường Tín (33)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Sóc Sơn (28)" class="custom-tree-title">Sóc Sơn (28)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Từ Liêm (24)" class="custom-tree-title">Từ Liêm (24)</span>
-                                        </li>
-                                        <li class="custom-tree-node" role="treeitem">
-                                            <span class="custom-tree-checkbox">
-                                                <span class="custom-tree-checkbox-inner"></span>
-                                            </span>
-                                            <span title="Hà Đông (23)" class="custom-tree-title">Hà Đông (23)</span>
-                                        </li>
-                                    </ul>
+                            <div class="filter-content filter-content-nhaxe">
+                                <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
+                                    value="">
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hoàng Mai (190)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Đống Đa (162)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hai Bà Trưng (104)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nam Từ Liêm (104)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Cầu Giấy (95)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Thanh Xuân (53)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hoàn Kiếm (34)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Thường Tín (33)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Sóc Sơn (28)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Từ Liêm (24)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Hà Đông (23)</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -1167,120 +1159,106 @@
                             <div class="filter-content filter-content-diemtra">
                                 <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
                                     value="">
-                                <ul class="custom-tree-special" role="tree" unselectable="on">
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Diễn Châu (283)" class="custom-tree-title-special">Diễn Châu
-                                            (283)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Vinh (239)" class="custom-tree-title-special">Vinh (239)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                    <li class="custom-tree-node-special" role="treeitem">
-                                        <span class="custom-tree-switcher-special custom-tree-switcher_close"><i
-                                                class="anticon anticon-caret-down"></i></span>
-                                        <span class="custom-tree-checkbox-special"><span
-                                                class="custom-tree-checkbox-inner-special"></span></span>
-                                        <span title="Nghi Lộc (177)" class="custom-tree-title-special">Nghi Lộc
-                                            (177)</span>
-                                    </li>
-                                </ul>
+                                    <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Diếm Châu (283)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Vinh(239)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <span class="checkbox-wrapper">
+                                            <input type="checkbox" class="checkbox-input" value="">
+                                            <span class="checkbox-inner"></span>
+                                        </span>
+                                        <span>Nghi Lộc (177)</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
@@ -2020,6 +1998,112 @@ window.onclick = function(event) {
         closeSortModal();
     }
 }
+// //////Giời đi//
+$(document).ready(function() {
+    const minValue = 0; // Tương ứng với 00:00
+    const maxValue = 24; // Tương ứng với 24:00
+
+    function convertValueToTime(value) {
+        let hours = Math.floor(value);
+        let minutes = Math.floor((value - hours) * 60);
+        if (minutes < 10) minutes = "0" + minutes;
+        return hours + ":" + minutes;
+    }
+
+    function convertTimeToValue(time) {
+        let parts = time.split(":");
+        return parseInt(parts[0]) + parseInt(parts[1]) / 60;
+    }
+
+    function updateSliderHandle(handle, value) {
+        const percentage = (value / maxValue) * 100;
+        $(handle).css('left', percentage + '%');
+        $(handle).attr('aria-valuenow', value);
+
+        const startValue = parseFloat($('.travel-slider-handle-start').attr('aria-valuenow'));
+        const endValue = parseFloat($('.travel-slider-handle-end').attr('aria-valuenow'));
+
+        // Phần đã chọn (màu xanh)
+        $('.travel-slider-active').css({
+            'left': (startValue / maxValue) * 100 + '%',
+            'width': ((endValue - startValue) / maxValue) * 100 + '%'
+        });
+
+        // Đặt lại phần chưa chọn thành màu xám
+        $('.travel-slider').css('background-color', '#d3d3d3'); // Màu xám nhạt cho phần chưa được chọn
+    }
+
+    function updateTimeInput(input, value) {
+        $(input).val(convertValueToTime(value));
+    }
+
+    function setupSlider(handle, otherHandle, input) {
+        let isDragging = false;
+
+        function startDragging(e) {
+            isDragging = true;
+            e.preventDefault();
+        }
+
+        function stopDragging() {
+            isDragging = false;
+        }
+
+        function handleDragging(e) {
+            if (!isDragging) return;
+
+            const sliderWidth = $('.travel-slider').width();
+            const offsetLeft = $('.travel-slider').offset().left;
+            let clientX = e.clientX || e.touches[0].clientX;
+            let value = ((clientX - offsetLeft) / sliderWidth) * maxValue;
+
+            if (value < minValue) value = minValue;
+            if (value > maxValue) value = maxValue;
+
+            const otherValue = parseFloat($(otherHandle).attr('aria-valuenow'));
+            if ($(handle).hasClass('travel-slider-handle-start') && value >= otherValue) {
+                value = otherValue - 0.5;
+            }
+            if ($(handle).hasClass('travel-slider-handle-end') && value <= otherValue) {
+                value = otherValue + 0.5;
+            }
+
+            updateSliderHandle(handle, value);
+            updateTimeInput(input, value);
+        }
+
+        $(handle).on('mousedown touchstart', startDragging);
+        $(document).on('mousemove touchmove', function(e) {
+            handleDragging(e);
+            if (isDragging) {
+                e.preventDefault();  // Chỉ ngăn cuộn khi đang kéo
+            }
+        });
+        $(document).on('mouseup touchend', stopDragging);
+    }
+setupSlider('.travel-slider-handle-start', '.travel-slider-handle-end', '.travel-start-time');
+    setupSlider('.travel-slider-handle-end', '.travel-slider-handle-start', '.travel-end-time');
+
+    // Khởi tạo giá trị ban đầu và cập nhật màu sắc khi trang tải
+    updateSliderHandle('.travel-slider-handle-start', minValue);
+    updateSliderHandle('.travel-slider-handle-end', maxValue);
+
+    $('.travel-start-time').on('change', function() {
+        let value = convertTimeToValue($(this).val());
+        if (value < minValue) value = minValue;
+        if (value > maxValue) value = maxValue;
+        updateSliderHandle('.travel-slider-handle-start', value);
+    });
+
+    $('.travel-end-time').on('change', function() {
+        let value = convertTimeToValue($(this).val());
+        if (value < minValue) value = minValue;
+        if (value > maxValue) value = maxValue;
+        updateSliderHandle('.travel-slider-handle-end', value);
+    });
+});
+
+
 //sắp xếp//
     function openSortModal() {
             document.getElementById("sortModal").style.display = "block";
@@ -2034,6 +2118,97 @@ window.onclick = function(event) {
                 closeSortModal();
             }
         }
+     // ////giá vé////
+     $(document).ready(function() {
+    const minValue = 0; // Giá trị tối thiểu (0 đ)
+    const maxValue = 2000000; // Giá trị tối đa (2,000,000 đ)
+
+    function updateSliderHandle(handle, value) {
+        const percentage = (value / maxValue) * 100;
+        $(handle).css('left', percentage + '%');
+        $(handle).attr('aria-valuenow', value);
+
+        // Cập nhật thanh màu xanh cho phần giá trị đã chọn
+        const startValue = parseFloat($('.ticket-slider-handle-start').attr('aria-valuenow'));
+        const endValue = parseFloat($('.ticket-slider-handle-end').attr('aria-valuenow'));
+        $('.ticket-slider-track').css({
+            'left': (startValue / maxValue) * 100 + '%',
+            'width': ((endValue - startValue) / maxValue) * 100 + '%'
+        });
+    }
+
+    function updatePriceInput(input, value) {
+        value = Math.round(value); // Rounding the value to the nearest integer
+        $(input).text(value.toLocaleString() + ' đ');
+    }
+
+    function setupSlider(handle, otherHandle, input) {
+        let isDragging = false;
+
+        function startDragging(e) {
+            isDragging = true;
+            e.preventDefault();
+        }
+
+        function stopDragging() {
+            isDragging = false;
+        }
+
+        function handleDragging(e) {
+            if (!isDragging) return;
+
+            const sliderOffset = $('.ticket-slider').offset();
+            const sliderWidth = $('.ticket-slider').width();
+            const sliderHeight = $('.ticket-slider').height();
+            let clientX = e.clientX || e.touches[0].clientX;
+            let clientY = e.clientY || e.touches[0].clientY;
+            
+            // Tính toán giá trị dựa trên vị trí của chuột/touch
+            let xValue = ((clientX - sliderOffset.left) / sliderWidth) * maxValue;
+            let yValue = ((clientY - sliderOffset.top) / sliderHeight) * maxValue;
+
+            xValue = Math.min(maxValue, Math.max(minValue, xValue));
+            yValue = Math.min(maxValue, Math.max(minValue, yValue));
+
+            // Điều chỉnh giá trị dựa trên loại handle (bắt đầu hoặc kết thúc)
+            const otherValue = parseFloat($(otherHandle).attr('aria-valuenow'));
+            if ($(handle).hasClass('ticket-slider-handle-start')) {
+                if (xValue >= otherValue) xValue = otherValue - 1000; // Giảm 1000 đ để đảm bảo không chồng lấn
+                updateSliderHandle(handle, xValue);
+                updatePriceInput(input, xValue);
+            } else {
+                if (xValue <= otherValue) xValue = otherValue + 1000; // Tăng 1000 đ để đảm bảo không chồng lấn
+                updateSliderHandle(handle, xValue);
+                updatePriceInput(input, xValue);
+            }
+        }
+
+        $(handle).on('mousedown touchstart', startDragging);
+        $(document).on('mousemove touchmove', handleDragging);
+        $(document).on('mouseup touchend', stopDragging);
+    }
+setupSlider('.ticket-slider-handle-start', '.ticket-slider-handle-end', '.ticket-value-left');
+    setupSlider('.ticket-slider-handle-end', '.ticket-slider-handle-start', '.ticket-value-right');
+
+    // Cập nhật giá trị khi người dùng thay đổi giá trị nhập vào
+    $('.ticket-value-left').on('change', function() {
+        let value = parseFloat($(this).text().replace(/\D/g, '')); // Loại bỏ ký tự không phải số
+        if (value < minValue) value = minValue;
+        if (value > maxValue) value = maxValue;
+        updateSliderHandle('.ticket-slider-handle-start', value);
+        updatePriceInput('.ticket-value-left', value);
+    });
+
+    $('.ticket-value-right').on('change', function() {
+        let value = parseFloat($(this).text().replace(/\D/g, '')); // Loại bỏ ký tự không phải số
+        if (value < minValue) value = minValue;
+        if (value > maxValue) value = maxValue;
+        updateSliderHandle('.ticket-slider-handle-end', value);
+        updatePriceInput('.ticket-value-right', value);
+    });
+});
+
+    
     </script>
     
 
