@@ -15,7 +15,7 @@
 @section('content')
 <div id=" airlinetickets">
     <div class="container-airlinetickets">
-        @include('components.search_component', [
+        @include('train.components.search', [
         'params' => $params,
         ])
     </div>
@@ -711,7 +711,7 @@
         <div class="right-filter">
             {{-- Load item is here --}}
             @foreach ($list_routes as $key => $route)
-            @include('train._train_item', [
+            @include('train.components.train_item', [
             'route' => $route,
             'key' => (string) $key,
             ])

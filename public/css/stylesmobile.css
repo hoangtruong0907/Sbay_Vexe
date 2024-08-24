@@ -78,7 +78,7 @@
         position: relative;
         width: 100%;
         max-width: 100%;
-        height: 400px;
+        height: 500px;
         overflow: hidden;
     }
     #bus_search {
@@ -93,11 +93,13 @@
         transition: transform 0.3s ease;
     }
     .left-ant-row-flex {
+        /* border: none; */
         display: block;
         justify-content: flex-start;
         align-items: center;
         gap: 10px;
         width: 100%;
+        margin-left: 1px;
     }
     .item {
         flex: 1 1 auto;
@@ -106,9 +108,9 @@
         text-align: center;
         background-color: #f0f0f0;
     }
-    .flex-sum-left input {
+    /* .flex-sum-left input {
         width: 290px;
-    }
+    } */
     .wrap-left-ant-row-flex {
         display: block;
     }
@@ -120,9 +122,6 @@
     }
     .fa fa-plus {
         margin-left: 10px;
-    }
-    .custom-swap-container {
-        display: none;
     }
     .fa-solid fa-bus-simple span {
         margin-left: 10px;
@@ -256,13 +255,6 @@
 
 .pills-bus-tab {
     margin-right: 5px;
-}
-
-
-
-
-
-/* /////////////////////// */
 
 @media (max-width: 768px) {
     .filters-wrapper > *:not(.filter-title) {
@@ -419,8 +411,6 @@
 
 }
 
-
-/* //////////// */
 @media only screen and (max-width: 1040px) {
     .airlinetickets{
         width: 100%;
