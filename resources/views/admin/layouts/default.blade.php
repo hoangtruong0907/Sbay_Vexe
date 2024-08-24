@@ -17,6 +17,7 @@
     <link href="{{ asset('vendor/fontawesome/css/brands.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables/datatables.min.css' )}}" rel="stylesheet">
     <link href="{{ asset('vendor/flagiconcss/css/flag-icon.min.css') }}" rel="stylesheet">
 </head>
 
@@ -36,6 +37,8 @@
         <script src="{{ asset('vendor/chartsjs/Chart.min.js') }}"></script>
         <script src="{{ asset('js/dashboard-charts.js') }}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/datatables.min.js')}}"></script>
+        <script src="{{ asset('js/initiate-datatables.js')}}"></script>
     </body>
 
     </html>

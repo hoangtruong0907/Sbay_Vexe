@@ -93,3 +93,4 @@ const trainStations = @json($trainStations ?? []);
 </script>
 <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush
+
