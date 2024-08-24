@@ -892,9 +892,6 @@
     .ticket-value-right {
         float: right;
     }
-    body p, body h1, body h2, body h3, body h4, body h5, body h6{
-        font-weight: bold;
-    }
     body {
         margin: 0;
         padding: 0;
@@ -1114,12 +1111,6 @@
     }
 }
 @media (max-width: 768px) {
-    .hgcnFg {
-        width: 767px;
-    }
-    .topnav{
-        width: 767px;
-    }
     .cta-button {
         display: block;
         width: 100%;
