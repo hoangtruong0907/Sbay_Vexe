@@ -167,8 +167,7 @@
                         <p class="trust-message-text"><i class="fas fa-shield-alt"></i> Vexere cam kết giữ đúng chỗ
                             bạn đã chọn.</p>
                     </div>
-                    <div class="coupon-container" style="display: none
-                    ;">
+                    <div class="coupon-container">
                         <div class="wrap-coupon">
                             <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                             <div class="kNCupL">
@@ -1422,7 +1421,7 @@
                                 Lịch này có thể thay đổi tùy tình hình thưc tế.
                             </div>
                         </div>
-                        <div class="d-flex row mt-2" style="flex-direction: column;">
+                        <div class="d-flex row mt-2">
                             <div class="col-6 d-flex flex-column wrap-point">
                                 <div class="fw-bold">Điểm đón</div>
                                 <div class="list-group">

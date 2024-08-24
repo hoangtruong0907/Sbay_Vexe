@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\loginController;
-use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TestController;
@@ -12,41 +11,30 @@ use App\Http\Controllers\home\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\CheckAuthGoogle;
-use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\CheckLoginAdminMiddleware;
 
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    })->name('admin')->middleware(AuthMiddleware::class);
+    });    
+    Route::get('/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('admin.blogs.store');
+    Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
+    Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
+    Route::post('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
+    Route::get('/blogs/create', [BlogController::class, 'create'])->name('admin.blogs.create');
+    Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+    Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
+    Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
-Route::get('/', [BlogControllers::class, 'index'])->name('index');
+// Route::get('/', [BlogControllers::class, 'index'])->name('index');
 Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 
 
-
-
+Route::get('/blog', [BlogControllers::class, 'index'])->name('blog.index');
+Route::get('/', [RouteController::class, 'index'])->name('home');
 Route::get('/test', [TestController::class, 'test']);
-
-
-// Login Admin
-
-Route::get('/admin/login', [loginController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
-Route::post('admin/doLogin', [loginController::class, 'doLogin'])->name('admin.doLogin');
-Route::get('/admin/doLogout', [loginController::class, 'doLogout'])->name('admin.doLogout');
-
-// QL User admin
-Route::prefix('/admin/user')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('admin.user');
-    Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
-    Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
-    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-    Route::post('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
-    Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
-});
-
 
 #Search route
 Route::prefix('/route-search')->group(function () {
@@ -60,7 +48,6 @@ Route::prefix('/route-search')->group(function () {
         return view('airline_tickets');
     });
 });
-
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
 

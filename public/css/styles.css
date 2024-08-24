@@ -1447,6 +1447,7 @@ body .material-icons-wrapper.md-20 {
     padding: 10px 20px;
     border-radius: 5px;
     line-height: 18px !important;
+    border: none;
     /* color: #000 !important; */
 }
 
@@ -1596,7 +1597,7 @@ body .material-icons-wrapper.md-20 {
     box-shadow: none;
     margin: 0;
     padding: 4px 16px;
-    color: rgb(77, 77, 77);
+    /* color: rgb(77, 77, 77); */
 }
 
 .ticket-detail-contentTab .content-note-ticket {
@@ -3541,7 +3542,7 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6 {
     box-shadow: none;
     margin: 0;
     padding: 4px 16px;
-    color: rgb(77, 77, 77);
+    /* color: rgb(77, 77, 77); */
 }
 
 .ticket-detail-contentTab .content-note-ticket {
