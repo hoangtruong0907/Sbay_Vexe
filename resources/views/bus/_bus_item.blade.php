@@ -56,6 +56,30 @@
                             </div>
                         </div>
                     </div>
+                    <!--  -->
+                    <!-- ///// địa điểm//// -->
+                    <div class="custom-from-to-content">
+                    <div class="custom-content-from">
+                        <div class="custom-hour">
+                            18:45 <span class="custom-status-dot custom-green-dot"></span>
+                        </div>
+                        <div class="custom-place">VP Đà Nẵng</div>
+                    </div>
+                    <div class="custom-timeline">
+                        <div class="line"></div>
+                       <div class="custom-duration">12 giờ</div>
+                   </div>
+                   <div class="custom-content-to">
+                        <div class="custom-arrival-date">(18/08)</div>
+                        <div class="custom-hour">
+                            <span class="custom-status-dot custom-red-dot"></span> 06:45
+                        </div>
+                        <div class="custom-place">VP Tân Bình</div>
+                    </div>
+                </div>
+                    <!--  -->
+
+
                     {{-- <div class="social-proof-l">7 người đặt trong 6 tiếng gần đây</div> --}}
                     <div class="action-p">
                         <div class="seat-available">

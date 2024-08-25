@@ -11,6 +11,9 @@ use Carbon\Carbon;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\BlogPostModel;
+use App\Models\PostType;
 
 
 class RouteController extends Controller
@@ -59,9 +62,35 @@ class RouteController extends Controller
             $trainStations = [];
         }
 
+        $postTypes = BlogPostModel::distinct()->pluck('type');
+
+        // Lấy tất cả các bài viết đã xuất bản và phân trang
+        $allPosts = BlogPostModel::where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->where('type', '!=', 'relatedContent')
+            ->paginate(10);
+
+        $typeMapping = [
+            'blog' => 'Thông tin mới',
+            'news' => 'Tin tức',
+            'incentives' => 'Ưu đãi nổi bật',
+            'vexeretip' => 'Vexere Tip',
+            'relatedContent' => 'Nội dung liên quan',
+        ];
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 10; // Số lượng mục mỗi trang
+        $currentItems = $allPosts->forPage($currentPage, $perPage);
+        $paginator = new LengthAwarePaginator($currentItems, $allPosts->total(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+
         return view('index', [
             "list_areas" => $list_areas,
             "trainStations" => $trainStations,
+            'allPosts' => $paginator,
+            'typeMapping' => $typeMapping,
+            'postTypes' => $postTypes,
         ]);
     }
 
