@@ -42,25 +42,13 @@ class RouteController extends Controller
             ], 500);
         }
 
-        $res_cidi = Http::withToken($token)->get($this->main_url . '/v3/area/city_district');
-
-        if ($res_cidi->successful()) {
-            $responseData = $res_cidi->json();
-            $list_areas = isset($responseData['data']) && is_array($responseData['data']) ? $responseData['data'] : [];
-        } else {
-            $list_areas = [];
-        }
+        $cityBusURL = $this->main_url . '/v3/area/city_district';
+        $list_areas = Helpers::cacheData('city_district', $token, $cityBusURL, 60 * 60 * 24);
 
         // route list
-        $get_config = Http::withToken($token)->get($this->route_url . '/v2/agent/train/get_config');
-        if ($get_config->successful()) {
-            $responseData = $get_config->json();
-            $trainStations = isset($responseData['data']['train_stations_list']) && is_array($responseData['data']['train_stations_list'])
-                ? $responseData['data']['train_stations_list']
-                : [];
-        } else {
-            $trainStations = [];
-        }
+        $trainConfigURL = $this->route_url . '/v2/agent/train/get_config';
+        $trainConfig = Helpers::cacheData('train_config', $token, $trainConfigURL, 60 * 60 * 24);
+        $trainStations = $trainConfig['train_stations_list'];
 
         $postTypes = BlogPostModel::distinct()->pluck('type');
 
