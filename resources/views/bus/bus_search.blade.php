@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/loading.css') }}">
 @endsection
 
 @section('content')
@@ -34,15 +35,15 @@
                                 function openFilterModal() {
                                     alert("Filter modal opened!");
                                 }
-                            
+
                                 function openSortModal() {
                                     alert("Sort modal opened!");
                                 }
-                            
+
                                 function openTimeModal() {
                                     alert("Time modal opened!");
                                 }
-                            
+
                                 function openBusModal() {
                                     alert("Bus modal opened!");
                                 }
@@ -664,7 +665,7 @@
         <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
                        </div>
                     </div>
-    
+
                        </div>
                     <!-- ///////// sắp xếp/////////// -->
                         <div id="sortModal" class="modal">
@@ -730,10 +731,10 @@
                           <button class="close-button" onclick="closeSortModal()">Đóng</button>
                       </div>
                       </div>
-    
+
                       <!-- //////////////// -->
 
-   
+
 <!-- Modal -->
     <div id="sortModal" class="modal">
      <div class="modal-content-1">
@@ -799,7 +800,7 @@
     </div>
     </div>
 
-   
+
                       <!-- //////////////// -->
 
             <div class="left-filter">
@@ -1047,7 +1048,8 @@
                                         <div class="custom-slider">
                                             <div class="custom-slider-rail"></div>
                                             <div class="custom-slider-track custom-slider-track-1"
-                                                style="left: 0%; width: 100%;"></div>
+                                                style="left: 0%; width: 100%;">
+                                            </div>
                                             <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
                                                 role="slider" aria-valuemin="0" aria-valuemax="2000000"
                                                 aria-valuenow="0" style="left: 0%;"></div>
@@ -1486,57 +1488,28 @@
                 </div>
             </div>
             <div class="right-filter">
-                {{-- Load item is here --}}
-                @foreach ($list_routes as $key => $route)
-                    @include('bus._bus_item', [
-                        'route' => $route,
-                        'dataRoute' => $route['route'],
-                        'pickupData' => $route['route']['pickup_points'],
-                        'dropoffData' => $route['route']['dropoff_points'],
-                        'key' => (string) $key,
-                    ])
-                @endforeach
-                @if ($totalPages > 1)
-                    <nav class="d-flex justify-content-center">
-                        <ul class="pagination">
-                            {{-- Previous Page Link --}}
-                            @if ($currentPage > 1)
-                                <li class="page-item">
-                                    <a class="page-link"
-                                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage - 1, 'pagesize' => $pageSize]) }}"
-                                        rel="prev"><i class="fa-solid fa-chevron-left"></i></a>
-                                </li>
-                            @else
-                                <li class="page-item disabled">
-                                    <span class="page-link"><i class="fa-solid fa-chevron-left"></i></span>
-                                </li>
-                            @endif
-
-                            {{-- Pagination Elements --}}
-                            @for ($i = 1; $i <= $totalPages; $i++)
-                                <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
-                                    <a class="page-link"
-                                        href="{{ request()->fullUrlWithQuery(['page' => $i, 'pagesize' => $pageSize]) }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-
-                            {{-- Next Page Link --}}
-                            @if ($currentPage < $totalPages)
-                                <li class="page-item">
-                                    <a class="page-link"
-                                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage + 1, 'pagesize' => $pageSize]) }}"
-                                        rel="next"><i class="fa-solid fa-chevron-right"></i></a>
-                                </li>
-                            @else
-                                <li class="page-item disabled">
-                                    <span class="page-link"><i class="fa-solid fa-chevron-right"></i></span>
-                                </li>
-                            @endif
-                        </ul>
-                    </nav>
-                @endif
+                {{-- Load list item is here --}}
+                <div class="container loading-wrap-page">
+                    @include('components._loading')
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex flex-column position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="conent-warning fw-bold">Thông báo</div>
+                    <div class="conent-warning mt-2 mb-2 p-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -1556,162 +1529,189 @@
         const trainStations = @json($trainStations ?? []);
     </script>
     <script>
-        // Lọc Giờ slide
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.slider');
-            const handle1 = slider.querySelector('.slider-handle-1');
-            const handle2 = slider.querySelector('.slider-handle-2');
-            const track = slider.querySelector('.slider-track');
-            const inputFrom = document.querySelector('.from-time');
-            const inputTo = document.querySelector('.to-time');
-            const max = 24; // Max value for the slider in hours
+        let urlCurrent = window.location.href;
 
-            // Function to convert time to hours
-            function timeToHours(time) {
-                return parseInt(time.split(':')[0]);
-            }
+        function loadSearchListBus() {
+            let queryString = urlCurrent.split('?')[1];
+            const url = `/api/search/xe-khach?${queryString}`;
+            fetch(url, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log(data);
+                    $('.wrap-filter .right-filter').html(data.dataHTML);
 
-            // Function to convert hours to time
-            function hoursToTime(hours) {
-                return `${String(hours).padStart(2, '0')}:00`;
-            }
-
-            // Function to update track and input values
-            function updateTrack() {
-                const value1 = parseFloat(handle1.style.left);
-                const value2 = parseFloat(handle2.style.left);
-                track.style.left = Math.min(value1, value2) + '%';
-                track.style.width = Math.abs(value1 - value2) + '%';
-                inputFrom.value = hoursToTime(Math.round(Math.min(value1, value2) * max / 100));
-                inputTo.value = hoursToTime(Math.round(Math.max(value1, value2) * max / 100));
-            }
-
-            // Function to handle dragging
-            function onDrag(event, handle) {
-                const sliderRect = slider.getBoundingClientRect();
-                const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect.width);
-                const valueInHours = Math.round((newLeft / sliderRect.width) * max); // Round to nearest hour
-                handle.style.left = (valueInHours / max) * 100 + '%';
-                updateTrack();
-            }
-
-            function onDragEnd() {
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
-            }
-
-            function onMouseMove(event) {
-                onDrag(event, draggingHandle);
-            }
-
-            function onMouseUp(event) {
-                onDrag(event, draggingHandle);
-                onDragEnd();
-            }
-
-            let draggingHandle;
-
-            handle1.addEventListener('mousedown', function(event) {
-                draggingHandle = handle1;
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-            });
-
-            handle2.addEventListener('mousedown', function(event) {
-                draggingHandle = handle2;
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-            });
-
-            // Set initial positions and update track
-            handle1.style.left = '0%';
-            handle2.style.left = '100%';
-            updateTrack();
-
-            // Update the slider based on input change
-            inputFrom.addEventListener('change', function() {
-                const hours = Math.min(Math.max(timeToHours(inputFrom.value), 0), max);
-                handle1.style.left = (hours / max) * 100 + '%';
-                updateTrack();
-            });
-
-            inputTo.addEventListener('change', function() {
-                const hours = Math.min(Math.max(timeToHours(inputTo.value), 0), max);
-                handle2.style.left = (hours / max) * 100 + '%';
-                updateTrack();
-            });
-        });
-        // Lọc slide tiền
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.custom-slider');
-            const handle1 = slider.querySelector('.custom-slider-handle-1');
-            const handle2 = slider.querySelector('.custom-slider-handle-2');
-            const track = slider.querySelector('.custom-slider-track-1');
-            const valueLeft = document.querySelector('.custom-value-left');
-            const valueRight = document.querySelector('.custom-value-right');
-            const max = 2000000; // Max value for the slider
-
-            // Function to format currency
-            function formatCurrency(value) {
-                return value.toLocaleString('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
+                })
+                .catch(error => {
+                    console.error('Eror:', error);
                 });
-            }
+        }
+        loadSearchListBus();
 
-            // Function to update track and value display
-            function updateTrack() {
-                const value1 = parseFloat(handle1.style.left);
-                const value2 = parseFloat(handle2.style.left);
-                track.style.left = Math.min(value1, value2) + '%';
-                track.style.width = Math.abs(value1 - value2) + '%';
-                valueLeft.textContent = formatCurrency(Math.min(value1, value2) * max / 100);
-                valueRight.textContent = formatCurrency(Math.max(value1, value2) * max / 100);
-            }
-
-            // Function to handle dragging
-            function onDrag(event, handle) {
-                const sliderRect = slider.getBoundingClientRect();
-                const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect.width);
-                handle.style.left = (newLeft / sliderRect.width) * 100 + '%';
-                updateTrack();
-            }
-
-            function onDragEnd() {
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
-            }
-
-            function onMouseMove(event) {
-                onDrag(event, draggingHandle);
-            }
-
-            function onMouseUp(event) {
-                onDrag(event, draggingHandle);
-                onDragEnd();
-            }
-
-            let draggingHandle;
-
-            handle1.addEventListener('mousedown', function(event) {
-                draggingHandle = handle1;
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-            });
-
-            handle2.addEventListener('mousedown', function(event) {
-                draggingHandle = handle2;
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-            });
-
-            // Set initial positions and update track
-            handle1.style.left = '0%';
-            handle2.style.left = '100%';
-            updateTrack();
-        });
-        //
         $(document).ready(function() {
+            // Lọc Giờ slide
+            document.addEventListener('DOMContentLoaded', function() {
+                const slider = document.querySelector('.slider');
+                const handle1 = slider.querySelector('.slider-handle-1');
+                const handle2 = slider.querySelector('.slider-handle-2');
+                const track = slider.querySelector('.slider-track');
+                const inputFrom = document.querySelector('.from-time');
+                const inputTo = document.querySelector('.to-time');
+                const max = 24; // Max value for the slider in hours
+
+                // Function to convert time to hours
+                function timeToHours(time) {
+                    return parseInt(time.split(':')[0]);
+                }
+
+                // Function to convert hours to time
+                function hoursToTime(hours) {
+                    return `${String(hours).padStart(2, '0')}:00`;
+                }
+
+                // Function to update track and input values
+                function updateTrack() {
+                    const value1 = parseFloat(handle1.style.left);
+                    const value2 = parseFloat(handle2.style.left);
+                    track.style.left = Math.min(value1, value2) + '%';
+                    track.style.width = Math.abs(value1 - value2) + '%';
+                    inputFrom.value = hoursToTime(Math.round(Math.min(value1, value2) * max / 100));
+                    inputTo.value = hoursToTime(Math.round(Math.max(value1, value2) * max / 100));
+                }
+
+                // Function to handle dragging
+                function onDrag(event, handle) {
+                    const sliderRect = slider.getBoundingClientRect();
+                    const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect
+                        .width);
+                    const valueInHours = Math.round((newLeft / sliderRect.width) *
+                        max); // Round to nearest hour
+                    handle.style.left = (valueInHours / max) * 100 + '%';
+                    updateTrack();
+                }
+
+                function onDragEnd() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                }
+
+                function onMouseMove(event) {
+                    onDrag(event, draggingHandle);
+                }
+
+                function onMouseUp(event) {
+                    onDrag(event, draggingHandle);
+                    onDragEnd();
+                }
+
+                let draggingHandle;
+
+                handle1.addEventListener('mousedown', function(event) {
+                    draggingHandle = handle1;
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                handle2.addEventListener('mousedown', function(event) {
+                    draggingHandle = handle2;
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                // Set initial positions and update track
+                handle1.style.left = '0%';
+                handle2.style.left = '100%';
+                updateTrack();
+
+                // Update the slider based on input change
+                inputFrom.addEventListener('change', function() {
+                    const hours = Math.min(Math.max(timeToHours(inputFrom.value), 0), max);
+                    handle1.style.left = (hours / max) * 100 + '%';
+                    updateTrack();
+                });
+
+                inputTo.addEventListener('change', function() {
+                    const hours = Math.min(Math.max(timeToHours(inputTo.value), 0), max);
+                    handle2.style.left = (hours / max) * 100 + '%';
+                    updateTrack();
+                });
+            });
+            // Lọc slide tiền
+            document.addEventListener('DOMContentLoaded', function() {
+                const slider = document.querySelector('.custom-slider');
+                const handle1 = slider.querySelector('.custom-slider-handle-1');
+                const handle2 = slider.querySelector('.custom-slider-handle-2');
+                const track = slider.querySelector('.custom-slider-track-1');
+                const valueLeft = document.querySelector('.custom-value-left');
+                const valueRight = document.querySelector('.custom-value-right');
+                const max = 2000000; // Max value for the slider
+
+                // Function to format currency
+                function formatCurrency(value) {
+                    return value.toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    });
+                }
+
+                // Function to update track and value display
+                function updateTrack() {
+                    const value1 = parseFloat(handle1.style.left);
+                    const value2 = parseFloat(handle2.style.left);
+                    track.style.left = Math.min(value1, value2) + '%';
+                    track.style.width = Math.abs(value1 - value2) + '%';
+                    valueLeft.textContent = formatCurrency(Math.min(value1, value2) * max / 100);
+                    valueRight.textContent = formatCurrency(Math.max(value1, value2) * max / 100);
+                }
+
+                // Function to handle dragging
+                function onDrag(event, handle) {
+                    const sliderRect = slider.getBoundingClientRect();
+                    const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect
+                        .width);
+                    handle.style.left = (newLeft / sliderRect.width) * 100 + '%';
+                    updateTrack();
+                }
+
+                function onDragEnd() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                }
+
+                function onMouseMove(event) {
+                    onDrag(event, draggingHandle);
+                }
+
+                function onMouseUp(event) {
+                    onDrag(event, draggingHandle);
+                    onDragEnd();
+                }
+
+                let draggingHandle;
+
+                handle1.addEventListener('mousedown', function(event) {
+                    draggingHandle = handle1;
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                handle2.addEventListener('mousedown', function(event) {
+                    draggingHandle = handle2;
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                // Set initial positions and update track
+                handle1.style.left = '0%';
+                handle2.style.left = '100%';
+                updateTrack();
+            });
             // Chọn hành khách
             const searchContainer = $('.search-container');
             const passengerSelection = $('.passenger-selection');
@@ -1906,73 +1906,317 @@
             toggleTextarea34();
         });
 
-        function nextStep(step) {
-            document.querySelector('.wizard-step.active').classList.remove('active');
-            document.getElementById('step' + step).classList.add('active');
-        }
+        $(document).ready(function() {
+            // Click popup gg map by lat & lon
+            $('.list-distance-item').on('click', function() {
+                const lat = $(this).data('map-lat');
+                const lon = $(this).data('map-lon');
+                const googleMapsUrl =
+                    `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
+                window.open(googleMapsUrl, '_blank');
+            });
+            // Rating tab
+            $('.wrap-filter').on('click', '.nav-link.rating-tab', function() {
+                let companyId = $(this).data('company-id');
+                const url = `/api/info/xe-khach/${companyId}/reviews`;
+                // console.log(url);
+                fetch(url, {
+                        method: 'GET',
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // console.log(data);
+                        $($(this).attr('data-bs-target')).html(data.dataHTML);
 
-        function prevStep(step) {
-            document.querySelector('.wizard-step.active').classList.remove('active');
-            document.getElementById('step' + step).classList.add('active');
-        }
+                    })
+                    .catch(error => {
+                        console.error('Eror:', error);
+                    });
+            });
 
-        // Click popup gg map by lat & lon
-        $('.list-distance-item').on('click', function() {
-            const lat = $(this).data('map-lat');
-            const lon = $(this).data('map-lon');
-            const googleMapsUrl = `https://www.google.com/maps/search/${lat}+${lon}/@${lat},${lon},17z?entry=ttu`;
-            window.open(googleMapsUrl, '_blank');
-        });
+            $('.wrap-filter').on('click', '.nav-link.policy-tab', function() {
+                let tripCode = $(this).data('trip-code');
+                let seatTemplateId = $(this).data('seat-template-id');
+                const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
+                // console.log(url);
+                fetch(url, {
+                        method: 'GET',
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // console.log(data);
+                        $($(this).attr('data-bs-target')).html(data.dataHTML);
 
-        // Rating tab
-        $('.nav-link.rating-tab').on('click', function() {
-            let companyId = $(this).data('company-id');
-            // let itemKey = $(this).data('key') + 1;
-            const url = `/api/info/xe-khach/${companyId}/reviews`;
-            // console.log(url);
-            fetch(url, {
-                    method: 'GET',
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
+                    })
+                    .catch(error => {
+                        console.error('Eror:', error);
+                    });
+            });
+
+            let proxies = {};
+            let listSeatChoosed = {};
+            function createProxyForSeatChoosed(keyId) {
+                return new Proxy({}, {
+                    set(target = targetData, property, value) {
+
+                        if (Object.keys(target).length >= 3) {
+                            let seatChoose = $(
+                                `.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-full-code="${value.fullCode}"]`
+                            ).find('.seat-thumbnail');
+                            seatChoose.removeClass('seat-selected');
+                            // Hiển thị modal cảnh báo
+                            $(`#modals-warning`).modal('show');
+                            return true;
+                        }
+
+                        target[property] = value;
+                        this.updateUI(target, keyId);
+                        return true;
+                    },
+                    deleteProperty(target, property) {
+                        delete target[property];
+                        this.updateUI(target, keyId);
+                        return true;
+                    },
+                    updateUI(target, keyId) {
+                        let seatCodes = Object.keys(target);
+                        let seatCodesString = seatCodes.join(', ');
+
+                        let totalFare = seatCodes.reduce((total, seatCode) => {
+                            return total + (target[seatCode].fareSeat || 0);
+                        }, 0);
+                        let formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare) + 'đ';
+                        if (seatCodes.length > 0) {
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).hide();
+                            $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
+                                .html(`Ghế: <div class="right-total">${seatCodesString}</div>`);
+
+                            $(`#ticket-step-collapse-${keyId} .total-amount .fare-total`)
+                                .html(`Tổng cộng: <div class="right-total">${formattedTotalFare}</div>`);
+                        } else {
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
+                            $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
+                                .html(``);
+                            $(`#ticket-step-collapse-${keyId} .total-amount .fare-total`)
+                                .html(``);
+                        }
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    // console.log(data);
-                    $($(this).attr('data-bs-target')).html(data.dataHTML);
-
-                })
-                .catch(error => {
-                    console.error('Eror:', error);
                 });
-        });
+            }
 
-        $('.nav-link.policy-tab').on('click', function() {
-            let tripCode = $(this).data('trip-code');
-            let seatTemplateId = $(this).data('seat-template-id');
+            // Sự kiện click cho btn-booking-l.ticket-step
+            $('.wrap-filter').on('click', '.btn-booking-l.ticket-step', function() {
+                let parent = $(this);
+                parent.html("<span>Đóng</span>");
+                let keyId = $(this).data('key');
+                let target = $(this).data('bs-target'); // ID của collapse cần mở
+                let $currentCollapse = $(target); // jQuery object của collapse hiện tại
+                $('.collapse.ticket-step-collapse.show').not(target).collapse('hide');
+                $currentCollapse.collapse('toggle');
 
-            const url = `/api/info/xe-khach/cancel-policy/${tripCode}/${seatTemplateId}`;
-            // console.log(url);
+                if (!proxies[keyId]) {
+                    proxies[keyId] = createProxyForSeatChoosed(keyId);
+                }
 
-            fetch(url, {
-                    method: 'GET',
+                let tripCode = $(this).data('trip-code');
+                $currentCollapse.on('shown.bs.collapse', function() {
+                    const url = `/api/info/xe-khach/seat-map/${tripCode}/${keyId}`;
+                    console.log(url);
+
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $(`.ticket-step-collapse#ticket-step-collapse-${keyId}`)
+                                .html(data.dataHTML);
+
+                            $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
+                                .on('click', function() {
+                                    let elThumb = $(this).children(
+                                        '.seat-thumbnail');
+                                    elThumb.toggleClass("seat-selected");
+                                    const seatCode = $(this).data('seat-code');
+
+                                    if (elThumb.hasClass("seat-selected")) {
+                                        proxies[keyId][seatCode] = {
+                                            fullCode: $(this).data('full-code'),
+                                            fareSeat: $(this).data('fare-seat'),
+                                            seatCode: seatCode,
+
+                                        };
+                                    } else {
+                                        delete proxies[keyId][seatCode];
+                                    }
+                                });
+
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                .hide();
+                            $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                .hide();
+
+                            $(`#item-bus-${keyId} .next-step`).on('click', function() {
+                                $(`.ticket-step-collapse #step1-${keyId}`)
+                                    .removeClass('active');
+                                $(`.ticket-step-collapse #step2-${keyId}`)
+                                    .addClass('active');
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                    .show();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                    .show();
+                                $(this).hide();
+                            });
+
+                            $(`#item-bus-${keyId} .confirm-step`).on("click",
+                                function() {
+                                    const checkDropElement = $(`input[name='rdioCheckDrop-${keyId}']:checked`);
+                                    const checkTransferElement = $(`input[name='rdioCheckTransfer-${keyId}']:checked`);
+
+                                    const checkDropValue = checkDropElement.val(),
+                                        checkDropName = checkDropElement.data('name');
+
+                                    const checkTransferValue = checkTransferElement.val(),
+                                        checkTransferName = checkTransferElement.data('name');
+                                    const seats = Object.assign({}, proxies[0]);
+                                    const fullCodeVal = Object.values(seats).map(seat => seat.fullCode);
+                                    const dataSeat = {
+                                        trip_code: tripCode,
+                                        seat: fullCodeVal.join(', '),
+                                        seatData: seats,
+                                        pickup: checkDropName,
+                                        pickup_id: checkDropValue,
+                                        drop_off_info:checkTransferName,
+                                        drop_off_point_id: checkTransferValue,
+                                    }
+
+                                    const form = $('<form>', {
+                                        method: 'POST',
+                                        action: '/bookingconfirmation/ve-xe-khach'
+                                    });
+
+                                    $.each(dataSeat, function(key, value) {
+                                        form.append($('<input>', {
+                                            type: 'hidden',
+                                            name: key,
+                                            value: value
+                                        }));
+                                    });
+
+                                    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+                                    form.append($('<input>', {
+                                        type: 'hidden',
+                                        name: '_token',
+                                        value: csrfToken
+                                    }));
+                                    form.appendTo('body').submit();
+                                    console.log("tripCode: ", dataSeat);
+                                })
+
+                            $(`#item-bus-${keyId} .back-step`).on('click', function() {
+                                $(`.ticket-step-collapse #step2-${keyId}`)
+                                    .removeClass('active');
+                                $(`.ticket-step-collapse #step1-${keyId}`)
+                                    .addClass('active');
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                    .hide();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.next-step`)
+                                    .show();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                    .hide();
+                            });
+
+                            $(`.ticket-step-collapse #step1-${keyId} .seat-group-selection`)
+                                .each(function() {
+                                    const $quantity = $(this).find(
+                                        '#unique-quantity');
+                                    const $subIcon = $(this).find(
+                                        '.unique-sub-icon');
+                                    const $plusIcon = $(this).find(
+                                        '.unique-plus-icon');
+
+                                    $subIcon.off('click').on('click', function() {
+                                        console.log('Sub icon clicked');
+                                        let currentValue = parseInt(
+                                            $quantity.text(), 10);
+                                        if (currentValue > 0) {
+                                            $quantity.text(currentValue -
+                                                1);
+                                        }
+                                    });
+
+                                    $plusIcon.off('click').on('click', function() {
+                                        console.log('Plus icon clicked');
+                                        let currentValue = parseInt(
+                                            $quantity.text(), 10);
+                                        $quantity.text(currentValue + 1);
+                                    });
+                                });
+
+                            // Scroll into view
+                            document.querySelector(
+                                    `.ticket-step-collapse #step1-${keyId}`)
+                                .scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('Error:', textStatus, errorThrown);
+                        }
+                    });
+
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // console.log(data);
-                    $($(this).attr('data-bs-target')).html(data.dataHTML);
 
-                })
-                .catch(error => {
-                    console.error('Eror:', error);
+                $currentCollapse.on('hidden.bs.collapse', function() {
+                    parent.html("<span>Chọn chuyến</span>");
+                    $(`.ticket-step-collapse#ticket-step-collapse-${keyId}`).html(`
+                        <div class="loading-wrap">
+                            <svg class="truck" viewBox="0 0 48 24" width="48px" height="24px">
+                                <g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    transform="translate(0,2)">
+                                    <g class="truck__body">
+                                        <g stroke-dasharray="105 105">
+                                            <polyline class="truck__outside1" points="2 17,1 17,1 11,5 9,7 1,39 1,39 6" />
+                                            <polyline class="truck__outside2" points="39 12,39 17,31.5 17" />
+                                            <polyline class="truck__outside3" points="22.5 17,11 17" />
+                                            <polyline class="truck__window1" points="6.5 4,8 4,8 9,5 9" />
+                                            <polygon class="truck__window2" points="10 4,10 9,14 9,14 4" />
+                                        </g>
+                                        <polyline class="truck__line" points="43 8,31 8" stroke-dasharray="10 2 10 2 10 2 10 2 10 2 10 26" />
+                                        <polyline class="truck__line" points="47 10,31 10" stroke-dasharray="14 2 14 2 14 2 14 2 14 18" />
+                                    </g>
+                                    <g stroke-dasharray="15.71 15.71">
+                                        <g class="truck__wheel">
+                                            <circle class="truck__wheel-spin" r="2.5" cx="6.5" cy="17" />
+                                        </g>
+                                        <g class="truck__wheel">
+                                            <circle class="truck__wheel-spin" r="2.5" cx="27" cy="17" />
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>`);
+                    $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`).html(``);
+                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
+                    $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
+                        .off('click');
+                    listSeatChoosed = {};
+                    delete proxies[keyId];
+                    // console.log(`Proxy for keyId ${keyId} has been removed.`);
                 });
+
+            });
+
         });
 // lọc//
 function openFilterModal() {
@@ -2162,7 +2406,7 @@ setupSlider('.travel-slider-handle-start', '.travel-slider-handle-end', '.travel
             const sliderHeight = $('.ticket-slider').height();
             let clientX = e.clientX || e.touches[0].clientX;
             let clientY = e.clientY || e.touches[0].clientY;
-            
+
             // Tính toán giá trị dựa trên vị trí của chuột/touch
             let xValue = ((clientX - sliderOffset.left) / sliderWidth) * maxValue;
             let yValue = ((clientY - sliderOffset.top) / sliderHeight) * maxValue;
@@ -2208,9 +2452,9 @@ setupSlider('.ticket-slider-handle-start', '.ticket-slider-handle-end', '.ticket
     });
 });
 
-    
+
     </script>
-    
+
 
 
     <script src="{{ asset('js/search_component.js') }}"></script>

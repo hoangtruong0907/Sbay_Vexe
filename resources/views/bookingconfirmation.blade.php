@@ -8,10 +8,6 @@
     border-color: rgb(224, 224, 224);
 }
 
-.w-right-section {
-    width: 375px;
-}
-
 .form-floating-label {
     position: relative;
     margin-bottom: 20px;
@@ -172,7 +168,7 @@
 <div class="content" style="background: rgb(242, 242, 242);">
 
 
-    <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px; width: 1016px;">
+    <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px;">
         <!-- Back button and image -->
         <div class="d-flex align-items-center mb-3">
             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/chevron_left_gray.svg" alt="">
@@ -183,8 +179,7 @@
         <div class="main-content d-flex gap-4">
             <!-- Left section -->
             <div class=" d-flex flex-column gap-3 w-100">
-                <div
-                    class="left-section d-flex border flex-column gap-3 border-light-subtle p-4 left-top bg-white rounded-2 card-border-radius card-border-radius">
+                <div class="left-section d-flex border flex-column gap-3 border-light-subtle p-4 left-top bg-white rounded-2 card-border-radius card-border-radius">
                     <div class="d-flex justify-content-between align-items-center border border-secondary rounded"
                         style="padding: 12px 12px 12px 16px">
                         <p class="fw-medium mb-0 text-dark   text">Đăng nhập để tự điền thông tin và nhận điểm khi
@@ -230,8 +225,7 @@
                     </div>
                 </div>
                 <!--bottom-left section -->
-                <div
-                    class="bottom-left d-flex flex-column gap-3 bg-white border border-light-subtle rounded-2 p-4 card-border-radius">
+                <div class="bottom-left d-flex flex-column gap-3 bg-white border border-light-subtle rounded-2 p-4 card-border-radius">
                     <div class="container">
                         <h1 class="fw-bold fs-5 text-black">Tiện ích</h1>
                         <div class="d-flex flex-column align-items-center">
@@ -371,7 +365,7 @@
                 </div>
             </div>
             <!-- Right section -->
-            <div class="right-section d-flex flex-column gap-3 w-right-section" style="width: 375px;">
+            <div class="right-section d-flex flex-column gap-3 w-right-section">
                 <!--Right top -->
                 <div
                     class="d-flex justify-content-between bg-white border border-light-subtle rounded-2 w-100 p-3 card-border-radius">
