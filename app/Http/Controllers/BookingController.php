@@ -35,11 +35,37 @@ class BookingController extends Controller
 
         $urlSeatMap = $this->main_url . "/v3/trip/seat_map?trip_code=" . $tripCode;
         $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 10);
+        $pickup_points = $seatMap['pickup_points'];
+        $transfer_points = $seatMap['transfer_points_at_arrive'];
+        $drop_points = $seatMap['drop_off_points_at_arrive'];
+
+        $selectedPickupPoint = [];
+        $selectedDropPoint = [];
+
+        foreach ($pickup_points as $point) {
+            if (isset($point['point_id']) && $point['point_id'] == $seatInfo['pickup_id']) {
+                $selectedPickupPoint = $point;
+            }
+        }
+
+        foreach ($drop_points as $point) {
+            if (isset($point['point_id']) && $point['point_id'] == $seatInfo['drop_off_point_id']) {
+                $selectedDropPoint = $point;
+            }
+        }
+        // dd($selectedDropPoint, $selectedPickupPoint);
+
         $seatData = json_decode($request->input('seatData'), true);
         return view('payment.bookingconfirmation', [
             "seatInfo" => $seatInfo,
             "seatTicket" => $seatData,
-            "seatMap" => $seatMap
+            "seatMap" => $seatMap,
+            'pickup_points' => $pickup_points,
+            'transfer_points' => $transfer_points,
+            'drop_points' => $drop_points,
+            'selectedPickupPoint' => $selectedPickupPoint,
+            'selectedDropPoint' => $selectedDropPoint,
+            'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
         ]);
     }
 }

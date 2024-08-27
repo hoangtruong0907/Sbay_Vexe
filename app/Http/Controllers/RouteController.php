@@ -348,8 +348,9 @@ class RouteController extends Controller
             'dataHTML' => view('bus._bus_stepChooseSeat', [
                 'tripCode' => $tripCode,
                 'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
-                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'],
+                "pickupPoints" => $seatMap['pickup_points'] ?? [],
                 "transferPoints" => $seatMap['transfer_points_at_arrive'],
+                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'],
                 "seatMap" => $seatMap,
                 "keyId" => $keyId,
             ])->render(),

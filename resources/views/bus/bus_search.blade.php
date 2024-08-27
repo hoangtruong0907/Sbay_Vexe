@@ -1510,6 +1510,34 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modals-warning-2" tabindex="-1" aria-labelledby="modals-warningLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex flex-column position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="conent-warning fw-bold">Thông báo</div>
+                    <div class="conent-warning mt-2 mb-2 p-2">Bạn phải đặt ít nhất 1 ghế</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modals-map" tabindex="-1" aria-labelledby="modals-mapLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex flex-column position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="conent-map-title fw-bold">Bản đồ</div>
+                    <div class="conent-map mt-2 mb-2 p-2"> ... </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -1531,26 +1559,34 @@
     <script>
         let urlCurrent = window.location.href;
 
-        function loadSearchListBus() {
+        function loadSearchListBus(page = 1, pageSize = 8) {
+            console.log(page);
             let queryString = urlCurrent.split('?')[1];
+            let params = new URLSearchParams(queryString);
+            params.set('page', page);
+            params.set('pageSize', pageSize);
+            queryString = params.toString();
             const url = `/api/search/xe-khach?${queryString}`;
-            fetch(url, {
-                    method: 'GET',
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
+            console.log(url);
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(data) {
+                    if (data) {
+                        $('.wrap-filter .right-filter').html(data.dataHTML);
+                        window.scroll({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        console.error('Dữ liệu không hợp lệ.');
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    // console.log(data);
-                    $('.wrap-filter .right-filter').html(data.dataHTML);
-
-                })
-                .catch(error => {
-                    console.error('Eror:', error);
-                });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Lỗi:', error);
+                }
+            });
         }
         loadSearchListBus();
 
@@ -2068,15 +2104,20 @@
                                 .hide();
 
                             $(`#item-bus-${keyId} .next-step`).on('click', function() {
-                                $(`.ticket-step-collapse #step1-${keyId}`)
-                                    .removeClass('active');
-                                $(`.ticket-step-collapse #step2-${keyId}`)
-                                    .addClass('active');
-                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
-                                    .show();
-                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
-                                    .show();
-                                $(this).hide();
+                                if(Object.keys(proxies[keyId]).length === 0) {
+                                    $(`#modals-warning-2`).modal('show');
+                                } else {
+                                    $(`.ticket-step-collapse #step1-${keyId}`).removeClass('active');
+                                    $(`.ticket-step-collapse #step2-${keyId}`)
+                                        .addClass('active');
+                                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                        .show();
+                                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`)
+                                        .hide();
+                                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                        .show();
+                                    $(this).hide();
+                                }
                             });
 
                             $(`#item-bus-${keyId} .confirm-step`).on("click",
@@ -2212,7 +2253,7 @@
                             </svg>
                         </div>`);
                     $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`).html(``);
-                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
+
                     $(`.ticket-step-collapse #step1-${keyId} .seat-choose-item.seat-container[data-disabled="false"]`)
                         .off('click');
                     listSeatChoosed = {};
@@ -2330,30 +2371,30 @@ $(document).ready(function() {
         });
         $(document).on('mouseup touchend', stopDragging);
     }
-setupSlider('.travel-slider-handle-start', '.travel-slider-handle-end', '.travel-start-time');
-    setupSlider('.travel-slider-handle-end', '.travel-slider-handle-start', '.travel-end-time');
+    setupSlider('.travel-slider-handle-start', '.travel-slider-handle-end', '.travel-start-time');
+        setupSlider('.travel-slider-handle-end', '.travel-slider-handle-start', '.travel-end-time');
 
-    // Khởi tạo giá trị ban đầu và cập nhật màu sắc khi trang tải
-    updateSliderHandle('.travel-slider-handle-start', minValue);
-    updateSliderHandle('.travel-slider-handle-end', maxValue);
+        // Khởi tạo giá trị ban đầu và cập nhật màu sắc khi trang tải
+        updateSliderHandle('.travel-slider-handle-start', minValue);
+        updateSliderHandle('.travel-slider-handle-end', maxValue);
 
-    $('.travel-start-time').on('change', function() {
-        let value = convertTimeToValue($(this).val());
-        if (value < minValue) value = minValue;
-        if (value > maxValue) value = maxValue;
-        updateSliderHandle('.travel-slider-handle-start', value);
+        $('.travel-start-time').on('change', function() {
+            let value = convertTimeToValue($(this).val());
+            if (value < minValue) value = minValue;
+            if (value > maxValue) value = maxValue;
+            updateSliderHandle('.travel-slider-handle-start', value);
+        });
+
+        $('.travel-end-time').on('change', function() {
+            let value = convertTimeToValue($(this).val());
+            if (value < minValue) value = minValue;
+            if (value > maxValue) value = maxValue;
+            updateSliderHandle('.travel-slider-handle-end', value);
+        });
     });
 
-    $('.travel-end-time').on('change', function() {
-        let value = convertTimeToValue($(this).val());
-        if (value < minValue) value = minValue;
-        if (value > maxValue) value = maxValue;
-        updateSliderHandle('.travel-slider-handle-end', value);
-    });
-});
 
-
-//sắp xếp//
+    //sắp xếp//
     function openSortModal() {
             document.getElementById("sortModal").style.display = "block";
         }
@@ -2436,31 +2477,26 @@ setupSlider('.travel-slider-handle-start', '.travel-slider-handle-end', '.travel
         $(document).on('mousemove touchmove', handleDragging);
         $(document).on('mouseup touchend', stopDragging);
     }
-setupSlider('.ticket-slider-handle-start', '.ticket-slider-handle-end', '.ticket-value-left');
-    setupSlider('.ticket-slider-handle-end', '.ticket-slider-handle-start', '.ticket-value-right');
+    setupSlider('.ticket-slider-handle-start', '.ticket-slider-handle-end', '.ticket-value-left');
+        setupSlider('.ticket-slider-handle-end', '.ticket-slider-handle-start', '.ticket-value-right');
 
-    // Cập nhật giá trị khi người dùng thay đổi giá trị nhập vào
-    $('.ticket-value-left').on('change', function() {
-        let value = parseFloat($(this).text().replace(/\D/g, '')); // Loại bỏ ký tự không phải số
-        if (value < minValue) value = minValue;
-        if (value > maxValue) value = maxValue;
-        updateSliderHandle('.ticket-slider-handle-start', value);
-        updatePriceInput('.ticket-value-left', value);
+        // Cập nhật giá trị khi người dùng thay đổi giá trị nhập vào
+        $('.ticket-value-left').on('change', function() {
+            let value = parseFloat($(this).text().replace(/\D/g, '')); // Loại bỏ ký tự không phải số
+            if (value < minValue) value = minValue;
+            if (value > maxValue) value = maxValue;
+            updateSliderHandle('.ticket-slider-handle-start', value);
+            updatePriceInput('.ticket-value-left', value);
+        });
+
+        $('.ticket-value-right').on('change', function() {
+            let value = parseFloat($(this).text().replace(/\D/g, '')); // Loại bỏ ký tự không phải số
+            if (value < minValue) value = minValue;
+            if (value > maxValue) value = maxValue;
+            updateSliderHandle('.ticket-slider-handle-end', value);
+            updatePriceInput('.ticket-value-right', value);
+        });
     });
-
-    $('.ticket-value-right').on('change', function() {
-        let value = parseFloat($(this).text().replace(/\D/g, '')); // Loại bỏ ký tự không phải số
-        if (value < minValue) value = minValue;
-        if (value > maxValue) value = maxValue;
-        updateSliderHandle('.ticket-slider-handle-end', value);
-        updatePriceInput('.ticket-value-right', value);
-    });
-});
-
-
     </script>
-
-
-
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush
