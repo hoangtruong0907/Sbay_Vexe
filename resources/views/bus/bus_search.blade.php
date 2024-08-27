@@ -1965,6 +1965,7 @@
 
             let proxies = {};
             let listSeatChoosed = {};
+            let formattedTotalFare = "0đ";
             function createProxyForSeatChoosed(keyId) {
                 return new Proxy({}, {
                     set(target = targetData, property, value) {
@@ -1995,14 +1996,15 @@
                         let totalFare = seatCodes.reduce((total, seatCode) => {
                             return total + (target[seatCode].fareSeat || 0);
                         }, 0);
-                        let formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare) + 'đ';
+                        formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare);
+                        let totalFateString = formattedTotalFare + 'đ';
                         if (seatCodes.length > 0) {
                             $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).hide();
                             $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
                                 .html(`Ghế: <div class="right-total">${seatCodesString}</div>`);
 
                             $(`#ticket-step-collapse-${keyId} .total-amount .fare-total`)
-                                .html(`Tổng cộng: <div class="right-total">${formattedTotalFare}</div>`);
+                                .html(`Tổng cộng: <div class="right-total">${totalFateString}</div>`);
                         } else {
                             $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-close`).show();
                             $(`#ticket-step-collapse-${keyId} .total-amount .code-seat-choosed`)
@@ -2092,12 +2094,15 @@
                                     const dataSeat = {
                                         trip_code: tripCode,
                                         seat: fullCodeVal.join(', '),
-                                        seatData: seats,
+                                        seatData: JSON.stringify({
+                                            seatList: seats,
+                                            totalFare: formattedTotalFare,
+                                        }),
                                         pickup: checkDropName,
                                         pickup_id: checkDropValue,
-                                        drop_off_info:checkTransferName,
+                                        drop_off_info: checkTransferName,
                                         drop_off_point_id: checkTransferValue,
-                                    }
+                                    };
 
                                     const form = $('<form>', {
                                         method: 'POST',

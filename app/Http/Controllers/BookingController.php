@@ -34,11 +34,12 @@ class BookingController extends Controller
         }
 
         $urlSeatMap = $this->main_url . "/v3/trip/seat_map?trip_code=" . $tripCode;
-        $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 20);
-        // dd($seatMap);
-        return view('bookingconfirmation', [
-            $seatInfo,
-            $seatMap
+        $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 10);
+        $seatData = json_decode($request->input('seatData'), true);
+        return view('payment.bookingconfirmation', [
+            "seatInfo" => $seatInfo,
+            "seatTicket" => $seatData,
+            "seatMap" => $seatMap
         ]);
     }
 }

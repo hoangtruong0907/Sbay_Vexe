@@ -373,7 +373,7 @@
                         <div class="d-flex justify-content-between w-100 pointer" id="totalAmount">
                             <div class="fw-bold fs-5 mb-0 text-black">Tạm tính</div>
                             <div class="d-flex align-items-center gap-1">
-                                <p class="fw-bold fs-5 mb-0">260.000đ</p>
+                                <p class="fw-bold fs-5 mb-0">{{$seatTicket['totalFare']}}đ</p>
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                     alt="icon-expand-less" width="20" height="20">
                             </div>
@@ -397,6 +397,9 @@
 
 
                 </div>
+                @php
+                    dd($seatMap);
+                @endphp
                 <!--Right bottom -->
                 <div
                     class="d-flex justify-content-between bg-white border border-light-subtle rounded-2 w-100 p-3 card-border-radius">
@@ -412,12 +415,12 @@
                                         <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg"
                                             src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg"
                                             alt="bus_blue_icon" width="16" height="16">
-                                        <p class="fw-bold mb-0" style="font-size: 12px;">CN, 04/08/2024</p>
+                                        <p class="fw-bold mb-0" style="font-size: 12px;">{{formatDateTime($seatMap['departure_time'], 'E, dd/MM/yyyy')}}</p>
                                         <div class="d-flex align-items-center">
                                             <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                                 alt="people_alt_black_icon" width="16" height="16">
-                                            <p class="fw-normal mb-0 ms-1 ml-2" style="font-size: 12px;">1</p>
+                                            <p class="fw-normal mb-0 ms-1 ml-2" style="font-size: 12px;">{{count($seatTicket['seatList'])}}</p>
                                         </div>
                                     </div>
                                     <div>
@@ -436,7 +439,7 @@
                                         </div>
                                         <div class="d-grid align-items-center p-0 flex-grow-1 row-gap-1">
                                             <p class="mb-0 fw-semibold" style="font-size: 14px;">
-                                                Hải Phòng Travel (Đất Cảng)
+                                                {{$seatMap['company_name']}}
                                             </p>
                                             <p class="mb-0" style="font-size: 10px; line-height: 12px;">
                                                 Limousine 11 chỗ
@@ -2056,76 +2059,76 @@
 </div>
 <!---------------------------------- End Drawer ---------------------------------->
 @endsection
-@section('scripts')
+@push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleVisibility = (iconId, contentId) => {
-        const toggleIcon = document.getElementById(iconId);
-        const additionalContent = document.getElementById(contentId);
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleVisibility = (iconId, contentId) => {
+            const toggleIcon = document.getElementById(iconId);
+            const additionalContent = document.getElementById(contentId);
 
-        if (toggleIcon && additionalContent) {
-            toggleIcon.addEventListener('click', () => {
-                const isHidden = additionalContent.classList.toggle('d-none');
-                toggleIcon.src = isHidden ?
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+            if (toggleIcon && additionalContent) {
+                toggleIcon.addEventListener('click', () => {
+                    const isHidden = additionalContent.classList.toggle('d-none');
+                    toggleIcon.src = isHidden ?
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+                });
+            }
+        };
+
+        toggleVisibility('totalAmount', 'showTotalAmount');
+        toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+
+        const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
+            document.querySelectorAll(`#${triggerId}`).forEach(element => {
+                element.addEventListener('click', event => {
+                    event.preventDefault();
+
+                    if (isModal) {
+                        const modal = new bootstrap.Modal(document.getElementById(
+                            targetId));
+                        modal.show();
+                    } else {
+                        const offcanvas = new bootstrap.Offcanvas(document.getElementById(
+                            targetId));
+                        offcanvas.show();
+                    }
+
+                    const changeRight = document.getElementById('changeRight');
+                    if (changeRight) {
+                        changeRight.classList.add('show');
+                        changeRight.style.visibility = 'visible';
+                    }
+                });
             });
-        }
-    };
+        };
 
-    toggleVisibility('totalAmount', 'showTotalAmount');
-    toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+        setupOffcanvasOrModal('sortedBy', 'sortedByShow');
+        setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
+        setupOffcanvasOrModal('reportUs', 'reportUsShow');
+        setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
 
-    const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
-        document.querySelectorAll(`#${triggerId}`).forEach(element => {
-            element.addEventListener('click', event => {
-                event.preventDefault();
-
-                if (isModal) {
-                    const modal = new bootstrap.Modal(document.getElementById(
-                        targetId));
-                    modal.show();
-                } else {
-                    const offcanvas = new bootstrap.Offcanvas(document.getElementById(
-                        targetId));
-                    offcanvas.show();
-                }
-
-                const changeRight = document.getElementById('changeRight');
-                if (changeRight) {
-                    changeRight.classList.add('show');
-                    changeRight.style.visibility = 'visible';
-                }
-            });
+        const popoverTriggerEl = $('#detailsButton');
+        popoverTriggerEl.popover({
+            trigger: 'manual'
         });
-    };
 
-    setupOffcanvasOrModal('sortedBy', 'sortedByShow');
-    setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
-    setupOffcanvasOrModal('reportUs', 'reportUsShow');
-    setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
+        popoverTriggerEl.on('click', function(e) {
+            e.preventDefault();
+            if (popoverTriggerEl.attr('aria-describedby')) {
+                popoverTriggerEl.popover('hide');
+            } else {
+                popoverTriggerEl.popover('show');
+            }
+        });
 
-    const popoverTriggerEl = $('#detailsButton');
-    popoverTriggerEl.popover({
-        trigger: 'manual'
+        $(document).on('click', function(e) {
+            if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
+                $('.popover').has(e.target).length === 0) {
+                popoverTriggerEl.popover('hide');
+            }
+
+        });
     });
-
-    popoverTriggerEl.on('click', function(e) {
-        e.preventDefault();
-        if (popoverTriggerEl.attr('aria-describedby')) {
-            popoverTriggerEl.popover('hide');
-        } else {
-            popoverTriggerEl.popover('show');
-        }
-    });
-
-    $(document).on('click', function(e) {
-        if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
-            $('.popover').has(e.target).length === 0) {
-            popoverTriggerEl.popover('hide');
-        }
-
-    });
-});
-</script>
-@endsection
+    </script>
+@endpush
