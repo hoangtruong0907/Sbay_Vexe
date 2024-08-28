@@ -20,10 +20,10 @@
             </div>
             <div class="box box-primary">
                 <div class="box-body">
-                <form action="{{ route('admin.blogs.index') }}" method="GET" class="search-form">
+                <!-- <form action="{{ route('admin.blogs.index') }}" method="GET" class="search-form">
     <input type="text" name="search" placeholder="Tìm kiếm..." value="{{  request()->input('search') }}" class="search-input">
     <button type="submit" class="btn-search" style="border: 1px solid #22a1f9;">Search</button>
-</form>
+</form> -->
                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
