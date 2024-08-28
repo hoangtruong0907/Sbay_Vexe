@@ -36,10 +36,10 @@
             <textarea id="content" name="content" class="form-control">{{ $blog->content }}</textarea>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="author">Người tạo</label>
             <input type="text" name="author" id="author" value="{{ $blog->author }}" class="form-control">
-        </div>
+        </div> -->
 
         <div class="form-group">
             <label for="type">Chủ đề</label>
