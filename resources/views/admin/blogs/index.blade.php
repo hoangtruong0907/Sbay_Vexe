@@ -20,7 +20,6 @@
             </div>
             <div class="box box-primary">
                 <div class="box-body">
-
                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
