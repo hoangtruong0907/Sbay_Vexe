@@ -2,7 +2,8 @@
 
 use Carbon\Carbon;
 
-function formatDateTime($dateTimeStr, string $format = 'H:i d-m-Y', $hours = 0, $addDate = 0)
+
+function formatDateTime($dateTimeStr, string $format = 'H:i d-m-Y', $hours = 0, $addDate = 0, $locale = 'en')
 {
     try {
         $date = Carbon::parse($dateTimeStr);
@@ -13,8 +14,8 @@ function formatDateTime($dateTimeStr, string $format = 'H:i d-m-Y', $hours = 0, 
         if ($addDate != 0) {
             $date->addDay((int)$addDate);
         }
-
-        return $date->format($format);
+        $date->locale($locale);
+        return $date->translatedFormat($format);
     } catch (\Exception $e) {
         return null;
     }

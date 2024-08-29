@@ -395,7 +395,7 @@
                                 <textarea id="transferAddress-{{ $keyId }}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                                     style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                             </div> --}}
-                            @foreach ($dropOffPoints as $point)
+                            @foreach ($pickupPoints as $point)
                                 <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
                                     data-point-id="{{ $point['point_id'] }}">
                                     <input class="form-check-input" type="radio"
@@ -439,7 +439,7 @@
                             </div>
                         </div>
                         <div class="container-group-items-pick-up-point">
-                            @foreach ($transferPoints as $point)
+                            @foreach ($dropOffPoints as $point)
                                 <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
                                     data-point-id="{{ $point['point_id'] }}">
                                     <input class="form-check-input" type="radio"
@@ -447,7 +447,7 @@
                                         value="{{ $point['point_id'] }}" id="rdioCheckTransfer-{{ $keyId }}" data-name="{{ $point['name'] }}"
                                         checked>
                                     <label class="form-check-label-title"
-                                        for="rdioCheckTransfer-{{ $keyId }}">{{ $point['name'] }},{{ $point['areaDetail']['city_name'] }}</label>
+                                        for="rdioCheckTransfer-{{ $keyId }}">{{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}</label>
                                     <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
                                     </div>
                                     <small><i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }} <a
