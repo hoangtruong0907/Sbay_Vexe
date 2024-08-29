@@ -107,121 +107,8 @@ busSwapButton.addEventListener("click", function () {
 updateBusDropdownList(busFrom, busFromInput, busFromDropdownList, "");
 updateBusDropdownList(busTo, busToInput, busToDropdownList, "");
 
-// Máy bay
-const planeCities = [
-    {
-        name: "Hồ Chí Minh",
-        code: "SGN",
-        airport: "Sân bay Tân Sơn Nhất",
-    },
-    {
-        name: "Hà Nội",
-        code: "HAN",
-        airport: "Sân bay Nội Bài",
-    },
-    {
-        name: "Đà Nẵng",
-        code: "DAD",
-        airport: "Sân bay Đà Nẵng",
-    },
-    {
-        name: "Đà Lạt",
-        code: "DLI",
-        airport: "Sân bay Liên Khương",
-    },
-    {
-        name: "Nha Trang",
-        code: "CXR",
-        airport: "Sân bay Cam Ranh",
-    },
-    {
-        name: "Phú Quốc",
-        code: "PQC",
-        airport: "Sân bay Phú Quốc",
-    },
-];
 
-function updatePlaneDropdownList(inputElement, dropdownListElement, filter) {
-    dropdownListElement.innerHTML = "";
-    const filteredCities = planeCities.filter((city) =>
-        city.name.toLowerCase().includes(filter.toLowerCase())
-    );
-    filteredCities.forEach((city) => {
-        const item = document.createElement("li");
-        item.className = "custom-dropdown-item";
-        item.innerHTML = `
-                    <div class="custom-item-container">
-                    <div class="custom-icon-section">
-                        <i class="fa fa-globe" aria-hidden="true"></i>
-                    </div>
-                    <div class="custom-content-section">
-                        <div class="custom-city-title"><b>${city.name}</b></div>
-                        <p>${city.code} - ${city.airport}</p>
-                    </div>
-                    </div>
-                `;
-        item.addEventListener("mousedown", function (event) {
-            event.preventDefault();
-            inputElement.value = city.name;
-            dropdownListElement.parentElement.style.display = "none";
-        });
-        dropdownListElement.appendChild(item);
-    });
-}
-
-function setupPlaneInput(inputElement, dropdownMenu, dropdownList) {
-    inputElement.addEventListener("focus", function () {
-        dropdownMenu.style.display = "block";
-        updatePlaneDropdownList(inputElement, dropdownList, inputElement.value);
-    });
-
-    inputElement.addEventListener("blur", function () {
-        setTimeout(function () {
-            dropdownMenu.style.display = "none";
-        }, 200);
-    });
-
-    inputElement.addEventListener("input", function () {
-        updatePlaneDropdownList(inputElement, dropdownList, inputElement.value);
-    });
-
-    inputElement.addEventListener("click", function () {
-        dropdownMenu.style.display = "block";
-        updatePlaneDropdownList(inputElement, dropdownList, inputElement.value);
-    });
-}
-
-const planeFromInput = document.getElementById("plane_from_input");
-const planeFromDropdownMenu = document.querySelector(
-    ".custom-plane-from-select-wrapper .plane-dropdown-menu"
-);
-const planeFromDropdownList = document.getElementById(
-    "dropdown_list_plane_from"
-);
-
-setupPlaneInput(planeFromInput, planeFromDropdownMenu, planeFromDropdownList);
-
-const planeToInput = document.getElementById("plane_to_input");
-const planeToDropdownMenu = document.querySelector(
-    ".custom-plane-to-select-wrapper .plane-dropdown-menu"
-);
-const planeToDropdownList = document.getElementById("dropdown_list_plane_to");
-
-setupPlaneInput(planeToInput, planeToDropdownMenu, planeToDropdownList);
-
-// Hoán đổi giá trị của hai ô nhập liệu
-const planeSwapButton = document.getElementById("plane_swap_button");
-planeSwapButton.addEventListener("click", function () {
-    const fromValue = planeFromInput.value;
-    const toValue = planeToInput.value;
-    planeFromInput.value = toValue;
-    planeToInput.value = fromValue;
-});
-
-// Khởi tạo danh sách dropdown ban đầu
-updatePlaneDropdownList(planeFromInput, planeFromDropdownList, "");
-updatePlaneDropdownList(planeToInput, planeToDropdownList, "");
-// Tàu hoả 
+// TRAIN ///
 function updateTrainDropdownList(
     inputValue,
     inputElement,
@@ -301,7 +188,7 @@ const trainFromDropdownMenu = document.querySelector(
 );
 const trainFromDropdownList = document.getElementById("dropdown_list_train_from");
 setupTrainInput(trainFrom, trainFromInput, trainFromDropdownMenu, trainFromDropdownList);
-// train To 
+// train To
 const trainTo = document.getElementById("train_to");
 const trainToInput = document.getElementById("train_to_input");
 const trainToDropdownMenu = document.querySelector(
@@ -437,6 +324,73 @@ $("#bus_search").click(() => {
 $(document).ready(function () {
     let startToDay = new Date();
     let dataSelected = dateTo ? dateTo : startToDay;
+    let dataTrainSelected = dateToTrain ? dateToTrain : startToDay;
+
+    new AirDatepicker(".date-default-train", {
+        locale: vn,
+        dateFormat: "E, dd/MM/yyyy",
+        minDate: startToDay,
+        autoClose: true,
+        // isMobile: true,
+        selectedDates: [dateToTrain ? dateToTrain : startToDay],
+        onRenderCell: function ({ date, cellType }) {
+            if (cellType === "day") {
+                const lunarDate = moonTime({
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                });
+                return {
+                    html: `
+                        <div class="wrap-cell">
+                            <div class="fw-bold">${date.getDate()}</div>
+                            <div class="lunar-date">${lunarDate.day}</div>
+                        </div>
+                        <div class="price-cell">-</div>
+                        `,
+                };
+            }
+        },
+        onSelect: function ({ date, formattedDate }) {
+            const dayOfWeek = vn.daysShort[date.getDay()];
+            const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
+            dataTrainSelected = date;
+            $(this).val(formattedWithDay);
+        },
+    });
+
+    new AirDatepicker(".data-add-train", {
+        locale: vn,
+        dateFormat: "E, dd/MM/yyyy",
+        autoClose: true,
+        minDate: dataTrainSelected,
+        buttons: ['clear'],
+        // isMobile: true,
+        onRenderCell: function ({ date, cellType }) {
+            if (cellType === "day") {
+                const lunarDate = moonTime({
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                });
+                return {
+                    html: `
+                        <div class="wrap-cell">
+                            <div class="fw-bold">${date.getDate()}</div>
+                            <div class="lunar-date">${lunarDate.day}</div>
+                        </div>
+                        <div class="price-cell">-</div>
+                        `,
+                };
+            }
+        },
+        onSelect: function ({ date, formattedDate }) {
+            const dayOfWeek = vn.daysShort[date.getDay()];
+            const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
+            $(this).val(formattedWithDay);
+        },
+    });
+
     new AirDatepicker(".date-default-input", {
         locale: vn,
         dateFormat: "E, dd/MM/yyyy",
@@ -457,7 +411,6 @@ $(document).ready(function () {
                             <div class="fw-bold">${date.getDate()}</div>
                             <div class="lunar-date">${lunarDate.day}</div>
                         </div>
-                        <div class="price-cell">-</div>
                         `,
                 };
             }
@@ -490,7 +443,6 @@ $(document).ready(function () {
                             <div class="fw-bold">${date.getDate()}</div>
                             <div class="lunar-date">${lunarDate.day}</div>
                         </div>
-                        <div class="price-cell">-</div>
                         `,
                 };
             }
@@ -521,12 +473,12 @@ $("#bus_search").click(() => {
     };
 
     var url =
-        "/route-search/xe-khach/" +
+        "/route-search/xe-khach?q=" +
         convertToSlug(busFromPlace) +
         "-to-" +
         convertToSlug(busToPlace);
     var queryString = $.param(data);
-    url += "?" + queryString;
+    url += "&" + queryString;
     window.location.href = url;
 });
 $("#train_search").click(() => {
@@ -544,11 +496,11 @@ $("#train_search").click(() => {
         date_to: dateTo,
     };
     var url =
-        "/route-search/tau-hoa/" +
+        "/route-search/tau-hoa?q=" +
         convertToSlug(trainFromPlace) +
         "-to-" +
         convertToSlug(trainToPlace);
     var queryString = $.param(data);
-    url += "?" + queryString;
+    url += "&" + queryString;
     window.location.href = url;
 });

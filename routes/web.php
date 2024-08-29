@@ -59,8 +59,8 @@ Route::get('/test', [TestController::class, 'test']);
 
 #Search route
 Route::prefix('/route-search')->group(function () {
-    Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
-    Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
+    Route::get('/xe-khach',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
+    Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
 });
 
 Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
