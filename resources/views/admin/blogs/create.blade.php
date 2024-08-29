@@ -37,10 +37,7 @@
                         <textarea id="content" name="content" class="form-control"></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="author" class="form-label">Người tạo</label>
-                        <input type="text" name="author" id="author" class="form-control" required>
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="status" class="form-label">Trạng thái</label>
                         <select name="status" id="status" class="form-control" required>
@@ -92,7 +89,7 @@
             }
         });
 
-        
+
     </script>
 
     <script type="importmap">

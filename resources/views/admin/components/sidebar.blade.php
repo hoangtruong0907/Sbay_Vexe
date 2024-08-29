@@ -7,7 +7,11 @@
             <a href="dashboard.html"><i class="fas fa-home"></i> Bảng điều khiển</a>
         </li>
         <li>
+<<<<<<< HEAD
             <a href="forms.html"><i class="fas fa-file-alt"></i> Biểu mẫu</a>
+=======
+            <a href="{{route('admin.user')}}"><i class="fas fa-user-friends"></i> User Management</a>
+>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b
         </li>
         <li>
         <a href="{{ route('admin.blogs.index') }}"><i class="fas fa-file-alt"></i> Blog</a>
