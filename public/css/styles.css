@@ -2704,11 +2704,7 @@ table {
 th,
 td {
     border: 1px solid #ddd;
-<<<<<<< HEAD
     /* padding: 12px; */
-=======
-    padding: 12px;
->>>>>>> develop
     text-align: left;
 }
 
@@ -2716,21 +2712,12 @@ th {
     background-color: #f4f4f4;
     color: #333;
     font-weight: bold;
-<<<<<<< HEAD
 }
 
 /* tr:nth-child(even) {
     background-color: #f9f9f9;
 } */
 
-=======
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
->>>>>>> develop
 tr:hover {
     background-color: #f1f1f1;
 }
