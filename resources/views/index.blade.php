@@ -13,6 +13,7 @@
         <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
             @include('components.search_component', [
                 'params' => [],
+                'key' => 1,
             ])
         </div>
         <div class="img-slide">
@@ -85,13 +86,14 @@
     <script src="https://cdn.jsdelivr.net/npm/moon-time@2.4.0/calculate.min.js"></script>
     <script>
         // data load search component
-        // list data areas
+        // #bus
         const busCities = @json($list_areas ?? []);
         const dateTo = @json($params->dateTo ?? '');
         const dateFrom = @json($params->dateFrom ?? '');
-
-        // list data route
-        const trainStations = @json($trainStations ?? []);
+        // #train
+        const trainStations = @json($list_areas_train ?? []);
+        const dateToTrain = @json($params->dateToTrain ?? '');
+        const dateFromTrain = @json($params->dateFromTrain ?? '');
     </script>
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush

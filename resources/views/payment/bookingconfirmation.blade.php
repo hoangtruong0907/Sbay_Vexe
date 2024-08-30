@@ -373,7 +373,7 @@
                         <div class="d-flex justify-content-between w-100 pointer" id="totalAmount">
                             <div class="fw-bold fs-5 mb-0 text-black">Tạm tính</div>
                             <div class="d-flex align-items-center gap-1">
-                                <p class="fw-bold fs-5 mb-0">260.000đ</p>
+                                <p class="fw-bold fs-5 mb-0">{{$seatTicket['totalFare']}}đ</p>
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                     alt="icon-expand-less" width="20" height="20">
                             </div>
@@ -412,12 +412,12 @@
                                         <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg"
                                             src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg"
                                             alt="bus_blue_icon" width="16" height="16">
-                                        <p class="fw-bold mb-0" style="font-size: 12px;">CN, 04/08/2024</p>
+                                        <p class="fw-bold mb-0" style="font-size: 12px;">{{formatDateTime($seatMap['departure_time'], 'D, d/m/Y', 0, 0, "vi")}}</p>
                                         <div class="d-flex align-items-center">
                                             <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                                 alt="people_alt_black_icon" width="16" height="16">
-                                            <p class="fw-normal mb-0 ms-1 ml-2" style="font-size: 12px;">1</p>
+                                            <p class="fw-normal mb-0 ms-1 ml-2" style="font-size: 12px;">{{count($seatTicket['seatList'])}}</p>
                                         </div>
                                     </div>
                                     <div>
@@ -436,10 +436,10 @@
                                         </div>
                                         <div class="d-grid align-items-center p-0 flex-grow-1 row-gap-1">
                                             <p class="mb-0 fw-semibold" style="font-size: 14px;">
-                                                Hải Phòng Travel (Đất Cảng)
+                                                {{$seatMap['company_name']}}
                                             </p>
                                             <p class="mb-0" style="font-size: 10px; line-height: 12px;">
-                                                Limousine 11 chỗ
+                                                {{$seatMap['name']}}
                                             </p>
                                         </div>
                                     </div>
@@ -450,7 +450,7 @@
                                                 <div class="d-flex flex-column justify-content-between">
                                                     <div class="text-nowrap mx-auto text-center">
                                                         <p class="fw-bold   mb-0">
-                                                            06:02
+                                                            {{formatDateTime($selectedPickupPoint['real_time'], "H:i (d/m)")}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -472,10 +472,10 @@
                                                 <div class="d-flex gap-2 mx-auto justify-content-between w-100">
                                                     <div class="d-flex flex-column w-100">
                                                         <p class="fw-bold mb-1 lh-1" style="font-size: 12px;">
-                                                            Hà Nội </p>
+                                                            {{$selectedPickupPoint['areaDetail']['state_name']}}</p>
                                                         <p class="text-muted mb-0"
                                                             style="font-size: 10px; line-height: 12px;">
-                                                            Số 79 đường Cổ Linh, Long Biên, Hà Nội</p>
+                                                            {{$selectedPickupPoint['areaDetail']['address']}}, {{$selectedPickupPoint['areaDetail']['city_name']}}</p>
                                                     </div>
                                                     <div class="d-flex justify-content-center text-nowrap">
                                                         <p class="fw-bold text-primary mb-0"
@@ -490,7 +490,8 @@
                                                 <div class="d-flex flex-column justify-content-between">
                                                     <div class="text-nowrap mx-auto text-center">
                                                         <p class="fw-bold   mb-0">
-                                                            07:32
+                                                            {{formatDateTime($selectedDropPoint['real_time'], "H:i (d/m)")}}
+
                                                         </p>
                                                     </div>
                                                 </div>
@@ -512,16 +513,16 @@
                                                 <div class="d-flex gap-2 mx-auto justify-content-between w-100">
                                                     <div class="d-flex flex-column w-100">
                                                         <p class="fw-bold mb-1 lh-1" style="font-size: 12px;">
-                                                            Hải Phòng
+                                                            {{$selectedDropPoint['areaDetail']['state_name']}}
                                                         </p>
                                                         <p class="text-muted mb-0"
                                                             style="font-size: 10px; line-height: 12px;">
-                                                            61 Phạm Văn Đồng, Phường Anh Dũng, Dương Kinh, Hải Phòng
+                                                            {{$selectedDropPoint['areaDetail']['address']}}, {{$selectedDropPoint['areaDetail']['city_name']}}
                                                         </p>
                                                     </div>
                                                     <div class="d-flex justify-content-center text-nowrap">
                                                         <p class="fw-bold text-primary mb-0" data-bs-toggle="offcanvas"
-                                                            data-bs-target="#changeRight" aria-controls="changeRight"
+                                                            data-bs-target="#changeLeft" aria-controls="changeLeft"
                                                             style="font-size: 12px; line-height: 16px; letter-spacing: 0; text-decoration: underline; text-underline-offset: 2px; word-break: normal;">
                                                             Thay đổi</p>
                                                     </div>
@@ -686,13 +687,13 @@
                 <div class="d-flex flex-column w-100 justify-content-start mb-1 pt-1">
                     <div class="d-flex flex-row">
                         <p class="  mb-0 text-white fw-bold" style="line-height: 24px; letter-spacing: 0px;">
-                            Hải Phòng Travel (Đất Cảng)
+                            {{{$seatMap['company_name']}}}
                         </p>
                     </div>
                     <div class="d-flex align-items-center">
                         <p class="fw-normal text-nowrap text-white mb-0"
                             style="font-size: 14px; line-height: 20px; letter-spacing: 0px;">
-                            <span class="fw-medium">06:02 • </span>T2, 12/08/2024
+                            <span class="fw-medium">{{formatDateTime($seatMap['departure_time'], "H:i • D, d/m/Y", 0, 0, 'vi')}}
                         </p>
                     </div>
                 </div>
@@ -708,7 +709,7 @@
                                 Tuyến</p>
                             <span class="fw-medium text-end mb-0 " style="font-size: 14px;
                                 line-height: 20px;">
-                                Hải Phòng - Hà Nội
+                                {{$selectedPickupPoint['areaDetail']['city_name']}} - {{$selectedDropPoint['areaDetail']['city_name']}}
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
@@ -716,8 +717,7 @@
                                 Nhà xe
                             </p>
                             <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
-                                Hải Phòng Travel
-                                (Đất Cảng)
+                                {{$seatMap['company_name']}}
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
@@ -725,7 +725,7 @@
                                 Chuyến
                             </p>
                             <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
-                                06:02 • T2, 12/08/2024
+                                {{formatDateTime($seatMap['departure_time'], "H:i • D, d/m/Y", 0, 0, 'vi')}}
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
@@ -733,7 +733,7 @@
                                 Loại xe
                             </p>
                             <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
-                                Limousine 11 chỗ
+                                {{$seatMap['name']}}
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
@@ -741,7 +741,7 @@
                                 Số lượng
                             </p>
                             <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
-                                1 vé
+                                {{count($seatTicket['seatList'])}} vé
                             </span>
                         </div>
                         <div class="w-100">
@@ -752,7 +752,7 @@
                                 <div class="d-flex align-items-center gap-sm-1 pointer">
                                     <p class="fw-bold mb-0"
                                         style="font-size: 14px;  line-height: 20px; letter-spacing: 0px">
-                                        08,07
+                                        <div class="fw-bold">{{ implode(', ', array_keys($seatTicket['seatList'])) }}</div>
                                     </p>
                                     <img class="icon-expand-less ls-is-cached lazyloaded"
                                         data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
@@ -763,390 +763,71 @@
                             <div class="d-flex flex-column gap-2 mt-2 overflow-auto">
                                 <div class="d-flex justify-content-end">
                                     <p class="fw-normal mb-0"
-                                        style="line-height: 20px; letter-spacing: 0px;font-size: 14px;">Ghế đầu:
-                                        <span>08</span>
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <p class="fw-normal mb-0"
-                                        style="line-height: 20px; letter-spacing: 0px;font-size: 14px;">Ghế đầu:
-                                        <span>08</span>
+                                        style="line-height: 20px; letter-spacing: 0px;font-size: 14px;">{{$seatMap['vehicle']['seat_type'] !== 1 ? "Giường" : "Ghế"}}:
+                                        <span>{{ implode(', ', array_keys($seatTicket['seatList'])) }}</span>
                                     </p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-evenly overflow-auto text-center py-1">
-                                <table class="ms-3 d-inline-block">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="5"
-                                                style="text-align: center; color: rgb(72, 72, 72); font-size: 16px; font-weight: 400;">
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id="1">
-                                            <td id="vxr-1-1">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div class="Seat__SeatImageContainer-sc-5i6bij-1 iGEkJj"><span
-                                                            class="seat-color seat-color-custom"><svg width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M12.305 24h-.61c-.035-.004-.07-.01-.105-.012a11.783 11.783 0 0 1-2.117-.261 12.027 12.027 0 0 1-6.958-4.394A11.933 11.933 0 0 1 .027 12.78L0 12.411v-.822c.005-.042.013-.084.014-.127a11.845 11.845 0 0 1 1.102-4.508 12.007 12.007 0 0 1 2.847-3.852A11.935 11.935 0 0 1 11.728.003c.947-.022 1.883.07 2.81.27 1.22.265 2.369.71 3.447 1.335a11.991 11.991 0 0 1 3.579 3.164 11.876 11.876 0 0 1 2.073 4.317c.178.712.292 1.434.334 2.168.008.146.02.292.029.439v.609c-.004.03-.011.06-.012.089a11.81 11.81 0 0 1-1.05 4.521 12.02 12.02 0 0 1-1.92 2.979 12.046 12.046 0 0 1-6.395 3.812c-.616.139-1.24.23-1.872.265-.149.008-.297.02-.446.03zm8.799-13.416c-.527-3.976-4.078-7.808-9.1-7.811-5.02-.003-8.583 3.823-9.11 7.809h.09c.64-.035 1.278-.092 1.912-.195.815-.131 1.614-.326 2.378-.639.625-.255 1.239-.54 1.855-.816.82-.368 1.673-.593 2.575-.62a7.123 7.123 0 0 1 1.947.187c.585.146 1.136.382 1.68.634.57.264 1.14.526 1.733.736 1.2.424 2.442.62 3.706.7.11.006.222.01.334.015zm-10.95 10.471v-.094c0-1.437 0-2.873-.002-4.31 0-.141-.011-.284-.035-.423a2.787 2.787 0 0 0-.775-1.495c-.564-.582-1.244-.896-2.067-.892-1.414.007-2.827.002-4.24.002h-.09a9.153 9.153 0 0 0 3.125 5.256 9.15 9.15 0 0 0 4.083 1.956zm3.689.001c1.738-.36 3.25-1.137 4.528-2.355 1.4-1.334 2.287-2.956 2.685-4.855l-.077-.003h-4.362c-.237 0-.47.038-.695.112-.667.22-1.188.635-1.588 1.206a2.673 2.673 0 0 0-.494 1.59c.008 1.4.003 2.801.003 4.202v.103zM12.05 14.22c1.215-.035 2.204-1.083 2.165-2.275-.039-1.223-1.095-2.215-2.29-2.166-1.211.05-2.2 1.108-2.15 2.302.051 1.191 1.108 2.186 2.275 2.139z"
-                                                                    fill="#858585"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-1-2">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#ae70ff"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 qIAFz"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-1-3">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#ae70ff"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 qIAFz"><span
-                                                            class="seat-color-selected"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="2">
-                                            <td id="vxr-2-1">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#fba442"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-2-2">
-                                                <div> </div>
-                                            </td>
-                                            <td id="vxr-2-3">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#fba442"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="3">
-                                            <td id="vxr-3-1">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#fba442"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-3-2">
-                                                <div> </div>
-                                            </td>
-                                            <td id="vxr-3-3">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#fba442"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="4">
-                                            <td id="vxr-4-1">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#fba442"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-4-2">
-                                                <div> </div>
-                                            </td>
-                                            <td id="vxr-4-3">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#fba442"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="5">
-                                            <td id="vxr-5-1">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#6bd600"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 bjvObm"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-5-2">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#6bd600"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 bjvObm"><span
-                                                            class="seat-color"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                            <td id="vxr-5-3">
-                                                <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                    <div color="#6bd600"
-                                                        class="Seat__SeatImageContainer-sc-5i6bij-1 bjvObm"><span
-                                                            class="seat-color-selected"><svg width="40" height="32"
-                                                                viewBox="0 0 40 32" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                    rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                    fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                    stroke-linejoin="round"></rect>
-                                                                <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                    rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                    stroke-width="1.5" stroke-linejoin="round"></rect>
-                                                                <path class="icon-selected"
-                                                                    d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                    fill="transparent"></path>
-                                                                <path class="icon-disabled"
-                                                                    d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                    fill="transparent"></path>
-                                                            </svg></span></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                @if (count($seatTemplateMap) > 0)
+                                    @foreach ($seatTemplateMap as $i => $coach)
+                                        <div class="wrap-coach">
+                                            <div class="mb-2 mt-2">
+                                                <span>{{ $coach['coach_name'] }}</span>
+                                            </div>
+                                            <div class="coach">
+                                                <table>
+                                                    <tbody>
+                                                        @for ($row = 1; $row <= $coach['num_rows']; $row++)
+                                                            <tr class="coach-row">
+                                                                @for ($col = 1; $col <= $coach['num_cols']; $col++)
+                                                                    @php
+                                                                        // Tìm ghế tại vị trí hàng và cột tương ứng
+                                                                        $seat = collect($coach['seats'])->firstWhere(function ($s) use ($row, $col) {
+                                                                            return $s['row_num'] == $row && $s['col_num'] == $col;
+                                                                        });
+                                                                    @endphp
+                                                                    @if (isset($seat['is_available']) && $seat['is_available'] == false)
+                                                                        <td class="seat">
+                                                                            <div class="seat-choose-item seat-container"
+                                                                                data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                {!! renderSeat($seatMap['vehicle']['seat_type'], 'unselected') !!}
+                                                                            </div>
+                                                                        </td>
+                                                                    @elseif ($seat)
+                                                                        @if (in_array($seat['seat_code'], array_keys($seatTicket['seatList'])))
+                                                                            <td class="seat">
+                                                                                <div class="seat-choose-item seat-container seat-selected"
+                                                                                data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                    {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                </div>
+                                                                            </td>
+                                                                        @else
+                                                                            <td class="seat">
+                                                                                <div class="seat-choose-item seat-container"
+                                                                                    data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                    {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                </div>
+                                                                            </td>
+                                                                        @endif
+                                                                    @else
+                                                                        <td class="seat">
+                                                                            <div class="seat-choose-item  seat-none"
+                                                                                data-disabled="true"
+                                                                                style="background-color: transparent;">
+                                                                                <!-- Trường hợp không có ghế -->
+                                                                            </div>
+                                                                        </td>
+                                                                    @endif
+                                                                @endfor
+                                                            </tr>
+                                                        @endfor
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <div class="w-100">
@@ -1157,7 +838,7 @@
                                 <div class="d-flex align-items-center gap-sm-1">
                                     <p class="fw-bold mb-0"
                                         style="font-size: 14px;  line-height: 20px; letter-spacing: 0px">
-                                        470.000đ
+                                        {{$seatTicket['totalFare']}}đ
                                     </p>
                                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                         alt="icon-expand-less" width="20" height="20">
@@ -1168,18 +849,14 @@
                                 <div class="d-flex justify-content-between">
                                     <p class="label color--darkness">Giá vé</p>
                                     <div class="d-flex flex-column">
+                                        @foreach ($seatTicket['seatList'] as $seat)
                                         <div class="text-end">
-                                            <p class="mb-0">230.000đ x 1</p>
+                                            <p class="mb-0 fw-medium">{{$seat['fareSeat']}}đ x 1</p>
                                             <p class="mb-0"
                                                 style="font-size: 12px;color: rgb(133, 133, 133) !important;">Mã
-                                                ghế/giường: 06</p>
+                                                ghế/giường: {{$seat['seatCode']}}</p>
                                         </div>
-                                        <div class="text-end">
-                                            <p class="mb-0 fw-medium">240.000đ x 1</p>
-                                            <p class="mb-0"
-                                                style="font-size: 12px;color: rgb(133, 133, 133) !important;">Mã
-                                                ghế/giường: 07</p>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-1">
@@ -1207,21 +884,18 @@
                             </div>
                             <div class="gap-1 d-flex flex-column mb-0">
                                 <p class="  mb-0 fw-normal" style="line-height: 20px; letter-spacing: 0px;">
-                                    Hải Phòng
+                                    {{$selectedPickupPoint['areaDetail']['state_name']}}
                                 </p>
                                 <p class="  mb-0 fw-normal mb-0 text-secondary"
-                                    style="line-height: 20px; letter-spacing: 0px;">
-                                    61 Phạm Văn Đồng,
-                                    Phường Anh Dũng, Dương Kinh, Hải Phòng
-                                </p>
+                                    style="line-height: 20px; letter-spacing: 0px;">{{$selectedPickupPoint['areaDetail']['address']}}, {{$selectedPickupPoint['areaDetail']['city_name']}}</p>
                                 <span class="fw-medium mb-0" style="font-size: 14px; line-height: 20px;">
-                                    Dự kiến đón lúc: 06:02 12/08/2024
+                                    Dự kiến đón lúc: {{formatDateTime($selectedPickupPoint['real_time'], "H:i d/m/Y")}}
                                 </span>
                             </div>
                         </div>
                         {{-- row --}}
-                        <div class="d-flex flex-column gap-2" data-bs-toggle="offcanvas" data-bs-target="#changeRight"
-                            aria-controls="changeRight">
+                        <div class="d-flex flex-column gap-2" data-bs-toggle="offcanvas" data-bs-target="#changeLeft"
+                            aria-controls="changeLeft">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex gap-1 align-items-center">
                                     <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/dropoff_semantic_negative_12dp.svg"
@@ -1237,15 +911,14 @@
                             </div>
                             <div class="gap-1 d-flex flex-column mb-0">
                                 <p class="  mb-0 fw-normal" style="line-height: 20px; letter-spacing: 0px;">
-                                    Hà Nội
+                                    {{$selectedDropPoint['areaDetail']['state_name']}}
                                 </p>
                                 <p class="  mb-0 fw-normal mb-0 text-secondary"
                                     style="line-height: 20px; letter-spacing: 0px;">
-                                    Số 79 đường Cổ Linh,
-                                    Long Biên, Hà Nội
+                                    {{$selectedDropPoint['areaDetail']['address']}}, {{$selectedDropPoint['areaDetail']['city_name']}}
                                 </p>
                                 <span class="fw-medium mb-0" style="font-size: 14px; line-height: 20px;">
-                                    Dự kiến trả lúc: 07:32 12/08/2024
+                                    Dự kiến trả lúc: {{formatDateTime($selectedDropPoint['real_time'], "H:i d/m/Y")}}
                                 </span>
                             </div>
                         </div>
@@ -1309,39 +982,43 @@
                 </button>
             </div>
         </div>
+        {{-- @php
+            dd($pickup_points);
+        @endphp --}}
         <!--content -->
         <div class="d-flex flex-column bg-white" style="overflow-x: hidden !important;">
             <div class="d-flex flex-column" style="min-width: 232px;">
-                <label class="d-flex align-items-start mb-0"
+                @foreach ($pickup_points as $key => $point)
+                <label class="d-flex align-items-start mb-0" data-id="{{$key}}"
                     style="padding: 16px 0 0 20px; background-color: rgb(227, 237, 252);">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" checked />
+                    <input class="form-check-input" type="radio" name="rdPickupPoint" id="rdPickupPoint-{{$key}}"
+                        value="{{$point['id']}}" {{$key == 0 ? "checked" : ""}}/>
                     <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
                         <div class="d-flex flex-column "
                             style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
                             <div class="d-flex flex-row" style="flex: 1 1 0%;">
-                                <div class="d-flex flex-column justify-content-center position-relative w-75">
+                                <div class="d-flex flex-column justify-content-center position-relative w-75" data-drop-id="{{$point['id']}}">
                                     <div class="d-flex flex-row align-items-start align-items-center">
                                         <p class="fw-bold ms-1 mb-1">
-                                            18:00
+                                            {{formatDateTime($point['real_time'], "H:i")}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
-                                            Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)
+                                            {{$point['name']}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1), Thị trấn Sóc Sơn, Sóc Sơn, Hà Nội
+                                            {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
-                                    <div class="d-flex flex-column align-items-start text-danger">
+                                    {{-- <div class="d-flex flex-column align-items-start text-danger">
                                         <p class="fw-normal mb-1" style="line-height: 16px; font-size: 12px;">
                                             220.000đ / nhóm từ 1-3 khách (trả tại website Vexere)
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex flex-column justify-content-center position-relative w-25">
                                     <div class="d-flex flex-column align-items-start">
@@ -1367,111 +1044,81 @@
                         </div>
                     </div>
                 </label>
-                <!--end row -->
-                <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" />
-                    <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
-                        <div class="d-flex flex-column "
-                            style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
-                            <div class="d-flex flex-row" style="flex: 1 1 0%;">
-                                <div class="d-flex flex-column justify-content-center position-relative w-75">
-                                    <div class="d-flex flex-row align-items-start align-items-center">
-                                        <p class="fw-bold ms-1 mb-1">
-                                            18:15
-                                        </p>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
-                                            Văn phòng 51 Nguyễn Quốc Trị
-                                        </p>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-start ">
-                                        <p class="fw-normal mb-1 text-secondary"
-                                            style="line-height: 16px; font-size: 12px;">
-                                            Số 51 Nguyễn Quốc Trị (Quán Cafe Mốt), Phường Trung Hoà, Cầu Giấy, Hà Nội
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center position-relative w-25">
-                                    <div class="d-flex flex-column align-items-start">
-                                        <p class="position-absolute text-center fw-bold mb-0 top-0 end-0"
-                                            style="width: calc(100% + 42px); line-height: 20px;">
-                                            606.5 km
-                                        </p>
-                                    </div>
-                                    <button type="button" id="viewLocation"
-                                        class="d-flex justify-content-end p-0 border-0 m-0 bg-transparent">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="d-flex" style="width: 24px; height: 24px;">
-                                                <i class="material-icons-round text-primary">place</i>
-                                            </div>
-                                            <p class="fw-normal text-primary mb-0"
-                                                style="line-height: 20px; letter-spacing: 0px; text-decoration: underline;">
-                                                Xem vị trí
-                                            </p>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </label>
-                <!--end row -->
-                <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" />
-                    <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
-                        <div class="d-flex flex-column "
-                            style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
-                            <div class="d-flex flex-row" style="flex: 1 1 0%;">
-                                <div class="d-flex flex-column justify-content-center position-relative w-75">
-                                    <div class="d-flex flex-row align-items-start align-items-center">
-                                        <p class="fw-bold ms-1 mb-1">
-                                            18:15
-                                        </p>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
-                                            Văn phòng 51 Nguyễn Quốc Trị
-                                        </p>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-start ">
-                                        <p class="fw-normal mb-1 text-secondary"
-                                            style="line-height: 16px; font-size: 12px;">
-                                            Số 51 Nguyễn Quốc Trị (Quán Cafe Mốt), Phường Trung Hoà, Cầu Giấy, Hà Nội
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center position-relative w-25">
-                                    <div class="d-flex flex-column align-items-start">
-                                        <p class="position-absolute text-center fw-bold mb-0 top-0 end-0"
-                                            style="width: calc(100% + 42px); line-height: 20px;">
-                                            606.5 km
-                                        </p>
-                                    </div>
-                                    <button type="button" id="viewLocation"
-                                        class="d-flex justify-content-end p-0 border-0 m-0 bg-transparent">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="d-flex" style="width: 24px; height: 24px;">
-                                                <i class="material-icons-round text-primary">place</i>
-                                            </div>
-                                            <p class="fw-normal text-primary mb-0"
-                                                style="line-height: 20px; letter-spacing: 0px; text-decoration: underline;">
-                                                Xem vị trí
-                                            </p>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </label>
-                <!--end row -->
+                @endforeach
+            </div>
+        </div>
+        <!--end content -->
+        <!--footer -->
+        <div class="border-top border-secondary bg-white position-absolute start-0 bottom-0 w-100 p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>Sai hoặc thiếu thông tin?</div>
+                <p class="text-primary fw-bold text-decoration-underline cursor-pointer" id="reportUs">
+                    Báo cáo với chúng tôi
+                </p>
+            </div>
+            <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
+                class="btn btn-warning text-black   fw-bold d-flex align-items-center justify-content-center w-100 rounded-pill py-2">
+                <span>Cập nhật</span>
+            </button>
+        </div>
+    </div>
+    <!-- Thay điểm trả chiều đi -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="changeLeft" aria-labelledby="changeLeftLabel"
+        style="width: 560px;">
+        <div class="d-flex flex-row align-items-center bg-primary" style="min-height: 72px; padding: 16px;">
+            <div class="pointer text-white" style="width: 24px; height: 24px;" data-bs-dismiss="offcanvas"
+                aria-label="Close">
+                <i class="material-icons-round ">arrow_back</i>
+            </div>
+            <div class="d-flex ms-3" style="flex: 1 1 0%;">
+                <p class="  mb-0 text-white fw-bold" style="line-height: 24px; letter-spacing: 0px;">
+                    Thay đổi điểm trả chiều đi
+                </p>
+            </div>
+        </div>
+        <!-- end headrer -->
+        <!-- header 2 -->
+        <div class="position-sticky d-flex flex-column w-100"
+            style="background-color: rgb(247, 247, 247) !important; padding: 12px 20px; z-index: 5;">
+            <div class="d-flex flex-row  justify-content-between">
+                <p class="fw-normal mb-0" style="font-size: 12px; line-height: 16px; ">Sắp xếp theo</p>
+                <p class="fw-normal mb-0" style="font-size: 12px; line-height: 16px;">Khoảng cách từ điểm đón đến
+                </p>
+            </div>
 
-                <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" />
+            <div class="d-flex flex-row justify-content-between mt-1">
+                <button type="button" class="d-flex align-items-center p-0 border-0 m-0" id="sortedBy"
+                    style="background-color: unset;">
+                    <p class="fw-bold mb-0" style="font-size: 12px; line-height: 16px;">
+                        Sớm nhất
+                    </p>
+                    <i class="material-icons-outlined"
+                        style="font-size: 16px; line-height: 16px; margin-left: 4px;">arrow_drop_down</i>
+                </button>
+
+                <button type="button" class="d-flex flex-row p-0 border-0 m-0" id="changeLocation"
+                    style="background-color: unset;">
+                    <p class="fw-bold mb-0" style="font-size: 12px; line-height: 16px;">
+                        Vị trí của bạn
+                    </p>
+                    <p class="fw-bold mb-0"
+                        style="font-size: 12px; line-height: 16px; margin-left: 4px; text-decoration: underline; color: rgb(36, 116, 229) !important;">
+                        Thay đổi
+                    </p>
+                </button>
+            </div>
+        </div>
+        {{-- @php
+            dd($transfer_points);
+        @endphp --}}
+        <!--content -->
+        <div class="d-flex flex-column bg-white" style="overflow-x: hidden !important;">
+            <div class="d-flex flex-column" style="min-width: 232px;">
+                @foreach ($transfer_points as $key=>$point)
+                <label class="d-flex align-items-start mb-0" data-id="{{$key}}"
+                    style="padding: 16px 0 0 20px; background-color: rgb(227, 237, 252);">
+                    <input class="form-check-input" type="radio" name="rdDropPoint" id="rdDropPoint-{{$key}}"
+                        value="{{$point['id']}}" {{$key == 0 ? "checked" : ""}}/>
                     <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
                         <div class="d-flex flex-column "
                             style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
@@ -1479,26 +1126,31 @@
                                 <div class="d-flex flex-column justify-content-center position-relative w-75">
                                     <div class="d-flex flex-row align-items-start align-items-center">
                                         <p class="fw-bold ms-1 mb-1">
-                                            18:15
+                                            {{formatDateTime($point['real_time'], "H:i")}} Trung Chuyển
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
-                                            Văn phòng 51 Nguyễn Quốc Trị
+                                            {{$point['name']}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            Số 51 Nguyễn Quốc Trị (Quán Cafe Mốt), Phường Trung Hoà, Cầu Giấy, Hà Nội
+                                           {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
+                                    {{-- <div class="d-flex flex-column align-items-start text-danger">
+                                        <p class="fw-normal mb-1" style="line-height: 16px; font-size: 12px;">
+                                            220.000đ / nhóm từ 1-3 khách (trả tại website Vexere)
+                                        </p>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex flex-column justify-content-center position-relative w-25">
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="position-absolute text-center fw-bold mb-0 top-0 end-0"
                                             style="width: calc(100% + 42px); line-height: 20px;">
-                                            606.5 km
+                                            636.9 km
                                         </p>
                                     </div>
                                     <button type="button" id="viewLocation"
@@ -1508,7 +1160,7 @@
                                                 <i class="material-icons-round text-primary">place</i>
                                             </div>
                                             <p class="fw-normal text-primary mb-0"
-                                                style="line-height: 20px; letter-spacing: 0px; text-decoration: underline;">
+                                                style="line-height: 20px; letter-spacing: 0px;text-decoration: underline;">
                                                 Xem vị trí
                                             </p>
                                         </div>
@@ -1518,10 +1170,12 @@
                         </div>
                     </div>
                 </label>
-                <!--end row -->
-                <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" />
+                @endforeach
+                @foreach ($drop_points as $key => $point)
+                <label class="d-flex align-items-start mb-0" data-id="{{$key}}"
+                    style="padding: 16px 0 0 20px; background-color: rgb(227, 237, 252);">
+                    <input class="form-check-input" type="radio" name="rdDropPoint" id="rdDropPoint-{{$key}}"
+                        value="{{$point['id']}}" {{$key == 0 ? "checked" : ""}}/>
                     <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
                         <div class="d-flex flex-column "
                             style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
@@ -1529,26 +1183,31 @@
                                 <div class="d-flex flex-column justify-content-center position-relative w-75">
                                     <div class="d-flex flex-row align-items-start align-items-center">
                                         <p class="fw-bold ms-1 mb-1">
-                                            18:16
+                                            {{formatDateTime($point['real_time'], "H:i")}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
-                                            Văn phòng 51 Nguyễn Quốc Trị
+                                            {{$point['name']}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            Số 51 Nguyễn Quốc Trị (Quán Cafe Mốt), Phường Trung Hoà, Cầu Giấy, Hà Nội
+                                            {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
+                                    {{-- <div class="d-flex flex-column align-items-start text-danger">
+                                        <p class="fw-normal mb-1" style="line-height: 16px; font-size: 12px;">
+                                            220.000đ / nhóm từ 1-3 khách (trả tại website Vexere)
+                                        </p>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex flex-column justify-content-center position-relative w-25">
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="position-absolute text-center fw-bold mb-0 top-0 end-0"
                                             style="width: calc(100% + 42px); line-height: 20px;">
-                                            606.52 km
+                                            636.9 km
                                         </p>
                                     </div>
                                     <button type="button" id="viewLocation"
@@ -1558,7 +1217,7 @@
                                                 <i class="material-icons-round text-primary">place</i>
                                             </div>
                                             <p class="fw-normal text-primary mb-0"
-                                                style="line-height: 20px; letter-spacing: 0px; text-decoration: underline;">
+                                                style="line-height: 20px; letter-spacing: 0px;text-decoration: underline;">
                                                 Xem vị trí
                                             </p>
                                         </div>
@@ -1568,7 +1227,7 @@
                         </div>
                     </div>
                 </label>
-                <!--end row -->
+                @endforeach
             </div>
         </div>
         <!--end content -->
@@ -2056,76 +1715,76 @@
 </div>
 <!---------------------------------- End Drawer ---------------------------------->
 @endsection
-@section('scripts')
+@push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleVisibility = (iconId, contentId) => {
-        const toggleIcon = document.getElementById(iconId);
-        const additionalContent = document.getElementById(contentId);
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleVisibility = (iconId, contentId) => {
+            const toggleIcon = document.getElementById(iconId);
+            const additionalContent = document.getElementById(contentId);
 
-        if (toggleIcon && additionalContent) {
-            toggleIcon.addEventListener('click', () => {
-                const isHidden = additionalContent.classList.toggle('d-none');
-                toggleIcon.src = isHidden ?
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+            if (toggleIcon && additionalContent) {
+                toggleIcon.addEventListener('click', () => {
+                    const isHidden = additionalContent.classList.toggle('d-none');
+                    toggleIcon.src = isHidden ?
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+                });
+            }
+        };
+
+        toggleVisibility('totalAmount', 'showTotalAmount');
+        toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+
+        const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
+            document.querySelectorAll(`#${triggerId}`).forEach(element => {
+                element.addEventListener('click', event => {
+                    event.preventDefault();
+
+                    if (isModal) {
+                        const modal = new bootstrap.Modal(document.getElementById(
+                            targetId));
+                        modal.show();
+                    } else {
+                        const offcanvas = new bootstrap.Offcanvas(document.getElementById(
+                            targetId));
+                        offcanvas.show();
+                    }
+
+                    const changeRight = document.getElementById('changeRight');
+                    if (changeRight) {
+                        changeRight.classList.add('show');
+                        changeRight.style.visibility = 'visible';
+                    }
+                });
             });
-        }
-    };
+        };
 
-    toggleVisibility('totalAmount', 'showTotalAmount');
-    toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+        setupOffcanvasOrModal('sortedBy', 'sortedByShow');
+        setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
+        setupOffcanvasOrModal('reportUs', 'reportUsShow');
+        setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
 
-    const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
-        document.querySelectorAll(`#${triggerId}`).forEach(element => {
-            element.addEventListener('click', event => {
-                event.preventDefault();
-
-                if (isModal) {
-                    const modal = new bootstrap.Modal(document.getElementById(
-                        targetId));
-                    modal.show();
-                } else {
-                    const offcanvas = new bootstrap.Offcanvas(document.getElementById(
-                        targetId));
-                    offcanvas.show();
-                }
-
-                const changeRight = document.getElementById('changeRight');
-                if (changeRight) {
-                    changeRight.classList.add('show');
-                    changeRight.style.visibility = 'visible';
-                }
-            });
+        const popoverTriggerEl = $('#detailsButton');
+        popoverTriggerEl.popover({
+            trigger: 'manual'
         });
-    };
 
-    setupOffcanvasOrModal('sortedBy', 'sortedByShow');
-    setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
-    setupOffcanvasOrModal('reportUs', 'reportUsShow');
-    setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
+        popoverTriggerEl.on('click', function(e) {
+            e.preventDefault();
+            if (popoverTriggerEl.attr('aria-describedby')) {
+                popoverTriggerEl.popover('hide');
+            } else {
+                popoverTriggerEl.popover('show');
+            }
+        });
 
-    const popoverTriggerEl = $('#detailsButton');
-    popoverTriggerEl.popover({
-        trigger: 'manual'
+        $(document).on('click', function(e) {
+            if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
+                $('.popover').has(e.target).length === 0) {
+                popoverTriggerEl.popover('hide');
+            }
+
+        });
     });
-
-    popoverTriggerEl.on('click', function(e) {
-        e.preventDefault();
-        if (popoverTriggerEl.attr('aria-describedby')) {
-            popoverTriggerEl.popover('hide');
-        } else {
-            popoverTriggerEl.popover('show');
-        }
-    });
-
-    $(document).on('click', function(e) {
-        if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
-            $('.popover').has(e.target).length === 0) {
-            popoverTriggerEl.popover('hide');
-        }
-
-    });
-});
-</script>
-@endsection
+    </script>
+@endpush

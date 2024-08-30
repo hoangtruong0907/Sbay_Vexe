@@ -52,6 +52,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
 });
+
 Route::get('/', [RouteController::class, 'index'])->name('home');
 
 Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
@@ -61,12 +62,8 @@ Route::get('/test', [TestController::class, 'test']);
 
 #Search route
 Route::prefix('/route-search')->group(function () {
-    Route::get('/xe-khach/{fromtoPlace}',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
-    Route::get('/tau-hoa/{fromtoPlace}', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
-
-    Route::get('/airline_tickets', function () {
-        return view('airline_tickets');
-    });
+    Route::get('/xe-khach',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
+    Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
 });
 
 Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
