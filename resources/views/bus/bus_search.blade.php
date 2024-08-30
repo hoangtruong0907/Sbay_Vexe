@@ -1496,20 +1496,32 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="d-flex flex-column position-relative">
-                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                    <div class="conent-warning fw-bold">Thông báo</div>
-                    <div class="conent-warning mt-2 mb-2 p-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt</div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
-                </div>
+    <!-- Modal HTML -->
+<div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addressModalLabel">Nhập địa chỉ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+            </div>
+            
+            <div class="modal-body">
+
+                <!-- Input for searching address -->
+                <input id="addressInput" type="text" class="form-control" placeholder="Nhập địa chỉ" />
+                <div id="map" style="height: 400px; width: 100%; margin-top: 10px;"></div>
+                <ul id="addressList" class="list-group mt-3"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
+</div>
+
+
+
 
 @endsection
 
@@ -2454,8 +2466,69 @@ setupSlider('.ticket-slider-handle-start', '.ticket-slider-handle-end', '.ticket
 
 
     </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.body.addEventListener('click', function (event) {
+        if (event.target && event.target.matches('.text-pick-up-point-maps')) {
+            console.log('Button clicked');
+            const addressModalElement = document.getElementById('addressModal');
+            if (addressModalElement) {
+                const addressModal = new bootstrap.Modal(addressModalElement);
+                addressModal.show();
+            } else {
+                console.error('Modal element not found');
+            }
+        }
+    });
+
+    let map, autocomplete, addressInput, addressList;
+
+    function initMap() {
+        addressInput = document.getElementById('addressInput');
+        addressList = document.getElementById('addressList');
+
+        // Check if elements are found
+        if (!addressInput || !addressList) {
+            console.error('Address input or address list element not found');
+            return;
+        }
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 10.762622, lng: 106.660172 }, // Default location
+            zoom: 12
+        });
+
+        autocomplete = new google.maps.places.Autocomplete(addressInput);
+
+        autocomplete.addListener('place_changed', function () {
+            const place = autocomplete.getPlace();
+            if (place.geometry) {
+                map.setCenter(place.geometry.location);
+                map.setZoom(15);
+
+                // Add place to address list
+                addressList.innerHTML = ''; // Clear previous results
+                const li = document.createElement('li');
+                li.classList.add('list-group-item');
+                li.textContent = place.formatted_address;
+                addressList.appendChild(li);
+            } else {
+                console.error('No geometry found for place');
+            }
+        });
+    }
+
+    // Load Google Maps API and initialize map
+    window.initMap = initMap;
+});
+</script>
 
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
 
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush
