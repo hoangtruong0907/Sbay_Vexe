@@ -48,6 +48,9 @@
     #main-footer h2 {
         font-size: 16px;
     }
+    .content-has-cop{
+        margin-right: 40%;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -243,6 +246,8 @@
     .right-section {
         width: 100% !important;
     }
+    
+  
 }
 
 @media (max-width: 375px) {
@@ -255,11 +260,12 @@
     .right-section {
         min-width: auto !important;
     }
+   
 }
-
 .pills-bus-tab {
     margin-right: 5px;
 }
+
 
 
 
@@ -290,12 +296,14 @@
         .right-filter {
             width: 100%;
         }
-        .coupon-container {
+        /* .coupon-container {
+            overflow: auto;
+            scroll-behavior: smooth;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             overflow: auto;
-        }
+        } */
         .nav.nav-pills.mb-1.pills-ticket-tab {
             display: flex;
             overflow: auto;
@@ -468,6 +476,7 @@
     }
     .action-p{
         position: relative;
+        
 
     }
     .action-l{
@@ -537,10 +546,6 @@
     }
     .content-has-cop {
     font-size: 10px;
-    margin-right: 0;
-    position: relative;
-    left: 8px;
-    top: -10px;
     transform: scale(1);
     transition: transform 0.3s ease;
     }
@@ -549,14 +554,14 @@
         margin-bottom: 10px;
          /* transform: scale(0.6) translateX(80px);  */
             transition: transform 0.3s ease;
-            font-size: 12px;
+            font-size: 14px;
     }
     .location-route-svg-l {
         margin-left: -55px;
 
     } */
     .fare-info-l {
-        font-size: 12px;
+        font-size: 16px;
         margin-right: -30px;
     }
     .seat-type-l {
@@ -565,11 +570,13 @@
         margin-top: -46px;
         font-size: 12px;
     }
-    .coupon-container {
+    /* .coupon-container {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-    }
+        overflow: auto;
+        scroll-behavior: smooth;
+    } */
     .filter-item-mobile{
         display: none;
     }
@@ -687,13 +694,6 @@
     .custom-red-dot {
         background-color: red;
     }
-    .from-to-content-l{
-        display: none;
-
-    }
-    .from-to-l{
-        display: none;
-    }
     .ticket-body-l {
         display: inline-grid;
         justify-content: normal;
@@ -704,11 +704,15 @@
         margin-top: 30px;
     }
     .ant-btn-link-l span{
-        font-size: 12px;
+        font-size: 14px;
     }
     .ticket-step-collapse-0 span{
         font-size: 12px;
     }
+
+    /* Detail */
+    .
+   
 }
 @media (max-width:605px) {
     .custom-place {
@@ -1081,6 +1085,9 @@
     .post-footer {
         text-align: center;
     }
+
+    
+    
 }
 @media (max-width: 768px) {
     /* .hgcnFg {

@@ -3,6 +3,8 @@
 @section('styles')
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/train-item-detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/train-item-detail-mobile.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
         integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />

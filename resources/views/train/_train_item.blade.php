@@ -74,12 +74,8 @@
                                 <div class="content-to-info-l">
                                     <div class="hour-l">{{ $route['arrival_time'] }} </div>
                                     <div class="place-l">Ga {{ $route['arrival_place'] }}</div>
+                                    
                                 </div>
-                            </div>
-                            <div class="text-date-arrival-time-l-r">
-                                <span class="text-date-arrival-time-l">
-                                    ({{ \Carbon\Carbon::parse($route['arrival_date'])->format('d/m') }})
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -132,33 +128,7 @@
             <div class="content-has-cop">
                 <div class="nonePay">Không cần thanh toán trước</div>
             </div>
-            <div class="action-l2">
-                <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse"
-                    data-bs-target="#ticket-detail-collapse-{{ $key }}" role="button" aria-expanded="false"
-                    aria-controls="ticket-detail-collapse-{{ $key }}">
-                    <span>Thông tin chi tiết 1</span>
-                    <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
-                        <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down" width="1em"
-                            height="1em" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-                            </path>
-                        </svg>
-                    </i>
-                    <i aria-label="icon: caret-up" class="anticon anticon-caret-up"><svg viewBox="0 0 1024 1024"
-                            class="" data-icon="caret-up" width="1em" height="1em" fill="currentColor"
-                            aria-hidden="true" focusable="false">
-                            <path
-                                d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z">
-                            </path>
-                        </svg></i>
-                </button>
-                <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l"
-                    data-bs-toggle="collapse" data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
-                    aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}">
-                    <span class="text-chooseeTrip">Chọn chuyến</span>
-                </button>
-            </div>
+            
 
         </div>
 
@@ -2363,7 +2333,7 @@
                 <div class="tab-content ticket-detail-contentTab">
                     <div class="tab-pane fade show active coupon-tab" id="coupon-{{ $key }}" role="tabpanel"
                         aria-labelledby="coupon-tab" tabindex="0"">
-                        <div class=" d-flex gap-2">
+                        <div class=" d-flex gap-2 ">
                         <div class="coupon-container">
                             <div class="wrap-couponTrain">
                                 <button class="wrap-coupon btn border py-2 " data-btn-id="btn1"
@@ -2438,42 +2408,29 @@
 
                 <div class="tab-pane fade pickup-tab" id="pickup-{{ $key }}" role="tabpanel"
                     aria-labelledby="pickup-tab" tabindex="1">
-                    <div class=" pt-2">
-                        <div class="row-t">
-
-                            <div class="icon-text">
-                                <i class="fa-regular fa-snowflake"></i>
-                                <p>Điều hòa</p>
+                    <div class="pt-2">
+                        <div class="row-utility">
+                                <div class="icon-text">
+                                    <i class="fa-regular fa-snowflake"></i>
+                                    <span>Điều hòa</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa-solid fa-wifi"></i>
+                                    <span>Free wifi</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa fa-couch" aria-hidden="true"></i>
+                                    <span>Điều chỉnh ghế ngồi</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa-solid fa-plug"></i>
+                                    <span>Ổ cắm điện</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa-solid fa-restroom"></i>
+                                    <span>Nhà vệ sinh</span>
+                                </div>
                             </div>
-
-
-                            <div class="icon-text">
-                                <i class="fa-solid fa-wifi"></i>
-                                <p>Free wifi</p>
-                            </div>
-
-
-                            <div class="icon-text">
-                                <i class="fa fa-couch" aria-hidden="true"></i>
-                                <p>Điều chỉnh ghế ngồi</p>
-                            </div>
-
-
-
-                            <div class="icon-text">
-                                <i class="fa-solid fa-plug"></i>
-                                <p>Ổ cắm điện</p>
-                            </div>
-
-
-                            <div class="icon-text">
-                                <i class="fa-solid fa-restroom"></i>
-                                <p>Nhà vệ sinh</p>
-                            </div>
-
-
-
-                        </div>
                     </div>
                 </div>
 
@@ -2783,7 +2740,7 @@
 
                                 <div class="row slide-trains">
                                     <div class="col-md-12" id="slider-thumbs">
-                                        <ul class="list-inline">
+                                        <ul class="list-inline listImg-train">
                                             <li>
                                                 <a id="carousel-thumb-0" class="selected img-train">
                                                     <img src="https://i.ytimg.com/vi/59QlUqt2c_Y/maxresdefault.jpg;text=1">
@@ -2816,20 +2773,16 @@
     <!-- <div class="total-amount">
         <div class="left-total-amount">
             <button onclick="nextStep(1)" data-current="0" data-tracking-event="completed_seat_selection"
-                type="button" class="ant-btn footer-nextstep ant-btn-primary"><span><i
-                        class="fa-solid fa-arrow-left"></i> Quay lại </span></button>
+            type="button" class="ant-btn footer-nextstep ant-btn-primary"><span><i
+            class="fa-solid fa-arrow-left"></i> Quay lại </span></button>
         </div>
         <div class="right-total-amount">
             Tổng cộng: <div class="right-total">0đ</div>
             <button onclick="nextStep(2)" data-current="0" data-tracking-event="completed_seat_selection"
-                type="button" class="ant-btn footer-nextstep ant-btn-primary"><span>Tiếp tục <i
-                        class="fa-solid fa-arrow-right"></i></span></button>
+            type="button" class="ant-btn footer-nextstep ant-btn-primary"><span>Tiếp tục <i
+            class="fa-solid fa-arrow-right"></i></span></button>
         </div>
     </div> -->
-
-
-
-
     <div id="content-step-3" class="step-content-detail
         ">
 
@@ -3245,15 +3198,13 @@
             <button onclick="navigateStep('next')">Tiếp tục <i class="fa-solid fa-arrow-right"></i></button>
         </div> -->
     </div>
+    
+
+
+
 </div>
 
             </div>
-        </div>
-    </div>
-
-</div>
-</div>
-</div>
 
 
 

@@ -1390,27 +1390,7 @@ body .material-icons-wrapper.md-20 {
     border-radius: 3px;
 }
 
-.action-l {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    align-items: center;
 
-}
-
-.action-p {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.action-l .ant-btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    line-height: 18px !important;
-    border: none;
-    /* color: #000 !important; */
-}
 
 .btn-detail-l {
     background-color: #e0e0e0;
@@ -1438,13 +1418,7 @@ body .material-icons-wrapper.md-20 {
     padding: 0px !important;
 }
 
-.notify-trip-l {
-    display: flex;
-    -webkit-box-pack: end;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-top: 5px;
-}
+
 
 .full-trip-l span {
     color: #ff5722;
@@ -1524,8 +1498,10 @@ body .material-icons-wrapper.md-20 {
 }
 
 .full-trip-l {
+    text-align: center;
+    display: flex;
     font-size: 14px;
-    width: 60%;
+    
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -2002,22 +1978,6 @@ body .material-icons-wrapper.md-20 {
     object-fit: cover;
     border-radius: 3px;
 }
-
-.coupon-container {
-    display: flex;
-    flex-direction: row;
-    overflow: auto;
-    padding: 5px 0px 20px;
-    margin: 0px;
-    scroll-behavior: smooth;
-}
-
-
-
-
-
-
-
 
 
 .passenger-info {
