@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-    <div class="informationBlog">
-        <div class="inforContent">
+    <div class="content">
+        <div class="container">
             <div class="blog-list" style="margin-bottom: 20px">
                 @include('admin.profile._message')
                 <div class="text container-table " style="margin-top:30px;">
                 <h4 class="heading">Danh sách bài viết</h4>
                     <div class="button-blog ssss">
-                    <a href="{{ route('admin.blogs.create') }}" class="btnsss">Add Blog</a>
+                    <a href="{{ route('admin.blogs.create') }}" class="btn btn-sm btn-outline-primary float-end">Add Blog</a>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                                 <td>{{ $post->type }}</td>
                                 <td>{{ ucfirst($post->status) }}</td>
                                 <td>
-                                <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btn-action">
+                                <a href="{{ route('admin.blogs.edit', $post->id) }}" class="btn btn-outline-info btn-rounded">
         <i class="fas fa-pen"></i>
     </a>
 
@@ -55,12 +55,12 @@
     <form action="{{ route('admin.blogs.destroy', $post->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this blog?');">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn-action delete">
+        <button type="submit" class="btn btn-outline-info btn-rounded">
             <i class="fas fa-trash"></i>
         </button>
     </form>
 
-    <a href="{{ route('blog.content', ['slug' => $post->slug]) }}" class="btn-action">
+    <a href="{{ route('blog.content', ['slug' => $post->slug]) }}" class="btn btn-outline-info btn-rounded">
         <i class="fas fa-link"></i>
     </a>
                                 </td>

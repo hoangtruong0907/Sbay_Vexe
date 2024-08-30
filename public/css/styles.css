@@ -2491,22 +2491,14 @@ body .material-icons-wrapper.md-20 {
     font-size: 12px;
 }
 
-.btn-action.delete i {
-    color: #dc3545;
-}
 
 .btn-action:hover {
     background-color: #e0e0e0;
 }
 
-.informationBlog {
-    width: 100%;
-}
 
-.inforContent {
-    width: 93%;
-    margin: 0 auto;
-}
+
+
 
 .container-table {
     display: flex;
@@ -3375,10 +3367,6 @@ body h6 {
     margin-bottom: 20px;
 }
 
-.pagination {
-    text-align: center;
-    margin-top: 20px;
-}
 
 .ssss {
     text-align: right;

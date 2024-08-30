@@ -1493,22 +1493,34 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex flex-column position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="conent-warning fw-bold">Thông báo</div>
+                    <div class="conent-warning mt-2 mb-2 p-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal HTML -->
-<div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addressModalLabel">Nhập địa chỉ</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                
             </div>
-            
             <div class="modal-body">
-
                 <!-- Input for searching address -->
                 <input id="addressInput" type="text" class="form-control" placeholder="Nhập địa chỉ" />
+                <!-- Google Maps container -->
                 <div id="map" style="height: 400px; width: 100%; margin-top: 10px;"></div>
+                <!-- List of suggested addresses (optional) -->
                 <ul id="addressList" class="list-group mt-3"></ul>
             </div>
             <div class="modal-footer">
@@ -2539,13 +2551,62 @@ document.addEventListener('DOMContentLoaded', function () {
     window.initMap = initMap;
 });
 </script>
+<script>
+    function initMap() {
+        // Create the map
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 10.762622, lng: 106.660172 }, // Center map to Ho Chi Minh City
+            zoom: 13
+        });
 
+        // Create the search box and link it to the UI element
+        var input = document.getElementById('addressInput');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        // Set the data fields to return when the user selects a place
+        autocomplete.setFields(['address_components', 'geometry', 'name']);
+
+        // Marker for the location
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        // When a place is selected
+        autocomplete.addListener('place_changed', function () {
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17); // Zoom in if no viewport available
+            }
+
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+        });
+    }
+
+    // Initialize the map after the page loads
+    window.onload = initMap;
+</script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Google Maps API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnPIPsOHHMB1ZENTcZEc5smt7NCY4Hmeo&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnPIPsOHHMB1ZENTcZEc5smt7NCY4Hmeo&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnPIPsOHHMB1ZENTcZEc5smt7NCY4Hmeo&libraries=places&callback=initMap" async defer></script>
 
     <script src="{{ asset('js/search_component.js') }}"></script>
 @endpush
