@@ -68,7 +68,19 @@
     display: block;
 }
 
-
+/* active */
+.nav-airline .nav-link.active {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-bottom: 2px solid blue;
+    border-radius: 0px;
+}
+.tab-content .active {
+    padding: 12px 12px 16px;
+    border-radius: 0px 0px 12px 12px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+}
 .ticket-detail-contentTab .filter-rating button.active {
     border: 1px solid #0d6efd;
     background-color: white;
@@ -509,7 +521,7 @@
     width: 15%;
 }
 .w-content{
-    width: 100%;
+    width: 90%;
     color: white;
     border-radius: 50px;
     display: flex;

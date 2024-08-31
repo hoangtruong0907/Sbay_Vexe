@@ -32,14 +32,16 @@
         display: flex !important;
         flex-direction: column !important;
     }
-  
+    .w-container{
+
+    }
 
 }
 
 
 @media (max-width: 500px) {
     .w-container{
-        width: 25%;
+        width: 20%;
     }
 
 }

@@ -60,12 +60,7 @@ a {
     font-weight: 500 !important;
     font-size: 14px !important;
 }
-.nav-airline .nav-item.active {
-    background-color: #fff !important;
-    color: #000 !important;
-    border-bottom: 2px solid rgb(36, 116, 229);
-    border-radius: 0px;
-}
+
 .ijyXqH {
     display: flex;
     -webkit-box-pack: center;
@@ -411,37 +406,12 @@ body .material-icons-wrapper.md-20 {
     justify-content: center;
     border-bottom: 1px solid #ccc;
 }
-.nav-airline .nav-link.active {
+.nav-link.active{
     background-color: #fff !important;
     color: #000 !important;
     border-bottom: 2px solid blue;
     border-radius: 0px;
 }
-.nav-items{
-    overflow-x: auto;
-    white-space: nowrap;
-}
-.nav-item{
-    display: inline-block;
-}
-.nav-pills .nav-link{
-    border-radius: 0px !important;
-}
-.nav {
-    flex-wrap: nowrap !important;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #e0e0e0;
-    padding: 5px 0px 5px;
-}
-.ticket-detail-container .pills-ticket-tab .nav-item .nav-link.active {
-    border: none;
-    background-color: white;
-    color: #0d6efd;
-    font-weight: 600;
-    border-radius: 0px;
-    border-bottom: 2px solid #0d6efd;
-}
-
 
 .nav-airline .nav-link {
     color: #000 !important;
@@ -1854,19 +1824,13 @@ body .material-icons-wrapper.md-20 {
     border-radius: 0px;
     border-bottom: 1px solid #807d7d;
 }
-.tab-content .active {
-    padding: 12px 12px 16px;
-    border-radius: 0px 0px 12px 12px;
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-}
-/* .tab-content>.active {
-    display: none;
-} */
+
 
 .step-title2 {
     color: rgba(0, 0, 0, .45);
 }
+
+
 
 .trust-message-icon {
     display: flex;
