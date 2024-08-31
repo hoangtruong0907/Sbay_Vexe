@@ -1,0 +1,16 @@
+@media (max-width: 576px) {
+    .container-steps-content{
+        min-height: 100px;
+    }
+    .left-steps-content{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .seat-groups{
+        display: flex;
+        flex-direction: row;
+
+    }
+}

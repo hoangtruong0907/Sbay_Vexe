@@ -4,11 +4,14 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <style scoped>
 
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
 <<<<<<< Updated upstream
 .w-right-section {
     width: 375px;
 }
 
+========
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
 .form-floating-label {
     position: relative;
     margin-bottom: 20px;
@@ -171,11 +174,15 @@
 <div class="content-booking">
 
 
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
 <<<<<<< Updated upstream
     <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px; width: 1016px;">
 =======
     <div class="container container-booking mx-auto flex-column flex gap-3">
 >>>>>>> Stashed changes
+========
+    <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px;">
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
         <!-- Back button and image -->
         <div class="d-flex align-items-center mb-3">
             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/chevron_left_gray.svg" alt="">
@@ -186,9 +193,13 @@
         <div class="main-content d-flex gap-4">
             <!-- Left section -->
             <div class=" d-flex flex-column gap-3 w-100">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
 <<<<<<< Updated upstream
                 <div
                     class="left-section d-flex border flex-column gap-3 border-light-subtle p-4 left-top bg-white rounded-2 card-border-radius card-border-radius">
+========
+                <div class="left-section d-flex border flex-column gap-3 border-light-subtle p-4 left-top bg-white rounded-2 card-border-radius card-border-radius">
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                     <div class="d-flex justify-content-between align-items-center border border-secondary rounded"
                         style="padding: 12px 12px 12px 16px">
                         <p class="fw-medium mb-0 text-dark   text">Đăng nhập để tự điền thông tin và nhận điểm khi
@@ -239,8 +250,7 @@
                     </div>
                 </div>
                 <!--bottom-left section -->
-                <div
-                    class="bottom-left d-flex flex-column gap-3 bg-white border border-light-subtle rounded-2 p-4 card-border-radius">
+                <div class="bottom-left d-flex flex-column gap-3 bg-white border border-light-subtle rounded-2 p-4 card-border-radius">
                     <div class="container">
                         <h1 class="fw-bold fs-5 text-black">Tiện ích</h1>
                         <div class="d-flex flex-column align-items-center">
@@ -376,7 +386,7 @@
                 </div>
             </div>
             <!-- Right section -->
-            <div class="right-section d-flex flex-column gap-3 w-right-section" style="width: 375px;">
+            <div class="right-section d-flex flex-column gap-3 w-right-section">
                 <!--Right top -->
                 <div
                     class="d-flex justify-content-between bg-white border border-light-subtle rounded-2 w-100 p-3 card-border-radius">
@@ -384,7 +394,7 @@
                         <div class="d-flex justify-content-between w-100 pointer" id="totalAmount">
                             <div class="fw-bold fs-5 mb-0 text-black">Tạm tính</div>
                             <div class="d-flex align-items-center gap-1">
-                                <p class="fw-bold fs-5 mb-0">260.000đ</p>
+                                <p class="fw-bold fs-5 mb-0">{{$seatTicket['totalFare']}}đ</p>
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                     alt="icon-expand-less" width="20" height="20">
                             </div>
@@ -423,12 +433,20 @@
                                         <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg"
                                             src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg"
                                             alt="bus_blue_icon" width="16" height="16">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                         <p class="fw-bold mb-0 font-custom-12" >CN, 04/08/2024</p>
+========
+                                        <p class="fw-bold mb-0" style="font-size: 12px;">{{formatDateTime($seatMap['departure_time'], 'D, d/m/Y', 0, 0, "vi")}}</p>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                         <div class="d-flex align-items-center">
                                             <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                                 alt="people_alt_black_icon" width="16" height="16">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                             <p class="fw-normal mb-0 ms-1 ml-2 font-custom-12" >1</p>
+========
+                                            <p class="fw-normal mb-0 ms-1 ml-2" style="font-size: 12px;">{{count($seatTicket['seatList'])}}</p>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                         </div>
                                     </div>
                                     <div>
@@ -445,11 +463,19 @@
                                                 alt="avatar">
                                         </div>
                                         <div class="d-grid align-items-center p-0 flex-grow-1 row-gap-1">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                             <p class="mb-0 fw-semibold font-custom-14">
                                                 Hải Phòng Travel (Đất Cảng)
                                             </p>
                                             <p class="mb-0 note-text">
                                                 Limousine 11 chỗ
+========
+                                            <p class="mb-0 fw-semibold" style="font-size: 14px;">
+                                                {{$seatMap['company_name']}}
+                                            </p>
+                                            <p class="mb-0" style="font-size: 10px; line-height: 12px;">
+                                                {{$seatMap['name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                             </p>
                                         </div>
                                     </div>
@@ -460,7 +486,7 @@
                                                 <div class="d-flex flex-column justify-content-between">
                                                     <div class="text-nowrap mx-auto text-center">
                                                         <p class="fw-bold   mb-0">
-                                                            06:02
+                                                            {{formatDateTime($selectedPickupPoint['real_time'], "H:i (d/m)")}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -481,11 +507,19 @@
                                                 </div>
                                                 <div class="d-flex gap-2 mx-auto justify-content-between w-100">
                                                     <div class="d-flex flex-column w-100">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                                         <p class="fw-bold mb-1 lh-1 font-custom-12" >
                                                             Hà Nội </p>
                                                         <p class="note-text text-muted mb-0"
                                                             >
                                                             Số 79 đường Cổ Linh, Long Biên, Hà Nội</p>
+========
+                                                        <p class="fw-bold mb-1 lh-1" style="font-size: 12px;">
+                                                            {{$selectedPickupPoint['areaDetail']['state_name']}}</p>
+                                                        <p class="text-muted mb-0"
+                                                            style="font-size: 10px; line-height: 12px;">
+                                                            {{$selectedPickupPoint['areaDetail']['address']}}, {{$selectedPickupPoint['areaDetail']['city_name']}}</p>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                                     </div>
                                                     <div class="d-flex justify-content-center text-nowrap">
                                                         <p class="change fw-bold text-primary mb-0">
@@ -499,7 +533,8 @@
                                                 <div class="d-flex flex-column justify-content-between">
                                                     <div class="text-nowrap mx-auto text-center">
                                                         <p class="fw-bold   mb-0">
-                                                            07:32
+                                                            {{formatDateTime($selectedDropPoint['real_time'], "H:i (d/m)")}}
+
                                                         </p>
                                                     </div>
                                                 </div>
@@ -519,6 +554,7 @@
                                                 </div>
                                                 <div class="d-flex gap-2 mx-auto justify-content-between w-100">
                                                     <div class="d-flex flex-column w-100">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                                         <p class="fw-bold mb-1 lh-1 font-custom-12" >
                                                             Hải Phòng
                                                         </p>
@@ -530,6 +566,20 @@
                                                     <div class="d-flex justify-content-center text-nowrap">
                                                         <p class="fw-bold text-primary mb-0 change" data-bs-toggle="offcanvas"
                                                             data-bs-target="#changeRight" aria-controls="changeRight">
+========
+                                                        <p class="fw-bold mb-1 lh-1" style="font-size: 12px;">
+                                                            {{$selectedDropPoint['areaDetail']['state_name']}}
+                                                        </p>
+                                                        <p class="text-muted mb-0"
+                                                            style="font-size: 10px; line-height: 12px;">
+                                                            {{$selectedDropPoint['areaDetail']['address']}}, {{$selectedDropPoint['areaDetail']['city_name']}}
+                                                        </p>
+                                                    </div>
+                                                    <div class="d-flex justify-content-center text-nowrap">
+                                                        <p class="fw-bold text-primary mb-0" data-bs-toggle="offcanvas"
+                                                            data-bs-target="#changeLeft" aria-controls="changeLeft"
+                                                            style="font-size: 12px; line-height: 16px; letter-spacing: 0; text-decoration: underline; text-underline-offset: 2px; word-break: normal;">
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                                             Thay đổi</p>
                                                     </div>
                                                 </div>
@@ -691,6 +741,7 @@
             <div class="travel-header">
                 <div class="d-flex flex-column w-100 justify-content-start mb-1 pt-1">
                     <div class="d-flex flex-row">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                         <p class="travel-name" >
                             Hải Phòng Travel (Đất Cảng)
                         </p>
@@ -698,6 +749,16 @@
                     <div class="d-flex align-items-center">
                         <p class="travel-name">
                             <span class="fw-medium">06:02 • </span>T2, 12/08/2024
+========
+                        <p class="  mb-0 text-white fw-bold" style="line-height: 24px; letter-spacing: 0px;">
+                            {{{$seatMap['company_name']}}}
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <p class="fw-normal text-nowrap text-white mb-0"
+                            style="font-size: 14px; line-height: 20px; letter-spacing: 0px;">
+                            <span class="fw-medium">{{formatDateTime($seatMap['departure_time'], "H:i • D, d/m/Y", 0, 0, 'vi')}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                         </p>
                     </div>
                 </div>
@@ -711,42 +772,68 @@
                         <div class="d-flex justify-content-between gap-5">
                             <p class="fw-normal text-nowrap mb-0 line-letter " >
                                 Tuyến</p>
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
 
                             <span class="travel-title">
                                 Hải Phòng - Hà Nội
+========
+                            <span class="fw-medium text-end mb-0 " style="font-size: 14px;
+                                line-height: 20px;">
+                                {{$selectedPickupPoint['areaDetail']['city_name']}} - {{$selectedDropPoint['areaDetail']['city_name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
                             <p class="fw-normal text-nowrap mb-0 line-letter " >
                                 Nhà xe
                             </p>
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                             <span class="travel-title">
                                 Hải Phòng Travel
                                 (Đất Cảng)
+========
+                            <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
+                                {{$seatMap['company_name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
                             <p class="fw-normal text-nowrap mb-0 line-letter " >
                                 Chuyến
                             </p>
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                             <span class="travel-title">
                                 06:02 • T2, 12/08/2024
+========
+                            <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
+                                {{formatDateTime($seatMap['departure_time'], "H:i • D, d/m/Y", 0, 0, 'vi')}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
                             <p class="fw-normal text-nowrap mb-0 line-letter " >
                                 Loại xe
                             </p>
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                             <span class="travel-title">
                                 Limousine 11 chỗ
+========
+                            <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
+                                {{$seatMap['name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                             </span>
                         </div>
                         <div class="d-flex justify-content-between gap-5">
                             <p class="fw-normal text-nowrap mb-0 line-letter " >
                                 Số lượng
                             </p>
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                             <span class="travel-title">
                                 1 vé
+========
+                            <span class="fw-medium text-end mb-0" style="font-size: 14px; line-height: 20px;">
+                                {{count($seatTicket['seatList'])}} vé
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                             </span>
                         </div>
                         <div class="w-100">
@@ -755,8 +842,14 @@
                                     Mã ghế/ giường
                                 </p>
                                 <div class="d-flex align-items-center gap-sm-1 pointer">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                     <p class="fw-bold mb-0  price">
                                         08,07
+========
+                                    <p class="fw-bold mb-0"
+                                        style="font-size: 14px;  line-height: 20px; letter-spacing: 0px">
+                                        <div class="fw-bold">{{ implode(', ', array_keys($seatTicket['seatList'])) }}</div>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                     </p>
                                     <img class="icon-expand-less ls-is-cached lazyloaded"
                                         data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
@@ -766,6 +859,7 @@
                             </div>
                             <div class="d-flex flex-column gap-2 mt-2 overflow-auto">
                                 <div class="d-flex justify-content-end">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                     <p class="chair">Ghế đầu:
                                         <span>08</span>
                                     </p>
@@ -773,10 +867,16 @@
                                 <div class="d-flex justify-content-end">
                                     <p class="chair">Ghế đầu:
                                         <span>08</span>
+========
+                                    <p class="fw-normal mb-0"
+                                        style="line-height: 20px; letter-spacing: 0px;font-size: 14px;">{{$seatMap['vehicle']['seat_type'] !== 1 ? "Giường" : "Ghế"}}:
+                                        <span>{{ implode(', ', array_keys($seatTicket['seatList'])) }}</span>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                     </p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-evenly overflow-auto text-center py-1">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                 <table class="bus ms-3 d-inline-block">
                                     <thead>
                                         <tr>
@@ -1149,6 +1249,67 @@
                                         </tr>
                                     </tbody>
                                 </table>
+========
+                                @if (count($seatTemplateMap) > 0)
+                                    @foreach ($seatTemplateMap as $i => $coach)
+                                        <div class="wrap-coach">
+                                            <div class="mb-2 mt-2">
+                                                <span>{{ $coach['coach_name'] }}</span>
+                                            </div>
+                                            <div class="coach">
+                                                <table>
+                                                    <tbody>
+                                                        @for ($row = 1; $row <= $coach['num_rows']; $row++)
+                                                            <tr class="coach-row">
+                                                                @for ($col = 1; $col <= $coach['num_cols']; $col++)
+                                                                    @php
+                                                                        // Tìm ghế tại vị trí hàng và cột tương ứng
+                                                                        $seat = collect($coach['seats'])->firstWhere(function ($s) use ($row, $col) {
+                                                                            return $s['row_num'] == $row && $s['col_num'] == $col;
+                                                                        });
+                                                                    @endphp
+                                                                    @if (isset($seat['is_available']) && $seat['is_available'] == false)
+                                                                        <td class="seat">
+                                                                            <div class="seat-choose-item seat-container"
+                                                                                data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                {!! renderSeat($seatMap['vehicle']['seat_type'], 'unselected') !!}
+                                                                            </div>
+                                                                        </td>
+                                                                    @elseif ($seat)
+                                                                        @if (in_array($seat['seat_code'], array_keys($seatTicket['seatList'])))
+                                                                            <td class="seat">
+                                                                                <div class="seat-choose-item seat-container seat-selected"
+                                                                                data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                    {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                </div>
+                                                                            </td>
+                                                                        @else
+                                                                            <td class="seat">
+                                                                                <div class="seat-choose-item seat-container"
+                                                                                    data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                    {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                </div>
+                                                                            </td>
+                                                                        @endif
+                                                                    @else
+                                                                        <td class="seat">
+                                                                            <div class="seat-choose-item  seat-none"
+                                                                                data-disabled="true"
+                                                                                style="background-color: transparent;">
+                                                                                <!-- Trường hợp không có ghế -->
+                                                                            </div>
+                                                                        </td>
+                                                                    @endif
+                                                                @endfor
+                                                            </tr>
+                                                        @endfor
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                             </div>
                         </div>
                         <div class="w-100">
@@ -1157,8 +1318,14 @@
                                     Tạm tính
                                 </p>
                                 <div class="d-flex align-items-center gap-sm-1">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                     <p class="fw-bold mb-0  price">
                                         470.000đ
+========
+                                    <p class="fw-bold mb-0"
+                                        style="font-size: 14px;  line-height: 20px; letter-spacing: 0px">
+                                        {{$seatTicket['totalFare']}}đ
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                     </p>
                                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                         alt="icon-expand-less" width="20" height="20">
@@ -1169,7 +1336,9 @@
                                 <div class="d-flex justify-content-between">
                                     <p class="label color--darkness">Giá vé</p>
                                     <div class="d-flex flex-column">
+                                        @foreach ($seatTicket['seatList'] as $seat)
                                         <div class="text-end">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                             <p class="mb-0">230.000đ x 1</p>
                                             <p class="mb-0 seat-code"
                                                 >Mã
@@ -1180,7 +1349,14 @@
                                             <p class="mb-0 seat-code"
                                                  >Mã
                                                 ghế/giường: 07</p>
+========
+                                            <p class="mb-0 fw-medium">{{$seat['fareSeat']}}đ x 1</p>
+                                            <p class="mb-0"
+                                                style="font-size: 12px;color: rgb(133, 133, 133) !important;">Mã
+                                                ghế/giường: {{$seat['seatCode']}}</p>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-1">
@@ -1207,6 +1383,7 @@
                                 </p>
                             </div>
                             <div class="gap-1 d-flex flex-column mb-0">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                 <p class="  mb-0 fw-normal line-letter " >
                                     Hải Phòng
                                 </p>
@@ -1217,12 +1394,21 @@
                                 </p>
                                 <span class="time-span">
                                     Dự kiến đón lúc: 06:02 12/08/2024
+========
+                                <p class="  mb-0 fw-normal" style="line-height: 20px; letter-spacing: 0px;">
+                                    {{$selectedPickupPoint['areaDetail']['state_name']}}
+                                </p>
+                                <p class="  mb-0 fw-normal mb-0 text-secondary"
+                                    style="line-height: 20px; letter-spacing: 0px;">{{$selectedPickupPoint['areaDetail']['address']}}, {{$selectedPickupPoint['areaDetail']['city_name']}}</p>
+                                <span class="fw-medium mb-0" style="font-size: 14px; line-height: 20px;">
+                                    Dự kiến đón lúc: {{formatDateTime($selectedPickupPoint['real_time'], "H:i d/m/Y")}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                 </span>
                             </div>
                         </div>
                         {{-- row --}}
-                        <div class="d-flex flex-column gap-2" data-bs-toggle="offcanvas" data-bs-target="#changeRight"
-                            aria-controls="changeRight">
+                        <div class="d-flex flex-column gap-2" data-bs-toggle="offcanvas" data-bs-target="#changeLeft"
+                            aria-controls="changeLeft">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex gap-1 align-items-center">
                                     <img data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/dropoff_semantic_negative_12dp.svg"
@@ -1237,6 +1423,7 @@
                                 </p>
                             </div>
                             <div class="gap-1 d-flex flex-column mb-0">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                 <p class="  mb-0 fw-normal line-letter " >
                                     Hà Nội
                                 </p>
@@ -1246,6 +1433,17 @@
                                 </p>
                                 <span class="time-span">
                                     Dự kiến trả lúc: 07:32 12/08/2024
+========
+                                <p class="  mb-0 fw-normal" style="line-height: 20px; letter-spacing: 0px;">
+                                    {{$selectedDropPoint['areaDetail']['state_name']}}
+                                </p>
+                                <p class="  mb-0 fw-normal mb-0 text-secondary"
+                                    style="line-height: 20px; letter-spacing: 0px;">
+                                    {{$selectedDropPoint['areaDetail']['address']}}, {{$selectedDropPoint['areaDetail']['city_name']}}
+                                </p>
+                                <span class="fw-medium mb-0" style="font-size: 14px; line-height: 20px;">
+                                    Dự kiến trả lúc: {{formatDateTime($selectedDropPoint['real_time'], "H:i d/m/Y")}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                 </span>
                             </div>
                         </div>
@@ -1308,39 +1506,48 @@
                 </button>
             </div>
         </div>
+        {{-- @php
+            dd($pickup_points);
+        @endphp --}}
         <!--content -->
         <div class="d-flex flex-column bg-white" style="overflow-x: hidden !important;">
             <div class="d-flex flex-column" style="min-width: 232px;">
-                <label class="d-flex align-items-start mb-0"
+                @foreach ($pickup_points as $key => $point)
+                <label class="d-flex align-items-start mb-0" data-id="{{$key}}"
                     style="padding: 16px 0 0 20px; background-color: rgb(227, 237, 252);">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" checked />
+                    <input class="form-check-input" type="radio" name="rdPickupPoint" id="rdPickupPoint-{{$key}}"
+                        value="{{$point['id']}}" {{$key == 0 ? "checked" : ""}}/>
                     <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
                         <div class="d-flex flex-column "
                             style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
                             <div class="d-flex flex-row" style="flex: 1 1 0%;">
-                                <div class="d-flex flex-column justify-content-center position-relative w-75">
+                                <div class="d-flex flex-column justify-content-center position-relative w-75" data-drop-id="{{$point['id']}}">
                                     <div class="d-flex flex-row align-items-start align-items-center">
                                         <p class="fw-bold ms-1 mb-1">
-                                            18:00
+                                            {{formatDateTime($point['real_time'], "H:i")}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                         <p class="fw-medium mb-1 line-letter " >
                                             Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)
+========
+                                        <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
+                                            {{$point['name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1), Thị trấn Sóc Sơn, Sóc Sơn, Hà Nội
+                                            {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
-                                    <div class="d-flex flex-column align-items-start text-danger">
+                                    {{-- <div class="d-flex flex-column align-items-start text-danger">
                                         <p class="fw-normal mb-1" style="line-height: 16px; font-size: 12px;">
                                             220.000đ / nhóm từ 1-3 khách (trả tại website Vexere)
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex flex-column justify-content-center position-relative w-25">
                                     <div class="d-flex flex-column align-items-start">
@@ -1366,6 +1573,7 @@
                         </div>
                     </div>
                 </label>
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                 <!--end row -->
                 <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
@@ -1467,10 +1675,83 @@
                     </div>
                 </label>
                 <!--end row -->
+========
+                @endforeach
+            </div>
+        </div>
+        <!--end content -->
+        <!--footer -->
+        <div class="border-top border-secondary bg-white position-absolute start-0 bottom-0 w-100 p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>Sai hoặc thiếu thông tin?</div>
+                <p class="text-primary fw-bold text-decoration-underline cursor-pointer" id="reportUs">
+                    Báo cáo với chúng tôi
+                </p>
+            </div>
+            <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
+                class="btn btn-warning text-black   fw-bold d-flex align-items-center justify-content-center w-100 rounded-pill py-2">
+                <span>Cập nhật</span>
+            </button>
+        </div>
+    </div>
+    <!-- Thay điểm trả chiều đi -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="changeLeft" aria-labelledby="changeLeftLabel"
+        style="width: 560px;">
+        <div class="d-flex flex-row align-items-center bg-primary" style="min-height: 72px; padding: 16px;">
+            <div class="pointer text-white" style="width: 24px; height: 24px;" data-bs-dismiss="offcanvas"
+                aria-label="Close">
+                <i class="material-icons-round ">arrow_back</i>
+            </div>
+            <div class="d-flex ms-3" style="flex: 1 1 0%;">
+                <p class="  mb-0 text-white fw-bold" style="line-height: 24px; letter-spacing: 0px;">
+                    Thay đổi điểm trả chiều đi
+                </p>
+            </div>
+        </div>
+        <!-- end headrer -->
+        <!-- header 2 -->
+        <div class="position-sticky d-flex flex-column w-100"
+            style="background-color: rgb(247, 247, 247) !important; padding: 12px 20px; z-index: 5;">
+            <div class="d-flex flex-row  justify-content-between">
+                <p class="fw-normal mb-0" style="font-size: 12px; line-height: 16px; ">Sắp xếp theo</p>
+                <p class="fw-normal mb-0" style="font-size: 12px; line-height: 16px;">Khoảng cách từ điểm đón đến
+                </p>
+            </div>
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
 
-                <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" />
+            <div class="d-flex flex-row justify-content-between mt-1">
+                <button type="button" class="d-flex align-items-center p-0 border-0 m-0" id="sortedBy"
+                    style="background-color: unset;">
+                    <p class="fw-bold mb-0" style="font-size: 12px; line-height: 16px;">
+                        Sớm nhất
+                    </p>
+                    <i class="material-icons-outlined"
+                        style="font-size: 16px; line-height: 16px; margin-left: 4px;">arrow_drop_down</i>
+                </button>
+
+                <button type="button" class="d-flex flex-row p-0 border-0 m-0" id="changeLocation"
+                    style="background-color: unset;">
+                    <p class="fw-bold mb-0" style="font-size: 12px; line-height: 16px;">
+                        Vị trí của bạn
+                    </p>
+                    <p class="fw-bold mb-0"
+                        style="font-size: 12px; line-height: 16px; margin-left: 4px; text-decoration: underline; color: rgb(36, 116, 229) !important;">
+                        Thay đổi
+                    </p>
+                </button>
+            </div>
+        </div>
+        {{-- @php
+            dd($transfer_points);
+        @endphp --}}
+        <!--content -->
+        <div class="d-flex flex-column bg-white" style="overflow-x: hidden !important;">
+            <div class="d-flex flex-column" style="min-width: 232px;">
+                @foreach ($transfer_points as $key=>$point)
+                <label class="d-flex align-items-start mb-0" data-id="{{$key}}"
+                    style="padding: 16px 0 0 20px; background-color: rgb(227, 237, 252);">
+                    <input class="form-check-input" type="radio" name="rdDropPoint" id="rdDropPoint-{{$key}}"
+                        value="{{$point['id']}}" {{$key == 0 ? "checked" : ""}}/>
                     <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
                         <div class="d-flex flex-column "
                             style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
@@ -1478,26 +1759,36 @@
                                 <div class="d-flex flex-column justify-content-center position-relative w-75">
                                     <div class="d-flex flex-row align-items-start align-items-center">
                                         <p class="fw-bold ms-1 mb-1">
-                                            18:15
+                                            {{formatDateTime($point['real_time'], "H:i")}} Trung Chuyển
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                         <p class="fw-medium mb-1 line-letter " >
                                             Văn phòng 51 Nguyễn Quốc Trị
+========
+                                        <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
+                                            {{$point['name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            Số 51 Nguyễn Quốc Trị (Quán Cafe Mốt), Phường Trung Hoà, Cầu Giấy, Hà Nội
+                                           {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
+                                    {{-- <div class="d-flex flex-column align-items-start text-danger">
+                                        <p class="fw-normal mb-1" style="line-height: 16px; font-size: 12px;">
+                                            220.000đ / nhóm từ 1-3 khách (trả tại website Vexere)
+                                        </p>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex flex-column justify-content-center position-relative w-25">
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="position-absolute text-center fw-bold mb-0 top-0 end-0"
                                             style="width: calc(100% + 42px); line-height: 20px;">
-                                            606.5 km
+                                            636.9 km
                                         </p>
                                     </div>
                                     <button type="button" id="viewLocation"
@@ -1507,7 +1798,7 @@
                                                 <i class="material-icons-round text-primary">place</i>
                                             </div>
                                             <p class="fw-normal text-primary mb-0"
-                                                style="line-height: 20px; letter-spacing: 0px; text-decoration: underline;">
+                                                style="line-height: 20px; letter-spacing: 0px;text-decoration: underline;">
                                                 Xem vị trí
                                             </p>
                                         </div>
@@ -1517,10 +1808,12 @@
                         </div>
                     </div>
                 </label>
-                <!--end row -->
-                <label class="d-flex align-items-start mb-0" style="padding: 16px 0 0 20px; background-color: unset;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        value="Sân Bay Nội Bài ( Sảnh E Ga Nội Địa T1)-122778-175340-0" />
+                @endforeach
+                @foreach ($drop_points as $key => $point)
+                <label class="d-flex align-items-start mb-0" data-id="{{$key}}"
+                    style="padding: 16px 0 0 20px; background-color: rgb(227, 237, 252);">
+                    <input class="form-check-input" type="radio" name="rdDropPoint" id="rdDropPoint-{{$key}}"
+                        value="{{$point['id']}}" {{$key == 0 ? "checked" : ""}}/>
                     <div style="flex: 1 1 0%; padding: 0px; margin-left: 12px;">
                         <div class="d-flex flex-column "
                             style="padding: 0px 20px 16px 32px; border-bottom: 0.5px solid rgb(224, 224, 224); margin-left: -32px;">
@@ -1528,26 +1821,36 @@
                                 <div class="d-flex flex-column justify-content-center position-relative w-75">
                                     <div class="d-flex flex-row align-items-start align-items-center">
                                         <p class="fw-bold ms-1 mb-1">
-                                            18:16
+                                            {{formatDateTime($point['real_time'], "H:i")}}
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start">
+<<<<<<<< HEAD:.history/resources/views/bookingconfirmation.blade_20240828151602.php
                                         <p class="fw-medium mb-1 line-letter " >
                                             Văn phòng 51 Nguyễn Quốc Trị
+========
+                                        <p class="fw-medium mb-1" style="line-height: 20px; letter-spacing: 0px;">
+                                            {{$point['name']}}
+>>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b:resources/views/payment/bookingconfirmation.blade.php
                                         </p>
                                     </div>
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            Số 51 Nguyễn Quốc Trị (Quán Cafe Mốt), Phường Trung Hoà, Cầu Giấy, Hà Nội
+                                            {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
+                                    {{-- <div class="d-flex flex-column align-items-start text-danger">
+                                        <p class="fw-normal mb-1" style="line-height: 16px; font-size: 12px;">
+                                            220.000đ / nhóm từ 1-3 khách (trả tại website Vexere)
+                                        </p>
+                                    </div> --}}
                                 </div>
                                 <div class="d-flex flex-column justify-content-center position-relative w-25">
                                     <div class="d-flex flex-column align-items-start">
                                         <p class="position-absolute text-center fw-bold mb-0 top-0 end-0"
                                             style="width: calc(100% + 42px); line-height: 20px;">
-                                            606.52 km
+                                            636.9 km
                                         </p>
                                     </div>
                                     <button type="button" id="viewLocation"
@@ -1557,7 +1860,7 @@
                                                 <i class="material-icons-round text-primary">place</i>
                                             </div>
                                             <p class="fw-normal text-primary mb-0"
-                                                style="line-height: 20px; letter-spacing: 0px; text-decoration: underline;">
+                                                style="line-height: 20px; letter-spacing: 0px;text-decoration: underline;">
                                                 Xem vị trí
                                             </p>
                                         </div>
@@ -1567,7 +1870,7 @@
                         </div>
                     </div>
                 </label>
-                <!--end row -->
+                @endforeach
             </div>
         </div>
         <!--end content -->
@@ -2051,76 +2354,76 @@
 </div>
 <!---------------------------------- End Drawer ---------------------------------->
 @endsection
-@section('scripts')
+@push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleVisibility = (iconId, contentId) => {
-        const toggleIcon = document.getElementById(iconId);
-        const additionalContent = document.getElementById(contentId);
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleVisibility = (iconId, contentId) => {
+            const toggleIcon = document.getElementById(iconId);
+            const additionalContent = document.getElementById(contentId);
 
-        if (toggleIcon && additionalContent) {
-            toggleIcon.addEventListener('click', () => {
-                const isHidden = additionalContent.classList.toggle('d-none');
-                toggleIcon.src = isHidden ?
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+            if (toggleIcon && additionalContent) {
+                toggleIcon.addEventListener('click', () => {
+                    const isHidden = additionalContent.classList.toggle('d-none');
+                    toggleIcon.src = isHidden ?
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+                });
+            }
+        };
+
+        toggleVisibility('totalAmount', 'showTotalAmount');
+        toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+
+        const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
+            document.querySelectorAll(`#${triggerId}`).forEach(element => {
+                element.addEventListener('click', event => {
+                    event.preventDefault();
+
+                    if (isModal) {
+                        const modal = new bootstrap.Modal(document.getElementById(
+                            targetId));
+                        modal.show();
+                    } else {
+                        const offcanvas = new bootstrap.Offcanvas(document.getElementById(
+                            targetId));
+                        offcanvas.show();
+                    }
+
+                    const changeRight = document.getElementById('changeRight');
+                    if (changeRight) {
+                        changeRight.classList.add('show');
+                        changeRight.style.visibility = 'visible';
+                    }
+                });
             });
-        }
-    };
+        };
 
-    toggleVisibility('totalAmount', 'showTotalAmount');
-    toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+        setupOffcanvasOrModal('sortedBy', 'sortedByShow');
+        setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
+        setupOffcanvasOrModal('reportUs', 'reportUsShow');
+        setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
 
-    const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
-        document.querySelectorAll(`#${triggerId}`).forEach(element => {
-            element.addEventListener('click', event => {
-                event.preventDefault();
-
-                if (isModal) {
-                    const modal = new bootstrap.Modal(document.getElementById(
-                        targetId));
-                    modal.show();
-                } else {
-                    const offcanvas = new bootstrap.Offcanvas(document.getElementById(
-                        targetId));
-                    offcanvas.show();
-                }
-
-                const changeRight = document.getElementById('changeRight');
-                if (changeRight) {
-                    changeRight.classList.add('show');
-                    changeRight.style.visibility = 'visible';
-                }
-            });
+        const popoverTriggerEl = $('#detailsButton');
+        popoverTriggerEl.popover({
+            trigger: 'manual'
         });
-    };
 
-    setupOffcanvasOrModal('sortedBy', 'sortedByShow');
-    setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
-    setupOffcanvasOrModal('reportUs', 'reportUsShow');
-    setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
+        popoverTriggerEl.on('click', function(e) {
+            e.preventDefault();
+            if (popoverTriggerEl.attr('aria-describedby')) {
+                popoverTriggerEl.popover('hide');
+            } else {
+                popoverTriggerEl.popover('show');
+            }
+        });
 
-    const popoverTriggerEl = $('#detailsButton');
-    popoverTriggerEl.popover({
-        trigger: 'manual'
+        $(document).on('click', function(e) {
+            if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
+                $('.popover').has(e.target).length === 0) {
+                popoverTriggerEl.popover('hide');
+            }
+
+        });
     });
-
-    popoverTriggerEl.on('click', function(e) {
-        e.preventDefault();
-        if (popoverTriggerEl.attr('aria-describedby')) {
-            popoverTriggerEl.popover('hide');
-        } else {
-            popoverTriggerEl.popover('show');
-        }
-    });
-
-    $(document).on('click', function(e) {
-        if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
-            $('.popover').has(e.target).length === 0) {
-            popoverTriggerEl.popover('hide');
-        }
-
-    });
-});
-</script>
-@endsection
+    </script>
+@endpush

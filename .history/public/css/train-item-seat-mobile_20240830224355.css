@@ -1,0 +1,109 @@
+@media (max-width: 576px) {
+    /* .container-train {
+        width: auto !important;
+        padding: 10px !important;
+    } */
+    .steps-container {
+        /* font-size: 13px; */
+        padding: 0px 4px !important;
+        justify-content: center;
+    }
+    .container-steps-content{
+        min-height: 100px;
+    }
+    .wrap-steps-content{
+        display: flex;
+        flex-direction: column;
+    }
+    .left-steps-content{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .seat-groups{
+        display: flex;
+        flex-direction: row;
+
+    }
+    .seat-groups span{
+        display: none;
+    }
+    .seat-info{
+        display: flex;
+        flex-direction: column !important;
+    }
+    .request{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .w-container{
+        w
+    }
+}
+
+
+@media (max-width: 500px) {
+    /* .w-container{
+        width: 40%;
+    } */
+
+}
+
+
+@media (max-width: 1100px) {
+    .note {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+    .right-steps-content .coach {
+        padding: 24px 3px 12px;
+    }
+
+
+.request{
+    display: flex !important;
+    flex-direction: column !important;
+}
+.right-steps-content{
+    display: flex;
+    justify-content: center;
+}
+}
+
+@media (max-width: 375px) {
+    .shipSeat{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .request{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .right-steps-content{
+        display: flex;
+        justify-content: center;
+    }
+    .itemAbate img{
+        width: 15%;
+    }
+
+}
+@media (max-width: 768px) {
+    .note {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+}
+@media (max-width: 1400px) {
+}
+
+@media (max-width: 1676px) {
+}

@@ -1,0 +1,70 @@
+#content-step-1{
+    display: block;
+}
+.show {
+    display: block;
+}
+.contact-dropdown .show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+.steps-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 0px 16px; /* Giảm padding để phù hợp hơn */
+    border: 1px solid rgb(192, 192, 192);
+    height: 90px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+/* trung */
+.step {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 5px;
+    margin-left: 5px;
+}
+/* .step {
+    display: flex;
+    align-items: center;
+    position: relative;
+} */
+
+.step-active .step-tail {
+    background-color: #1890ff;
+}
+
+.item-card-list .card {
+    width: 314px;
+    height: 270px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+
+}
+.card-body-new {
+    padding: 0px !important;
+    border: 0px !important;
+    position: relative;
+    border-top: 1px solid rgb(192, 192, 192) !important;
+    margin-top: 16px;
+    border-radius: 0px !important;
+}
+.wizard-step {
+    display: none;
+}
+
+.wizard-step.active {
+    display: block;
+}
+active

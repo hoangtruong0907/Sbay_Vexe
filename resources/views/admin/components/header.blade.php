@@ -33,7 +33,12 @@
                     <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle "
                         data-bs-toggle="dropdown" aria-expanded="false">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <i class="fas fa-user"></i> <span>Van A</span> <i style="font-size: .8em;"
+=======
+
+                        <i class="fas fa-user"></i> <span>{{ Auth::user()->name }}</span> <i style="font-size: .8em;"
+>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b
 =======
 
                         <i class="fas fa-user"></i> <span>{{ Auth::user()->name }}</span> <i style="font-size: .8em;"
@@ -50,9 +55,12 @@
                                     Cài đặt</a></li>
                             <div class="dropdown-divider"></div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
                                     Đăng xuất</a></li>
 =======
+=======
+>>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b
                             <li><a href="{{ route('admin.doLogout') }}" class="dropdown-item"><i
                                         class="fas fa-sign-out-alt"></i>
                                     Logout</a></li>

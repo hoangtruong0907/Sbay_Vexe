@@ -1,0 +1,11 @@
+#content-step-1{
+    display: block;
+}
+.show {
+    display: block;
+}
+.contact-dropdown .show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
