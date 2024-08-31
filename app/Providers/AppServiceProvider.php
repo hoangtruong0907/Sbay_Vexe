@@ -7,6 +7,8 @@ use App\Repositories\Repository\AuthRepository;
 use App\Repositories\Repository\UserRepository;
 use App\Repositories\Interface\AuthRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
+use App\Repositories\Interface\BlogRepositoryInterface;
+use App\Repositories\Repository\BlogRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(BlogRepositoryInterface::class, BlogRepository::class);
     }
 
     /**
