@@ -96,7 +96,7 @@
                                 <span class="close">&times;</span>
                                 <span class="prev">&lt;</span> 
                                 <span class="next">&gt;</span> 
-                                <img class="popup-content" id="popupImage">
+                                <img class="popup-content1" id="popupImage">
                             </div>
                         </div>
                         

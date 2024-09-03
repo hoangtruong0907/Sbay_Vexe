@@ -2599,6 +2599,11 @@ body .material-icons-wrapper.md-20 {
 
 .card-content {
     padding: 15px;
+    text-align: center;
+    margin: 5px;
+    word-wrap: break-word;
+    width: 100%;
+    white-space: normal;
 }
 
 .card-title {
@@ -2760,7 +2765,7 @@ body .color--darkness {
 }
 
 .jvMYTT {
-    margin-top: 350px;
+    margin-top: 100px;
     position: sticky;
     -webkit-box-align: center;
     align-items: center;
@@ -3317,7 +3322,9 @@ body h6 {
     color: rgb(72, 72, 72);
     margin-bottom: 16px;
 }
-
+.contentdb{
+    margin-left: 0px; 
+}
 .popular-route-label {
     width: 80%;
     /* Đặt chiều rộng phần tử */
@@ -3325,10 +3332,8 @@ body h6 {
     font-weight: 500;
     line-height: 28.64px;
     color: rgb(72, 72, 72);
-    margin: 0 auto 16px auto;
-    /* Căn giữa phần tử bằng margin */
-    text-align: center;
-    /* Căn giữa nội dung văn bản */
+    margin: 0 auto 16px auto; /* Căn giữa phần tử bằng margin */
+    /* margin-left: 0px; */
     display: block;
 }
 
@@ -3381,11 +3386,14 @@ body h6 {
 
 }
 
-.hidden {
+
+
+.hidden{
     display: none;
 }
 
 .card-type {
+    margin-top:30px;
     text-align: left;
     font-size: 24px;
     font-weight: 500;
@@ -3457,7 +3465,7 @@ body h6 {
 }
 
 
-.popup-content {
+.popup-content1 {
     justify-content: center;
     text-align: center;
     width: 80%; 
