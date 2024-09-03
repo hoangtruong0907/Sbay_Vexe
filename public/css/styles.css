@@ -2374,11 +2374,102 @@ body .material-icons-wrapper.md-20 {
     margin: 0px;
     background-color: transparent;
 }
+.address-container {
+    max-width: 150px;  
+    overflow: hidden;  
+    white-space: nowrap;  
+    text-overflow: ellipsis;  
+    display: inline-block;  
+    vertical-align: middle;  
+    font-size: 13px;
+}
+.change-link {
+    margin-left: 10px; 
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer; 
+    font-weight: bold;
+}
+.custom-dropoff-button {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    background-color: #fff; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    box-sizing: border-box; 
+    cursor: pointer; 
+}
 
+.custom-dropoff-button .address-container {
+    flex-grow: 1; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    /* margin-right: 10px;  */
+}
+
+.custom-address-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#changeDropoffLink{
+    text-decoration: underline;
+    color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+}
+.custom-dropoff-button .change-link {
+    border: none;
+    cursor: pointer; 
+    white-space: nowrap; 
+    margin-left: auto; 
+}
+.text-drop-off-point-maps{
+    
+    text-decoration: underline;
+    color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;  
+    font-weight: bold;
+        text-overflow: ellipsis;
+        max-width: 150px;
+        overflow: hidden;
+        display: inline;
+}
 .text-pick-up-point-maps {
+    margin-top: 4px;
     margin-left: 4px;
     text-decoration: underline;
     color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;  
+    font-weight: bold;
+        text-overflow: ellipsis;
+        max-width: 150px;
+        overflow: hidden;
+        display: inline;
 }
 
 .pickup-point {
@@ -3034,7 +3125,7 @@ body h6 {
 }
 
 .wrap-steps-content {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
 }
 
