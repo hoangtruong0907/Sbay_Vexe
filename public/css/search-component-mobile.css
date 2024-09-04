@@ -6,50 +6,6 @@
         display: none;
     }
 }
-
-@media (max-width: 992px) {
-    .total-header {
-        display: none;
-    }
-    .topnav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px 10px;
-    }
-    .wrap-criteria {
-        gap: 30px;
-    }
-}
-
-
-
-
-@media (max-width: 768px) {
-    .wrap-criteria {
-        display: none;
-    }
-    .note {
-        flex-direction: column;
-        text-align: center;
-        display: flex;
-        align-items: center;
-    }
-}
-
-@media (max-width: 576px) {
-    .container {
-        width: auto !important;
-        padding: 10px !important;
-    }
-}
-
-@media (max-width: 500px) {
-    #main-footer h2 {
-        font-size: 16px;
-    }
-}
-
 @media (max-width: 1100px) {
     .container-airlinetickets {
         width: 90%;
@@ -207,6 +163,46 @@
     }
 }
 
+@media (max-width: 992px) {
+    .total-header {
+        display: none;
+    }
+    .topnav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 10px;
+    }
+    .wrap-criteria {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wrap-criteria {
+        display: none;
+    }
+    .note {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: auto !important;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    #main-footer h2 {
+        font-size: 16px;
+    }
+}
+
 @media only screen and (max-width: 430px) {
     .departure-bus-date .fa-calendar {
         display: none;
@@ -220,7 +216,7 @@
     .departure-train-date .fa-calendar {
         display: none;
     }
-    .departure-train-date-right .fa-plus{
+    .departure-train-date-right .fa-plus {
         display: none;
     }
     .departure-plane-date .fa-calendar {
@@ -255,8 +251,4 @@
     .right-section {
         min-width: auto !important;
     }
-}
-
-.pills-bus-tab {
-    margin-right: 5px;
 }
