@@ -2967,7 +2967,6 @@ body h6 {
 
 
 
-
 .border-coupon {
     height: 92px;
     width: 100%;
@@ -3515,37 +3514,90 @@ body h6 {
 
 
 
-.d-none {
-    display: none;
-}
-
-.popup-modal {
+/* Định dạng popup */
+.popup {
+    display: none; /* Ẩn popup mặc định */
     position: fixed;
-    top: 0;
+    z-index: 999;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); 
+    
+}
+
+/* Định dạng wrapper cho popup */
+.popup-wrapper {
+    position: relative;
+    background-color: rgb(247, 247, 247);
+    border-radius: 8px; 
+    padding: 20px; 
+    box-shadow: 0 0 15px rgba(60, 57, 57, 0.3); 
+    justify-content: center;
+    text-align: center;
+    max-width: 40%; 
+    max-height: 80vh; 
+    left: 30%;
+    top: 67px;
+    
+}
+
+
+.popup-content1 {
+    justify-content: center;
+    text-align: center;
+    width: 80%; 
+    height: 700px;
+    max-width: 400px ; 
+    max-height: 70vh;
+    
+}
+
+
+.prev, .next {
+    position: absolute; 
+    top: 50%;
+    color: #000; 
+    font-size: 20px; 
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background-color: #fff; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    transform: translateY(-40%); 
 }
 
-.popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    max-width: 90%;
-    position: relative;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.prev {
+    left: 10px; 
 }
 
-.close-popup {
+.next {
+    right: 10px; 
+}
+
+
+.close {
     position: absolute;
     top: 10px;
     right: 10px;
+    color: #000; 
+    font-size: 20px; 
+    font-weight: bold;
+    transition: 0.3s;
     cursor: pointer;
-    font-size: 20px;
+    border-radius: 50%; 
+    background-color: #fff; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
