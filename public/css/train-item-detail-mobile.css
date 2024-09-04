@@ -1,0 +1,74 @@
+@media only screen and (max-width : 430px) {
+    .train-items p {
+        width: 19px;
+    }
+    .row-utility{
+        display: block;
+    }
+    .icon-text i {
+        font-size:1.3rem
+    }
+    .wrap-couponTrain button{
+        height: 45px;
+    }
+    .content-train h4 {
+        font-size: 1.4rem;
+    }
+   
+}
+@media (max-width : 375px) {
+    .train-items p {
+        width: 18px;
+    }
+    .row-utility{
+        display: block;
+    }
+    .icon-text i {
+        font-size:1.2rem
+    }
+    .content-has-cop{
+        margin-right: 40%;
+    }
+   
+}
+@media only screen and (max-width: 1040px){
+    .location-route-svg-l{
+        display: none;
+    }
+    .from-to-content-l{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15%;
+        
+    }
+    .svg-location{
+        display: block;
+    }
+    .content-l{
+        display: block;
+        
+    }
+  
+    .content-to-info-l{
+        text-align: end;
+        display: block;
+        width: 50%;
+        font-size: 1.5rem;
+    }
+    .place-l{
+        overflow: visible;
+        width: 100%;
+    }
+    .duration-l{
+        text-align: center;
+    }
+    .action-l button {
+        font-size: 1rem;
+    }
+    .container-textSeat{
+        display: block;
+        font-size: 14px;
+    }
+    
+}

@@ -1,6 +1,6 @@
-#content-step-1{
+/* #content-step-1{
     display: block;
-}
+} */
 .show {
     display: block;
 }
@@ -451,7 +451,7 @@
     justify-content: space-between;
 }
 .container {
-    width: 1500px;
+    width: 100%;
     padding: 0px 10px;
     margin: auto;
 }
