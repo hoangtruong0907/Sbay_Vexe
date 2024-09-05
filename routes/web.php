@@ -7,7 +7,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BlogController;
-use App\Http\Controllers\home\BlogControllers;
+use App\Http\Controllers\BlogControllers;
 use App\Http\Controllers\Auth\InfoController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\CheckAuthGoogle;
@@ -47,13 +47,16 @@ Route::prefix('/admin')->group(function () {
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
         Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
         Route::delete('/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
+        Route::get('/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
     });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
 });
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
+
 Route::get('bai-viet/{slug}', [BlogControllers::class, 'show'])->name('blog.content');
+
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
 Route::get('/test', [TestController::class, 'test']);
 
