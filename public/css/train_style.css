@@ -53,13 +53,13 @@
     scroll-behavior: smooth;
 }
 
-.wrap-couponTrain{
+.coupon-container .wrap-couponTrain{
     align-items: stretch;
     width: 100%;
     display: flex;   
 }
 
-.wrap-couponTrain button{
+.coupon-container .wrap-couponTrain button{
     display: flex;
     width: 150px;
     box-sizing: border-box;
@@ -72,14 +72,14 @@
     letter-spacing: 1px;
 }
 
-.train-items{
-     justify-items: center;
+.content-train .train-items{
+    justify-items: center;
     align-items: center;
     display: flex;
     gap: 5px;
 }
 
-.train-items p {
+.content-train .train-items p {
     padding-top: 2px;
     background-color: rgb(206, 206, 206);
     border-radius: 5px;    
@@ -90,7 +90,7 @@
     grid-template-columns: repeat(2,1fr);
 }
 
-.icon-text {
+.row-utility .icon-text {
     max-width: 100%;
     display: flex;
     align-items: center;
@@ -98,7 +98,7 @@
     padding: 10px;
 }
 
-.icon-text i {
+.row-utility .icon-text i {
     max-width: 30%;
     display: flex;
     justify-content: center;
@@ -107,7 +107,7 @@
     color: green;      
 }
 
-.icon-text p {
+.row-utility .icon-text p {
      max-width: 70%;
     margin: 0;
     color:green;
@@ -154,7 +154,7 @@
     margin-right: 5px;
 }
 
-.box{
+.locomotive2 .box{
     margin-left: 3px;
     width: 20px;
     height: 10px;
@@ -162,7 +162,7 @@
     border-radius: 50px 0px 5px 0px;
 }
 
-.text{
+.locomotive2 .text{
     font-size: 0.6rem;
     color: white;
     margin-left: 5px;
