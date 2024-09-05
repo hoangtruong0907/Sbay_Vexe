@@ -32,14 +32,14 @@ class AuthAdminController extends Controller
             'password.required' => 'Bạn chưa nhập mật khẩu'
         ]);
 
-        if($this->authRepository->login($validated)) {
+        $remember = $request->input('remember', false); //thêm checkbox remember me
+        if($this->authRepository->login($validated, $remember)) {
             toastr()->success('Đăng nhập thành công!');
             return redirect()->route('admin');
         }
 
         toastr()->error('Đăng nhập không thành công! ');
         return redirect()->back();
-
     }
 
     public function doLogout() {

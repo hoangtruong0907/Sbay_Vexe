@@ -154,7 +154,7 @@
             data-bs-parent="#item-bus-{{ $key }}">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
-                <ul class="nav nav-pills mb-1 pills-ticket-tab" role="tablist">
+                <ul class="nav nav-pills mb-1 pills-ticket-tab custom-nav" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#coupon-{{ $key }}" type="button" role="tab"
@@ -377,7 +377,7 @@
                                                     @endif
                                                 </small>
                                             </div>
-                                            <p class="mb-1">{{ $pickup['name'] }}</p>
+                                            <p class="mb-1 custom-width">{{ $pickup['name'] }}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -401,7 +401,7 @@
                                                 <small class="text-muted">
                                                 </small>
                                             </div>
-                                            <p class="mb-1">{{ $dropoff['name'] }}</p>
+                                            <p class="mb-1 custom-width">{{ $dropoff['name'] }}</p>
                                         </div>
                                     @endforeach
                                 </div>

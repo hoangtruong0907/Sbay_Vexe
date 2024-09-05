@@ -17,15 +17,12 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\admin\UserController;
 
 
-// Login Admin
-
-
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
     })->name('admin')->middleware(AuthMiddleware::class);
-
+    #login admin
     Route::get('/login', [AuthAdminController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
     Route::post('/doLogin', [AuthAdminController::class, 'doLogin'])->name('admin.doLogin');
     Route::get('/doLogout', [AuthAdminController::class, 'doLogout'])->name('admin.doLogout');
