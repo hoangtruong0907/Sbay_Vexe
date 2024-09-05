@@ -58,11 +58,11 @@
                     <div class="list-group-item list-group-item-action p-3" aria-current="true"
                         id="review-item-{{ $review['id'] }}">
                         <div class="d-flex w-100 justify-content-between">
-                            <div class="d-flex user-review">
+                            <div class="d-flex user-review custom-avatar">
                                 <img class="avatar-review"
                                     src="{{ !empty($review['social_avatar']) ? $review['social_avatar'] : asset('images/default-avatar-user.jpg') }}"
                                     alt="anh-dai-dien" srcset="">
-                                <div class="d-flex flex-column mt-1 ms-1">
+                                <div class="d-flex flex-column mt-1 ms-1 custom-1">
                                     <h6 class="mb-1">{{ $review['name'] ?? 'Người dùng ẩn danh' }}</h6>
                                     <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
                                         {!! renderRatingStars($review['rating']) !!}
@@ -102,7 +102,7 @@
                         
 
                         <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày
+                            <small class="date">Đã đi ngày
                                 {{ formatDateTime($review['approved_at'], 'd-m-Y') }}</small>
                             <div class="item-check-review ms-1">
                                 <i class="fa-solid fa-ticket"></i>
@@ -124,7 +124,7 @@
                                         <img class="avatar-review"
                                             src="{{ !empty($review['social_avatar']) ? $review['social_avatar'] : asset('images/default-avatar-user.jpg') }}"
                                             alt="anh-dai-dien" srcset="">
-                                        <div class="d-flex flex-column mt-1 ms-1">
+                                        <div class="d-flex flex-column mt-1 ms-1 custom-1">
                                             <h6 class="mb-1">{{ $review['name'] ?? 'Người dùng ẩn danh' }}</h6>
                                             <div class="d-flex align-items-center star-rating"
                                                 style="color: rgb(255, 199, 0);">
@@ -146,7 +146,7 @@
                                 </div>
 
                                 <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày
+                                    <small class="date">Đã đi ngày
                                         {{ formatDateTime($review['approved_at'], 'd-m-Y') }}</small>
                                     <div class="item-check-review ms-1">
                                         <i class="fa-solid fa-ticket"></i>

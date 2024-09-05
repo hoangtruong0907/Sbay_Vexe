@@ -5,18 +5,20 @@
         display: flex;
         align-items: center;
     }
+
     .right-steps-content .coach {
         padding: 24px 3px 12px;
     }
 
-.request{
-    display: flex !important;
-    flex-direction: column !important;
-}
-.right-steps-content{
-    display: flex;
-    justify-content: center;
-}
+    .request {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .right-steps-content {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media only screen and (max-width: 1040px) {
@@ -88,7 +90,6 @@
     }
 
     .action-l {
-        /* transform: scale(0.6) translateX(100px);  */
         margin-left: -18px;
         padding-bottom: 5px;
     }
@@ -148,33 +149,40 @@
         padding: 0px 4px !important;
         justify-content: center;
     }
-    .container-steps-train{
+
+    .container-steps-train {
         min-height: 100px;
     }
-    .wrap-steps-train{
+
+    .wrap-steps-train {
         display: flex;
         flex-direction: column;
     }
-    .left-steps-train{
-        width:100% !important;
-        display:flex ;
+
+    .left-steps-train {
+        width: 100% !important;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
-    .seat-groups-train{
+
+    .seat-groups-train {
         display: flex !important;
         flex-direction: row !important;
         width: 100%;
         justify-content: center;
     }
-    .seat-groups-train span{
+
+    .seat-groups-train span {
         display: none;
     }
-    .seat-info-train{
+
+    .seat-info-train {
         display: flex;
         flex-direction: column !important;
     }
-    .request{
+
+    .request {
         display: flex !important;
         flex-direction: column !important;
     }
@@ -243,33 +251,38 @@
     }
 
     /* Seat */
-    .shipSeat{
+    .shipSeat {
         display: flex;
         justify-content: center;
         flex-direction: column;
         text-align: center;
     }
 
-    .request{
+    .request {
         display: flex !important;
         flex-direction: column !important;
     }
-    .right-steps-content{
+
+    .right-steps-content {
         display: flex;
         justify-content: center;
     }
-    .itemAbate img{
+
+    .itemAbate img {
         width: 35%;
     }
-    .itemAbate i{
+
+    .itemAbate i {
         font-size: 60px;
     }
-    .w-container-train{
+
+    .w-container-train {
         width: 30%;
     }
 }
+
 @media (max-width: 600px) {
     .active-train .show {
-       margin-left: -20px;
-   }
+        margin-left: -20px;
+    }
 }

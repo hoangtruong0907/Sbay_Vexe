@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('admin.layouts.app')
 
 @section('title', 'User Management')
 @section('contents')
@@ -10,7 +10,7 @@
 
             <form action="{{ route('admin.user.update', $user->id) }}" method="POST" class="card-body row">
                 @csrf
-                <div class="col-6">
+                <div class="col-6 mt-3">
                     <label for="name">Tên</label>
                     <input type="text" value="{{ old('name', $user->name) }}" name="name" id="name"
                         class="form-control" style="background-color: #ffffff;">
@@ -18,7 +18,7 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-6 col-6 mt-3">
                     <label for="email">Email</label>
                     <input type="text" value="{{ old('email', $user->email) }}" name="email" id="email"
                         class="form-control" style="background-color: #ffffff;">
@@ -26,7 +26,7 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-6 mt-3">
                     <label for="phone">Số điện thoại</label>
                     <input type="text" value="{{ old('phone', $user->phone) }}" name="phone" id="phone"
                         class="form-control" style="background-color: #ffffff;">
