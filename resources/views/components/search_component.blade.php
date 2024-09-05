@@ -7,13 +7,13 @@
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-plane-tab" data-bs-toggle="pill" data-bs-target="#pills-plane" type="button"
-            role="tab" aria-controls="pills-plane" aria-selected="false"><i class="fa fa-plane"
-                aria-hidden="true"></i> <span>Máy bay</span></button>
+            role="tab" aria-controls="pills-plane" aria-selected="false"><i class="fa fa-plane" aria-hidden="true"></i>
+            <span>Máy bay</span></button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link {{ $key == 3 ? 'active' : '' }}" id="pills-train-tab" data-bs-toggle="pill"
-            data-bs-target="#pills-train" type="button" role="tab" aria-controls="pills-train"
-            aria-selected="false"><i class="fa fa-train" aria-hidden="true"></i> <span>Tàu hỏa</span></button>
+            data-bs-target="#pills-train" type="button" role="tab" aria-controls="pills-train" aria-selected="false"><i
+                class="fa fa-train" aria-hidden="true"></i> <span>Tàu hỏa</span></button>
     </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
@@ -120,8 +120,8 @@
                                             <input type="text" id="train_from" hidden
                                                 value="{!! $params->trainFrom->station_code ?? '' !!}" />
                                             <input type="text" id="train_from_input" placeholder="Ga Đi"
-                                                data-testid="SearchWidget.train_from"
-                                                data-id="SearchWidget.train_from" autocomplete="off"
+                                                data-testid="SearchWidget.train_from" data-id="SearchWidget.train_from"
+                                                autocomplete="off"
                                                 value="{!! $params->trainFrom->station_name ?? '' !!}">
                                         </div>
                                     </div>

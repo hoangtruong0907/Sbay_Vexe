@@ -45,18 +45,6 @@
         width: 90%;
     }
 }
-@media (max-width: 768px) {
-    .fg {
-        margin-top: -50px;
-    }
-    .relatedContent {
-        width: 690px;
-        margin-left: 35px;
-    }
-    .cta-button {
-        width: 90%;
-    }
-}
 @media (max-width: 375px) {
     .cta-button {
         width: 375px;

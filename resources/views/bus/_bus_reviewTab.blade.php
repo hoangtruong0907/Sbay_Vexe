@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày
+                            <small class="date">Đã đi ngày
                                 {{ formatDateTime($review['approved_at'], 'd-m-Y') }}</small>
                             <div class="item-check-review ms-1">
                                 <i class="fa-solid fa-ticket"></i>
@@ -136,7 +136,7 @@
                                 </div>
 
                                 <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày
+                                    <small class="date">Đã đi ngày
                                         {{ formatDateTime($review['approved_at'], 'd-m-Y') }}</small>
                                     <div class="item-check-review ms-1">
                                         <i class="fa-solid fa-ticket"></i>
