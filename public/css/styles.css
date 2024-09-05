@@ -60,12 +60,14 @@ a {
     font-weight: 500 !important;
     font-size: 14px !important;
 }
+
 .nav-airline .nav-item.active {
     background-color: #fff !important;
     color: #000 !important;
     border-bottom: 2px solid rgb(36, 116, 229);
     border-radius: 0px;
 }
+
 .ijyXqH {
     display: flex;
     -webkit-box-pack: center;
@@ -411,28 +413,34 @@ body .material-icons-wrapper.md-20 {
     justify-content: center;
     border-bottom: 1px solid #ccc;
 }
+
 .nav-airline .nav-link.active {
     background-color: #fff !important;
     color: #000 !important;
     border-bottom: 2px solid blue;
     border-radius: 0px;
 }
-.nav-items{
+
+.nav-items {
     overflow-x: auto;
     white-space: nowrap;
 }
-.nav-item{
+
+.nav-item {
     display: inline-block;
 }
-.nav-pills .nav-link{
+
+.nav-pills .nav-link {
     border-radius: 0px !important;
 }
+
 .nav {
     flex-wrap: nowrap !important;
     scrollbar-width: thin;
     scrollbar-color: #888 #e0e0e0;
     padding: 5px 0px 5px;
 }
+
 .ticket-detail-container .pills-ticket-tab .nav-item .nav-link.active {
     border: none;
     background-color: white;
@@ -1495,10 +1503,8 @@ body .material-icons-wrapper.md-20 {
 }
 
 .full-trip-l {
-    text-align: center;
-    display: flex;
     font-size: 14px;
-
+    width: 60%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -1830,12 +1836,14 @@ body .material-icons-wrapper.md-20 {
     border-radius: 0px;
     border-bottom: 1px solid #807d7d;
 }
+
 .tab-content .active {
     padding: 12px 12px 16px;
     border-radius: 0px 0px 12px 12px;
     background: white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
 }
+
 /* .tab-content>.active {
     display: none;
 } */
@@ -2570,7 +2578,8 @@ html [type=button] {
     -webkit-appearance: button;
 }
 
-.ant-btn, //rrr
+.ant-btn,
+//rrr
 .ant-btn:active,
 .ant-btn:focus {
     outline: 0;
@@ -2648,11 +2657,6 @@ body h6 {
     line-height: 21.48px;
 }
 
-
-
-
-/* 
-
 .border-coupon {
     height: 92px;
     width: 100%;
@@ -2662,7 +2666,7 @@ body h6 {
     align-items: center;
     padding: 12px;
     gap: 4px;
-} */
+}
 
 .flex-coupon {
     display: flex;
@@ -2693,7 +2697,6 @@ body h6 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 
 .wrap-expiry {
     display: flex;
@@ -2769,9 +2772,9 @@ body h6 {
 .wrap-steps-content {
     width: 100%;
     display: flex;
-} */
+}
 
-.filter-drop-pickup {
+*/ .filter-drop-pickup {
     line-height: initial !important;
     width: auto !important;
     font-weight: 700 !important;
@@ -2936,16 +2939,19 @@ body h6 {
     color: rgb(72, 72, 72);
     margin-bottom: 16px;
 }
-.contentdb{
+
+.contentdb {
     margin-left: 0px;
 }
+
 .popular-route-label {
     width: 80%;
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
     color: rgb(72, 72, 72);
-    margin: 0 auto 16px auto; /* Căn giữa phần tử bằng margin */
+    margin: 0 auto 16px auto;
+    /* Căn giữa phần tử bằng margin */
     /* margin-left: 0px; */
     display: block;
 }
@@ -3001,12 +3007,12 @@ body h6 {
 
 
 
-.hidden{
+.hidden {
     display: none;
 }
 
 .card-type {
-    margin-top:30px;
+    margin-top: 30px;
     text-align: left;
     font-size: 24px;
     font-weight: 500;
@@ -3050,7 +3056,8 @@ body h6 {
 
 /* Định dạng popup */
 .popup {
-    display: none; /* Ẩn popup mặc định */
+    display: none;
+    /* Ẩn popup mặc định */
     position: fixed;
     z-index: 999;
     left: 0;
@@ -3083,13 +3090,14 @@ body h6 {
     text-align: center;
     width: 80%;
     height: 700px;
-    max-width: 400px ;
+    max-width: 400px;
     max-height: 70vh;
 
 }
 
 
-.prev, .next {
+.prev,
+.next {
     position: absolute;
     top: 50%;
     color: #000;
@@ -3134,4 +3142,46 @@ body h6 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* fix bug bus */
+.kNCupL {
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 8px;
+    background-color: white;
+    position: relative;
+    width: 272px;
+    cursor: pointer;
+}
+
+.action-l {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    align-items: center;
+}
+
+.notify-trip-l {
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.action-l .ant-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    line-height: 18px !important;
+    border: none;
+    /* color: #000 !important; */
+}
+.steps-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0px 64px 0px;
 }
