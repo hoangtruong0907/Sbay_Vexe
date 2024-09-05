@@ -79,7 +79,7 @@
                     </div>
                     <div class="container-textSeat">
                         <div class="social-proof-l">7 người đặt trong 6 tiếng gần đây</div>
-                        <div class="seat-available">Còn 23 chỗ trống</div>
+                        <div class="seat-available-train">Còn 23 chỗ trống</div>
                     </div>
                     <div class="container-action">
                         <div class="action-p">
@@ -134,28 +134,28 @@
         <div id="content-step-1" class="step-content-detail " >
             <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
                 data-bs-parent="#item-bus-{{ $key }}">
-                <div class="steps-container">
-                    <div class="step step-active" id="step-1">
-                        <div class="step-icon step-icon-new">1</div>
+                <div class="steps-container-train">
+                    <div class="step-train step-active" id="step-1">
+                        <div class="step-icon-train step-icon-new">1</div>
                         Chỗ mong muốn
                     </div>
-                    <div class="step step-inactive" id="step-2">
-                        <div class="step-icon step-icon-2 step-content2">2</div>
+                    <div class="step-train step-inactive" id="step-2">
+                        <div class="step-icon-train step-icon-n step-content2">2</div>
                         Nhập thông tin
                     </div>
-                    <div class="step step-inactive" id="step-3">
-                        <div class="step-icon step-icon-2 step-content2">3</div>
+                    <div class="step-train step-inactive" id="step-3">
+                        <div class="step-icon-train step-icon-n step-content2">3</div>
                         Thanh toán
                     </div>
                 </div>
                 <!--  -->
-                <div class="card-body-new ">
+                <div class="card-body-train ">
 
-                    <div id="step1-{{ $key }}" class="wizard-step active">
+                    <div id="step1-{{ $key }}" class="wizard-step-train active-train">
 
 
-                        <div class="trust-message">
-                            <p class="trust-message-text"><i class="fas fa-shield-alt mx-2"></i> Vexere cam kết giữ đúng
+                        <div class="trust-message-train">
+                            <p class="trust-message-text-train"><i class="fas fa-shield-alt mx-2"></i> Vexere cam kết giữ đúng
                                 chỗ
                                 bạn đã chọn.</p>
                         </div>
@@ -170,19 +170,19 @@
                                 <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <button class=" bg-white border-0" type="button" id="button1">
 
-                                    <div class="kNCupL">
-                                        <div class="border-coupon ">
-                                            <div class="flex-coupon">
+                                    <div class="kNCupL-train">
+                                        <div class="border-coupon-train ">
+                                            <div class="flex-coupon-train">
                                                 <div class="count text-center">
                                                     <div class="">1</div>
                                                 </div>
                                                 <div class="text-coupon-train">
-                                                    <div class="coupon-exp">
+                                                    <div class="coupon-exp-train">
 
                                                         NGỒI MỀM
 
                                                     </div>
-                                                    <p class="text-coupon-reduce-b">50 chỗ - Từ 596k</p>
+                                                    <p class="text-coupon-train">50 chỗ - Từ 596k</p>
 
 
                                                 </div>
@@ -195,18 +195,18 @@
                             <div class="wrap-coupon-train">
                                 <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <button class="bg-white border-0" type="button" id="button2">
-                                    <div class="kNCupL">
+                                    <div class="kNCupL-train">
 
-                                        <div class="border-coupon">
-                                            <div class="flex-coupon ">
+                                        <div class="border-coupon-train">
+                                            <div class="flex-coupon-train ">
                                                 <div class="count text-center">
                                                     <div class="">2</div>
                                                 </div>
                                                 <div class="text-coupon-train">
-                                                    <div class="coupon-exp">
+                                                    <div class="coupon-exp-train">
                                                         Nằm khoang 4 </i>
                                                     </div>
-                                                    <p class="text-coupon-reduce-b">17 chỗ - Từ 801k</p>
+                                                    <p class="text-coupon-train">17 chỗ - Từ 801k</p>
 
                                                 </div>
                                             </div>
@@ -219,17 +219,17 @@
                                 <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
                                 <button class="bg-white border-0" type="button" id="button3">
 
-                                    <div class="kNCupL">
-                                        <div class="border-coupon">
-                                            <div class="flex-coupon ">
+                                    <div class="kNCupL-train">
+                                        <div class="border-coupon-train">
+                                            <div class="flex-coupon-train ">
                                                 <div class="count text-center">
                                                     <div class="">3</div>
                                                 </div>
                                                 <div class="text-coupon-train">
-                                                    <div class="coupon-exp">
+                                                    <div class="coupon-exp-train">
                                                         Nằm khoang 6 </i>
                                                     </div>
-                                                    <p class="text-coupon-reduce-b">25 chỗ - Từ 801k</p>
+                                                    <p class="text-coupon-train">25 chỗ - Từ 801k</p>
 
                                                 </div>
                                             </div>
@@ -246,13 +246,13 @@
                         </div>
 
                     </div>
-                    <div class="container-steps-content">
-                        <div class="wrap-steps-content">
-                            <div class="left-steps-content">
-                                <div class="seat-groups">
-                                    <div class="note">Chú thích</div>
-                                    <div class="seat-info">
-                                        <div class="seat-thumbnail seat-unavailable">
+                    <div class="container-steps-train">
+                        <div class="wrap-steps-train">
+                            <div class="left-steps-train">
+                                <div class="seat-groups-train">
+                                    <div class="note-train">Chú thích</div>
+                                    <div class="seat-info-train">
+                                        <div class="seat-thumbnail seat-unavailable-train">
                                             <svg width="60" height="52" viewBox="0 0 60 52" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 52px;">
                                                 <rect x="0" y="12" width="6" height="20" rx="4" fill="#333"
@@ -269,10 +269,10 @@
                                             </svg>
 
                                         </div>
-                                        <span class="seat-name">Không bán</span>
+                                        <span class="seat-name-train">Không bán</span>
                                     </div>
-                                    <div class="seat-info">
-                                        <div class="seat-thumbnail seat-selected">
+                                    <div class="seat-info-train">
+                                        <div class="seat-thumbnail seat-selected-train">
                                             <svg width="60" height="52" viewBox="0 0 60 52" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 52px;">
                                                 <rect x="0" y="12" width="6" height="20" rx="4" fill="#4CAF50"
@@ -289,10 +289,10 @@
                                             </svg>
 
                                         </div>
-                                        <span class="seat-name">Đang chọn</span>
+                                        <span class="seat-name-train">Đang chọn</span>
                                     </div>
-                                    <div class="seat-info">
-                                        <div class="seat-thumbnail seat-discount" color="#fba442">
+                                    <div class="seat-info-train">
+                                        <div class="seat-thumbnail seat-discount-train" color="#fba442">
                                             <svg width="60" height="52" viewBox="0 0 60 52" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 52px;">
                                                 <rect x="0" y="12" width="6" height="20" rx="4" fill="#FFF"
@@ -307,16 +307,16 @@
                                             </svg>
 
                                         </div>
-                                        <span class="seat-name">
-                                            <div class="seat-name-group">CABIN ĐƠN</div>
-                                            <div class="seat-original">
+                                        <span class="seat-name-train">
+                                            <div class="seat-name-group-train">CABIN ĐƠN</div>
+                                            <div class="seat-original-train">
                                                 <strong>315,000đ</strong>
-                                                <span class="seat-fare-original">350,000đ</span>
+                                                <span class="seat-fare-original-train">350,000đ</span>
                                             </div>
                                         </span>
                                     </div>
-                                    <div class="seat-info">
-                                        <div class="seat-thumbnail seat-group" color="#ae70ff">
+                                    <div class="seat-info-train">
+                                        <div class="seat-thumbnail seat-group-train" color="#ae70ff">
                                             <svg width="60" height="52" viewBox="0 0 60 52" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 52px;">
                                                 <rect x="0" y="12" width="6" height="20" rx="4" fill="#FFF"
@@ -331,23 +331,23 @@
                                             </svg>
 
                                         </div>
-                                        <span class="seat-name">
-                                            <div class="seat-name-group">CABIN ĐÔI</div>
-                                            <div class="seat-original">
+                                        <span class="seat-name-train">
+                                            <div class="seat-name-group-train">CABIN ĐÔI</div>
+                                            <div class="seat-original-train">
                                                 <strong>495,000đ</strong>
-                                                <span class="seat-fare-original">550,000đ</span>
+                                                <span class="seat-fare-original-train">550,000đ</span>
                                             </div>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="right-steps-content">
+                            <div class="right-steps-train">
                                 <div class="collapse mt-3 border border-1 rounded-3 p-2" id="content1">
-                                    <div class="wrap-coach">
-                                        <div class="coach">
+                                    <div class="wrap-coach-train">
+                                        <div class="coach-train">
                                             <table>
                                                 <tbody>
-                                                    <tr class="coach-row">
+                                                    <tr class="coach-row-train">
                                                         <td class="seat">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="true" disabled>
@@ -361,9 +361,9 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
+                                                    <tr class="coach-row-train">
                                                         <td class="seat">
-                                                            <div class="modal-choose-chair"
+                                                            <div class="modal-choose-chair-train"
                                                                 class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -386,7 +386,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -397,7 +397,7 @@
 
                                                         </td>
                                                         <td class="seat">
-                                                            <div class="modal-choose-chair"
+                                                            <div class="modal-choose-chair-train"
                                                                 class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -420,7 +420,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -431,7 +431,7 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
+                                                    <tr class="coach-row-train">
                                                         <td class="seat">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
@@ -455,7 +455,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -487,74 +487,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -565,7 +498,7 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
+                                                    <tr class="coach-row-train">
                                                         <td class="seat">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
@@ -589,7 +522,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -621,74 +554,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -699,7 +565,7 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
+                                                    <tr class="coach-row-train">
                                                         <td class="seat">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
@@ -723,7 +589,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -755,7 +621,141 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Row 2 -->
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                        <td class="seat">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Row 2 -->
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                        <td class="seat">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -769,12 +769,12 @@
                                             </table>
                                         </div>
 
-                                        <div class="coach">
+                                        <div class="coach-train">
                                             <table>
                                                 <tbody>
                                                     <!-- Row 1 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="true" disabled>
                                                                 <svg width="24" height="24" viewBox="0 0 24 24"
@@ -786,8 +786,8 @@
                                                     </tr>
 
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -810,7 +810,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -819,7 +819,7 @@
                                                                 </svg>
                                                             </div>
                                                         </td>
-                                                        <td class="seat">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -842,74 +842,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -920,8 +853,8 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -944,7 +877,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -953,7 +886,7 @@
                                                                 </svg>
                                                             </div>
                                                         </td>
-                                                        <td class="seat">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -976,74 +909,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
-                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
-                                                                        fill="transparent"></path>
-                                                                    <path class="icon-disabled"
-                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
-                                                                        fill="transparent"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </td>
-                                                        <td class="seat">
-                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
-                                                                data-disabled="false" color="#ae70ff">
-                                                                <svg width="48" height="32" viewBox="0 0 48 32"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                                    style="width: 48px; height: 32px;">
-                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
-                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                        stroke-linejoin="round">
-                                                                    </rect>
-                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -1054,8 +920,8 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -1078,7 +944,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -1087,7 +953,7 @@
                                                                 </svg>
                                                             </div>
                                                         </td>
-                                                        <td class="seat">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -1110,7 +976,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -1121,8 +987,8 @@
                                                         </td>
                                                     </tr>
                                                     <!-- Row 2 -->
-                                                    <tr class="coach-row">
-                                                        <td class="seat">
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -1145,7 +1011,7 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -1154,7 +1020,7 @@
                                                                 </svg>
                                                             </div>
                                                         </td>
-                                                        <td class="seat">
+                                                        <td class="seat-train">
                                                             <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
                                                                 data-disabled="false" color="#ae70ff">
                                                                 <svg width="48" height="32" viewBox="0 0 48 32"
@@ -1177,7 +1043,141 @@
                                                                         stroke-linejoin="round">
                                                                     </rect>
                                                                                         <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
-                                                                    <path class="icon-selected"
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Row 2 -->
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                        <td class="seat-train">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Row 2 -->
+                                                    <tr class="coach-row-train">
+                                                        <td class="seat-train">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
+                                                                        d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
+                                                                        fill="transparent"></path>
+                                                                    <path class="icon-disabled"
+                                                                        d="M27 12l-1.5-1.5L24 12l-1.5-1.5L21 12l1.5 1.5L21 15l1.5 1.5L24 15l1.5-1.5L27 15l1.5-1.5L27 12z"
+                                                                        fill="transparent"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </td>
+                                                        <td class="seat-train">
+                                                            <div class="Seat__SeatContainer-sc-6hr0u8-0 seat-container"
+                                                                data-disabled="false" color="#ae70ff">
+                                                                <svg width="48" height="32" viewBox="0 0 48 32"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                    style="width: 48px; height: 32px;">
+                                                                                        <rect x="0" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="6" y="4" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                    <rect x="6" y="16" width="36" height="12" rx="3"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <rect x="42" y="8" width="6" height="16" rx="4"
+                                                                        fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
+                                                                        stroke-linejoin="round">
+                                                                    </rect>
+                                                                                        <path d="M6 28h36v4H6z" fill="#B8B8B8"></path>
+                                                                    <path class="icon-selected-train"
                                                                         d="M24 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-1.5 6.5l-1.5-1.5 1.5-1.5 1.5 1.5-1.5 1.5z"
                                                                         fill="transparent"></path>
                                                                     <path class="icon-disabled"
@@ -1210,7 +1210,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1227,7 +1227,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1249,7 +1249,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1266,7 +1266,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1293,7 +1293,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1310,7 +1310,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1330,7 +1330,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1347,7 +1347,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1379,7 +1379,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1396,7 +1396,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1418,7 +1418,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1435,7 +1435,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1456,7 +1456,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1473,7 +1473,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1499,7 +1499,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1516,7 +1516,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1538,7 +1538,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1555,7 +1555,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1576,7 +1576,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1593,7 +1593,7 @@
                                                         <rect x="5.75" y="27.75" width="16.5" height="6.5" rx="2.25"
                                                             fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
                                                             stroke-linejoin="round"></rect>
-                                                        <path class="icon-selected"
+                                                        <path class="icon-selected-train"
                                                             d="M14 8.333A6.67 6.67 0 0 0 7.333 15 6.67 6.67 0 0 0 14 21.667 6.67 6.67 0 0 0 20.667 15 6.669 6.669 0 0 0 14 8.333zm-1.333 10L9.334 15l.94-.94 2.393 2.387 5.06-5.06.94.946-6 6z"
                                                             fill="transparent"></path>
                                                         <path class="icon-disabled"
@@ -1613,9 +1613,9 @@
 
 
                     </div>
-                    <!-- <div id="step2-{{ $key }}" class="wizard-step">
+                    <!-- <div id="step2-{{ $key }}" class="wizard-step-train">
                         <div class="wrap-card-body">
-                            <div class="steps-container">
+                            <div class="steps-container-train">
                                 <div class="step step-active">
                                     <div class="step-icon step-icon-step2"><i class="far fa-check-circle"></i></div>
                                     <div class="step-content step-content1">
@@ -1632,13 +1632,13 @@
                                 </div>
                             </div>
                             <div class="trust-message">
-                                <p class="trust-message-text"><i class="fas fa-shield-alt"></i> An tâm được đón đúng
+                                <p class="trust-message-text-train"><i class="fas fa-shield-alt"></i> An tâm được đón đúng
                                     nơi, trả đúng chỗ đã chọn và dễ dàng thay đổi khi cần.</p>
                             </div>
                         </div>
-                        <div class="container-steps-content">
+                        <div class="container-steps-train">
                             <div class="wrap-steps-content">
-                                <div class="left-steps-content">
+                                <div class="left-steps-train">
                                     <div class="wrap-pick-up-point pickup-point">
                                         <div class="container-wrap-pick-up-point">
                                             <p class="text-pick-up-point">Điểm đón</p>
@@ -1694,7 +1694,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="right-steps-content">
+                                <div class="right-steps-train">
                                     <div class="wrap-pick-up-point">
                                         <div class="container-wrap-pick-up-point">
                                             <p class="text-pick-up-point">Điểm trả</p>
@@ -1753,12 +1753,12 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="total-amount">
-                        <div class="left-total-amount">
+                    <div class="total-amount-train">
+                        <div class="left-total-amount-train">
                             <button onclick="navigateStep('previous')"> Quay lại</button>
                         </div>
-                        <div class="right-total-amount ">
-                            <div class="text-total-amout"> <span> Tổng cộng: </span><span class="right-total">0đ</span>
+                        <div class="right-total-amount-train ">
+                            <div class="text-total-amout"> <span> Tổng cộng: </span><span class="right-total-train">0đ</span>
                             </div>
                             <div>
                                 <button onclick="navigateStep('next')">Tiếp tục <i
@@ -1778,32 +1778,32 @@
             <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
                 data-bs-parent="#item-bus-{{ $key }}">
 
-                <div class="steps-container">
-                    <div class="step step-active" id="step-1">
-                        <div class="step-icon step-icon-2 step-content2">1</div>
+                <div class="steps-container-train">
+                    <div class="step-train step-active" id="step-1">
+                        <div class="step-icon-train step-icon-n step-content2">1</div>
                         Chỗ mong muốn
                     </div>
-                    <div class="step step-inactive" id="step-2">
-                        <div class="step-icon step-icon-new">2</div>
+                    <div class="step-train step-inactive" id="step-2">
+                        <div class="step-icon-train step-icon-new">2</div>
                         Nhập thông tin
                     </div>
-                    <div class="step step-inactive" id="step-3">
-                        <div class="step-icon step-icon-2 step-content2">3</div>
+                    <div class="step-train step-inactive" id="step-3">
+                        <div class="step-icon-train step-icon-n step-content2">3</div>
                         Thanh toán
                     </div>
                 </div>
 
                 <!-- hehe -->
-                <div class=" card-body-new">
-                    <div class="trust-message">
-                        <p class="trust-message-text"><i class="fa-solid fa-circle-check mx-2"
+                <div class="card-body-train">
+                    <div class="trust-message-train">
+                        <p class="trust-message-text-train"><i class="fa-solid fa-circle-check mx-2"
                                ></i> Đừng
                             quên
                             tối ưu hóa theo giá <b class="text-success">ưu đãi đối tượng</b> bằng cách chọn đúng loại
                             hành khách
                         </p>
                     </div>
-                    <div id="step1-{{ $key }}" class="wizard-step active">
+                    <div id="step1-{{ $key }}" class="wizard-step-train active-train">
 
 
                         <div class="content-information w-full gap-5">
@@ -1815,7 +1815,7 @@
                                     Chọn nhanh từ danh sách đã lưu
                                 </div>
                                 <div class="d-flex mb-3 ">
-                                    <select class="bg-custom me-auto p-2 text-primary border-0 fw-bold rounded-2 p-2">
+                                    <select class="bg-custom-train me-auto p-2 text-primary border-0 fw-bold rounded-2 p-2">
                                         <option>Người lớn</option>
                                         <option>Trẻ em</option>
                                         <option>Người cao tuổi</option>
@@ -1824,7 +1824,7 @@
                                     </select>
                                 </div>
 
-                                <div class="d-flex flex-column train-width gap-3">
+                                <div class="d-flex flex-column train-width-train gap-3">
                                     <div class="input-train">
                                         <select class="form-select rounded-2" id="selectToa">
                                             <option value="">Toa 1</option>
@@ -1847,8 +1847,8 @@
                                 <h5>Thông tin liên hệ</h5>
                                 <span>Hệ thống sẽ xác nhận đặt chỗ, hoàn tiền hoặc đổi lịch qua thông tin này </span>
 
-                                <div class="container-contract mt-4">
-                                    <div class="input-group">
+                                <div class="container-contract-train mt-4">
+                                    <div class="input-group  mb-4">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <span class="flag-icon">🇻🇳</span> (+84)
@@ -1892,15 +1892,17 @@
                                 </div>
                             </div>
 
+
+
                         </div>
 
-                        <div class="total-amount">
-                            <div class="left-total-amount">
+                        <div class="total-amount-train">
+                            <div class="left-total-amount-train">
                                 <button onclick="navigateStep('previous')"> Quay lại</button>
                             </div>
-                            <div class="right-total-amount ">
+                            <div class="right-total-amount-train ">
                                 <div class="text-total-amout"> <span> Tổng cộng: </span><span
-                                        class="right-total">0đ</span></div>
+                                        class="right-total-train">0đ</span></div>
                                 <div>
                                     <button onclick="navigateStep('next')">Tiếp tục <i
                                             class="fa-solid fa-arrow-right"></i></button>
@@ -1920,7 +1922,7 @@
             <div class="container ticket-detail-container ps-3 pe-3">
                 <ul class="nav-items nav nav-pills mb-1 pills-ticket-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
+                        <button class="nav-link active-train" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#coupon-{{ $key }}" type="button" role="tab"
                             aria-controls="coupon-{{ $key }}" aria-selected="true">Các loại ghế (3)
                         </button>
@@ -1946,7 +1948,7 @@
 
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
-                    <div class="tab-pane fade show active coupon-tab" id="coupon-{{ $key }}" role="tabpanel"
+                    <div class="tab-pane fade show active-train coupon-tab" id="coupon-{{ $key }}" role="tabpanel"
                         aria-labelledby="coupon-tab" tabindex="0"">
                         <div class=" d-flex gap-2 ">
                         <div class="coupon-container">
@@ -2166,7 +2168,7 @@
                             </div>
                             <ul class="nav nav-pills mb-1 pill-rating-filter" role="tablist">
                                 <li class="nav-item filter-rating" role="presentation">
-                                    <button class="nav-link active" data-bs-toggle="pill">Tất cả
+                                    <button class="nav-link active-train" data-bs-toggle="pill">Tất cả
                                         (100)</button>
                                 </li>
                                 <li class="nav-item filter-rating" role="presentation">
@@ -2385,12 +2387,12 @@
         </div>
     </div>
     <!-- <div class="total-amount">
-        <div class="left-total-amount">
+        <div class="left-total-amount-train">
             <button onclick="nextStep(1)" data-current="0" data-tracking-event="completed_seat_selection"
             type="button" class="ant-btn footer-nextstep ant-btn-primary"><span><i
             class="fa-solid fa-arrow-left"></i> Quay lại </span></button>
         </div>
-        <div class="right-total-amount">
+        <div class="right-total-amount-train">
             Tổng cộng: <div class="right-total">0đ</div>
             <button onclick="nextStep(2)" data-current="0" data-tracking-event="completed_seat_selection"
             type="button" class="ant-btn footer-nextstep ant-btn-primary"><span>Tiếp tục <i
@@ -2405,28 +2407,28 @@
     <div id="content-step-3" class="step-content">
 
 
-            <div class="steps-container">
-                <div class="step step-active" id="step-1">
-                    <div class="step-icon step-icon-2 step-content2">1</div>
+            <div class="steps-container-train">
+                <div class="step-train step-active" id="step-1">
+                    <div class="step-icon-train step-icon-n step-content2">1</div>
                     Chỗ mong muốn
                 </div>
-                <div class="step step-inactive" id="step-2">
-                    <div class="step-icon step-icon-2 step-content2 ">2</div>
+                <div class="step-train step-inactive" id="step-2">
+                    <div class="step-icon-train step-icon-n step-content2 ">2</div>
                     Nhập thông tin
                 </div>
-                <div class="step step-inactive" id="step-3">
-                    <div class="step-icon step-icon-new">3</div>
+                <div class="step-train step-inactive" id="step-3">
+                    <div class="step-icon-train step-icon-new">3</div>
                     Thanh toán
                 </div>
             </div>
 
-            <div class=" card-body-new  bg-white">
+            <div class=" card-body-train bg-white">
 
-                <div id="step1-{{ $key }}" class="wizard-step active">
+                <div id="step1-{{ $key }}" class="wizard-step-train active-train">
 
 
                     <div class="d-flex justify-content-center m-2 ">
-                        <p class="trust-message-text "><i class="fa-solid fa-address-book mx-2 "></i>Vé sẽ được gửi qua:
+                        <p class="trust-message-text-train "><i class="fa-solid fa-address-book mx-2 "></i>Vé sẽ được gửi qua:
                             <span class="text-primary">nguyennhuly@gmail.com</span>
                         </p>
                     </div>
@@ -2444,13 +2446,13 @@
                                 <i class="fa-solid fa-qrcode fs-1 text-primary p-3"></i>
                                 <div class="d-flex flex-column px-2 flex-grow-1">
                                     <b>Chuyển khoản bằng mã QR, hỗ trợ nhiều ví điện tử & hơn 42 ngân hàng</b>
-                                    <div class="w-container">
-                                        <span class="w-content bg-primary text-wrap my-2 px- py-1">+46</span>
+                                    <div class="w-container-train">
+                                        <span class="w-content-train bg-primary text-wrap my-2 px- py-1">+46</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="detail-box">
+                            <div class="detail-box-train">
                                 <span class="w-75 fw-light p-2">An toàn, tiết kiệm thời gian nhập thông tin, hạn chế sai
                                     sót</span>
                                 <button class="w-25 py-2 mx-2 bg-primary rounded-2 border-0 text-light">Thử
@@ -2461,11 +2463,11 @@
 
                             <div class="qrcode-item my-3 ">
                                 <div class=" row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <img src="https://cdn.techinasia.com/data/images/be3b6924cfc96137896c8649dc890926.png"
-                                            alt="" class="img-fluid">
+                                            alt="" class="img-fluid-train">
                                     </div>
-                                    <div class="item-col col-8 text-start">
+                                    <div class="item-col-train col-8 text-start">
                                         <b>Ví MoMo</b>
                                         <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng MoMo</p>
                                     </div>
@@ -2475,11 +2477,11 @@
                                 </div>
 
                                 <div class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <img src="https://1.bp.blogspot.com/-n_jPjNl97nw/YIJ78WnloPI/AAAAAAAACks/xPjLQ2YpcXwyPf64C708UExQOrJitxHSgCNcBGAsYHQ/s2048/ShopeePay.png"
-                                            alt="" class="img-fluid">
+                                            alt="" class="img-fluid-train">
                                     </div>
-                                    <div class=" item-col col-8 text-start">
+                                    <div class=" item-col-train col-8 text-start">
                                         <b>Ví ShoppePay</b>
                                         <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng ShoppePay
                                             </br>
@@ -2494,11 +2496,11 @@
 
 
                                 <div class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <img src="https://th.bing.com/th/id/OIP.pn3RUm1xk1HiAxWIgC6CIwAAAA?rs=1&pid=ImgDetMain"
-                                            alt="" class="img-fluid">
+                                            alt="" class="img-fluid-train">
                                     </div>
-                                    <div class="item-col col-8 text-start">
+                                    <div class="item-col-train col-8 text-start">
                                         <b>Thanh toán bằng VNPay trên ứng dụng Mobile banking/Ví VNPay</b>
                                         <p class="fw-light">Thiết bị phải cài đặt ứng dụng Mobile banking hoặc Ví
                                             VNPay</br>
@@ -2512,11 +2514,11 @@
                                 </div>
 
                                 <div class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <img src="https://cardtot.com/wp-content/uploads/2020/01/zalopay.png" alt=""
-                                            class="img-fluid">
+                                            class="img-fluid-train">
                                     </div>
-                                    <div class="item-col col-8 text-start">
+                                    <div class="item-col-train col-8 text-start">
                                         <b>Ví ZaloPay</b>
                                         <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng ZaloPay</br>
                                             <span class="text-success">Giảm 15K và giảm 35K khi nhập mã ZLPVXR lần lượt
@@ -2531,10 +2533,10 @@
 
 
                                 <div class="row row-train d-flex align-items-center text-center  border-bottom pt-2 pb-1 ">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <i class="fa-solid fa-credit-card text-primary"></i>
                                     </div>
-                                    <div class="item-col col-8 text-start">
+                                    <div class="item-col-train col-8 text-start">
                                         <b>Thẻ thanh toán quốc tế</b>
                                         <p class="fw-light">Thẻ Visa, MasterCard, JCB</p>
                                     </div>
@@ -2544,24 +2546,24 @@
                                 </div>
 
                                 <div class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1 ">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <i class="fa-solid fa-qrcode text-primary"></i>
                                     </div>
-                                    <div class="item-col col-8 text-start">
+                                    <div class="item-col-train col-8 text-start">
                                         <b>QR chuyển khoản/Ví điện tử</b>
                                         <p class="fw-light">Không cần nhập thông tin chính, Xác nhận thanh toán tức thì,
                                             nhanh chóng và ít sai sót</p>
-                                        <div class="imgCustom gap-2 mb-4">
+                                        <div class="img-custom gap-2 mb-4">
                                             <img src="https://cdn.techinasia.com/data/images/be3b6924cfc96137896c8649dc890926.png"
-                                                alt="" class="img-fluid">
+                                                alt="" class="img-fluid-train">
                                             <img src="https://th.bing.com/th/id/R.d539c6a7401fe0134efb6bde9264dc13?rik=c7KyMzQxq3MgcQ&pid=ImgRaw&r=0"
-                                                alt="" class="img-fluid">
+                                                alt="" class="img-fluid-train">
                                             <img src="https://play-lh.googleusercontent.com/rNSXUqGnK-ljK6qUdUmy7h_sDrMOzZ1nPwAUAwshsmPaQuwNGn0Xwj-psgFrBSJOHg"
-                                                alt="" class="img-fluid">
+                                                alt="" class="img-fluid-train">
                                             <img src="https://inkythuatso.com/uploads/images/2021/12/logo-vib-inkythuatso-3-21-13-43-27.jpg"
-                                                alt="" class="img-fluid">
+                                                alt="" class="img-fluid-train">
                                             <img src="https://th.bing.com/th/id/OIP.zyrA1Yc325NGPWzN6rCBeQHaHa?rs=1&pid=ImgDetMain"
-                                                alt="" class="img-fluid">
+                                                alt="" class="img-fluid-train">
                                         </div>
 
                                     </div>
@@ -2572,10 +2574,10 @@
                                 </div>
 
                                 <div class="row row-train d-flex align-items-center text-center  border-bottom pt-2 pb-1 ">
-                                    <div class="col col-train d-flex justify-content-center itemAbate">
+                                    <div class="col col-train d-flex justify-content-center item-abate">
                                         <i class="fa-solid fa-wallet text-primary "></i>
                                     </div>
-                                    <div class="item-col col-8 text-start">
+                                    <div class="item-col-train col-8 text-start">
                                         <b>Thẻ ATM nội địa / Internet Banking</b>
                                         <p class="fw-light">Tài khoản phải có đăng ký Internet banking</p>
                                     </div>
@@ -2615,9 +2617,9 @@
 
 
 <!--
-            <div id="step3-{{ $key }}" class="wizard-step">
+            <div id="step3-{{ $key }}" class="wizard-step-train">
                 <div class="wrap-card-body">
-                    <div class="steps-container">
+                    <div class="steps-container-train">
                         <div class="step step-active">
                             <div class="step-icon step-icon-step2"><i class="far fa-check-circle"></i></div>
                             <div class="step-content step-content1">
@@ -2634,18 +2636,18 @@
                         </div>
                     </div>
                     <div class="trust-message">
-                        <p class="trust-message-text"><i class="fas fa-shield-alt"></i> An tâm được đón đúng
+                        <p class="trust-message-text-train"><i class="fas fa-shield-alt"></i> An tâm được đón đúng
                             nơi, trả đúng chỗ đã chọn và dễ dàng thay đổi khi cần.</p>
                     </div>
                 </div>
 
             </div> -->
-            <div class="total-amount">
-                <div class="left-total-amount">
+            <div class="total-amount-train">
+                <div class="left-total-amount-train">
                     <button onclick="navigateStep('previous')"> Quay lại</button>
                 </div>
-                <div class="right-total-amount ">
-                    <div class="text-total-amout"> <span> Tổng cộng: </span><span class="right-total">0đ</span></div>
+                <div class="right-total-amount-train ">
+                    <div class="text-total-amout"> <span> Tổng cộng: </span><span class="right-total-train">0đ</span></div>
                     <div>
                         <button onclick="navigateStep('next')">Tiếp tục <i class="fa-solid fa-arrow-right"></i></button>
                     </div>

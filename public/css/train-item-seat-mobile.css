@@ -1,31 +1,31 @@
 @media (max-width: 576px) {
-    .steps-container {
+    .steps-container-train {
         padding: 0px 4px !important;
         justify-content: center;
     }
-    .container-steps-content{
+    .container-steps-train{
         min-height: 100px;
     }
-    .wrap-steps-content{
+    .wrap-steps-train{
         display: flex;
         flex-direction: column;
     }
-    .left-steps-content{
-        width:100%;
+    .left-steps-train{
+        width:100% !important;
         display:flex ;
         justify-content: center;
         align-items: center;
     }
-    .seat-groups{
+    .seat-groups-train{
         display: flex !important;
         flex-direction: row !important;
         width: 100%;
         justify-content: center;
     }
-    .seat-groups span{
+    .seat-groups-train span{
         display: none;
     }
-    .seat-info{
+    .seat-info-train{
         display: flex;
         flex-direction: column !important;
     }
@@ -39,7 +39,7 @@
 
 
 @media (max-width: 500px) {
-    .w-container{
+    .w-container-train{
         width: 25%;
     }
     .container-qr .qrcode-container{
@@ -51,7 +51,7 @@
 
 
 @media (max-width: 1100px) {
-    .note {
+    .note-train {
         flex-direction: column;
         text-align: center;
         display: flex;
@@ -93,13 +93,13 @@
     .itemAbate i{
         font-size: 60px;
     }
-    .w-container{
+    .w-container-train{
         width: 30%;
     }
 
 }
 @media (max-width: 768px) {
-    .note {
+    .note-train {
         flex-direction: column;
         text-align: center;
         display: flex;
@@ -107,7 +107,7 @@
     }
 }
 @media (max-width: 600px) {
-    .active .show {
+    .active-train .show {
        margin-left: -20px;
    }
 }

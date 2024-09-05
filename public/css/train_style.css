@@ -33,9 +33,9 @@
 .notify-trip-l {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;     
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     width: 100%;
 }
 
@@ -56,7 +56,7 @@
 .coupon-container .wrap-couponTrain{
     align-items: stretch;
     width: 100%;
-    display: flex;   
+    display: flex;
 }
 
 .coupon-container .wrap-couponTrain button{
@@ -82,7 +82,7 @@
 .content-train .train-items p {
     padding-top: 2px;
     background-color: rgb(206, 206, 206);
-    border-radius: 5px;    
+    border-radius: 5px;
 }
 
 .row-utility{
@@ -104,7 +104,7 @@
     justify-content: center;
     min-width: 50px;
     font-size: 1.5rem;
-    color: green;      
+    color: green;
 }
 
 .row-utility .icon-text p {
@@ -132,8 +132,8 @@
 }
 
 .button-default {
-    background-color: white; 
-    color: black; 
+    background-color: white;
+    color: black;
 }
 
 .svg-location{
