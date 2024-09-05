@@ -357,9 +357,9 @@
         font-size: 12px;
     }
 
-    .flex-column {
+    /* .flex-column {
         padding-left: 20px;
-    }
+    } */
 
     .badge {
         display: none;
