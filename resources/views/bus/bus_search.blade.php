@@ -5,6 +5,8 @@
 <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bus-styles.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bus-mobile.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
     integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -2515,7 +2517,7 @@
     const API_KEY = 'p7U21BFnKFbt2EpD4yGpXO5Aymi31mkI';
 
     let addressModal;
-    let dropoffModal; 
+    let dropoffModal;
 
     function searchAddress() {
         const input = document.getElementById('addressInput').value;
@@ -2554,8 +2556,8 @@
         }
     }
     function searchDropoffAddress() {
-    const input = document.getElementById('dropoffInput').value; 
-    const dropoffList = document.getElementById('dropoffList'); 
+    const input = document.getElementById('dropoffInput').value;
+    const dropoffList = document.getElementById('dropoffList');
     dropoffList.innerHTML = '';
 
     if (input.length > 0) {
@@ -2573,7 +2575,7 @@
                             localStorage.setItem('selectedDropoffAddress', address);
                             alert(`Điểm trả đã chọn: ${address}`);
                             dropoffModal.hide();
-                            updateSelectedDropoffAddress(); 
+                            updateSelectedDropoffAddress();
                         };
                         dropoffList.appendChild(li);
                     });
@@ -2613,7 +2615,7 @@
             }
         });
         updateSelectedAddress();
-        updateSelectedDropoffAddress(); 
+        updateSelectedDropoffAddress();
     });
 
 
@@ -2637,17 +2639,17 @@
     function updateSelectedDropoffAddress() {
     const savedDropoffAddress = localStorage.getItem('selectedDropoffAddress');
     const displayDropoffAddressElement = document.getElementById('displayDropoffAddress');
-    const changeDropoffLinkElement = document.getElementById('changeDropoffLink'); 
+    const changeDropoffLinkElement = document.getElementById('changeDropoffLink');
 
     if (savedDropoffAddress && displayDropoffAddressElement) {
-        displayDropoffAddressElement.textContent = savedDropoffAddress; 
+        displayDropoffAddressElement.textContent = savedDropoffAddress;
         if (changeDropoffLinkElement) {
-            changeDropoffLinkElement.style.display = 'inline'; 
+            changeDropoffLinkElement.style.display = 'inline';
         }
     } else {
         displayDropoffAddressElement.textContent = 'Nhập điểm trả tại đây';
         if (changeDropoffLinkElement) {
-            changeDropoffLinkElement.style.display = 'none'; 
+            changeDropoffLinkElement.style.display = 'none';
         }
     }
 }
