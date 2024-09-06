@@ -1774,7 +1774,7 @@ Thanh toán</div>
                     <div class="d-flex justify-content-center m-2 ">
                         <p class="trust-message-text-train "><i class="fa-solid fa-address-book mx-2 "></i>Vé sẽ được
                             gửi qua:
-                            <span class="text-primary">nguyennhuly@gmail.com</span>
+                            <span class="text-primary">nguyenvana@gmail.com</span>
                         </p>
                     </div>
 

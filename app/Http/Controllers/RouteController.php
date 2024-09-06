@@ -32,6 +32,25 @@ class RouteController extends Controller
         $this->client_id = env('VEXERE_CLIENT_ID');
         $this->client_secret = env('VEXERE_CLIENT_SECRET');
     }
+
+    public function showForm() {
+        $keys = [
+            (object)[
+                'phone' => '0966105411',
+                'email' => 'nguyenvana@gmail.com',
+                'id' => '08937466267184'
+            ],
+            (object)[
+                'phone' => '0987654321',
+                'email' => 'tranb@gmail.com',
+                'id' => '0123456789'
+            ]
+        ];
+
+        // Trả về view và truyền mảng $keys vào
+        return view('your-view-file', compact('keys'));
+    }
+
     public function index()
     {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
@@ -69,7 +88,7 @@ class RouteController extends Controller
 
         return view('index', [
             "list_areas" => $all_area['bus'],
-            "list_areas_train" => $all_area['train']['train_stations_list'],
+            "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             'allPosts' => $paginator,
             'typeMapping' => $typeMapping,
             'postTypes' => $postTypes,
@@ -152,7 +171,7 @@ class RouteController extends Controller
             "fromtoPlace" => $request->query('q', null),
             "list_routes" => $list_routes,
             "list_areas" => $all_area['bus'],
-            "list_areas_train" => $all_area['train']['train_stations_list'],
+            "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             "params" => $params,
             'currentPage' => $res_routes['page'],
             'pageSize' => $res_routes['page_size'],
