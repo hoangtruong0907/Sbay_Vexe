@@ -2024,7 +2024,7 @@ Thanh toán</div>
                     <div class="tab-pane fade show active-train coupon-tab" id="coupon-{{ $key }}" role="tabpanel"
                         aria-labelledby="coupon-tab" tabindex="0"">
                         <div class=" d-flex gap-2 ">
-                        <div class=" coupon-container">
+                        <div class="container-select-train">
                         <div class="wrap-couponTrain">
                             <button class="wrap-coupon btn border py-2 " data-btn-id="btn1"
                                 onclick="highlightNumbers([1, 2, 3], 'btn1')">

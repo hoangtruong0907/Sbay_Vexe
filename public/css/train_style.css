@@ -42,8 +42,16 @@
 .activetrain {
     color: #007bff;
 }
-
-.coupon-containerTrain {
+.container-select-train{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; 
+    padding: 5px 0px 20px;
+    margin: 0px;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}
+.container-select-train {
     gap: 5px;
     display: flex;
     flex-direction: row;
@@ -53,15 +61,15 @@
     scroll-behavior: smooth;
 }
 
-.coupon-containerTrain .wrap-couponTrain {
+.container-select-train .wrap-couponTrain {
     align-items: stretch;
-    width: 100%;
     display: flex;
+    flex-shrink: 0; 
+    margin-right: 10px;
 }
 
-.coupon-containerTrain .wrap-couponTrain button {
+.container-select-train .wrap-couponTrain button {
     display: flex;
-    width: 150px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
