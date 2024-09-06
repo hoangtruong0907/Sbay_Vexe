@@ -398,8 +398,7 @@
 
                 </div>
                 <!--Right bottom -->
-                <div
-                    class="d-flex justify-content-between bg-white border border-light-subtle rounded-2 w-100 p-3 card-border-radius">
+                <div class="d-flex justify-content-between bg-white border border-light-subtle rounded-2 w-100 p-3 card-border-radius">
                     <div class="d-flex flex-column gap-3 w-100">
                         <div class="fw-bold fs-5 mb-0 text-black">Thông tin chuyến đi</div>
                         <div class="d-flex flex-column gap-3">

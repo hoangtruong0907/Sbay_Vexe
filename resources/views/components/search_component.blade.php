@@ -6,14 +6,14 @@
                 khách</span></button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-plane-tab" data-bs-toggle="pill" data-bs-target="#pills-plane" type="button"
+        <button class="nav-link {{ $key == 2 ? 'active' : '' }}" id="pills-plane-tab" data-bs-toggle="pill" data-bs-target="#pills-plane" type="button"
             role="tab" aria-controls="pills-plane" aria-selected="false"><i class="fa fa-plane"
                 aria-hidden="true"></i> <span>Máy bay</span></button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link {{ $key == 3 ? 'active' : '' }}" id="pills-train-tab" data-bs-toggle="pill"
-            data-bs-target="#pills-train" type="button" role="tab" aria-controls="pills-train"
-            aria-selected="false"><i class="fa fa-train" aria-hidden="true"></i> <span>Tàu hỏa</span></button>
+            data-bs-target="#pills-train" type="button" role="tab" aria-controls="pills-train" aria-selected="false"><i
+                class="fa fa-train" aria-hidden="true"></i> <span>Tàu hỏa</span></button>
     </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
@@ -23,21 +23,23 @@
             <div class="left-ant-row-flex">
                 <div class="wrap-left-ant-row-flex" style="position: relative;">
                     <div class="departure-bus-flex flex-sum-left">
-                        <div class="custom-input-col custom-bus-from-input-col">
+                        <div class="custom-input-col custom-bus-from-input-col w-100">
                             <div class="custom-select-wrapper custom-bus-from-select-wrapper">
-                                <div class="custom-select-container custom-bus-from-select">
-                                    <div class="custom-input-container">
+                                <div class="custom-select-container custom-bus-from-select w-100">
+                                    <div class="custom-input-container select-slim select-from-input">
                                         <div class="custom-icon-container">
                                             <img class="custom-pickup-icon"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
                                                 alt="pickup-icon" width="24" height="24">
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="bus_from" hidden
-                                                value="{!! $params->busFrom->id ?? '' !!}" />
-                                            <input type="text" id="bus_from_input" placeholder="Điểm Đi"
-                                                data-testid="SearchWidget.bus_from" data-id="SearchWidget.bus_from"
-                                                autocomplete="off" value="{!! $params->busFrom->name ?? '' !!}">
+                                            <input type="text" id="bus_from" hidden value="{!! $params->busFrom->id ?? '' !!}" />
+                                            <select class="bus_from_input" id="bus_from_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas as $city)
+                                                    <option value="{{ $city['id'] }}" data-name="{{ $city['name'] }}">{{ $city['name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu bus-dropdown-menu">
@@ -56,19 +58,21 @@
                         </div>
                     </div>
                     <div class="destination-bus-flex flex-sum-left">
-                        <div class="custom-input-col custom-bus-to-input-col">
+                        <div class="custom-input-col custom-bus-to-input-col w-100">
                             <div class="custom-select-wrapper custom-bus-to-select-wrapper">
-                                <div class="custom-select-container custom-bus-to-select">
-                                    <div class="custom-input-container">
+                                <div class="custom-select-container custom-bus-to-select w-100">
+                                    <div class="custom-input-container select-slim select-to-input w-100">
                                         <div class="custom-icon-container">
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="bus_to" hidden
-                                                value="{!! $params->busTo->id ?? '' !!}" />
-                                            <input type="text" id="bus_to_input" placeholder="Điểm Đến"
-                                                data-testid="SearchWidget.bus_to" data-id="SearchWidget.bus_to"
-                                                autocomplete="off" value="{!! $params->busTo->name ?? '' !!}">
+                                            <input type="text" id="bus_to" hidden value="{!! $params->busTo->id ?? '' !!}" />
+                                            <select class="bus_to_input" id="bus_to_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas as $city)
+                                                    <option value="{{ $city['id'] }}" data-name="{{ $city['name'] }}">{{ $city['name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu bus-dropdown-menu">
@@ -99,7 +103,80 @@
         </div>
     </div>
     <div class="tab-pane fade" id="pills-plane" role="tabpanel" aria-labelledby="pills-plane-tab" tabindex="0">
-
+    <div class="ant-row-flex search-widget-inner-content">
+            <div class="left-ant-row-flex">
+                <div class="wrap-left-ant-row-flex" style="position: relative;">
+                    <div class="departure-plane-flex flex-sum-left">
+                        <div class="custom-input-col custom-plane-from-input-col">
+                            <div class="custom-select-wrapper custom-plane-from-select-wrapper">
+                                <div class="custom-select-container custom-plane-from-select">
+                                    <div class="custom-input-container">
+                                        <div class="custom-icon-container">
+                                            <img class="custom-pickup-icon"
+                                                src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
+                                                alt="pickup-icon" width="24" height="24">
+                                        </div>
+                                        <div class="custom-input-section">
+                                            <input type="text" id="plane_from_input" placeholder="Nơi Xuất Phát"
+                                                data-testid="SearchWidget.plane_from"
+                                                data-id="SearchWidget.plane_from">
+                                        </div>
+                                    </div>
+                                    <ul class="custom-dropdown-menu plane-dropdown-menu">
+                                        <li class="custom-dropdown-item-group ">
+                                            <div class="custom-dropdown-item-group-title">Thành phố sân bay phổ
+                                                biến</div>
+                                            <ul class="custom-dropdown-item-list" id="dropdown_list_plane_from"></ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-swap-container" id="plane_swap_button">
+                            <div class="custom-switch-icon-container">
+                                <i class="fa fa-exchange" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="destination-plane-flex flex-sum-left">
+                        <div class="custom-input-col custom-plane-to-input-col">
+                            <div class="custom-select-wrapper custom-plane-to-select-wrapper">
+                                <div class="custom-select-container custom-plane-to-select">
+                                    <div class="custom-input-container">
+                                        <div class="custom-icon-container">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div class="custom-input-section">
+                                            <input type="text" id="plane_to_input" placeholder="Nơi Đến"
+                                                data-testid="SearchWidget.plane_to" data-id="SearchWidget.plane_to">
+                                        </div>
+                                    </div>
+                                    <ul class="custom-dropdown-menu plane-dropdown-menu">
+                                        <li class="custom-dropdown-item-group">
+                                            <div class="custom-dropdown-item-group-title">Thành phố sân bay phổ
+                                                biến</div>
+                                            <ul class="custom-dropdown-item-list" id="dropdown_list_plane_to">
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="departure-plane-date flex-sum-left">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <input type="date" name=""
+                            value="{{ $params->dateTo ?? '' }}" class="date-input" placeholder="">
+                    </div>
+                    <div class="departure-plane-date-right flex-sum-left">
+                        <i class="fa fa-plus" aria-hidden="true"></i> <input type="text" name=""
+                            class="date-input" placeholder="Thêm ngày về">
+                    </div>
+                </div>
+            </div>
+            <div class="right-search-widget-inner-content">
+                <button>Tìm kiếm</button>
+            </div>
+        </div>
     </div>
     <div class="tab-pane fade {{ $key == 3 ? 'show active' : '' }}" id="pills-train" role="tabpanel"
         aria-labelledby="pills-train-tab" tabindex="0">
@@ -107,10 +184,10 @@
             <div class="left-ant-row-flex">
                 <div class="wrap-left-ant-row-flex" style="position: relative;">
                     <div class="departure-train-flex flex-sum-left">
-                        <div class="custom-input-col custom-train-from-input-col">
+                        <div class="custom-input-col custom-train-from-input-col w-100">
                             <div class="custom-select-wrapper custom-train-from-select-wrapper">
                                 <div class="custom-select-container custom-train-from-select">
-                                    <div class="custom-input-container">
+                                    <div class="custom-input-container select-slim select-from-input">
                                         <div class="custom-icon-container">
                                             <img class="custom-pickup-icon"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
@@ -119,10 +196,12 @@
                                         <div class="custom-input-section">
                                             <input type="text" id="train_from" hidden
                                                 value="{!! $params->trainFrom->station_code ?? '' !!}" />
-                                            <input type="text" id="train_from_input" placeholder="Ga Đi"
-                                                data-testid="SearchWidget.train_from"
-                                                data-id="SearchWidget.train_from" autocomplete="off"
-                                                value="{!! $params->trainFrom->station_name ?? '' !!}">
+                                            <select class="train_from_input" id="train_from_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas_train as $station)
+                                                    <option value="{{ $station['station_code'] }}" data-name="{{ $station['station_name'] }}">{{ $station['station_code'] }} - {{ $station['station_name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu train-dropdown-menu">
@@ -140,19 +219,21 @@
                         </div>
                     </div>
                     <div class="destination-train-flex flex-sum-left">
-                        <div class="custom-input-col custom-train-to-input-col">
+                        <div class="custom-input-col custom-train-to-input-col w-100">
                             <div class="custom-select-wrapper custom-train-to-select-wrapper">
                                 <div class="custom-select-container custom-train-to-select">
-                                    <div class="custom-input-container">
+                                    <div class="custom-input-container select-slim select-to-input w-100">
                                         <div class="custom-icon-container">
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="train_to" hidden
-                                                value="{!! $params->trainTo->station_code ?? '' !!}" />
-                                            <input type="text" id="train_to_input" placeholder="Ga Đến"
-                                                data-testid="SearchWidget.train_to" data-id="SearchWidget.train_to"
-                                                autocomplete="off" value="{!! $params->trainTo->station_name ?? '' !!}">
+                                            <input type="text" id="train_to" hidden value="{!! $params->trainTo->station_code ?? '' !!}" />
+                                            <select class="train_to_input" id="train_to_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas_train as $station)
+                                                    <option value="{{ $station['station_code'] }}" data-name="{{ $station['station_name'] }}">{{ $station['station_code'] }} - {{ $station['station_name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu train-dropdown-menu">

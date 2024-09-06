@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('admin.layouts.app')
 
 @section('title', ' User Management')
 @section('contents')
@@ -7,7 +7,7 @@
             <div class="page-title">
                 <h3>{{$title ?? 'Chưa có title'}}
                     <a href="{{route('admin.user.create')}}" class="btn btn-sm btn-outline-primary float-end"><i class="bi bi-plus"></i>
-                        Add user</a>
+                        Thêm tài khoản</a>
                 </h3>
             </div>
             <div class="box box-primary">
@@ -16,12 +16,12 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
+                                <th>Tên</th>
                                 <th>Email</th>
-                                <th>Role</th>
-                                <th>Type</th>
-                                <th>Status</th>
-                                <th></th>
+                                <th>Vai trò</th>
+                                <th>Trạng thái</th> 
+                                <th>Ngày cập nhật</th> 
+                                <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,23 +29,22 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->role }}</td>
+                                    <td>{{ $item->email }}</td> 
                                     <td>
                                         @if ($item->role == 2)
-                                            admin
+                                            Quản trị viên
                                         @elseif($item->role == 1)
-                                            user
+                                            Người dùng
                                         @endif
                                     </td>
                                     <td>
                                         @if ($item->status == '1')
-                                            <span class="badge bg-success">On</span>
+                                            <span class="badge bg-success">Kích hoạt</span>
                                         @else
-                                            <span class="badge bg-danger">Off</span>
+                                            <span class="badge bg-danger">Khoá</span>
                                         @endif
                                     </td>
-                                    
+                                    <td>{{ \Carbon\Carbon::parse($item->updated_at)->format('d/m/Y-H:i') }}</td>                                </td> 
                                     <td class="text-end">
                                         <a href="{{route('admin.user.edit', $item->id)}}" class="btn btn-outline-info btn-rounded"><i
                                                 class="fas fa-pen"></i></a>
@@ -59,6 +58,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+    </div> 
 @endsection
