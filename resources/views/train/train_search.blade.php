@@ -19,7 +19,6 @@
         <div class="container-airlinetickets">
             @include('components.search_component', [
                 'params' => $params,
-                'params' => $params,
                 'key' => 3,
             ])
         </div>
