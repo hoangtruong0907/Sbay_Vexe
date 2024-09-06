@@ -35,7 +35,7 @@
     }
     .d-flex .justify-content-between .mt-2 .d-flex .flex-column {
         font-size: 12px;
-    }    
+    }
     .custom-1 {
         padding-left: 20px;
     }
@@ -589,10 +589,10 @@
     }
 }
 @media (max-width: 600px) {
-    .d-flex.row {
+    /* .d-flex.row {
         flex-direction: column;
         font-size: 13px;
-    }    
+    }     */
     .tab-pane .fade .pickup-tab .active .show {
         margin-left: -20px;
     }
