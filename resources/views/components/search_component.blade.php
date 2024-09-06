@@ -23,21 +23,23 @@
             <div class="left-ant-row-flex">
                 <div class="wrap-left-ant-row-flex" style="position: relative;">
                     <div class="departure-bus-flex flex-sum-left">
-                        <div class="custom-input-col custom-bus-from-input-col">
+                        <div class="custom-input-col custom-bus-from-input-col w-100">
                             <div class="custom-select-wrapper custom-bus-from-select-wrapper">
-                                <div class="custom-select-container custom-bus-from-select">
-                                    <div class="custom-input-container">
+                                <div class="custom-select-container custom-bus-from-select w-100">
+                                    <div class="custom-input-container select-slim select-from-input">
                                         <div class="custom-icon-container">
                                             <img class="custom-pickup-icon"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
                                                 alt="pickup-icon" width="24" height="24">
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="bus_from" hidden
-                                                value="{!! $params->busFrom->id ?? '' !!}" />
-                                            <input type="text" id="bus_from_input" placeholder="Điểm Đi"
-                                                data-testid="SearchWidget.bus_from" data-id="SearchWidget.bus_from"
-                                                autocomplete="off" value="{!! $params->busFrom->name ?? '' !!}">
+                                            <input type="text" id="bus_from" hidden value="{!! $params->busFrom->id ?? '' !!}" />
+                                            <select class="bus_from_input" id="bus_from_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas as $city)
+                                                    <option value="{{ $city['id'] }}" data-name="{{ $city['name'] }}">{{ $city['name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu bus-dropdown-menu">
@@ -56,19 +58,21 @@
                         </div>
                     </div>
                     <div class="destination-bus-flex flex-sum-left">
-                        <div class="custom-input-col custom-bus-to-input-col">
+                        <div class="custom-input-col custom-bus-to-input-col w-100">
                             <div class="custom-select-wrapper custom-bus-to-select-wrapper">
-                                <div class="custom-select-container custom-bus-to-select">
-                                    <div class="custom-input-container">
+                                <div class="custom-select-container custom-bus-to-select w-100">
+                                    <div class="custom-input-container select-slim select-to-input w-100">
                                         <div class="custom-icon-container">
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="bus_to" hidden
-                                                value="{!! $params->busTo->id ?? '' !!}" />
-                                            <input type="text" id="bus_to_input" placeholder="Điểm Đến"
-                                                data-testid="SearchWidget.bus_to" data-id="SearchWidget.bus_to"
-                                                autocomplete="off" value="{!! $params->busTo->name ?? '' !!}">
+                                            <input type="text" id="bus_to" hidden value="{!! $params->busTo->id ?? '' !!}" />
+                                            <select class="bus_to_input" id="bus_to_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas as $city)
+                                                    <option value="{{ $city['id'] }}" data-name="{{ $city['name'] }}">{{ $city['name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu bus-dropdown-menu">
@@ -180,10 +184,10 @@
             <div class="left-ant-row-flex">
                 <div class="wrap-left-ant-row-flex" style="position: relative;">
                     <div class="departure-train-flex flex-sum-left">
-                        <div class="custom-input-col custom-train-from-input-col">
+                        <div class="custom-input-col custom-train-from-input-col w-100">
                             <div class="custom-select-wrapper custom-train-from-select-wrapper">
                                 <div class="custom-select-container custom-train-from-select">
-                                    <div class="custom-input-container">
+                                    <div class="custom-input-container select-slim select-from-input">
                                         <div class="custom-icon-container">
                                             <img class="custom-pickup-icon"
                                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
@@ -192,10 +196,12 @@
                                         <div class="custom-input-section">
                                             <input type="text" id="train_from" hidden
                                                 value="{!! $params->trainFrom->station_code ?? '' !!}" />
-                                            <input type="text" id="train_from_input" placeholder="Ga Đi"
-                                                data-testid="SearchWidget.train_from" data-id="SearchWidget.train_from"
-                                                autocomplete="off"
-                                                value="{!! $params->trainFrom->station_name ?? '' !!}">
+                                            <select class="train_from_input" id="train_from_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas_train as $station)
+                                                    <option value="{{ $station['station_code'] }}" data-name="{{ $station['station_name'] }}">{{ $station['station_code'] }} - {{ $station['station_name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu train-dropdown-menu">
@@ -213,19 +219,21 @@
                         </div>
                     </div>
                     <div class="destination-train-flex flex-sum-left">
-                        <div class="custom-input-col custom-train-to-input-col">
+                        <div class="custom-input-col custom-train-to-input-col w-100">
                             <div class="custom-select-wrapper custom-train-to-select-wrapper">
                                 <div class="custom-select-container custom-train-to-select">
-                                    <div class="custom-input-container">
+                                    <div class="custom-input-container select-slim select-to-input w-100">
                                         <div class="custom-icon-container">
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="custom-input-section">
-                                            <input type="text" id="train_to" hidden
-                                                value="{!! $params->trainTo->station_code ?? '' !!}" />
-                                            <input type="text" id="train_to_input" placeholder="Ga Đến"
-                                                data-testid="SearchWidget.train_to" data-id="SearchWidget.train_to"
-                                                autocomplete="off" value="{!! $params->trainTo->station_name ?? '' !!}">
+                                            <input type="text" id="train_to" hidden value="{!! $params->trainTo->station_code ?? '' !!}" />
+                                            <select class="train_to_input" id="train_to_input">
+                                                <option data-placeholder="true"></option>
+                                                @foreach ($list_areas_train as $station)
+                                                    <option value="{{ $station['station_code'] }}" data-name="{{ $station['station_name'] }}">{{ $station['station_code'] }} - {{ $station['station_name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <ul class="custom-dropdown-menu train-dropdown-menu">

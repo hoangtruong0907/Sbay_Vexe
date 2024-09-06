@@ -69,7 +69,7 @@ class RouteController extends Controller
 
         return view('index', [
             "list_areas" => $all_area['bus'],
-            "list_areas_train" => $all_area['train']['train_stations_list'],
+            "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             'allPosts' => $paginator,
             'typeMapping' => $typeMapping,
             'postTypes' => $postTypes,
@@ -152,7 +152,7 @@ class RouteController extends Controller
             "fromtoPlace" => $request->query('q', null),
             "list_routes" => $list_routes,
             "list_areas" => $all_area['bus'],
-            "list_areas_train" => $all_area['train']['train_stations_list'],
+            "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             "params" => $params,
             'currentPage' => $res_routes['page'],
             'pageSize' => $res_routes['page_size'],
