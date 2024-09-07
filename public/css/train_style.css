@@ -42,15 +42,17 @@
 .activetrain {
     color: #007bff;
 }
-.container-select-train{
+
+.container-select-train {
     display: flex;
     flex-direction: row;
-    overflow-x: auto; 
+    overflow-x: auto;
     padding: 5px 0px 20px;
     margin: 0px;
     scroll-behavior: smooth;
     white-space: nowrap;
 }
+
 .container-select-train {
     gap: 5px;
     display: flex;
@@ -64,7 +66,7 @@
 .container-select-train .wrap-couponTrain {
     align-items: stretch;
     display: flex;
-    flex-shrink: 0; 
+    flex-shrink: 0;
     margin-right: 10px;
 }
 
@@ -314,8 +316,12 @@
     display: none;
 }
 
+.wrap-coupon-train.active {
+    border: 2px solid #0056b3;
+    border-radius: 8px;
+}
 
-.wrap-coupon-train .kNCupL-train {
+.wrap-coupon-train .carriage-train {
     -webkit-box-align: stretch;
     align-items: stretch;
     border: 1px solid rgb(224, 224, 224);
@@ -427,6 +433,7 @@
     gap: 10px;
 }
 
+
 .seat-info-train .seat-unavailable-train svg rect {
     stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
@@ -462,6 +469,11 @@
 
 .coach-row-train .seat-unavailable-train {
     cursor: not-allowed;
+}
+
+.coach-row-train .seat, .coach-row-train .train-hl {
+    padding: 4px;
+    border: 0 !important;
 }
 
 .seat-info-train .seat-name-train {
@@ -510,6 +522,17 @@
     padding: 20px 8px 12px;
     background: rgb(242, 242, 242);
     border-radius: 25px 25px 5px 5px;
+}
+
+.wrap-coach-train .train-hl {
+    height: 32px;
+    width: 40px;
+}
+
+.wrap-steps-train .right-steps-train.scroll-carriage {
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .coach-row-train .seat-train .modal-choose-chair-train {
@@ -781,7 +804,8 @@
 
 /* Định dạng cho nội dung các bước */
 .step-content {
-    display: none; /* Mặc định ẩn nội dung */
+    display: none;
+    /* Mặc định ẩn nội dung */
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -803,7 +827,8 @@
 
 /* Định dạng cho nội dung các bước */
 .step-content-custom {
-    display: none; /* Mặc định ẩn nội dung */
+    display: none;
+    /* Mặc định ẩn nội dung */
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
