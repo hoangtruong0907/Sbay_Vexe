@@ -22,7 +22,7 @@
 
         </li>
         <li>
-            <a href="tables.html"><i class="fas fa-table"></i> Bảng</a>
+            <a href="{{route('admin.banner')}}"><i class="fas fa-table"></i> Bảng</a>
         </li>
         <li>
             <a href="charts.html"><i class="fas fa-chart-bar"></i> Biểu đồ</a>

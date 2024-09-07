@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 use App\Helpers\helpers;
+use App\Models\Banner;
 use Carbon\Carbon;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cache;
@@ -67,12 +68,15 @@ class RouteController extends Controller
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
 
+        $banner_current = Banner::first();
+
         return view('index', [
             "list_areas" => $all_area['bus'],
             "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             'allPosts' => $paginator,
             'typeMapping' => $typeMapping,
             'postTypes' => $postTypes,
+            'banner_current' => $banner_current,
         ]);
     }
 

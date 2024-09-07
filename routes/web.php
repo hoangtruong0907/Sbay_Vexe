@@ -48,6 +48,13 @@ Route::prefix('/admin')->group(function () {
     });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
+
+    // Banner
+    Route::prefix('/banner')->group(function () {
+        Route::get('/', [ImageUploadController::class, 'showBanner'])->name('admin.banner');
+        Route::post('/update', [ImageUploadController::class, 'updateBanner'])->name('admin.banner.update');
+    });
+
 });
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
