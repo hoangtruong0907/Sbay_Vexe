@@ -7,18 +7,12 @@
             <a href="dashboard.html"><i class="fas fa-home"></i> Bảng điều khiển</a>
         </li>
         <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
             <a href="forms.html"><i class="fas fa-file-alt"></i> Biểu mẫu</a>
-=======
+
             <a href="{{route('admin.user')}}"><i class="fas fa-user-friends"></i> User Management</a>
->>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b
-=======
-            <a href="{{route('admin.user')}}"><i class="fas fa-user-friends"></i> User Management</a>
->>>>>>> eeaaceba9f6a4a8e6ef5d12ee2c1df77c903713b
         </li>
         <li>
-        <a href="{{ route('admin.blogs.index') }}"><i class="fas fa-file-alt"></i> Blog</a>
+            <a href="{{ route('admin.blogs.index') }}"><i class="fas fa-file-alt"></i> Blog</a>
 
         </li>
         <li>
@@ -31,7 +25,8 @@
             <a href="icons.html"><i class="fas fa-icons"></i> Biểu tượng</a>
         </li>
         <li>
-            <a href="#uielementsmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-layer-group"></i> Thành phần UI</a>
+            <a href="#uielementsmenu" data-bs-toggle="collapse" aria-expanded="false"
+                class="dropdown-toggle no-caret-down"><i class="fas fa-layer-group"></i> Thành phần UI</a>
             <ul class="collapse list-unstyled" id="uielementsmenu">
                 <li>
                     <a href="ui-buttons.html"><i class="fas fa-angle-right"></i> nút</a>
@@ -54,7 +49,8 @@
             </ul>
         </li>
         <li>
-            <a href="#authmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-user-shield"></i> Xác thực</a>
+            <a href="#authmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i
+                    class="fas fa-user-shield"></i> Xác thực</a>
             <ul class="collapse list-unstyled" id="authmenu">
                 <li>
                     <a href="login.html"><i class="fas fa-lock"></i> Đăng nhâp</a>
@@ -68,7 +64,8 @@
             </ul>
         </li>
         <li>
-            <a href="#pagesmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-copy"></i>Trang</a>
+            <a href="#pagesmenu" data-bs-toggle="collapse" aria-expanded="false"
+                class="dropdown-toggle no-caret-down"><i class="fas fa-copy"></i>Trang</a>
             <ul class="collapse list-unstyled" id="pagesmenu">
                 <li>
                     <a href="blank.html"><i class="fas fa-file"></i> Trang trống</a>
