@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('admin.layouts.app')
 
 @section('title', ' Dashboard')
 @section('contents')
@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 page-header">
-                    <div class="page-pretitle">Overview</div>
-                    <h2 class="page-title">Dashboard</h2>
+                    <div class="page-pretitle">Tổng quan</div>
+                    <h2 class="page-title">Bảng điều khiển</h2>
                 </div>
             </div>
             <div class="row">
@@ -22,15 +22,15 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="detail">
-                                        <p class="detail-subtitle">New Orders</p>
+                                        <p class="detail-subtitle">Đơn hàng mới</p>
                                         <span class="number">6,267</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="footer">
-                                <hr />
+                                <br>
                                 <div class="stats">
-                                    <i class="fas fa-calendar"></i> For this Week
+                                    <i class="fas fa-calendar"></i> Trong tuần này
                                 </div>
                             </div>
                         </div>
@@ -47,15 +47,15 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="detail">
-                                        <p class="detail-subtitle">Revenue</p>
-                                        <span class="number">$180,900</span>
+                                        <p class="detail-subtitle">Doanh thu</p>
+                                        <span class="number">$98,000</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="footer">
-                                <hr />
+                                <br>
                                 <div class="stats">
-                                    <i class="fas fa-calendar"></i> For this Month
+                                    <i class="fas fa-calendar"></i> Trong tháng này
                                 </div>
                             </div>
                         </div>
@@ -72,15 +72,15 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="detail">
-                                        <p class="detail-subtitle">Page views</p>
+                                        <p class="detail-subtitle">Lượt xem </p>
                                         <span class="number">28,210</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="footer">
-                                <hr />
+                                <br>
                                 <div class="stats">
-                                    <i class="fas fa-stopwatch"></i> For this Month
+                                    <i class="fas fa-stopwatch"></i> Trong tháng này
                                 </div>
                             </div>
                         </div>
@@ -97,15 +97,15 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="detail">
-                                        <p class="detail-subtitle">Support Request</p>
+                                        <p class="detail-subtitle">Yêu cầu</p>
                                         <span class="number">75</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="footer">
-                                <hr />
+                                <br>
                                 <div class="stats">
-                                    <i class="fas fa-envelope-open-text"></i> For this week
+                                    <i class="fas fa-envelope-open-text"></i>Trong tuần này
                                 </div>
                             </div>
                         </div>

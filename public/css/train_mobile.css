@@ -1,0 +1,288 @@
+@media (max-width: 1100px) {
+    .note-train {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .right-steps-content .coach {
+        padding: 24px 3px 12px;
+    }
+
+    .request {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .right-steps-content {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .location-route-svg-l {
+        display: none;
+    }
+
+    .from-to-content-l {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15%;
+    }
+
+    .svg-location {
+        display: block;
+    }
+
+    .content-l {
+        display: block;
+    }
+
+    .content-to-info-l {
+        text-align: end;
+        display: block;
+        width: 50%;
+        font-size: 1.5rem;
+    }
+
+    .place-l {
+        overflow: visible;
+        width: 100%;
+    }
+
+    .duration-l {
+        text-align: center;
+    }
+
+    .action-l button {
+        font-size: 1rem;
+    }
+
+    .container-textSeat {
+        display: block;
+        font-size: 14px;
+    }
+
+    .full-trip-l-train {
+        display: none;
+    }
+
+    /* Detail */
+    .container-l {
+        width: 97%;
+        padding: 40px;
+        margin-left: 10px;
+        padding: 10px;
+
+    }
+
+    .ticket-info-l {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .action-p {
+        position: relative;
+    }
+
+    .action-l {
+        margin-left: -18px;
+        padding-bottom: 5px;
+    }
+
+    .social-proof-l {
+        position: relative;
+        margin-left: -150px;
+        left: 0px;
+        display: none;
+    }
+
+    .notify-trip-l {
+        position: absolute;
+        right: 50px;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 12px;
+        white-space: nowrap;
+        text-align: right;
+        max-width: 40vw;
+    }
+
+    .ticket-image-l {
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+
+    .ticket-image-l img {
+        width: 60%;
+        height: 60%;
+        object-fit: revert;
+        border-radius: 50%;
+        margin-top: 4px;
+    }
+
+    .content-has-cop {
+        font-size: 10px;
+        margin-right: 0;
+        position: relative;
+        left: 8px;
+        top: -10px;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+
+    .seat-available {
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .steps-container-train {
+        padding: 0px 4px !important;
+        justify-content: center;
+    }
+
+    .container-steps-train {
+        min-height: 100px;
+    }
+
+    .wrap-steps-train {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-steps-train {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .seat-groups-train {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .seat-groups-train span {
+        display: none;
+    }
+
+    .seat-info-train {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .request {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .note-train {
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+
+}
+
+@media (max-width: 500px) {
+    .w-container {
+        width: 25%;
+    }
+
+    .container-qr .qrcode-container {
+        max-width: 90%;
+    }
+}
+
+@media only screen and (max-width : 430px) {
+    .train-items p {
+        width: 19px;
+    }
+
+    .row-utility {
+        display: block;
+    }
+
+    .icon-text i {
+        font-size: 1.3rem
+    }
+
+    .wrap-couponTrain button {
+        height: 45px;
+    }
+
+    .content-train h4 {
+        font-size: 1.4rem;
+    }
+
+    .content-has-cop {
+        margin-right: 40%;
+    }
+}
+
+@media (max-width : 375px) {
+    .train-items p {
+        width: 18px;
+    }
+
+    .row-utility {
+        display: block;
+    }
+
+    .icon-text i {
+        font-size: 1.2rem
+    }
+
+    .content-has-cop {
+        margin-right: 40%;
+    }
+
+    /* Seat */
+    .shipSeat {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .request {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .right-steps-content {
+        display: flex;
+        justify-content: center;
+    }
+
+    .itemAbate img {
+        width: 35%;
+    }
+
+    .itemAbate i {
+        font-size: 60px;
+    }
+
+    .w-container-train {
+        width: 30%;
+    }
+}
+
+@media (max-width: 600px) {
+    .active-train .show {
+        margin-left: -20px;
+    }
+}
