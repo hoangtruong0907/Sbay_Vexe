@@ -160,58 +160,6 @@ class RouteController extends Controller
             'totalPages' => $res_routes['total_pages']
         ]);
     }
-    public function trainRouteSearch(Request $request)
-    {
-        $trainTo = $request->query('train_to', '');
-        $trainFrom = $request->query('train_from', '');
-        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : '';
-        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
-        $quantity = 2;
-        $page = 1;
-        $pagesize = 10;
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-    
-        if (!$token) {
-            return response()->json(['error' => 'Failed to retrieve token.'], 500);
-        }
-    
-        $all_area = $this->getAllRoute($token);
-    
-        if (isset($all_area['train']) && isset($all_area['train']['train_stations_list'])) {
-            $train_stations_list = collect($all_area['train']['train_stations_list']);
-        } else {
-            return response()->json(['error' => 'Train stations list not found.'], 500);
-        }
-    
-        $urlRoute = $this->route_url . '/v2/agent/train/route?from=' . $trainFrom . '&to=' . $trainTo . '&time=' . $dateTo . '&quantity=' . $quantity . '&page=' . $page . '&pagesize=' . $pagesize;
-    
-        // Apply filters
-        $queryParams = $this->getRouteFilters($request);
-    
-        foreach ($queryParams as $key => $value) {
-            if ($value !== null) {
-                $urlRoute .= '&' . $key . '=' . $value;
-            }
-        }
-    
-        $params = (object)[
-            'trainFrom' => (object)$train_stations_list->where('station_code', $trainFrom)->first(),
-            'trainTo' => (object)$train_stations_list->where('station_code', $trainTo)->first(),
-            'dateToTrain' => $dateTo,
-            'dateFromTrain' => $dateFrom,
-        ];
-    
-        $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 20);
-    
-        return view("train.train_search", [
-            "list_areas" => $all_area['bus'],
-            'list_routes_train' => $list_routes,
-            'list_areas_train' => $train_stations_list,
-            'params' => $params,
-        ]);
-    }
-    
-
 
     private function getRouteFilters(Request $request)
     {
