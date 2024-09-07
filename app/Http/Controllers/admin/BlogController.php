@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\PostType;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -33,13 +34,23 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show($slug)
-    {
-        $blog = $this->blogRepository->findBySlug($slug);
-        $relatedContent = $this->blogRepository->getRelatedContent();
-        $showButtonOnly = $blog->type === 'blog';
-
-        return view('admin.blogs.index', compact('blog', 'relatedContent', 'showButtonOnly'));
+    public function show($id)
+    {  
+        try { 
+            $blog = $this->blogRepository->findById($id); 
+            return response()->json([
+                'title' => $blog->title,
+                'type' => $blog->type,
+                'author' => $blog->author,
+                'created_at' => $blog->created_at->format('d/m/Y H:i'),
+                'updated_at' => $blog->updated_at->format('d/m/Y H:i'),
+                'status' => $blog->status,
+                'content' => $blog->content,
+                'picture' => Storage::url($blog->picture), 
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Không thể lấy thông tin chi tiết bài đăng.'], 500);
+        }   
     }
 
     public function edit($id)
@@ -61,14 +72,8 @@ class BlogController extends Controller
         $data = $this->prepareBlogData($request);
         $this->blogRepository->update($blog, $data);
 
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog successfully updated.');
-    }
-
-    public function destroy($id)
-    {
-        $this->blogRepository->deleteById($id);
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog successfully deleted.');
-    }
+        return redirect()->route('admin.blogs.index')->with('success', 'Cập nhập bài viết thành công!');
+    } 
 
     public function showContent($title)
     {
@@ -82,17 +87,17 @@ class BlogController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
         $this->validateBlogData($request);
         $type = $this->handleNewType($request);
        
         $data = $this->prepareBlogData($request);
         $data['type'] = $type;
-        $data['author'] = Auth::user()->name;
+        $data['author'] = Auth::user()->name ?? '';
         $this->blogRepository->create($data);
 
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog đã được tạo thành công.');
-    }
+        return redirect()->route('admin.blogs.index')->with('success', 'Thêm bài viết thành công.');
+    } 
 
     // Các phương thức phụ trợ
     private function paginatePosts($allPosts, $perPage)
@@ -121,31 +126,6 @@ class BlogController extends Controller
             'new_type' => 'nullable|string|max:255'
         ]);
     }
-
-    private function prepareBlogData($request)
-    {
-        $data = $request->only(['title', 'content', 'author', 'status', 'type']);
-        $data['title'] = trim($data['title']);
-        $data['content'] = trim($data['content']);
-        $data['author'] = Auth::user()->name;
-
-        if ($request->hasFile('picture')) {
-            $data['picture'] = $request->file('picture')->store('public/blog_pictures');
-        }
-
-        $data['slug'] = \Illuminate\Support\Str::slug($data['title'], '-');
-
-        return $data;
-    }
-
-    private function getFilteredRelatedContent($blog)
-    {
-        $relatedContent = $this->blogRepository->getRelatedContent();
-        return $relatedContent->filter(function ($item) use ($blog) {
-            return $item->id !== $blog->id;
-        });
-    }
-
     private function handleNewType($request)
     {
         $type = $request->input('type');
@@ -166,5 +146,40 @@ class BlogController extends Controller
             }
         }
         return $type;
+    }  
+
+    private function prepareBlogData($request)
+    {
+        $data = $request->only(['title', 'content', 'author', 'status', 'type']);
+        $data['title'] = trim($data['title']);
+        $data['content'] = trim($data['content']);
+        $data['author'] = Auth::user()->name ?? '';
+
+        if ($request->hasFile('picture')) {
+            $data['picture'] = $request->file('picture')->store('public/blog_pictures');
+        }
+
+        $data['slug'] = \Illuminate\Support\Str::slug($data['title'], '-');
+
+        return $data;
+    }
+
+    private function getFilteredRelatedContent($blog)
+    {
+        $relatedContent = $this->blogRepository->getRelatedContent();
+        return $relatedContent->filter(function ($item) use ($blog) {
+            return $item->id !== $blog->id;
+        });
+    }
+
+    public function destroy($id)
+    {
+        try { 
+            $this->blogRepository->deleteById($id); 
+            return response()->json(['success' => true, 'message' => 'Xóa bài viết thành công.']);
+        } catch (\Exception $e) { 
+            return response()->json(['success' => false, 'error' => 'Có lỗi xảy ra khi xóa bài viết.'], 500);
+        } 
     }
 }
+
