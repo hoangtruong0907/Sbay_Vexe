@@ -6,7 +6,6 @@
                     <div class="d-flex align-items-center justify-content-center border border-light rounded-circle">
                         <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/logo_dsvn.svg" alt="logo_dsvn.svg">
                     </div>
-
                     <div class="ticket-confirm-l">
                         <i class="fa-solid fa-ticket"></i>Xác nhận tức thì
                     </div>
@@ -40,14 +39,16 @@
                                 d="M7 58a5.953 5.953 0 0 0-6 5.891 5.657 5.657 0 0 0 .525 2.4 37.124 37.124 0 0 0 5.222 7.591.338.338 0 0 0 .506 0 37.142 37.142 0 0 0 5.222-7.582A5.655 5.655 0 0 0 13 63.9 5.953 5.953 0 0 0 7 58zm0 8.95a3.092 3.092 0 0 1-3.117-3.06 3.117 3.117 0 0 1 6.234 0A3.092 3.092 0 0 1 7 66.95z"
                                 fill="#787878"></path>
                         </svg>
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
                         <div class="from-to-content-l">
                             <div class="content-l from-l">
                                 <div class="hour-l">{{ $route['time'] }}</div>
                                 <div class="place-l">Ga {{ $route['departure_place'] }}</div>
                             </div>
                             <div>
-
                                 <div class="svg-location">
                                     <svg class="location-route-svg-l2" xmlns="http://www.w3.org/2000/svg" width="100"
                                         height="50" viewBox="0 0 90 54">
@@ -143,14 +144,14 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active-train" id="coupon-tab-{{ $key }}"
                             data-bs-toggle="pill" data-bs-target="#coupon-{{ $key }}" type="button"
-                            role="tab" aria-controls="coupon-{{ $key }}" aria-selected="true">Các
-                            loại ghế (3)
+                            role="tab" aria-controls="coupon-{{ $key }}" aria-selected="true">
+                            Các loại ghế ({{$list_routes_train[$key]['total_carriage']}})
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pickup-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
-                            aria-controls="pickup-{{ $key }}" aria-selected="false">Tiện ích (5)
+                            aria-controls="pickup-{{ $key }}" aria-selected="false">Tiện ích (6)
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -169,57 +170,23 @@
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
                     <div class="tab-pane fade show active-train coupon-tab" id="coupon-{{ $key }}"
-                        role="tabpanel" aria-labelledby="coupon-tab" tabindex="0"">
+                        role="tabpanel" aria-labelledby="coupon-tab" tabindex="0">
                         <div class=" d-flex gap-2 ">
                             <div class="container-select-train">
-                                <div class="wrap-couponTrain">
-                                    <button class="wrap-coupon btn border py-2 " data-btn-id="btn1"
-                                        onclick="highlightNumbers([1, 2, 3], 'btn1')">
-                                        <p class="mb-0">Ghế Mềm (29)</p>
-                                    </button>
-
-                                </div>
-                                <div class="wrap-couponTrain">
-
-                                    <button class="wrap-coupon btn border py-2 " data-btn-id="btn2"
-                                        onclick="highlightNumbers([4, 5, 6], 'btn2')">
-                                        <p class="mb-0">Giường Khoang 4 (18)</p>
-                                    </button>
-
-                                </div>
-                                <div class="wrap-couponTrain">
-
-                                    <button class="wrap-coupon btn border py-2 " data-btn-id="btn3"
-                                        onclick="highlightNumbers([7, 8, 9, 10, 11], 'btn3')">
-                                        <p class="mb-0">Giường Khoang 6 (73)</p>
-                                    </button>
-
-                                </div>
-                                <div class="wrap-couponTrain">
-
-                                    <button class="wrap-coupon btn border py-2 " data-btn-id="btn3"
-                                        onclick="highlightNumbers([7, 8, 9, 10, 11], 'btn3')">
-                                        <p class="mb-0">Giường Khoang 6 (73)</p>
-                                    </button>
-
-                                </div>
-                                <div class="wrap-couponTrain">
-
-                                    <button class="wrap-coupon btn border py-2 " data-btn-id="btn3"
-                                        onclick="highlightNumbers([7, 8, 9, 10, 11], 'btn3')">
-                                        <p class="mb-0">Giường Khoang 6 (73)</p>
-                                    </button>
-
-                                </div>
-
+                                @foreach ($list_routes_train[$key]['carriage_list'] as $carriage)
+                                    <div class="wrap-couponTrain">
+                                        <button class="wrap-coupon btn border py-2 " data-btn-id="{{$carriage['carriage_number']}}"
+                                            onclick="highlightNumbers([{{$carriage['carriage_name_app']}}], '{{$carriage['carriage_number']}}')">
+                                            <p class="mb-0">{{$carriage['carriage_description']}} ({{$carriage['available_carriage_seats']}})</p>
+                                        </button>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
-
-
                         <!-- ---------- -->
                         <div class="content-train pt-4">
-                            <h4 class="location_trainCar fw-bold">Vị trí toa (2/11)</h4>
+                            <h4 class="location_trainCar fw-bold">Vị trí toa (2/{{$list_routes_train[$key]['total_carriage']}})</h4>
                             <div class="d-flex align-items-center gap-2 pt-4">
 
                                 <div class="locomotive2">
@@ -269,9 +236,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="tab-pane fade rating-tab" id="rating-{{ $key }}" role="tabpanel"
                         aria-labelledby="rating-tab" tabindex="2">
                         <div class="d-flex align-items-center">
@@ -602,7 +566,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -648,12 +611,8 @@
             newStepElement.classList.remove('navigation-step-inactive');
         }
     }
-</script> --}}
-
-
-
-
-{{-- <script>
+</script>
+<script>
     function toggleCustomContent(key, step) {
         const button = document.getElementById(`button-step-custom-${step}-${key}`);
         const content = document.getElementById(`content-step-custom-${step}-${key}`);
@@ -685,7 +644,7 @@
         });
     });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function highlightNumbers(indices, selectedButtonId) {
         var numbers = document.querySelectorAll('.number');
@@ -754,5 +713,6 @@
             });
         });
     });
+</script>
 </script>
 </script> --}}
