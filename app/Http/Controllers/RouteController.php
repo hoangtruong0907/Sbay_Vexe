@@ -33,24 +33,6 @@ class RouteController extends Controller
         $this->client_secret = env('VEXERE_CLIENT_SECRET');
     }
 
-    public function showForm() {
-        $keys = [
-            (object)[
-                'phone' => '0966105411',
-                'email' => 'nguyenvana@gmail.com',
-                'id' => '08937466267184'
-            ],
-            (object)[
-                'phone' => '0987654321',
-                'email' => 'tranb@gmail.com',
-                'id' => '0123456789'
-            ]
-        ];
-
-        // Trả về view và truyền mảng $keys vào
-        return view('your-view-file', compact('keys'));
-    }
-
     public function index()
     {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
