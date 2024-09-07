@@ -13,7 +13,7 @@
                 </div>
                 <div class="ticket-info-l">
                     <div class="ticket-bus-info-l">
-                        <div class="bus-name-l">{{ $route['company']['name'] }}
+                        <div class="train-name-l">{{ $route['company']['name'] }}
                             <button type="button" class="ant-btn bus-rating-button-l">
                                 <div class="bus-rating-l">
                                     <i class="fa-solid fa-star"></i>
@@ -21,7 +21,7 @@
                                 </div>
                             </button>
                         </div>
-                        <div class="fare-info-l">
+                        <div class="fare-info-l-train">
                             <div class="fare-l">{{ $route['min_price'] }} - {{ $route['max_price'] }}</div>
                             <div class="fareSmall">
                                 <div class="small">280.000đ</div>
@@ -138,21 +138,25 @@
 
 
         <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
-        data-bs-parent="#item-bus-{{ $key }}">
-        <div class="steps-container-train">
-        <div id="step-1-{{ $key }}" class="step-train step-active navigation-step navigation-step-active">
-<div class="step-icon-train step-icon-n step-content2">1</div>
-Chỗ mong muốn
-</div>
-<div id="step-2-{{ $key }}" class="step-train step-inactive navigation-step navigation-step-inactive">  <div class="step-icon-train step-icon-n step-content2">2</div>
-Nhập thông tin</div>
-
-<div id="step-3-{{ $key }}" class="step-train step-inactive navigation-step navigation-step-inactive"><div class="step-icon-train step-icon-n step-content2">3</div>
-Thanh toán</div>
+            data-bs-parent="#item-bus-{{ $key }}">
+            <div class="steps-container-train">
+                <div id="step-1-{{ $key }}" class="step-train step-active navigation-step navigation-step-active">
+                    <div class="step-icon-train step-icon-n step-content2">1</div>
+                    Chỗ mong muốn
+                </div>
+                <div id="step-2-{{ $key }}" class="step-train step-inactive navigation-step navigation-step-inactive">
+                    <div class="step-icon-train step-icon-n step-content2">2</div>
+                    Nhập thông tin
                 </div>
 
+                <div id="step-3-{{ $key }}" class="step-train step-inactive navigation-step navigation-step-inactive">
+                    <div class="step-icon-train step-icon-n step-content2">3</div>
+                    Thanh toán
+                </div>
+            </div>
 
-        <div id="content-step-1-{{ $key }}" class="step-content" style="display: block;">
+
+            <div id="content-step-1-{{ $key }}" class="step-content" style="display: block;">
 
                 <div class="card-body-train ">
 
@@ -179,7 +183,8 @@ Thanh toán</div>
 
                             <div class="wrap-coupon-train">
                                 <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
-                                <button id="button-step-custom-1-{{ $key }}" class="navigation-button-custom" data-key="{{ $key }}" data-step="1">
+                                <button id="button-step-custom-1-{{ $key }}" class="navigation-button-custom"
+                                    data-key="{{ $key }}" data-step="1">
                                     <div class="kNCupL-train">
                                         <div class="border-coupon-train ">
                                             <div class="flex-coupon-train">
@@ -204,7 +209,8 @@ Thanh toán</div>
                             </div>
                             <div class="wrap-coupon-train">
                                 <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
-                                <button id="button-step-custom-2-{{ $key }}" class="navigation-button-custom" data-key="{{ $key }}" data-step="2">
+                                <button id="button-step-custom-2-{{ $key }}" class="navigation-button-custom"
+                                    data-key="{{ $key }}" data-step="2">
 
                                     <div class="kNCupL-train">
 
@@ -228,7 +234,8 @@ Thanh toán</div>
                             </div>
                             <div class="wrap-coupon-train">
                                 <input class="Coupon__HiddenInput-sc-1mhp588-4 cFDugh" value="FS060824VXR10">
-                                <button id="button-step-custom-3-{{ $key }}" class="navigation-button-custom" data-key="{{ $key }}" data-step="3">
+                                <button id="button-step-custom-3-{{ $key }}" class="navigation-button-custom"
+                                    data-key="{{ $key }}" data-step="3">
 
                                     <div class="kNCupL-train">
                                         <div class="border-coupon-train">
@@ -363,7 +370,9 @@ Thanh toán</div>
 
 
                                 <!-- <div class="collapse mt-3 border border-1 rounded-3 p-2" id="content1"> -->
-                                <div id="content-step-custom-1-{{ $key }}" class="step-content-custom mt-3 border border-1 rounded-3 p-2" data-key="{{ $key }}">
+                                <div id="content-step-custom-1-{{ $key }}"
+                                    class="step-content-custom mt-3 border border-1 rounded-3 p-2"
+                                    data-key="{{ $key }}">
                                     <div class="wrap-coach-train">
                                         <div class="coach-train">
                                             <table>
@@ -1216,7 +1225,9 @@ Thanh toán</div>
 
 
                                 </div>
-                                <div id="content-step-custom-2-{{ $key }}" class="step-content-custom mt-3 border border-1 rounded-3 p-3" data-key="{{ $key }}">
+                                <div id="content-step-custom-2-{{ $key }}"
+                                    class="step-content-custom mt-3 border border-1 rounded-3 p-3"
+                                    data-key="{{ $key }}">
 
                                     <div class="">
                                         <div class="shipSeat gap-3 mb-3">
@@ -1386,7 +1397,9 @@ Thanh toán</div>
                                     </div>
                                 </div>
 
-                                <div id="content-step-custom-3-{{ $key }}" class="step-content-custom mt-3 border border-1 rounded-3 p-3" data-key="{{ $key }}">
+                                <div id="content-step-custom-3-{{ $key }}"
+                                    class="step-content-custom mt-3 border border-1 rounded-3 p-3"
+                                    data-key="{{ $key }}">
                                     <div class=" ">
                                         <div class="shipSeat gap-3 mb-3">
                                             <div class="d-flex align-self-center fw-bold ">Khoang 1</div>
@@ -1641,10 +1654,10 @@ Thanh toán</div>
 
 
 
-        </div>
+            </div>
 
 
-        <div id="content-step-2-{{ $key }}" class="step-content">
+            <div id="content-step-2-{{ $key }}" class="step-content">
 
 
 
@@ -1758,223 +1771,228 @@ Thanh toán</div>
                     </div>
                 </div>
 
-        </div>
-
-
-
-        <div id="content-step-3-{{ $key }}" class="step-content">
-
-
-
-            <div class=" card-body-train bg-white">
-
-                <div id="step1-{{ $key }}" class="wizard-step-train active-train">
-
-
-                    <div class="d-flex justify-content-center m-2 ">
-                        <p class="trust-message-text-train "><i class="fa-solid fa-address-book mx-2 "></i>Vé sẽ được
-                            gửi qua:
-                            <span class="text-primary">nguyenvana@gmail.com</span>
-                        </p>
-                    </div>
-
-
-                    <div class=" py-3 px-5">
-                        <h5>Phương thức thanh toán</h5>
-                    </div>
-                    <div class="container-qr bg-white">
-
-                        <div class="qrcode-container">
-                            <span class="qrcode-label px-3 py-2">Mới</span>
-
-                            <div class="d-flex">
-                                <i class="fa-solid fa-qrcode fs-1 text-primary p-3"></i>
-                                <div class="d-flex flex-column px-2 flex-grow-1">
-                                    <b>Chuyển khoản bằng mã QR, hỗ trợ nhiều ví điện tử & hơn 42 ngân hàng</b>
-                                    <div class="w-container-train">
-                                        <span class="w-content-train bg-primary text-wrap my-2 px- py-1">+46</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="detail-box-train">
-                                <span class="w-75 fw-light p-2">An toàn, tiết kiệm thời gian nhập thông tin, hạn chế sai
-                                    sót</span>
-                                <button class="w-25 py-2 mx-2 bg-primary rounded-2 border-0 text-light">Thử
-                                    ngay</button>
-                            </div>
-                        </div>
-                        <div class="qrcode-content">
-
-                            <div class="qrcode-item my-3 ">
-                                <div
-                                    class=" row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <img src="https://cdn.techinasia.com/data/images/be3b6924cfc96137896c8649dc890926.png"
-                                            alt="" class="img-fluid-train">
-                                    </div>
-                                    <div class="item-col-train col-8 text-start">
-                                        <b>Ví MoMo</b>
-                                        <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng MoMo</p>
-                                    </div>
-                                    <div class="col col-train  d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <img src="https://1.bp.blogspot.com/-n_jPjNl97nw/YIJ78WnloPI/AAAAAAAACks/xPjLQ2YpcXwyPf64C708UExQOrJitxHSgCNcBGAsYHQ/s2048/ShopeePay.png"
-                                            alt="" class="img-fluid-train">
-                                    </div>
-                                    <div class=" item-col-train col-8 text-start">
-                                        <b>Ví ShoppePay</b>
-                                        <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng ShoppePay
-                                            </br>
-                                            <span class="text-success">Nhập mã SPPVEXERE08 tại ShoppePay - giảm
-                                                10k</span> </br>
-                                            <a class="text-primary" href="">Điều kiện sử dụng</a>
-                                        </p>
-                                    </div>
-                                    <div class="col col-train d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-
-
-                                <div
-                                    class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <img src="https://th.bing.com/th/id/OIP.pn3RUm1xk1HiAxWIgC6CIwAAAA?rs=1&pid=ImgDetMain"
-                                            alt="" class="img-fluid-train">
-                                    </div>
-                                    <div class="item-col-train col-8 text-start">
-                                        <b>Thanh toán bằng VNPay trên ứng dụng Mobile banking/Ví VNPay</b>
-                                        <p class="fw-light">Thiết bị phải cài đặt ứng dụng Mobile banking hoặc Ví
-                                            VNPay</br>
-                                            <span class="text-success">Giảm 10K và giảm 30K khi nhập mã VNPAYVXR10
-                                            </span> </br>
-                                            <a class="text-primary" href="">Điều kiện sử dụng</a>
-                                        </p>
-                                    </div>
-                                    <div class="col col-train  d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <img src="https://cardtot.com/wp-content/uploads/2020/01/zalopay.png" alt=""
-                                            class="img-fluid-train">
-                                    </div>
-                                    <div class="item-col-train col-8 text-start">
-                                        <b>Ví ZaloPay</b>
-                                        <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng ZaloPay</br>
-                                            <span class="text-success">Giảm 15K và giảm 35K khi nhập mã ZLPVXR lần lượt
-                                                cho đơn từ 400K và 1.000K</span> </br>
-                                            <a class="text-primary" href="">Điều kiện sử dụng</a>
-                                        </p>
-                                    </div>
-                                    <div class="col col-train  d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-
-
-                                <div
-                                    class="row row-train d-flex align-items-center text-center  border-bottom pt-2 pb-1 ">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <i class="fa-solid fa-credit-card text-primary"></i>
-                                    </div>
-                                    <div class="item-col-train col-8 text-start">
-                                        <b>Thẻ thanh toán quốc tế</b>
-                                        <p class="fw-light">Thẻ Visa, MasterCard, JCB</p>
-                                    </div>
-                                    <div class="col col-train  d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1 ">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <i class="fa-solid fa-qrcode text-primary"></i>
-                                    </div>
-                                    <div class="item-col-train col-8 text-start">
-                                        <b>QR chuyển khoản/Ví điện tử</b>
-                                        <p class="fw-light">Không cần nhập thông tin chính, Xác nhận thanh toán tức thì,
-                                            nhanh chóng và ít sai sót</p>
-                                        <div class="img-custom gap-2 mb-4">
-                                            <img src="https://cdn.techinasia.com/data/images/be3b6924cfc96137896c8649dc890926.png"
-                                                alt="" class="img-fluid-train">
-                                            <img src="https://th.bing.com/th/id/R.d539c6a7401fe0134efb6bde9264dc13?rik=c7KyMzQxq3MgcQ&pid=ImgRaw&r=0"
-                                                alt="" class="img-fluid-train">
-                                            <img src="https://play-lh.googleusercontent.com/rNSXUqGnK-ljK6qUdUmy7h_sDrMOzZ1nPwAUAwshsmPaQuwNGn0Xwj-psgFrBSJOHg"
-                                                alt="" class="img-fluid-train">
-                                            <img src="https://inkythuatso.com/uploads/images/2021/12/logo-vib-inkythuatso-3-21-13-43-27.jpg"
-                                                alt="" class="img-fluid-train">
-                                            <img src="https://th.bing.com/th/id/OIP.zyrA1Yc325NGPWzN6rCBeQHaHa?rs=1&pid=ImgDetMain"
-                                                alt="" class="img-fluid-train">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col col-train d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="row row-train d-flex align-items-center text-center  border-bottom pt-2 pb-1 ">
-                                    <div class="col col-train d-flex justify-content-center item-abate">
-                                        <i class="fa-solid fa-wallet text-primary "></i>
-                                    </div>
-                                    <div class="item-col-train col-8 text-start">
-                                        <b>Thẻ ATM nội địa / Internet Banking</b>
-                                        <p class="fw-light">Tài khoản phải có đăng ký Internet banking</p>
-                                    </div>
-                                    <div class="col col-train d-flex justify-content-center">
-                                        <input type="checkbox">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="request">
-                        <div class="me-auto d-flex flex-column ">
-                            <h5>Yêu cầu xuất hóa đơn</h5>
-                            <p class="fw-light">Hỗ trợ miễn phí, dành cho đại diện doanh nghiệp</p>
-                        </div>
-                        <a href="#">Điền thông tin</a>
-                    </div>
-
-                    <div class="d-flex flex-column mb-3 px-3 pt-4  bg-white w-full ">
-                        <div class="d-flex">
-                            <p class="me-auto">Tổng cộng cho 1 người</p>
-                            <span class="fw-bold">769.000 vnđ</span>
-                        </div>
-                        <button class="border-0 py-3 text-white fw-bold bg-primary">
-                            Thanh toán bảo mật
-                        </button>
-                    </div>
-
-
-                </div>
-
             </div>
 
 
 
+            <div id="content-step-3-{{ $key }}" class="step-content">
 
-        </div>
 
 
-<div class="total-amount-train">
+                <div class=" card-body-train bg-white">
+
+                    <div id="step1-{{ $key }}" class="wizard-step-train active-train">
+
+
+                        <div class="d-flex justify-content-center m-2 ">
+                            <p class="trust-message-text-train "><i class="fa-solid fa-address-book mx-2 "></i>Vé sẽ
+                                được
+                                gửi qua:
+                                <span class="text-primary">nguyenvana@gmail.com</span>
+                            </p>
+                        </div>
+
+
+                        <div class=" py-3 px-5">
+                            <h5>Phương thức thanh toán</h5>
+                        </div>
+                        <div class="container-qr bg-white">
+
+                            <div class="qrcode-container">
+                                <span class="qrcode-label px-3 py-2">Mới</span>
+
+                                <div class="d-flex">
+                                    <i class="fa-solid fa-qrcode fs-1 text-primary p-3"></i>
+                                    <div class="d-flex flex-column px-2 flex-grow-1">
+                                        <b>Chuyển khoản bằng mã QR, hỗ trợ nhiều ví điện tử & hơn 42 ngân hàng</b>
+                                        <div class="w-container-train">
+                                            <span class="w-content-train bg-primary text-wrap my-2 px- py-1">+46</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="detail-box-train">
+                                    <span class="w-75 fw-light p-2">An toàn, tiết kiệm thời gian nhập thông tin, hạn chế
+                                        sai
+                                        sót</span>
+                                    <button class="w-25 py-2 mx-2 bg-primary rounded-2 border-0 text-light">Thử
+                                        ngay</button>
+                                </div>
+                            </div>
+                            <div class="qrcode-content">
+
+                                <div class="qrcode-item my-3 ">
+                                    <div
+                                        class=" row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <img src="https://cdn.techinasia.com/data/images/be3b6924cfc96137896c8649dc890926.png"
+                                                alt="" class="img-fluid-train">
+                                        </div>
+                                        <div class="item-col-train col-8 text-start">
+                                            <b>Ví MoMo</b>
+                                            <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng MoMo</p>
+                                        </div>
+                                        <div class="col col-train  d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <img src="https://1.bp.blogspot.com/-n_jPjNl97nw/YIJ78WnloPI/AAAAAAAACks/xPjLQ2YpcXwyPf64C708UExQOrJitxHSgCNcBGAsYHQ/s2048/ShopeePay.png"
+                                                alt="" class="img-fluid-train">
+                                        </div>
+                                        <div class=" item-col-train col-8 text-start">
+                                            <b>Ví ShoppePay</b>
+                                            <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng ShoppePay
+                                                </br>
+                                                <span class="text-success">Nhập mã SPPVEXERE08 tại ShoppePay - giảm
+                                                    10k</span> </br>
+                                                <a class="text-primary" href="">Điều kiện sử dụng</a>
+                                            </p>
+                                        </div>
+                                        <div class="col col-train d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+
+
+                                    <div
+                                        class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <img src="https://th.bing.com/th/id/OIP.pn3RUm1xk1HiAxWIgC6CIwAAAA?rs=1&pid=ImgDetMain"
+                                                alt="" class="img-fluid-train">
+                                        </div>
+                                        <div class="item-col-train col-8 text-start">
+                                            <b>Thanh toán bằng VNPay trên ứng dụng Mobile banking/Ví VNPay</b>
+                                            <p class="fw-light">Thiết bị phải cài đặt ứng dụng Mobile banking hoặc Ví
+                                                VNPay</br>
+                                                <span class="text-success">Giảm 10K và giảm 30K khi nhập mã VNPAYVXR10
+                                                </span> </br>
+                                                <a class="text-primary" href="">Điều kiện sử dụng</a>
+                                            </p>
+                                        </div>
+                                        <div class="col col-train  d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <img src="https://cardtot.com/wp-content/uploads/2020/01/zalopay.png" alt=""
+                                                class="img-fluid-train">
+                                        </div>
+                                        <div class="item-col-train col-8 text-start">
+                                            <b>Ví ZaloPay</b>
+                                            <p class="fw-light">Điện thoại của bạn phải được cài đặt ứng dụng
+                                                ZaloPay</br>
+                                                <span class="text-success">Giảm 15K và giảm 35K khi nhập mã ZLPVXR lần
+                                                    lượt
+                                                    cho đơn từ 400K và 1.000K</span> </br>
+                                                <a class="text-primary" href="">Điều kiện sử dụng</a>
+                                            </p>
+                                        </div>
+                                        <div class="col col-train  d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+
+
+                                    <div
+                                        class="row row-train d-flex align-items-center text-center  border-bottom pt-2 pb-1 ">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <i class="fa-solid fa-credit-card text-primary"></i>
+                                        </div>
+                                        <div class="item-col-train col-8 text-start">
+                                            <b>Thẻ thanh toán quốc tế</b>
+                                            <p class="fw-light">Thẻ Visa, MasterCard, JCB</p>
+                                        </div>
+                                        <div class="col col-train  d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="row row-train d-flex align-items-center text-center border-bottom border-top pt-2 pb-1 ">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <i class="fa-solid fa-qrcode text-primary"></i>
+                                        </div>
+                                        <div class="item-col-train col-8 text-start">
+                                            <b>QR chuyển khoản/Ví điện tử</b>
+                                            <p class="fw-light">Không cần nhập thông tin chính, Xác nhận thanh toán tức
+                                                thì,
+                                                nhanh chóng và ít sai sót</p>
+                                            <div class="img-custom gap-2 mb-4">
+                                                <img src="https://cdn.techinasia.com/data/images/be3b6924cfc96137896c8649dc890926.png"
+                                                    alt="" class="img-fluid-train">
+                                                <img src="https://th.bing.com/th/id/R.d539c6a7401fe0134efb6bde9264dc13?rik=c7KyMzQxq3MgcQ&pid=ImgRaw&r=0"
+                                                    alt="" class="img-fluid-train">
+                                                <img src="https://play-lh.googleusercontent.com/rNSXUqGnK-ljK6qUdUmy7h_sDrMOzZ1nPwAUAwshsmPaQuwNGn0Xwj-psgFrBSJOHg"
+                                                    alt="" class="img-fluid-train">
+                                                <img src="https://inkythuatso.com/uploads/images/2021/12/logo-vib-inkythuatso-3-21-13-43-27.jpg"
+                                                    alt="" class="img-fluid-train">
+                                                <img src="https://th.bing.com/th/id/OIP.zyrA1Yc325NGPWzN6rCBeQHaHa?rs=1&pid=ImgDetMain"
+                                                    alt="" class="img-fluid-train">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col col-train d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="row row-train d-flex align-items-center text-center  border-bottom pt-2 pb-1 ">
+                                        <div class="col col-train d-flex justify-content-center item-abate">
+                                            <i class="fa-solid fa-wallet text-primary "></i>
+                                        </div>
+                                        <div class="item-col-train col-8 text-start">
+                                            <b>Thẻ ATM nội địa / Internet Banking</b>
+                                            <p class="fw-light">Tài khoản phải có đăng ký Internet banking</p>
+                                        </div>
+                                        <div class="col col-train d-flex justify-content-center">
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="request">
+                            <div class="me-auto d-flex flex-column ">
+                                <h5>Yêu cầu xuất hóa đơn</h5>
+                                <p class="fw-light">Hỗ trợ miễn phí, dành cho đại diện doanh nghiệp</p>
+                            </div>
+                            <a href="#">Điền thông tin</a>
+                        </div>
+
+                        <div class="d-flex flex-column mb-3 px-3 pt-4  bg-white w-full ">
+                            <div class="d-flex">
+                                <p class="me-auto">Tổng cộng cho 1 người</p>
+                                <span class="fw-bold">769.000 vnđ</span>
+                            </div>
+                            <button class="border-0 py-3 text-white fw-bold bg-primary">
+                                Thanh toán bảo mật
+                            </button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="total-amount-train">
                 <div class="left-total-amount-train">
                     <button onclick="navigateStep('previous', '{{ $key }}')"> Quay lại</button>
                 </div>
@@ -1982,7 +2000,8 @@ Thanh toán</div>
                     <div class="text-total-amout"> <span> Tổng cộng: </span><span class="right-total-train">0đ</span>
                     </div>
                     <div>
-                        <button  onclick="navigateStep('next', '{{ $key }}')">Tiếp tục <i class="fa-solid fa-arrow-right"></i></button>
+                        <button onclick="navigateStep('next', '{{ $key }}')">Tiếp tục <i
+                                class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -2024,7 +2043,7 @@ Thanh toán</div>
                     <div class="tab-pane fade show active-train coupon-tab" id="coupon-{{ $key }}" role="tabpanel"
                         aria-labelledby="coupon-tab" tabindex="0"">
                         <div class=" d-flex gap-2 ">
-                        <div class="container-select-train">
+                        <div class=" container-select-train">
                         <div class="wrap-couponTrain">
                             <button class="wrap-coupon btn border py-2 " data-btn-id="btn1"
                                 onclick="highlightNumbers([1, 2, 3], 'btn1')">
@@ -2426,177 +2445,163 @@ Thanh toán</div>
                                         <img src="https://i.ytimg.com/vi/rCtX_s1odhw/maxresdefault.jpg;text=3">
                                     </a>
                                 </li>
-
-
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
-
     </div>
 </div>
-
 </div>
 </div>
-
 
 <script>
-let currentStep = 1;
-let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
+    let currentStep = 1;
+    let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
 
-function navigateStep(direction, key) {
-    if (currentKey !== key) {
-        // Nếu key thay đổi, đặt lại bước hiện tại về 1
-        currentStep = 1;
-        currentKey = key;
-    }
+    function navigateStep(direction, key) {
+        if (currentKey !== key) {
+            // Nếu key thay đổi, đặt lại bước hiện tại về 1
+            currentStep = 1;
+            currentKey = key;
+        }
 
-    // Ẩn nội dung bước hiện tại
-    let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (currentContent) {
-        currentContent.style.display = 'none';
-    }
+        // Ẩn nội dung bước hiện tại
+        let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+        if (currentContent) {
+            currentContent.style.display = 'none';
+        }
 
-    let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (currentStepElement) {
-        currentStepElement.classList.remove('navigation-step-active');
-        currentStepElement.classList.add('navigation-step-inactive');
-    }
+        let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+        if (currentStepElement) {
+            currentStepElement.classList.remove('navigation-step-active');
+            currentStepElement.classList.add('navigation-step-inactive');
+        }
 
-    // Cập nhật bước hiện tại
-    if (direction === 'next' && currentStep < 3) {
-        currentStep++;
-    } else if (direction === 'previous' && currentStep > 1) {
-        currentStep--;
-    }
+        // Cập nhật bước hiện tại
+        if (direction === 'next' && currentStep < 3) {
+            currentStep++;
+        } else if (direction === 'previous' && currentStep > 1) {
+            currentStep--;
+        }
 
-    // Hiển thị nội dung của bước mới
-    let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (newContent) {
-        newContent.style.display = 'block';
-    }
+        // Hiển thị nội dung của bước mới
+        let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+        if (newContent) {
+            newContent.style.display = 'block';
+        }
 
-    let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (newStepElement) {
-        newStepElement.classList.add('navigation-step-active');
-        newStepElement.classList.remove('navigation-step-inactive');
+        let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+        if (newStepElement) {
+            newStepElement.classList.add('navigation-step-active');
+            newStepElement.classList.remove('navigation-step-inactive');
+        }
     }
-}
 </script>
 
-
-
-
 <script>
 
-function toggleCustomContent(key, step) {
-    const button = document.getElementById(`button-step-custom-${step}-${key}`);
-    const content = document.getElementById(`content-step-custom-${step}-${key}`);
+    function toggleCustomContent(key, step) {
+        const button = document.getElementById(`button-step-custom-${step}-${key}`);
+        const content = document.getElementById(`content-step-custom-${step}-${key}`);
 
-    // Lấy tất cả các nội dung bước và nút cho bài mới
-    const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
-    const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
+        // Lấy tất cả các nội dung bước và nút cho bài mới
+        const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
+        const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
 
-    // Ẩn tất cả các nội dung
-    allContents.forEach(c => c.classList.remove('step-content-custom-show'));
-    // Làm tất cả các nút không hoạt động
-    allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
+        // Ẩn tất cả các nội dung
+        allContents.forEach(c => c.classList.remove('step-content-custom-show'));
+        // Làm tất cả các nút không hoạt động
+        allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
 
-    if (!content.classList.contains('step-content-custom-show')) {
-        content.classList.add('step-content-custom-show');
-        button.classList.add('navigation-button-custom-active');
-    } else {
-        content.classList.remove('step-content-custom-show');
-        button.classList.remove('navigation-button-custom-active');
+        if (!content.classList.contains('step-content-custom-show')) {
+            content.classList.add('step-content-custom-show');
+            button.classList.add('navigation-button-custom-active');
+        } else {
+            content.classList.remove('step-content-custom-show');
+            button.classList.remove('navigation-button-custom-active');
+        }
     }
-}
 
-// Thêm sự kiện click cho tất cả các nút
-document.querySelectorAll('.navigation-button-custom').forEach(button => {
-    button.addEventListener('click', () => {
-        const key = button.getAttribute('data-key');
-        const step = button.getAttribute('data-step');
-        toggleCustomContent(key, step);
+    // Thêm sự kiện click cho tất cả các nút
+    document.querySelectorAll('.navigation-button-custom').forEach(button => {
+        button.addEventListener('click', () => {
+            const key = button.getAttribute('data-key');
+            const step = button.getAttribute('data-step');
+            toggleCustomContent(key, step);
+        });
     });
-});
 
 </script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 
-function highlightNumbers(indices, selectedButtonId) {
-    var numbers = document.querySelectorAll('.number');
-    numbers.forEach(function(num) {
-        num.classList.remove('activetrain');
-    });
+    function highlightNumbers(indices, selectedButtonId) {
+        var numbers = document.querySelectorAll('.number');
+        numbers.forEach(function (num) {
+            num.classList.remove('activetrain');
+        });
 
-    indices.forEach(function(index) {
-        if (index > 0 && index <= numbers.length) {
-            numbers[index - 1].classList.add('activetrain');
-        }
-    });
+        indices.forEach(function (index) {
+            if (index > 0 && index <= numbers.length) {
+                numbers[index - 1].classList.add('activetrain');
+            }
+        });
 
-    var buttons = document.querySelectorAll('.btn');
-    buttons.forEach(function(btn) {
-        if (btn.getAttribute('data-btn-id') === selectedButtonId) {
-            btn.classList.add('button-active');
-            btn.classList.remove('button-default');
-        } else {
-            btn.classList.add('button-default');
-            btn.classList.remove('button-active');
-        }
-    });
-}
-
-
-function clearInput(inputId) {
-    document.getElementById(inputId).value = '';
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const detailButtons = document.querySelectorAll('.btn-detail-l');
-    const bookingButtons = document.querySelectorAll('.btn-booking-l');
-
-    function hideAll() {
-        // Ẩn tất cả các phần collapse
-        document.querySelectorAll('.collapse').forEach(collapse => {
-            collapse.classList.remove('show');
+        var buttons = document.querySelectorAll('.btn');
+        buttons.forEach(function (btn) {
+            if (btn.getAttribute('data-btn-id') === selectedButtonId) {
+                btn.classList.add('button-active');
+                btn.classList.remove('button-default');
+            } else {
+                btn.classList.add('button-default');
+                btn.classList.remove('button-active');
+            }
         });
     }
 
-    detailButtons.forEach((button) => {
-        button.addEventListener('click', function() {
-            // Ẩn tất cả các phần trước
-            hideAll();
+    function clearInput(inputId) {
+        document.getElementById(inputId).value = '';
+    }
 
-            // Mở phần "Thông tin chi tiết" tương ứng
-            const targetDetail = document.querySelector(button.dataset.bsTarget);
-            if (!targetDetail.classList.contains('show')) {
-                targetDetail.classList.add('show');
-            }
+    document.addEventListener('DOMContentLoaded', function () {
+        const detailButtons = document.querySelectorAll('.btn-detail-l');
+        const bookingButtons = document.querySelectorAll('.btn-booking-l');
+
+        function hideAll() {
+            // Ẩn tất cả các phần collapse
+            document.querySelectorAll('.collapse').forEach(collapse => {
+                collapse.classList.remove('show');
+            });
+        }
+
+        detailButtons.forEach((button) => {
+            button.addEventListener('click', function () {
+                // Ẩn tất cả các phần trước
+                hideAll();
+
+                // Mở phần "Thông tin chi tiết" tương ứng
+                const targetDetail = document.querySelector(button.dataset.bsTarget);
+                if (!targetDetail.classList.contains('show')) {
+                    targetDetail.classList.add('show');
+                }
+            });
+        });
+
+        bookingButtons.forEach((button) => {
+            button.addEventListener('click', function () {
+                // Ẩn tất cả các phần trước
+                hideAll();
+
+                // Mở phần "Chọn chuyến" tương ứng
+                const targetStep = document.querySelector(button.dataset.bsTarget);
+                if (!targetStep.classList.contains('show')) {
+                    targetStep.classList.add('show');
+                }
+            });
         });
     });
-
-    bookingButtons.forEach((button) => {
-        button.addEventListener('click', function() {
-            // Ẩn tất cả các phần trước
-            hideAll();
-
-            // Mở phần "Chọn chuyến" tương ứng
-            const targetStep = document.querySelector(button.dataset.bsTarget);
-            if (!targetStep.classList.contains('show')) {
-                targetStep.classList.add('show');
-            }
-        });
-    });
-});
 </script>
 </script>
