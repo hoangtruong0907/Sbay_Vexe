@@ -6,7 +6,6 @@
                     <div class="d-flex align-items-center justify-content-center border border-light rounded-circle">
                         <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/logo_dsvn.svg" alt="logo_dsvn.svg">
                     </div>
-
                     <div class="ticket-confirm-l">
                         <i class="fa-solid fa-ticket"></i>Xác nhận tức thì
                     </div>
@@ -17,7 +16,6 @@
                             <button type="button" class="ant-btn bus-rating-button-l">
                                 <div class="bus-rating-l">
                                     <i class="fa-solid fa-star"></i>
-
                                 </div>
                             </button>
                         </div>
@@ -29,8 +27,8 @@
                         </div>
                     </div>
                     <div class="from-to-l">
-                        <svg class="location-route-svg-l" xmlns="http://www.w3.org/2000/svg" width="14" height="74"
-                            viewBox="0 0 14 74">
+                        <svg class="location-route-svg-l" xmlns="http://www.w3.org/2000/svg" width="14"
+                            height="74" viewBox="0 0 14 74">
                             <path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2"
                                 stroke-dasharray="0 7" d="M7 13.5v46"></path>
                             <g fill="none" stroke="#484848" stroke-width="3">
@@ -41,16 +39,12 @@
                                 d="M7 58a5.953 5.953 0 0 0-6 5.891 5.657 5.657 0 0 0 .525 2.4 37.124 37.124 0 0 0 5.222 7.591.338.338 0 0 0 .506 0 37.142 37.142 0 0 0 5.222-7.582A5.655 5.655 0 0 0 13 63.9 5.953 5.953 0 0 0 7 58zm0 8.95a3.092 3.092 0 0 1-3.117-3.06 3.117 3.117 0 0 1 6.234 0A3.092 3.092 0 0 1 7 66.95z"
                                 fill="#787878"></path>
                         </svg>
-
-
-
                         <div class="from-to-content-l">
                             <div class="content-l from-l">
                                 <div class="hour-l">{{ $route['time'] }}</div>
                                 <div class="place-l">Ga {{ $route['departure_place'] }}</div>
                             </div>
                             <div>
-
                                 <div class="svg-location">
                                     <svg class="location-route-svg-l2" xmlns="http://www.w3.org/2000/svg" width="100"
                                         height="50" viewBox="0 0 90 54">
@@ -66,8 +60,6 @@
                                             d="M90 30a5.953 5.953 0 0 0-6 5.891 5.657 5.657 0 0 0 .525 2.4 37.124 37.124 0 0 0 5.222 7.591.338.338 0 0 0 .506 0 37.142 37.142 0 0 0 5.222-7.582A5.655 5.655 0 0 0 96 35.9a5.953 5.953 0 0 0-6-5.891zm0 8.95a3.092 3.092 0 0 1-3.117-3.06 3.117 3.117 0 0 1 6.234 0A3.092 3.092 0 0 1 90 39.95z"
                                             fill="#787878"></path>
                                     </svg>
-
-
                                     </svg>
                                 </div>
                                 <div class="duration-l">17h30m</div>
@@ -89,13 +81,14 @@
                         <div class="action-p">
                             <div class="action-l">
                                 <button type="button" class="ant-btn btn-detail-l ant-btn-link-l"
-                                    data-bs-toggle="collapse" data-bs-target="#ticket-detail-collapse-{{ $key }}"
-                                    role="button" aria-expanded="false"
-                                    aria-controls="ticket-detail-collapse-{{ $key }}">
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#ticket-detail-collapse-{{ $key }}" role="button"
+                                    aria-expanded="false" aria-controls="ticket-detail-collapse-{{ $key }}">
                                     <span>Thông tin chi tiết 1</span>
                                     <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
-                                        <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
-                                            width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                        <svg viewBox="0 0 1024 1024" focusable="false" class=""
+                                            data-icon="caret-down" width="1em" height="1em" fill="currentColor"
+                                            aria-hidden="true">
                                             <path
                                                 d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
                                             </path>
@@ -109,18 +102,17 @@
                                             </path>
                                         </svg></i>
                                 </button>
-                                <button data-tracking-event="selected_route" type="button" class="ant-btn btn-booking-l"
-                                    data-bs-toggle="collapse" data-bs-target="#ticket-step-collapse-{{ $key }}"
-                                    role="button" aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}">
+                                <button data-tracking-event="selected_route" type="button"
+                                    class="ant-btn btn-booking-l" data-bs-toggle="collapse"
+                                    data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
+                                    aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}">
                                     <span class="text-chooseeTrip">Chọn chuyến</span>
                                 </button>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
         <div class="notify-trip-l">
             <div class="full-trip-l">
@@ -130,13 +122,7 @@
             <div class="content-has-cop">
                 <div class="nonePay">Không cần thanh toán trước</div>
             </div>
-
-
-
         </div>
-
-
-
         <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
             data-bs-parent="#item-bus-{{ $key }}">
             <div class="steps-container-train">
@@ -2014,15 +2000,16 @@
             <div class="container ticket-detail-container ps-3 pe-3">
                 <ul class="nav-items nav nav-pills mb-1 pills-ticket-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active-train" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
-                            data-bs-target="#coupon-{{ $key }}" type="button" role="tab"
-                            aria-controls="coupon-{{ $key }}" aria-selected="true">Các loại ghế (3)
+                        <button class="nav-link active-train" id="coupon-tab-{{ $key }}"
+                            data-bs-toggle="pill" data-bs-target="#coupon-{{ $key }}" type="button"
+                            role="tab" aria-controls="coupon-{{ $key }}" aria-selected="true">
+                            Các loại ghế ({{$list_routes_train[$key]['total_carriage']}})
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pickup-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
-                            aria-controls="pickup-{{ $key }}" aria-selected="false">Tiện ích (5)
+                            aria-controls="pickup-{{ $key }}" aria-selected="false">Tiện ích (6)
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -2033,326 +2020,302 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="thumb-tab-{{ $key }}" data-bs-toggle="pill"
-                            data-bs-target="#image-{{ $key }}" type="button" role="tab" aria-controls="image-{{ $key }}"
-                            aria-selected="false">Hình
+                            data-bs-target="#image-{{ $key }}" type="button" role="tab"
+                            aria-controls="image-{{ $key }}" aria-selected="false">Hình
                             ảnh</button>
                     </li>
 
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
-                    <div class="tab-pane fade show active-train coupon-tab" id="coupon-{{ $key }}" role="tabpanel"
-                        aria-labelledby="coupon-tab" tabindex="0"">
+                    <div class="tab-pane fade show active-train coupon-tab" id="coupon-{{ $key }}"
+                        role="tabpanel" aria-labelledby="coupon-tab" tabindex="0">
                         <div class=" d-flex gap-2 ">
-                        <div class=" container-select-train">
-                        <div class="wrap-couponTrain">
-                            <button class="wrap-coupon btn border py-2 " data-btn-id="btn1"
-                                onclick="highlightNumbers([1, 2, 3], 'btn1')">
-                                <p class="mb-0">Ghế Mềm (29)</p>
-                            </button>
-
-                        </div>
-                        <div class="wrap-couponTrain">
-
-                            <button class="wrap-coupon btn border py-2 " data-btn-id="btn2"
-                                onclick="highlightNumbers([4, 5, 6], 'btn2')">
-                                <p class="mb-0">Giường Khoang 4 (18)</p>
-                            </button>
-
-                        </div>
-                        <div class="wrap-couponTrain">
-
-                            <button class="wrap-coupon btn border py-2 " data-btn-id="btn3"
-                                onclick="highlightNumbers([7, 8, 9, 10, 11], 'btn3')">
-                                <p class="mb-0">Giường Khoang 6 (73)</p>
-                            </button>
-
-                        </div>
-                        <div class="wrap-couponTrain">
-
-                            <button class="wrap-coupon btn border py-2 " data-btn-id="btn3"
-                                onclick="highlightNumbers([7, 8, 9, 10, 11], 'btn3')">
-                                <p class="mb-0">Giường Khoang 6 (73)</p>
-                            </button>
-
-                        </div>
-                        <div class="wrap-couponTrain">
-
-                            <button class="wrap-coupon btn border py-2 " data-btn-id="btn3"
-                                onclick="highlightNumbers([7, 8, 9, 10, 11], 'btn3')">
-                                <p class="mb-0">Giường Khoang 6 (73)</p>
-                            </button>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <!-- ---------- -->
-                <div class="content-train pt-4">
-                    <h4 class="location_trainCar fw-bold">Vị trí toa (2/11)</h4>
-                    <div class="d-flex align-items-center gap-2 pt-4">
-
-                        <div class="locomotive2">
-                            <div class="box"> </div>
-                            <div class="text">SE6</div>
-                        </div>
-                        <div class="train-items d-flex ">
-                            <p class="mb-0 number">1</p>
-                            <p class="mb-0 number">2</p>
-                            <p class="mb-0 number">3</p>
-                            <p class="mb-0 number">4</p>
-                            <p class="mb-0 number">5</p>
-                            <p class="mb-0 number">6</p>
-                            <p class="mb-0 number">7</p>
-                            <p class="mb-0 number">8</p>
-                            <p class="mb-0 number">9</p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade pickup-tab" id="pickup-{{ $key }}" role="tabpanel" aria-labelledby="pickup-tab"
-                tabindex="1">
-                <div class="pt-2">
-                    <div class="row-utility">
-                        <div class="icon-text">
-                            <i class="fa-regular fa-snowflake"></i>
-                            <span>Điều hòa</span>
-                        </div>
-                        <div class="icon-text">
-                            <i class="fa-solid fa-wifi"></i>
-                            <span>Free wifi</span>
-                        </div>
-                        <div class="icon-text">
-                            <i class="fa fa-couch" aria-hidden="true"></i>
-                            <span>Điều chỉnh ghế ngồi</span>
-                        </div>
-                        <div class="icon-text">
-                            <i class="fa-solid fa-plug"></i>
-                            <span>Ổ cắm điện</span>
-                        </div>
-                        <div class="icon-text">
-                            <i class="fa-solid fa-restroom"></i>
-                            <span>Nhà vệ sinh</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="tab-pane fade rating-tab" id="rating-{{ $key }}" role="tabpanel" aria-labelledby="rating-tab"
-                tabindex="2">
-                <div class="d-flex align-items-center">
-                    <div class="container-star d-flex align-items-center rating-info">
-                        <button class="btn btn-primary p-1"><i class="fa-solid fa-star"></i>
-                            4.5</button>
-                        <div class="star-rating " style="color: rgb(255, 199, 0);">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                        <div class="text-wrap">73 Đánh giá</div>
-                    </div>
-                </div>
-                <div class="d-flex flex-column mt-2 mb-2">
-                    <div class="row d-flex w-100 ps-2 pe-2">
-                        <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                            <div class="card item-card-rating">
-                                <div class=" p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">An toàn</div>
-                                        <div class="fw-bold">3.6</div>
+                            <div class="container-select-train">
+                                @foreach ($list_routes_train[$key]['carriage_list'] as $carriage)
+                                    <div class="wrap-couponTrain">
+                                        <button class="wrap-coupon btn border py-2 " data-btn-id="{{$carriage['carriage_number']}}"
+                                            onclick="highlightNumbers([{{$carriage['carriage_name_app']}}], '{{$carriage['carriage_number']}}')">
+                                            <p class="mb-0">{{$carriage['carriage_description']}} ({{$carriage['available_carriage_seats']}})</p>
+                                        </button>
                                     </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- ---------- -->
+                        <div class="content-train pt-4">
+                            <h4 class="location_trainCar fw-bold">Vị trí toa (2/{{$list_routes_train[$key]['total_carriage']}})</h4>
+                            <div class="d-flex align-items-center gap-2 pt-4">
+
+                                <div class="locomotive2">
+                                    <div class="box"> </div>
+                                    <div class="text">SE6</div>
+                                </div>
+                                <div class="train-items d-flex ">
+                                    <p class="mb-0 number">1</p>
+                                    <p class="mb-0 number">2</p>
+                                    <p class="mb-0 number">3</p>
+                                    <p class="mb-0 number">4</p>
+                                    <p class="mb-0 number">5</p>
+                                    <p class="mb-0 number">6</p>
+                                    <p class="mb-0 number">7</p>
+                                    <p class="mb-0 number">8</p>
+                                    <p class="mb-0 number">9</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade pickup-tab" id="pickup-{{ $key }}" role="tabpanel"
+                        aria-labelledby="pickup-tab" tabindex="1">
+                        <div class="pt-2">
+                            <div class="row-utility">
+                                <div class="icon-text">
+                                    <i class="fa-regular fa-snowflake"></i>
+                                    <span>Điều hòa</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa-solid fa-wifi"></i>
+                                    <span>Free wifi</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa fa-couch" aria-hidden="true"></i>
+                                    <span>Điều chỉnh ghế ngồi</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa-solid fa-plug"></i>
+                                    <span>Ổ cắm điện</span>
+                                </div>
+                                <div class="icon-text">
+                                    <i class="fa-solid fa-restroom"></i>
+                                    <span>Nhà vệ sinh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade rating-tab" id="rating-{{ $key }}" role="tabpanel"
+                        aria-labelledby="rating-tab" tabindex="2">
+                        <div class="d-flex align-items-center">
+                            <div class="container-star d-flex align-items-center rating-info">
+                                <button class="btn btn-primary p-1"><i class="fa-solid fa-star"></i>
+                                    4.5</button>
+                                <div class="star-rating " style="color: rgb(255, 199, 0);">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <div class="text-wrap">73 Đánh giá</div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column mt-2 mb-2">
+                            <div class="row d-flex w-100 ps-2 pe-2">
+                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
+                                    <div class="card item-card-rating">
+                                        <div class=" p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="fw-bold">An toàn</div>
+                                                <div class="fw-bold">3.6</div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-label="Basic example" style="width: 50%"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
+                                    <div class="card item-card-rating">
+                                        <div class=" p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="fw-bold">An toàn</div>
+                                                <div class="fw-bold">3.6</div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
+                                    <div class="card item-card-rating">
+                                        <div class=" p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="fw-bold">An toàn</div>
+                                                <div class="fw-bold">3.6</div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-flex w-100 ps-2 pe-2">
+                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
+                                    <div class="card item-card-rating">
+                                        <div class=" p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="fw-bold">An toàn</div>
+                                                <div class="fw-bold">3.6</div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
+                                    <div class="card item-card-rating">
+                                        <div cl p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="fw-bold">An toàn</div>
+                                                <div class="fw-bold">3.6</div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 ps-2 pe-2">
+                                    <div class="card item-card-rating">
+                                        <div cl p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="fw-bold">An toàn</div>
+                                                <div class="fw-bold">3.6</div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                            <div class="card item-card-rating">
-                                <div class=" p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">An toàn</div>
-                                        <div class="fw-bold">3.6</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                            <div class="card item-card-rating">
-                                <div class=" p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">An toàn</div>
-                                        <div class="fw-bold">3.6</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row d-flex w-100 ps-2 pe-2">
-                        <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                            <div class="card item-card-rating">
-                                <div class=" p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">An toàn</div>
-                                        <div class="fw-bold">3.6</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                            <div class="card item-card-rating">
-                                <div cl p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">An toàn</div>
-                                        <div class="fw-bold">3.6</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4 ps-2 pe-2">
-                            <div class="card item-card-rating">
-                                <div cl p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">An toàn</div>
-                                        <div class="fw-bold">3.6</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <ul class="nav nav-pills mb-1 pill-rating-filter" role="tablist">
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link active-train" data-bs-toggle="pill">Tất cả
-                            (100)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">Có nhận xét
-                            (100)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">Có hình ảnh
-                            (100)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">5<i class="fa-solid fa-star"></i>(12)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">4<i class="fa-solid fa-star"></i>(12)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">3<i class="fa-solid fa-star"></i>(12)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">2<i class="fa-solid fa-star"></i>(12)</button>
-                    </li>
-                    <li class="nav-item filter-rating" role="presentation">
-                        <button class="nav-link" data-bs-toggle="pill">1<i class="fa-solid fa-star"></i>(12)</button>
-                    </li>
-                </ul>
+                        <ul class="nav nav-pills mb-1 pill-rating-filter" role="tablist">
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link active-train" data-bs-toggle="pill">Tất cả
+                                    (100)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">Có nhận xét
+                                    (100)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">Có hình ảnh
+                                    (100)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">5<i
+                                        class="fa-solid fa-star"></i>(12)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">4<i
+                                        class="fa-solid fa-star"></i>(12)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">3<i
+                                        class="fa-solid fa-star"></i>(12)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">2<i
+                                        class="fa-solid fa-star"></i>(12)</button>
+                            </li>
+                            <li class="nav-item filter-rating" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill">1<i
+                                        class="fa-solid fa-star"></i>(12)</button>
+                            </li>
+                        </ul>
 
-                <div class="list-group w-100 list-gr-review">
-                    <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <div class="d-flex user-review">
-                                <img class="avatar-review"
-                                    src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                    alt="anh-dai-dien" srcset="">
-                                <div class="d-flex flex-column mt-1 ms-1">
-                                    <h6 class="mb-1">List group item heading</h6>
-                                    <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half-stroke"></i>
-                                        <i class="fa-regular fa-star"></i>
+                        <div class="list-group w-100 list-gr-review">
+                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div class="d-flex user-review">
+                                        <img class="avatar-review"
+                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                            alt="anh-dai-dien" srcset="">
+                                        <div class="d-flex flex-column mt-1 ms-1">
+                                            <h6 class="mb-1">List group item heading</h6>
+                                            <div class="d-flex align-items-center star-rating"
+                                                style="color: rgb(255, 199, 0);">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <small>3 days ago</small>
                                 </div>
-                            </div>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">The single cabin was nice. The bed was a little short,
-                            but it was wide and pleasant. Each cabin was provided with bottled
-                            water, wet wipes and blankets. The bed was clean and the staff was very
-                            friendly, so I had a great experience.</p>
-                        <div class="d-flex list-img-review flex-row">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                alt="thumb-1">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                alt="thumb-1">
-                        </div>
+                                <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    but it was wide and pleasant. Each cabin was provided with bottled
+                                    water, wet wipes and blankets. The bed was clean and the staff was very
+                                    friendly, so I had a great experience.</p>
+                                <div class="d-flex list-img-review flex-row">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
+                                        alt="thumb-1">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1">
+                                </div>
 
-                        <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày 29/07/2024</small>
-                            <div class="item-check-review ms-1">
-                                <i class="fa-solid fa-ticket"></i>
-                                <small>Đã mua vé</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <div class="d-flex user-review">
-                                <img class="avatar-review"
-                                    src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                    alt="anh-dai-dien" srcset="">
-                                <div class="d-flex flex-column mt-1 ms-1">
-                                    <h6 class="mb-1">List group item heading</h6>
-                                    <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half-stroke"></i>
-                                        <i class="fa-regular fa-star"></i>
+                                <div class="d-flex align-items-center">
+                                    <small class="">Đã đi ngày 29/07/2024</small>
+                                    <div class="item-check-review ms-1">
+                                        <i class="fa-solid fa-ticket"></i>
+                                        <small>Đã mua vé</small>
                                     </div>
                                 </div>
                             </div>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">The single cabin was nice. The bed was a little short,
-                            but it was wide and pleasant. Each cabin was provided with bottled
-                            water, wet wipes and blankets. The bed was clean and the staff was very
-                            friendly, so I had a great experience.</p>
-                        <div class="d-flex list-img-review flex-row">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                alt="thumb-1">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                alt="thumb-1">
-                        </div>
+                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div class="d-flex user-review">
+                                        <img class="avatar-review"
+                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                            alt="anh-dai-dien" srcset="">
+                                        <div class="d-flex flex-column mt-1 ms-1">
+                                            <h6 class="mb-1">List group item heading</h6>
+                                            <div class="d-flex align-items-center star-rating"
+                                                style="color: rgb(255, 199, 0);">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <small>3 days ago</small>
+                                </div>
+                                <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    but it was wide and pleasant. Each cabin was provided with bottled
+                                    water, wet wipes and blankets. The bed was clean and the staff was very
+                                    friendly, so I had a great experience.</p>
+                                <div class="d-flex list-img-review flex-row">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
+                                        alt="thumb-1">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1">
+                                </div>
 
                         <div class="d-flex align-items-center">
                             <small class="">Đã đi ngày 29/07/2024</small>
@@ -2411,21 +2374,25 @@
                             <div id="myCarousel" class="carousel slide">
                                 <div class="carousel-inner">
 
+                                        </div>
+
+                                        <!-- Controls-->
+                                        <a class="left carousel-control" href="#myCarousel" role="button"
+                                            data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#myCarousel" role="button"
+                                            data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+
+                                    </div>
                                 </div>
-
-                                <!-- Controls-->
-                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-
                             </div>
-                        </div>
-                    </div>
 
                     <div class="row slide-trains">
                         <div class="col-md-12" id="slider-thumbs">
@@ -2499,8 +2466,10 @@
         }
     }
 </script>
-
 <script>
+    function toggleCustomContent(key, step) {
+        const button = document.getElementById(`button-step-custom-${step}-${key}`);
+        const content = document.getElementById(`content-step-custom-${step}-${key}`);
 
     function toggleCustomContent(key, step) {
         const button = document.getElementById(`button-step-custom-${step}-${key}`);
@@ -2537,18 +2506,17 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
     function highlightNumbers(indices, selectedButtonId) {
         var numbers = document.querySelectorAll('.number');
-        numbers.forEach(function (num) {
+        numbers.forEach(function(num) {
             num.classList.remove('activetrain');
         });
 
-        indices.forEach(function (index) {
-            if (index > 0 && index <= numbers.length) {
-                numbers[index - 1].classList.add('activetrain');
-            }
-        });
+    indices.forEach(function(index) {
+        if (index > 0 && index <= numbers.length) {
+            numbers[index - 1].classList.add('activetrain');
+        }
+    });
 
         var buttons = document.querySelectorAll('.btn');
         buttons.forEach(function (btn) {

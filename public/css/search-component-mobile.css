@@ -1,3 +1,16 @@
+/* PC size */
+/* custom select slim */
+.custom-input-container.select-slim.select-from-input {
+    width: 90%;
+}
+.custom-input-container.select-slim .ss-main {
+    min-height: 45px;
+    border: none;
+}
+.custom-input-container.select-slim .ss-main:focus {
+    box-shadow: none;
+}
+
 @media (max-width: 1150px) {
     .slogan-header {
         display: none;
@@ -76,6 +89,23 @@
     .custom-input-container {
         padding-top: 5px;
         padding-bottom: 5px;
+    }
+    .custom-input-container.select-slim {
+        width: 100%;
+    }
+    .custom-input-container.select-slim.select-from-input {
+        width: 100%;
+    }
+    .custom-input-container.select-slim .ss-main {
+        min-height: 45px;
+        border: 1px solid #dcdee2;
+    }
+    .custom-input-container.select-slim .ss-main:focus {
+        box-shadow: 0 0 5px var(--ss-focus-color);
+    }
+    .flex-sum-left {
+        width: 100%;
+        padding: 1%;
     }
     .departure-bus-date .flex-sum-left {
         padding-bottom: 5px;
