@@ -394,9 +394,7 @@ class RouteController extends Controller
         $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
         $quantity = 2;
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        if (empty($trainTo) || empty($trainFrom) || empty($dateTo)) {
-            return response()->json(['error' => 'Missing required parameters.'], 400);
-        }
+
         if (!$token) {
             return response()->json(['error' => 'Failed to retrieve token.'], 500);
         }
