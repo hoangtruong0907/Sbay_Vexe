@@ -19,12 +19,13 @@
                 </div>
                 <div class="col-12 mt-3">
                     <label for="email" class="col-12">Ảnh hiện tại</label>
-                    <img 
-                        src="{{asset('storage/images/banner/'. $banner_current->slide_path)}}" 
-                        alt="ảnh hiện tại"
-                        class="col-12"
-                        style="width: 95%; max-height: 500px" 
-                    >
+                    <div>
+                        <img 
+                            src="{{asset('storage/images/banner/'. optional($banner_current)->slide_path)}}" 
+                            alt="ảnh hiện tại"
+                            style="width: 100%; object-fit: cover; max-height: 405px; min-height: 400px; object-position: center center"
+                        >
+                    </div>
                 </div>
                 
                 <div class="mt-5">

@@ -220,7 +220,7 @@
     @if (is_null($user->phone))
         <div class="modal fade" id="addPhonenumberModal" tabindex="-1" aria-labelledby="addPhonenumberModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addPhonenumberModalLabel">Xác thực số điện thoại</h5>
