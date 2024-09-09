@@ -3,7 +3,7 @@
 @section('title', ' Trang Quản trị')
 @section('contents')
 <div class="animate__animated p-6" :class="[$store.app.animation]">
-    <div x-data="finance">
+    <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
                 <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
