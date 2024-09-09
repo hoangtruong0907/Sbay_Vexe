@@ -90,9 +90,7 @@ $(document).ready(function () {
         $('#deleteUserModal').data('userId', userId).removeClass('hidden');
     });
 });
-
-// Định nghĩa các hàm toàn cục
-
+// -------------- Hàm ------------
 function closeModalAdd(event) {
     if (event) {
         if (event.target === event.currentTarget) {

@@ -33,7 +33,7 @@
                             <th>Số điện thoại</th>
                             <th>Vai trò</th>
                             <th>Trạng thái</th>
-                            <th>Ngày cập nhật</th>
+                            <th class="text-nowrap">Ngày cập nhật</th>
                             <th class="!text-center">Chức năng</th>
                         </tr>
                     </thead>
@@ -58,9 +58,9 @@
                                 <td>{{ $user->phone }}</td>
                                 <td>
                                     @if ($user->role == 2)
-                                        Quản trị viên
+                                        <p class="text-nowrap">Quản trị viên</p>
                                     @elseif($user->role == 1)
-                                        Người dùng
+                                    <p class="text-nowrap">Người dùng</p>
                                     @endif
                                 </td>
                                 <td>
@@ -70,10 +70,10 @@
                                         <span class="badge bg-danger text-nowrap">Khoá</span>
                                     @endif
                                 </td>
-                                <td>{{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y-H:i') }}</td>
+                                <td class="text-nowrap">{{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y-H:i') }}</td>
                                 <td class="text-end">
                                     <div class="flex items-center justify-center gap-4">
-                                        <button class="btn btn-sm btn-outline-primary editUser"
+                                        <button class="btn btn-sm btn-outline-primary text-nowrap editUser"
                                             data-id="{{ $user->id }}">Chỉnh Sửa</button>
                                         <button class="btn btn-sm btn-outline-danger deleteUser"
                                             data-id="{{ $user->id }}"> Xoá</button>
