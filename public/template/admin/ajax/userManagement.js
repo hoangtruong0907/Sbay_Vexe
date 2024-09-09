@@ -1,8 +1,7 @@
 $(document).ready(function () {
     // -------------- Thêm ------------
     $('.add-user-modal').on('click', function () {
-        $('#addUserModal').removeClass('hidden');
-        $('#modalTitle').text('Thêm người dùng');
+        $('#addUserModal').removeClass('hidden'); 
         $('#userForm_add')[0].reset();
     });
 

@@ -92,7 +92,7 @@
         <div class="flex items-center justify-center min-h-screen px-4" onclick="closeModalAdd(event)">
             <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
                 <!-- Modal Header -->
-                <h3 class="text-lg font-medium text-center mb-4" id="modalTitle">Thêm người dùng</h3> 
+                <h3 class="text-lg font-medium text-center mb-4">Thêm người dùng</h3> 
                 <button type="button" class="absolute top-4 right-4 text-gray-600 hover:text-black"
                     onclick="closeModalAdd()">
                     <img src="{{ asset('/template/admin/assets/images/icons/ic_close.svg') }} " alt="Icon">
@@ -156,7 +156,7 @@
         <div class="flex items-center justify-center min-h-screen px-4"> 
             <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative" onclick="event.stopPropagation()">
                 <!-- Modal Header -->
-                <h3 class="text-lg font-medium text-center mb-4" id="modalTitle">Chỉnh sửa người dùng
+                <h3 class="text-lg font-medium text-center mb-4">Chỉnh sửa người dùng
                 </h3> 
                 <button type="button" class="absolute top-4 right-4 text-gray-600 hover:text-black"
                     onclick="closeModalEdit()">
