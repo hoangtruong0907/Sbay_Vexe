@@ -445,63 +445,62 @@
                                         alt="thumb-1">
                                 </div>
 
-                                <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày 29/07/2024</small>
-                                    <div class="item-check-review ms-1">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        <small>Đã mua vé</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <div class="d-flex user-review">
-                                        <img class="avatar-review"
-                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                            alt="anh-dai-dien" srcset="">
-                                        <div class="d-flex flex-column mt-1 ms-1">
-                                            <h6 class="mb-1">List group item heading</h6>
-                                            <div class="d-flex align-items-center star-rating"
-                                                style="color: rgb(255, 199, 0);">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star-half-stroke"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">The single cabin was nice. The bed was a little short,
-                                    but it was wide and pleasant. Each cabin was provided with bottled
-                                    water, wet wipes and blankets. The bed was clean and the staff was very
-                                    friendly, so I had a great experience.</p>
-                                <div class="d-flex list-img-review flex-row">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                        alt="thumb-1">
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                        alt="thumb-1">
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <small class="">Đã đi ngày 29/07/2024</small>
-                                    <div class="item-check-review ms-1">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        <small>Đã mua vé</small>
-                                    </div>
-                                </div>
+                        <div class="d-flex align-items-center">
+                            <small class="">Đã đi ngày 29/07/2024</small>
+                            <div class="item-check-review ms-1">
+                                <i class="fa-solid fa-ticket"></i>
+                                <small>Đã mua vé</small>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel"
-                        aria-labelledby="image-tab" tabindex="3">
-                        <div class="d-flex flex-column w-100 h-100 m-2">
-                            <div class="row" id="slider">
-                                <div class="col-md-12">
-                                    <div id="myCarousel" class="carousel slide">
-                                        <div class="carousel-inner">
+                    <div class="list-group-item list-group-item-action p-3" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <div class="d-flex user-review">
+                                <img class="avatar-review"
+                                    src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                    alt="anh-dai-dien" srcset="">
+                                <div class="d-flex flex-column mt-1 ms-1">
+                                    <h6 class="mb-1">List group item heading</h6>
+                                    <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">The single cabin was nice. The bed was a little short,
+                            but it was wide and pleasant. Each cabin was provided with bottled
+                            water, wet wipes and blankets. The bed was clean and the staff was very
+                            friendly, so I had a great experience.</p>
+                        <div class="d-flex list-img-review flex-row">
+                            <img class="thumb-img-review"
+                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
+                                alt="thumb-1">
+                            <img class="thumb-img-review"
+                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                alt="thumb-1">
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <small class="">Đã đi ngày 29/07/2024</small>
+                            <div class="item-check-review ms-1">
+                                <i class="fa-solid fa-ticket"></i>
+                                <small>Đã mua vé</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel" aria-labelledby="image-tab"
+                tabindex="3">
+                <div class="d-flex flex-column w-100 h-100 m-2">
+                    <div class="row" id="slider">
+                        <div class="col-md-12">
+                            <div id="myCarousel" class="carousel slide">
+                                <div class="carousel-inner">
 
                                         </div>
 
@@ -548,7 +547,6 @@
             </div>
         </div>
     </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Kiểm tra phần tử nút và collapse
