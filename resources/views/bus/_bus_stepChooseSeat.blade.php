@@ -367,10 +367,10 @@
                             </p>
                         </div>
                         <div class="value-container">
-                            <select class="form-select filter-drop-pickup">
+                            <select class="form-select filter-drop-pickup" id="select_pickup" name="select_pickup">
                                 <option value="1" selected>Sớm nhất</option>
-                                <option value="3">Gần nhất</option>
                                 <option value="2">Trễ nhất</option>
+                                <option value="3">Gần nhất</option>
                             </select>
                             <button class="custom-address-button">
                                 <span id="displayAddress" class="address-container">
@@ -382,7 +382,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="container-group-items-pick-up-point">
+                    <div class="container-group-items-pick-up-point" id="items-pick-up-point">
                         {{-- <div class="form-check">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                     id="flexRadioDefault1-{{ $keyId }}">
@@ -398,16 +398,21 @@
                         <textarea id="transferAddress-{{ $keyId }}" placeholder="Nhập địa chỉ trung chuyển" class="ant-input"
                             style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                     </div> --}}
-                    @foreach ($pickupPoints as $point)
+                    @foreach ($pickupPoints as $index => $point)
                     <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
                         data-point-id="{{ $point['point_id'] }}">
-                        <input class="form-check-input" type="radio"
-                            name="rdioCheckDrop-{{ $keyId }}" value="{{ $point['point_id'] }}" data-name="{{ $point['name'] }}"
-                            id="rdioCheckDrop-{{ $keyId }}" checked>
-                        <label class="form-check-label-title"
-                            for="rdioCheckDrop-{{ $keyId }}">{{ $point['name'] }},{{ $point['areaDetail']['city_name'] }}</label>
+                        <input class="form-check-input" 
+                            type="radio" 
+                            name="rdioCheckDrop-{{ $keyId }}" 
+                            value="{{ $point['point_id'] }}" 
+                            data-name="{{ $point['name'] }}"
+                            id="rdioCheckDrop-{{ $keyId }}" 
+                            {{$index == 0 ? 'checked' : ''}}
+                        >
                         <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
                         </div>
+                        <label class="form-check-label-title"
+                            for="rdioCheckDrop-{{ $keyId }}">{{ $point['name'] }},{{ $point['areaDetail']['city_name'] }}</label>
                         <small><i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }} <a
                                 href="https://www.google.com/maps/search/{{ $point['areaDetail']['latitude'] }}+{{ $point['areaDetail']['longitude'] }}/{!! '@' . $point['areaDetail']['latitude'] !!},{!! $point['areaDetail']['longitude'] !!},17z?entry=ttu"
                                 target="_blank">Bản đồ</a> </small>
@@ -429,33 +434,35 @@
                         </p>
                     </div>
                     <div class="value-container">
-                        <select class="form-select filter-drop-pickup">
+                        <select class="form-select filter-drop-pickup" id="dropoff_point" name="dropoff_point">
                             <option value="1" selected>Sớm nhất</option>
-                            <option value="3">Gần nhất</option>
                             <option value="2">Trễ nhất</option>
+                            <option value="3">Gần nhất</option>
                         </select>
-                        <button class="custom-dropoff-button" style="
-    justify-content: flex-end;">
-    <span id="displayDropoffAddress" class="address-container">
-        <p class="text-drop-off-point-arrange text-drop-off-point-maps" style="margin-left: 31px;">
-            Nhập địa chỉ tại đây
-        </p>
-    </span>
-    <span id="changeDropoffLink" class="change-link text-drop-off-point-maps" onclick="openDropoffAddressModal()" style="display: none;">Thay đổi</span>
-</button>
+                        <button class="custom-dropoff-button" style=" justify-content: flex-end;">
+                            <span id="displayDropoffAddress" class="address-container">
+                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline text-primary" style="margin-left: 31px;">
+                                    Nhập địa chỉ tại đây
+                                </p>
+                            </span>
+                            <span id="changeDropoffLink" class="change-link text-drop-off-point-maps" onclick="openDropoffAddressModal()" style="display: none;">Thay đổi</span>
+                        </button>
                     </div>
                 </div>
-                <div class="container-group-items-pick-up-point">
-                    @foreach ($dropOffPoints as $point)
+                <div class="container-group-items-pick-up-point" id="items-dropoff-point">
+                    @foreach ($dropOffPoints as $index => $point)
                     <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
                         data-point-id="{{ $point['point_id'] }}">
                         <input class="form-check-input" type="radio"
                             name="rdioCheckTransfer-{{ $keyId }}"
-                            value="{{ $point['point_id'] }}" id="rdioCheckTransfer-{{ $keyId }}" data-name="{{ $point['name'] }}"
-                            checked>
+                            value="{{ $point['point_id'] }}" 
+                            id="rdioCheckTransfer-{{ $keyId }}" 
+                            data-name="{{ $point['name'] }}"
+                            {{$index == 0 ? 'checked' : ''}}
+                        >
+                        <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
                         <label class="form-check-label-title"
                             for="rdioCheckTransfer-{{ $keyId }}">{{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}</label>
-                        <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
                         </div>
                         <small><i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }} <a
                                 href="https://www.google.com/maps/search/{{ $point['areaDetail']['latitude'] }}+{{ $point['areaDetail']['longitude'] }}/{!! '@' . $point['areaDetail']['latitude'] !!},{!! $point['areaDetail']['longitude'] !!},17z?entry=ttu"
@@ -486,4 +493,112 @@
                     class="fa-regular fa-circle-check"></i></span></button>
     </div>
 </div>
+
+{{-- Modal search Address --}}
+<!-- Button trigger modal -->
+<button type="button" class="hidden" data-bs-toggle="modal" id="btn_show_modal_search_address" data-bs-target="#modalSearchAddress">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalSearchAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tìm kiếm địa chỉ</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div> 
+                <small class="text-primary">*Nhập địa chỉ điểm đến của bạn để sử dụng tiêu chí sắp xếp này</small>
+                <input type="text" class="form-control mt-2 mb-2" id="address_input" placeholder="03 Đinh Thị Hòa, An Hải Bắc, Sơn Trà, Đà Nẵng">
+                <div><p class="text-decoration-underline text-primary">Dùng vị trí hiện tại của bạn</p></div>
+                <hr class="mt-2 mb-2">
+                <div style="min-height: 200px">
+                    {{-- content Demo --}}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+{{-- end modal --}}
+</div>
+<script>
+
+    function renderSortItems(dataArray) {
+        return dataArray.map((element, index) => {
+            var originalDate = element.real_time;
+
+            // Tách phần giờ và ngày từ chuỗi đầu vào
+            var time = originalDate.split(' ')[0];
+            var datePart = originalDate.split(' ')[1];
+
+            // Tách ngày, tháng, năm
+            var dateParts = datePart.split('-');
+            var day = dateParts[0];
+            var month = dateParts[1];
+
+            // Định dạng lại ngày theo định dạng mong muốn
+            var formattedDate = time + ' • (' + day + '/' + month + ')';
+
+            return (`<div class="form-check item point_id-1" data-id="${element.id}" data-point-id="${element.point_id}">
+                <input class="form-check-input" type="radio"
+                    name="rdioCheckTransfer-${ element.keyId }"
+                    value="${element.point_id}" id="rdioCheckTransfer-${element.keyId}" data-name="${element.name}"
+                    ${index == 0 ? "checked" : ""}>
+                <div class="fw-bold"> ${formattedDate}
+                <label class="form-check-label-title" for="rdioCheckTransfer-${ element.keyId }">
+                    ${ element?.name }, ${ element.areaDetail?.city_name }    
+                </label>
+                </div>
+                <small>
+                    <i class="fa-solid fa-location-dot me-1"></i>${ element.address }
+                    <a href="https://www.google.com/maps/search/${ element?.areaDetail?.latitude }+${ element?.areaDetail?.longitude }/'@'${element?.areaDetail?.latitude},${ element?.areaDetail?.longitude},17z?entry=ttu" target="_blank">Bản đồ</a> 
+                </small>
+            </div>`)
+        })
+    }
+
+    // pickup select change
+    $('#select_pickup').change((element) => {
+        var curren_array_pick_up = {!! json_encode($pickupPoints) !!};
+
+        switch ($('#select_pickup').val()) {
+            case "1":
+                return $('#items-pick-up-point').empty().append(renderSortItems(curren_array_pick_up));                
+                break;
+            case "2":
+                let reverse_arr = curren_array_pick_up.reverse();
+                return $('#items-pick-up-point').empty().append(renderSortItems(reverse_arr));   
+                break;
+            case "3":
+                $('#btn_show_modal_search_address').click();
+                break;
+        
+            default:
+                break;
+        } 
+    });
+
+    // dropoff select change
+    $('#dropoff_point').change((element) => {
+        var curren_array = {!! json_encode($dropOffPoints) !!};
+
+        switch ($('#dropoff_point').val()) {
+            case "1":
+                return $('#items-dropoff-point').empty().append(renderSortItems(curren_array));                
+                break;
+            case "2":
+                let reverse_arr = curren_array.reverse();
+                return $('#items-dropoff-point').empty().append(renderSortItems(reverse_arr));   
+                break;
+            case "3":
+                $('#btn_show_modal_search_address').click();
+                break;
+        
+            default:
+                break;
+        } 
+    });
+</script>

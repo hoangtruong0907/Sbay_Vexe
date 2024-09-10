@@ -470,7 +470,8 @@
 .activetrain {
     color: #007bff;
 }
-.container-select-train{
+
+.container-select-train {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -479,6 +480,7 @@
     scroll-behavior: smooth;
     white-space: nowrap;
 }
+
 .container-select-train {
     gap: 5px;
     display: flex;
@@ -742,8 +744,12 @@
     display: none;
 }
 
+.wrap-coupon-train.active {
+    border: 2px solid #0056b3;
+    border-radius: 8px;
+}
 
-.wrap-coupon-train .kNCupL-train {
+.wrap-coupon-train .carriage-train {
     -webkit-box-align: stretch;
     align-items: stretch;
     border: 1px solid rgb(224, 224, 224);
@@ -855,6 +861,7 @@
     gap: 10px;
 }
 
+
 .seat-info-train .seat-unavailable-train svg rect {
     stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
@@ -890,6 +897,11 @@
 
 .coach-row-train .seat-unavailable-train {
     cursor: not-allowed;
+}
+
+.coach-row-train .seat, .coach-row-train .train-hl {
+    padding: 4px;
+    border: 0 !important;
 }
 
 .seat-info-train .seat-name-train {
@@ -938,6 +950,17 @@
     padding: 20px 8px 12px;
     background: rgb(242, 242, 242);
     border-radius: 25px 25px 5px 5px;
+}
+
+.wrap-coach-train .train-hl {
+    height: 32px;
+    width: 40px;
+}
+
+.wrap-steps-train .right-steps-train.scroll-carriage {
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .coach-row-train .seat-train .modal-choose-chair-train {
@@ -1003,44 +1026,7 @@
 
 }
 
-.container-qr .qrcode-container {
-    border: 1px solid rgb(188, 186, 186);
-    max-width: 60%;
-    height: auto;
-    border-radius: 10px;
-    box-sizing: border-box;
 
-}
-
-.qrcode-container .qrcode-label {
-    font-size: 12px;
-    background-color: rgb(252, 89, 116);
-
-    border-radius: 10px;
-    color: white;
-}
-
-.w-container-train {
-    width: 15%;
-}
-
-.w-container-train .w-content-train {
-    width: 100%;
-    color: white;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    font-size: 12px;
-
-}
-
-.qrcode-container .detail-box-train {
-    display: flex;
-    padding: 0.5rem;
-    align-items: center;
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-}
 
 .wizard-step-train .container-qr {
     display: flex;
@@ -1049,7 +1035,7 @@
     align-items: center;
 }
 
-.container-qr .qrcode-content {
+.container-qr {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1058,50 +1044,7 @@
     box-sizing: border-box;
 }
 
-.qrcode-content .row-train {
-    flex-wrap: wrap;
-    min-height: 150px;
 
-}
-
-.qrcode-content .col-train {
-    flex: 1 1 100px;
-    max-width: 100%;
-    margin-bottom: 15px;
-}
-
-.row-train .item-abate i {
-    font-size: 40px;
-}
-
-
-.qrcode-content .item-col-train {
-    flex: 2 1 200px;
-    max-width: 100%;
-}
-
-.qrcode-content .img-fluid-train {
-    max-width: 40%;
-    height: auto;
-}
-
-.qrcode-content .qrcode-item {
-    width: 85%;
-    height: auto;
-}
-
-.request {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1.5rem;
-    background-color: white;
-    width: 95%;
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-}
 
 .total-amount-train {
     width: 100%;
@@ -1153,18 +1096,6 @@
     margin-right: 8px;
 }
 
-.item-col-train .img-custom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px;
-}
-
-.item-col-train .img-custom img {
-    width: 10%;
-    max-width: 50%;
-    height: auto;
-}
 
 
 
@@ -1209,7 +1140,8 @@
 
 /* Định dạng cho nội dung các bước */
 .step-content {
-    display: none; /* Mặc định ẩn nội dung */
+    display: none;
+    /* Mặc định ẩn nội dung */
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -1231,7 +1163,8 @@
 
 /* Định dạng cho nội dung các bước */
 .step-content-custom {
-    display: none; /* Mặc định ẩn nội dung */
+    display: none;
+    /* Mặc định ẩn nội dung */
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;

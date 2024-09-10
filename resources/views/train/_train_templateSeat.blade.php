@@ -1,0 +1,168 @@
+@if (!empty($seatMap['data']) && isset($seatMap['data']['coach_seat_template']))
+    <div class="wrap-steps-train">
+        <div class="left-steps-train">
+            <div class="seat-groups-train">
+                <div class="note-train">Chú thích</div>
+                {{-- List type seat train --}}
+                <div class="seat-info-train">
+                    {!! renderSeat(1, 'unselected') !!}
+                    <span class="seat-name">Ghế không bán</span>
+                </div>
+                <div class="seat-info-train">
+                    {!! renderSeat(1, 'selected') !!}
+                    <span class="seat-name">Đang chọn</span>
+                </div>
+                <div class="seat-info-train">
+                    {!! renderSeat(1) !!}
+                    <span class="seat-name">
+                        <div class="seat-name-group">Ghế trống</div>
+                        {{-- <div class="seat-original">
+                            <strong>{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fare']) }}</strong>
+                            <span
+                                class="seat-fare-original">{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fares']['original']) }}</span>
+                        </div> --}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        {{-- List template seat  --}}
+        <div class="right-steps-train">
+            <div class="mt-3 border border-1 rounded-3 p-2">
+                <div class="wrap-coach-train">
+                    @if (count($seatMap['data']['coach_seat_template']) > 0)
+                        @foreach ($seatMap['data']['coach_seat_template'] as $i => $val)
+                            <div class="coach-train">
+                                <table>
+                                    <tbody>
+                                        <tr class="coach-row-train">
+                                            {{ $val['coach_name'] }}
+                                        </tr>
+                                        @for ($row = 1; $row <= $val['row_num']; $row++)
+                                            <tr class="coach-row-train">
+                                                @for ($col = 1; $col <= $val['col_num']; $col++)
+                                                    @php
+                                                        // Tìm ghế tại vị trí hàng và cột tương ứng
+                                                        $seat = collect($val['seats'])->firstWhere(function ($s) use (
+                                                            $row,
+                                                            $col,
+                                                        ) {
+                                                            return $s['row_num'] == $row && $s['col_num'] == $col;
+                                                        });
+                                                    @endphp
+                                                    @if (isset($seat['is_available']) && $seat['is_available'] == false && $seat['seat_code'] !== 'HL')
+                                                        <td class="seat">
+                                                            <div class="seat-choose-item seat-container"
+                                                                data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                {!! renderSeat('', 'unselected') !!}
+                                                            </div>
+                                                        </td>
+                                                    @elseif ($seat['is_available'] == false && $seat['seat_code'] == 'HL')
+                                                        <td class="train-hl"></td>
+                                                    @elseif($seat)
+                                                        <td class="seat">
+                                                            <div class="seat-choose-item seat-container"
+                                                                data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}"
+                                                                data-full-code="{{ $seat['full_code'] }}"
+                                                                data-seat-code="{{ $seat['seat_code'] }}"
+                                                                data-fare-seat="{{ $seat['train_data']['train_original_fare'] ?? $seat['train_data']['train_fare'] }}">
+                                                                {!! renderSeat('', $seat['seat_code']) !!}
+                                                            </div>
+                                                        </td>
+                                                    @else
+                                                        <td class="seat">
+                                                            <div class="seat-choose-item  seat-none"
+                                                                data-disabled="true"
+                                                                style="background-color: transparent;">
+                                                                <!-- Trường hợp không có ghế -->
+                                                            </div>
+                                                        </td>
+                                                    @endif
+                                                @endfor
+                                        @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+@elseif (count($seatMap['data']) > 1 && !isset($seatMap['data']['coach_seat_template']))
+    <div class="wrap-steps-train">
+        <div class="left-steps-train">
+            <div class="seat-groups-train">
+                <div class="note-train">Chú thích</div>
+                {{-- List type seat train --}}
+                <div class="seat-info-train">
+                    {!! renderSeat(3, 'unselected') !!}
+                    <span class="seat-name">Ghế không bán</span>
+                </div>
+                <div class="seat-info-train">
+                    {!! renderSeat(3, 'selected') !!}
+                    <span class="seat-name">Đang chọn</span>
+                </div>
+                <div class="seat-info-train">
+                    {!! renderSeat(3) !!}
+                    <span class="seat-name">
+                        <div class="seat-name-group">Ghế trống</div>
+                        {{-- <div class="seat-original">
+                        <strong>{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fare']) }}</strong>
+                        <span
+                            class="seat-fare-original">{{ formatCurrency($seatTemplateMap[0]['seats'][0]['fares']['original']) }}</span>
+                    </div> --}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        {{-- List template seat  --}}
+        <div class="right-steps-train scroll-carriage">
+            <div class="mt-3">
+                <div class="wrap-shipSeat">
+                    @foreach ($seatMap['data'] as $i => $carriage)
+                        <div class="shipSeat gap-3 mb-3 border border-1 rounded-3 p-2">
+                            <div class="d-flex align-self-center fw-bold">Khoang {{ $i + 1 }}</div>
+                            <div class="bg-secondary-subtle p-4 align-self-center rounded">
+                                @foreach ($carriage as $y => $seats)
+                                    <div class=" d-flex gap-5 align-items-center">
+                                        @foreach ($seats as $seat)
+                                            @if (isset($seat['is_available']) && $seat['is_available'] == false)
+                                                <td class="seat">
+                                                    <div class="seat-choose-item seat-container"
+                                                        data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                        {!! renderSeat(3, 'unselected') !!}
+
+                                                    </div>
+                                                </td>
+                                            @elseif($seat)
+                                                <td class="seat">
+                                                    <div class="seat-choose-item seat-container"
+                                                        data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}"
+                                                        data-full-code="{{ $seat['full_code'] }}"
+                                                        data-seat-code="{{ $seat['seat_code'] }}"
+                                                        data-fare-seat="{{ $seat['train_data']['train_original_fare'] ?? $seat['train_data']['train_fare'] }}">
+                                                        {!! renderSeat(3, $seat['seat_code']) !!}
+                                                    </div>
+                                                </td>
+                                            @else
+                                                <td class="seat">
+                                                    <div class="seat-choose-item  seat-none" data-disabled="true"
+                                                        style="background-color: transparent;">
+                                                        <!-- Trường hợp không có ghế -->
+                                                    </div>
+                                                </td>
+                                            @endif
+                                        @endforeach
+                                        <p>Tầng {{ $y + 1 }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+@else
+    <div class="fw-bold">Chưa có dữ liệu</div>
+@endif

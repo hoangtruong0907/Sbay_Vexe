@@ -10,10 +10,7 @@
         padding: 24px 3px 12px;
     }
 
-    .request {
-        display: flex !important;
-        flex-direction: column !important;
-    }
+
 
     .right-steps-content {
         display: flex;
@@ -210,7 +207,7 @@
 
 
 
-    
+
     /* ------------------------ */
     .location-route-svg-l {
         display: none;
@@ -372,10 +369,7 @@
         flex-direction: column !important;
     }
 
-    .request {
-        display: flex !important;
-        flex-direction: column !important;
-    }
+
 
     .note-train {
         flex-direction: column;
@@ -392,9 +386,7 @@
         width: 25%;
     }
 
-    .container-qr .qrcode-container {
-        max-width: 90%;
-    }
+
 }
 
 @media only screen and (max-width : 430px) {
@@ -448,27 +440,14 @@
         text-align: center;
     }
 
-    .request {
-        display: flex !important;
-        flex-direction: column !important;
-    }
+
 
     .right-steps-content {
         display: flex;
         justify-content: center;
     }
 
-    .itemAbate img {
-        width: 35%;
-    }
 
-    .itemAbate i {
-        font-size: 60px;
-    }
-
-    .w-container-train {
-        width: 30%;
-    }
 }
 
 @media (max-width: 600px) {

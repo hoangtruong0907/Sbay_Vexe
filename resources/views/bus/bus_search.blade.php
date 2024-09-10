@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tím kiếm chuyến xe')
+@section('title', 'Tìm kiếm chuyến xe')
 @section('styles')
 
 <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">

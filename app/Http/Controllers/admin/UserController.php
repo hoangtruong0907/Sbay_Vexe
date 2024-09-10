@@ -21,13 +21,7 @@ class UserController extends Controller
     {
         $title = 'Danh sách người dùng';
         $users = $this->userRepository->all();
-        return view('admin.pages.User.index', compact('users', 'title'));
-    }
-
-    public function create()
-    {
-        $title = 'Thêm người dùng';
-        return view('admin.pages.User.create', compact('title'));
+        return view('admin.auth.user_list', compact('users', 'title'));
     }
 
     public function store(Request $request)
@@ -55,24 +49,36 @@ class UserController extends Controller
             'role.required' => 'Vui lòng chọn quyền hạn'
         ]);
 
-        $this->userRepository->create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'],
-            'password' => Hash::make($validated['password']),
-            'status' => $validated['status'],
-            'role' => $validated['role'],
-        ]);
-
-        toastr()->success('Thêm thành viên thành công');
-        return redirect()->route('admin.user');
-    }
+        try { 
+            $this->userRepository->create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+                'password' => Hash::make($validated['password']),
+                'status' => $validated['status'],
+                'role' => $validated['role'],
+            ]);
+            return response()->json([
+                'success' => true, 
+                'message' => 'Thêm thành viên thành công'
+            ]);
+    
+        } catch (\Exception $e) { 
+            return response()->json([
+                'success' => false, 
+                'error' => 'Có lỗi xảy ra khi thêm dữ liệu.'], 500);
+        }
+    } 
 
     public function edit($id)
     {
-        $title = 'Chỉnh sửa người dùng';
         $user = $this->userRepository->find($id); // Lấy người dùng
-        return view('admin.pages.User.edit', compact('title', 'user'));
+
+        if ($user) {
+            return response()->json(['success' => true, 'user' => $user]);
+        } else {
+            return response()->json(['success' => false, 'error' => 'Không tìm thấy người dùng.'], 404);
+        }
     }
 
     public function update(Request $request, $id)
@@ -93,23 +99,28 @@ class UserController extends Controller
             'role.required' => 'Vui lòng chọn quyền hạn'
         ]);
 
-        $this->userRepository->update($id, [
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'status' => $request->status,
-            'role' => $request->role
-        ]);
-
-        toastr()->success('Cập nhật thành công');
-        return redirect()->route('admin.user');
+        try { 
+            $this->userRepository->update($id, [
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'status' => $request->status,
+                'role' => $request->role
+            ]);
+            return response()->json(['success' => true, 'message' => 'Cập nhật thông tin thành công']);
+    
+        } catch (\Exception $e) { 
+            return response()->json(['success' => false, 'error' => 'Có lỗi xảy ra khi cập nhật dữ liệu. Vui lòng thử lại.'], 500);
+        }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $this->userRepository->delete($id);
-
-        toastr()->success('Xóa thành công!');
-        return redirect()->back();
-    }
+        try { 
+            $this->userRepository->delete($id); 
+            return response()->json(['success' => true, 'message' => 'Xóa người dùng thành công.']);
+        } catch (\Exception $e) { 
+            return response()->json(['success' => false, 'error' => 'Có lỗi xảy ra khi xóa người dùng.'], 500);
+        }
+    } 
 }
