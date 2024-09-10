@@ -4,6 +4,37 @@
     .slogan-header {
         display: none;
     }
+
+    /* custom select slim */
+    .custom-input-container.select-slim {
+        width: 100%;
+    }
+    .custom-input-container.select-slim.select-from-input {
+        width: 100%;
+    }
+    .custom-input-container.select-slim .ss-main {
+        min-height: 45px;
+        border: 1px solid #dcdee2;
+    }
+    .custom-input-container.select-slim .ss-main:focus {
+        box-shadow: 0 0 5px var(--ss-focus-color);
+    }
+    .flex-sum-left {
+        width: 100%;
+        padding: 1%;
+    }
+    .custom-icon-container .fa-location-dot {
+        padding-left: 5px;
+        width: 24px;
+    }
+
+    .custom-input-container .custom-icon-container {
+        margin: 0 10px;
+    }
+    .departure-bus-flex #bus_swap_button {
+        top: 100%;
+        left: 50%;
+    }
 }
 
 @media (max-width: 992px) {
@@ -124,6 +155,10 @@
 
     .custom-icon-container .fa-solid {
         margin-left: -20px;
+    }
+
+    .custom-icon-container .fa-location-dot {
+        margin-left: 0px;
     }
 
     .fa fa-plus {
