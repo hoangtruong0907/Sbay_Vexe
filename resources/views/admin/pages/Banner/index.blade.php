@@ -1,39 +1,48 @@
 @extends('admin.layouts.app')
 
-@section('title', 'User Management')
+@section('title', 'Banner')
 @section('contents')
-    <div class="content">
-        <div class="container">
-            <div class="page-title">
-                <h3>{{ $title ?? 'Chưa có title' }}</h3>
-            </div>
-
-            <form action="{{ route('admin.banner.update') }}" method="POST" enctype="multipart/form-data" class="card-body row mb-5">
+    <div class="flex flex-col gap-2.5 xl:flex-row">
+        <!-- Phần bên trái-->
+        <div class="panel flex-1 px-4 py-6 xl:w-2/3">
+            <div class="text-lg font-semibold mb-4">Cập nhật ảnh Banner</div>
+            <form action="{{ route('admin.banner.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="col-12">
-                    <label for="file_input">Ảnh</label>
-                    <input type="file" value="" name="file_input" id="file_input" class="form-control">
-                    @error('name')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="col-12 mt-3">
-                    <label for="email" class="col-12">Ảnh hiện tại</label>
+                <div class="mt-3">  
+                    <div class="mb-5">
+                        <label for="picture" class="block mb-2">Hình ảnh</label>
+                        <input type="file" value="" name="file_input" id="file_input" placeholder="Chọn hình ảnh">
+                    </div>
                     <div>
                         <img 
                             src="{{asset('storage/images/banner/'. optional($banner_current)->slide_path)}}" 
                             alt="ảnh hiện tại"
-                            style="width: 100%; object-fit: cover; max-height: 405px; min-height: 400px; object-position: center center"
+                            id="img_review"
+                            style="width: 100%; object-fit: cover; max-height: 455px; min-height: 450px; object-position: center center"
                         >
                     </div>
                 </div>
-                
-                <div class="mt-5">
-                    <a href="{{ route('admin.user') }}" class="btn btn-success">Quay về</a>
-                    <button type="submit" class="btn btn-success">Lưu</button>
+                <div class="flex justify-end gap-3 mt-4">
+                    <a href="{{ URL::previous() }}" class="btn btn-secondary text-sm py-2 px-4 flex items-center gap-2">
+                        <img src="{{ URL::asset('/template/admin/assets/images/icons/ic_back.svg') }}" class="h-5 w-5" alt="" srcset="">
+                        Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-primary text-sm py-2 px-4 flex items-center gap-2">
+                        <img src="{{ URL::asset('/template/admin/assets/images/icons/ic_save.svg') }}" class="h-5 w-5" alt="" srcset="">
+                        Cập nhật
+                    </button>
                 </div>
             </form>
-        </div>
-
-    </div>
+        </div> 
+    </div>  
 @endsection
+@section('scripts')
+<script>
+    // Update Image
+    var image = $('#img_review');
+    $('#file_input').on('change', function(){
+        image[0].src = URL.createObjectURL(this.files[0]);
+    })
+</script>
+@endsection
+

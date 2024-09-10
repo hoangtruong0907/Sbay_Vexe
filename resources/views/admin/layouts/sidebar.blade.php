@@ -71,6 +71,15 @@
                         </div>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.banner') }}" class="nav-link group {{ request()->segment(2) == 'banner' ? 'active' : '' }}">
+                        <div class="flex items-center">
+                            <img src="{{ URL::asset('/template/admin/assets/images/icons/slider-icon.svg') }}" class="h-5 w-5" alt="" srcset="">
+                            <span
+                                class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Banner</span>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
