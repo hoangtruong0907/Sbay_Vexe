@@ -73,34 +73,25 @@
                         </div>
                         <p class="mb-1">{{ $review['comment'] ?? '' }}</p>
                         <div class="d-flex list-img-review flex-row">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                alt="thumb-1">
-                            <img class="thumb-img-review"
-                                src="https://storage.googleapis.com/fe-production/images/review/C5L9PG5/img_1723897621661.jpg"
-                                alt="thumb-1">
-                            <img class="thumb-img-review"
-                                src="https://danangfantasticity.com/wp-content/uploads/2018/10/cau-rong-top-20-cay-cau-ky-quai-nhat-the-gioi-theo-boredom-therapy-02.jpg"
-                                alt="thumb-1">
+                            <a href="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg" data-lightbox="gallery" data-title="Hình ảnh 1">
+                                <img class="thumb-img-review" src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg" alt="thumb-1">
+                            </a>
+                            <a href="https://storage.googleapis.com/fe-production/images/review/C5L9PG5/img_1723897621661.jpg" data-lightbox="gallery" data-title="Hình ảnh 2">
+                                <img class="thumb-img-review" src="https://storage.googleapis.com/fe-production/images/review/C5L9PG5/img_1723897621661.jpg" alt="thumb-2">
+                            </a>
+                            <a href="https://danangfantasticity.com/wp-content/uploads/2018/10/cau-rong-top-20-cay-cau-ky-quai-nhat-the-gioi-theo-boredom-therapy-02.jpg" data-lightbox="gallery" data-title="Hình ảnh 3">
+                                <img class="thumb-img-review" src="https://danangfantasticity.com/wp-content/uploads/2018/10/cau-rong-top-20-cay-cau-ky-quai-nhat-the-gioi-theo-boredom-therapy-02.jpg" alt="thumb-3">
+                            </a>
+                        
                             @if (count($review['images']) > 0)
                                 @foreach ($review['images'] as $img)
-                                    <img class="thumb-img-review"
-                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                        alt="thumb-1">
+                                    <a href="{{ $img['large'] }}" data-lightbox="gallery" data-title="Hình ảnh từ review">
+                                        <img class="thumb-img-review" src="{{ $img['thumb'] }}" alt="thumb-{{ $loop->index + 1 }}">
+                                    </a>
                                 @endforeach
                             @endif
                         </div>
-
-                        <div id="imagePopup" class="popup">
-                            <div class="popup-wrapper">
-                                <span class="close">&times;</span>
-                                <span class="prev">&lt;</span> 
-                                <span class="next">&gt;</span> 
-                                <img class="popup-content1" id="popupImage">
-                            </div>
-                        </div>
                         
-
                         <div class="d-flex align-items-center">
                             <small class="date">Đã đi ngày
                                 {{ formatDateTime($review['approved_at'], 'd-m-Y') }}</small>
@@ -170,46 +161,4 @@
     </div>
 @endif
 
-<script>
-    var popup = document.getElementById("imagePopup");
-    var popupImg = document.getElementById("popupImage");
-    var closeBtn = document.querySelector(".popup .close");
-    var prevBtn = document.querySelector(".popup .prev");
-    var nextBtn = document.querySelector(".popup .next");
 
-    var images = Array.from(document.querySelectorAll('.thumb-img-review'));
-    var currentIndex = 0;
-
-    function updatePopupImage(index) {
-        if (index >= 0 && index < images.length) {
-            popupImg.src = images[index].src;
-            currentIndex = index;
-        }
-    }
-    images.forEach(function(image, index) {
-        image.addEventListener('click', function() {
-            popup.style.display = "block";
-            updatePopupImage(index);
-        });
-    });
-    closeBtn.addEventListener('click', function() {
-        popup.style.display = "none";
-    });
-
-    prevBtn.addEventListener('click', function() {
-        if (currentIndex > 0) {
-            updatePopupImage(currentIndex - 1);
-        }
-    });
-    nextBtn.addEventListener('click', function() {
-        if (currentIndex < images.length - 1) {
-            updatePopupImage(currentIndex + 1);
-        }
-    });
-
-    popup.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            popup.style.display = "none";
-        }
-    });
-</script>

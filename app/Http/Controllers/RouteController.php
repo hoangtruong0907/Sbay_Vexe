@@ -165,6 +165,35 @@ class RouteController extends Controller
         ]);
     }
 
+    private function getRouteFilters(Request $request)
+    {
+        return [
+            'filter[online_ticket]' => $request->query('online_ticket', 1),
+            'filter[online_reserved]' => $request->query('online_reserved'),
+            'filter[is_promotion]' => $request->query('is_promotion'),
+            'filter[companies][index]' => $request->query('companies_index'),
+            'filter[fare][min]' => $request->query('fare_min'),
+            'filter[fare][max]' => $request->query('fare_max'),
+            'filter[available_seat][min]' => $request->query('available_seat_min'),
+            'filter[available_seat][max]' => $request->query('available_seat_max'),
+            'filter[rating][min]' => $request->query('rating_min'),
+            'filter[rating][max]' => $request->query('rating_max'),
+            'filter[time][min]' => $request->query('time_min'),
+            'filter[time][max]' => $request->query('time_max'),
+            'filter[limousine]' => $request->query('limousine'),
+            'filter[seat_type][index]' => $request->query('seat_type_index'),
+            'filter[covid_utility]' => $request->query('covid_utility'),
+            'filter[enabled_gps]' => $request->query('enabled_gps'),
+            'filter[full_trip]' => $request->query('full_trip'),
+            'filter[pickup_points][index][district]' => $request->query('pickup_points_index_district'),
+            'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name'),
+            'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district'),
+            'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name'),
+            'page' => $request->query('page', 1),
+            'pagesize' => $request->query('pagesize', 10),
+        ];
+    }
+
     private function addBusImagesToRoutes($token, $list_routes)
     {
         foreach ($list_routes as &$route) {
