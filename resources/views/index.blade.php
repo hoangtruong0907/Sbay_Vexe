@@ -18,7 +18,7 @@
             ])
         </div>
         <div class="img-slide">
-            <img src="{{ asset('images/slide.jpg') }}" alt="slide">
+            <img src="{{asset('storage/images/banner/'. isset($banner_current->slide_path) ? $banner_current->slide_path : "" )}}" alt="slide">
         </div>
         <div class="wrap-criteria">
             <div class="criteria-slide">

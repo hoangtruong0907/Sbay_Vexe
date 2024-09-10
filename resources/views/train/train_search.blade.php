@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tím kiếm chuyến tàu')
+@section('title', 'Tìm kiếm chuyến tàu')
 @section('styles')
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
@@ -1115,16 +1115,6 @@
             toggleTextarea34();
         });
 
-        function nextStep(step) {
-            document.querySelector('.wizard-step.active').classList.remove('active');
-            document.getElementById('step' + step).classList.add('active');
-        }
-
-        function prevStep(step) {
-            document.querySelector('.wizard-step.active').classList.remove('active');
-            document.getElementById('step' + step).classList.add('active');
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             // Lấy tất cả các phần tử carousel
             document.querySelectorAll('.carousel').forEach(function(carouselEl) {
@@ -1165,6 +1155,57 @@
                     $(this).addClass('selected');
                 });
             });
+        });
+
+        function nextStep(step) {
+            document.querySelector('.wizard-step.active').classList.remove('active');
+            document.getElementById('step' + step).classList.add('active');
+        }
+
+        function prevStep(step) {
+            document.querySelector('.wizard-step.active').classList.remove('active');
+            document.getElementById('step' + step).classList.add('active');
+        }
+
+        $('.coupon-container-train').on('click', '.wrap-coupon-train', function() {
+            console.log($(this));
+            let carriage = $(this);
+            $(".wrap-coupon-train").removeClass('active');
+            carriage.addClass('active');
+            let trainId = carriage.data('physical-train-id');
+            let carriageId = carriage.data('physical-carriage-id');
+            console.log(trainId, carriageId);
+            $(`.card-body-train #template-seat-${trainId}`).html(`
+                    <div class="d-flex w-100 h-100 justify-content-center align-items-center">
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>`);
+            // /api/info/tau-hoa/seat-map
+            $.ajax({
+                url: "/api/info/tau-hoa/seat-map",
+                type: 'POST',
+                data: {
+                    trainId,
+                    carriageId,
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    console.log(response);
+                    $(`.card-body-train #template-seat-${trainId}`).html(response.dataHTML);
+                    console.log($(`.wrap-steps-train #template-seat-${trainId}`));
+
+                    // if (response.status === 'success') {
+
+                    // } else {
+                    //     alert('Đã xảy ra lỗi: ' + response.message);
+                    // }
+                },
+                error: function(xhr, status, error) {
+                    alert('Đã xảy ra lỗi: ' + error);
+                }
+            });
+
         });
     </script>
 @endpush
