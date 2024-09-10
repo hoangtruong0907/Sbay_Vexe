@@ -588,6 +588,31 @@
         }
     });
 </script>
+<script>
+    function highlightNumbers(indices, selectedButtonId) {
+        var numbers = document.querySelectorAll('.number');
+        numbers.forEach(function (num) {
+            num.classList.remove('activetrain');
+        });
+
+        indices.forEach(function (index) {
+            if (index > 0 && index <= numbers.length) {
+                numbers[index - 1].classList.add('activetrain');
+            }
+        });
+
+        var buttons = document.querySelectorAll('.btn');
+        buttons.forEach(function (btn) {
+            if (btn.getAttribute('data-btn-id') === selectedButtonId) {
+                btn.classList.add('button-active');
+                btn.classList.remove('button-default');
+            } else {
+                btn.classList.add('button-default');
+                btn.classList.remove('button-active');
+            }
+        });
+    }
+</script>
 {{--
 <script>
     let currentStep = 1;
@@ -664,75 +689,7 @@
         });
     });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function highlightNumbers(indices, selectedButtonId) {
-        var numbers = document.querySelectorAll('.number');
-        numbers.forEach(function (num) {
-            num.classList.remove('activetrain');
-        });
+<https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
 
-        indices.forEach(function (index) {
-            if (index > 0 && index <= numbers.length) {
-                numbers[index - 1].classList.add('activetrain');
-            }
-        });
-
-        var buttons = document.querySelectorAll('.btn');
-        buttons.forEach(function (btn) {
-            if (btn.getAttribute('data-btn-id') === selectedButtonId) {
-                btn.classList.add('button-active');
-                btn.classList.remove('button-default');
-            } else {
-                btn.classList.add('button-default');
-                btn.classList.remove('button-active');
-            }
-        });
-    }
-
-
-    function clearInput(inputId) {
-        document.getElementById(inputId).value = '';
-    }
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const detailButtons = document.querySelectorAll('.btn-detail-l');
-        const bookingButtons = document.querySelectorAll('.btn-booking-l');
-
-        function hideAll() {
-            // Ẩn tất cả các phần collapse
-            document.querySelectorAll('.collapse').forEach(collapse => {
-                collapse.classList.remove('show');
-            });
-        }
-
-        detailButtons.forEach((button) => {
-            button.addEventListener('click', function () {
-                // Ẩn tất cả các phần trước
-                hideAll();
-
-                // Mở phần "Thông tin chi tiết" tương ứng
-                const targetDetail = document.querySelector(button.dataset.bsTarget);
-                if (!targetDetail.classList.contains('show')) {
-                    targetDetail.classList.add('show');
-                }
-            });
-        });
-
-        bookingButtons.forEach((button) => {
-            button.addEventListener('click', function () {
-                // Ẩn tất cả các phần trước
-                hideAll();
-
-                // Mở phần "Chọn chuyến" tương ứng
-                const targetStep = document.querySelector(button.dataset.bsTarget);
-                if (!targetStep.classList.contains('show')) {
-                    targetStep.classList.add('show');
-                }
-            });
-        });
-    });
-</script>
 </script>
 </script> --}}
