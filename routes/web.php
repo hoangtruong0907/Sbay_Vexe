@@ -15,7 +15,8 @@ use App\Http\Middleware\CheckLoginAdminMiddleware;
 use App\Http\Controllers\admin\AuthAdminController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\admin\UserController;
-
+/////
+use App\Http\Controllers\PaymentController;
 
 // Login Admin
 
@@ -72,6 +73,14 @@ Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'b
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
+
+///////payment/////////
+
+Route::get('/payment', [PaymentController::class, 'showPaymentPage']);
+Route::get('/payment', function () {
+    return view('payments.payment');
+})->name('payment');
+
 
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
