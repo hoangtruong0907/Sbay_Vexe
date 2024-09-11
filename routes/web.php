@@ -69,6 +69,7 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
 });
 // Bus view api
+Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
 Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
 Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
