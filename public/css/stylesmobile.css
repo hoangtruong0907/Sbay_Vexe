@@ -102,13 +102,7 @@
         width: 100%;
     }
 
-    .item {
-        flex: 1 1 auto;
-        min-width: 100px;
-        padding: 10px;
-        text-align: center;
-        background-color: #f0f0f0;
-    }
+
 
     .flex-sum-left input {
         width: 290px;
@@ -231,13 +225,6 @@
 }
 
 @media only screen and (max-width: 430px) {
-    .departure-bus-date .fa-calendar {
-        display: none;
-    }
-
-    .departure-bus-date-right .fa-plus {
-        display: none;
-    }
 
     .departure-plane-date-right .fa-plus {
         display: none;
@@ -320,9 +307,9 @@
         flex-direction: column;
     }
 
-    #item-bus-0 {
+    /* #item-bus-0 {
         padding-top: 50px;
-    }
+    } */
 
     .right-filter {
         width: 100%;
@@ -330,9 +317,12 @@
 
     .coupon-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+        flex-direction: row;
         overflow: auto;
+        padding: 5px 0px 20px;
+        margin: 0px;
+        scroll-behavior: smooth;
+
     }
 
     .nav.nav-pills.mb-1.pills-ticket-tab {
@@ -586,7 +576,7 @@
 
     .coupon-container {
         display: flex;
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
         gap: 10px;
     }
 

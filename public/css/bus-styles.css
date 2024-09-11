@@ -852,6 +852,7 @@
 .trust-message {
     display: flex;
     margin-top: 16px;
+    justify-content: center;
 }
 
 .trust-message-icon {
@@ -1954,14 +1955,23 @@ body h6 {
 .left-steps-content {
     display: flex;
     flex-direction: column;
-    width: 100%;
+}
+.left-step-bus1{
+    min-width: 33%;
 }
 
+.left-step-bus2{
+    width: 50%;
+}
+.right-step-bus2{
+    width: 50%;
+}
 .right-steps-content {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
-    width: 100%;
+    /* width: 50%; */
+    gap: 10px;
 }
 
 .seat-groups {
@@ -2075,7 +2085,6 @@ body h6 {
 }
 
 .wrap-coach {
-    margin-right: 16px;
     text-align: center;
 }
 

@@ -8,15 +8,12 @@
         flex-wrap: wrap;
         flex-direction: column;
     }
-    #item-bus-0 {
-        padding-top: 50px;
-    }
+
     .right-filter {
         width: 100%;
     }
     .coupon-container {
         display: flex;
-        flex-wrap: wrap;
         gap: 10px;
         overflow: auto;
     }
@@ -82,7 +79,8 @@
         width: 100%;
     }
     .container-airlinetickets {
-        width: 100%;
+        width: 96%;
+        z-index: 3;
     }
     .left-filter {
         width: 1150px;
@@ -581,11 +579,91 @@
     .modal .close-button:hover {
         background-color: #0056b3;
     }
+
+
+
+
+    #pills-tab {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .ant-row-flex {
+        display: block;
+        text-align: center;
+    }
+    .wrap-left-ant-row-flex {
+        display: block;
+    }
+    #bus_search {
+        width: 100%;
+    }
+    .left-ant-row-flex {
+        display: block;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        border: none;
+    }
+    .custom-swap-container{
+        display:none;
+    }
+    .custom-icon-container .fa-location-dot,.departure-bus-date ,.departure-bus-date-right{
+        padding-left:5px;
+    }
+    .custom-input-container{
+        gap: 10px;
+    }
+    .ss-main{
+        border: none;
+    }
+    .ss-main .ss-arrow path{
+        display: none;
+    }
+    .ss-values{
+        font-weight: bold;
+    }
+    .nav-item{
+        padding-bottom: 5px;
+    }
+    .nav-item button span{
+        font-size: 12px;
+    }
+    .departure-bus-flex, .destination-bus-flex, .departure-bus-date, .departure-bus-date-right {
+        height: 40px;
+        width: 50%;
+    }
 }
 @media (max-width: 605px) {
     .custom-place {
         font-size: 10px;
         white-space: nowrap;
+    }
+    .step-bus1 .wrap-steps-content{
+        display: flex;
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+    .step-bus2 .wrap-steps-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .step-bus2 .wrap-steps-content .left-steps-content,
+    .step-bus2 .wrap-steps-content .right-steps-content{
+        width: 100%;
+    }
+    .step-bus2 .wrap-steps-content .left-steps-content .pickup-point{
+        border-right: none
+    }
+    .seat-groups{
+        flex-direction: row;
+    }
+    .seat-name{
+        display: none;
     }
 }
 @media (max-width: 600px) {
@@ -630,6 +708,7 @@
     .image-tab .img-child {
         height: 150px;
     }
+
 }
 @media (max-width: 550px) {
     .custom-hour {
@@ -656,6 +735,16 @@
         font-size: 10px;
         white-space: nowrap;
     }
+    .left-total-amount button{
+        min-width: 100px;
+        padding: 0px 5px;
+        font-size: 10px;
+    }
+    .right-total-amount button{
+        min-width: 100px;
+        padding: 0px 5px;
+    }
+
 }
 @media (max-width: 500px) {
     .tab-content .list-group .w-100 .list-gr-review .mb-1 {
@@ -688,5 +777,38 @@
     }
     .text-date-arrival-time-l {
         font-size: 15px;
+    }
+    .custom-bus-to-input-col{
+        padding-left: 20px;
+    }
+    .item {
+        flex: 1 1 auto;
+        min-width: 100px;
+        padding: 10px;
+    }
+    /* .right-steps-content .wrap-coach {
+    }
+    .seat-thumbnail svg{
+        width: 20px;
+
+    } */
+    .seat-thumbnail-bed{
+        width: 25px;
+    }
+    .right-step-bus1{
+        gap: 10px;
+    }
+    .steps-container {
+        padding: 15px;
+    }
+   
+    .left-total-amount button{
+        min-width: 100px;
+        padding: 0px 5px;
+        font-size: 10px;
+    }
+    .right-total-amount button{
+        min-width: 100px;
+        padding: 0px 5px;
     }
 }
