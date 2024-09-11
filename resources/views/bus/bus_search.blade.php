@@ -5,6 +5,7 @@
 <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('css/search-styles.css') }}">
 <link rel="stylesheet" href="{{ asset('css/bus-styles.css') }}">
 <link rel="stylesheet" href="{{ asset('css/bus-mobile.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
