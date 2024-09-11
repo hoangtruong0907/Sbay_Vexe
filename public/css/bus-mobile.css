@@ -778,20 +778,13 @@
     .text-date-arrival-time-l {
         font-size: 15px;
     }
-    .custom-bus-to-input-col{
-        padding-left: 20px;
-    }
+
     .item {
         flex: 1 1 auto;
         min-width: 100px;
         padding: 10px;
     }
-    /* .right-steps-content .wrap-coach {
-    }
-    .seat-thumbnail svg{
-        width: 20px;
-
-    } */
+ 
     .seat-thumbnail-bed{
         width: 25px;
     }
@@ -801,7 +794,7 @@
     .steps-container {
         padding: 15px;
     }
-   
+
     .left-total-amount button{
         min-width: 100px;
         padding: 0px 5px;
