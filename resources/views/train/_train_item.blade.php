@@ -547,8 +547,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Kiểm tra phần tử nút và collapse
@@ -618,77 +617,78 @@
 
 
    <script>
-        let currentStep = 1;
-        let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
-    
-        function navigateStep(direction, key) {
-            if (currentKey !== key) {
-                // Nếu key thay đổi, đặt lại bước hiện tại về 1
-                currentStep = 1;
-                currentKey = key;
-            }
-    
-            // Ẩn nội dung bước hiện tại
-            let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-            if (currentContent) {
-                currentContent.style.display = 'none';
-            }
-    
-            let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-            if (currentStepElement) {
-                currentStepElement.classList.remove('navigation-step-active');
-                currentStepElement.classList.add('navigation-step-inactive');
-            }
-    
-            // Cập nhật bước hiện tại
-            if (direction === 'next' && currentStep < 3) {
-                currentStep++;
-            } else if (direction === 'previous' && currentStep > 1) {
-                currentStep--;
-            }
-    
-            // Hiển thị nội dung của bước mới
-            let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-            if (newContent) {
-                newContent.style.display = 'block';
-            }
-    
-            let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-            if (newStepElement) {
-                newStepElement.classList.add('navigation-step-active');
-                newStepElement.classList.remove('navigation-step-inactive');
-            }
-        }
-        function toggleCustomContent(key, step) {
-            const button = document.getElementById(`button-step-custom-${step}-${key}`);
-            const content = document.getElementById(`content-step-custom-${step}-${key}`);
-    
-            // Lấy tất cả các nội dung bước và nút cho bài mới
-            const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
-            const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
-    
-            // Ẩn tất cả các nội dung
-            allContents.forEach(c => c.classList.remove('step-content-custom-show'));
-            // Làm tất cả các nút không hoạt động
-            allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
-    
-            if (!content.classList.contains('step-content-custom-show')) {
-                content.classList.add('step-content-custom-show');
-                button.classList.add('navigation-button-custom-active');
-            } else {
-                content.classList.remove('step-content-custom-show');
-                button.classList.remove('navigation-button-custom-active');
-            }
-        }
-    
-        // Thêm sự kiện click cho tất cả các nút
-        document.querySelectorAll('.navigation-button-custom').forEach(button => {
-            button.addEventListener('click', () => {
-                const key = button.getAttribute('data-key');
-                const step = button.getAttribute('data-step');
-                toggleCustomContent(key, step);
-            });
-        });
+       let currentStep = 1;
+let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
+
+function navigateStep(direction, key) {
+    if (currentKey !== key) {
+        // Nếu key thay đổi, đặt lại bước hiện tại về 1
+        currentStep = 1;
+        currentKey = key;
+    }
+
+    // Ẩn nội dung bước hiện tại
+    let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+    if (currentContent) {
+        currentContent.style.display = 'none';
+    }
+
+    let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+    if (currentStepElement) {
+        currentStepElement.classList.remove('navigation-step-active');
+        currentStepElement.classList.add('navigation-step-inactive');
+    }
+
+    // Cập nhật bước hiện tại
+    if (direction === 'next' && currentStep < 3) {
+        currentStep++;
+    } else if (direction === 'previous' && currentStep > 1) {
+        currentStep--;
+    }
+
+    // Hiển thị nội dung của bước mới
+    let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+    if (newContent) {
+        newContent.style.display = 'block';
+    }
+
+    let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+    if (newStepElement) {
+        newStepElement.classList.add('navigation-step-active');
+        newStepElement.classList.remove('navigation-step-inactive');
+    }
+}
+
+function toggleCustomContent(key, step) {
+    const button = document.getElementById(`button-step-custom-${step}-${key}`);
+    const content = document.getElementById(`content-step-custom-${step}-${key}`);
+
+    // Lấy tất cả các nội dung bước và nút cho bài mới
+    const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
+    const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
+
+    // Ẩn tất cả các nội dung
+    allContents.forEach(c => c.classList.remove('step-content-custom-show'));
+    // Làm tất cả các nút không hoạt động
+    allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
+
+    if (!content.classList.contains('step-content-custom-show')) {
+        content.classList.add('step-content-custom-show');
+        button.classList.add('navigation-button-custom-active');
+    } else {
+        content.classList.remove('step-content-custom-show');
+        button.classList.remove('navigation-button-custom-active');
+    }
+}
+
+// Thêm sự kiện click cho tất cả các nút
+document.querySelectorAll('.navigation-button-custom').forEach(button => {
+    button.addEventListener('click', () => {
+        const key = button.getAttribute('data-key');
+        const step = button.getAttribute('data-step');
+        toggleCustomContent(key, step);
+    });
+});
 
         function clearInput(inputId) {
         document.getElementById(inputId).value = '';
