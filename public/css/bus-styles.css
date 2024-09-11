@@ -1338,6 +1338,55 @@
 .pagination .page-item {
     padding: 2px;
 }
+/*  */
+.facility-description {
+    padding: 12px;
+    background: rgb(245, 245, 245);
+}
+.facility-description .img-name {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.facility-description .img-name img{
+    width: 32px;
+    height: 32px;
+    margin-right: 4px;
+}
+.facility-description .img-name .name{
+    color: rgb(0, 0, 0);
+}
+.facility-description .description {
+    font-size: 14px;
+    padding-top: 12px;
+    white-space: pre-line;
+}
+.line-utilities {
+    height: 1px;
+    background: rgb(192, 192, 192);
+    width: 100%;
+}
+.ticket-detail-contentTab .tab-pane.utilities-tab {
+    padding: 4px 0;
+}
+.utilities-default {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+.utilities-default .icon-text {
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 24px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 33.33333333%;
+}
+.utilities-default .icon-text i {
+    color: #2474e5;
+}
+/* end */
 
 .pagination .page-item .page-link {
     border-radius: 8px;
