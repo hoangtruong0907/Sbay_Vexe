@@ -1346,3 +1346,14 @@
 .step-content-custom-show {
     display: block;
 }
+/* Các Loại Ghế */
+.tab-content > .tab-pane {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tab-content > .tab-pane.show {
+    opacity: 1;
+    visibility: visible;
+}

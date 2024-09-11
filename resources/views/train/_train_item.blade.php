@@ -588,6 +588,29 @@
             console.error("Không tìm thấy phần tử nút hoặc collapse.");
         }
     });
+
+
+    // Các loại ghế
+    document.addEventListener('DOMContentLoaded', function() {
+    const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
+    const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
+    const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
+
+    detailButton.addEventListener('click', function() {
+        if (!targetCollapse.classList.contains('show')) {
+            // Kích hoạt tab "Các loại ghế" ngay lập tức
+            if (firstTab) {
+                const tab = new bootstrap.Tab(firstTab);
+                tab.show();
+            }
+            // Hiển thị collapse
+            const collapse = new bootstrap.Collapse(targetCollapse, {
+                toggle: true
+            });
+        }
+    });
+});
+
 </script>
 <script>
     function highlightNumbers(indices, selectedButtonId) {
@@ -617,7 +640,7 @@
 
 
    <script>
-       let currentStep = 1;
+      let currentStep = 1;
 let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
 
 function navigateStep(direction, key) {
@@ -657,6 +680,48 @@ function navigateStep(direction, key) {
         newStepElement.classList.add('navigation-step-active');
         newStepElement.classList.remove('navigation-step-inactive');
     }
+
+    // Ẩn class wizard-step-train cho bước 2 và 3
+    const wizardStepTrain = document.querySelector('.card-body-train');
+    const stepContent = document.querySelector('.step-content');
+    if (wizardStepTrain) {
+        if (currentStep === 2 || currentStep === 3) {
+            wizardStepTrain.style.display = 'none';
+            stepContent.style.display = 'none';
+        } else {
+            wizardStepTrain.style.display = 'block';
+            stepContent.style.display = 'block';
+        }
+    }
+
+    // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
+    if (currentStep === 2) {
+        let step1Element = document.getElementById(`step-${currentKey}`);
+        if (step1Element) {
+            step1Element.classList.remove('navigation-step-active');
+            step1Element.classList.add('navigation-step-inactive');
+        }
+    }
+
+    // Đổi màu bước hiện tại
+    if (currentStep === 1) {
+        let step1Element = document.getElementById(`step-${currentKey}`);
+        if (step1Element) {
+            step1Element.classList.remove('navigation-step-inactive');
+            step1Element.classList.add('navigation-step-active');
+        }
+        // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
+        let step2Element = document.getElementById(`step-2-${currentKey}`);
+        if (step2Element) {
+            step2Element.classList.remove('navigation-step-active');
+            step2Element.classList.add('navigation-step-inactive');
+        }
+        let step3Element = document.getElementById(`step-3-${currentKey}`);
+        if (step3Element) {
+            step3Element.classList.remove('navigation-step-active');
+            step3Element.classList.add('navigation-step-inactive');
+        }
+    }
 }
 
 function toggleCustomContent(key, step) {
@@ -679,6 +744,7 @@ function toggleCustomContent(key, step) {
         content.classList.remove('step-content-custom-show');
         button.classList.remove('navigation-button-custom-active');
     }
+    
 }
 
 // Thêm sự kiện click cho tất cả các nút
