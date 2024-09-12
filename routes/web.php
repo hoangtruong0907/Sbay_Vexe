@@ -15,6 +15,7 @@ use App\Http\Middleware\CheckLoginAdminMiddleware;
 use App\Http\Controllers\admin\AuthAdminController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\PaymentResultController;
 
 
 // Login Admin
@@ -88,3 +89,5 @@ Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
     Route::get('/nhan-xet', [InfoController::class, 'review'])->name('auth.review');
     Route::get('/dang-xuat', [InfoController::class, 'logout'])->name('auth.logout');
 });
+
+Route::get('/payment-result', [PaymentResultController::class, 'showPaymentResult'])->name('payment.result');
