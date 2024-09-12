@@ -542,7 +542,8 @@
                     data-bs-target="#changeLocationRight" aria-controls="changeLocationRight">Thay đổi</a>
             </div>
             <p class="location-name">VP Đà Nẵng</p>
-            <p class="text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng, Phường Thuận Phước, Hải Châu, Đà Nẵng</p>
+            <p class="text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng, Phường Thuận Phước, Hải Châu, Đà
+                Nẵng</p>
             <p class="text-secondary eajKhF">Dự kiến đón lúc: 15:00 11/09/2024</p>
             <div class="group-title d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
@@ -636,12 +637,13 @@
             </button>
         </div>
 
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="sortedByShow" aria-labelledby="offcanvasBottomLabel"
-            style="border-radius: 16px 16px 0 0;height: auto; width: 560px; right: 0; left: auto;">
+        <div class="offcanvas offcanvas-bottom sorted-by-show" tabindex="-1" id="sortedByShow"
+            aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header d-flex w-100 justify-content-center">
                 <h5 class="offcanvas-title mb-0" id="offcanvasBottomLabel">Sắp xếp theo</h5>
             </div>
         </div>
+
     </div>
 
     <script>
