@@ -502,7 +502,7 @@
                     <div class="d-flex justify-content-between w-100 pointer" id="totalAmountModal">
                         <p class="fw-normal text-nowrap mb-0">Tạm tính</p>
                         <div class="d-flex align-items-center gap-sm-1">
-                            <p class="fw-bold mb-0">470.000đ</p>
+                            <p class="fw-bold mb-0 custom-font">470.000đ</p>
                             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                 alt="icon-expand-less" width="20" height="20">
                         </div>

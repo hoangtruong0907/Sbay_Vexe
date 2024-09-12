@@ -463,3 +463,6 @@ body {
     font-size: 12px;
     font-weight: 700 !important;
 }
+.custom-font {
+    font-size: 14px;
+}
