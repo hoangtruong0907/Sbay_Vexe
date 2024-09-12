@@ -46,16 +46,10 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Thông tin chuyến đi -->
             @include('payment.trip-info')
-
-
         </div>
 
-        <!-- Thông tin thanh toán -->
         <div class="col-md-4">
-            <!-- Thông tin thanh toán -->
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Thông tin thanh toán</h5>
@@ -75,8 +69,6 @@
                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg" alt="Toggle Icon">
                         </span>
                     </div>
-
-                    <!-- Additional information section hidden by default -->
                     <div id="payment-details" class="payment-details">
                         <p class="mb-1">Giá vé</p>
                         <p class="mb-1">Phụ thu điểm đón</p>
@@ -85,9 +77,6 @@
                 </div>
             </div>
 
-
-
-            <!-- Quản lý đơn hàng -->
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Quản lý đơn hàng</h5>
@@ -95,26 +84,22 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center custom-help">
                             <button class="btn d-flex align-items-center w-100 text-start p-0 custom-button"
                                 data-bs-toggle="offcanvas" data-bs-target="#supportOffcanvas">
-                                <!-- Support icon -->
                                 <span class="d-flex align-items-center bcCBBz">
-                                    <i class="fas fa-question-circle text-primary me-2"></i> <!-- Icon -->
+                                    <i class="fas fa-question-circle text-primary me-2"></i>
                                     Trung tâm Hỗ trợ
                                 </span>
-                                <!-- Right arrow icon -->
                                 <span class="ms-auto">
-                                    <i class="fas fa-chevron-right"></i> <!-- Right arrow -->
+                                    <i class="fas fa-chevron-right"></i>
                                 </span>
                             </button>
                         </li>
 
-
-                        <!-- Offcanvas: Thông tin hỗ trợ -->
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="supportOffcanvas"
                             aria-labelledby="supportOffcanvasLabel">
                             <div class="offcanvas-header">
                                 <button type="button" class="btn btn-link text-white p-0" data-bs-dismiss="offcanvas"
                                     aria-label="Close">
-                                    <i class="fas fa-arrow-left"></i> <!-- Mũi tên quay lại -->
+                                    <i class="fas fa-arrow-left"></i>
                                 </button>
                                 <h5 class="offcanvas-title ms-3" id="supportOffcanvasLabel">Liên hệ</h5>
                             </div>
@@ -130,42 +115,32 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Hủy đơn hàng -->
                         <li class="list-group-item d-flex justify-content-between align-items-center custom-cancel">
-                            <!-- Button for "Hủy đơn hàng" with off-canvas trigger -->
                             <button class="btn d-flex align-items-center w-100 text-start p-0 custom-cancel-button"
                                 data-bs-toggle="offcanvas" data-bs-target="#cancelOrderOffcanvas">
-                                <!-- Cancel icon -->
                                 <span class="d-flex align-items-center bcCBBz">
-                                    <i class="fas fa-times-circle text-danger me-2"></i> <!-- Icon -->
+                                    <i class="fas fa-times-circle text-danger me-2"></i>
                                     Hủy đơn hàng
                                 </span>
-                                <!-- Right arrow icon -->
                                 <span class="ms-auto">
-                                    <i class="fas fa-chevron-right"></i> <!-- Right arrow -->
+                                    <i class="fas fa-chevron-right"></i>
                                 </span>
                             </button>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
 
-
-            <!-- Offcanvas: Chọn Vé cần hủy -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="cancelOrderOffcanvas"
                 aria-labelledby="cancelOrderOffcanvasLabel">
                 <div class="offcanvas-header">
                     <button type="button" class="btn btn-link text-white p-0" data-bs-dismiss="offcanvas"
                         aria-label="Close">
-                        <i class="fas fa-arrow-left"></i> <!-- Mũi tên quay lại -->
+                        <i class="fas fa-arrow-left"></i>
                     </button>
                     <h5 class="offcanvas-title ms-3" id="cancelOrderOffcanvasLabel">Chọn vé cần hủy</h5>
                 </div>
                 <div class="offcanvas-body">
-                    <!-- Chọn vé cần hủy -->
                     <div class="form-check d-flex align-items-start justify-content-between border-bottom py-2 mb-2">
                         <div class="d-flex align-items-start">
                             <input class="form-check-input mt-1 me-2" type="checkbox" id="ticket1" checked>
@@ -186,7 +161,7 @@
                         vượt quá số tiền bạn đã thanh toán (giá gốc không bao gồm mã giảm giá).
                     </div>
                 </div>
-                <!-- Fixed bottom section with refund amount and button -->
+
                 <div class="offcanvas-footer p-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <span class="refund-label">Số tiền hoàn</span>
@@ -197,18 +172,16 @@
                 </div>
             </div>
 
-            <!-- Offcanvas: Chọn lý do hủy -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="reasonOffcanvas"
                 aria-labelledby="reasonOffcanvasLabel">
                 <div class="offcanvas-header bg-primary text-white">
                     <button type="button" class="btn btn-link text-white p-0" data-bs-dismiss="offcanvas"
                         aria-label="Close">
-                        <i class="fas fa-arrow-left"></i> <!-- Mũi tên quay lại -->
+                        <i class="fas fa-arrow-left"></i>
                     </button>
                     <h5 class="offcanvas-title ms-3" id="reasonOffcanvasLabel">Lí do hủy</h5>
                 </div>
                 <div class="offcanvas-body">
-                    <!-- Lý do hủy -->
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <input class="form-check-input me-2" type="radio" name="reason" id="reason1">
@@ -242,31 +215,25 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Fixed bottom section for button -->
+
                 <div class="offcanvas-footer p-3">
                     <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal"
                         data-bs-target="#confirmCancelModal">Xong</button>
                 </div>
             </div>
 
-
-            <!-- Modal: Xác nhận hủy vé -->
             <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content text-center p-4">
-                        <!-- Icon at the top -->
                         <div class="modal-icon mb-3">
                             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/popup_icon_question_rounded.svg"
                                 alt="Question Icon" class="img-fluid modal-icon-image">
                         </div>
-                        <!-- Modal title -->
                         <h5 class="modal-title mb-2" id="confirmCancelModalLabel">Xác nhận hủy vé</h5>
-                        <!-- Modal body text -->
                         <div class="modal-body">
                             Chúng tôi sẽ không giữ chỗ bạn đã chọn nữa.
                         </div>
-                        <!-- Footer with action buttons -->
                         <div class="modal-footer border-0 justify-content-center">
                             <button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">Quay
                                 lại</button>
@@ -277,8 +244,6 @@
                 </div>
             </div>
 
-
-            <!-- Modal: Hủy đơn hàng thành công -->
             <div class="modal fade" id="cancelSuccessModal" tabindex="-1" aria-labelledby="cancelSuccessModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -288,13 +253,10 @@
                             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/check-circle-shadow.svg"
                                 alt="Success Icon" class="img-fluid success-icon-image">
                         </div>
-                        <!-- Modal title -->
                         <h5 class="modal-title mb-2" id="cancelSuccessModalLabel">Hủy đơn hàng thành công</h5>
-                        <!-- Modal body text -->
                         <div class="modal-body">
                             Bạn có thể đặt lại vé khác bất kỳ lúc nào.
                         </div>
-                        <!-- Footer with action button -->
                         <div class="modal-footer border-0 justify-content-center">
                             <button type="button" class="btn btn-dark full-width-button"
                                 data-bs-dismiss="modal">Đóng</button>
@@ -303,9 +265,6 @@
                 </div>
             </div>
 
-
-
-            <!-- ảnh -->
             <div class="img mb-5">
                 <div class="img-body">
                     <a href="#">
@@ -314,7 +273,6 @@
                 </div>
             </div>
 
-            <!-- Dịch vụ khác dành cho bạn -->
             <div class="other-services">
                 <h5 class="font-weight-bold custom-services">Dịch vụ khác dành cho bạn</h5>
                 <a href="#">
@@ -325,7 +283,6 @@
                         </div>
                         <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/motobiker-rental.png" alt="Motorbike"
                             class="service-image">
-                        <!-- Thay đổi đường dẫn ảnh theo ảnh của bạn -->
                     </div>
                 </a>
                 <a href="#">
@@ -340,7 +297,6 @@
                 </a>
             </div>
 
-            <!-- Tích điển, đổi ưu đãi với app Vexere! -->
             <div class="card">
                 <div class="app-promotion-container">
                     <h5 class="app-promotion-title">Tích điểm, đổi ưu đãi với app Vexere!</h5>
@@ -367,17 +323,11 @@
         </div>
     </div>
 </div>
-<!-- Bottom-->
-<footer class="footer mt-4 mb-5 d-flex justify-content-center custom-btn">
-    <!-- "Vé của tôi" Button -->
-    <a href="#" class="btn btn-outline-primary my-ticket-btn">Vé của tôi</a>
 
-    <!-- "Đặt chiều vé" Button -->
+<footer class="footer mt-4 mb-5 d-flex justify-content-center custom-btn">
+    <a href="#" class="btn btn-outline-primary my-ticket-btn">Vé của tôi</a>
     <a href="#" class="btn btn-warning text-dark book-ticket-btn">Đặt chiều vé</a>
 </footer>
-
-
-
 @endsection
 
 @push('page-scripts')

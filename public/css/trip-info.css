@@ -457,5 +457,9 @@ body {
     right: 0;
     left: auto;
 }
-
-
+.custom-link {
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
+    font-size: 12px;
+    font-weight: 700 !important;
+}

@@ -497,11 +497,12 @@
                     </div>
                 </div>
 
+                <!-- Tạm tính -->
                 <div class="w-100">
                     <div class="d-flex justify-content-between w-100 pointer" id="totalAmountModal">
                         <p class="fw-normal text-nowrap mb-0">Tạm tính</p>
                         <div class="d-flex align-items-center gap-sm-1">
-                            <p class="fw-bold mb-0 price-text">470.000đ</p>
+                            <p class="fw-bold mb-0">470.000đ</p>
                             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                 alt="icon-expand-less" width="20" height="20">
                         </div>
@@ -530,6 +531,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="group-title d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                     <img class="pickup-icon"
@@ -540,8 +542,7 @@
                     data-bs-target="#changeLocationRight" aria-controls="changeLocationRight">Thay đổi</a>
             </div>
             <p class="location-name">VP Đà Nẵng</p>
-            <p class="text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng, Phường Thuận Phước, Hải Châu, Đà
-                Nẵng</p>
+            <p class="text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng, Phường Thuận Phước, Hải Châu, Đà Nẵng</p>
             <p class="text-secondary eajKhF">Dự kiến đón lúc: 15:00 11/09/2024</p>
             <div class="group-title d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
@@ -562,6 +563,7 @@
             </button>
         </div>
     </div>
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="changeLocationRight"
         aria-labelledby="changeLocationRightLabel">
         <div class="header-section d-flex flex-row align-items-center bg-primary">
@@ -572,6 +574,7 @@
                 <p class="header-title mb-0 text-white fw-bold">Thay đổi điểm trả chiều đi</p>
             </div>
         </div>
+
         <div class="sorting-options-section position-sticky d-flex flex-column w-100">
             <div class="d-flex flex-row justify-content-between">
                 <p class="sorting-text">Sắp xếp theo</p>
@@ -588,6 +591,7 @@
                 </button>
             </div>
         </div>
+
         <div class="location-options-content d-flex flex-column bg-white">
             <label class="location-option">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" value="Location1" checked />
@@ -617,6 +621,8 @@
                 </div>
             </label>
         </div>
+
+
         <div class="report-section border-top border-secondary bg-white position-absolute start-0 bottom-0 w-100 p-3">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div>Sai hoặc thiếu thông tin?</div>
@@ -629,35 +635,28 @@
                 <span>Cập nhật</span>
             </button>
         </div>
-        <div class="offcanvas offcanvas-bottom custom-offcanvas" tabindex="-1" id="sortedByShow"
-            aria-labelledby="offcanvasBottomLabel">
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="sortedByShow" aria-labelledby="offcanvasBottomLabel"
+            style="border-radius: 16px 16px 0 0;height: auto; width: 560px; right: 0; left: auto;">
             <div class="offcanvas-header d-flex w-100 justify-content-center">
                 <h5 class="offcanvas-title mb-0" id="offcanvasBottomLabel">Sắp xếp theo</h5>
             </div>
         </div>
-
-
-
     </div>
 
     <script>
-    // Mã ghế/ giướng
     document.addEventListener('DOMContentLoaded', () => {
         const toggleButton = document.getElementById('toggleContent');
         const contentToShow = document.getElementById('contentToShow');
         const toggleIcon = document.getElementById('toggleIcon');
         const contentSection = document.getElementById(
             'contentSection');
-
         if (toggleButton && contentToShow && toggleIcon && contentSection) {
             contentToShow.classList.add('d-none');
             contentSection.classList.add('d-none');
-
             toggleButton.addEventListener('click', () => {
-
                 const isHidden = !contentToShow.classList.toggle('d-none');
                 contentSection.classList.toggle('d-none');
-
                 toggleIcon.src = isHidden ?
                     'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg' :
                     'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg';
@@ -665,9 +664,7 @@
         }
     });
 
-    // Tạm tính
     document.addEventListener('DOMContentLoaded', () => {
-        // Function to toggle visibility and change the icon
         const toggleVisibility = (toggleElementId, contentId, iconElement) => {
             const toggleElement = document.getElementById(toggleElementId);
             const contentElement = document.getElementById(contentId);
@@ -676,8 +673,6 @@
             if (toggleElement && contentElement && icon) {
                 toggleElement.addEventListener('click', () => {
                     const isHidden = contentElement.classList.toggle('d-none');
-
-                    // Change the icon based on the visibility state
                     icon.src = isHidden ?
                         'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' // Icon for collapsing
                         :
@@ -685,14 +680,9 @@
                 });
             }
         };
-
-        // Call the function with your specific IDs
         toggleVisibility('totalAmountModal', 'showTotalAmountModal', document.getElementById(
             'totalAmountModal'));
     });
-
-
-
 
     document.querySelector('.custom-close-button').addEventListener('click', function() {});
     </script>
