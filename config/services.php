@@ -40,4 +40,7 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
+    'tomtom' => [
+        'api_key' => env('TOMTOM_API_KEY'),
+    ],
 ];
