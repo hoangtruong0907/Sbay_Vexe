@@ -151,7 +151,7 @@ body {
 .text-secondary {
     font-size: 14px;
 }
-.eajKhF {
+.custom-expected {
     font-weight: 600;
     font-size: 14px;
     color: #484848 !important;
@@ -404,7 +404,7 @@ body {
     font-weight: bold;
     color: #007bff;
 }
-.gymsWw {
+.custom-info {
     font-weight: 400 !important;
     font-size: 14px;
     line-height: 20px;

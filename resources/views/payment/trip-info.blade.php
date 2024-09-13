@@ -83,23 +83,23 @@
         <div class="offcanvas-body p-3">
             <div class="detail-info">
                 <div class="route">
-                    <p class="mb-1 fw-bold gymsWw">Tuyến</p>
+                    <p class="mb-1 fw-bold custom-info">Tuyến</p>
                     <span class="text-secondary">Huế - Đà Lạt</span>
                 </div>
                 <div class="route">
-                    <p class="mb-1 fw-bold gymsWw">Nhà xe</p>
+                    <p class="mb-1 fw-bold custom-info">Nhà xe</p>
                     <span class="text-secondary">Queen Cafe (Cam Ranh)</span>
                 </div>
                 <div class="route">
-                    <p class="mb-1 fw-bold gymsWw">Chuyến</p>
+                    <p class="mb-1 fw-bold custom-info">Chuyến</p>
                     <span class="text-secondary">13:00 • T4, 11/09/2024</span>
                 </div>
                 <div class="route">
-                    <p class="mb-1 fw-bold gymsWw">Loại xe</p>
+                    <p class="mb-1 fw-bold custom-info">Loại xe</p>
                     <span class="text-secondary">Limousine 34 chỗ</span>
                 </div>
                 <div class="route">
-                    <p class="mb-1 fw-bold gymsWw">Số lượng</p>
+                    <p class="mb-1 fw-bold custom-info">Số lượng</p>
                     <span class="text-secondary">1 vé</span>
                 </div>
 
@@ -544,7 +544,7 @@
             <p class="location-name">VP Đà Nẵng</p>
             <p class="text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng, Phường Thuận Phước, Hải Châu, Đà
                 Nẵng</p>
-            <p class="text-secondary eajKhF">Dự kiến đón lúc: 15:00 11/09/2024</p>
+            <p class="text-secondary custom-expected">Dự kiến đón lúc: 15:00 11/09/2024</p>
             <div class="group-title d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                     <img class="local-icon"
@@ -556,7 +556,7 @@
             </div>
             <p class="location-name">VP Hội An</p>
             <p class="text-secondary">23 Nguyễn Tất Thành, P. Cẩm Phô, Hội An, Phường Cẩm Phô, Hội An, Quảng Nam</p>
-            <p class="text-secondary eajKhF">Dự kiến trả lúc: 17:00 11/09/2024</p>
+            <p class="text-secondary custom-expected">Dự kiến trả lúc: 17:00 11/09/2024</p>
         </div>
         <div class="footer p-3">
             <button type="button" data-bs-dismiss="offcanvas" aria-label="Close" class="btn btn-primary w-100">
