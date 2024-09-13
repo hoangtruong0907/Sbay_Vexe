@@ -1,6 +1,5 @@
-
 body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa !important;
     font-size: 15px !important;
 }
 
@@ -435,6 +434,38 @@ body .material-icons-wrapper.md-20 {
     padding: 10px 0px 0px;
 }
 
+.pill-rating-filter .nav-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
+    border: none;
+    background-color: white;
+    color: #807d7d;
+    border-radius: 0px;
+    border-bottom: 1px solid #807d7d;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link.active {
+    border: none;
+    background-color: white;
+    color: #0d6efd;
+    font-weight: 600;
+    border-radius: 0px;
+    border-bottom: 2px solid #0d6efd;
+}
+
+.pill-rating-filter .nav-item.filter-rating {
+    flex: 0 0 auto;
+}
+
+[type="reset"],
+[type="submit"],
+button,
+html [type="button"] {
+    -webkit-appearance: button;
+}
+
 .nav-airline {
     justify-content: center;
     border-bottom: 1px solid #ccc;
@@ -514,7 +545,7 @@ body .material-icons-wrapper.md-20 {
 
 .flex-sum-left i {
     padding-right: 7px;
-    padding-left: 5px;
+    padding-left: 15px;
     font-size: 17px;
 }
 
@@ -550,8 +581,6 @@ body .material-icons-wrapper.md-20 {
 .custom-content-section p {
     margin-bottom: 0rem !important;
 }
-
-
 
 .icon-container {
     margin-right: 10px;
@@ -686,4 +715,3 @@ body .material-icons-wrapper.md-20 {
     right: 0;
     background-color: white;
 }
-

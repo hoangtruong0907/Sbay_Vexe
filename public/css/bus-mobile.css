@@ -23,10 +23,7 @@
         flex-wrap: nowrap !important;
         padding-bottom: 10px !important;
     }
-    .ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
-        border-bottom: none;
-        white-space: nowrap;
-    }
+
     .content-note-ticket {
         font-size: 12px;
     }
@@ -78,10 +75,7 @@
     .airlinetickets {
         width: 100%;
     }
-    .container-airlinetickets {
-        width: 96%;
-        z-index: 3;
-    }
+
     .left-filter {
         width: 1150px;
         display: none;
@@ -104,9 +98,9 @@
     }
     .container-l {
         width: 97%;
-        padding: 40px;
-        margin-left: 10px;
         padding: 10px;
+        margin: auto;
+        margin-bottom: 10px;
     }
     .ticket-info-l {
         display: flex;
@@ -579,73 +573,19 @@
     .modal .close-button:hover {
         background-color: #0056b3;
     }
-
-
-
-
-    #pills-tab {
-        display: flex;
-        flex-wrap: nowrap;
-    }
-    .ant-row-flex {
-        display: block;
-        text-align: center;
-    }
-    .wrap-left-ant-row-flex {
-        display: block;
-    }
-    #bus_search {
-        width: 100%;
-    }
-    .left-ant-row-flex {
-        display: block;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-        border: none;
-    }
-    .custom-swap-container{
-        display:none;
-    }
-    .custom-icon-container .fa-location-dot,.departure-bus-date ,.departure-bus-date-right{
-        padding-left:5px;
-    }
-    .custom-input-container{
-        gap: 10px;
-    }
-    .ss-main{
-        border: none;
-    }
-    .ss-main .ss-arrow path{
-        display: none;
-    }
-    .ss-values{
-        font-weight: bold;
-    }
-    .nav-item{
-        padding-bottom: 5px;
-    }
-    .nav-item button span{
-        font-size: 12px;
-    }
-    .departure-bus-flex, .destination-bus-flex, .departure-bus-date, .departure-bus-date-right {
-        height: 40px;
-        width: 50%;
-    }
 }
 @media (max-width: 605px) {
     .custom-place {
         font-size: 10px;
         white-space: nowrap;
     }
-    .step-bus1 .wrap-steps-content{
+    .step-bus1 .wrap-steps-content {
         display: flex;
         flex-direction: column !important;
         justify-content: center;
         align-items: center;
     }
-    .step-bus2 .wrap-steps-content{
+    .step-bus2 .wrap-steps-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -653,32 +593,20 @@
     }
 
     .step-bus2 .wrap-steps-content .left-steps-content,
-    .step-bus2 .wrap-steps-content .right-steps-content{
+    .step-bus2 .wrap-steps-content .right-steps-content {
         width: 100%;
     }
-    .step-bus2 .wrap-steps-content .left-steps-content .pickup-point{
-        border-right: none
+    .step-bus2 .wrap-steps-content .left-steps-content .pickup-point {
+        border-right: none;
     }
-    .seat-groups{
+    .seat-groups {
         flex-direction: row;
     }
-    .seat-name{
+    .seat-name {
         display: none;
     }
 }
 @media (max-width: 600px) {
-    /* .d-flex.row {
-        flex-direction: column;
-        font-size: 13px;
-    }     */
-    .tab-pane .fade .pickup-tab .active .show {
-        margin-left: -20px;
-    }
-    .tab-pane .fade h6 {
-        width: 100%;
-        white-space: nowrap;
-        margin-left: -19px;
-    }
     .rating {
         font-size: 12px;
         display: flex;
@@ -708,7 +636,6 @@
     .image-tab .img-child {
         height: 150px;
     }
-
 }
 @media (max-width: 550px) {
     .custom-hour {
@@ -721,9 +648,10 @@
         font-size: 13px;
     }
     .container-l {
-        width: 95%;
-        margin-left: 9px;
+        width: 97%;
         padding: 10px;
+        margin: auto;
+        margin-bottom: 10px;
     }
     .custom-hour {
         font-size: 15px;
@@ -735,16 +663,15 @@
         font-size: 10px;
         white-space: nowrap;
     }
-    .left-total-amount button{
+    .left-total-amount button {
         min-width: 100px;
         padding: 0px 5px;
         font-size: 10px;
     }
-    .right-total-amount button{
+    .right-total-amount button {
         min-width: 100px;
         padding: 0px 5px;
     }
-
 }
 @media (max-width: 500px) {
     .tab-content .list-group .w-100 .list-gr-review .mb-1 {
@@ -785,26 +712,23 @@
         padding: 10px;
     }
 
-    .seat-thumbnail-bed{
+    .seat-thumbnail-bed {
         width: 25px;
     }
-    .right-step-bus1{
+    .right-step-bus1 {
         gap: 10px;
     }
     .steps-container {
         padding: 15px;
     }
 
-    .left-total-amount button{
+    .left-total-amount button,
+    .right-total-amount button {
         min-width: 100px;
         padding: 0px 5px;
         font-size: 10px;
     }
-    .right-total-amount button{
-        min-width: 100px;
-        padding: 0px 5px;
-    }
-    .utilities-default{
+    .utilities-default {
         flex-direction: column;
     }
 }

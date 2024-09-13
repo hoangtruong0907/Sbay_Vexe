@@ -8,10 +8,6 @@
         Nhập thông tin
     </div>
 
-    <!-- <div id="step-3-{{ $key }}" class="step-train step-inactive navigation-step navigation-step-inactive">
-        <div class="step-icon-train step-icon-n step-content2">3</div>
-        Thanh toán
-    </div> -->
 </div>
 
 <div id="content-step-{{ $key }}" class="step-content" style="display: block;">

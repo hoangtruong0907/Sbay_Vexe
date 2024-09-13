@@ -155,7 +155,8 @@
 }
 
 .container-l:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+        rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .ticket-container-l {
@@ -235,7 +236,6 @@
 .from-to-l,
 .social-proof-l {
     margin-top: 10px;
-
 }
 
 .social-proof-l {
@@ -276,7 +276,6 @@
     justify-content: space-between;
     margin-top: 16px;
     align-items: center;
-
 }
 
 .action-train {
@@ -657,7 +656,7 @@
 }
 
 .list-gr-review .item-check-review {
-    color: #04AA6D;
+    color: #04aa6d;
 }
 
 .list-gr-review .thumb-img-review {
@@ -688,7 +687,6 @@
     height: 100%;
     object-fit: cover;
 }
-
 
 .image-tab .swiper {
     width: 100%;
@@ -807,7 +805,6 @@
     scroll-behavior: smooth;
     overflow: auto;
     padding-bottom: 10px;
-
 }
 
 .coupon-container-train .locomotive {
@@ -876,7 +873,6 @@
     align-content: center;
     color: white;
     border-radius: 5px;
-
 }
 
 .flex-coupon-train .text-coupon-train {
@@ -951,7 +947,6 @@
     gap: 10px;
 }
 
-
 .seat-info-train .seat-unavailable-train svg rect {
     stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
@@ -988,7 +983,8 @@
     cursor: not-allowed;
 }
 
-.coach-row-train .seat, .coach-row-train .train-hl {
+.coach-row-train .seat,
+.coach-row-train .train-hl {
     padding: 4px;
     border: 0 !important;
 }
@@ -1081,7 +1077,6 @@
     margin: auto;
 }
 
-
 .container-contract-train .input-group-train {
     display: flex;
     justify-content: space-between;
@@ -1092,8 +1087,8 @@
     border-color: #d6d4d4;
 }
 
-.form-control:focus~.form-label,
-.form-control:not(:placeholder-shown)~.form-label {
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label {
     top: -0.75rem;
     left: 0.75rem;
     font-size: 0.75rem;
@@ -1163,8 +1158,6 @@
     box-sizing: border-box;
 }
 
-
-
 .total-amount-train {
     width: 100%;
     border-top: 1px solid rgb(192, 192, 192);
@@ -1214,7 +1207,6 @@
     font-weight: bold;
     margin-right: 8px;
 }
-
 
 /* Định dạng chung cho các bước điều hướng */
 .navigation-step {
