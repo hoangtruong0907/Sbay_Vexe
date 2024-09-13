@@ -1265,7 +1265,7 @@
     flex: 1 1 0%;
     display: flex;
     flex-direction: column;
-    padding: 16px;
+
 }
 
 .container-wrap-pick-up-point {
@@ -1295,7 +1295,7 @@
     font-weight: 400;
     line-height: 16px;
     margin-bottom: 0px;
-    color: rgb(20, 20, 20) !important;
+    
 }
 
 .value-container {
@@ -1307,13 +1307,14 @@
 }
 
 .value-container p {
+    color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
     margin-bottom: 0px;
-    color: rgb(20, 20, 20);
     font-weight: bold;
 }
+
 
 .value-container button {
     display: flex;
@@ -1324,11 +1325,7 @@
     background-color: transparent;
 }
 
-.text-pick-up-point-maps {
-    margin-left: 4px;
-    text-decoration: underline;
-    color: rgb(36, 116, 229) !important;
-}
+
 
 .pickup-point {
     border-right: 1px solid rgb(192, 192, 192);
@@ -1986,7 +1983,7 @@ body h6 {
 }
 
 .wrap-steps-content {
-    width: 100%;
+    
     display: flex;
 }
 
@@ -2003,14 +2000,14 @@ body h6 {
 .left-steps-content {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 75%;
 }
 
 .right-steps-content {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
-    width: 100%;
+    
 }
 
 .seat-groups {
@@ -2267,4 +2264,124 @@ body h6 {
 
 .floating-container {
     display: none;
+}
+
+.text-pick-up-point-maps {
+    margin-left: 4px;
+    text-decoration: underline;
+}
+.text-drop-off-point-maps{
+    color:#000
+}
+
+.pickup-point {
+    border-right: 1px solid rgb(192, 192, 192);
+}
+
+.container-group-items-pick-up-point {
+    width: 100%;
+    max-height: 290px;
+    overflow: hidden auto;
+    padding: 10px 78px 10px 16px !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, .65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: "tnum";
+    font-feature-settings: "tnum";
+    display: inline-block;
+    line-height: unset;
+}
+
+.address-container {
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity));
+    max-width: 150px;  
+    overflow: hidden;  
+    white-space: nowrap;  
+    text-overflow: ellipsis;  
+    display: inline-block;  
+    vertical-align: middle;  
+    font-size: 13px;
+}
+.change-link {
+    margin-left: 10px; 
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer; 
+    font-weight: bold;
+}
+.custom-dropoff-button {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    background-color: #fff; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    box-sizing: border-box; 
+    cursor: pointer; 
+}
+
+.custom-dropoff-button .address-container {
+    flex-grow: 1; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    /* margin-right: 10px;  */
+}
+
+.custom-address-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+#changeLink {
+    text-decoration: underline;
+    color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    /* max-width: 150px; */
+    overflow: hidden;
+}
+#changeDropoffLink{
+    text-decoration: underline;
+    color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.custom-dropoff-button .change-link {
+    border: none;
+    cursor: pointer; 
+    white-space: nowrap; 
+    margin-left: auto; 
+}
+.container-wrap-pick-up-point {
+    background-color: rgb(247, 247, 247) !important;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 20px;
 }

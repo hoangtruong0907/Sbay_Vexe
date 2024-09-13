@@ -374,11 +374,11 @@
                             </select>
                             <button class="custom-address-button">
                                 <span id="displayAddress" class="address-container">
-                                    <p class="text-pick-up-point-arrange text-pick-up-point-maps">
+                                    <p class="text-pick-up-point-arrange text-pick-up-point-maps" style="margin-left: 31px;">
                                         Nhập địa chỉ tại đây
                                     </p>
                                 </span>
-                                <span id="changeLink" class="change-link text-pick-up-point-maps" onclick="openAddressModal()" style="display: none;">Thay đổi</span>
+                                <span id="changeLink" class="change-link text-pick-up-point-maps"  style="display: none;">Thay đổi</span>
                             </button>
                         </div>
                     </div>
@@ -441,11 +441,11 @@
                         </select>
                         <button class="custom-dropoff-button" style=" justify-content: flex-end;">
                             <span id="displayDropoffAddress" class="address-container">
-                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline text-primary" style="margin-left: 31px;">
+                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline" style="margin-left: 31px;">
                                     Nhập địa chỉ tại đây
                                 </p>
                             </span>
-                            <span id="changeDropoffLink" class="change-link text-drop-off-point-maps" onclick="openDropoffAddressModal()" style="display: none;">Thay đổi</span>
+                            <span id="changeDropoffLink" class="change-link text-drop-off-point-maps"  style="display: none;margin-left: 10px;">Thay đổi</span>
                         </button>
                     </div>
                 </div>
