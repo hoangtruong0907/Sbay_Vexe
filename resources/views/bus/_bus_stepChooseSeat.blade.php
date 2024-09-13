@@ -441,7 +441,7 @@
                         </select>
                         <button class="custom-dropoff-button" style=" justify-content: flex-end;">
                             <span id="displayDropoffAddress" class="address-container">
-                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline" style="margin-left: 31px;">
+                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline " style="margin-left: 31px;">
                                     Nhập địa chỉ tại đây
                                 </p>
                             </span>

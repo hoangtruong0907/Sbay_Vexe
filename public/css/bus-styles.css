@@ -1307,11 +1307,12 @@
 }
 
 .value-container p {
-    color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));
+    
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
     margin-bottom: 0px;
+    
     font-weight: bold;
 }
 
@@ -1325,7 +1326,11 @@
     background-color: transparent;
 }
 
-
+.text-pick-up-point-maps {
+    margin-left: 4px;
+    text-decoration: underline;
+    color: rgb(0, 0, 0) !important;
+}
 
 .pickup-point {
     border-right: 1px solid rgb(192, 192, 192);
@@ -2296,9 +2301,15 @@ body h6 {
     display: inline-block;
     line-height: unset;
 }
-
+.value-container button {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    background-color: transparent;
+}
 .address-container {
-    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity));
     max-width: 150px;  
     overflow: hidden;  
     white-space: nowrap;  
