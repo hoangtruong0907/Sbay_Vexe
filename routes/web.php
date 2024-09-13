@@ -18,40 +18,43 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\PaymentResultController;
 
 
-// Login Admin
-
-
+# Admin page
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    })->name('admin')->middleware(AuthMiddleware::class);
-
+    })->name('admin');
+    #login admin
     Route::get('/login', [AuthAdminController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
     Route::post('/doLogin', [AuthAdminController::class, 'doLogin'])->name('admin.doLogin');
     Route::get('/doLogout', [AuthAdminController::class, 'doLogout'])->name('admin.doLogout');
 
-    Route::prefix('/user')->group(function () {
+    Route::prefix('/users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
         Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-        Route::post('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
-        Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
-    });
-
+        Route::put('/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
+    }); 
     Route::prefix('/blogs')->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');
-        Route::post('/', [BlogController::class, 'store'])->name('admin.blogs.store');
-        Route::post('/{id}', [BlogController::class, 'show'])->name('blogs.show');
+        Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');  
+        Route::get('/show/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
         Route::get('/create', [BlogController::class, 'create'])->name('admin.blogs.create');
+        Route::post('/store', [BlogController::class, 'store'])->name('admin.blogs.store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
         Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
-        Route::delete('/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
-        Route::get('/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
+        Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy'); 
     });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
+
+    // Banner
+    Route::prefix('/banner')->group(function () {
+        Route::get('/', [ImageUploadController::class, 'showBanner'])->name('admin.banner');
+        Route::post('/update', [ImageUploadController::class, 'updateBanner'])->name('admin.banner.update');
+    });
+
 });
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
@@ -66,11 +69,14 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/xe-khach',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
     Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
 });
-
+// Bus view api
+Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
 Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
 Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
+// Train view api
+Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap']);
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
 

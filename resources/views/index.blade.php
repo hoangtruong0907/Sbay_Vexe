@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
+
 @endsection
 
 @section('content')
@@ -17,7 +18,7 @@
             ])
         </div>
         <div class="img-slide">
-            <img src="{{ asset('images/slide.jpg') }}" alt="slide">
+            <img src="{{asset('storage/images/banner/'. optional($banner_current)->slide_path)}}" alt="slide">
         </div>
         <div class="wrap-criteria">
             <div class="criteria-slide">
