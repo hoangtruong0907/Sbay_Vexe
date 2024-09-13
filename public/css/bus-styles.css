@@ -1257,7 +1257,7 @@
     font-weight: 400;
     line-height: 16px;
     margin-bottom: 0px;
-    
+
 }
 
 .value-container {
@@ -1269,12 +1269,12 @@
 }
 
 .value-container p {
-    
+
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
     margin-bottom: 0px;
-    
+
     font-weight: bold;
 }
 
@@ -1929,7 +1929,7 @@ body h6 {
 }
 
 .wrap-steps-content {
-    
+    width:100%;
     display: flex;
 }
 
@@ -2252,40 +2252,40 @@ body h6 {
     background-color: transparent;
 }
 .address-container {
-    max-width: 150px;  
-    overflow: hidden;  
-    white-space: nowrap;  
-    text-overflow: ellipsis;  
-    display: inline-block;  
-    vertical-align: middle;  
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
     font-size: 13px;
 }
 .change-link {
-    margin-left: 10px; 
+    margin-left: 10px;
     color: blue;
     text-decoration: underline;
-    cursor: pointer; 
+    cursor: pointer;
     font-weight: bold;
 }
 .custom-dropoff-button {
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    width: 100%; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    background-color: #fff; 
-    border-radius: 5px; 
-    overflow: hidden; 
-    box-sizing: border-box; 
-    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 .custom-dropoff-button .address-container {
-    flex-grow: 1; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     /* margin-right: 10px;  */
 }
 
@@ -2328,9 +2328,9 @@ body h6 {
 
 .custom-dropoff-button .change-link {
     border: none;
-    cursor: pointer; 
-    white-space: nowrap; 
-    margin-left: auto; 
+    cursor: pointer;
+    white-space: nowrap;
+    margin-left: auto;
 }
 .container-wrap-pick-up-point {
     background-color: rgb(247, 247, 247) !important;
