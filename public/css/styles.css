@@ -64,7 +64,7 @@ a {
     font-size: 14px !important;
 }
 
-.ijyXqH {
+.button-nav {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -85,7 +85,7 @@ body .material-icons-wrapper.md-20 {
     display: flex;
 }
 
-.boemqK {
+.content-button-nav {
     margin-bottom: 0rem;
     font-weight: 600;
     font-size: 14px;
@@ -397,8 +397,6 @@ body .material-icons-wrapper.md-20 {
     box-shadow: 1px 1px 4px 0px #ccc;
 }
 
-/* PC size */
-/* custom select slim */
 .custom-input-container .bus_from_input,
 .custom-input-container .bus_to_input {
     border: unset;
@@ -413,7 +411,6 @@ body .material-icons-wrapper.md-20 {
 .custom-input-container.select-slim .ss-main:focus {
     box-shadow: none;
 }
-/* end select slim */
 
 .flex-sum-left {
     position: relative;
@@ -594,7 +591,6 @@ html [type="button"] {
 .popular {
     width: 82%;
     margin: 0 auto;
-    /* CÄƒn giá»¯a trong .text-card */
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
@@ -608,7 +604,6 @@ html [type="button"] {
 
 .popular-route-label {
     width: 80%;
-    /* Đặt chiều rộng phần tử */
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
@@ -624,10 +619,6 @@ html [type="button"] {
 
 .post-title {
     margin-top: 30px;
-}
-
-.iavTwq {
-    margin-top: 20px;
 }
 
 .incentive {
