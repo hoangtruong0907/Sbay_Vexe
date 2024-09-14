@@ -154,7 +154,7 @@
             data-bs-parent="#item-bus-{{ $key }}">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
-                <ul class="nav nav-pills mb-1 pills-ticket-tab" role="tablist">
+                <ul class="nav nav-pills mb-1 pills-ticket-tab custom-nav" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#coupon-{{ $key }}" type="button" role="tab"
@@ -187,6 +187,14 @@
                             data-trip-code="{{ $dataRoute['schedules'][0]['trip_code'] }}"
                             data-seat-template-id="{{ $dataRoute['schedules'][0]['seat_template_id'] }}">
                             Chính sách</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="utilities-tab-{{ $key }}" data-bs-toggle="pill"
+                            data-bs-target="#utilities-{{ $key }}" type="button" role="tab"
+                            aria-controls="tilities-{{ $key }}" aria-selected="false"
+                            onclick="handleUtilitiesTab({{ $route['company']['id'] }}, {{ $dataRoute['schedules'][0]['seat_template_id'] }})"
+                        >Tiện ích
+                        </button>
                     </li>
                 </ul>
                 <div class="tab-content ticket-detail-contentTab">
@@ -359,8 +367,8 @@
                                 <div class="list-group">
                                     @foreach ($pickupData as $i => $pickup)
                                         <div class="list-group-item list-group-item-action list-distance-item"
-                                            data-map-lat="{{ $pickup['location']['lat'] }}"
-                                            data-map-lon="{{ $pickup['location']['lon'] }}"
+                                            data-map-lat="{{ $pickup['location']['lat']  ?? ""}}"
+                                            data-map-lon="{{ $pickup['location']['lon']  ?? ""}}"
                                             data-key="{{ $i }}">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1">
@@ -377,7 +385,7 @@
                                                     @endif
                                                 </small>
                                             </div>
-                                            <p class="mb-1">{{ $pickup['name'] }}</p>
+                                            <p class="mb-1 custom-width">{{ $pickup['name'] }}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -387,8 +395,8 @@
                                 <div class="list-group">
                                     @foreach ($dropoffData as $i => $dropoff)
                                         <div class="list-group-item list-group-item-action list-distance-item"
-                                            data-map-lat="{{ $dropoff['location']['lat'] }}"
-                                            data-map-lon="{{ $dropoff['location']['lon'] }}"
+                                            data-map-lat="{{ $dropoff['location']['lat'] ?? ""}}"
+                                            data-map-lon="{{ $dropoff['location']['lon'] ?? ""}}"
                                             data-key="{{ $i }}">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1">
@@ -401,7 +409,7 @@
                                                 <small class="text-muted">
                                                 </small>
                                             </div>
-                                            <p class="mb-1">{{ $dropoff['name'] }}</p>
+                                            <p class="mb-1 custom-width">{{ $dropoff['name'] }}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -457,6 +465,26 @@
                         <div class="d-flex justify-content-center mt-4">
                             <div class="loading-wrap">
                                 @include('components._loading');
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade utilities-tab" id="utilities-{{ $key }}" role="tabpanel"
+                        aria-labelledby="utilities-tab" tabindex="3">
+                        <div class="d-flex flex-column w-100 h-100" id="utilities_{{ $route['company']['id'] }}">
+
+                        </div>
+                        <div class="utilities-default d-flex">
+                            <div class="icon-text">
+                                <i class="fa-regular fa-snowflake"></i>
+                                <span>Điều hòa</span>
+                            </div>
+                            <div class="icon-text">
+                                <i class="fa-solid fa-wifi"></i>
+                                <span>Free wifi</span>
+                            </div>
+                            <div class="icon-text">
+                                <i class="fa fa-couch" aria-hidden="true"></i>
+                                <span>Điều chỉnh ghế ngồi</span>
                             </div>
                         </div>
                     </div>

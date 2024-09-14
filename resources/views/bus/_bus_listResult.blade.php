@@ -14,7 +14,8 @@
             @if ($currentPage > 1)
                 <li class="page-item">
                     <a class="page-link"
-                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage - 1, 'pagesize' => $pageSize]) }}"
+                        href="javascript:void(0);"
+                        onclick="loadSearchListBus({{$currentPage - 1}}, {{$pageSize}})"
                         rel="prev"><i class="fa-solid fa-chevron-left"></i></a>
                 </li>
             @else
@@ -27,7 +28,9 @@
             @for ($i = 1; $i <= $totalPages; $i++)
                 <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
                     <a class="page-link"
-                        href="{{ request()->fullUrlWithQuery(['page' => $i, 'pagesize' => $pageSize]) }}">{{ $i }}</a>
+                        href="javascript:void(0);"
+                         onclick="loadSearchListBus({{$i}}, {{$pageSize}})"
+                        >{{ $i }}</a>
                 </li>
             @endfor
 
@@ -35,7 +38,8 @@
             @if ($currentPage < $totalPages)
                 <li class="page-item">
                     <a class="page-link"
-                        href="{{ request()->fullUrlWithQuery(['page' => $currentPage + 1, 'pagesize' => $pageSize]) }}"
+                        href="javascript:void(0);"
+                         onclick="loadSearchListBus({{$currentPage + 1}}, {{$pageSize}})"
                         rel="next"><i class="fa-solid fa-chevron-right"></i></a>
                 </li>
             @else
@@ -46,3 +50,30 @@
         </ul>
     </nav>
 @endif
+<script>
+    function handleUtilitiesTab(id, seat_template_id) {
+        $.ajax({
+            'method': 'POST',
+            'url': '{{route('route.utilities')}}',
+            'data': {
+                'id': id,
+                'seat_template_id': seat_template_id
+            },
+        })
+        .done((res) => {
+            res.data.map((el, index) => {
+                $('#utilities_'+ id).empty().append(
+                    `<div class="facility-description">
+                        <div class="img-name">
+                            <img src="//${el.icon_url}"/>
+                            <div class="name">${el.name}</div>
+                        </div>
+                        <div class="description">${el.description}</div>
+                    </div>
+                    <div class="line-utilities mb-4"></div>
+                    `
+                );
+            })    
+        })
+    }
+</script>

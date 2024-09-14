@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 use App\Helpers\helpers;
+use App\Models\Banner;
 use Carbon\Carbon;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cache;
@@ -32,6 +33,7 @@ class RouteController extends Controller
         $this->client_id = env('VEXERE_CLIENT_ID');
         $this->client_secret = env('VEXERE_CLIENT_SECRET');
     }
+
     public function index()
     {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
@@ -42,13 +44,7 @@ class RouteController extends Controller
             ], 500);
         }
 
-        $cityBusURL = $this->main_url . '/v3/area/city_district';
-        $list_areas = Helpers::cacheData('city_district', $token, $cityBusURL, 60 * 60 * 24);
-
-        // route list
-        $trainConfigURL = $this->route_url . '/v2/agent/train/get_config';
-        $trainConfig = Helpers::cacheData('train_config', $token, $trainConfigURL, 60 * 60 * 24);
-        $trainStations = $trainConfig['train_stations_list'];
+        $all_area = $this->getAllRoute($token);
 
         $postTypes = BlogPostModel::distinct()->pluck('type');
 
@@ -73,16 +69,45 @@ class RouteController extends Controller
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
 
+        $banner_current = Banner::first();
+
         return view('index', [
-            "list_areas" => $list_areas,
-            "trainStations" => $trainStations,
+            "list_areas" => $all_area['bus'],
+            "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             'allPosts' => $paginator,
             'typeMapping' => $typeMapping,
             'postTypes' => $postTypes,
+            'banner_current' => $banner_current,
         ]);
     }
 
-    public function busRouteSearch($fromtoPlace, Request $request)
+    private function getAllRoute($token, $key = "all", $time = 60 * 60 * 24)
+    {
+        $areas = [];
+        switch ($key) {
+            case 'bus':
+                $url = $this->main_url . '/v3/area/city_district';
+                $areas = collect(Helpers::cacheData('areas_bus', $token, $url, $time));
+                break;
+            case 'train':
+                $url = $this->route_url . '/v2/agent/train/get_config';
+                $areas = collect(Helpers::cacheData('areas_train', $token, $url, $time));
+                break;
+            case "all":
+                $urlBus = $this->main_url . '/v3/area/city_district';
+                $areasBus = collect(Helpers::cacheData('areas_bus', $token, $urlBus, $time));
+                $urlTrain = $this->route_url . '/v2/agent/train/get_config';
+                $areasTrain = collect(Helpers::cacheData('areas_train', $token, $urlTrain, $time));
+                $areas = [
+                    'bus' => $areasBus,
+                    'train' => $areasTrain,
+                ];
+                break;
+        }
+        return $areas;
+    }
+
+    public function busRouteSearch(Request $request)
     {
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
         $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
@@ -90,9 +115,15 @@ class RouteController extends Controller
         $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : "";
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
 
-        if ($busTo === null || $busFrom === null || $dateTo === null) {
-            return response()->json(['error' => 'Missing required parameters.'], 400);
+        if (!$token) {
+            return response()->json([
+                'error' => 'Failed to retrieve token',
+            ], 500);
         }
+        // if ($busTo === null || $busFrom === null || $dateTo === null) {
+        //     return response()->json(['error' => 'Missing required parameters.'], 400);
+        // }
+        $all_area = $this->getAllRoute($token);
         $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
 
         $queryParams = [
@@ -107,86 +138,32 @@ class RouteController extends Controller
             }
         }
 
-        if (!$token) {
-            return response()->json([
-                'error' => 'Failed to retrieve token',
-            ], 500);
-        }
-
-        $main_url = $this->main_url . '/v3/area/city_district';
-        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 * 24));
         // Lấy thông tin từ params
         $params = (object)([
-            'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
-            'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
+            'busFrom' => (object)$all_area['bus']->where('id', (int)$busFrom)->first(),
+            'busTo' => (object)$all_area['bus']->where('id', (int)$busTo)->first(),
             'dateTo' => $dateTo,
             'dateFrom' => $dateFrom,
         ]);
+
         // Thông tim tuyến đường
         $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
         // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);\
         $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
         $list_routes = $res_routes['data'];
-        // dd($list_routes);
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
         return view("bus.bus_search", [
-            "fromtoPlace" => $fromtoPlace,
+            "fromtoPlace" => $request->query('q', null),
             "list_routes" => $list_routes,
-            "list_areas" => $list_areas,
+            "list_areas" => $all_area['bus'],
+            "list_areas_train" => $all_area['train']['train_stations_list'] ?? [],
             "params" => $params,
             'currentPage' => $res_routes['page'],
             'pageSize' => $res_routes['page_size'],
             'total' => $res_routes['total'],
             'totalPages' => $res_routes['total_pages']
         ]);
-    }
-
-    public function trainRouteSearch($fromtoPlace, Request $request)
-    {
-        $trainTo = $request->query('train_to', '');
-        $trainFrom = $request->query('train_from', '');
-        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : '';
-        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
-        $quantity = 2;
-        $page = 1;
-        $pagesize = 10;
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-
-        if (empty($trainTo) || empty($trainFrom) || empty($dateTo)) {
-            return response()->json(['error' => 'Missing required parameters.'], 400);
-        }
-
-        if (!$token) {
-            return response()->json(['error' => 'Failed to retrieve token.'], 500);
-        }
-
-        $urlRoute = $this->route_url . '/v2/agent/train/route?from=' . $trainFrom . '&to=' . $trainTo . '&time=' . $dateTo . '&quantity=' . $quantity . '&page=' . $page . '&pagesize=' . $pagesize;
-        // Apply filters
-        $queryParams = $this->getRouteFilters($request);
-
-        foreach ($queryParams as $key => $value) {
-            if ($value !== null) {
-                $urlRoute .= '&' . $key . '=' . $value;
-            }
-        }
-
-        $main_url = $this->route_url . '/v2/agent/train/get_config';
-
-        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 20));
-        $train_stations_list = collect($list_areas->get('train_stations_list'));
-        // Lấy thông tin điểm đón và điểm xả
-        $params = (object)([
-            'trainFrom' => (object)$train_stations_list->where('station_code', $trainFrom)->first(),
-            'trainTo' => (object)$train_stations_list->where('station_code', $trainTo)->first(),
-            'dateTo' => $dateTo,
-        ]);
-
-        $cacheKeyRoute = 'route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo;
-
-        $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 20);
-        // dd($list_routes);
-        return view("train.train_search", compact('list_routes', 'list_areas', 'params'));
     }
 
     private function getRouteFilters(Request $request)
@@ -338,7 +315,6 @@ class RouteController extends Controller
                 'error' => 'Failed to retrieve token',
             ], 500);
         }
-
         $urlSeatMap = $this->main_url . "/v3/trip/seat_map?trip_code=" . $tripCode;
         $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 20);
         // dd($seatTemplateMap);
@@ -348,8 +324,9 @@ class RouteController extends Controller
             'dataHTML' => view('bus._bus_stepChooseSeat', [
                 'tripCode' => $tripCode,
                 'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
-                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'],
+                "pickupPoints" => $seatMap['pickup_points'] ?? [],
                 "transferPoints" => $seatMap['transfer_points_at_arrive'],
+                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'],
                 "seatMap" => $seatMap,
                 "keyId" => $keyId,
             ])->render(),
@@ -438,6 +415,99 @@ class RouteController extends Controller
                 'total' => $res_routes['total'],
                 'totalPages' => $res_routes['total_pages']
             ])->render(),
+        ]);
+    }
+
+
+    // TRAIN
+    public function trainRouteSearch(Request $request)
+    {
+        $trainTo = $request->query('train_to', '');
+        $trainFrom = $request->query('train_from', '');
+        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : '';
+        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : '';
+        $quantity = 2;
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+
+        if (!$token) {
+            return response()->json(['error' => 'Failed to retrieve token.'], 500);
+        }
+        $all_area = $this->getAllRoute($token);
+        $urlRoute = $this->route_url . '/v2/agent/train/route?from=' . $trainFrom . '&to=' . $trainTo . '&time=' . $dateTo . '&quantity=' . $quantity;
+        // Apply filters
+        $queryParams = [
+            'page' => $request->query('page', 1),
+            'pagesize' => $request->query('pagesize', 10),
+        ];
+
+        foreach ($queryParams as $key => $value) {
+            if ($value !== null) {
+                $urlRoute .= '&' . $key . '=' . $value;
+            }
+        }
+
+        $train_stations_list = collect($all_area['train']->get('train_stations_list'));
+        // Lấy thông tin điểm đón và điểm xả
+        $params = (object)([
+            'trainFrom' => (object)$train_stations_list->where('station_code', $trainFrom)->first(),
+            'trainTo' => (object)$train_stations_list->where('station_code', $trainTo)->first(),
+            'dateToTrain' => $dateTo,
+            'dateFromTrain' => $dateFrom,
+        ]);
+
+        $list_routes = Helpers::cacheData('train_route_' . $trainFrom . '_' . $trainTo . '_' . $dateTo, $token, $urlRoute, $queryParams, 60 * 30);
+        // dd($list_routes);
+        return view("train.train_search", [
+            "list_areas" => $all_area['bus'],
+            'list_routes_train' => $list_routes,
+            'list_areas_train' => $train_stations_list,
+            'params' => $params,
+        ]);
+    }
+
+    public function getSeatMap(Request $request)
+    {
+        $seatInfo = $request->all();
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        if (empty($seatInfo)) {
+            return response()->json(['error' => 'Missing required parameters.'], 400);
+        }
+
+        if (!$token) {
+            return response()->json([
+                'error' => 'Failed to retrieve token',
+            ], 500);
+        }
+        $urlSeatMap = $this->route_url . "/v2/agent/train/seat_map";
+        $res = Http::withToken($token)->post($urlSeatMap, [
+            'type' => "depart",
+            'train_id' => $seatInfo['trainId'],
+            'physical_carriage_id' => $seatInfo['carriageId'],
+        ]);
+        $seatMap = [];
+        if ($res->successful()) {
+            $seatMap = $res->json();
+        }
+
+        return response()->json([
+            "message" => "success",
+            "seatMap" => $seatMap,
+            'dataHTML' => view('train._train_templateSeat', [
+                "seatMap" => $seatMap,
+                "seatInfo" => $seatInfo,
+            ])->render(),
+        ]);
+    }
+    
+    // Hiển thị tiện ích của Bus
+    public function busUtilitiesSearch (Request $request) {
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        $urlRoute = $this->main_url . '/v3/company/'.$request->id.'/utility?seat_template_id='. $request->seat_template_id;
+        $list_routes = Helpers::cacheData('utility', $token, $urlRoute);
+        
+        return response()->json([
+            "message" => "success",
+            'data'    => $list_routes
         ]);
     }
 }

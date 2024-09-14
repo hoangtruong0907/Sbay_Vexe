@@ -9,6 +9,6 @@ class PaymentController extends Controller
     public function showPaymentPage()
     {
         // Trả về view `payments.payment`
-        return view('payments.payment');
+        return view('payment.payment');
     }
 }

@@ -40,13 +40,13 @@
     </div>
 
     <div class="relatedContent">
-    <h1 class="popular-route-label route-label">Nội dung liên quan</h1> <!-- Tiêu đề đặt phía trên -->
+    <h1 class="popular-route-label route-label contentdb" style="margin-left: 0px">Nội dung liên quan</h1> 
     <div class="scroll-container fg">
         <div class="container item-card-list">
             @foreach($relatedContent as $item)
                 <div class="text-card">
                     <div class="card-wrapper" id="card-{{ $item->id }}">
-                        <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native">
+                    <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native">
                             <div class="card card-item" style="margin-top:50px;">
                                 <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
                                 <div class="card-content">

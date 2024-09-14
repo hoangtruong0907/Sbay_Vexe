@@ -2,188 +2,184 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\Controller;
-use App\Models\BlogPostModel;
-use App\Models\PostType;
+use App\Repositories\Interface\BlogRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\PostType;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    public function index(Request $request)
-{
-    $postTypes = BlogPostModel::distinct()->pluck('type');
-    $searchTerm = $request->input('search');
+    protected $blogRepository;
 
-    // Khởi tạo truy vấn
-    $query = BlogPostModel::query();
-
-    // Thêm điều kiện tìm kiếm nếu có từ khóa
-    if ($searchTerm) {
-        $query->where('title', 'like', '%' . $searchTerm . '%');
-    }
-
-    // Thực hiện truy vấn với sắp xếp và phân trang
-    $allPosts = $query->orderBy('created_at', 'desc')->paginate(10);
-
-    // Chi tiết phân trang
-    $currentPage = LengthAwarePaginator::resolveCurrentPage();
-    $perPage = 5; 
-    $currentItems = $allPosts->forPage($currentPage, $perPage);
-
-    $paginator = new LengthAwarePaginator(
-        $currentItems,
-        $allPosts->total(),
-        $perPage,
-        $currentPage,
-        ['path' => LengthAwarePaginator::resolveCurrentPath()]
-    );
-
-    return view('admin.blogs.index', [
-        'allPosts' => $paginator,
-        'postTypes' => $postTypes,
-        'searchTerm' => $searchTerm, 
-    ]);
-    }
-
-
-    public function show($slug)
+    public function __construct(BlogRepositoryInterface $blogRepository)
     {
-        $blog = BlogPostModel::where('slug', $slug)->firstOrFail();
-        $relatedContent = BlogPostModel::where('type', 'relatedContent')->paginate(10); // Hoặc bất kỳ điều kiện nào khác để lấy nội dung liên quan
-        $showButtonOnly = $blog->type === 'blog';
-        // $showButtonIncentives = $blog->type === 'incentives';
-        return view('admin.blogs.index', compact('blog', 'relatedContent', 'showButtonOnly'));
+        $this->blogRepository = $blogRepository;
     }
+
+    public function index(Request $request)
+    {
+        $postTypes = $this->blogRepository->getDistinctPostTypes();
+        $searchTerm = $request->input('search');
+        $allPosts = $this->blogRepository->getAllPosts($searchTerm);
+
+        $paginator = $this->paginatePosts($allPosts, 5);
+
+        return view('admin.blogs.index', [
+            'allPosts' => $paginator,
+            'postTypes' => $postTypes,
+            'searchTerm' => $searchTerm, 
+        ]);
+    }
+
+    public function show($id)
+    {  
+        try { 
+            $blog = $this->blogRepository->findById($id); 
+            return response()->json([
+                'title' => $blog->title,
+                'type' => $blog->type,
+                'author' => $blog->author,
+                'created_at' => $blog->created_at->format('d/m/Y H:i'),
+                'updated_at' => $blog->updated_at->format('d/m/Y H:i'),
+                'status' => $blog->status,
+                'content' => $blog->content,
+                'picture' => Storage::url($blog->picture), 
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Không thể lấy thông tin chi tiết bài đăng.'], 500);
+        }   
+    }
+
     public function edit($id)
     {
-        $blog = BlogPostModel::findOrFail($id);
-        // dd($blog);
+        $blog = $this->blogRepository->findById($id);
         return view('admin.blogs.edit', compact('blog'));
     }
 
     public function create()
     {
-
         return view('admin.blogs.create');
     }
 
     public function update(Request $request, $id)
-{
-    // Validate dữ liệu
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'content' => 'required',
-        'author' => 'required|string|max:255',
-        'type' => 'required|string|in:blog,news,incentives,vexeretip,relatedContent,new',
-        'status' => 'required|in:published,draft,archived',
-        'new_type' => 'nullable|string|max:255'
-    ]);
-
-    $blog = BlogPostModel::findOrFail($id);
-    
-    $blog->title = trim($request->title);
-    $blog->content = trim($request->content);
-    $blog->author = trim($request->author);
-    $blog->status = $request->status;
-    $blog->type = $request->input('type');
-
-    // Cập nhật slug nếu tiêu đề thay đổi
-    $newSlug = \Illuminate\Support\Str::slug($request->title, '-');
-    if ($newSlug !== $blog->slug) {
-        $originalSlug = $newSlug;
-        $counter = 1;
-
-        // Kiểm tra và xử lý slug trùng lặp
-        while (BlogPostModel::where('slug', $newSlug)->exists()) {
-            $newSlug = $originalSlug . '-' . $counter++;
-        }
-
-        $blog->slug = $newSlug;
-    }
-
-    if ($request->hasFile('picture')) {
-        $picturePath = $request->file('picture')->store('public/blog_pictures');
-        $blog->picture = $picturePath;
-    }
-
-    $blog->save();
-
-    // Chuyển hướng về trang index với thông báo thành công
-    return redirect()->route('admin.blogs.index')->with('success', 'Blog successfully updated.');
-}
-
-    public function destroy($id)
     {
-        $blog = BlogPostModel::findOrFail($id);
-        $blog->delete();
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog successfully deleted.');
-    }
+        $this->validateBlogData($request);
+
+        $blog = $this->blogRepository->findById($id);
+        $data = $this->prepareBlogData($request);
+        $this->blogRepository->update($blog, $data);
+
+        return redirect()->route('admin.blogs.index')->with('success', 'Cập nhập bài viết thành công!');
+    } 
+
     public function showContent($title)
     {
-        // Tìm blog theo title
-        $blog = BlogPostModel::where('title', $title)->firstOrFail();
-
-        // Lấy nội dung liên quan và lọc các bài viết có ID không trùng với blog hiện tại
-        $relatedContent = BlogPostModel::where('type', 'relatedContent')->get();
-        $filteredContent = $relatedContent->filter(function ($item) use ($blog) {
-            return $item->id !== $blog->id;
-        });
+        $blog = $this->blogRepository->findByTitle($title);
+        $filteredContent = $this->getFilteredRelatedContent($blog);
 
         return view('blog.content', [
             'blog' => $blog,
             'relatedContent' => $filteredContent
         ]);
     }
+
     public function store(Request $request)
-{
-    // Validate dữ liệu
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'content' => 'required',
-        'author' => 'required|string|max:255',
-        'type' => 'required|string',
-        'status' => 'required|in:published,draft,archived',
-        'new_type' => 'nullable|string|max:255',
-    ]);
+    { 
+        $this->validateBlogData($request);
+        $type = $this->handleNewType($request);
+       
+        $data = $this->prepareBlogData($request);
+        $data['type'] = $type;
+        $data['author'] = Auth::user()->name ?? '';
+        $this->blogRepository->create($data);
 
-    $type = $request->input('type');
-    if ($type === 'new') {
-        $newType = trim($request->input('new_type'));
-        if (!empty($newType)) {
-            $existingType = PostType::where('name', $newType)->first();
-            if (!$existingType) {
-                $postType = new PostType();
-                $postType->name = $newType;
-                $postType->save();
-                $type = $postType->name;
+        return redirect()->route('admin.blogs.index')->with('success', 'Thêm bài viết thành công.');
+    } 
+
+    // Các phương thức phụ trợ
+    private function paginatePosts($allPosts, $perPage)
+    {
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $allPosts->forPage($currentPage, $perPage);
+
+        return new LengthAwarePaginator(
+            $currentItems,
+            $allPosts->total(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+    }
+
+    private function validateBlogData($request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'content' => 'required',
+            // 'author' => 'required|string|max:255',
+            'type' => 'required|string|in:blog,news,incentives,vexeretip,relatedContent,new',
+            'status' => 'required|in:published,draft,archived',
+            'new_type' => 'nullable|string|max:255'
+        ]);
+    }
+    private function handleNewType($request)
+    {
+        $type = $request->input('type');
+        if ($type === 'new') {
+            $newType = trim($request->input('new_type'));
+            if (!empty($newType)) {
+                $existingType = PostType::where('name', $newType)->first();
+                if (!$existingType) {
+                    $postType = new PostType();
+                    $postType->name = $newType;
+                    $postType->save();
+                    return $postType->name;
+                } else {
+                    return $existingType->name;
+                }
             } else {
-                $type = $existingType->name;
+                return redirect()->back()->withErrors(['new_type' => 'Loại bài viết mới không được để trống.']);
             }
-        } else {
-            return redirect()->back()->withErrors(['new_type' => 'Loại bài viết mới không được để trống.']);
         }
+        return $type;
+    }  
+
+    private function prepareBlogData($request)
+    {
+        $data = $request->only(['title', 'content', 'author', 'status', 'type']);
+        $data['title'] = trim($data['title']);
+        $data['content'] = trim($data['content']);
+        $data['author'] = Auth::user()->name ?? '';
+
+        if ($request->hasFile('picture')) {
+            $data['picture'] = $request->file('picture')->store('public/blog_pictures');
+        }
+
+        $data['slug'] = \Illuminate\Support\Str::slug($data['title'], '-');
+
+        return $data;
     }
 
-    // Lưu bài viết mới
-    $blog = new BlogPostModel();
-    $blog->title = trim($request->title);
-    $blog->content = trim($request->content);
-    $blog->author = trim($request->author);
-    $blog->status = $request->status;
-    $blog->type = $type;
-
-    if ($request->hasFile('picture')) {
-        $picturePath = $request->file('picture')->store('public/blog_pictures');
-        $blog->picture = $picturePath;
+    private function getFilteredRelatedContent($blog)
+    {
+        $relatedContent = $this->blogRepository->getRelatedContent();
+        return $relatedContent->filter(function ($item) use ($blog) {
+            return $item->id !== $blog->id;
+        });
     }
 
-    $blog->slug = \Illuminate\Support\Str::slug($blog->title, '-');
-    $blog->save();
+    public function destroy($id)
+    {
+        try { 
+            $this->blogRepository->deleteById($id); 
+            return response()->json(['success' => true, 'message' => 'Xóa bài viết thành công.']);
+        } catch (\Exception $e) { 
+            return response()->json(['success' => false, 'error' => 'Có lỗi xảy ra khi xóa bài viết.'], 500);
+        } 
+    }
+}
 
-    // Chuyển hướng về trang index với thông báo thành công
-    return redirect()->route('admin.blogs.index')->with('success', 'Blog đã được tạo thành công.');
-}
-}
