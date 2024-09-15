@@ -50,3 +50,30 @@
         </ul>
     </nav>
 @endif
+<script>
+    function handleUtilitiesTab(id, seat_template_id) {
+        $.ajax({
+            'method': 'POST',
+            'url': '{{route('route.utilities')}}',
+            'data': {
+                'id': id,
+                'seat_template_id': seat_template_id
+            },
+        })
+        .done((res) => {
+            res.data.map((el, index) => {
+                $('#utilities_'+ id).empty().append(
+                    `<div class="facility-description">
+                        <div class="img-name">
+                            <img src="//${el.icon_url}"/>
+                            <div class="name">${el.name}</div>
+                        </div>
+                        <div class="description">${el.description}</div>
+                    </div>
+                    <div class="line-utilities mb-4"></div>
+                    `
+                );
+            })    
+        })
+    }
+</script>

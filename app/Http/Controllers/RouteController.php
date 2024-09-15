@@ -33,6 +33,7 @@ class RouteController extends Controller
         $this->client_id = env('VEXERE_CLIENT_ID');
         $this->client_secret = env('VEXERE_CLIENT_SECRET');
     }
+
     public function index()
     {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
@@ -497,6 +498,18 @@ class RouteController extends Controller
                 "seatMap" => $seatMap,
                 "seatInfo" => $seatInfo,
             ])->render(),
+        ]);
+    }
+    
+    // Hiển thị tiện ích của Bus
+    public function busUtilitiesSearch (Request $request) {
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        $urlRoute = $this->main_url . '/v3/company/'.$request->id.'/utility?seat_template_id='. $request->seat_template_id;
+        $list_routes = Helpers::cacheData('utility', $token, $urlRoute);
+        
+        return response()->json([
+            "message" => "success",
+            'data'    => $list_routes
         ]);
     }
 }

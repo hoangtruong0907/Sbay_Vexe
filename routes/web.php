@@ -15,6 +15,7 @@ use App\Http\Middleware\CheckLoginAdminMiddleware;
 use App\Http\Controllers\admin\AuthAdminController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\PaymentResultController;
 
 
 # Admin page
@@ -69,6 +70,7 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
 });
 // Bus view api
+Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
 Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
 Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
@@ -93,3 +95,5 @@ Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
     Route::get('/nhan-xet', [InfoController::class, 'review'])->name('auth.review');
     Route::get('/dang-xuat', [InfoController::class, 'logout'])->name('auth.logout');
 });
+
+Route::get('/payment-result', [PaymentResultController::class, 'showPaymentResult'])->name('payment.result');

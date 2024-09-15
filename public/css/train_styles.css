@@ -1,4 +1,431 @@
-/* --------------------------- */
+.container-v {
+    width: 100%;
+    margin: 20px auto;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.ticket-container-v {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-body-v {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.ticket-image-v {
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
+.ticket-image-v img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.ticket-confirm-v {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.ticket-confirm-v svg {
+    margin-right: 5px;
+}
+
+.ticket-info-v {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 16px;
+    flex-grow: 1;
+}
+
+.ticket-bus-info-v {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bus-name-v {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.bus-rating-v {
+    display: flex;
+    align-items: center;
+}
+
+.bus-rating-v i {
+    margin-right: 5px;
+    color: #ffcc00;
+}
+
+.seat-type-v,
+.from-to-v,
+.social-proof-v {
+    margin-top: 10px;
+}
+
+.from-to-v {
+    display: flex;
+    align-items: center;
+}
+
+.location-route-svg-v {
+    margin-right: 10px;
+}
+
+.from-to-content-v {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.fare-info-v {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.fare-v {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.coupon-v {
+    background-color: #ffeb3b;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.action-v {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.action-v .ant-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-detail-v {
+    background-color: #e0e0e0;
+}
+
+.btn-booking-v {
+    background-color: #1890ff;
+    color: #fff;
+}
+
+.notify-trip-v {
+    margin-top: 16px;
+    font-style: italic;
+}
+
+.full-trip-v {
+    color: #ff5722;
+}
+
+.container-l {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-bottom: 18px;
+}
+
+.container-l:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.ticket-container-l {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-body-l {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.ticket-image-l {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.ticket-image-l img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ticket-confirm-l {
+    position: absolute;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    width: 120px;
+    height: 24px;
+    font-size: 12px;
+    left: -6px;
+    top: 10px;
+    padding: 5px 4px;
+    background: rgb(39, 174, 96);
+    color: rgb(255, 255, 255);
+}
+
+.ticket-confirm-l svg {
+    margin-right: 5px;
+}
+
+.ticket-info-l {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 16px;
+    flex-grow: 1;
+    position: relative;
+}
+
+.ticket-bus-info-l {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bus-name-l {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.bus-rating-l {
+    display: flex;
+    align-items: center;
+}
+
+.bus-rating-l i {
+    margin-right: 5px;
+    color: #ffcc00;
+}
+
+.seat-type-l,
+.from-to-l,
+.social-proof-l {
+    margin-top: 10px;
+
+}
+
+.social-proof-l {
+    color: rgb(20, 138, 27);
+    font-weight: 600;
+}
+
+.from-to-l {
+    display: flex;
+    align-items: center;
+}
+
+.location-route-svg-l {
+    margin-right: 10px;
+    margin-bottom: 22px;
+}
+
+.from-to-content-l {
+    width: 100%;
+}
+
+.fare-l {
+    font-size: 21px;
+    color: rgb(36, 116, 229);
+    -webkit-box-align: baseline;
+    align-items: baseline;
+    font-weight: bold;
+}
+
+.coupon-l {
+    background-color: #ffeb3b;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.action-l {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    align-items: center;
+
+}
+
+.action-train {
+    /* position: absolute; */
+    bottom: 0;
+    right: 0;
+}
+
+.action-l .ant-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    line-height: 18px !important;
+    border: none;
+}
+
+.btn-detail-l {
+    background-color: #e0e0e0;
+}
+
+.btn-booking-l {
+    background: rgb(255, 199, 0) !important;
+    color: rgb(72, 72, 72);
+    font-weight: 500;
+    border-radius: 2px !important;
+    border: none;
+    padding: 8px 10px !important;
+    height: 35px;
+    margin-left: 10px;
+    border: 0px !important;
+    line-height: 18px;
+}
+
+.ant-btn-link-l {
+    color: rgb(36, 116, 229);
+    font-size: 16px;
+    height: 25px;
+    background-color: transparent;
+    border: 0px;
+    padding: 0px !important;
+}
+
+.notify-trip-l {
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.full-trip-l span {
+    color: #ff5722;
+}
+
+.content-to-info-l {
+    display: flex;
+}
+
+.content-l {
+    display: flex;
+}
+
+.hour-l {
+    color: rgb(72, 72, 72);
+    font-size: 20px;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.place-l {
+    font-size: 16px;
+    line-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 65%;
+}
+
+.duration-l {
+    margin: 3px 0px;
+}
+
+.seat-type-l,
+.from-to-l,
+.social-proof-l {
+    margin-top: 7px;
+}
+
+.bus-rating-l span {
+    font-size: 14px;
+}
+
+.bus-rating-l i {
+    color: #fff;
+    font-size: 13px;
+}
+
+.bus-name-l button {
+    border-radius: 2px;
+    background: rgb(36, 116, 229);
+    color: white;
+    font-size: 14px;
+    padding: 0px 8px;
+    border: 0px;
+}
+
+.fare-info-l-train {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 52%;
+    text-align: right;
+}
+
+.small {
+    font-size: 14px;
+    color: rgb(112, 112, 112);
+    text-decoration: line-through;
+    font-weight: normal;
+}
+
+.seat-available {
+    text-align: right;
+    font-size: 16px;
+    color: rgb(72, 72, 72);
+}
+
+.full-trip-l {
+    font-size: 14px;
+    width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.content-has-cop {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: right;
+    width: 40%;
+}
+
+.ant-btn-link-l span {
+    text-decoration: underline;
+}
+
+/* -------------------------------------------------------- */
+
 /* Detail */
 .container-textSeat {
     display: flex;
@@ -99,6 +526,9 @@
 }
 
 .content-train .train-items p {
+    display: flex;
+    justify-content: center;
+    width: 20px;
     padding-top: 2px;
     background-color: rgb(206, 206, 206);
     border-radius: 5px;
@@ -203,6 +633,97 @@
     white-space: nowrap;
 }
 
+.train-name-l {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.train-name-l button {
+    border-radius: 2px;
+    background: rgb(36, 116, 229);
+    color: white;
+    font-size: 14px;
+    padding: 0px 8px;
+    border: 0px;
+}
+
+.list-gr-review .avatar-review {
+    margin: 4px;
+    height: 40px;
+    width: 40px;
+    border-radius: 49%;
+    object-fit: contain;
+    border: 2px solid #212529;
+}
+
+.list-gr-review .item-check-review {
+    color: #04AA6D;
+}
+
+.list-gr-review .thumb-img-review {
+    margin: 4px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #212529;
+    object-fit: contain;
+}
+
+.list-gr-review .list-group-item {
+    padding: 4px;
+    border-radius: 8px !important;
+}
+
+.image-tab .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-tab .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.image-tab .swiper {
+    width: 100%;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-tab .swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+
+.image-tab .mySwiper2 {
+    height: 60%;
+    width: 60%;
+    margin-bottom: 8px;
+}
+
+.image-tab .mySwiper {
+    height: 15%;
+    box-sizing: border-box;
+    padding: 8px 0;
+}
+
+.image-tab .mySwiper .swiper-slide {
+    width: 20%;
+    height: 100%;
+    opacity: 0.6;
+}
+
+.image-tab .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
 /* -----Seat---- */
 #content-step-3,
 #content-step-2 {
@@ -281,7 +802,6 @@
     color: #1890ff;
 }
 
-
 .wizard-step-train .coupon-container-train {
     display: flex;
     scroll-behavior: smooth;
@@ -309,7 +829,6 @@
 
 .locomotive .textTrain {
     color: white;
-
 }
 
 .coupon-container-train .wrap-coupon-train input {
@@ -426,7 +945,6 @@
     margin-bottom: 10px;
 }
 
-
 .seat-groups-train .seat-info-train {
     display: flex;
     align-items: center;
@@ -461,7 +979,6 @@
     color: #999;
 }
 
-
 .seat-name-train .seat-original-train {
     margin-top: 5px;
     font-size: 12px;
@@ -495,9 +1012,7 @@
 .active-train {
     border: none;
     background-color: white;
-    /* font-weight: 600; */
     border-radius: 0px;
-    /* border-bottom: 2px solid #0d6efd; */
 }
 
 .right-steps-train {
@@ -594,8 +1109,6 @@
     padding: 0 0.25rem;
     color: #6c757d !important;
     z-index: 1;
-
-
 }
 
 .container-qr .qrcode-container {
@@ -604,13 +1117,11 @@
     height: auto;
     border-radius: 10px;
     box-sizing: border-box;
-
 }
 
 .qrcode-container .qrcode-label {
     font-size: 12px;
     background-color: rgb(252, 89, 116);
-
     border-radius: 10px;
     color: white;
 }
@@ -626,7 +1137,6 @@
     display: flex;
     justify-content: center;
     font-size: 12px;
-
 }
 
 .qrcode-container .detail-box-train {
@@ -761,10 +1271,6 @@
     height: auto;
 }
 
-
-
-
-
 /* Định dạng chung cho các bước điều hướng */
 .navigation-step {
     display: inline-block;
@@ -839,4 +1345,15 @@
 /* Hiển thị nội dung khi lớp step-content-show-custom được thêm vào */
 .step-content-custom-show {
     display: block;
+}
+/* Các Loại Ghế */
+.tab-content > .tab-pane {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tab-content > .tab-pane.show {
+    opacity: 1;
+    visibility: visible;
 }

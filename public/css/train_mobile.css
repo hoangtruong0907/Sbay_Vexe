@@ -22,11 +22,239 @@
 }
 
 @media only screen and (max-width: 1040px) {
+
+    .wrap-filter {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1026px;
+        margin: auto;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    #item-bus-0 {
+        padding-top: 50px;
+    }
+
+    .right-filter {
+        width: 100%;
+    }
+
+    .coupon-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        overflow: auto;
+    }
+
+    .custom-nav {
+        display: flex !important;
+        overflow: auto !important;
+        flex-wrap: nowrap !important;
+        padding-bottom: 10px !important;
+    }
+
+    .ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
+        border-bottom: none;
+        white-space: nowrap;
+    }
+
+    .content-note-ticket {
+        font-size: 12px;
+    }
+
+    .d-flex .justify-content-between .mt-2 .d-flex .flex-column {
+        font-size: 12px;
+    }
+
+    .custom-1 {
+        padding-left: 20px;
+    }
+
+    .badge {
+        display: none;
+    }
+
+    .mb-1 .text-bg-success {
+        display: none;
+    }
+
+    .d-flex .align-items-center .star-rating i {
+        font-size: 15px;
+        margin: 0 0.1rem;
+    }
+
+    .d-flex .date {
+        white-space: nowrap;
+    }
+
+    .item-check-review small {
+        white-space: nowrap;
+        margin-top: 4px;
+        margin-left: 5%;
+    }
+
+    .tab-content .list-group .w-100 .list-gr-review .mb-1 {
+        white-space: nowrap;
+        margin-left: -19px;
+    }
+
+    .tab-content .list-group .w-100 .list-gr-review {
+        margin-right: -47px;
+    }
+
+    .tag-dot {
+        display: none;
+    }
+
+    .policy-tab .dot {
+        margin-top: 36px;
+        margin-left: -53px;
+    }
+
+    .policy-tab .time-sa {
+        margin-top: 3px;
+        margin-left: -15px;
+    }
+
+    .custom-width {
+        width: 280px !important;
+    }
+
+    .airlinetickets {
+        width: 100%;
+    }
+
+    .container-airlinetickets {
+        width: 100%;
+    }
+
+    .left-filter {
+        width: 1150px;
+        display: none;
+    }
+
+    .right-filter {
+        white-space: normal;
+    }
+
+    header {
+        width: 100%;
+        max-width: 100vw;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .slogan-header {
+        display: none;
+    }
+
+    .full-trip-l {
+        display: none;
+    }
+
+    .container-l {
+        width: 97%;
+        padding: 40px;
+        margin-left: 10px;
+        padding: 10px;
+    }
+
+    .ticket-info-l {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .action-p {
+        position: relative;
+    }
+
+    .action-l {
+        margin-left: -18px;
+        padding-bottom: 5px;
+    }
+
+    .social-proof-l {
+        position: relative;
+        margin-left: -150px;
+        left: 0px;
+        display: none;
+    }
+
+    .notify-trip-l {
+        position: absolute;
+        right: 50px;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 12px;
+        white-space: nowrap;
+        text-align: right;
+        max-width: 40vw;
+    }
+
+    .ticket-image-l img {
+        width: 60%;
+        height: 60%;
+        object-fit: revert;
+        border-radius: 50%;
+        margin-top: 4px;
+    }
+
+    .ticket-image-l {
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+
+    .ticket-confirm-l {
+        display: none;
+    }
+
+    .train-name-l button {
+        display: none;
+    }
+
+    .bus-rating-l {
+        display: none;
+    }
+
+    .fare-l {
+        font-size: 12px;
+        margin-top: -63px;
+    }
+
+    .content-has-cop {
+        font-size: 10px;
+        margin-right: 0;
+        position: relative;
+        left: 8px;
+        top: -10px;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+
+    .seat-available {
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+        font-size: 12px;
+    }
+
+    .location-route-svg-l {
+        margin-left: -55px;
+    }
+
+
+
+
+    /* ------------------------ */
     .location-route-svg-l {
         display: none;
     }
 
     .from-to-content-l {
+        margin-right: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -142,6 +370,14 @@
         font-size: 12px;
     }
 
+    .fare-info-l-train {
+        margin-top: 65px;
+        font-size: 12px;
+    }
+
+    .fare-info-l-train {
+        position: relative;
+    }
 }
 
 @media (max-width: 768px) {
