@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <div id=" airlinetickets">
+    <div id="airlinetickets">
         <div class="container-airlinetickets">
             @include('components.search_component', [
                 'params' => $params,

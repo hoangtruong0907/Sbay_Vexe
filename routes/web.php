@@ -15,35 +15,38 @@ use App\Http\Middleware\CheckLoginAdminMiddleware;
 use App\Http\Controllers\admin\AuthAdminController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\PaymentResultController;
+use App\Http\Controllers\PaymentController;
 
 
-# Admin page
 # Admin page
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin/dashboard');
-    })->name('admin');
+    })->name('admin')->middleware(AuthMiddleware::class);
     #login admin
     Route::get('/login', [AuthAdminController::class, 'index'])->name('admin.login.index')->middleware(CheckLoginAdminMiddleware::class);
     Route::post('/doLogin', [AuthAdminController::class, 'doLogin'])->name('admin.doLogin');
     Route::get('/doLogout', [AuthAdminController::class, 'doLogout'])->name('admin.doLogout');
 
-    Route::prefix('/users')->group(function () {
+    Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
         Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-        Route::put('/{id}', [UserController::class, 'update'])->name('admin.user.update');
-        Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
-    }); 
+        Route::post('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+    });
+
     Route::prefix('/blogs')->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');  
-        Route::get('/show/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
+        Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');
+        Route::post('/', [BlogController::class, 'store'])->name('admin.blogs.store');
+        Route::post('/{id}', [BlogController::class, 'show'])->name('blogs.show');
         Route::get('/create', [BlogController::class, 'create'])->name('admin.blogs.create');
-        Route::post('/store', [BlogController::class, 'store'])->name('admin.blogs.store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
         Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
-        Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy'); 
+        Route::delete('/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
+        Route::get('/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
     });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
     Route::get('/news', [BlogController::class, 'index'])->name('admin.news.index');
@@ -80,6 +83,9 @@ Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap'
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
 
+//payment
+Route::get('/payment', [PaymentController::class, 'showPaymentPage']);
+
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
@@ -95,3 +101,5 @@ Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
     Route::get('/nhan-xet', [InfoController::class, 'review'])->name('auth.review');
     Route::get('/dang-xuat', [InfoController::class, 'logout'])->name('auth.logout');
 });
+
+Route::get('/payment-result', [PaymentResultController::class, 'showPaymentResult'])->name('payment.result');
