@@ -54,7 +54,7 @@
 
 /* Radio input hidden but still accessible */
 .radio-input {
-    display: none;
+    visibility: hidden;
 }
 
 /* Container for the radio circle */
