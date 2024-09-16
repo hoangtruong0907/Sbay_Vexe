@@ -2133,3 +2133,37 @@ body h6 {
     width: 100% !important;
     height: 500px !important;
 }
+#changeLink {
+    text-decoration: underline;
+    color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+#changeDropoffLink {
+    text-decoration: underline;
+    color: rgb(36, 116, 229) !important;
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.custom-dropoff-button .change-link {
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-left: auto;
+}
+.container-wrap-pick-up-point {
+    background-color: rgb(247, 247, 247) !important;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 20px;
+}
