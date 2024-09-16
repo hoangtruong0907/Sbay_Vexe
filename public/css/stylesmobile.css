@@ -1,39 +1,6 @@
-@media (min-width: 1200px) {}
-
 @media (max-width: 1150px) {
     .slogan-header {
         display: none;
-    }
-
-    /* custom select slim */
-    .custom-input-container.select-slim {
-        width: 100%;
-    }
-    .custom-input-container.select-slim.select-from-input {
-        width: 100%;
-    }
-    .custom-input-container.select-slim .ss-main {
-        min-height: 45px;
-        border: 1px solid #dcdee2;
-    }
-    .custom-input-container.select-slim .ss-main:focus {
-        box-shadow: 0 0 5px var(--ss-focus-color);
-    }
-    .flex-sum-left {
-        width: 100%;
-        padding: 1%;
-    }
-    .custom-icon-container .fa-location-dot {
-        padding-left: 5px;
-        width: 24px;
-    }
-
-    .custom-input-container .custom-icon-container {
-        margin: 0 10px;
-    }
-    .departure-bus-flex #bus_swap_button {
-        top: 100%;
-        left: 50%;
     }
 }
 
@@ -51,15 +18,6 @@
 
     .wrap-criteria {
         gap: 30px;
-    }
-}
-
-
-
-
-@media (max-width: 768px) {
-    .wrap-criteria {
-        display: none;
     }
 }
 
@@ -112,7 +70,8 @@
         overflow: hidden;
     }
 
-    #bus_search {
+    #bus_search,
+    #train_search {
         width: 100%;
     }
 
@@ -131,14 +90,6 @@
         align-items: center;
         gap: 10px;
         width: 100%;
-    }
-
-    .item {
-        flex: 1 1 auto;
-        min-width: 100px;
-        padding: 10px;
-        text-align: center;
-        background-color: #f0f0f0;
     }
 
     .flex-sum-left input {
@@ -194,23 +145,7 @@
         padding-bottom: 5px;
     }
 
-    .departure-bus-date {
-        margin-left: 9px;
-    }
-
-    .departure-bus-date-right {
-        margin-left: 9px;
-    }
-
     .departure-plane-date-right {
-        margin-left: 9px;
-    }
-
-    .departure-train-date {
-        margin-left: 9px;
-    }
-
-    .departure-train-date-right {
         margin-left: 9px;
     }
 
@@ -262,27 +197,44 @@
     .bottom-left {
         width: 100%;
     }
+    .image-tab .carousel-icon {
+        width: 30px;
+        height: 30px;
+    }
 
+    .carousel-icon .carousel-control-next-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .carousel-icon .carousel-control-prev-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+    .place-l {
+        font-size: 13px;
+    }
+
+    .hour-l {
+        font-size: 15px;
+    }
+
+    .location-route-svg-l {
+        margin-top: 30px;
+        margin-left: -125px;
+    }
+
+    .duration-l {
+        font-size: 12px;
+    }
+
+    .text-date-arrival-time-l {
+        font-size: 15px;
+    }
 }
 
 @media only screen and (max-width: 430px) {
-    .departure-bus-date .fa-calendar {
-        display: none;
-    }
-
-    .departure-bus-date-right .fa-plus {
-        display: none;
-    }
-
     .departure-plane-date-right .fa-plus {
-        display: none;
-    }
-
-    .departure-train-date .fa-calendar {
-        display: none;
-    }
-
-    .departure-train-date-right .fa-plus {
         display: none;
     }
 
@@ -325,24 +277,47 @@
     .right-section {
         min-width: auto !important;
     }
-}
+    .cta-button {
+        width: 375px;
+        max-width: 375px;
+        padding: 375px;
+    }
 
-.pills-bus-tab {
-    margin-right: 5px;
-}
-
-
-
-
-
-/* /////////////////////// */
-
-@media (max-width: 768px) {
-    .filters-wrapper>*:not(.filter-title) {
-        display: none;
+    .post-footer {
+        text-align: center;
     }
 }
 
+@media (max-width: 768px) {
+    .filters-wrapper > *:not(.filter-title) {
+        display: none;
+    }
+    .cta-button {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding: 15px 0;
+        font-size: 16px;
+        text-align: center;
+        box-sizing: border-box;
+        margin: 10px auto;
+    }
+
+    .post-footer {
+        text-align: center;
+    }
+    .fg {
+        margin-top: -50px;
+    }
+
+    .relatedContent {
+        width: 690px;
+        margin-left: 35px;
+    }
+    .wrap-criteria {
+        display: none;
+    }
+}
 
 @media (max-width: 1040px) {
     .wrap-filter {
@@ -355,19 +330,13 @@
         flex-direction: column;
     }
 
-    #item-bus-0 {
-        padding-top: 50px;
-    }
-
-    .right-filter {
-        width: 100%;
-    }
-
     .coupon-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+        flex-direction: row;
         overflow: auto;
+        padding: 5px 0px 20px;
+        margin: 0px;
+        scroll-behavior: smooth;
     }
 
     .nav.nav-pills.mb-1.pills-ticket-tab {
@@ -390,10 +359,6 @@
         font-size: 12px;
     }
 
-    /* .flex-column {
-        padding-left: 20px;
-    } */
-
     .badge {
         display: none;
     }
@@ -412,15 +377,6 @@
         margin-top: 4px;
         margin-inline-start: 5%;
         white-space: nowrap;
-    }
-
-    .tab-content .list-group .w-100 .list-gr-review .mb-1 {
-        white-space: nowrap;
-        margin-left: -19px;
-    }
-
-    .tab-content list-group w-100 list-gr-review {
-        margin-right: -47px;
     }
 
     .d-flex .justify-content-between .mb-1 {
@@ -444,100 +400,69 @@
     .d-flex .mb-1 {
         width: 280px;
     }
-}
-
-@media (max-width: 600px) {
-    .mt-2 {
-        flex-direction: column;
-        font-size: 13px;
+    .container-airlinetickets {
+        width: 97%;
+        z-index: 3;
     }
-
-    .tab-pane .fade .pickup-tab .active .show {
-        margin-left: -20px;
+    .nav-item {
+        padding-bottom: 5px;
     }
-
-    .tab-pane .fade h6 {
-        width: 100%;
-        white-space: nowrap;
-        margin-left: -19px;
-    }
-
-    .rating {
+    .nav-item button span {
         font-size: 12px;
-        display: flex;
-        white-space: nowrap;
+    }
+    .ant-row-flex {
+        display: block;
+        text-align: center;
+    }
+    .left-ant-row-flex {
+        display: block;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        border: none;
     }
 
-    .fa-star {
-        margin-right: 5px;
+    .wrap-left-ant-row-flex {
+        display: block;
     }
-
-    .rating .fa-star:last-child {
-        margin-right: 0;
+    .departure-bus-flex,
+    .destination-bus-flex,
+    .departure-bus-date,
+    .departure-bus-date-right,
+    .departure-train-flex,
+    .destination-train-flex,
+    .departure-train-date,
+    .departure-train-date-right {
+        height: 40px;
+        width: 100%;
     }
-
-    .list-gr-review .item-check-review {
-        display: flex;
+    .custom-input-container {
+        gap: 10px;
     }
-
-    .list-gr-review .item-check-review .fa-ticket {
-        padding-top: 6px;
+    .custom-icon-container .fa-location-dot {
+        padding-left: 5px;
     }
-
-    .tag-dot .dot {
-        margin-left: -90px;
-    }
-
-    .text-muted {
+    .custom-swap-container {
         display: none;
     }
+    #bus_search,
+    #train_search {
+        width: 100%;
+    }
 
-    .time {
+    .ss-main {
+        border: none;
+    }
+    .ss-main .ss-arrow path {
         display: none;
     }
-
-    .image-tab .img-child {
-        height: 150px;
+    .ss-values {
+        font-weight: bold;
     }
 
-}
-
-
-
-@media (max-width: 500px) {
-    .tab-content .list-group .w-100 .list-gr-review .mb-1 {
-        font-size: 20px;
-    }
-
-    .image-tab .carousel-icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .carousel-icon .carousel-control-next-icon {
-        width: 1rem;
-        height: 1rem;
-    }
-
-    .carousel-icon .carousel-control-prev-icon {
-        width: 1rem;
-        height: 1rem;
-    }
-
-
-}
-
-
-/* //////////// */
-@media only screen and (max-width: 1040px) {
     .airlinetickets {
         width: 100%;
-    }
-
-    .container-airlinetickets {
-
-        width: 100%;
-
     }
 
     .left-filter {
@@ -547,6 +472,7 @@
 
     .right-filter {
         white-space: normal;
+        width: 100%;
     }
 
     header {
@@ -594,22 +520,19 @@
 
     .bus-rating-l {
         display: none;
-
     }
 
     .fare-l {
         font-size: 12px;
         margin-top: -63px;
-
     }
 
     .location-route-svg-l {
         margin-left: -55px;
     }
 
-    */ .fare-info-l {
+    .fare-info-l {
         font-size: 12px;
-        margin-right: -30px;
     }
 
     .seat-type-l {
@@ -621,51 +544,17 @@
 
     .coupon-container {
         display: flex;
-        flex-wrap: wrap;
         gap: 10px;
     }
 
     .filter-item-mobile {
         display: none;
     }
-}
-
-/* ////// màn 500px */
-@media only screen and (max-width: 500px) {
-    .place-l {
-        font-size: 13px;
-    }
-
-    .hour-l {
-        font-size: 15px;
-    }
-
-    .location-route-svg-l {
-        margin-top: 30px;
-        margin-left: -125px;
-    }
-
-    .duration-l {
-        font-size: 12px;
-    }
-
-    .text-date-arrival-time-l {
-        font-size: 15px;
-    }
-}
-
-/* địa điểm */
-@media only screen and (max-width:1040px) {
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
 
     .custom-from-to-content {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* padding: 10px; */
         max-width: 100%;
         overflow-x: hidden;
         border-bottom: 1px dashed #ccc;
@@ -756,7 +645,6 @@
         display: inline-grid;
         justify-content: normal;
         border-bottom: 1px dashed #ccc;
-        /* border-top: 1px dashed #ccc; */
     }
 
     .custom-content-from .custom-hour {
@@ -770,38 +658,6 @@
     .ticket-step-collapse-0 span {
         font-size: 12px;
     }
-}
-
-@media (max-width:605px) {
-    .custom-place {
-        font-size: 10px;
-        white-space: nowrap;
-    }
-}
-
-@media (max-width:550px) {
-    .container-l {
-        width: 95%;
-        margin-left: 9px;
-        padding: 10px;
-    }
-
-    .custom-hour {
-        font-size: 15px;
-    }
-
-    .floating-filter-button {
-        left: 41%;
-    }
-
-    .custom-place {
-        font-size: 10px;
-        white-space: nowrap;
-    }
-}
-
-/* //////////lọc sắp xếp//////// */
-@media only screen and (max-width: 1040px) {
     .travel-slider {
         position: relative;
         width: 100%;
@@ -836,7 +692,6 @@
         left: 0%;
     }
 
-
     .travel-slider-handle-end {
         left: 100%;
         transform: translateX(-100%);
@@ -846,7 +701,6 @@
         display: flex;
     }
 
-    /* Phần input "Từ" và "Đến" */
     .travel-time-input-item {
         display: inline-block;
         width: 45%;
@@ -886,7 +740,6 @@
         vertical-align: middle;
     }
 
-    /* giá vé */
     .ticket-filter-group {
         margin: 20px 0;
         font-family: Arial, sans-serif;
@@ -973,9 +826,6 @@
         float: right;
     }
 
-    /* body p, body h1, body h2, body h3, body h4, body h5, body h6{
-        font-weight: bold;
-    } */
     body {
         margin: 0;
         padding: 0;
@@ -1103,7 +953,6 @@
         position: fixed;
         bottom: 0;
         left: 0;
-
     }
 
     .modal .sort-options {
@@ -1128,7 +977,6 @@
         cursor: pointer;
     }
 
-
     .modal .close-button {
         width: 100%;
         padding: 10px;
@@ -1145,7 +993,90 @@
     }
 }
 
-@media (max-width:550px) {
+@media (max-width: 600px) {
+    .mt-2 {
+        flex-direction: column;
+        font-size: 13px;
+    }
+
+    .tab-pane .fade .pickup-tab .active .show {
+        margin-left: -20px;
+    }
+    .tab-pane .fade h6 {
+        width: 100%;
+        white-space: nowrap;
+        margin-left: -19px;
+    }
+
+    .rating {
+        font-size: 12px;
+        display: flex;
+        white-space: nowrap;
+    }
+
+    .fa-star {
+        margin-right: 5px;
+    }
+
+    .rating .fa-star:last-child {
+        margin-right: 0;
+    }
+
+    .list-gr-review .item-check-review {
+        display: flex;
+    }
+
+    .list-gr-review .item-check-review .fa-ticket {
+        padding-top: 6px;
+    }
+
+    .tag-dot .dot {
+        margin-left: -90px;
+    }
+
+    .text-muted {
+        display: none;
+    }
+
+    .time {
+        display: none;
+    }
+
+    .image-tab .img-child {
+        height: 150px;
+    }
+
+    #pills-tab {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 605px) {
+    .custom-place {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 550px) {
+    .container-l {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .custom-hour {
+        font-size: 15px;
+    }
+
+    .floating-filter-button {
+        left: 41%;
+    }
+
+    .custom-place {
+        font-size: 10px;
+        white-space: nowrap;
+    }
     .custom-hour {
         font-size: 15px;
     }
@@ -1159,83 +1090,6 @@
     }
 }
 
-/* Content */
-
-@media (max-width: 375px) {
-    .cta-button {
-        width: 375px;
-        max-width: 375px;
-        padding: 375px;
-    }
-
-    .post-footer {
-        text-align: center;
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* .hgcnFg {
-        width: 767px;
-    }
-    .topnav{
-        width: 767px;
-    } */
-    .cta-button {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        padding: 15px 0;
-        font-size: 16px;
-        text-align: center;
-        box-sizing: border-box;
-        margin: 10px auto;
-    }
-
-    .post-footer {
-        text-align: center;
-    }
-}
-
-.cta-button {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    /* Giới hạn chiều rộng tối đa của nút */
-    padding: 15px 0;
-    font-size: 16px;
-    text-align: center;
-    box-sizing: border-box;
-    margin: 10px auto;
-    /* Căn giữa nút trong phần tử chứa */
-}
-
-.post-footer {
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-
-}
-
-@media (max-width: 768px) {
-    .fg {
-        margin-top: -50px;
-    }
-
-    .relatedContent {
-        width: 690px;
-        margin-left: 35px;
-    }
-
-    .cta-button {
-        width: 90%;
-        /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
-    }
-}
-
 @media (max-width: 1400px) {
     .fg {
         margin-top: -50px;
@@ -1243,12 +1097,10 @@
 
     .relatedContent {
         width: 700px;
-
     }
 
     .cta-button {
         width: 90%;
-        /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
     }
 }
 
@@ -1259,11 +1111,9 @@
 
     .relatedContent {
         width: 700px;
-
     }
 
     .cta-button {
         width: 90%;
-        /* Chiếm 90% chiều rộng màn hình để có khoảng trống xung quanh */
     }
 }

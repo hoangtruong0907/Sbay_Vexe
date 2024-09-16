@@ -23,41 +23,35 @@
     flex-direction: column;
     border: 1px solid rgb(224, 224, 224);
     margin-bottom: 15px;
-
 }
 
 .text-arrange h3 {
-    font-size: 1.20rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
-/* Container for the radio group */
 .radio-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* Wrapper for each radio option */
 .radio-wrapper {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-/* Style for the checked radio option */
 .radio-wrapper.checked .radio,
 .radio-wrapper.checked .radio-inner {
     border-color: #1890ff;
     background-color: #1890ff;
 }
 
-/* Radio input hidden but still accessible */
 .radio-input {
     display: none;
 }
 
-/* Container for the radio circle */
 .radio {
     display: flex;
     align-items: center;
@@ -70,7 +64,6 @@
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Inner circle for the checked state */
 .radio-inner {
     width: 12px;
     height: 12px;
@@ -79,7 +72,6 @@
     transition: background-color 0.3s ease;
 }
 
-/* Option label text */
 .option-label {
     margin: 0;
     font-size: 14px;
@@ -96,10 +88,6 @@
     border: 1px solid rgb(224, 224, 224);
 }
 
-
-
-
-/* Container for the filters */
 .filter-title {
     display: flex;
     justify-content: space-between;
@@ -348,7 +336,7 @@
 }
 
 .custom-tree-checkbox-inner::after {
-    content: '';
+    content: "";
     display: none;
     width: 6px;
     height: 10px;
@@ -428,7 +416,8 @@
     display: none;
 }
 
-.custom-tree-checkbox-special.checked .custom-tree-checkbox-inner-special::after {
+.custom-tree-checkbox-special.checked
+    .custom-tree-checkbox-inner-special::after {
     display: block;
 }
 
@@ -462,7 +451,7 @@
     display: none;
 }
 
-.ant-checkbox-input-n:checked+.ant-checkbox-inner-n {
+.ant-checkbox-input-n:checked + .ant-checkbox-inner-n {
     background-color: #1890ff;
     border-color: #1890ff;
 }
@@ -581,7 +570,7 @@
     display: inline-block;
 }
 
-.ant-checkbox-input-b:checked+.ant-checkbox-inner-b {
+.ant-checkbox-input-b:checked + .ant-checkbox-inner-b {
     background-color: #1890ff;
     border-color: #1890ff;
 }

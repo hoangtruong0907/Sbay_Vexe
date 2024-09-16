@@ -1,6 +1,5 @@
-
 body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa !important;
     font-size: 15px !important;
 }
 
@@ -65,7 +64,7 @@ a {
     font-size: 14px !important;
 }
 
-.ijyXqH {
+.button-nav {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -86,7 +85,7 @@ body .material-icons-wrapper.md-20 {
     display: flex;
 }
 
-.boemqK {
+.content-button-nav {
     margin-bottom: 0rem;
     font-weight: 600;
     font-size: 14px;
@@ -398,8 +397,6 @@ body .material-icons-wrapper.md-20 {
     box-shadow: 1px 1px 4px 0px #ccc;
 }
 
-/* PC size */
-/* custom select slim */
 .custom-input-container .bus_from_input,
 .custom-input-container .bus_to_input {
     border: unset;
@@ -414,7 +411,6 @@ body .material-icons-wrapper.md-20 {
 .custom-input-container.select-slim .ss-main:focus {
     box-shadow: none;
 }
-/* end select slim */
 
 .flex-sum-left {
     position: relative;
@@ -433,6 +429,38 @@ body .material-icons-wrapper.md-20 {
     background-color: #fff;
     border-radius: 10px;
     padding: 10px 0px 0px;
+}
+
+.pill-rating-filter .nav-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
+    border: none;
+    background-color: white;
+    color: #807d7d;
+    border-radius: 0px;
+    border-bottom: 1px solid #807d7d;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link.active {
+    border: none;
+    background-color: white;
+    color: #0d6efd;
+    font-weight: 600;
+    border-radius: 0px;
+    border-bottom: 2px solid #0d6efd;
+}
+
+.pill-rating-filter .nav-item.filter-rating {
+    flex: 0 0 auto;
+}
+
+[type="reset"],
+[type="submit"],
+button,
+html [type="button"] {
+    -webkit-appearance: button;
 }
 
 .nav-airline {
@@ -514,7 +542,7 @@ body .material-icons-wrapper.md-20 {
 
 .flex-sum-left i {
     padding-right: 7px;
-    padding-left: 5px;
+    padding-left: 15px;
     font-size: 17px;
 }
 
@@ -551,8 +579,6 @@ body .material-icons-wrapper.md-20 {
     margin-bottom: 0rem !important;
 }
 
-
-
 .icon-container {
     margin-right: 10px;
 }
@@ -565,7 +591,6 @@ body .material-icons-wrapper.md-20 {
 .popular {
     width: 82%;
     margin: 0 auto;
-    /* CÄƒn giá»¯a trong .text-card */
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
@@ -579,7 +604,6 @@ body .material-icons-wrapper.md-20 {
 
 .popular-route-label {
     width: 80%;
-    /* Đặt chiều rộng phần tử */
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
@@ -595,10 +619,6 @@ body .material-icons-wrapper.md-20 {
 
 .post-title {
     margin-top: 30px;
-}
-
-.iavTwq {
-    margin-top: 20px;
 }
 
 .incentive {
@@ -686,4 +706,3 @@ body .material-icons-wrapper.md-20 {
     right: 0;
     background-color: white;
 }
-

@@ -541,12 +541,11 @@
         <div class="container note d-flex py-4 mx-auto" style="max-width: 1016px; gap: 20px;">
             <div class="d-flex flex-column gap-3 w-100">
                 <div class="note d-flex gap-3 w-100 text-center">
-                    <button disabled="" type="button" class="btn text-white border-0 rounded-3 fw-bold  "
-                        style="background: rgb(179, 178, 178); height: 48px; line-height: 24px; white-space: nowrap;">
-                        <span>
-                            Tiếp tục đặt vé một chiều
-                        </span>
-                    </button>
+                <button onclick="window.location.href='{{ route('payment') }}'" class="btn text-white border-0 rounded-3 fw-bold" style="background: rgb(179, 178, 178); height: 48px; line-height: 24px; white-space: nowrap;">
+                  <span>
+                      Tiếp tục đặt vé một chiều
+                  </span>
+                </button>
 
                     <button type="button" class="btn   fw-bold rounded-3"
                         style="color: rgb(20, 20, 20);background: rgb(255, 211, 51); border-color: rgb(255, 211, 51); height: 48px; line-height: 24px; white-space: nowrap;">

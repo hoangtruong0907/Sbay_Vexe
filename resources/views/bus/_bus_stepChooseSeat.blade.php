@@ -1,5 +1,5 @@
 <div class="card card-body card-body-new">
-    <div id="step1-{{ $keyId }}" class="wizard-step active">
+    <div id="step1-{{ $keyId }}" class="wizard-step active step-bus1">
         <div class="wrap-card-body">
             <div class="steps-container">
                 <div class="step step-active">
@@ -176,7 +176,7 @@
         </div>
         <div class="container-steps-content">
             <div class="wrap-steps-content">
-                <div class="left-steps-content">
+                <div class="left-steps-content left-step-bus1">
                     @if (count($seatTemplateMap) > 0 && isset($seatMap['vehicle']['seat_type']))
                         <div class="seat-groups">
                             <div class="note">Chú thích</div>

@@ -64,7 +64,7 @@
     #bus_date_to,
     #bus_date_from {
         width: 290px;
-    }    
+    }
     .wrap-left-ant-row-flex {
         display: block;
     }
@@ -73,7 +73,7 @@
     }
     .custom-icon-container .fa-solid.fa-location-dot {
         margin-left: -20px;
-    }    
+    }
     .custom-swap-container {
         display: none;
     }
@@ -82,7 +82,7 @@
     }
     #bus_search {
         width: 100%;
-    }    
+    }
     .fa-solid fa-bus-simple {
         margin-left: 20px;
     }

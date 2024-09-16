@@ -10,11 +10,6 @@
         padding: 24px 3px 12px;
     }
 
-    .request {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
     .right-steps-content {
         display: flex;
         justify-content: center;
@@ -22,7 +17,6 @@
 }
 
 @media only screen and (max-width: 1040px) {
-
     .wrap-filter {
         display: flex;
         justify-content: space-between;
@@ -53,11 +47,6 @@
         overflow: auto !important;
         flex-wrap: nowrap !important;
         padding-bottom: 10px !important;
-    }
-
-    .ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
-        border-bottom: none;
-        white-space: nowrap;
     }
 
     .content-note-ticket {
@@ -126,10 +115,6 @@
         width: 100%;
     }
 
-    .container-airlinetickets {
-        width: 100%;
-    }
-
     .left-filter {
         width: 1150px;
         display: none;
@@ -153,13 +138,6 @@
 
     .full-trip-l {
         display: none;
-    }
-
-    .container-l {
-        width: 97%;
-        padding: 40px;
-        margin-left: 10px;
-        padding: 10px;
     }
 
     .ticket-info-l {
@@ -245,10 +223,6 @@
         margin-left: -55px;
     }
 
-
-
-
-    /* ------------------------ */
     .location-route-svg-l {
         display: none;
     }
@@ -301,16 +275,13 @@
     /* Detail */
     .container-l {
         width: 97%;
-        padding: 40px;
-        margin-left: 10px;
         padding: 10px;
-
+        margin: auto;
     }
 
     .ticket-info-l {
         display: flex;
         flex-direction: column;
-
     }
 
     .action-p {
@@ -418,32 +389,21 @@
         flex-direction: column !important;
     }
 
-    .request {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
     .note-train {
         flex-direction: column;
         text-align: center;
         display: flex;
         align-items: center;
     }
-
-
 }
 
 @media (max-width: 500px) {
     .w-container {
         width: 25%;
     }
-
-    .container-qr .qrcode-container {
-        max-width: 90%;
-    }
 }
 
-@media only screen and (max-width : 430px) {
+@media only screen and (max-width: 430px) {
     .train-items p {
         width: 19px;
     }
@@ -453,7 +413,7 @@
     }
 
     .icon-text i {
-        font-size: 1.3rem
+        font-size: 1.3rem;
     }
 
     .wrap-couponTrain button {
@@ -469,7 +429,7 @@
     }
 }
 
-@media (max-width : 375px) {
+@media (max-width: 375px) {
     .train-items p {
         width: 18px;
     }
@@ -479,7 +439,7 @@
     }
 
     .icon-text i {
-        font-size: 1.2rem
+        font-size: 1.2rem;
     }
 
     .content-has-cop {
@@ -494,26 +454,9 @@
         text-align: center;
     }
 
-    .request {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
     .right-steps-content {
         display: flex;
         justify-content: center;
-    }
-
-    .itemAbate img {
-        width: 35%;
-    }
-
-    .itemAbate i {
-        font-size: 60px;
-    }
-
-    .w-container-train {
-        width: 30%;
     }
 }
 
