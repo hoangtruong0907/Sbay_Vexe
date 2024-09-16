@@ -1308,14 +1308,14 @@
             <div class="card-header d-flex justify-content-between align-items-center" onclick="toggleTotalDetails()">
                 <h4 class="mb-0 rich">Tổng tiền:</h4>
                 <div class="d-flex align-items-center">
-                    <h4 class="mb-0 me-2 rich">850.000đ</h4>
+                    <h4 class="mb-0 me-2 rich">950.000đ</h4>
                     <i class="fa-solid fa-chevron-down toggle-arrow" id="toggle-arrow"></i>
                 </div>
             </div>
             <div class="card-body" id="total-details" style="display: none;">
                 <p>Mã ghế/giường: A6</p>
                 <p class="text-success">Khuyến mãi: -50.000đ</p>
-                <h5 class="mt-3 rich-1">850.000đ</h5>
+                <h5 class="mt-3 rich-1">900.000đ</h5>
             </div>
         </div>
 
@@ -1388,7 +1388,9 @@
             <p class="total-money mb-0" onclick="toggleModal()">Tổng tiền: 900.000đ <span id="toggle-arrow"
                     class="arrow">^</span></p>
         </div>
-        <button class="btn btn-warning mt-2 payment-button"><i class="bi bi-shield-check"></i> Thanh toán</button>
+        <button class="btn mt-2 custom-payment-button">
+            <i class="bi bi-shield-check"></i> Thanh toán
+        </button>
         <p class="text-center mt-2 mb-0 w-100 order-1 order-md-0">
             Bằng việc nhấn nút Thanh toán, bạn đồng ý với <a href="#" class="text-primary">Chính sách bảo mật thanh
                 toán</a>
@@ -1403,11 +1405,11 @@
 <div id="totalMoneyModal" class="modal-bottom">
     <div class="modal-content-bottom">
         <span class="close" onclick="toggleModal()">&times;</span>
-        <h4>Tổng tiền</h4>
+        <h4 class="total-amount-1">Tổng tiền</h4>
         <p>Giá vé: 950.000đ x 1</p>
         <p>Mã ghế/giường: A2</p>
         <p>Khuyến mãi: -50.000đ</p>
-        <h4>Tổng tiền: 900.000đ</h4>
+        <h4 class="total-amount-1">Tổng tiền: 900.000đ</h4>
         <button class="btn btn-primary mt-3" onclick="toggleModal()">Đóng</button>
     </div>
 </div>
@@ -1472,7 +1474,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'toggleTotalAmount'));
 });
 
-// Kiểm tra xem các phần tử có tồn tại trước khi thêm sự kiện không
 const addInsuranceButton = document.getElementById('add-insurance');
 const removeInsuranceButton = document.getElementById('remove-insurance');
 const insuranceInfo = document.getElementById('insurance-info');
@@ -1507,13 +1508,6 @@ if (closeButton) {
         console.log("Close button clicked");
     });
 }
-
-
-window.onload = function() {
-    var tenMinutes = 60 * 10,
-        display = document.querySelector('#timer');
-    startTimer(tenMinutes, display);
-};
 
 function toggleQRDetails() {
     const qrDetails = document.getElementById('qr-details');
@@ -1550,8 +1544,6 @@ function toggleSupport() {
         toggleText.textContent = 'Thu gọn';
     }
 }
-
-
 function hideBankDetails() {
     document.getElementById('bank-details').style.display = 'none';
 }
@@ -1604,33 +1596,15 @@ function toggleTotalDetails() {
     }
 }
 
-// Hiển thị form chỉnh sửa thông tin liên hệ
 function showContactEditForm() {
     const contactEditForm = document.getElementById('contactEditForm');
     contactEditForm.style.display = 'block';
 }
 
-// Ẩn form chỉnh sửa thông tin liên hệ
 function hideContactEditForm() {
     const contactEditForm = document.getElementById('contactEditForm');
     contactEditForm.style.display = 'none';
 }
-
-// Gọi hàm hiển thị form khi người dùng bấm vào "Chỉnh sửa"
-document.querySelector('.contact-edit-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    showContactEditForm();
-});
-
-// Đóng form khi bấm vào nút 'Cập nhật' hoặc ra ngoài form
-document.querySelector('.close-contact-edit').addEventListener('click', function() {
-    hideContactEditForm();
-});
-
-// Đóng form khi bấm vào nút 'Cập nhật'
-document.querySelector('#updateButton').addEventListener('click', function() {
-    hideContactEditForm();
-});
 
 window.onclick = function(event) {
     const contactEditForm = document.getElementById('contactEditForm');
@@ -1674,7 +1648,5 @@ function toggleModal() {
         arrow.classList.add('rotate');
     }
 }
-
-
 </script>
 @endpush

@@ -83,9 +83,6 @@ Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'ind
 
 //payment
 Route::get('/payment', [PaymentController::class, 'showPaymentPage']);
-Route::get('/payment', function () {
-    return view('payment.payment');
-})->name('payment');
 
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
