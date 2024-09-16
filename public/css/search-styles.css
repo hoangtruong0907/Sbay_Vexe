@@ -49,7 +49,7 @@
 }
 
 .radio-input {
-    display: none;
+    visibility: hidden;
 }
 
 .radio {
@@ -88,6 +88,7 @@
     border: 1px solid rgb(224, 224, 224);
 }
 
+/* Container for the filters */
 .filter-title {
     display: flex;
     justify-content: space-between;
@@ -136,6 +137,24 @@
 .filter-content {
     display: none;
     padding: 10px 0;
+}
+.filter-content .filter-time {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+.filter-content .group-time {
+    width: 48%;
+    padding: 1%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.filter-content .group-time:hover {
+    cursor: pointer;
 }
 
 .slider-container {
