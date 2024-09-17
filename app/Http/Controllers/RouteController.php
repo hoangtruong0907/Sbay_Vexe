@@ -512,4 +512,32 @@ class RouteController extends Controller
             'data'    => $list_routes
         ]);
     }
+
+    // Hàm sắp xếp các chuyến tàu
+    public function trainRouteSort (Request $request) {
+        $list_routes_train = $request->list_train;
+        $html_result = '';
+        if ( $list_routes_train != null ) {
+            // Kiểm tra và xử lý dữ liệu nếu cần thiết
+            foreach ($list_routes_train as $key => $route) {
+                $data = $this->returnViewItemTrain($route, $key, $list_routes_train);
+                $html_result .= $data;
+            }
+        } else {
+            $html_result .= '<p class="text-center">Không có sẵn dữ liệu!</p>';
+        }
+
+        return response()->json([
+            "message" => "info",
+            'data'    => $html_result
+        ]);
+    }
+
+    public function returnViewItemTrain ($route, $key, $list_routes_train) {
+        return view('train._train_item', [
+            'route' => $route,
+            'key' => (string) $key,
+            'list_routes_train' => $list_routes_train,
+        ]);
+    }
 }

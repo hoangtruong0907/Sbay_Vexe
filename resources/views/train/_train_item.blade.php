@@ -118,9 +118,9 @@
         <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
             data-bs-parent="#item-bus-{{ $key }}">
             @include("train._train_stepChooseSeat", [
-    $key,
-    'carriage_list' => $route['carriage_list'] ?? [],
-])
+                $key,
+                'carriage_list' => $route['carriage_list'] ?? [],
+            ])
         </div>
 
         <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{ $key }}"
@@ -547,6 +547,7 @@
             </div>
         </div>
     </div>
+</div>
     
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -592,24 +593,24 @@
 
     // Các loại ghế
     document.addEventListener('DOMContentLoaded', function() {
-    const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
-    const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
-    const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
+        const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
+        const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
+        const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
 
-    detailButton.addEventListener('click', function() {
-        if (!targetCollapse.classList.contains('show')) {
-            // Kích hoạt tab "Các loại ghế" ngay lập tức
-            if (firstTab) {
-                const tab = new bootstrap.Tab(firstTab);
-                tab.show();
+        detailButton.addEventListener('click', function() {
+            if (!targetCollapse.classList.contains('show')) {
+                // Kích hoạt tab "Các loại ghế" ngay lập tức
+                if (firstTab) {
+                    const tab = new bootstrap.Tab(firstTab);
+                    tab.show();
+                }
+                // Hiển thị collapse
+                const collapse = new bootstrap.Collapse(targetCollapse, {
+                    toggle: true
+                });
             }
-            // Hiển thị collapse
-            const collapse = new bootstrap.Collapse(targetCollapse, {
-                toggle: true
-            });
-        }
+        });
     });
-});
 
 </script>
 <script>
@@ -636,129 +637,124 @@
             }
         });
     }
-</script>
 
+    let currentStep = 1;
+    let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
 
-   <script>
-      let currentStep = 1;
-let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
+    function navigateStep(direction, key) {
+        if (currentKey !== key) {
+            // Nếu key thay đổi, đặt lại bước hiện tại về 1
+            currentStep = 1;
+            currentKey = key;
+        }
 
-function navigateStep(direction, key) {
-    if (currentKey !== key) {
-        // Nếu key thay đổi, đặt lại bước hiện tại về 1
-        currentStep = 1;
-        currentKey = key;
+        // Ẩn nội dung bước hiện tại
+        let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+        if (currentContent) {
+            currentContent.style.display = 'none';
+        }
+
+        let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+        if (currentStepElement) {
+            currentStepElement.classList.remove('navigation-step-active');
+            currentStepElement.classList.add('navigation-step-inactive');
+        }
+
+        // Cập nhật bước hiện tại
+        if (direction === 'next' && currentStep < 3) {
+            currentStep++;
+        } else if (direction === 'previous' && currentStep > 1) {
+            currentStep--;
+        }
+
+        // Hiển thị nội dung của bước mới
+        let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+        if (newContent) {
+            newContent.style.display = 'block';
+        }
+
+        let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+        if (newStepElement) {
+            newStepElement.classList.add('navigation-step-active');
+            newStepElement.classList.remove('navigation-step-inactive');
+        }
+
+        // Ẩn class wizard-step-train cho bước 2 và 3
+        const wizardStepTrain = document.querySelector('.card-body-train');
+        const stepContent = document.querySelector('.step-content');
+        if (wizardStepTrain) {
+            if (currentStep === 2 || currentStep === 3) {
+                wizardStepTrain.style.display = 'none';
+                stepContent.style.display = 'none';
+            } else {
+                wizardStepTrain.style.display = 'block';
+                stepContent.style.display = 'block';
+            }
+        }
+
+        // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
+        if (currentStep === 2) {
+            let step1Element = document.getElementById(`step-${currentKey}`);
+            if (step1Element) {
+                step1Element.classList.remove('navigation-step-active');
+                step1Element.classList.add('navigation-step-inactive');
+            }
+        }
+
+        // Đổi màu bước hiện tại
+        if (currentStep === 1) {
+            let step1Element = document.getElementById(`step-${currentKey}`);
+            if (step1Element) {
+                step1Element.classList.remove('navigation-step-inactive');
+                step1Element.classList.add('navigation-step-active');
+            }
+            // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
+            let step2Element = document.getElementById(`step-2-${currentKey}`);
+            if (step2Element) {
+                step2Element.classList.remove('navigation-step-active');
+                step2Element.classList.add('navigation-step-inactive');
+            }
+            let step3Element = document.getElementById(`step-3-${currentKey}`);
+            if (step3Element) {
+                step3Element.classList.remove('navigation-step-active');
+                step3Element.classList.add('navigation-step-inactive');
+            }
+        }
     }
 
-    // Ẩn nội dung bước hiện tại
-    let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (currentContent) {
-        currentContent.style.display = 'none';
-    }
+    function toggleCustomContent(key, step) {
+        const button = document.getElementById(`button-step-custom-${step}-${key}`);
+        const content = document.getElementById(`content-step-custom-${step}-${key}`);
 
-    let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (currentStepElement) {
-        currentStepElement.classList.remove('navigation-step-active');
-        currentStepElement.classList.add('navigation-step-inactive');
-    }
+        // Lấy tất cả các nội dung bước và nút cho bài mới
+        const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
+        const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
 
-    // Cập nhật bước hiện tại
-    if (direction === 'next' && currentStep < 3) {
-        currentStep++;
-    } else if (direction === 'previous' && currentStep > 1) {
-        currentStep--;
-    }
+        // Ẩn tất cả các nội dung
+        allContents.forEach(c => c.classList.remove('step-content-custom-show'));
+        // Làm tất cả các nút không hoạt động
+        allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
 
-    // Hiển thị nội dung của bước mới
-    let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (newContent) {
-        newContent.style.display = 'block';
-    }
-
-    let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (newStepElement) {
-        newStepElement.classList.add('navigation-step-active');
-        newStepElement.classList.remove('navigation-step-inactive');
-    }
-
-    // Ẩn class wizard-step-train cho bước 2 và 3
-    const wizardStepTrain = document.querySelector('.card-body-train');
-    const stepContent = document.querySelector('.step-content');
-    if (wizardStepTrain) {
-        if (currentStep === 2 || currentStep === 3) {
-            wizardStepTrain.style.display = 'none';
-            stepContent.style.display = 'none';
+        if (!content.classList.contains('step-content-custom-show')) {
+            content.classList.add('step-content-custom-show');
+            button.classList.add('navigation-button-custom-active');
         } else {
-            wizardStepTrain.style.display = 'block';
-            stepContent.style.display = 'block';
+            content.classList.remove('step-content-custom-show');
+            button.classList.remove('navigation-button-custom-active');
         }
+        
     }
 
-    // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
-    if (currentStep === 2) {
-        let step1Element = document.getElementById(`step-${currentKey}`);
-        if (step1Element) {
-            step1Element.classList.remove('navigation-step-active');
-            step1Element.classList.add('navigation-step-inactive');
-        }
-    }
-
-    // Đổi màu bước hiện tại
-    if (currentStep === 1) {
-        let step1Element = document.getElementById(`step-${currentKey}`);
-        if (step1Element) {
-            step1Element.classList.remove('navigation-step-inactive');
-            step1Element.classList.add('navigation-step-active');
-        }
-        // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
-        let step2Element = document.getElementById(`step-2-${currentKey}`);
-        if (step2Element) {
-            step2Element.classList.remove('navigation-step-active');
-            step2Element.classList.add('navigation-step-inactive');
-        }
-        let step3Element = document.getElementById(`step-3-${currentKey}`);
-        if (step3Element) {
-            step3Element.classList.remove('navigation-step-active');
-            step3Element.classList.add('navigation-step-inactive');
-        }
-    }
-}
-
-function toggleCustomContent(key, step) {
-    const button = document.getElementById(`button-step-custom-${step}-${key}`);
-    const content = document.getElementById(`content-step-custom-${step}-${key}`);
-
-    // Lấy tất cả các nội dung bước và nút cho bài mới
-    const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
-    const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
-
-    // Ẩn tất cả các nội dung
-    allContents.forEach(c => c.classList.remove('step-content-custom-show'));
-    // Làm tất cả các nút không hoạt động
-    allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
-
-    if (!content.classList.contains('step-content-custom-show')) {
-        content.classList.add('step-content-custom-show');
-        button.classList.add('navigation-button-custom-active');
-    } else {
-        content.classList.remove('step-content-custom-show');
-        button.classList.remove('navigation-button-custom-active');
-    }
-    
-}
-
-// Thêm sự kiện click cho tất cả các nút
-document.querySelectorAll('.navigation-button-custom').forEach(button => {
-    button.addEventListener('click', () => {
-        const key = button.getAttribute('data-key');
-        const step = button.getAttribute('data-step');
-        toggleCustomContent(key, step);
+    // Thêm sự kiện click cho tất cả các nút
+    document.querySelectorAll('.navigation-button-custom').forEach(button => {
+        button.addEventListener('click', () => {
+            const key = button.getAttribute('data-key');
+            const step = button.getAttribute('data-step');
+            toggleCustomContent(key, step);
+        });
     });
-});
 
-        function clearInput(inputId) {
+    function clearInput(inputId) {
         document.getElementById(inputId).value = '';
     }
-   </script>
-
-
+</script>

@@ -70,6 +70,7 @@ Route::get('/test', [TestController::class, 'test']);
 Route::prefix('/route-search')->group(function () {
     Route::get('/xe-khach',  [RouteController::class, 'busRouteSearch'])->name('route.search.bus');
     Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
+    Route::post('/sort-tau-hoa', [RouteController::class, 'trainRouteSort'])->name('route.sort.train');
 });
 // Bus view api
 Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
