@@ -15,7 +15,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\BlogPostModel;
 use App\Models\PostType;
-
+use Faker\Extension\Helper;
 
 class RouteController extends Controller
 {
@@ -150,6 +150,7 @@ class RouteController extends Controller
         $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
         // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);\
         $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
+        $operatorPolicy = 123213;
         $list_routes = $res_routes['data'];
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
@@ -162,7 +163,8 @@ class RouteController extends Controller
             'currentPage' => $res_routes['page'],
             'pageSize' => $res_routes['page_size'],
             'total' => $res_routes['total'],
-            'totalPages' => $res_routes['total_pages']
+            'totalPages' => $res_routes['total_pages'],
+            'operatorPolicy' => $operatorPolicy
         ]);
     }
 
@@ -295,7 +297,7 @@ class RouteController extends Controller
         $urlPolicy = $this->main_url . "/v3/company_policy/config_detail?seat_template_id=" . $seatTemplateMap . "&trip_code=" . $tripCode;
         $cancelPolicy = Helpers::cacheData("cancellation-policy-bus-" . $tripCode, $token, $urlCancel, 60 * 20);
         $operatorPolicy = Helpers::cacheData("bus_operator_policy-bus-" . $tripCode . "-" . $seatTemplateMap, $token, $urlPolicy, 60 * 20);
-        // dd($operatorPolicy);
+        // dd($operatorPolicy,$tripCode, $seatTemplateMap);
         return response()->json([
             "message" => "success",
             'tripCode' => $tripCode,

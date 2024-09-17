@@ -26,7 +26,7 @@
         </div>
         <div class="w-100 d-flex flex-row position-relative">
             <div class="check-point">
-                <div class="tag-dot" >Hôm nay</div>
+                <div class="tag-dot">Hôm nay</div>
                 <div class="dot"></div>
             </div>
             @if (count($cancelPolicy['detail']) == 3)
@@ -74,7 +74,7 @@
         <p>Vexere xin trân trọng cảm ơn quý khách đã tin tưởng và đặt vé tại
             đây. Chính sách đặt vé của Vexere như sau:</p>
         <div class="d-flex flex-column ms-2">
-            @if (count($operatorPolicy) > 0)
+            @if (isset($operatorPolicy) && count($operatorPolicy) > 0)
                 @foreach ($operatorPolicy as $policy)
                     <div class="policy-content-l">
                         <h6>{{ $policy['name'] }}</h6>
@@ -89,10 +89,9 @@
                 <div class="policy-content-l">
                     <h6>Yêu cầu khi lên xe</h6>
                     <ul>
-                        <li>Có mặt tại văn phòng/quầy vé/bến xe trước 20 phút để làm thủ tục lên xe
-                        </li>
+                        <li>Có mặt tại văn phòng/quầy vé/bến xe trước 20 phút để làm thủ tục lên xe</li>
                         <li>Xuất trình SMS/Email đặt vé trước khi lên xe</li>
-                        <li>Không mang đồ ăn, thức ăn có mùi lên xe </li>
+                        <li>Không mang đồ ăn, thức ăn có mùi lên xe</li>
                         <li>Không hút thuốc, uống rượu, sử dụng chất kích thích trên xe</li>
                         <li>Không mang các vật dễ cháy nổ lên xe</li>
                         <li>Không vứt rác trên xe</li>
@@ -108,23 +107,21 @@
                 <div class="policy-content-l">
                     <h6>Trẻ em và phụ nữ có thai</h6>
                     <ul>
-                        <li>Trẻ em dưới 3 tuổi hoặc dưới 110 cm được miễn phí vé nếu ngồi cùng
-                            ghế/giường với bố mẹ</li>
+                        <li>Trẻ em dưới 3 tuổi hoặc dưới 110 cm được miễn phí vé nếu ngồi cùng ghế/giường với bố mẹ</li>
                         <li>Trẻ em từ 3 tuổi hoặc cao từ 110 cm trở lên mua vé như người lớn</li>
                     </ul>
                 </div>
                 <div class="policy-content-l">
                     <h6>Động vật cảnh/Thú cưng</h6>
                     <ul>
-                        <li>Hãng xe chỉ chấp nhận vận chuyển động vật như là một hành lý ký gửi;
-                            không cho phép mang lên xe cùng hành khách</li>
+                        <li>Hãng xe chỉ chấp nhận vận chuyển động vật như là một hành lý ký gửi; không cho phép mang lên
+                            xe cùng hành khách</li>
                     </ul>
                 </div>
                 <div class="policy-content-l">
                     <h6>Xuất hóa đơn GTGT</h6>
                     <ul>
-                        <li>Nhà xe từ chối xuất lại hóa đơn nếu hành khách cung cấp sai thông tin
-                        </li>
+                        <li>Nhà xe từ chối xuất lại hóa đơn nếu hành khách cung cấp sai thông tin</li>
                     </ul>
                 </div>
             @endif
