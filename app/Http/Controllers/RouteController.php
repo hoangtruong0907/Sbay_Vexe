@@ -15,7 +15,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\BlogPostModel;
 use App\Models\PostType;
-use Faker\Extension\Helper;
+
 
 class RouteController extends Controller
 {
@@ -378,7 +378,7 @@ class RouteController extends Controller
         $urlPolicy = $this->main_url . "/v3/company_policy/config_detail?seat_template_id=" . $seatTemplateMap . "&trip_code=" . $tripCode;
         $cancelPolicy = Helpers::cacheData("cancellation-policy-bus-" . $tripCode, $token, $urlCancel, 60 * 20);
         $operatorPolicy = Helpers::cacheData("bus_operator_policy-bus-" . $tripCode . "-" . $seatTemplateMap, $token, $urlPolicy, 60 * 20);
-        // dd($operatorPolicy,$tripCode, $seatTemplateMap);
+        // dd($operatorPolicy);
         return response()->json([
             "message" => "success",
             'tripCode' => $tripCode,
