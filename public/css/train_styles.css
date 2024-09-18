@@ -161,7 +161,8 @@
 }
 
 .container-l:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+        rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .ticket-container-l {
@@ -244,7 +245,6 @@
 .from-to-l,
 .social-proof-l {
     margin-top: 10px;
-
 }
 
 .social-proof-l {
@@ -283,7 +283,6 @@
 
 
 .action-train {
-    /* position: absolute; */
     bottom: 0;
     right: 0;
 }
@@ -424,8 +423,6 @@
 .ant-btn-link-l span {
     text-decoration: underline;
 }
-
-/* -------------------------------------------------------- */
 
 /* Detail */
 .container-textSeat {
@@ -657,7 +654,7 @@
 }
 
 .list-gr-review .item-check-review {
-    color: #04AA6D;
+    color: #04aa6d;
 }
 
 .list-gr-review .thumb-img-review {
@@ -688,7 +685,6 @@
     height: 100%;
     object-fit: cover;
 }
-
 
 .image-tab .swiper {
     width: 100%;
@@ -807,7 +803,6 @@
     scroll-behavior: smooth;
     overflow: auto;
     padding-bottom: 10px;
-
 }
 
 .coupon-container-train .locomotive {
@@ -876,7 +871,6 @@
     align-content: center;
     color: white;
     border-radius: 5px;
-
 }
 
 .flex-coupon-train .text-coupon-train {
@@ -951,7 +945,6 @@
     gap: 10px;
 }
 
-
 .seat-info-train .seat-unavailable-train svg rect {
     stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
@@ -988,7 +981,8 @@
     cursor: not-allowed;
 }
 
-.coach-row-train .seat, .coach-row-train .train-hl {
+.coach-row-train .seat,
+.coach-row-train .train-hl {
     padding: 4px;
     border: 0 !important;
 }
@@ -1081,7 +1075,6 @@
     margin: auto;
 }
 
-
 .container-contract-train .input-group-train {
     display: flex;
     justify-content: space-between;
@@ -1092,8 +1085,8 @@
     border-color: #d6d4d4;
 }
 
-.form-control:focus~.form-label,
-.form-control:not(:placeholder-shown)~.form-label {
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label {
     top: -0.75rem;
     left: 0.75rem;
     font-size: 0.75rem;
@@ -1154,58 +1147,13 @@
     align-items: center;
 }
 
-.container-qr .qrcode-content {
+.container-qr {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
-}
-
-.qrcode-content .row-train {
-    flex-wrap: wrap;
-    min-height: 150px;
-
-}
-
-.qrcode-content .col-train {
-    flex: 1 1 100px;
-    max-width: 100%;
-    margin-bottom: 15px;
-}
-
-.row-train .item-abate i {
-    font-size: 40px;
-}
-
-
-.qrcode-content .item-col-train {
-    flex: 2 1 200px;
-    max-width: 100%;
-}
-
-.qrcode-content .img-fluid-train {
-    max-width: 40%;
-    height: auto;
-}
-
-.qrcode-content .qrcode-item {
-    width: 85%;
-    height: auto;
-}
-
-.request {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1.5rem;
-    background-color: white;
-    width: 95%;
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
 }
 
 .total-amount-train {
@@ -1258,20 +1206,6 @@
     margin-right: 8px;
 }
 
-.item-col-train .img-custom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px;
-}
-
-.item-col-train .img-custom img {
-    width: 10%;
-    max-width: 50%;
-    height: auto;
-}
-
-/* Định dạng chung cho các bước điều hướng */
 .navigation-step {
     display: inline-block;
     padding: 5px;
@@ -1291,7 +1225,6 @@
     color: #333;
 }
 
-/* Định dạng cho các nút điều hướng */
 .navigation-button {
     padding: 10px 15px;
     margin: 5px;
@@ -1308,7 +1241,6 @@
     background-color: #0056b3;
 }
 
-/* Định dạng cho nội dung các bước */
 .step-content {
     display: none;
     /* Mặc định ẩn nội dung */
