@@ -13,17 +13,33 @@
                 <div class="ticket-info-l">
                     <div class="ticket-bus-info-l">
                         <div class="train-name-l">{{ $route['company']['name'] }}
-                            <button type="button" class="ant-btn bus-rating-button-l">
-                                <div class="bus-rating-l">
-                                    <i class="fa-solid fa-star"></i>
+                            <div class="container-action">
+                                <div class="action-train">
+                                    <div class="action-l">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-toggle="collapse" data-bs-target="#ticket-detail-collapse-{{ $key }}"
+                                            aria-expanded="false" aria-controls="ticket-detail-collapse-{{ $key }}">
+                                            <div class="bus-rating-l">
+                                                <i class="fa-solid fa-star"></i>
+
+                                            </div>
+                                        </button>
+                                    </div>
                                 </div>
-                            </button>
+                            </div>
+                            <div class="action-l">
+                                <button type="button" class="ant-btn btn-detail-l ant-btn-link-l"
+                                    data-bs-toggle="collapse" data-bs-target="#ticket-detail-collapse-{{ $key }}"
+                                    role="button" aria-expanded="false"
+                                    aria-controls="ticket-detail-collapse-{{ $key }}">
+
+                                </button>
+
+                            </div>
                         </div>
                         <div class="fare-info-l-train">
                             <div class="fare-l">{{ $route['min_price'] }} - {{ $route['max_price'] }}</div>
-                            <div class="fareSmall">
-                                <div class="small">280.000đ</div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="from-to-l">
@@ -62,7 +78,12 @@
                                     </svg>
                                     </svg>
                                 </div>
-                                <div class="duration-l">17h30m</div>
+                                <div class="duration-l">@php
+                                    $hours = floor($route['duration'] / 60);
+                                    $minutes = $route['duration'] % 60;
+                                    @endphp
+                                    {{ $hours }}h{{ $minutes }}m
+                                </div>
                             </div>
                             <div class="content-l to-l">
                                 <div class="content-to-info-l">
@@ -73,64 +94,102 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container-textSeat">
-                        <div class="social-proof-l">7 người đặt trong 6 tiếng gần đây</div>
-                        <div class="seat-available-train">Còn 23 chỗ trống</div>
-                    </div>
+
+
                     <div class="container-action">
                         <div class="action-train">
-                            <div class="action-l">
-                                <button type="button" class="ant-btn btn-detail-l ant-btn-link-l"
+                            <div class="action-l" class="button-infor-train">
+                                <button type="button" style=" color: rgb(20, 138, 27);margin-top:10px;border: none; background-color: white;"
                                     data-bs-toggle="collapse" data-bs-target="#ticket-detail-collapse-{{ $key }}"
-                                    role="button" aria-expanded="false"
-                                    aria-controls="ticket-detail-collapse-{{ $key }}">
+                                    aria-expanded="false" aria-controls="ticket-detail-collapse-{{ $key }}"
+                                    onclick="showTab('coupon-tab-{{ $key }}')">
                                     <span>Thông tin chi tiết 1</span>
                                     <i aria-label="icon: caret-down" class="anticon anticon-caret-down">
-                                        <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down"
+                                        <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down"
                                             width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                            <path
-                                                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-                                            </path>
+                                            <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path>
                                         </svg>
                                     </i>
-                                </button>
-                                <button id="chooseTripBtn" data-tracking-event="selected_route" type="button"
-                                    class="ant-btn btn-booking-l" data-bs-toggle="collapse"
-                                    data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
-                                    aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}">
-                                    <span class="text-chooseeTrip">Chọn chuyến</span>
                                 </button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
         <div class="notify-trip-l">
-            <div class="full-trip-l">
-                <span>*</span>
-                <p>Vé chặng thuộc chuyến 15:00 01-08-2024 Hà Nội - Đà Nẵng</p>
-            </div>
+        <div class="full-trip-l">
+    <span>*</span>
+    
+    <p>Vé chặng thuộc chuyến {{ $route['time'] }} - {{ $route['arrival_time'] }} ngày {{ $route['date'] }} Ga {{ $route['departure_place'] }} - Ga {{ $route['arrival_place'] }}</p>
+</div>
             <div class="content-has-cop">
                 <div class="nonePay">Không cần thanh toán trước</div>
             </div>
         </div>
+        <div class="container-textSeat">
+
+
+            <div class="TrainGroupClass__Container-sc-1go2gxb-0 icyEgM">
+                <div class="top-group" id="carriageContainer">
+                    <!-- Lặp qua danh sách khoang tàu -->
+                    @foreach ($route['carriage_list'] as $carriage)
+                    <div class="item-container carriage-item">
+                        <div class="TrainGroupClassItem__Container-sc-1ucei7x-0 gsoyHR">
+                            <div class="inner-container">
+                                <div>
+                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 ksUtjh color--darkness">
+                                        Số khoang: {{ $carriage['carriage_number'] }}
+                                    </div>
+                                    <div class="carriage-description">
+                                        {{ $carriage['carriage_description'] }}
+                                    </div>
+                                </div>
+                                <div class="bottom-container">
+                                    <div class="Hstack">
+                                        <div class="base__Caption02-sc-1tvbuqk-33 hbMYEr color--vex-blue">
+                                            {{ $carriage['min_price'] }}K
+                                        </div>
+                                    </div>
+                                    <div class="chip-text bg--lighter-border">
+                                        <div class="base__Caption02-sc-1tvbuqk-33 hbMYEr color--dark">
+                                            Còn {{ $carriage['available_carriage_seats'] }} chỗ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="bottom-group"></div>
+            </div>
+        </div>
+
+
+
         <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
             data-bs-parent="#item-bus-{{ $key }}">
             @include("train._train_stepChooseSeat", [
-    $key,
-    'carriage_list' => $route['carriage_list'] ?? [],
-])
+            $key,
+            'carriage_list' => $route['carriage_list'] ?? [],
+            ])
         </div>
 
-        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{ $key }}"
-            data-bs-parent="#item-bus-{{ $key }}">
+        <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{ $key }}" data-bs-parent="#item-bus-{{ $key }}">
             <hr>
-
             <div class="container ticket-detail-container ps-3 pe-3">
+                <div class="hKzvNB">
+                    <div class="tail-contai">
+                        <img class="contain-description lazyloaded" data-src="https://storage.googleapis.com/fe-production/images/image_dsvn.png" src="https://storage.googleapis.com/fe-production/images/image_dsvn.png" alt="default-alt" width="32" height="18">
+                        <p class=" gjECjS color--dark">{{$route['segments'][0]['train_number']}}</p>
+                    </div>
+                </div>
                 <ul class="nav-items nav nav-pills mb-1 pills-ticket-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active-train" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
+
+                        <button class="nav-link" id="coupon-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#coupon-{{ $key }}" type="button" role="tab"
                             aria-controls="coupon-{{ $key }}" aria-selected="true">
                             Các loại ghế ({{$list_routes_train[$key]['total_carriage']}})
@@ -143,7 +202,7 @@
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="rating-tab-{{ $key }}" data-bs-toggle="pill"
+                        <button class="nav-link active" id="rating-tab-{{ $key }}" data-bs-toggle="pill"
                             data-bs-target="#rating-{{ $key }}" type="button" role="tab"
                             aria-controls="rating-{{ $key }}" aria-selected="false">Đánh
                             giá</button>
@@ -162,40 +221,46 @@
                         <div class=" d-flex gap-2 ">
                             <div class="container-select-train">
                                 @foreach ($list_routes_train[$key]['carriage_list'] as $carriage)
-                                    <div class="wrap-couponTrain">
-                                        <button class="wrap-coupon btn border py-2 "
-                                            data-btn-id="{{$carriage['carriage_number']}}"
-                                            onclick="highlightNumbers([{{$carriage['carriage_name_app']}}], '{{$carriage['carriage_number']}}')">
-                                            <p class="mb-0">{{$carriage['carriage_description']}}
-                                                ({{$carriage['available_carriage_seats']}})</p>
-                                        </button>
-                                    </div>
+                                <div class="wrap-couponTrain">
+                                    <button class="wrap-coupon btn border py-2 "
+                                        data-btn-id="{{$carriage['carriage_number']}}"
+                                        onclick="highlightNumbers([{{$carriage['carriage_name_app']}}], '{{$carriage['carriage_number']}}')">
+                                        <p class="mb-0">{{$carriage['carriage_description']}}
+                                            ({{$carriage['available_carriage_seats']}})</p>
+                                    </button>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
 
                         <!-- ---------- -->
-                        <div class="content-train pt-4">
+                        <div class="content-train pt-4" id="pills-tabContent-{{ $key }}">
                             <h4 class="location_trainCar fw-bold">Vị trí toa
-                                (2/{{$list_routes_train[$key]['total_carriage']}})</h4>
+                                ({{$carriage['carriage_number']}}/{{$list_routes_train[$key]['total_carriage']}})</h4>
                             <div class="d-flex align-items-center gap-2 pt-4">
 
                                 <div class="locomotive2">
                                     <div class="box"> </div>
-                                    <div class="text">SE6</div>
+                                    <div class="text">{{$route['segments'][0]['train_number']}}</div>
                                 </div>
-                                <div class="train-items d-flex ">
-                                    <p class="mb-0 number">1</p>
-                                    <p class="mb-0 number">2</p>
-                                    <p class="mb-0 number">3</p>
-                                    <p class="mb-0 number">4</p>
-                                    <p class="mb-0 number">5</p>
-                                    <p class="mb-0 number">6</p>
-                                    <p class="mb-0 number">7</p>
-                                    <p class="mb-0 number">8</p>
-                                    <p class="mb-0 number">9</p>
 
+
+
+
+
+                                <div class="train-items">
+                                    @foreach ($route['carriage_list'] as $carriage)
+                                    <div class="carriage-item">
+                                        <p class="mb-0 number">{{ $carriage['carriage_number'] }}</p>
+                                    </div>
+                                    @endforeach
                                 </div>
+
+                                
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -227,7 +292,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade rating-tab" id="rating-{{ $key }}" role="tabpanel"
+                    <div class="tab-pane fade rating-tab show active" id="rating-{{ $key }}" role="tabpanel"
                         aria-labelledby="rating-tab" tabindex="2">
                         <div class="d-flex align-items-center">
                             <div class="container-star d-flex align-items-center rating-info">
@@ -445,62 +510,62 @@
                                         alt="thumb-1">
                                 </div>
 
-                        <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày 29/07/2024</small>
-                            <div class="item-check-review ms-1">
-                                <i class="fa-solid fa-ticket"></i>
-                                <small>Đã mua vé</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <div class="d-flex user-review">
-                                <img class="avatar-review"
-                                    src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                    alt="anh-dai-dien" srcset="">
-                                <div class="d-flex flex-column mt-1 ms-1">
-                                    <h6 class="mb-1">List group item heading</h6>
-                                    <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half-stroke"></i>
-                                        <i class="fa-regular fa-star"></i>
+                                <div class="d-flex align-items-center">
+                                    <small class="">Đã đi ngày 29/07/2024</small>
+                                    <div class="item-check-review ms-1">
+                                        <i class="fa-solid fa-ticket"></i>
+                                        <small>Đã mua vé</small>
                                     </div>
                                 </div>
                             </div>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">The single cabin was nice. The bed was a little short,
-                            but it was wide and pleasant. Each cabin was provided with bottled
-                            water, wet wipes and blankets. The bed was clean and the staff was very
-                            friendly, so I had a great experience.</p>
-                        <div class="d-flex list-img-review flex-row">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                alt="thumb-1">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                alt="thumb-1">
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày 29/07/2024</small>
-                            <div class="item-check-review ms-1">
-                                <i class="fa-solid fa-ticket"></i>
-                                <small>Đã mua vé</small>
+                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div class="d-flex user-review">
+                                        <img class="avatar-review"
+                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                            alt="anh-dai-dien" srcset="">
+                                        <div class="d-flex flex-column mt-1 ms-1">
+                                            <h6 class="mb-1">List group item heading</h6>
+                                            <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <small>3 days ago</small>
+                                </div>
+                                <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    but it was wide and pleasant. Each cabin was provided with bottled
+                                    water, wet wipes and blankets. The bed was clean and the staff was very
+                                    friendly, so I had a great experience.</p>
+                                <div class="d-flex list-img-review flex-row">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
+                                        alt="thumb-1">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1">
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <small class="">Đã đi ngày 29/07/2024</small>
+                                    <div class="item-check-review ms-1">
+                                        <i class="fa-solid fa-ticket"></i>
+                                        <small>Đã mua vé</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel" aria-labelledby="image-tab"
-                tabindex="3">
-                <div class="d-flex flex-column w-100 h-100 m-2">
-                    <div class="row" id="slider">
-                        <div class="col-md-12">
-                            <div id="myCarousel" class="carousel slide">
-                                <div class="carousel-inner">
+                    <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel" aria-labelledby="image-tab"
+                        tabindex="3">
+                        <div class="d-flex flex-column w-100 h-100 m-2">
+                            <div class="row" id="slider">
+                                <div class="col-md-12">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <div class="carousel-inner">
 
                                         </div>
 
@@ -547,218 +612,248 @@
             </div>
         </div>
     </div>
-    
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Kiểm tra phần tử nút và collapse
-        var chooseTripBtn = document.getElementById('chooseTripBtn');
-        var ticketCollapse = document.getElementById('ticket-step-collapse-{{ $key }}');
-        var detailBtn = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
-        var detailCollapse = document.getElementById('ticket-detail-collapse-{{ $key }}');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra phần tử nút và collapse
+            var chooseTripBtn = document.getElementById('chooseTripBtn');
+            var ticketCollapse = document.getElementById('ticket-step-collapse-{{ $key }}');
+            var detailBtn = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
+            var detailCollapse = document.getElementById('ticket-detail-collapse-{{ $key }}');
 
-        
-        if (chooseTripBtn && ticketCollapse && detailBtn && detailCollapse) {
-            // Lắng nghe sự kiện khi phần chọn chuyến đang mở
-            ticketCollapse.addEventListener('show.bs.collapse', function () {
-                chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Đóng';
-                // Đóng phần thông tin chi tiết nếu đang mở
-                if (detailCollapse.classList.contains('show')) {
-                    bootstrap.Collapse.getInstance(detailCollapse).hide();
-                }
-            });
+            if (chooseTripBtn && ticketCollapse && detailBtn && detailCollapse) {
+                // Lắng nghe sự kiện khi phần chọn chuyến đang mở
+                ticketCollapse.addEventListener('show.bs.collapse', function() {
+                    chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Đóng';
+                    // Đóng phần thông tin chi tiết nếu đang mở
+                    if (detailCollapse.classList.contains('show')) {
+                        bootstrap.Collapse.getInstance(detailCollapse).hide();
+                    }
+                });
 
-            // Lắng nghe sự kiện khi phần chọn chuyến đóng
-            ticketCollapse.addEventListener('hide.bs.collapse', function () {
-                chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Chọn chuyến';
-            });
+                // Lắng nghe sự kiện khi phần chọn chuyến đóng
+                ticketCollapse.addEventListener('hide.bs.collapse', function() {
+                    chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Chọn chuyến';
+                });
 
-            // Lắng nghe sự kiện khi phần thông tin chi tiết mở
-            detailCollapse.addEventListener('show.bs.collapse', function () {
-                // Đóng phần chọn chuyến nếu đang mở
+                // Lắng nghe sự kiện khi phần thông tin chi tiết mở
+                detailCollapse.addEventListener('show.bs.collapse', function() {
+                    // Đóng phần chọn chuyến nếu đang mở
+                    if (ticketCollapse.classList.contains('show')) {
+                        bootstrap.Collapse.getInstance(ticketCollapse).hide();
+                    }
+                });
+
+                // Kiểm tra trạng thái ban đầu của collapse
                 if (ticketCollapse.classList.contains('show')) {
-                    bootstrap.Collapse.getInstance(ticketCollapse).hide();
+                    chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Đóng';
+                }
+            }
+        });
+
+        // Các loại ghế
+        document.addEventListener('DOMContentLoaded', function() {
+            const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
+            const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
+            const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
+
+            detailButton.addEventListener('click', function() {
+                if (!targetCollapse.classList.contains('show')) {
+                    // Kích hoạt tab "Các loại ghế" ngay lập tức
+                    if (firstTab) {
+                        const tab = new bootstrap.Tab(firstTab);
+                        tab.show();
+                    }
+                    // Hiển thị collapse
+                    const collapse = new bootstrap.Collapse(targetCollapse, {
+                        toggle: true
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        function highlightNumbers(indices, selectedButtonId) {
+            var numbers = document.querySelectorAll('.number');
+            numbers.forEach(function(num) {
+                num.classList.remove('activetrain');
+            });
+
+            indices.forEach(function(index) {
+                if (index > 0 && index <= numbers.length) {
+                    numbers[index - 1].classList.add('activetrain');
                 }
             });
 
-            // Kiểm tra trạng thái ban đầu của collapse
-            if (ticketCollapse.classList.contains('show')) {
-                chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Đóng';
-            }
-        } else {
-            console.error("Không tìm thấy phần tử nút hoặc collapse.");
-        }
-    });
-
-
-    // Các loại ghế
-    document.addEventListener('DOMContentLoaded', function() {
-    const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
-    const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
-    const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
-
-    detailButton.addEventListener('click', function() {
-        if (!targetCollapse.classList.contains('show')) {
-            // Kích hoạt tab "Các loại ghế" ngay lập tức
-            if (firstTab) {
-                const tab = new bootstrap.Tab(firstTab);
-                tab.show();
-            }
-            // Hiển thị collapse
-            const collapse = new bootstrap.Collapse(targetCollapse, {
-                toggle: true
+            var buttons = document.querySelectorAll('.btn');
+            buttons.forEach(function(btn) {
+                if (btn.getAttribute('data-btn-id') === selectedButtonId) {
+                    btn.classList.add('button-active');
+                    btn.classList.remove('button-default');
+                } else {
+                    btn.classList.add('button-default');
+                    btn.classList.remove('button-active');
+                }
             });
         }
-    });
-});
+    </script>
 
-</script>
-<script>
-    function highlightNumbers(indices, selectedButtonId) {
-        var numbers = document.querySelectorAll('.number');
-        numbers.forEach(function (num) {
-            num.classList.remove('activetrain');
-        });
+    <script>
+        let currentStep = 1;
+        let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
 
-        indices.forEach(function (index) {
-            if (index > 0 && index <= numbers.length) {
-                numbers[index - 1].classList.add('activetrain');
+        function navigateStep(direction, key) {
+            if (currentKey !== key) {
+                // Nếu key thay đổi, đặt lại bước hiện tại về 1
+                currentStep = 1;
+                currentKey = key;
             }
-        });
 
-        var buttons = document.querySelectorAll('.btn');
-        buttons.forEach(function (btn) {
-            if (btn.getAttribute('data-btn-id') === selectedButtonId) {
-                btn.classList.add('button-active');
-                btn.classList.remove('button-default');
+            // Ẩn nội dung bước hiện tại
+            let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+            if (currentContent) {
+                currentContent.style.display = 'none';
+            }
+
+            let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+            if (currentStepElement) {
+                currentStepElement.classList.remove('navigation-step-active');
+                currentStepElement.classList.add('navigation-step-inactive');
+            }
+
+            // Cập nhật bước hiện tại
+            if (direction === 'next' && currentStep < 3) {
+                currentStep++;
+            } else if (direction === 'previous' && currentStep > 1) {
+                currentStep--;
+            }
+
+            // Hiển thị nội dung của bước mới
+            let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+            if (newContent) {
+                newContent.style.display = 'block';
+            }
+
+            let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+            if (newStepElement) {
+                newStepElement.classList.add('navigation-step-active');
+                newStepElement.classList.remove('navigation-step-inactive');
+            }
+
+            // Ẩn class wizard-step-train cho bước 2 và 3
+            const wizardStepTrain = document.querySelector('.card-body-train');
+            const stepContent = document.querySelector('.step-content');
+            if (wizardStepTrain) {
+                if (currentStep === 2 || currentStep === 3) {
+                    wizardStepTrain.style.display = 'none';
+                    stepContent.style.display = 'none';
+                } else {
+                    wizardStepTrain.style.display = 'block';
+                    stepContent.style.display = 'block';
+                }
+            }
+
+            // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
+            if (currentStep === 2) {
+                let step1Element = document.getElementById(`step-${currentKey}`);
+                if (step1Element) {
+                    step1Element.classList.remove('navigation-step-active');
+                    step1Element.classList.add('navigation-step-inactive');
+                }
+            }
+
+            // Đổi màu bước hiện tại
+            if (currentStep === 1) {
+                let step1Element = document.getElementById(`step-${currentKey}`);
+                if (step1Element) {
+                    step1Element.classList.remove('navigation-step-inactive');
+                    step1Element.classList.add('navigation-step-active');
+                }
+                // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
+                let step2Element = document.getElementById(`step-2-${currentKey}`);
+                if (step2Element) {
+                    step2Element.classList.remove('navigation-step-active');
+                    step2Element.classList.add('navigation-step-inactive');
+                }
+                let step3Element = document.getElementById(`step-3-${currentKey}`);
+                if (step3Element) {
+                    step3Element.classList.remove('navigation-step-active');
+                    step3Element.classList.add('navigation-step-inactive');
+                }
+            }
+        }
+
+        function toggleCustomContent(key, step) {
+            const button = document.getElementById(`button-step-custom-${step}-${key}`);
+            const content = document.getElementById(`content-step-custom-${step}-${key}`);
+
+            // Lấy tất cả các nội dung bước và nút cho bài mới
+            const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
+            const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
+
+            // Ẩn tất cả các nội dung
+            allContents.forEach(c => c.classList.remove('step-content-custom-show'));
+            // Làm tất cả các nút không hoạt động
+            allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
+
+            if (!content.classList.contains('step-content-custom-show')) {
+                content.classList.add('step-content-custom-show');
+                button.classList.add('navigation-button-custom-active');
             } else {
-                btn.classList.add('button-default');
-                btn.classList.remove('button-active');
+                content.classList.remove('step-content-custom-show');
+                button.classList.remove('navigation-button-custom-active');
             }
+        }
+
+        // Thêm sự kiện click cho tất cả các nút
+        document.querySelectorAll('.navigation-button-custom').forEach(button => {
+            button.addEventListener('click', () => {
+                const key = button.getAttribute('data-key');
+                const step = button.getAttribute('data-step');
+                toggleCustomContent(key, step);
+            });
         });
-    }
-</script>
-
-
-   <script>
-      let currentStep = 1;
-let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
-
-function navigateStep(direction, key) {
-    if (currentKey !== key) {
-        // Nếu key thay đổi, đặt lại bước hiện tại về 1
-        currentStep = 1;
-        currentKey = key;
-    }
-
-    // Ẩn nội dung bước hiện tại
-    let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (currentContent) {
-        currentContent.style.display = 'none';
-    }
-
-    let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (currentStepElement) {
-        currentStepElement.classList.remove('navigation-step-active');
-        currentStepElement.classList.add('navigation-step-inactive');
-    }
-
-    // Cập nhật bước hiện tại
-    if (direction === 'next' && currentStep < 3) {
-        currentStep++;
-    } else if (direction === 'previous' && currentStep > 1) {
-        currentStep--;
-    }
-
-    // Hiển thị nội dung của bước mới
-    let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (newContent) {
-        newContent.style.display = 'block';
-    }
-
-    let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (newStepElement) {
-        newStepElement.classList.add('navigation-step-active');
-        newStepElement.classList.remove('navigation-step-inactive');
-    }
-
-    // Ẩn class wizard-step-train cho bước 2 và 3
-    const wizardStepTrain = document.querySelector('.card-body-train');
-    const stepContent = document.querySelector('.step-content');
-    if (wizardStepTrain) {
-        if (currentStep === 2 || currentStep === 3) {
-            wizardStepTrain.style.display = 'none';
-            stepContent.style.display = 'none';
-        } else {
-            wizardStepTrain.style.display = 'block';
-            stepContent.style.display = 'block';
-        }
-    }
-
-    // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
-    if (currentStep === 2) {
-        let step1Element = document.getElementById(`step-${currentKey}`);
-        if (step1Element) {
-            step1Element.classList.remove('navigation-step-active');
-            step1Element.classList.add('navigation-step-inactive');
-        }
-    }
-
-    // Đổi màu bước hiện tại
-    if (currentStep === 1) {
-        let step1Element = document.getElementById(`step-${currentKey}`);
-        if (step1Element) {
-            step1Element.classList.remove('navigation-step-inactive');
-            step1Element.classList.add('navigation-step-active');
-        }
-        // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
-        let step2Element = document.getElementById(`step-2-${currentKey}`);
-        if (step2Element) {
-            step2Element.classList.remove('navigation-step-active');
-            step2Element.classList.add('navigation-step-inactive');
-        }
-        let step3Element = document.getElementById(`step-3-${currentKey}`);
-        if (step3Element) {
-            step3Element.classList.remove('navigation-step-active');
-            step3Element.classList.add('navigation-step-inactive');
-        }
-    }
-}
-
-function toggleCustomContent(key, step) {
-    const button = document.getElementById(`button-step-custom-${step}-${key}`);
-    const content = document.getElementById(`content-step-custom-${step}-${key}`);
-
-    // Lấy tất cả các nội dung bước và nút cho bài mới
-    const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
-    const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
-
-    // Ẩn tất cả các nội dung
-    allContents.forEach(c => c.classList.remove('step-content-custom-show'));
-    // Làm tất cả các nút không hoạt động
-    allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
-
-    if (!content.classList.contains('step-content-custom-show')) {
-        content.classList.add('step-content-custom-show');
-        button.classList.add('navigation-button-custom-active');
-    } else {
-        content.classList.remove('step-content-custom-show');
-        button.classList.remove('navigation-button-custom-active');
-    }
-    
-}
-
-// Thêm sự kiện click cho tất cả các nút
-document.querySelectorAll('.navigation-button-custom').forEach(button => {
-    button.addEventListener('click', () => {
-        const key = button.getAttribute('data-key');
-        const step = button.getAttribute('data-step');
-        toggleCustomContent(key, step);
-    });
-});
 
         function clearInput(inputId) {
-        document.getElementById(inputId).value = '';
-    }
-   </script>
+            document.getElementById(inputId).value = '';
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the collapse element
+            var collapseElement = document.getElementById('ticket-detail-collapse-{{ $key }}');
+            var collapse = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
 
+            // Function to show specific tab
+            function showTab(tabId) {
+                var tab = new bootstrap.Tab(document.getElementById(tabId));
+                tab.show();
+            }
 
+            // Event listener for the đánh giá button
+            document.querySelectorAll('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    collapse.toggle(); // Toggle the collapse visibility
+                    showTab('rating-tab-{{ $key }}'); // Show the rating tab
+                });
+            });
+        });
+    </script>
+    <script>
+        function showTab(tabId) {
+            // Mở phần collapse
+            var collapseElement = document.getElementById('ticket-detail-collapse-{{ $key }}');
+            var bsCollapse = new bootstrap.Collapse(collapseElement, {
+                toggle: true
+            });
+
+            // Chờ phần collapse mở xong
+            setTimeout(function() {
+                // Chọn tab
+                var tabElement = document.getElementById(tabId);
+                var bsTab = new bootstrap.Tab(tabElement);
+                bsTab.show();
+            }, 300);
+        }
+    </script>
