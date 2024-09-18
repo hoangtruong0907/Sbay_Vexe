@@ -17,7 +17,13 @@
     justify-content: space-between;
     margin-bottom: 16px;
 }
-
+.train-name-l {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
 .ticket-image-v {
     position: relative;
     width: 250px;
@@ -155,8 +161,7 @@
 }
 
 .container-l:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-        rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .ticket-container-l {
@@ -181,7 +186,6 @@
     height: 100%;
     object-fit: cover;
 }
-
 .ticket-confirm-l {
     position: absolute;
     -webkit-box-align: center;
@@ -228,7 +232,10 @@
 }
 
 .bus-rating-l i {
-    margin-right: 5px;
+    color: #fff;
+    font-size: 13px;
+    padding:5px;
+    
     color: #ffcc00;
 }
 
@@ -236,6 +243,7 @@
 .from-to-l,
 .social-proof-l {
     margin-top: 10px;
+
 }
 
 .social-proof-l {
@@ -271,14 +279,10 @@
     border-radius: 3px;
 }
 
-.action-l {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    align-items: center;
-}
+
 
 .action-train {
+    /* position: absolute; */
     bottom: 0;
     right: 0;
 }
@@ -366,10 +370,7 @@
     font-size: 14px;
 }
 
-.bus-rating-l i {
-    color: #fff;
-    font-size: 13px;
-}
+
 
 .bus-name-l button {
     border-radius: 2px;
@@ -377,14 +378,14 @@
     color: white;
     font-size: 14px;
     padding: 0px 8px;
-    border: 0px;
+border: 0px;
 }
 
 .fare-info-l-train {
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 52%;
+    width: 40%;
     text-align: right;
 }
 
@@ -403,7 +404,7 @@
 
 .full-trip-l {
     font-size: 14px;
-    width: 60%;
+    /* width: 60%; */
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -416,15 +417,18 @@
     text-transform: uppercase;
     text-align: right;
     width: 40%;
+    margin-bottom: 20px;
 }
 
 .ant-btn-link-l span {
     text-decoration: underline;
 }
 
+/* -------------------------------------------------------- */
+
 /* Detail */
 .container-textSeat {
-    display: flex;
+    
     justify-items: center;
     justify-content: space-between;
 }
@@ -433,12 +437,7 @@
     float: right;
 }
 
-.action-l {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    align-items: center;
-}
+
 
 .action-l .ant-btn {
     padding: 10px 20px;
@@ -454,6 +453,7 @@
 }
 
 .notify-trip-l {
+    margin-top: -20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -462,9 +462,7 @@
     width: 100%;
 }
 
-.activetrain {
-    color: #007bff;
-}
+
 
 .container-select-train {
     display: flex;
@@ -554,7 +552,7 @@
 
 .row-utility .icon-text p {
     max-width: 70%;
-    margin: 0;
+margin: 0;
     color: green;
 }
 
@@ -642,6 +640,11 @@
     padding: 0px 8px;
     border: 0px;
 }
+.action-l {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+}
 
 .list-gr-review .avatar-review {
     margin: 4px;
@@ -653,7 +656,7 @@
 }
 
 .list-gr-review .item-check-review {
-    color: #04aa6d;
+    color: #04AA6D;
 }
 
 .list-gr-review .thumb-img-review {
@@ -684,6 +687,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 
 .image-tab .swiper {
     width: 100%;
@@ -733,7 +737,7 @@
 
 .steps-container-train {
     display: flex;
-    align-items: center;
+align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     position: relative;
@@ -802,6 +806,7 @@
     scroll-behavior: smooth;
     overflow: auto;
     padding-bottom: 10px;
+
 }
 
 .coupon-container-train .locomotive {
@@ -870,6 +875,7 @@
     align-content: center;
     color: white;
     border-radius: 5px;
+
 }
 
 .flex-coupon-train .text-coupon-train {
@@ -883,7 +889,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 12px;
-    margin-bottom: 0px;
+margin-bottom: 0px;
     color: rgb(47, 128, 237);
     text-transform: uppercase;
 }
@@ -944,6 +950,7 @@
     gap: 10px;
 }
 
+
 .seat-info-train .seat-unavailable-train svg rect {
     stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
@@ -980,8 +987,7 @@
     cursor: not-allowed;
 }
 
-.coach-row-train .seat,
-.coach-row-train .train-hl {
+.coach-row-train .seat, .coach-row-train .train-hl {
     padding: 4px;
     border: 0 !important;
 }
@@ -1042,7 +1048,6 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-
 .coach-row-train .seat-train .modal-choose-chair-train {
     margin: 4px;
 }
@@ -1074,6 +1079,7 @@
     margin: auto;
 }
 
+
 .container-contract-train .input-group-train {
     display: flex;
     justify-content: space-between;
@@ -1084,8 +1090,8 @@
     border-color: #d6d4d4;
 }
 
-.form-control:focus ~ .form-label,
-.form-control:not(:placeholder-shown) ~ .form-label {
+.form-control:focus~.form-label,
+.form-control:not(:placeholder-shown)~.form-label {
     top: -0.75rem;
     left: 0.75rem;
     font-size: 0.75rem;
@@ -1146,7 +1152,7 @@
     align-items: center;
 }
 
-.container-qr {
+.container-qr .qrcode-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1155,10 +1161,55 @@
     box-sizing: border-box;
 }
 
+.qrcode-content .row-train {
+    flex-wrap: wrap;
+    min-height: 150px;
+
+}
+
+.qrcode-content .col-train {
+    flex: 1 1 100px;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.row-train .item-abate i {
+    font-size: 40px;
+}
+
+
+.qrcode-content .item-col-train {
+    flex: 2 1 200px;
+    max-width: 100%;
+}
+
+.qrcode-content .img-fluid-train {
+    max-width: 40%;
+    height: auto;
+}
+
+.qrcode-content .qrcode-item {
+    width: 85%;
+    height: auto;
+}
+
+.request {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    background-color: white;
+    width: 95%;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+}
+
 .total-amount-train {
     width: 100%;
     border-top: 1px solid rgb(192, 192, 192);
-    padding: 16px 0px 8px;
+padding: 16px 0px 8px;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -1205,6 +1256,20 @@
     margin-right: 8px;
 }
 
+.item-col-train .img-custom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.item-col-train .img-custom img {
+    width: 10%;
+    max-width: 50%;
+    height: auto;
+}
+
+/* Định dạng chung cho các bước điều hướng */
 .navigation-step {
     display: inline-block;
     padding: 5px;
@@ -1224,6 +1289,7 @@
     color: #333;
 }
 
+/* Định dạng cho các nút điều hướng */
 .navigation-button {
     padding: 10px 15px;
     margin: 5px;
@@ -1240,6 +1306,7 @@
     background-color: #0056b3;
 }
 
+/* Định dạng cho nội dung các bước */
 .step-content {
     display: none;
     /* Mặc định ẩn nội dung */
@@ -1287,4 +1354,84 @@
 .tab-content > .tab-pane.show {
     opacity: 1;
     visibility: visible;
+}
+.hKzvNB {
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 8px;
+    gap: 4px;
+    background: rgb(236, 244, 253);
+}
+.hKzvNB .tail-contai {
+margin-left: 10px;
+}
+.icyEgM .item-container {
+    width: 49%;
+    flex: 0 0 calc(50% - 10px); 
+    box-sizing: border-box;
+    margin-top: -20px;
+}
+.icyEgM{
+    margin-top: 12px;
+}
+.icyEgM .top-group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.gsoyHR {
+    flex-direction: column;
+    
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    border-radius: 4px;
+    padding: 8px;
+}
+.gsoyHR .inner-container {
+    width: 100%;
+    padding: 12px; 
+    background-color: rgb(242, 242, 242);
+    border-radius: 4px
+}
+.ksUtjh {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 12px;
+    margin-bottom: 0px;
+}
+.hbMYEr {
+    color: rgb(36, 116, 229);
+}
+
+.gsoyHR .bottom-container {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3px;
+}
+.top-group {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 16px; 
+}
+
+
+
+
+.carriage-description {
+    margin-top: 8px; 
+    font-size: 14px; 
+    color: #666; 
+}
+.carriage-details {
+    display: none; /* Ẩn mô tả mặc định */
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    background-color: #f9f9f9;
 }
