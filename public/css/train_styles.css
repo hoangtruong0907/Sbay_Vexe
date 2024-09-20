@@ -1355,33 +1355,33 @@ padding: 16px 0px 8px;
     opacity: 1;
     visibility: visible;
 }
-.hKzvNB {
+.bigger-main {
     -webkit-box-align: center;
     align-items: center;
     border-radius: 8px;
     gap: 4px;
     background: rgb(236, 244, 253);
 }
-.hKzvNB .tail-contai {
+.bigger-main .tail-contai {
 margin-left: 10px;
 }
-.icyEgM .item-container {
+.cavity .item-container {
     width: 49%;
     flex: 0 0 calc(50% - 10px); 
     box-sizing: border-box;
     margin-top: -20px;
 }
-.icyEgM{
+.cavity{
     margin-top: 12px;
 }
-.icyEgM .top-group {
+.cavity .top-group {
     display: flex;
     flex-direction: row;
     margin-bottom: 8px;
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
-.gsoyHR {
+.compartments {
     flex-direction: column;
     
     align-items: flex-start;
@@ -1390,23 +1390,23 @@ margin-left: 10px;
     border-radius: 4px;
     padding: 8px;
 }
-.gsoyHR .inner-container {
+.compartments .inner-container {
     width: 100%;
     padding: 12px; 
     background-color: rgb(242, 242, 242);
     border-radius: 4px
 }
-.ksUtjh {
+.Numberofcompartments {
     font-size: 13px;
     font-weight: 700;
     line-height: 12px;
     margin-bottom: 0px;
 }
-.hbMYEr {
+.priceToTrain {
     color: rgb(36, 116, 229);
 }
 
-.gsoyHR .bottom-container {
+.compartments .bottom-container {
     display: flex;
     flex-direction: row;
     -webkit-box-pack: justify;

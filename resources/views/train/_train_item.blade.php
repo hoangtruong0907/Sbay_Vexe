@@ -48,7 +48,7 @@
                             <path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2"
                                 stroke-dasharray="0 7" d="M7 13.5v46"></path>
                             <g fill="none" stroke="#484848" stroke-width="3">
-<circle cx="7" cy="7" r="7" stroke="none"></circle>
+                                <circle cx="7" cy="7" r="7" stroke="none"></circle>
                                 <circle cx="7" cy="7" r="5.5"></circle>
                             </g>
                             <path
@@ -78,17 +78,19 @@
                                     </svg>
                                     </svg>
                                 </div>
-                                <div class="duration-l">@php
-                                    $hours = floor($route['duration'] / 60);
-                                    $minutes = $route['duration'] % 60;
-                                    @endphp
+                                <div class="duration-l">
+
+                                    <?php
+                                    $hours = floor($route['duration'] / 60);  // Tính số giờ
+                                    $minutes = $route['duration'] % 60;       // Tính số phút
+                                    ?>
                                     {{ $hours }}h{{ $minutes }}m
                                 </div>
                             </div>
                             <div class="content-l to-l">
                                 <div class="content-to-info-l">
                                     <div class="hour-l">{{ $route['arrival_time'] }} </div>
-<div class="place-l">Ga {{ $route['arrival_place'] }}</div>
+                                    <div class="place-l">Ga {{ $route['arrival_place'] }}</div>
 
                                 </div>
                             </div>
@@ -119,11 +121,11 @@
             </div>
         </div>
         <div class="notify-trip-l">
-        <div class="full-trip-l">
-    <span>*</span>
-    
-    <p>Vé chặng thuộc chuyến {{ $route['time'] }} - {{ $route['arrival_time'] }} ngày {{ $route['date'] }} Ga {{ $route['departure_place'] }} - Ga {{ $route['arrival_place'] }}</p>
-</div>
+            <div class="full-trip-l">
+                <span>*</span>
+
+                <p>Vé chặng thuộc chuyến {{ $route['time'] }} - {{ $route['arrival_time'] }} ngày {{ $route['date'] }} Ga {{ $route['departure_place'] }} - Ga {{ $route['arrival_place'] }}</p>
+            </div>
             <div class="content-has-cop">
                 <div class="nonePay">Không cần thanh toán trước</div>
             </div>
@@ -131,29 +133,30 @@
         <div class="container-textSeat">
 
 
-            <div class="TrainGroupClass__Container-sc-1go2gxb-0 icyEgM">
+            <div class="TrainGroupClass__Container-sc-1go2gxb-0 cavity">
                 <div class="top-group" id="carriageContainer">
                     <!-- Lặp qua danh sách khoang tàu -->
                     @foreach ($route['carriage_list'] as $carriage)
                     <div class="item-container carriage-item">
-                        <div class="TrainGroupClassItem__Container-sc-1ucei7x-0 gsoyHR">
+                        <div class="TrainGroupClassItem__Container-sc-1ucei7x-0 compartments">
                             <div class="inner-container">
                                 <div>
-                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 ksUtjh color--darkness">
+                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 
+Numberofcompartments color--darkness">
                                         Số khoang: {{ $carriage['carriage_number'] }}
                                     </div>
                                     <div class="carriage-description">
-{{ $carriage['carriage_description'] }}
+                                        {{ $carriage['carriage_description'] }}
                                     </div>
                                 </div>
                                 <div class="bottom-container">
                                     <div class="Hstack">
-                                        <div class="base__Caption02-sc-1tvbuqk-33 hbMYEr color--vex-blue">
+                                        <div class="base__Caption02-sc-1tvbuqk-33 priceToTrain color--vex-blue">
                                             {{ $carriage['min_price'] }}K
                                         </div>
                                     </div>
                                     <div class="chip-text bg--lighter-border">
-                                        <div class="base__Caption02-sc-1tvbuqk-33 hbMYEr color--dark">
+                                        <div class="base__Caption02-sc-1tvbuqk-33 priceToTrain color--dark">
                                             Còn {{ $carriage['available_carriage_seats'] }} chỗ
                                         </div>
                                     </div>
@@ -180,7 +183,7 @@
         <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{ $key }}" data-bs-parent="#item-bus-{{ $key }}">
             <hr>
             <div class="container ticket-detail-container ps-3 pe-3">
-                <div class="hKzvNB">
+                <div class="bigger-main">
                     <div class="tail-contai">
                         <img class="contain-description lazyloaded" data-src="https://storage.googleapis.com/fe-production/images/image_dsvn.png" src="https://storage.googleapis.com/fe-production/images/image_dsvn.png" alt="default-alt" width="32" height="18">
                         <p class=" gjECjS color--dark">{{$route['segments'][0]['train_number']}}</p>
@@ -197,7 +200,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pickup-tab-{{ $key }}" data-bs-toggle="pill"
-data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
+                            data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                             aria-controls="pickup-{{ $key }}" aria-selected="false">Tiện ích (6)
                         </button>
                     </li>
@@ -247,7 +250,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
 
 
 
-<div class="train-items">
+                                <div class="train-items">
                                     @foreach ($route['carriage_list'] as $carriage)
                                     <div class="carriage-item">
                                         <p class="mb-0 number">{{ $carriage['carriage_number'] }}</p>
@@ -255,7 +258,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                     @endforeach
                                 </div>
 
-                                
+
 
 
 
@@ -302,7 +305,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star-half-stroke"></i>
-<i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
                                 </div>
                                 <div class="text-wrap">73 Đánh giá</div>
                             </div>
@@ -346,7 +349,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                                 <div class="fw-bold">An toàn</div>
                                                 <div class="fw-bold">3.6</div>
                                             </div>
-<div class="progress">
+                                            <div class="progress">
                                                 <div class="progress-bar" role="progressbar" aria-label="Basic example"
                                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -388,7 +391,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                         <div cl p-0">
                                             <div class="d-flex justify-content-between">
                                                 <div class="fw-bold">An toàn</div>
-<div class="fw-bold">3.6</div>
+                                                <div class="fw-bold">3.6</div>
                                             </div>
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar" aria-label="Basic example"
@@ -433,7 +436,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                         class="fa-solid fa-star"></i>(12)</button>
                             </li>
                         </ul>
-<div class="list-group w-100 list-gr-review">
+                        <div class="list-group w-100 list-gr-review">
                             <div class="list-group-item list-group-item-action p-3" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <div class="d-flex user-review">
@@ -470,7 +473,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                 <div class="d-flex align-items-center">
                                     <small class="">Đã đi ngày 29/07/2024</small>
                                     <div class="item-check-review ms-1">
-<i class="fa-solid fa-ticket"></i>
+                                        <i class="fa-solid fa-ticket"></i>
                                         <small>Đã mua vé</small>
                                     </div>
                                 </div>
@@ -509,7 +512,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                 </div>
 
                                 <div class="d-flex align-items-center">
-<small class="">Đã đi ngày 29/07/2024</small>
+                                    <small class="">Đã đi ngày 29/07/2024</small>
                                     <div class="item-check-review ms-1">
                                         <i class="fa-solid fa-ticket"></i>
                                         <small>Đã mua vé</small>
@@ -546,7 +549,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                     <img class="thumb-img-review"
                                         src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
                                         alt="thumb-1">
-</div>
+                                </div>
                                 <div class="d-flex align-items-center">
                                     <small class="">Đã đi ngày 29/07/2024</small>
                                     <div class="item-check-review ms-1">
@@ -594,7 +597,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
                                         <li>
                                             <a id="carousel-thumb-1" class="img-train">
                                                 <img src="https://i.ytimg.com/vi/ZuTXtYiNmBE/maxresdefault.jpg;text=2">
-</a>
+                                            </a>
                                         </li>
                                         <li>
                                             <a id="carousel-thumb-2" class="selected img-train">
@@ -651,7 +654,7 @@ data-bs-target="#pickup-{{ $key }}" type="button" role="tab"
         // Các loại ghế
         document.addEventListener('DOMContentLoaded', function() {
             const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
-const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
+            const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
             const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
 
             detailButton.addEventListener('click', function() {
@@ -726,7 +729,7 @@ const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
             }
 
             // Hiển thị nội dung của bước mới
-let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+            let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
             if (newContent) {
                 newContent.style.display = 'block';
             }
@@ -786,7 +789,7 @@ let newContent = document.getElementById(`content-step-${currentStep}-${currentK
 
             // Lấy tất cả các nội dung bước và nút cho bài mới
             const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
-const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
+            const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
 
             // Ẩn tất cả các nội dung
             allContents.forEach(c => c.classList.remove('step-content-custom-show'));
