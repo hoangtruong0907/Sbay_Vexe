@@ -670,7 +670,7 @@
 .image-tab .carousel-item-next,
 .image-tab .carousel-item-prev,
 .image-tab .carousel-item.active {
-    transition: t !important;
+    transition: none !important;
 }
 
 .image-tab .carousel-item-next,
@@ -722,7 +722,6 @@
 }
 
 .image-tab .carousel-inner {
-    /* background-color: #333333c4; */
     border-radius: 8px;
     padding: 10px;
     display: flex;

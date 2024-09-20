@@ -118,9 +118,9 @@
         <div class="collapse ticket-step-collapse" id="ticket-step-collapse-{{ $key }}"
             data-bs-parent="#item-bus-{{ $key }}">
             @include("train._train_stepChooseSeat", [
-    $key,
-    'carriage_list' => $route['carriage_list'] ?? [],
-])
+            $key,
+            'carriage_list' => $route['carriage_list'] ?? [],
+            ])
         </div>
 
         <div class="collapse ticket-detail-collapse" id="ticket-detail-collapse-{{ $key }}"
@@ -162,14 +162,14 @@
                         <div class=" d-flex gap-2 ">
                             <div class="container-select-train">
                                 @foreach ($list_routes_train[$key]['carriage_list'] as $carriage)
-                                    <div class="wrap-couponTrain">
-                                        <button class="wrap-coupon btn border py-2 "
-                                            data-btn-id="{{$carriage['carriage_number']}}"
-                                            onclick="highlightNumbers([{{$carriage['carriage_name_app']}}], '{{$carriage['carriage_number']}}')">
-                                            <p class="mb-0">{{$carriage['carriage_description']}}
-                                                ({{$carriage['available_carriage_seats']}})</p>
-                                        </button>
-                                    </div>
+                                <div class="wrap-couponTrain">
+                                    <button class="wrap-coupon btn border py-2 "
+                                        data-btn-id="{{$carriage['carriage_number']}}"
+                                        onclick="highlightNumbers([{{$carriage['carriage_name_app']}}], '{{$carriage['carriage_number']}}')">
+                                        <p class="mb-0">{{$carriage['carriage_description']}}
+                                            ({{$carriage['available_carriage_seats']}})</p>
+                                    </button>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -445,62 +445,63 @@
                                         alt="thumb-1">
                                 </div>
 
-                        <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày 29/07/2024</small>
-                            <div class="item-check-review ms-1">
-                                <i class="fa-solid fa-ticket"></i>
-                                <small>Đã mua vé</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action p-3" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <div class="d-flex user-review">
-                                <img class="avatar-review"
-                                    src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
-                                    alt="anh-dai-dien" srcset="">
-                                <div class="d-flex flex-column mt-1 ms-1">
-                                    <h6 class="mb-1">List group item heading</h6>
-                                    <div class="d-flex align-items-center star-rating" style="color: rgb(255, 199, 0);">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half-stroke"></i>
-                                        <i class="fa-regular fa-star"></i>
+                                <div class="d-flex align-items-center">
+                                    <small class="">Đã đi ngày 29/07/2024</small>
+                                    <div class="item-check-review ms-1">
+                                        <i class="fa-solid fa-ticket"></i>
+                                        <small>Đã mua vé</small>
                                     </div>
                                 </div>
                             </div>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">The single cabin was nice. The bed was a little short,
-                            but it was wide and pleasant. Each cabin was provided with bottled
-                            water, wet wipes and blankets. The bed was clean and the staff was very
-                            friendly, so I had a great experience.</p>
-                        <div class="d-flex list-img-review flex-row">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
-                                alt="thumb-1">
-                            <img class="thumb-img-review"
-                                src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
-                                alt="thumb-1">
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <small class="">Đã đi ngày 29/07/2024</small>
-                            <div class="item-check-review ms-1">
-                                <i class="fa-solid fa-ticket"></i>
-                                <small>Đã mua vé</small>
+                            <div class="list-group-item list-group-item-action p-3" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div class="d-flex user-review">
+                                        <img class="avatar-review"
+                                            src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                            alt="anh-dai-dien" srcset="">
+                                        <div class="d-flex flex-column mt-1 ms-1">
+                                            <h6 class="mb-1">List group item heading</h6>
+                                            <div class="d-flex align-items-center star-rating"
+                                                style="color: rgb(255, 199, 0);">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <small>3 days ago</small>
+                                </div>
+                                <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    but it was wide and pleasant. Each cabin was provided with bottled
+                                    water, wet wipes and blankets. The bed was clean and the staff was very
+                                    friendly, so I had a great experience.</p>
+                                <div class="d-flex list-img-review flex-row">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/6539305fb14952972dabefd10d4402b3.jpg"
+                                        alt="thumb-1">
+                                    <img class="thumb-img-review"
+                                        src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg"
+                                        alt="thumb-1">
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <small class="">Đã đi ngày 29/07/2024</small>
+                                    <div class="item-check-review ms-1">
+                                        <i class="fa-solid fa-ticket"></i>
+                                        <small>Đã mua vé</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel" aria-labelledby="image-tab"
-                tabindex="3">
-                <div class="d-flex flex-column w-100 h-100 m-2">
-                    <div class="row" id="slider">
-                        <div class="col-md-12">
-                            <div id="myCarousel" class="carousel slide">
-                                <div class="carousel-inner">
+                    <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel"
+                        aria-labelledby="image-tab" tabindex="3">
+                        <div class="d-flex flex-column w-100 h-100 m-2">
+                            <div class="row" id="slider">
+                                <div class="col-md-12">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <div class="carousel-inner">
 
                                         </div>
 
@@ -520,46 +521,53 @@
                                 </div>
                             </div>
 
-                            <div class="row slide-trains">
-                                <div class="col-md-12" id="slider-thumbs">
-                                    <ul class="list-inline listImg-train">
-                                        <li>
-                                            <a id="carousel-thumb-0" class="selected img-train">
-                                                <img src="https://i.ytimg.com/vi/59QlUqt2c_Y/maxresdefault.jpg;text=1">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a id="carousel-thumb-1" class="img-train">
-                                                <img src="https://i.ytimg.com/vi/ZuTXtYiNmBE/maxresdefault.jpg;text=2">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a id="carousel-thumb-2" class="selected img-train">
-                                                <img src="https://i.ytimg.com/vi/rCtX_s1odhw/maxresdefault.jpg;text=3">
-                                            </a>
-                                        </li>
-                                    </ul>
+                            <div id="carouselTrainAutoplaying-{{ $key }}" class="carousel slide"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="https://i.ytimg.com/vi/59QlUqt2c_Y/maxresdefault.jpg;text=1"
+                                            class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://i.ytimg.com/vi/ZuTXtYiNmBE/maxresdefault.jpg;text=2"
+                                            class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://i.ytimg.com/vi/rCtX_s1odhw/maxresdefault.jpg;text=3"
+                                            class="d-block w-100" alt="...">
+                                    </div>
                                 </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselTrainAutoplaying-{{ $key }}" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselTrainAutoplaying-{{ $key }}" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Kiểm tra phần tử nút và collapse
         var chooseTripBtn = document.getElementById('chooseTripBtn');
         var ticketCollapse = document.getElementById('ticket-step-collapse-{{ $key }}');
         var detailBtn = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
         var detailCollapse = document.getElementById('ticket-detail-collapse-{{ $key }}');
 
-        
+
         if (chooseTripBtn && ticketCollapse && detailBtn && detailCollapse) {
             // Lắng nghe sự kiện khi phần chọn chuyến đang mở
-            ticketCollapse.addEventListener('show.bs.collapse', function () {
+            ticketCollapse.addEventListener('show.bs.collapse', function() {
                 chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Đóng';
                 // Đóng phần thông tin chi tiết nếu đang mở
                 if (detailCollapse.classList.contains('show')) {
@@ -568,12 +576,12 @@
             });
 
             // Lắng nghe sự kiện khi phần chọn chuyến đóng
-            ticketCollapse.addEventListener('hide.bs.collapse', function () {
+            ticketCollapse.addEventListener('hide.bs.collapse', function() {
                 chooseTripBtn.querySelector('.text-chooseeTrip').textContent = 'Chọn chuyến';
             });
 
             // Lắng nghe sự kiện khi phần thông tin chi tiết mở
-            detailCollapse.addEventListener('show.bs.collapse', function () {
+            detailCollapse.addEventListener('show.bs.collapse', function() {
                 // Đóng phần chọn chuyến nếu đang mở
                 if (ticketCollapse.classList.contains('show')) {
                     bootstrap.Collapse.getInstance(ticketCollapse).hide();
@@ -592,41 +600,40 @@
 
     // Các loại ghế
     document.addEventListener('DOMContentLoaded', function() {
-    const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
-    const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
-    const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
+        const detailButton = document.querySelector('[data-bs-target="#ticket-detail-collapse-{{ $key }}"]');
+        const firstTab = document.querySelector('#coupon-tab-{{ $key }}');
+        const targetCollapse = document.querySelector(detailButton.getAttribute('data-bs-target'));
 
-    detailButton.addEventListener('click', function() {
-        if (!targetCollapse.classList.contains('show')) {
-            // Kích hoạt tab "Các loại ghế" ngay lập tức
-            if (firstTab) {
-                const tab = new bootstrap.Tab(firstTab);
-                tab.show();
+        detailButton.addEventListener('click', function() {
+            if (!targetCollapse.classList.contains('show')) {
+                // Kích hoạt tab "Các loại ghế" ngay lập tức
+                if (firstTab) {
+                    const tab = new bootstrap.Tab(firstTab);
+                    tab.show();
+                }
+                // Hiển thị collapse
+                const collapse = new bootstrap.Collapse(targetCollapse, {
+                    toggle: true
+                });
             }
-            // Hiển thị collapse
-            const collapse = new bootstrap.Collapse(targetCollapse, {
-                toggle: true
-            });
-        }
+        });
     });
-});
-
-</script>
-<script>
+    </script>
+    <script>
     function highlightNumbers(indices, selectedButtonId) {
         var numbers = document.querySelectorAll('.number');
-        numbers.forEach(function (num) {
+        numbers.forEach(function(num) {
             num.classList.remove('activetrain');
         });
 
-        indices.forEach(function (index) {
+        indices.forEach(function(index) {
             if (index > 0 && index <= numbers.length) {
                 numbers[index - 1].classList.add('activetrain');
             }
         });
 
         var buttons = document.querySelectorAll('.btn');
-        buttons.forEach(function (btn) {
+        buttons.forEach(function(btn) {
             if (btn.getAttribute('data-btn-id') === selectedButtonId) {
                 btn.classList.add('button-active');
                 btn.classList.remove('button-default');
@@ -636,129 +643,127 @@
             }
         });
     }
-</script>
+    </script>
 
 
-   <script>
-      let currentStep = 1;
-let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
+    <script>
+    let currentStep = 1;
+    let currentKey = ''; // Biến để lưu trữ giá trị key hiện tại
 
-function navigateStep(direction, key) {
-    if (currentKey !== key) {
-        // Nếu key thay đổi, đặt lại bước hiện tại về 1
-        currentStep = 1;
-        currentKey = key;
+    function navigateStep(direction, key) {
+        if (currentKey !== key) {
+            // Nếu key thay đổi, đặt lại bước hiện tại về 1
+            currentStep = 1;
+            currentKey = key;
+        }
+
+        // Ẩn nội dung bước hiện tại
+        let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+        if (currentContent) {
+            currentContent.style.display = 'none';
+        }
+
+        let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+        if (currentStepElement) {
+            currentStepElement.classList.remove('navigation-step-active');
+            currentStepElement.classList.add('navigation-step-inactive');
+        }
+
+        // Cập nhật bước hiện tại
+        if (direction === 'next' && currentStep < 3) {
+            currentStep++;
+        } else if (direction === 'previous' && currentStep > 1) {
+            currentStep--;
+        }
+
+        // Hiển thị nội dung của bước mới
+        let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
+        if (newContent) {
+            newContent.style.display = 'block';
+        }
+
+        let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
+        if (newStepElement) {
+            newStepElement.classList.add('navigation-step-active');
+            newStepElement.classList.remove('navigation-step-inactive');
+        }
+
+        // Ẩn class wizard-step-train cho bước 2 và 3
+        const wizardStepTrain = document.querySelector('.card-body-train');
+        const stepContent = document.querySelector('.step-content');
+        if (wizardStepTrain) {
+            if (currentStep === 2 || currentStep === 3) {
+                wizardStepTrain.style.display = 'none';
+                stepContent.style.display = 'none';
+            } else {
+                wizardStepTrain.style.display = 'block';
+                stepContent.style.display = 'block';
+            }
+        }
+
+        // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
+        if (currentStep === 2) {
+            let step1Element = document.getElementById(`step-${currentKey}`);
+            if (step1Element) {
+                step1Element.classList.remove('navigation-step-active');
+                step1Element.classList.add('navigation-step-inactive');
+            }
+        }
+
+        // Đổi màu bước hiện tại
+        if (currentStep === 1) {
+            let step1Element = document.getElementById(`step-${currentKey}`);
+            if (step1Element) {
+                step1Element.classList.remove('navigation-step-inactive');
+                step1Element.classList.add('navigation-step-active');
+            }
+            // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
+            let step2Element = document.getElementById(`step-2-${currentKey}`);
+            if (step2Element) {
+                step2Element.classList.remove('navigation-step-active');
+                step2Element.classList.add('navigation-step-inactive');
+            }
+            let step3Element = document.getElementById(`step-3-${currentKey}`);
+            if (step3Element) {
+                step3Element.classList.remove('navigation-step-active');
+                step3Element.classList.add('navigation-step-inactive');
+            }
+        }
     }
 
-    // Ẩn nội dung bước hiện tại
-    let currentContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (currentContent) {
-        currentContent.style.display = 'none';
-    }
+    function toggleCustomContent(key, step) {
+        const button = document.getElementById(`button-step-custom-${step}-${key}`);
+        const content = document.getElementById(`content-step-custom-${step}-${key}`);
 
-    let currentStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (currentStepElement) {
-        currentStepElement.classList.remove('navigation-step-active');
-        currentStepElement.classList.add('navigation-step-inactive');
-    }
+        // Lấy tất cả các nội dung bước và nút cho bài mới
+        const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
+        const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
 
-    // Cập nhật bước hiện tại
-    if (direction === 'next' && currentStep < 3) {
-        currentStep++;
-    } else if (direction === 'previous' && currentStep > 1) {
-        currentStep--;
-    }
+        // Ẩn tất cả các nội dung
+        allContents.forEach(c => c.classList.remove('step-content-custom-show'));
+        // Làm tất cả các nút không hoạt động
+        allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
 
-    // Hiển thị nội dung của bước mới
-    let newContent = document.getElementById(`content-step-${currentStep}-${currentKey}`);
-    if (newContent) {
-        newContent.style.display = 'block';
-    }
-
-    let newStepElement = document.getElementById(`step-${currentStep}-${currentKey}`);
-    if (newStepElement) {
-        newStepElement.classList.add('navigation-step-active');
-        newStepElement.classList.remove('navigation-step-inactive');
-    }
-
-    // Ẩn class wizard-step-train cho bước 2 và 3
-    const wizardStepTrain = document.querySelector('.card-body-train');
-    const stepContent = document.querySelector('.step-content');
-    if (wizardStepTrain) {
-        if (currentStep === 2 || currentStep === 3) {
-            wizardStepTrain.style.display = 'none';
-            stepContent.style.display = 'none';
+        if (!content.classList.contains('step-content-custom-show')) {
+            content.classList.add('step-content-custom-show');
+            button.classList.add('navigation-button-custom-active');
         } else {
-            wizardStepTrain.style.display = 'block';
-            stepContent.style.display = 'block';
+            content.classList.remove('step-content-custom-show');
+            button.classList.remove('navigation-button-custom-active');
         }
+
     }
 
-    // Đặt lại trạng thái bước 1 nếu đang ở bước 2 hoặc 3
-    if (currentStep === 2) {
-        let step1Element = document.getElementById(`step-${currentKey}`);
-        if (step1Element) {
-            step1Element.classList.remove('navigation-step-active');
-            step1Element.classList.add('navigation-step-inactive');
-        }
-    }
-
-    // Đổi màu bước hiện tại
-    if (currentStep === 1) {
-        let step1Element = document.getElementById(`step-${currentKey}`);
-        if (step1Element) {
-            step1Element.classList.remove('navigation-step-inactive');
-            step1Element.classList.add('navigation-step-active');
-        }
-        // Nếu đang ở bước 1, đặt lại bước 2 và 3 về trạng thái ban đầu
-        let step2Element = document.getElementById(`step-2-${currentKey}`);
-        if (step2Element) {
-            step2Element.classList.remove('navigation-step-active');
-            step2Element.classList.add('navigation-step-inactive');
-        }
-        let step3Element = document.getElementById(`step-3-${currentKey}`);
-        if (step3Element) {
-            step3Element.classList.remove('navigation-step-active');
-            step3Element.classList.add('navigation-step-inactive');
-        }
-    }
-}
-
-function toggleCustomContent(key, step) {
-    const button = document.getElementById(`button-step-custom-${step}-${key}`);
-    const content = document.getElementById(`content-step-custom-${step}-${key}`);
-
-    // Lấy tất cả các nội dung bước và nút cho bài mới
-    const allContents = document.querySelectorAll(`.step-content-custom[data-key="${key}"]`);
-    const allButtons = document.querySelectorAll(`.navigation-button-custom[data-key="${key}"]`);
-
-    // Ẩn tất cả các nội dung
-    allContents.forEach(c => c.classList.remove('step-content-custom-show'));
-    // Làm tất cả các nút không hoạt động
-    allButtons.forEach(b => b.classList.remove('navigation-button-custom-active'));
-
-    if (!content.classList.contains('step-content-custom-show')) {
-        content.classList.add('step-content-custom-show');
-        button.classList.add('navigation-button-custom-active');
-    } else {
-        content.classList.remove('step-content-custom-show');
-        button.classList.remove('navigation-button-custom-active');
-    }
-    
-}
-
-// Thêm sự kiện click cho tất cả các nút
-document.querySelectorAll('.navigation-button-custom').forEach(button => {
-    button.addEventListener('click', () => {
-        const key = button.getAttribute('data-key');
-        const step = button.getAttribute('data-step');
-        toggleCustomContent(key, step);
+    // Thêm sự kiện click cho tất cả các nút
+    document.querySelectorAll('.navigation-button-custom').forEach(button => {
+        button.addEventListener('click', () => {
+            const key = button.getAttribute('data-key');
+            const step = button.getAttribute('data-step');
+            toggleCustomContent(key, step);
+        });
     });
-});
 
-        function clearInput(inputId) {
+    function clearInput(inputId) {
         document.getElementById(inputId).value = '';
     }
-   </script>
-
-
+    </script>
