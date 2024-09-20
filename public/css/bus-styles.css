@@ -2227,6 +2227,7 @@ body h6 {
     flex-direction: column;
     padding: 12px 20px;
 }
+<<<<<<< public/css/bus-styles.css
 text-pick-up-point-maps {
     margin-left: 4px;
     text-decoration: underline;
@@ -2402,4 +2403,9 @@ li span.tree-switcher {
     margin-left: 3rem;
     list-style: none; 
     padding-left: 0;
+}
+.button-infor-train{
+    margin-left: 4px;
+    border:none;
+    text-decoration: underline;
 }

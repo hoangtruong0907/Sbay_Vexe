@@ -706,3 +706,156 @@ html [type="button"] {
     right: 0;
     background-color: white;
 }
+
+/* Search User Train */
+.block-search-user {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.block-search-user .user-component {
+    position: relative;
+}
+
+.block-search-user .select-user {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 2px;
+    width: max-content;
+}
+
+.block-search-user .select-user:hover {
+    cursor: pointer;
+    background-color: rgb(236, 244, 253);
+}
+
+.block-search-user .block-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-feature-settings: "liga" 0;
+    color: rgb(20, 20, 20);
+}
+
+.block-search-user .user-component .user-block-items {
+    position: absolute;
+    top: 100%;
+    width: max-content;
+    height: max-content;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    padding: 0px 16px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 8px;
+    z-index: 9;
+    display: none;
+    box-shadow: 5px 5px 10px -2px;
+}
+
+.block-search-user .user-component .user-block-items.active {
+    display: block;
+}
+
+.block-search-user .user-component .icon-arrow.active-icon {
+    transform: rotate(3.142rad);
+}
+
+.block-search-user .user-component .user-block-items .item-info {
+    position: relative;
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.block-search-user .user-component .user-block-items .item-info .item-title-decs {
+    max-width: 205px;
+}
+
+.block-search-user .user-component .user-block-items .item-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(20, 20, 20);
+}
+
+.block-search-user .user-component .user-block-items .item-decs {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(133, 133, 133);
+}
+
+.block-search-user .user-component .user-block-items .item-action {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.block-search-user .user-component .user-block-items .item-action .item-number {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(20, 20, 20);
+}
+
+.block-search-user .user-component .user-block-items .item-action .action {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    background: rgb(242, 242, 242);
+    padding: 0px;
+    border: 0px;
+}
+
+.block-search-user .user-component .user-block-items .item-action .action.active {
+    background: rgb(236, 244, 253);
+    color: rgb(36, 116, 229);
+    border: none;
+}
+
+.block-search-user .user-component .user-block-items .icon-close {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 1%;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.block-search-user .user-component .user-block-items .icon-close i {
+    font-size: 20px;
+    color: #eb5757;
+}
+.block-search-user .user-component .user-block-items .icon-close i:hover {
+    cursor: pointer;
+    color: red;
+}
