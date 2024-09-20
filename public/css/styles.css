@@ -1,6 +1,5 @@
-
 body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa !important;
     font-size: 15px !important;
 }
 
@@ -65,7 +64,7 @@ a {
     font-size: 14px !important;
 }
 
-.ijyXqH {
+.button-nav {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -86,7 +85,7 @@ body .material-icons-wrapper.md-20 {
     display: flex;
 }
 
-.boemqK {
+.content-button-nav {
     margin-bottom: 0rem;
     font-weight: 600;
     font-size: 14px;
@@ -398,8 +397,6 @@ body .material-icons-wrapper.md-20 {
     box-shadow: 1px 1px 4px 0px #ccc;
 }
 
-/* PC size */
-/* custom select slim */
 .custom-input-container .bus_from_input,
 .custom-input-container .bus_to_input {
     border: unset;
@@ -414,7 +411,6 @@ body .material-icons-wrapper.md-20 {
 .custom-input-container.select-slim .ss-main:focus {
     box-shadow: none;
 }
-/* end select slim */
 
 .flex-sum-left {
     position: relative;
@@ -433,6 +429,38 @@ body .material-icons-wrapper.md-20 {
     background-color: #fff;
     border-radius: 10px;
     padding: 10px 0px 0px;
+}
+
+.pill-rating-filter .nav-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link {
+    border: none;
+    background-color: white;
+    color: #807d7d;
+    border-radius: 0px;
+    border-bottom: 1px solid #807d7d;
+}
+
+.ticket-detail-container .pills-ticket-tab .nav-item .nav-link.active {
+    border: none;
+    background-color: white;
+    color: #0d6efd;
+    font-weight: 600;
+    border-radius: 0px;
+    border-bottom: 2px solid #0d6efd;
+}
+
+.pill-rating-filter .nav-item.filter-rating {
+    flex: 0 0 auto;
+}
+
+[type="reset"],
+[type="submit"],
+button,
+html [type="button"] {
+    -webkit-appearance: button;
 }
 
 .nav-airline {
@@ -514,7 +542,7 @@ body .material-icons-wrapper.md-20 {
 
 .flex-sum-left i {
     padding-right: 7px;
-    padding-left: 5px;
+    padding-left: 15px;
     font-size: 17px;
 }
 
@@ -551,8 +579,6 @@ body .material-icons-wrapper.md-20 {
     margin-bottom: 0rem !important;
 }
 
-
-
 .icon-container {
     margin-right: 10px;
 }
@@ -565,7 +591,6 @@ body .material-icons-wrapper.md-20 {
 .popular {
     width: 82%;
     margin: 0 auto;
-    /* CÄƒn giá»¯a trong .text-card */
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
@@ -579,7 +604,6 @@ body .material-icons-wrapper.md-20 {
 
 .popular-route-label {
     width: 80%;
-    /* Đặt chiều rộng phần tử */
     font-size: 24px;
     font-weight: 500;
     line-height: 28.64px;
@@ -595,10 +619,6 @@ body .material-icons-wrapper.md-20 {
 
 .post-title {
     margin-top: 30px;
-}
-
-.iavTwq {
-    margin-top: 20px;
 }
 
 .incentive {
@@ -687,3 +707,155 @@ body .material-icons-wrapper.md-20 {
     background-color: white;
 }
 
+/* Search User Train */
+.block-search-user {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.block-search-user .user-component {
+    position: relative;
+}
+
+.block-search-user .select-user {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 2px;
+    width: max-content;
+}
+
+.block-search-user .select-user:hover {
+    cursor: pointer;
+    background-color: rgb(236, 244, 253);
+}
+
+.block-search-user .block-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-feature-settings: "liga" 0;
+    color: rgb(20, 20, 20);
+}
+
+.block-search-user .user-component .user-block-items {
+    position: absolute;
+    top: 100%;
+    width: max-content;
+    height: max-content;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    padding: 0px 16px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 8px;
+    z-index: 9;
+    display: none;
+    box-shadow: 5px 5px 10px -2px;
+}
+
+.block-search-user .user-component .user-block-items.active {
+    display: block;
+}
+
+.block-search-user .user-component .icon-arrow.active-icon {
+    transform: rotate(3.142rad);
+}
+
+.block-search-user .user-component .user-block-items .item-info {
+    position: relative;
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.block-search-user .user-component .user-block-items .item-info .item-title-decs {
+    max-width: 205px;
+}
+
+.block-search-user .user-component .user-block-items .item-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(20, 20, 20);
+}
+
+.block-search-user .user-component .user-block-items .item-decs {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(133, 133, 133);
+}
+
+.block-search-user .user-component .user-block-items .item-action {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.block-search-user .user-component .user-block-items .item-action .item-number {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(20, 20, 20);
+}
+
+.block-search-user .user-component .user-block-items .item-action .action {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    background: rgb(242, 242, 242);
+    padding: 0px;
+    border: 0px;
+}
+
+.block-search-user .user-component .user-block-items .item-action .action.active {
+    background: rgb(236, 244, 253);
+    color: rgb(36, 116, 229);
+    border: none;
+}
+
+.block-search-user .user-component .user-block-items .icon-close {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 1%;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.block-search-user .user-component .user-block-items .icon-close i {
+    font-size: 20px;
+    color: #eb5757;
+}
+.block-search-user .user-component .user-block-items .icon-close i:hover {
+    cursor: pointer;
+    color: red;
+}

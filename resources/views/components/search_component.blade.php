@@ -263,5 +263,109 @@
                 <button id="train_search">Tìm kiếm</button>
             </div>
         </div>
+        {{-- Block select User --}}
+        <div class="block-search-user">
+            <div class="user-component">
+                <div class="select-user">
+                    <div class="icon-user-train">
+                        <img class="passenger-icon lazyloaded" data-src="https://storage.googleapis.com/goyolo-uat/images/SeoVexImprove/people.svg" src="https://storage.googleapis.com/goyolo-uat/images/SeoVexImprove/people.svg" alt="passenger-icon" width="24" height="24">
+                    </div>
+                    <div class="block-user me-1 ms-2">
+                        <div id="total-user" class="me-1">1</div> Hành khách
+                    </div>
+                    <div class="icon-arrow">
+                        <img src="{{ asset('/template/admin/assets/images/icons/ic_down_arrow.svg') }} " alt="Icon">
+                    </div>
+                </div>
+                <div class="user-block-items">
+                    <div class="item-info" id="audult">
+                        <div class="item-title-decs">
+                            <div class="item-title">Người lớn</div>
+                            <div class="item-decs">Từ trên 10-59 tuổi vào ngày khời hành</div>
+                        </div>
+                        <div class="item-action">
+                            <button type="button" class="btn action minus-btn false">
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
+                            </button>
+                            <div class="item-number">1</div>
+                            <button type="button" class="btn action add-btn active">
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
+                            </button>
+                        </div>
+                    </div>
+                    {{-- children --}}
+                    <div class="item-info" id="children">
+                        <div class="item-title-decs">
+                            <div class="item-title">Trẻ em</div>
+                            <div class="item-decs">Từ trên 0-10 tuổi vào ngày khời hành, ưu đãi áp dụng cho công dân Việt Nam</div>
+                        </div>
+                        <div class="item-action">
+                            <button type="button" class="btn action minus-btn false" disabled>
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
+                            </button>
+                            <div class="item-number">0</div>
+                            <button type="button" class="btn action add-btn active">
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
+                            </button>
+                        </div>
+                    </div>
+                    {{-- elderly --}}
+                    <div class="item-info" id="elderly">
+                        <div class="item-title-decs">
+                            <div class="item-title">Người cao tuổi</div>
+                            <div class="item-decs">Từ trên 60 tuổi trở lên vào ngày khời hành, ưu đãi áp dụng cho công dân Việt Nam</div>
+                        </div>
+                        <div class="item-action">
+                            <button type="button" class="btn action minus-btn false" disabled>
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
+                            </button>
+                            <div class="item-number">0</div>
+                            <button type="button" class="btn action add-btn active">
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
+                            </button>
+                        </div>
+                    </div>
+                    {{-- student --}}
+                    <div class="item-info" id="student">
+                        <div class="item-title-decs">
+                            <div class="item-title">Sinh viên</div>
+                            <div class="item-decs">Ưu đãi chỉ áp dụng cho công dân Việt Nam đem theo thẻ sinh viên khi đi tàu</div>
+                        </div>
+                        <div class="item-action">
+                            <button type="button" class="btn action minus-btn false" disabled>
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
+                            </button>
+                            <div class="item-number">0</div>
+                            <button type="button" class="btn action add-btn active">
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
+                            </button>
+                        </div>
+                    </div>
+                    {{-- union --}}
+                    <div class="item-info mb-4" id="union">
+                        <div class="item-title-decs">
+                            <div class="item-title">Đoàn viên công đoàn</div>
+                            <div class="item-decs">Ưu đãi chỉ áp dụng cho công dân Việt Nam đem theo thẻ đoàn viên hợp lệ khi đi tàu</div>
+                        </div>
+                        <div class="item-action">
+                            <button type="button" class="btn action minus-btn false" disabled>
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
+                            </button>
+                            <div class="item-number">0</div>
+                            <button type="button" class="btn action add-btn active">
+                                <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
+                            </button>
+                        </div>
+                    </div>
+                    {{-- close button --}}
+                    <div class="icon-close">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+@push('page-scripts')
+<script src="{{ asset('js/search_train_user.js') }}"></script>
+@endpush

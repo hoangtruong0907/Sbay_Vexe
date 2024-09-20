@@ -17,7 +17,13 @@
     justify-content: space-between;
     margin-bottom: 16px;
 }
-
+.train-name-l {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
 .ticket-image-v {
     position: relative;
     width: 250px;
@@ -180,7 +186,6 @@
     height: 100%;
     object-fit: cover;
 }
-
 .ticket-confirm-l {
     position: absolute;
     -webkit-box-align: center;
@@ -227,7 +232,10 @@
 }
 
 .bus-rating-l i {
-    margin-right: 5px;
+    color: #fff;
+    font-size: 13px;
+    padding:5px;
+    
     color: #ffcc00;
 }
 
@@ -271,13 +279,7 @@
     border-radius: 3px;
 }
 
-.action-l {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    align-items: center;
 
-}
 
 .action-train {
     /* position: absolute; */
@@ -368,10 +370,7 @@
     font-size: 14px;
 }
 
-.bus-rating-l i {
-    color: #fff;
-    font-size: 13px;
-}
+
 
 .bus-name-l button {
     border-radius: 2px;
@@ -379,14 +378,14 @@
     color: white;
     font-size: 14px;
     padding: 0px 8px;
-    border: 0px;
+border: 0px;
 }
 
 .fare-info-l-train {
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 52%;
+    width: 40%;
     text-align: right;
 }
 
@@ -405,7 +404,7 @@
 
 .full-trip-l {
     font-size: 14px;
-    width: 60%;
+    /* width: 60%; */
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -418,6 +417,7 @@
     text-transform: uppercase;
     text-align: right;
     width: 40%;
+    margin-bottom: 20px;
 }
 
 .ant-btn-link-l span {
@@ -428,7 +428,7 @@
 
 /* Detail */
 .container-textSeat {
-    display: flex;
+    
     justify-items: center;
     justify-content: space-between;
 }
@@ -437,12 +437,7 @@
     float: right;
 }
 
-.action-l {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    align-items: center;
-}
+
 
 .action-l .ant-btn {
     padding: 10px 20px;
@@ -458,6 +453,7 @@
 }
 
 .notify-trip-l {
+    margin-top: -20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -466,9 +462,7 @@
     width: 100%;
 }
 
-.activetrain {
-    color: #007bff;
-}
+
 
 .container-select-train {
     display: flex;
@@ -558,7 +552,7 @@
 
 .row-utility .icon-text p {
     max-width: 70%;
-    margin: 0;
+margin: 0;
     color: green;
 }
 
@@ -645,6 +639,11 @@
     font-size: 14px;
     padding: 0px 8px;
     border: 0px;
+}
+.action-l {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
 }
 
 .list-gr-review .avatar-review {
@@ -738,7 +737,7 @@
 
 .steps-container-train {
     display: flex;
-    align-items: center;
+align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     position: relative;
@@ -890,7 +889,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 12px;
-    margin-bottom: 0px;
+margin-bottom: 0px;
     color: rgb(47, 128, 237);
     text-transform: uppercase;
 }
@@ -1049,7 +1048,6 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-
 .coach-row-train .seat-train .modal-choose-chair-train {
     margin: 4px;
 }
@@ -1211,7 +1209,7 @@
 .total-amount-train {
     width: 100%;
     border-top: 1px solid rgb(192, 192, 192);
-    padding: 16px 0px 8px;
+padding: 16px 0px 8px;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -1356,4 +1354,84 @@
 .tab-content > .tab-pane.show {
     opacity: 1;
     visibility: visible;
+}
+.bigger-main {
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 8px;
+    gap: 4px;
+    background: rgb(236, 244, 253);
+}
+.bigger-main .tail-contai {
+margin-left: 10px;
+}
+.cavity .item-container {
+    width: 49%;
+    flex: 0 0 calc(50% - 10px); 
+    box-sizing: border-box;
+    margin-top: -20px;
+}
+.cavity{
+    margin-top: 12px;
+}
+.cavity .top-group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.compartments {
+    flex-direction: column;
+    
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    border-radius: 4px;
+    padding: 8px;
+}
+.compartments .inner-container {
+    width: 100%;
+    padding: 12px; 
+    background-color: rgb(242, 242, 242);
+    border-radius: 4px
+}
+.Numberofcompartments {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 12px;
+    margin-bottom: 0px;
+}
+.priceToTrain {
+    color: rgb(36, 116, 229);
+}
+
+.compartments .bottom-container {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3px;
+}
+.top-group {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 16px; 
+}
+
+
+
+
+.carriage-description {
+    margin-top: 8px; 
+    font-size: 14px; 
+    color: #666; 
+}
+.carriage-details {
+    display: none; /* Ẩn mô tả mặc định */
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    background-color: #f9f9f9;
 }

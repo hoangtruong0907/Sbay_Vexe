@@ -1,5 +1,5 @@
 <div class="card card-body card-body-new">
-    <div id="step1-{{ $keyId }}" class="wizard-step active">
+    <div id="step1-{{ $keyId }}" class="wizard-step active step-bus1">
         <div class="wrap-card-body">
             <div class="steps-container">
                 <div class="step step-active">
@@ -176,7 +176,7 @@
         </div>
         <div class="container-steps-content">
             <div class="wrap-steps-content">
-                <div class="left-steps-content">
+                <div class="left-steps-content left-step-bus1">
                     @if (count($seatTemplateMap) > 0 && isset($seatMap['vehicle']['seat_type']))
                     <div class="seat-groups">
                         <div class="note">Chú thích</div>
@@ -228,7 +228,7 @@
             </div>
             @endif
         </div>
-        <div class="right-steps-content">
+        <div class="right-steps-content right-step-bus1">
             @if (count($seatTemplateMap) > 0)
             @foreach ($seatTemplateMap as $i => $coach)
             <div class="wrap-coach">
@@ -329,7 +329,7 @@
     </div>
 </div>
 </div>
-<div id="step2-{{ $keyId }}" class="wizard-step">
+<div id="step2-{{ $keyId }}" class="wizard-step step-bus2">
     <div class="wrap-card-body">
         <div class="steps-container">
             <div class="step step-active">
@@ -354,7 +354,7 @@
     </div>
     <div class="container-steps-content">
         <div class="wrap-steps-content">
-            <div class="left-steps-content">
+            <div class="left-steps-content left-step-bus2">
                 <div class="wrap-pick-up-point pickup-point">
                     <div class="container-wrap-pick-up-point">
                         <p class="text-pick-up-point">Điểm đón</p>
@@ -374,11 +374,11 @@
                             </select>
                             <button class="custom-address-button">
                                 <span id="displayAddress" class="address-container">
-                                    <p class="text-pick-up-point-arrange text-pick-up-point-maps">
+                                    <p class="text-pick-up-point-arrange text-pick-up-point-maps" style="margin-left: 31px;">
                                         Nhập địa chỉ tại đây
                                     </p>
                                 </span>
-                                <span id="changeLink" class="change-link text-pick-up-point-maps" onclick="openAddressModal()" style="display: none;">Thay đổi</span>
+                                <span id="changeLink" class="change-link text-pick-up-point-maps"  style="display: none;">Thay đổi</span>
                             </button>
                         </div>
                     </div>
@@ -401,12 +401,12 @@
                     @foreach ($pickupPoints as $index => $point)
                     <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
                         data-point-id="{{ $point['point_id'] }}">
-                        <input class="form-check-input" 
-                            type="radio" 
-                            name="rdioCheckDrop-{{ $keyId }}" 
-                            value="{{ $point['point_id'] }}" 
+                        <input class="form-check-input"
+                            type="radio"
+                            name="rdioCheckDrop-{{ $keyId }}"
+                            value="{{ $point['point_id'] }}"
                             data-name="{{ $point['name'] }}"
-                            id="rdioCheckDrop-{{ $keyId }}" 
+                            id="rdioCheckDrop-{{ $keyId }}"
                             {{$index == 0 ? 'checked' : ''}}
                         >
                         <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
@@ -421,7 +421,7 @@
                 </div>
             </div>
         </div>
-        <div class="right-steps-content">
+        <div class="right-steps-content right-step-bus2">
             <div class="wrap-pick-up-point">
                 <div class="container-wrap-pick-up-point">
                     <p class="text-pick-up-point">Điểm trả</p>
@@ -441,11 +441,11 @@
                         </select>
                         <button class="custom-dropoff-button" style=" justify-content: flex-end;">
                             <span id="displayDropoffAddress" class="address-container">
-                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline text-primary" style="margin-left: 31px;">
+                                <p class="text-drop-off-point-arrange text-drop-off-point-maps text-decoration-underline " style="margin-left: 31px;">
                                     Nhập địa chỉ tại đây
                                 </p>
                             </span>
-                            <span id="changeDropoffLink" class="change-link text-drop-off-point-maps" onclick="openDropoffAddressModal()" style="display: none;">Thay đổi</span>
+                            <span id="changeDropoffLink" class="change-link text-drop-off-point-maps"  style="display: none;margin-left: 10px;">Thay đổi</span>
                         </button>
                     </div>
                 </div>
@@ -455,8 +455,8 @@
                         data-point-id="{{ $point['point_id'] }}">
                         <input class="form-check-input" type="radio"
                             name="rdioCheckTransfer-{{ $keyId }}"
-                            value="{{ $point['point_id'] }}" 
-                            id="rdioCheckTransfer-{{ $keyId }}" 
+                            value="{{ $point['point_id'] }}"
+                            id="rdioCheckTransfer-{{ $keyId }}"
                             data-name="{{ $point['name'] }}"
                             {{$index == 0 ? 'checked' : ''}}
                         >
@@ -509,7 +509,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <div> 
+        <div>
                 <small class="text-primary">*Nhập địa chỉ điểm đến của bạn để sử dụng tiêu chí sắp xếp này</small>
                 <input type="text" class="form-control mt-2 mb-2" id="address_input" placeholder="03 Đinh Thị Hòa, An Hải Bắc, Sơn Trà, Đà Nẵng">
                 <div><p class="text-decoration-underline text-primary">Dùng vị trí hiện tại của bạn</p></div>
@@ -566,19 +566,19 @@
 
         switch ($('#select_pickup').val()) {
             case "1":
-                return $('#items-pick-up-point').empty().append(renderSortItems(curren_array_pick_up));                
+                return $('#items-pick-up-point').empty().append(renderSortItems(curren_array_pick_up));
                 break;
             case "2":
                 let reverse_arr = curren_array_pick_up.reverse();
-                return $('#items-pick-up-point').empty().append(renderSortItems(reverse_arr));   
+                return $('#items-pick-up-point').empty().append(renderSortItems(reverse_arr));
                 break;
             case "3":
                 $('#btn_show_modal_search_address').click();
                 break;
-        
+
             default:
                 break;
-        } 
+        }
     });
 
     // dropoff select change
@@ -587,18 +587,18 @@
 
         switch ($('#dropoff_point').val()) {
             case "1":
-                return $('#items-dropoff-point').empty().append(renderSortItems(curren_array));                
+                return $('#items-dropoff-point').empty().append(renderSortItems(curren_array));
                 break;
             case "2":
                 let reverse_arr = curren_array.reverse();
-                return $('#items-dropoff-point').empty().append(renderSortItems(reverse_arr));   
+                return $('#items-dropoff-point').empty().append(renderSortItems(reverse_arr));
                 break;
             case "3":
                 $('#btn_show_modal_search_address').click();
                 break;
-        
+
             default:
                 break;
-        } 
+        }
     });
 </script>

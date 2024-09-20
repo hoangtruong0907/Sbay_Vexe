@@ -15,6 +15,7 @@
 @endsection
 
 @section('content')
+
 <div id="airlinetickets">
     <div class="container-airlinetickets">
         @include('components.search_component', [
@@ -1532,7 +1533,7 @@
 </div>
 
 <div class="modal fade" id="dropoffModal" tabindex="-1" aria-labelledby="dropoffModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dropoffModalLabel">Chọn Điểm Trả</h5>
@@ -2515,19 +2516,53 @@
     });
 </script>
 <script>
-    const API_KEY = 'p7U21BFnKFbt2EpD4yGpXO5Aymi31mkI';
-
     let addressModal;
     let dropoffModal;
+    let API_KEY = "{{ config('services.tomtom.api_key') }}"; 
+    document.addEventListener('DOMContentLoaded', function() {
+        setupEventListeners();
+        updateSelectedAddress();
+        updateSelectedDropoffAddress();
+    });
+    function setupEventListeners() {
+        document.body.addEventListener('click', function(event) {
+            if (event.target.matches('.text-pick-up-point-maps')) {
+                const addressModalElement = document.querySelector('#addressModal');
+                if (addressModalElement) {
+                    addressModal = new bootstrap.Modal(addressModalElement);
+                    addressModal.show();
+                }
+            }
+            if (event.target.matches('.text-drop-off-point-maps')) {
+                const dropoffModalElement = document.querySelector('#dropoffModal');
+                if (dropoffModalElement) {
+                    dropoffModal = new bootstrap.Modal(dropoffModalElement);
+                    dropoffModal.show();
+                }
+            }
+        });
+        document.body.addEventListener('input', function(event) {
+            if (event.target.matches('#addressInput')) {
+                searchAddress();
+            }
+            if (event.target.matches('#dropoffInput')) {
+                searchDropoffAddress();
+            }
+        });
+    }
 
     function searchAddress() {
-        const input = document.getElementById('addressInput').value;
-        const addressList = document.getElementById('addressList');
+        const input = document.querySelector('#addressInput').value.trim(); 
+        const addressList = document.querySelector('#addressList');
         addressList.innerHTML = '';
 
-        if (input.length > 0) {
-            fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(input)}.json?key=${API_KEY}`)
-                .then(response => response.json())
+        if (input.length > 0 && API_KEY) { 
+            const apiUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(input)}.json?key=${API_KEY}`;
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
                 .then(data => {
                     const results = data.results;
                     if (results.length > 0) {
@@ -2544,133 +2579,87 @@
                             };
                             addressList.appendChild(li);
                         });
-                    } else {
-                        const li = document.createElement('li');
-                        li.className = 'list-group-item';
-                        li.textContent = 'Không tìm thấy địa chỉ nào.';
-                        addressList.appendChild(li);
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
         }
     }
+
     function searchDropoffAddress() {
-    const input = document.getElementById('dropoffInput').value;
-    const dropoffList = document.getElementById('dropoffList');
-    dropoffList.innerHTML = '';
+        const input = document.querySelector('#dropoffInput').value.trim();
+        const dropoffList = document.querySelector('#dropoffList');
+        dropoffList.innerHTML = '';
+        if (input.length > 0 && API_KEY) { 
+            const apiUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(input)}.json?key=${API_KEY}`;
 
-    if (input.length > 0) {
-        fetch(`https://api.tomtom.com/search/2/geocode/${encodeURIComponent(input)}.json?key=${API_KEY}`)
-            .then(response => response.json())
-            .then(data => {
-                const results = data.results;
-                if (results.length > 0) {
-                    results.forEach(result => {
-                        const address = result.address.freeformAddress;
-                        const li = document.createElement('li');
-                        li.className = 'list-group-item';
-                        li.textContent = address;
-                        li.onclick = () => {
-                            localStorage.setItem('selectedDropoffAddress', address);
-                            alert(`Điểm trả đã chọn: ${address}`);
-                            dropoffModal.hide();
-                            updateSelectedDropoffAddress();
-                        };
-                        dropoffList.appendChild(li);
-                    });
-                } else {
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item';
-                    li.textContent = 'Không tìm thấy địa chỉ nào.';
-                    dropoffList.appendChild(li);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+
+                    const results = data.results;
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const address = result.address.freeformAddress;
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item';
+                            li.textContent = address;
+                            li.onclick = () => {
+                                localStorage.setItem('selectedDropoffAddress', address);
+                                alert(`Điểm trả đã chọn: ${address}`);
+                                dropoffModal.hide();
+                                updateSelectedDropoffAddress();
+                            };
+                            dropoffList.appendChild(li);
+                        });
+                    }
+                })
+            }
     }
-}
-    document.addEventListener('DOMContentLoaded', function() {
-        document.body.addEventListener('click', function(event) {
-            if (event.target && event.target.matches('.text-pick-up-point-maps')) {
-                const addressModalElement = document.getElementById('addressModal');
-                if (addressModalElement) {
-                    addressModal = new bootstrap.Modal(addressModalElement);
-                    addressModal.show();
-                } else {
-                    console.error('Modal element not found');
-                }
-            }
-            if (event.target && event.target.matches('.text-drop-off-point-maps')) {
-                const dropoffModalElement = document.getElementById('dropoffModal');
-                    if (dropoffModalElement) {
-                        if (!dropoffModal) {
-                    dropoffModal = new bootstrap.Modal(dropoffModalElement);
-                }
-                dropoffModal.show();
-                } else {
-                    console.error('Dropoff modal element not found');
-                }
-            }
-        });
-        updateSelectedAddress();
-        updateSelectedDropoffAddress();
-    });
 
+    function createNoResultsFoundMessage(listElement) {
+        const li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.textContent = 'Không tìm thấy địa chỉ nào.';
+        listElement.appendChild(li);
+    }
 
     function updateSelectedAddress() {
         const savedAddress = localStorage.getItem('selectedAddress');
-        const displayAddressElement = document.getElementById('displayAddress');
-        const changeLinkElement = document.getElementById('changeLink');
+        const displayAddressElement = document.querySelector('#displayAddress');
+        const changeLinkElement = document.querySelector('#changeLink');
 
-        if (savedAddress && displayAddressElement) {
-            displayAddressElement.textContent = savedAddress;
-            if (changeLinkElement) {
-                changeLinkElement.style.display = 'inline';
-            }
-        } else {
-            displayAddressElement.textContent = 'Nhập địa chỉ tại đây';
-            if (changeLinkElement) {
-                changeLinkElement.style.display = 'none';
+        if (displayAddressElement) {
+            const p = displayAddressElement.querySelector('p');
+            if (p) {
+                p.textContent = savedAddress || 'Nhập địa chỉ tại đây';
+                if (changeLinkElement) changeLinkElement.style.display = savedAddress ? 'inline' : 'none';
             }
         }
     }
+
     function updateSelectedDropoffAddress() {
-    const savedDropoffAddress = localStorage.getItem('selectedDropoffAddress');
-    const displayDropoffAddressElement = document.getElementById('displayDropoffAddress');
-    const changeDropoffLinkElement = document.getElementById('changeDropoffLink');
+        const savedDropoffAddress = localStorage.getItem('selectedDropoffAddress');
+        const displayDropoffAddressElement = document.querySelector('#displayDropoffAddress');
+        const changeDropoffLinkElement = document.querySelector('#changeDropoffLink');
 
-    if (savedDropoffAddress && displayDropoffAddressElement) {
-        displayDropoffAddressElement.textContent = savedDropoffAddress;
-        if (changeDropoffLinkElement) {
-            changeDropoffLinkElement.style.display = 'inline';
-        }
-    } else {
-        displayDropoffAddressElement.textContent = 'Nhập điểm trả tại đây';
-        if (changeDropoffLinkElement) {
-            changeDropoffLinkElement.style.display = 'none';
+        if (displayDropoffAddressElement) {
+            const p = displayDropoffAddressElement.querySelector('p');
+            if (p) {
+                p.textContent = savedDropoffAddress || 'Nhập địa chỉ tại đây';
+                if (changeDropoffLinkElement) changeDropoffLinkElement.style.display = savedDropoffAddress ? 'inline' : 'none';
+            }
         }
     }
-}
-function openDropoffAddressModal() {
-    const dropoffModalElement = document.getElementById('dropoffModal');
-    if (dropoffModalElement) {
-        if (!dropoffModal) {
-            dropoffModal = new bootstrap.Modal(dropoffModalElement);
-        }
-        dropoffModal.show();
-    } else {
-        console.error('Dropoff modal element not found');
-    }
-}
 </script>
+
+
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script src="{{ asset('js/search_component.js') }}"></script>
