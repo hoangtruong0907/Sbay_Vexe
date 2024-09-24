@@ -1549,10 +1549,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection
 
 @push('page-scripts')
@@ -1582,6 +1578,34 @@
     });
     let urlCurrent = window.location.href;
 
+    function loadDataSearchBus() {
+        $('.wrap-filter .right-filter').html(`<div class='container loading-wrap-page'>@include('components._loading')</div>`);
+        let data = {
+            "bus_to": localStorage.getItem('bus_select_to'),
+            "bus_from": localStorage.getItem('bus_select_from'),
+            "date_to": localStorage.getItem('bus_date_to'),
+            "date_from": localStorage.getItem('bus_date_from'),
+        }
+        $.ajax({
+            url: '{{route('bus.list.search')}}',
+            data: data,
+        }).done((data) => {
+            console.log(data);
+            $('.wrap-filter .right-filter').html(data.dataHTML);
+        })
+    }
+    loadDataSearchBus();
+    $("#bus_search").click(() => {loadDataSearchBus()})
+    $("#bus_date_to").change(() => {
+        console.log('date to');
+        
+        saveSelections();
+    })
+    
+    $("#bus_date_from").change(function(){
+        alert("The text has been changed.");
+    });
+    
     function loadSearchListBus() {
         let queryString = urlCurrent.split('?')[1];
         const url = `/api/search/xe-khach?${queryString}`;

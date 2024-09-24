@@ -154,6 +154,16 @@ var train_select_from = new SlimSelect({
     localStorage.setItem('train_select_to', train_select_to.getSelected());
     trainFrom.value = train_select_from.getSelected();
     trainTo.value = train_select_to.getSelected();
+
+    // set localStorage for date bus
+    localStorage.setItem('bus_date_to', $('#bus_date_to').val());
+    localStorage.setItem('bus_date_from', $('#bus_date_from').val());
+
+    // set localStorage for date train
+    localStorage.setItem('train_date_to', $('#train_date_to').val());
+    localStorage.setItem('train_date_from', $('#train_date_from').val());
+    console.log('update');
+    
 }
 
 // Hàm để khôi phục lựa chọn từ Local Storage
@@ -437,14 +447,16 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             dataTrainSelected = date;
             $(this).val(formattedWithDay);
+            
+            localStorage.setItem('train_date_to', formattedDate);
         },
     });
 
-    new AirDatepicker(".data-add-train", {
+    new AirDatepicker(".date-add-train", {
         locale: vn,
         dateFormat: "E, dd/MM/yyyy",
         autoClose: true,
@@ -470,9 +482,11 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             $(this).val(formattedWithDay);
+            
+            localStorage.setItem('train_date_from', formattedDate);
         },
     });
 
@@ -501,10 +515,13 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             dataSelected = date;
             $(this).val(formattedWithDay);
+
+            // set localStorage for date bus
+            localStorage.setItem('bus_date_to', formattedDate);
         },
     });
 
@@ -533,38 +550,46 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             $(this).val(formattedWithDay);
+            localStorage.setItem('bus_date_from', formattedDate);
         },
     });
 });
 
 $("#bus_search").click(() => {
-    var busTo = $("#bus_to").val();
-    var busToPlace = $('#bus_to_input option:selected').attr('data-name');
-    var busFrom = $("#bus_from").val();
-    var busFromPlace = $('#bus_from_input option:selected').attr('data-name');
-    var dateTo = $("#bus_date_to").val();
-    var dateFrom = $("#bus_date_from").val();
+    // var busTo = $("#bus_to").val();
+    // var busToPlace = $('#bus_to_input option:selected').attr('data-name');
+    // var busFrom = $("#bus_from").val();
+    // var busFromPlace = $('#bus_from_input option:selected').attr('data-name');
+    // var dateTo = $("#bus_date_to").val();
+    // var dateFrom = $("#bus_date_from").val();
 
-    var data = {
-        bus_from: busFrom,
-        // busFromPlace,
-        bus_to: busTo,
-        // busToPlace,
-        date_from: dateFrom,
-        date_to: dateTo,
-    };
+    // var data = {
+    //     bus_from: busFrom,
+    //     // busFromPlace,
+    //     bus_to: busTo,
+    //     // busToPlace,
+    //     date_from: dateFrom,
+    //     date_to: dateTo,
+    // };
 
-    var url =
-        "/route-search/xe-khach?q=" +
-        convertToSlug(busFromPlace) +
-        "-to-" +
-        convertToSlug(busToPlace);
-    var queryString = $.param(data);
-    url += "&" + queryString;
-    window.location.href = url;
+    // var url =
+    //     "/route-search/xe-khach?q=" +
+    //     convertToSlug(busFromPlace) +
+    //     "-to-" +
+    //     convertToSlug(busToPlace);
+    // var queryString = $.param(data);
+    // url += "&" + queryString;
+    // window.location.href = url;
+    let currentUrl = window.location.href; // Lấy URL hiện tại
+    let searchString = "route-search/xe-khach"; // Chuỗi cần kiểm tra
+
+    if (!currentUrl.includes(searchString)) {
+        let url = searchString;
+        window.location.href = url;
+    }
 });
 $("#train_search").click(() => {
     var trainTo = $("#train_to_input").val();

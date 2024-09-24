@@ -103,3 +103,8 @@ Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
 });
 
 Route::get('/payment-result', [PaymentResultController::class, 'showPaymentResult'])->name('payment.result');
+
+// loading page
+Route::get('/load-content', function () {
+    return view('components._loading'); // Trả về file Blade cần include
+});
