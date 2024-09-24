@@ -405,17 +405,26 @@ class RouteController extends Controller
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
 
-        return response()->json([
-            "message" => "success",
-            'dataHTML' => view('bus._bus_listResult', [
-                "list_routes" => $list_routes,
-                "params" => $params,
-                'currentPage' => $res_routes['page'],
-                'pageSize' => $res_routes['page_size'],
-                'total' => $res_routes['total'],
-                'totalPages' => $res_routes['total_pages']
-            ])->render(),
-        ]);
+        if (count($list_routes) > 0) {
+            return response()->json([
+                "code" => 200,
+                "message" => "success",
+                'dataHTML' => view('bus._bus_listResult', [
+                    "list_routes" => $list_routes,
+                    "params" => $params,
+                    'currentPage' => $res_routes['page'],
+                    'pageSize' => $res_routes['page_size'],
+                    'total' => $res_routes['total'],
+                    'totalPages' => $res_routes['total_pages']
+                ])->render(),
+            ]);
+        } else {
+            return response()->json([
+                "code" => 400,
+                "message" => "error",
+                'dataHTML' => '<p class="w-100 text-center"><b>Không có dữ liệu!</b></p>'
+            ]);
+        }
     }
 
 
