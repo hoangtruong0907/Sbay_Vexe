@@ -1590,44 +1590,16 @@
             url: '{{route('bus.list.search')}}',
             data: data,
         }).done((data) => {
-            console.log(data);
             $('.wrap-filter .right-filter').html(data.dataHTML);
         })
     }
     loadDataSearchBus();
     $("#bus_search").click(() => {loadDataSearchBus()})
-    $("#bus_date_to").change(() => {
-        console.log('date to');
-        
-        saveSelections();
-    })
     
     $("#bus_date_from").change(function(){
         alert("The text has been changed.");
     });
     
-    function loadSearchListBus() {
-        let queryString = urlCurrent.split('?')[1];
-        const url = `/api/search/xe-khach?${queryString}`;
-        fetch(url, {
-                method: 'GET',
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // console.log(data);
-                $('.wrap-filter .right-filter').html(data.dataHTML);
-
-            })
-            .catch(error => {
-                console.error('Eror:', error);
-            });
-    }
-    loadSearchListBus();
 
     $(document).ready(function() {
         // Lọc Giờ slide

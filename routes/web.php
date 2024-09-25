@@ -74,7 +74,7 @@ Route::prefix('/route-search')->group(function () {
 });
 // Bus view api
 Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
-Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
+Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch'])->name('bus.list.search');
 Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
