@@ -20,7 +20,7 @@ class CheckLoginAdminMiddleware
         if(!Auth::check() ){ //Không có admin nào đăng nhập
             return $next($request);
         }else if(Auth::check() && Auth::user()->role == "2" ) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin');
         }else {
             Auth::logout();
             return redirect()->route('admin.login.index');
