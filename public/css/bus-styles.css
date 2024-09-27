@@ -2230,3 +2230,122 @@ body h6 {
 .button-infor-train{
     border:none;
 }
+.trip-Results {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.trip-Results .result-trips-container {
+    margin-bottom:20px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 5px;
+}
+.trip-Results-br {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-bottom: 0px;
+}
+.trip-Results .result-trips-container .text-result-number {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.5px;
+}
+.filter-Criteria {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.Criteria {
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+}
+.Criteria .dynamic-filter-title {
+    width: 72px;
+    height: 64px;
+    flex-shrink: 0;
+}
+.Criteria .dynamic-filter-scroll-list {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    gap: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: auto hidden;
+}
+.Criteria .dynamic-filter-scroll-list .ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
+    z-index: auto;
+    border: 2px solid rgb(36, 116, 229) !important;
+}
+.Criteria .dynamic-filter-scroll-list .ant-radio-button-wrapper.ant-radio-button-wrapper {
+    border-radius: 8px;
+    border: 0px;
+    line-height: 18px;
+    height: 64px;
+    width: 128px;
+    padding: 0px;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 128px;
+}
+.dynamic-filter-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.dynamic-Criteria {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin-bottom: 0px;
+}
+
+.dynamic-filter-img {
+    border: 2px solid #d5d5d5; 
+    border-radius: 8px; 
+}
+.dynamic-filter-Coupon {
+    position: relative; 
+}
+
+.dynamic-filter-Coupon.selected::before {
+    content: ""; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+.selection-text {
+    color: white; 
+    position: relative; 
+    z-index: 2; 
+    display: none;
+}
+
+.dynamic-filter-Coupon.selected .selection-text {
+    display: inline; 
+}
+
