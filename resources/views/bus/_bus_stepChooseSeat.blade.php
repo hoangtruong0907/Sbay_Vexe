@@ -399,23 +399,36 @@
                             style="border: 1px solid rgb(192, 192, 192); display: none;"></textarea>
                     </div> --}}
                     @foreach ($pickupPoints as $index => $point)
-                    <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
-                        data-point-id="{{ $point['point_id'] }}">
-                        <input class="form-check-input"
-                            type="radio"
-                            name="rdioCheckDrop-{{ $keyId }}"
-                            value="{{ $point['point_id'] }}"
-                            data-name="{{ $point['name'] }}"
-                            id="rdioCheckDrop-{{ $keyId }}"
-                            {{$index == 0 ? 'checked' : ''}}
-                        >
-                        <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
+                    <div class="form-check item point_id-1" data-id="{{ $point['id'] }}" data-point-id="{{ $point['point_id'] }}">
+                        <input class="form-check-input" type="radio" name="rdioCheckDrop-{{ $keyId }}" value="{{ $point['point_id'] }}" data-name="{{ $point['name'] }}" id="rdioCheckDrop-{{ $keyId }}" {{ $index == 0 ? 'checked' : '' }}>
+                        <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}</div>
+                        <label class="form-check-label-title" for="rdioCheckDrop-{{ $keyId }}">{{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}</label>
+                        <!-- Modal Trigger -->
+                        <small>
+                            <i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }}
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#mapModal{{ $index }}">Bản đồ</a>
+                        </small>
+                        <!-- Modal Structure -->
+                        <div class="modal fade" id="mapModal{{ $index }}" tabindex="-1" aria-labelledby="mapModalLabel{{ $index }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title-map text-center" id="mapModalLabel{{ $index }}">
+                                            {{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Google Map -->
+                                        <div class="mapouter">
+                                            <div class="gmap_canvas">
+                                                <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=524&height=500&hl=en&q={{ $point['areaDetail']['latitude'] }}+{{ $point['areaDetail']['longitude'] }}&t=&z=13&ie=UTF8&iwloc=B&output=embed"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <label class="form-check-label-title"
-                            for="rdioCheckDrop-{{ $keyId }}">{{ $point['name'] }},{{ $point['areaDetail']['city_name'] }}</label>
-                        <small><i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }} <a
-                                href="https://www.google.com/maps/search/{{ $point['areaDetail']['latitude'] }}+{{ $point['areaDetail']['longitude'] }}/{!! '@' . $point['areaDetail']['latitude'] !!},{!! $point['areaDetail']['longitude'] !!},17z?entry=ttu"
-                                target="_blank">Bản đồ</a> </small>
                     </div>
                     @endforeach
                 </div>
@@ -451,22 +464,36 @@
                 </div>
                 <div class="container-group-items-pick-up-point" id="items-dropoff-point">
                     @foreach ($dropOffPoints as $index => $point)
-                    <div class="form-check item point_id-1" data-id="{{ $point['id'] }}"
-                        data-point-id="{{ $point['point_id'] }}">
-                        <input class="form-check-input" type="radio"
-                            name="rdioCheckTransfer-{{ $keyId }}"
-                            value="{{ $point['point_id'] }}"
-                            id="rdioCheckTransfer-{{ $keyId }}"
-                            data-name="{{ $point['name'] }}"
-                            {{$index == 0 ? 'checked' : ''}}
-                        >
-                        <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}
-                        <label class="form-check-label-title"
-                            for="rdioCheckTransfer-{{ $keyId }}">{{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}</label>
+                    <div class="form-check item point_id-1" data-id="{{ $point['id'] }}" data-point-id="{{ $point['point_id'] }}">
+                        <input class="form-check-input" type="radio" name="rdioCheckTransfer-{{ $keyId }}" value="{{ $point['point_id'] }}" id="rdioCheckTransfer-{{ $keyId }}" data-name="{{ $point['name'] }}" {{ $index == 0 ? 'checked' : '' }}>
+                        <div class="fw-bold">{{ formatDateTime($point['real_time'], 'H:m • (d/m)') }}</div>
+                        <label class="form-check-label-title" for="rdioCheckTransfer-{{ $keyId }}">{{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}</label>
+                        <!-- Modal Trigger -->
+                        <small>
+                            <i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }}
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#mapModalDrop{{ $index }}">Bản đồ</a>
+                        </small>
+                        <!-- Modal Structure -->
+                        <div class="modal fade" id="mapModalDrop{{ $index }}" tabindex="-1" aria-labelledby="mapModalLabelDrop{{ $index }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title-map text-center" id="mapModalLabelDrop{{ $index }}">
+                                            {{ $point['name'] }}, {{ $point['areaDetail']['city_name'] }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Google Map -->
+                                        <div class="mapouter">
+                                            <div class="gmap_canvas">
+                                                <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=524&height=500&hl=en&q={{ $point['areaDetail']['latitude'] }}+{{ $point['areaDetail']['longitude'] }}&t=&z=13&ie=UTF8&iwloc=B&output=embed"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <small><i class="fa-solid fa-location-dot me-1"></i>{{ $point['address'] }} <a
-                                href="https://www.google.com/maps/search/{{ $point['areaDetail']['latitude'] }}+{{ $point['areaDetail']['longitude'] }}/{!! '@' . $point['areaDetail']['latitude'] !!},{!! $point['areaDetail']['longitude'] !!},17z?entry=ttu"
-                                target="_blank">Bản đồ</a> </small>
                     </div>
                     @endforeach
                 </div>

@@ -1,3 +1,4 @@
+@foreach ($list_routes_train as $key => $route)
 <div id="item-train-{{ $key }}">
     <div class="container-l">
         <div class="ticket-container-l">
@@ -141,8 +142,7 @@
                         <div class="TrainGroupClassItem__Container-sc-1ucei7x-0 compartments">
                             <div class="inner-container">
                                 <div>
-                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 
-Numberofcompartments color--darkness">
+                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 Numberofcompartments color--darkness">
                                         Số khoang: {{ $carriage['carriage_number'] }}
                                     </div>
                                     <div class="carriage-description">
@@ -257,12 +257,6 @@ Numberofcompartments color--darkness">
                                     </div>
                                     @endforeach
                                 </div>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
@@ -613,6 +607,8 @@ Numberofcompartments color--darkness">
             </div>
         </div>
     </div>
+</div>
+@endforeach
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Kiểm tra phần tử nút và collapse

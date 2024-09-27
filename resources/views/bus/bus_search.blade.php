@@ -1549,10 +1549,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection
 
 @push('page-scripts')
@@ -1582,28 +1578,28 @@
     });
     let urlCurrent = window.location.href;
 
-    function loadSearchListBus() {
-        let queryString = urlCurrent.split('?')[1];
-        const url = `/api/search/xe-khach?${queryString}`;
-        fetch(url, {
-                method: 'GET',
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // console.log(data);
-                $('.wrap-filter .right-filter').html(data.dataHTML);
-
-            })
-            .catch(error => {
-                console.error('Eror:', error);
-            });
+    function loadDataSearchBus() {
+        $('.wrap-filter .right-filter').html(`<div class='container loading-wrap-page'>@include('components._loading')</div>`);
+        let data = {
+            "bus_to": localStorage.getItem('bus_select_to'),
+            "bus_from": localStorage.getItem('bus_select_from'),
+            "date_to": localStorage.getItem('bus_date_to'),
+            "date_from": localStorage.getItem('bus_date_from'),
+        }
+        $.ajax({
+            url: '{{route('bus.list.search')}}',
+            data: data,
+        }).done((data) => {
+            $('.wrap-filter .right-filter').html(data.dataHTML);
+        })
     }
-    loadSearchListBus();
+    loadDataSearchBus();
+    $("#bus_search").click(() => {loadDataSearchBus()})
+    
+    $("#bus_date_from").change(function(){
+        alert("The text has been changed.");
+    });
+    
 
     $(document).ready(function() {
         // Lọc Giờ slide

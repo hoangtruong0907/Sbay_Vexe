@@ -249,6 +249,7 @@
         </div>
     </div>
     </div>
+</div>
 @endsection
 
 @push('page-scripts')
