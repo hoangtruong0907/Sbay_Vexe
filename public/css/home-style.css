@@ -29,6 +29,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
+    /* margin-bottom: 10px; */
 }
 
 .block-recommend .block-items .card-item:hover {
@@ -58,4 +59,22 @@
 .block-recommend .block-items .card-info .price small{
     font-size: .75rem;
     margin-right: 1px;
+}
+
+@media (max-width:1025px) {
+    .block-recommend .block-items .card-item {
+        width: 30%;
+    }
+}
+
+@media (max-width:769px) {
+    .block-recommend .block-items .card-item {
+        width: 40%;
+    }
+}
+
+@media (max-width:426px) {
+    .block-recommend .block-items .card-item {
+        width: 80%;
+    }
 }
