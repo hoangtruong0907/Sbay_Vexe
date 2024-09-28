@@ -335,7 +335,6 @@ class RouteController extends Controller
 
     function busListRouteSearch(Request $request)
     {
-
         $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
         $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
         $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : "";
@@ -345,10 +344,11 @@ class RouteController extends Controller
         if ($busTo === null || $busFrom === null || $dateTo === null) {
             return response()->json(['error' => 'Missing required parameters.'], 400);
         }
+
         $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
 
         $queryParams = [
-            'filter[online_ticket]' => $request->query('online_ticket', 1), // Lọc theo các chuyến đi trực tuyến (0 hoặc 1)
+            'filter[online_ticket]' => $request->query('online_ticket', 0), // Lọc theo các chuyến đi trực tuyến (0 hoặc 1)
             'filter[online_reserved]' => $request->query('online_reserved') ?? null, // Lọc theo vị trí ghế đã chọn trước (0 hoặc 1)
             'filter[is_promotion]' => $request->query('is_promotion') ?? null, // Tham khảo chuyến đi giảm giá (0 hoặc 1)
             'filter[companies][index]' => $request->query('companies_index') ?? null, // Lọc theo ID công ty xe bus
@@ -371,7 +371,7 @@ class RouteController extends Controller
             'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name') ?? null, // Lọc theo điểm xả theo tên
             'sort' => $request->query('sort') ?? "time:asc", // Sort theo giờ (time:asc/time:desc), rating (rating:asc), giá (fare:asc),
             'page' => $request->query('page', 1), // Phân trang (mặc định là trang 1)
-            'pagesize' => $request->query('pagesize', 8), // Số phần tử mỗi trang (mặc định là 20)
+            'pagesize' => $request->query('pagesize', 8), // Số phần tử mỗi trang (mặc định là 8)
         ];
 
         // Thêm các tham số vào URL
@@ -387,6 +387,7 @@ class RouteController extends Controller
             ], 500);
         }
 
+        // Lấy dữ liệu chuyến đi
         $main_url = $this->main_url . '/v3/area/city_district';
         $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 * 24));
         // Lấy thông tin từ params
@@ -396,36 +397,37 @@ class RouteController extends Controller
             'dateTo' => $dateTo,
             'dateFrom' => $dateFrom,
         ]);
-        // Thông tim tuyến đường
         $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
-        // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);\
         $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
+
+        // Danh sách chuyến đi cho trang hiện tại
         $list_routes = $res_routes['data'];
-        // dd($list_routes);
+
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
 
-        if (count($list_routes) > 0) {
-            return response()->json([
-                "code" => 200,
-                "message" => "success",
-                'dataHTML' => view('bus._bus_listResult', [
-                    "list_routes" => $list_routes,
-                    "params" => $params,
-                    'currentPage' => $res_routes['page'],
-                    'pageSize' => $res_routes['page_size'],
-                    'total' => $res_routes['total'],
-                    'totalPages' => $res_routes['total_pages']
-                ])->render(),
-            ]);
-        } else {
-            return response()->json([
-                "code" => 400,
-                "message" => "error",
-                'dataHTML' => '<p class="w-100 text-center"><b>Không có dữ liệu!</b></p>'
-            ]);
-        }
+        // Tính tổng số chuyến đi cho tất cả trang
+        $totalAll = $res_routes['total']; // Lấy tổng từ phản hồi
+
+        return response()->json([
+            "message" => "success",
+            'total' => $totalAll, // Tổng số chuyến đi
+            'dataHTML' => view('bus._bus_listResult', [
+                "list_routes" => $list_routes,
+                "params" => (object)[
+                    'busFrom' => (object)$busFrom,
+                    'busTo' => (object)$busTo,
+                    'dateTo' => $dateTo,
+                    'dateFrom' => $dateFrom,
+                ],
+                'currentPage' => $res_routes['page'],
+                'pageSize' => $res_routes['page_size'],
+                'total' => $totalAll, // Cập nhật tổng số chuyến
+                'totalPages' => $res_routes['total_pages']
+            ])->render(),
+        ]);
     }
+
 
 
     // TRAIN
@@ -507,13 +509,14 @@ class RouteController extends Controller
             ])->render(),
         ]);
     }
-    
+
     // Hiển thị tiện ích của Bus
-    public function busUtilitiesSearch (Request $request) {
+    public function busUtilitiesSearch(Request $request)
+    {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        $urlRoute = $this->main_url . '/v3/company/'.$request->id.'/utility?seat_template_id='. $request->seat_template_id;
+        $urlRoute = $this->main_url . '/v3/company/' . $request->id . '/utility?seat_template_id=' . $request->seat_template_id;
         $list_routes = Helpers::cacheData('utility', $token, $urlRoute);
-        
+
         return response()->json([
             "message" => "success",
             'data'    => $list_routes
@@ -521,10 +524,11 @@ class RouteController extends Controller
     }
 
     // Hàm sắp xếp các chuyến tàu
-    public function trainRouteSort (Request $request) {
+    public function trainRouteSort(Request $request)
+    {
         $list_routes_train = $request->list_train;
         $html_result = '';
-        if ( $list_routes_train != null ) {
+        if ($list_routes_train != null) {
             // Kiểm tra và xử lý dữ liệu nếu cần thiết
             foreach ($list_routes_train as $key => $route) {
                 $data = $this->returnViewItemTrain($route, $key, $list_routes_train);
@@ -540,7 +544,8 @@ class RouteController extends Controller
         ]);
     }
 
-    public function returnViewItemTrain ($route, $key, $list_routes_train) {
+    public function returnViewItemTrain($route, $key, $list_routes_train)
+    {
         return view('train._train_item', [
             'route' => $route,
             'key' => (string) $key,
