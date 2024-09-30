@@ -83,18 +83,20 @@
     <div class="container">
         <div class="block-recommend">
             <div class="title-recommend">
-                Gợi ý hôm nay
+                Sản phẩm đề xuất
             </div>
             <div class="block-items">
-                @for ($i = 0; $i < 5; $i++)
-                <div class="card-item">
-                    <img src="https://down-vn.img.susercontent.com/file/sg-11134301-7rd51-luixbhguml4p21_tn.webp" alt="" srcset="">
-                    <div class="card-info">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, blanditiis.</p>
-                        <div class="price"><small>₫</small>300.000</div>
-                    </div>
+                <div class="card-items">
+                    @for ($i = 1; $i < 11; $i++)
+                        <div class="card-item">
+                            <img src="https://picsum.photos/{{$i}}00" alt="" srcset="">
+                            <div class="card-info">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus delectus velit iste magni, possimus autem ipsa error non porro ex id necessitatibus eum voluptatem soluta doloribus corporis maiores?</p>
+                                <div class="price"><small>₫</small>{{$i}}00.000</div>
+                            </div>
+                        </div>
+                    @endfor
                 </div>
-                @endfor
             </div>
         </div>
     </div>
