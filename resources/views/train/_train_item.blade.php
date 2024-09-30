@@ -114,6 +114,12 @@
                                         </svg>
                                     </i>
                                 </button>
+                                <button data-tracking-event="selected_route" type="button"
+                                    class="ant-btn btn-booking-l" data-bs-toggle="collapse"
+                                    data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
+                                    aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}">
+                                    <span class="text-chooseeTrip">Chọn chuyến</span>
+                                </button>
                             </div>
                         </div>
                     </div>
