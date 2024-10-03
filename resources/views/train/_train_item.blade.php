@@ -1,4 +1,3 @@
-@foreach ($list_routes_train as $key => $route)
 <div id="item-train-{{ $key }}">
     <div class="container-l">
         <div class="ticket-container-l">
@@ -614,7 +613,7 @@
         </div>
     </div>
 </div>
-@endforeach
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Kiểm tra phần tử nút và collapse

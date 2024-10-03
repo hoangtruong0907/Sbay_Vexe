@@ -170,15 +170,15 @@
                                     <div class="custom-slider-container">
                                         <div class="custom-slider">
                                             <div class="custom-slider-rail"></div>
-                                            <div class="custom-slider-track custom-slider-track-1"
-                                                style="left: 0%; width: 100%;"></div>
+                                            <div class="custom-slider-track custom-slider-track-1" style="left: 0%; width: 100%;"></div>
                                             <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
                                                 role="slider" aria-valuemin="0" aria-valuemax="2000000"
                                                 aria-valuenow="0" style="left: 0%;">
                                             </div>
                                             <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
                                                 role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="2000000" style="left: 100%;"></div>
+                                                aria-valuenow="2000000" style="left: 100%;">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="custom-value-info custom-value-left">0 đ</div>
@@ -248,8 +248,208 @@
             </div>
         </div>
     </div>
+    
+    <!-- /////// lọc mobile///////// -->
+    <div id="floating" class="floating-container">
+        <button onclick="openFilterModal()">
+            <span>&#9881;</span> Lọc
+        </button>
+        <button onclick="openSortModal()">
+            <span>&#9650;</span> Sắp xếp
+        </button>
     </div>
-</div>
+
+    {{--  --}}
+    <div id="filterModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFilterModal()">&times;</span>
+            <div class="filter-title">
+                <div class="filter-header">Lọc</div>
+                <p class="btn-clear">Xóa lọc</p>
+            </div>
+
+            {{-- Giờ đi --}}
+            <div class="filter-item">
+                <div class="filter-group filter-times">
+                    <div class="filter-header-container">
+                        <p class="filter-label">Giờ đi</p>
+                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                    </div>
+                    <div class="filter-content">
+                        <div class="d-flex filter-time">
+                            <div class="group-time" data-value="timeGo:6h">
+                                <b>Sáng sớm</b>
+                                <div>00:00 - 06:00</div>
+                            </div>
+                            <div class="group-time" data-value="timeGo:12h">
+                                <b>Buổi sáng</b>
+                                <div>06:01 - 12:00</div>
+                            </div>
+                            <div class="group-time" data-value="timeGo:18h">
+                                <b>Buổi chiều</b>
+                                <div>12:01 - 18:00</div>
+                            </div>
+                            <div class="group-time" data-value="timeGo:23h">
+                                <strong>Buổi tối</strong>
+                                <div>18:01 - 23:59</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Giờ đến --}}
+            <div class="filter-item">
+                <div class="filter-group filter-times">
+                    <div class="filter-header-container">
+                        <p class="filter-label">Giờ đến</p>
+                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                    </div>
+                    <div class="filter-content">
+                        <div class="d-flex filter-time">
+                            <div class="group-time" data-value="timeCome:6h">
+                                <b>Sáng sớm</b>
+                                <div>00:00 - 06:00</div>
+                            </div>
+                            <div class="group-time" data-value="timeCome:12h">
+                                <b>Buổi sáng</b>
+                                <div>06:01 - 12:00</div>
+                            </div>
+                            <div class="group-time" data-value="timeCome:18h">
+                                <b>Buổi chiều</b>
+                                <div>12:01 - 18:00</div>
+                            </div>
+                            <div class="group-time" data-value="timeCome:23h">
+                                <strong>Buổi tối</strong>
+                                <div>18:01 - 23:59</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Giá vé --}}
+            <div class="filter-group filter-price">
+                <div class="filter-header-container">
+                    <p class="filter-label">Giá vé</p>
+                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                </div>
+                <div class="filter-content">
+                    <div class="custom-group-info">
+                        <div class="custom-slider-container">
+                            <div class="custom-slider">
+                                <div class="custom-slider-rail"></div>
+                                <div class="custom-slider-track custom-slider-track-1" style="left: 0%; width: 100%;"></div>
+                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
+                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                                    aria-valuenow="0" style="left: 0%;">
+                                </div>
+                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
+                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                                    aria-valuenow="2000000" style="left: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-value-info custom-value-left">0 đ</div>
+                        <div class="custom-value-info custom-value-right">2,000,000 đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-group filter-seat-type">
+                <div class="filter-header-container">
+                    <p class="filter-label">Loại ghế / giường</p>
+                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                </div>
+                <div class="filter-content">
+                    <div class="group-items-b">
+                        <label class="checkBoxGroup-b Filter_ACSeater ant-checkbox-wrapper-b">
+                            <span class="ant-checkbox-b">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="">
+                                <span class="ant-checkbox-inner-b"></span>
+                            </span>
+                            <span>Ghế ngồi (6)</span>
+                        </label>
+                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                            <span class="ant-checkbox-b">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="">
+                                <span class="ant-checkbox-inner-b"></span>
+                            </span>
+                            <span>Giường nằm (245)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
+                <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- ///////// sắp xếp/////////// -->
+    <div id="sortModal" class="modal">
+        <div class="modal-content-1">
+            <span class="close" onclick="closeSortModal()">&times;</span>
+            <h2>Sắp xếp</h2>
+            <div class="radio-group sort-options">
+                <label class="radio-wrapper checked">
+                    <span class="radio checked">
+                        <input type="radio" class="radio-input" value="">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Mặc định</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" class="radio-input" value="time:asc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giờ đi sớm nhất</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" class="radio-input" value="time:desc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giờ đi muộn nhất</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" class="radio-input" value="rating:desc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Đánh giá cao nhất</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" class="radio-input" value="fare:asc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giá tăng dần</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" class="radio-input" value="fare:desc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giá giảm dần</p>
+                    </span>
+                </label>
+            </div>
+            <button class="close-button" onclick="closeSortModal()">Đóng</button>
+        </div>
+    </div>
 @endsection
 
 @push('page-scripts')
@@ -280,6 +480,30 @@
     <script src="{{ asset('js/search_component.js') }}"></script>
 
     <script>
+        // lọc//
+        function openFilterModal() {
+            document.getElementById("filterModal").style.display = "block";
+        }
+
+        function closeFilterModal() {
+            document.getElementById("filterModal").style.display = "none";
+        }
+
+        function openSortModal() {
+            document.getElementById("sortModal").style.display = "block";
+        }
+
+        function closeSortModal() {
+            document.getElementById("sortModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("filterModal")) {
+                closeFilterModal();
+            } else if (event.target == document.getElementById("sortModal")) {
+                closeSortModal();
+            }
+        }
         $("#pills-train-tab").on("click", function(e) {
             window.location.href = "/route-search/tau-hoa";
         });
