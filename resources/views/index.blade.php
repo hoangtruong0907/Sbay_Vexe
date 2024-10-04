@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/air-datepicker.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/home-style.css') }}">
 @endsection
 
 @section('content')
@@ -79,6 +79,26 @@
         @else
             <p>No popular blog posts found.</p>
         @endif
+    </div>
+    <div class="container">
+        <div class="block-recommend">
+            <div class="title-recommend">
+                Sản phẩm đề xuất
+            </div>
+            <div class="block-items">
+                <div class="card-items">
+                    @for ($i = 1; $i < 11; $i++)
+                        <div class="card-item">
+                            <img src="https://picsum.photos/{{$i}}00" alt="" srcset="">
+                            <div class="card-info">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus delectus velit iste magni, possimus autem ipsa error non porro ex id necessitatibus eum voluptatem soluta doloribus corporis maiores?</p>
+                                <div class="price"><small>₫</small>{{$i}}00.000</div>
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection

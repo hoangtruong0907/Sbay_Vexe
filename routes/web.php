@@ -74,7 +74,7 @@ Route::prefix('/route-search')->group(function () {
 });
 // Bus view api
 Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
-Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch']);
+Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch'])->name('bus.list.search');
 Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
 Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
 Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
@@ -102,3 +102,8 @@ Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
 });
 
 Route::get('/payment-result', [PaymentResultController::class, 'showPaymentResult'])->name('payment.result');
+
+// loading page
+Route::get('/load-content', function () {
+    return view('components._loading'); // Trả về file Blade cần include
+});
