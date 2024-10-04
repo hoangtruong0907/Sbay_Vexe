@@ -1009,7 +1009,7 @@
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                            {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
+                                            {{$point['areaDetail']['address']?? []}}, {{$point['areaDetail']['city_name'] ?? ""}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
                                     {{-- <div class="d-flex flex-column align-items-start text-danger">
@@ -1135,7 +1135,7 @@
                                     <div class="d-flex flex-column align-items-start ">
                                         <p class="fw-normal mb-1 text-secondary"
                                             style="line-height: 16px; font-size: 12px;">
-                                           {{$point['areaDetail']['address']}}, {{$point['areaDetail']['city_name']}}, {{$point['areaDetail']['state_name'] ?? ""}}
+                                           {{$point['areaDetail']['address'] ?? ""}}, {{$point['areaDetail']['city_name'] ?? ""}}, {{$point['areaDetail']['state_name'] ?? ""}}
                                         </p>
                                     </div>
                                     {{-- <div class="d-flex flex-column align-items-start text-danger">

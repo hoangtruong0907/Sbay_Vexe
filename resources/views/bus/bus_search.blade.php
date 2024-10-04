@@ -2013,7 +2013,7 @@
 
         let proxies = {};
         let listSeatChoosed = {};
-
+        let totalFare = 0;
         function createProxyForSeatChoosed(keyId) {
             return new Proxy({}, {
                 set(target = targetData, property, value) {
@@ -2041,7 +2041,7 @@
                     let seatCodes = Object.keys(target);
                     let seatCodesString = seatCodes.join(', ');
 
-                    let totalFare = seatCodes.reduce((total, seatCode) => {
+                    totalFare = seatCodes.reduce((total, seatCode) => {
                         return total + (target[seatCode].fareSeat || 0);
                     }, 0);
                     let formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare) + 'đ';
@@ -2102,7 +2102,6 @@
                                         fullCode: $(this).data('full-code'),
                                         fareSeat: $(this).data('fare-seat'),
                                         seatCode: seatCode,
-
                                     };
                                 } else {
                                     delete proxies[keyId][seatCode];
@@ -2149,7 +2148,10 @@
                                 const dataSeat = {
                                     trip_code: tripCode,
                                     seat: fullCodeVal.join(', '),
-                                    seatData: seats,
+                                    seatData: JSON.stringify({
+                                        seatList: seats,
+                                        totalFare
+                                    }),
                                     pickup: checkDropName,
                                     pickup_id: checkDropValue,
                                     drop_off_info: checkTransferName,
@@ -2176,8 +2178,9 @@
                                     name: '_token',
                                     value: csrfToken
                                 }));
+                                // console.log("tripCode: ", dataSeat);
                                 form.appendTo('body').submit();
-                                console.log("tripCode: ", dataSeat);
+                                // console.log('Tổng', totalFare);
                             })
 
                         $(`#item-bus-${keyId} .back-step`).on('click', function() {
