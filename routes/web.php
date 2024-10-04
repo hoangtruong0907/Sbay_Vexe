@@ -82,9 +82,8 @@ Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [Ro
 Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap']);
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
-
 //payment
-Route::get('/payment', [PaymentController::class, 'showPaymentPage']);
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
 
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
