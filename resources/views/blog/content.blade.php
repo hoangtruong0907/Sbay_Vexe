@@ -15,19 +15,16 @@
 </style>
 @section('content')
 <!-- Phần nội dung -->
-<div class="CMSPostpage__PostPage-sc-1mccuz3-1 content-vexere">
-    <div class="Layout__Container-vf1wbr-0 vexere-day layout-container CMSPostpage__Container-sc-1mccuz3-2 content-vexere-sbay">
+<div class="content-vexere">
+    <div class="vexere-day layout-container content-vexere-sbay">
         @if(isset($blog))
         <div class="scroll-list scroll-vertical-list">
             <div class="post-title">
-                <a href="http://127.0.0.1:8000/" class="btn btn-back-home">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <p class="base__Heading01-sc-1tvbuqk-4 title-content-vexere color--darkness">{{ $blog->title }}</p>
+                <p class="title-content-vexere ">{{ $blog->title }}</p>
                 <img src="{{ Storage::url($blog->picture) }}" alt="{{ $blog->title }}" class="card-image">
             </div>
             <div class="post-content">
-                <div class="color--darkness">
+                <div class="">
                     {!! $blog->content !!}
                 </div>
             </div>
@@ -38,17 +35,15 @@
     </div>
 </div>
 
-
-
-<div class="CMSPostpage__PostRelative-sc-1mccuz3-3 list-content-main content-vexere">
-    <div class="Layout__Container-vf1wbr-0 vexere-day layout-container CMSPostpage__Container-sc-1mccuz3-2 content-vexere-sbay">
-        <p class="base__Heading01-sc-1tvbuqk-4 title-content-vexere post-relative-title">Bài viết liên quan</p>
+<div class="list-content-main content-vexere">
+    <div class="content-vexere-sbay">
+        <p class="title-content-vexere">Bài viết liên quan</p>
         <div class="post-relative-child scroll-container">
             @foreach($relatedContent as $item)
             <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native card-item">
                 <div class="Category__ItemContainer-mdhnis-1 card-inf item-container item-horizontal-container bg--white" id="card-{{ $item->id }}">
                     <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
-                    <div class="item-content-container item-horizontal-content-container">
+                    <div class="item-content-container">
                         <div class="card-content">
                             <div class="text-nvc">
                                 <h4 class="card-title">{{ $item->title }}</h4>
@@ -66,18 +61,18 @@
 
 
 @if($showButtonOnly)
-<div class="CMSPostpage__PostFooter-sc-1mccuz3-4 button-register">
+<div class="button-register">
     <div class="post-footer">
         <button type="button" class="ant-btn cta-button">
-            <p class="base__ButtonLabel-sc-1tvbuqk-18 button-endow color--black">DÙNG ƯU ĐÃI NGAY</p>
+            <p class="button-endow color--black">DÙNG ƯU ĐÃI NGAY</p>
         </button>
     </div>
 </div>
 @else
-<div class="CMSPostpage__PostFooter-sc-1mccuz3-4 button-register">
+<div class="button-register">
     <div class="post-footer">
         <button type="button" class="ant-btn cta-button">
-            <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">ĐẶT VÉ NGAY</p>
+            <p class="button-endow color--black">ĐẶT VÉ NGAY</p>
         </button>
     </div>
 </div>
