@@ -1478,3 +1478,6 @@ margin-left: 10px;
 } 
 
 
+#floating {
+    display: none;
+}

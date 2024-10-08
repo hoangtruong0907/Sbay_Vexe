@@ -117,7 +117,7 @@ function filterByTimeRange(startTime, endTime, when) {
     } else if (when == 'come') {
         // Lọc danh sách chuyến tàu theo khoảng thời gian
         filteredRoutes = listRoutesTrain.filter(function(route) {
-            const routeTime = new Date('1970/01/01 ' + route.time);
+            const routeTime = new Date('1970/01/01 ' + route.arrival_time);
             return routeTime >= new Date('1970/01/01 ' + startTime) && routeTime <= new Date('1970/01/01 ' + endTime);
         });
     }
@@ -158,6 +158,7 @@ $('.group-time').click((e) => {
             break; 
         case 'timeGo:18h':
             filterAfternoon('go');
+            break;
         case 'timeGo:23h':
             filterEvening('go');
             break;   
@@ -170,6 +171,7 @@ $('.group-time').click((e) => {
             break; 
         case 'timeCome:18h':
             filterAfternoon('come');
+            break; 
         case 'timeCome:23h':
             filterEvening('come');
             break;     
