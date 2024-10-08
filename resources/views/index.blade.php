@@ -58,7 +58,7 @@
                     <div class="card-wrapper">
                         <a
                             href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($post->title, '-')]) }}">
-                            <div class="card card-item">
+                            <div class="card card-item listben">
                                 <img src="{{ Storage::url($post->picture) }}" alt="{{ $post->title }}"
                                     class="card-image">
                                 <div class="card-content">
@@ -109,31 +109,25 @@
     // data load search component
     // #bus
     const busCities = @json($list_areas ?? []);
-    const dateTo = @json($params -> dateTo ?? '');
-    const dateFrom = @json($params -> dateFrom ?? '');
+    const dateTo = @json($params - > dateTo ?? '');
+    const dateFrom = @json($params - > dateFrom ?? '');
     // #train
     const trainStations = @json($list_areas_train ?? []);
-    const dateToTrain = @json($params -> dateToTrain ?? '');
-    const dateFromTrain = @json($params -> dateFromTrain ?? '');
+    const dateToTrain = @json($params - > dateToTrain ?? '');
+    const dateFromTrain = @json($params - > dateFromTrain ?? '');
 </script>
 <script src="{{ asset('js/search_component.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const cards = document.querySelectorAll('.card-item');
+        const cards = document.querySelectorAll('.listben');
         let maxHeight = 0;
-
-        // Tìm chiều cao lớn nhất
         cards.forEach(card => {
             card.style.height = 'auto';
             if (card.offsetHeight > maxHeight) {
                 maxHeight = card.offsetHeight;
             }
         });
-
-
-        const maxCardHeight = 250;
-
-
+        const maxCardHeight = 220;
         cards.forEach(card => {
             card.style.height = Math.min(maxHeight, maxCardHeight) + 'px';
         });

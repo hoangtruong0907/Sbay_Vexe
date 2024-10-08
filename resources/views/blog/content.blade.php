@@ -21,7 +21,7 @@
         <div class="scroll-list scroll-vertical-list">
             <div class="post-title">
                 <p class="title-content-vexere ">{{ $blog->title }}</p>
-                <img src="{{ Storage::url($blog->picture) }}" alt="{{ $blog->title }}" class="card-image">
+                <img src="{{ Storage::url($blog->picture) }}" alt="{{ $blog->title }}"style="max-width: 688px;" class="card-image">
             </div>
             <div class="post-content">
                 <div class="">

@@ -97,12 +97,14 @@
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
-    height: 250px;
 }
 .card-image {
-    width: 100%;
+    max-width: 688px;
     height: 150px;
     object-fit: cover;
+}
+.post-title .card-image{
+    max-width: 688px;
 }
 .card-content {
     padding: 10px;
