@@ -262,7 +262,7 @@
     {{--  --}}
     <div id="filterModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeFilterModal()">&times;</span>
+            <span class="close mb-4" onclick="closeFilterModal()">&times;</span>
             <div class="filter-title">
                 <div class="filter-header">Lọc</div>
                 <p class="btn-clear">Xóa lọc</p>
@@ -333,7 +333,7 @@
                     <p class="filter-label">Giá vé</p>
                     <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                 </div>
-                <div class="filter-content">
+                <div class="" style="display: none">
                     <div class="custom-group-info">
                         <div class="custom-slider-container">
                             <div class="custom-slider">
@@ -355,6 +355,7 @@
                 </div>
             </div>
 
+            {{-- Loại ghế/giường --}}
             <div class="filter-group filter-seat-type">
                 <div class="filter-header-container">
                     <p class="filter-label">Loại ghế / giường</p>
@@ -362,23 +363,45 @@
                 </div>
                 <div class="filter-content">
                     <div class="group-items-b">
-                        <label class="checkBoxGroup-b Filter_ACSeater ant-checkbox-wrapper-b">
+                        <label class="Filter_ACSeater ant-checkbox-wrapper-b" style="margin: 10px; display:flex">
                             <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="" id="allSeats">
                                 <span class="ant-checkbox-inner-b"></span>
                             </span>
-                            <span>Ghế ngồi (6)</span>
+                            <span>Tất cả</span>
                         </label>
                         <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
                             <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="NGC">
                                 <span class="ant-checkbox-inner-b"></span>
                             </span>
-                            <span>Giường nằm (245)</span>
+                            <span>Ngồi cứng</span>
+                        </label>
+                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                            <span class="ant-checkbox-b">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="NGM">
+                                <span class="ant-checkbox-inner-b"></span>
+                            </span>
+                            <span>Ngồi mềm</span>
+                        </label>
+                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                            <span class="ant-checkbox-b">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="NAC">
+                                <span class="ant-checkbox-inner-b"></span>
+                            </span>
+                            <span>Nằm khoang 4</span>
+                        </label>
+                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                            <span class="ant-checkbox-b">
+                                <input type="checkbox" class="ant-checkbox-input-b" value="NAM">
+                                <span class="ant-checkbox-inner-b"></span>
+                            </span>
+                            <span>Nằm khoang 6</span>
                         </label>
                     </div>
                 </div>
             </div>
+
             <div>
                 <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
                 <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
@@ -394,7 +417,7 @@
             <div class="radio-group sort-options">
                 <label class="radio-wrapper checked">
                     <span class="radio checked">
-                        <input type="radio" class="radio-input" value="">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="">
                         <span class="radio-inner"></span>
                     </span>
                     <span>
@@ -403,34 +426,7 @@
                 </label>
                 <label class="radio-wrapper">
                     <span class="radio">
-                        <input type="radio" class="radio-input" value="time:asc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giờ đi sớm nhất</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" class="radio-input" value="time:desc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giờ đi muộn nhất</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" class="radio-input" value="rating:desc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Đánh giá cao nhất</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" class="radio-input" value="fare:asc">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="fare:asc">
                         <span class="radio-inner"></span>
                     </span>
                     <span>
@@ -439,11 +435,47 @@
                 </label>
                 <label class="radio-wrapper">
                     <span class="radio">
-                        <input type="radio" class="radio-input" value="fare:desc">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="fare:desc">
                         <span class="radio-inner"></span>
                     </span>
                     <span>
                         <p class="option-label">Giá giảm dần</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:asc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giờ đi sớm nhất</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:desc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giờ đi muộn nhất</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:asc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giờ đến sớm nhất</p>
+                    </span>
+                </label>
+                <label class="radio-wrapper">
+                    <span class="radio">
+                        <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:desc">
+                        <span class="radio-inner"></span>
+                    </span>
+                    <span>
+                        <p class="option-label">Giờ đến muộn nhất</p>
                     </span>
                 </label>
             </div>

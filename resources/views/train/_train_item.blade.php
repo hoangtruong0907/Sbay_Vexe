@@ -1,4 +1,4 @@
-<div id="item-train-{{ $key }}">
+<div id="item-train-{{ $key }}" class="mb-3">
     <div class="container-l">
         <div class="ticket-container-l">
             <div class="ticket-body-l">
