@@ -1420,9 +1420,6 @@ margin-left: 10px;
     gap: 16px; 
 }
 
-
-
-
 .carriage-description {
     margin-top: 8px; 
     font-size: 14px; 
@@ -1434,4 +1431,8 @@ margin-left: 10px;
     border: 1px solid #ddd;
     margin-top: 10px;
     background-color: #f9f9f9;
+}
+
+#floating {
+    display: none;
 }
