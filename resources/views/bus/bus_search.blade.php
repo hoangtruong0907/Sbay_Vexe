@@ -1491,6 +1491,7 @@
         </div>
         <div class="right-filter">
             {{-- Load list item is here --}}
+            @include('components._brand_slide')
             <div class="container loading-wrap-page">
                 @include('components._loading')
             </div>
@@ -1595,11 +1596,11 @@
     }
     loadDataSearchBus();
     $("#bus_search").click(() => {loadDataSearchBus()})
-    
+
     $("#bus_date_from").change(function(){
         alert("The text has been changed.");
     });
-    
+
 
     $(document).ready(function() {
         // Lọc Giờ slide
@@ -2012,7 +2013,7 @@
 
         let proxies = {};
         let listSeatChoosed = {};
-
+        let totalFare = 0;
         function createProxyForSeatChoosed(keyId) {
             return new Proxy({}, {
                 set(target = targetData, property, value) {
@@ -2040,7 +2041,7 @@
                     let seatCodes = Object.keys(target);
                     let seatCodesString = seatCodes.join(', ');
 
-                    let totalFare = seatCodes.reduce((total, seatCode) => {
+                    totalFare = seatCodes.reduce((total, seatCode) => {
                         return total + (target[seatCode].fareSeat || 0);
                     }, 0);
                     let formattedTotalFare = new Intl.NumberFormat('vi-VN').format(totalFare) + 'đ';
@@ -2101,7 +2102,6 @@
                                         fullCode: $(this).data('full-code'),
                                         fareSeat: $(this).data('fare-seat'),
                                         seatCode: seatCode,
-
                                     };
                                 } else {
                                     delete proxies[keyId][seatCode];
@@ -2148,7 +2148,10 @@
                                 const dataSeat = {
                                     trip_code: tripCode,
                                     seat: fullCodeVal.join(', '),
-                                    seatData: seats,
+                                    seatData: JSON.stringify({
+                                        seatList: seats,
+                                        totalFare
+                                    }),
                                     pickup: checkDropName,
                                     pickup_id: checkDropValue,
                                     drop_off_info: checkTransferName,
@@ -2175,8 +2178,9 @@
                                     name: '_token',
                                     value: csrfToken
                                 }));
+                                // console.log("tripCode: ", dataSeat);
                                 form.appendTo('body').submit();
-                                console.log("tripCode: ", dataSeat);
+                                // console.log('Tổng', totalFare);
                             })
 
                         $(`#item-bus-${keyId} .back-step`).on('click', function() {
@@ -2514,7 +2518,7 @@
 <script>
     let addressModal;
     let dropoffModal;
-    let API_KEY = "{{ config('services.tomtom.api_key') }}"; 
+    let API_KEY = "{{ config('services.tomtom.api_key') }}";
     document.addEventListener('DOMContentLoaded', function() {
         setupEventListeners();
         updateSelectedAddress();
@@ -2548,11 +2552,11 @@
     }
 
     function searchAddress() {
-        const input = document.querySelector('#addressInput').value.trim(); 
+        const input = document.querySelector('#addressInput').value.trim();
         const addressList = document.querySelector('#addressList');
         addressList.innerHTML = '';
 
-        if (input.length > 0 && API_KEY) { 
+        if (input.length > 0 && API_KEY) {
             const apiUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(input)}.json?key=${API_KEY}`;
             fetch(apiUrl)
                 .then(response => {
@@ -2584,7 +2588,7 @@
         const input = document.querySelector('#dropoffInput').value.trim();
         const dropoffList = document.querySelector('#dropoffList');
         dropoffList.innerHTML = '';
-        if (input.length > 0 && API_KEY) { 
+        if (input.length > 0 && API_KEY) {
             const apiUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(input)}.json?key=${API_KEY}`;
 
             fetch(apiUrl)
