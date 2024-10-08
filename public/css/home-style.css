@@ -76,7 +76,6 @@
     flex-direction: column;
 }
 .card-wrapper {
-    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
 }
@@ -109,6 +108,11 @@
     padding: 10px;
 }
 .text-nvc .card-title {
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     font-size: 18px;
     line-height: 21.48px;
     text-decoration: none;

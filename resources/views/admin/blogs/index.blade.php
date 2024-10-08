@@ -125,7 +125,7 @@
             <p class="ltr:mr-3 rtl:ml-3" id="modal-title" style="overflow-wrap: break-word;hyphens: auto;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;font-weight: bold;">
                 Tiêu đề
             </p>
-            <p class="badge capitalize badge-outline-primary" id="modal-type">danh mục</p>
+            <p class="badge capitalize badge-outline-primary" id="modal-type" style="margin-right:10px;">danh mục</p>
             <div class="flex items-center justify-center" id="statusBadge">
                 Trạng thái
             </div>
