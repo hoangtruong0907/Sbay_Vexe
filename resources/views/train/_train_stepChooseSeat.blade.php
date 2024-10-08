@@ -162,7 +162,8 @@
 <div class="total-amount-train">
     <div class="left-total-amount-train">
         <button onclick="navigateStep('previous', '{{ $key }}')"> Quay lại</button>
-    </div>
+        <span class="selected-seats"> Ghế: </span><span class="left-seat-train"></span>
+    </div>    
     <div class="right-total-amount-train ">
         <div class="text-total-amout"> <span> Tổng cộng: </span><span class="right-total-train">0đ</span>
         </div>
