@@ -586,7 +586,6 @@ html [type="button"] {
     font-weight: 500;
     line-height: 28.64px;
     color: rgb(72, 72, 72);
-
     max-width: 100%;
     display: flex;
     flex: 1 1 0%;
@@ -855,10 +854,12 @@ html [type="button"] {
     font-size: 20px;
     color: #eb5757;
 }
+
 .block-search-user .user-component .user-block-items .icon-close i:hover {
     cursor: pointer;
     color: red;
 }
+
 .text-card {
     font-size: 24px;
     font-weight: 500;
@@ -867,10 +868,12 @@ html [type="button"] {
     width: 100%;
     box-sizing: border-box;
 }
+
 .blogs {
     display: flex;
     flex-direction: column;
 }
+
 .content-vexere {
     -webkit-box-align: center;
     align-items: center;
@@ -880,6 +883,7 @@ html [type="button"] {
     -webkit-box-pack: center;
     justify-content: center;
 }
+
 .content-vexere-sbay {
     max-width: 688px;
     padding: 16px 0px;
@@ -891,6 +895,7 @@ html [type="button"] {
 .content-vexere-sbay .post-title > :not(:last-child) {
     margin-bottom: 25px;
 }
+
 .title-content-vexere {
     font-size: 32px;
     font-weight: 700;
@@ -898,6 +903,7 @@ html [type="button"] {
     margin-bottom: 0px;
     margin-bottom: 30px;
 }
+
 .list-content-main .post-relative-child {
     display: flex;
     margin-bottom: 40px;
@@ -911,6 +917,7 @@ html [type="button"] {
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
 }
+
 .list-content-main .item-container:not(:last-child) {
     margin-right: 24px;
 }
@@ -944,9 +951,11 @@ body .bg--white {
     text-decoration: none;
     color: #000;
 }
+
 .card-content {
     padding: 10px;
 }
+
 a {
     text-decoration: none !important;
 }
@@ -988,6 +997,7 @@ a {
     z-index: 1;
     background-color: white;
 }
+
 .button-register .post-footer {
     width: 688px;
     display: flex;
@@ -995,6 +1005,7 @@ a {
     -webkit-box-pack: end;
     justify-content: flex-end;
 }
+
 .button-register .cta-button {
     height: auto;
     background-color: rgb(255, 211, 51);
@@ -1002,6 +1013,7 @@ a {
     border-radius: 8px;
     border: none;
 }
+
 .button-endow {
     font-size: 16px;
     font-weight: 700;
