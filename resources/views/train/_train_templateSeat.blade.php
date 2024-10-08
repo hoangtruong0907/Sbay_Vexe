@@ -51,7 +51,7 @@
                                                     @endphp
                                                     @if (isset($seat['is_available']) && $seat['is_available'] == false && $seat['seat_code'] !== 'HL')
                                                         <td class="seat">
-                                                            <div class="seat-choose-item seat-container"
+                                                            <div class="seat-choose-item seat-container seat-unavailable"
                                                                 data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
                                                                 {!! renderSeat('', 'unselected') !!}
                                                             </div>
@@ -166,3 +166,76 @@
 @else
     <div class="fw-bold">Chưa có dữ liệu</div>
 @endif
+
+
+<!-- Modal cảnh báo -->
+<div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="modals-warningLabel">Thông báo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mt-2 mb-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        let listSeatChoosed = {}; 
+        $('.seat-container').on('click', function() {
+            if ($(this).data('disabled') === 'true') {
+                return; 
+            }
+
+            const seatCode = $(this).data('seat-code');
+            const seatFare = parseInt($(this).data('fare-seat'));
+            const fullCode = $(this).data('full-code')
+
+            if ($(this).hasClass('seat-selected')) {
+                delete listSeatChoosed[seatCode];
+                $(this).removeClass('seat-selected'); 
+            } else {
+                if (Object.keys(listSeatChoosed).length < 3) {
+                    listSeatChoosed[seatCode] = {
+                        fareSeat: seatFare,
+                        fullCode: fullCode
+                    };
+                    $(this).addClass('seat-selected'); 
+                } else {
+                    $('#modals-warning').modal('show');
+                    return; 
+                }
+            }
+            updateTotalAndSeats();
+        });
+
+        function updateTotalAndSeats() {
+            let total = 0;
+            const selectedSeats = Object.keys(listSeatChoosed);
+            const seatNumbers = selectedSeats.length ? selectedSeats.join(', ') : '';
+
+            // Tính tổng giá tiền
+            for (const seat of selectedSeats) {
+                total += listSeatChoosed[seat].fareSeat; 
+            }
+            $('.right-total-train').text(formatCurrency(total)); // Cập nhật tổng tiền
+            $('.left-seat-train').text(seatNumbers); // Cập nhật ghế đã chọn
+        }
+
+        // Hàm định dạng tiền
+        function formatCurrency(amount) {
+            // Định dạng số với hai chữ số thập phân và dấu phẩy phân cách hàng nghìn
+            return amount.toLocaleString('vi-VN', {
+                style: 'decimal',
+                minimumFractionDigits: 3,
+                maximumFractionDigits: 3
+            }) + 'đ';
+        }
+    });
+</script>
