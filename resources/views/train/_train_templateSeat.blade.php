@@ -218,7 +218,7 @@
         function updateTotalAndSeats() {
             let total = 0;
             const selectedSeats = Object.keys(listSeatChoosed);
-            const seatNumbers = selectedSeats.length ? selectedSeats.join(', ') : 'None';
+            const seatNumbers = selectedSeats.length ? selectedSeats.join(', ') : '';
 
             // Tính tổng giá tiền
             for (const seat of selectedSeats) {
