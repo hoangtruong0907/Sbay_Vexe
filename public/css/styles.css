@@ -3,10 +3,6 @@ body {
     font-size: 15px !important;
 }
 
-a {
-    color: #000;
-}
-
 .btn-back-home:hover {
     border: none;
 }
@@ -583,11 +579,6 @@ html [type="button"] {
     margin-right: 10px;
 }
 
-.text-card {
-    width: 100%;
-    box-sizing: border-box;
-}
-
 .popular {
     width: 82%;
     margin: 0 auto;
@@ -595,20 +586,26 @@ html [type="button"] {
     font-weight: 500;
     line-height: 28.64px;
     color: rgb(72, 72, 72);
-    margin-bottom: 16px;
+    max-width: 100%;
+    display: flex;
+    flex: 1 1 0%;
+    overflow: auto !important;
 }
 
 .contentdb {
-    margin-left: 0px;
+    width: 82%;
+    line-height: 28.64px;
+    color: rgb(72, 72, 72);
+    margin: 0 auto 5px auto;
+    text-align: center;
+    display: block;
 }
 
 .popular-route-label {
-    width: 80%;
-    font-size: 24px;
-    font-weight: 500;
+    width: 82%;
     line-height: 28.64px;
     color: rgb(72, 72, 72);
-    margin: 0 auto 16px auto;
+    margin: 0 auto 5px auto;
     text-align: center;
     display: block;
 }
@@ -665,18 +662,21 @@ html [type="button"] {
     font-weight: 500;
     letter-spacing: 0px;
     opacity: 1;
-    margin-bottom: 16px;
 }
 
 .relatedContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
-    margin: 0 auto;
-    padding: 20px 0;
+    max-width: 688px;
+    padding: 16px 0px;
+    /* padding: 20px 0; */
+    overflow: visible;
     box-sizing: border-box;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    justify-content: center;
 }
 
 .custom-from-to-content {
@@ -696,15 +696,6 @@ html [type="button"] {
     text-align: center;
     box-sizing: border-box;
     margin: 10px auto;
-}
-
-.post-footer {
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
 }
 
 /* Search User Train */
@@ -783,7 +774,11 @@ html [type="button"] {
     gap: 20px;
 }
 
-.block-search-user .user-component .user-block-items .item-info .item-title-decs {
+.block-search-user
+    .user-component
+    .user-block-items
+    .item-info
+    .item-title-decs {
     max-width: 205px;
 }
 
@@ -830,7 +825,11 @@ html [type="button"] {
     border: 0px;
 }
 
-.block-search-user .user-component .user-block-items .item-action .action.active {
+.block-search-user
+    .user-component
+    .user-block-items
+    .item-action
+    .action.active {
     background: rgb(236, 244, 253);
     color: rgb(36, 116, 229);
     border: none;
@@ -855,7 +854,170 @@ html [type="button"] {
     font-size: 20px;
     color: #eb5757;
 }
+
 .block-search-user .user-component .user-block-items .icon-close i:hover {
     cursor: pointer;
     color: red;
+}
+
+.text-card {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.64px;
+    color: rgb(72, 72, 72);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.blogs {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-vexere {
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.content-vexere-sbay {
+    max-width: 688px;
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+}
+
+.content-vexere-sbay .post-title > :not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.title-content-vexere {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    margin-bottom: 0px;
+    margin-bottom: 30px;
+}
+
+.list-content-main .post-relative-child {
+    display: flex;
+    margin-bottom: 40px;
+    gap: 15px;
+}
+
+.card-inf {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+}
+
+.list-content-main .item-container:not(:last-child) {
+    margin-right: 24px;
+}
+
+.list-content-main .item-container {
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px -4px 16px;
+    width: 332px !important;
+    height: 250px;
+}
+
+.card-inf.item-horizontal-container {
+    width: 292px;
+}
+
+body .bg--white {
+    background-color: white !important;
+}
+
+.card-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.text-nvc .card-title {
+    font-size: 18px;
+    line-height: 21.48px;
+    text-decoration: none;
+    color: #000;
+}
+
+.card-content {
+    padding: 10px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.scroll-container > a {
+    flex: 0 0 auto;
+    width: 300px;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.button-register {
+    height: 90px;
+    position: sticky;
+    -webkit-box-align: center;
+    align-items: center;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px -4px 16px;
+    z-index: 1;
+    background-color: white;
+}
+
+.button-register .post-footer {
+    width: 688px;
+    display: flex;
+    padding: 12px 0px;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.button-register .cta-button {
+    height: auto;
+    background-color: rgb(255, 211, 51);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+}
+
+.button-endow {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0px;
+    margin-bottom: 0px;
 }

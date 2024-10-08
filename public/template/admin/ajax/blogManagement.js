@@ -23,9 +23,7 @@ $(document).ready(function () {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
                 success: displayPostDetails,
-                error: function (error) {
-                    console.error('Error fetching post details:', error);
-                }
+                
             });
         });
     });
