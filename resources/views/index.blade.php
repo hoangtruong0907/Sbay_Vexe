@@ -109,12 +109,12 @@
     // data load search component
     // #bus
     const busCities = @json($list_areas ?? []);
-    const dateTo = @json($params - > dateTo ?? '');
-    const dateFrom = @json($params - > dateFrom ?? '');
+    const dateTo = @json($params -> dateTo ?? '');
+    const dateFrom = @json($params -> dateFrom ?? '');
     // #train
     const trainStations = @json($list_areas_train ?? []);
-    const dateToTrain = @json($params - > dateToTrain ?? '');
-    const dateFromTrain = @json($params - > dateFromTrain ?? '');
+    const dateToTrain = @json($params -> dateToTrain ?? '');
+    const dateFromTrain = @json($params -> dateFromTrain ?? '');
 </script>
 <script src="{{ asset('js/search_component.js') }}"></script>
 <script>
