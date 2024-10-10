@@ -2144,7 +2144,7 @@
                                     .data('name');
                                 const seats = Object.assign({}, proxies[0]);
                                 const fullCodeVal = Object.values(seats).map(
-                                    seat => seat.fullCode);
+                                    seat => seat.fullCode);                                    
                                 const dataSeat = {
                                     trip_code: tripCode,
                                     seat: fullCodeVal.join(', '),
