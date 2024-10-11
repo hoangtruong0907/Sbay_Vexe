@@ -21,8 +21,8 @@
         <div class="auth-content">
             <div class="card">
                 <div class="card-body text-center">
-                    <div class="mb-4">
-                        <img class="brand" src="/images/bootstraper-logo.png" alt="bootstraper logo">
+                    <div class="mb-4 d-flex justify-content-center align-items-center overflow-hidden">
+                        <img class="brand" src="/images/bootstraper-logo.png" alt="bootstraper logo" style="margin-top: -1px">
                     </div>
                     <h6 class="mb-4 text-muted">Đăng nhập vào tài khoản của bạn</h6>
                     <form action="{{ route('admin.doLogin') }}" method="post">

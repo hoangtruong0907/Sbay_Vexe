@@ -41,7 +41,7 @@ Route::prefix('/admin')->group(function () {
     Route::prefix('/blogs')->group(function () {
         Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');
         Route::post('/', [BlogController::class, 'store'])->name('admin.blogs.store');
-        Route::post('/{id}', [BlogController::class, 'show'])->name('blogs.show');
+        Route::get('/{id}', [BlogController::class, 'show'])->name('blogs.show');
         Route::get('/create', [BlogController::class, 'create'])->name('admin.blogs.create');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
         Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
@@ -56,7 +56,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/', [ImageUploadController::class, 'showBanner'])->name('admin.banner');
         Route::post('/update', [ImageUploadController::class, 'updateBanner'])->name('admin.banner.update');
     });
-
 });
 
 Route::get('/', [RouteController::class, 'index'])->name('home');
@@ -82,8 +81,9 @@ Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [Ro
 Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap']);
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
+Route::post('/booking-payment',  [BookingController::class, 'store'])->name('booking.store');
 //payment
-Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
+Route::post('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
 
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');

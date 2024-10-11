@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\helpers;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -67,5 +69,33 @@ class BookingController extends Controller
             'selectedDropPoint' => $selectedDropPoint,
             'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
         ]);
+    }
+
+    public function store(Request $request) {
+
+        $data_booking = $request->all();
+        try {
+            $booking = Booking::create([
+                'order_code'        => 'HD' .substr(time(), -4) .substr(str_shuffle('0123456789'), 0, 4),
+                'trip_code'         => $request->trip_code,
+                'customer_name'     => $request->customer_name,
+                'customer_phone'    => $request->customer_phone,
+                'customer_email'    => $request->customer_email,
+                'seats'             => $request->seats,
+                'price'             => $request->price,
+                'pickup_id'         => $request->pickup_id,
+                'drop_off_info'     => $request->drop_off_info,
+                'drop_off_point_id' => $request->drop_off_point_id,
+                'status'            => config('apps.common.status_booking.pending'),
+            ]);
+
+            $booking->save();
+            $order_code = $booking->order_code;
+            $order_price = $booking->price;
+            return view('payment.payment', compact('order_price', 'order_code', 'data_booking'));
+        } catch (\Throwable $e) {
+            Log::error($e->getMessage());
+            return redirect()->back();
+        }    
     }
 }

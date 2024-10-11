@@ -12,75 +12,71 @@
     footer {
         display: none !important;
     }
-    
 </style>
 @section('content')
-    <!-- Phần nội dung -->
-    <div class="CMSPostpage__PostPage-sc-1mccuz3-1 hgcnFg">
-        <div class="Layout__Container-vf1wbr-0 hCVqtJ layout-container CMSPostpage__Container-sc-1mccuz3-2 hYjWkQ">
-            @if(isset($blog))
-            <div class="scroll-list scroll-vertical-list">
-                <div class="post-title">
-                    <a href="http://127.0.0.1:8000/" class="btn btn-back-home">
-                        <i class="fa fa-arrow-left"></i>
-                    </a>
-                    <p class="base__Heading01-sc-1tvbuqk-4 iavTwq color--darkness">{{ $blog->title }}</p>
-                    <img src="{{ Storage::url($blog->picture) }}" alt="{{ $blog->title }}" class="card-image">
-                </div>
-                <div class="post-content">
-                    <div class="color--darkness">
-                        {!! $blog->content !!}
-                    </div>
+<!-- Phần nội dung -->
+<div class="content-vexere">
+    <div class="vexere-day layout-container content-vexere-sbay">
+        @if(isset($blog))
+        <div class="scroll-list scroll-vertical-list">
+            <div class="post-title">
+                <p class="title-content-vexere ">{{ $blog->title }}</p>
+                <img src="{{ Storage::url($blog->picture) }}" alt="{{ $blog->title }}"style="max-width: 688px;" class="card-image">
+            </div>
+            <div class="post-content">
+                <div class="">
+                    {!! $blog->content !!}
                 </div>
             </div>
-            @else
-            <p>Blog post not found.</p>
-            @endif
         </div>
+        @else
+        <p>Blog post not found.</p>
+        @endif
     </div>
+</div>
 
-    <div class="relatedContent">
-    <h1 class="popular-route-label route-label contentdb" style="margin-left: 0px">Nội dung liên quan</h1> 
-    <div class="scroll-container fg">
-        <div class="container item-card-list">
+<div class="list-content-main content-vexere">
+    <div class="content-vexere-sbay">
+        <p class="title-content-vexere">Bài viết liên quan</p>
+        <div class="post-relative-child scroll-container">
             @foreach($relatedContent as $item)
-                <div class="text-card">
-                    <div class="card-wrapper" id="card-{{ $item->id }}">
-                    <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native">
-                            <div class="card card-item" style="margin-top:50px;">
-                                <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
-                                <div class="card-content">
-                                    <div class="text-nvc">
-                                        <h4 class="card-title">{{ $item->title }}</h4>
-                                    </div>
-                                </div>
+            <a href="{{ route('blog.content', ['slug' => \Illuminate\Support\Str::slug($item->title, '-')]) }}" class="native card-item">
+                <div class="Category__ItemContainer-mdhnis-1 card-inf item-container item-horizontal-container bg--white" id="card-{{ $item->id }}">
+                    <img src="{{ Storage::url($item->picture) }}" alt="{{ $item->title }}" class="card-image">
+                    <div class="item-content-container">
+                        <div class="card-content">
+                            <div class="text-nvc">
+                                <h4 class="card-title">{{ $item->title }}</h4>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
+            </a>
             @endforeach
-            {{ $relatedContent->links() }} <!-- Hiển thị phân trang -->
+            {{ $relatedContent->links() }}
         </div>
     </div>
 </div>
 
-    @if($showButtonOnly)
-    <div class="CMSPostpage__PostFooter-sc-1mccuz3-4 jvMYTT">
-        <div class="post-footer">
-            <button type="button" class="ant-btn cta-button">
-                <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">DÙNG ƯU ĐÃI NGAY</p>
-            </button>
-        </div>
+
+
+@if($showButtonOnly)
+<div class="button-register">
+    <div class="post-footer">
+        <button type="button" class="ant-btn cta-button">
+            <p class="button-endow color--black">DÙNG ƯU ĐÃI NGAY</p>
+        </button>
     </div>
-    @else
-    <div class="CMSPostpage__PostFooter-sc-1mccuz3-4 jvMYTT">
-        <div class="post-footer">
-            <button type="button" class="ant-btn cta-button">
-                <p class="base__ButtonLabel-sc-1tvbuqk-18 idyddq color--black">ĐẶT VÉ NGAY</p>
-            </button>
-        </div>
+</div>
+@else
+<div class="button-register">
+    <div class="post-footer">
+        <button type="button" class="ant-btn cta-button">
+            <p class="button-endow color--black">ĐẶT VÉ NGAY</p>
+        </button>
     </div>
-    @endif
+</div>
+@endif
 
 @endsection
 

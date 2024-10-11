@@ -400,6 +400,7 @@
 }
 
 .seat-available {
+    cursor: pointer;
     text-align: right;
     font-size: 16px;
     color: rgb(72, 72, 72);
@@ -1262,6 +1263,14 @@
     margin-right: 8px;
 }
 
+.left-total-amount-train .left-seat-train {
+    display: inline;
+    color: rgb(0, 96, 196);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+
 .item-col-train .img-custom {
     display: flex;
     flex-wrap: wrap;
@@ -1437,9 +1446,6 @@
     gap: 16px;
 }
 
-
-
-
 .carriage-description {
     margin-top: 8px;
     font-size: 14px;
@@ -1455,7 +1461,6 @@
     background-color: #f9f9f9;
 }
 
-/* Seat */
 .seat-unavailable {
     stroke: rgb(179, 179, 179);
     fill: rgb(224, 224, 224);
@@ -1485,5 +1490,15 @@
 }
 
 .trip-train-reponesive {
+    display: none;
+}
+
+.seat-unavailable {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+#floating {
     display: none;
 }

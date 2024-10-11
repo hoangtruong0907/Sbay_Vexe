@@ -358,6 +358,9 @@
         display: block;
         text-align: center;
     }
+    #floating {
+        display: flex;
+    }
 }
 
 @media (max-width: 768px) {
