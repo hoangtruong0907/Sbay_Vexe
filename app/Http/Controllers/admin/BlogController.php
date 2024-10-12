@@ -34,7 +34,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         try {
             $blog = $this->blogRepository->findById($id);
@@ -52,8 +52,6 @@ class BlogController extends Controller
                 'picture' => $blog->picture ? Storage::url($blog->picture) : asset('template/admin/assets/images/default_image.jpg'),
             ]);
         } catch (\Exception $e) {
-
-            // Trả về thông báo lỗi
             return response()->json(['error' => 'Không thể lấy thông tin chi tiết bài đăng.'], 500);
         }
     }
@@ -102,7 +100,6 @@ class BlogController extends Controller
 
         return redirect()->route('admin.blogs.index')->with('success', 'Thêm bài viết thành công.');
     }
-
 
     private function paginatePosts($allPosts, $perPage)
     {
@@ -171,7 +168,6 @@ class BlogController extends Controller
         return $data;
     }
 
-
     private function getFilteredRelatedContent($blog)
     {
         $relatedContent = $this->blogRepository->getRelatedContent();
@@ -183,6 +179,10 @@ class BlogController extends Controller
     public function destroy($id)
     {
         try {
+            $blog = $this->blogRepository->findById($id);
+            if (!$blog) {
+                return response()->json(['success' => false, 'error' => 'Bài viết không tồn tại.'], 404);
+            }
             $this->blogRepository->deleteById($id);
             return response()->json(['success' => true, 'message' => 'Xóa bài viết thành công.']);
         } catch (\Exception $e) {
