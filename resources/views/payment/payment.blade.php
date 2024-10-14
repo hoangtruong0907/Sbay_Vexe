@@ -767,18 +767,18 @@
                             <form>
                                 <div class="contact-112">
                                     <label for="contactName" class="form-label">Họ tên *</label>
-                                    <input type="text" class="form-control" id="contactName" value="PHỤNG">
+                                    <input type="text" class="form-control" id="contactName" value="{{session('info_booking')['customer_name']}}">
                                 </div>
                                 <div class="ontact-112">
                                     <label for="contactPhone" class="form-label">Số điện thoại *</label>
                                     <div class="input-group">
                                         <span class="input-group-text">VN +84</span>
-                                        <input type="text" class="form-control" id="contactPhone" value="0987654568">
+                                        <input type="text" class="form-control" id="contactPhone" value="{{session('info_booking')['customer_phone']}}">
                                     </div>
                                 </div>
                                 <div class="ontact-112">
                                     <label for="contactEmail" class="form-label">Email để nhận thông tin đặt chỗ *</label>
-                                    <input type="email" class="form-control" id="contactEmail" value="tuan@gmail.com">
+                                    <input type="email" class="form-control" id="contactEmail" value="{{session('info_booking')['customer_email']}}">
                                 </div>
                                 <div class="alert alert-success">
                                     <i class="material-icons-round">check_circle</i> Số điện thoại và email được sử dụng để
@@ -841,7 +841,9 @@
                             </div>
                             <div class="col-md-4 text-center">
                                 <p>Quét mã bên dưới</p>
-                                <img class="w-75 h-75" src="https://img.vietqr.io/image/TPB-0794416855-compact.png?amount={{$order_price}}&addInfo={{$order_code}}" alt="QR Code">
+                                @if (session('order_code') && session('order_price'))
+                                    <img class="w-75 h-75" src="https://img.vietqr.io/image/TPB-0794416855-compact.png?amount={{ session('order_price') }}&addInfo={{ session('order_code') }}" alt="QR Code">
+                                @endif
                                 <p class="mt-2">VIETQR | NAPAS</p>
                             </div>
                         </div>
@@ -1309,8 +1311,8 @@
                 <div class="card-header d-flex justify-content-between align-items-center" onclick="toggleTotalDetails()">
                     <h4 class="mb-0 rich">Tổng tiền:</h4>
                     <div class="d-flex align-items-center">
-                        <h4 class="mb-0 me-2 rich">950.000đ</h4>
-                        <i class="fa-solid fa-chevron-down toggle-arrow" id="toggle-arrow"></i>
+                        <h4 class="mb-0 me-2 rich">{{ number_format(session('order_price'), 0, ',', '.') . ' ₫' }}</h4>
+                        {{-- <i class="fa-solid fa-chevron-down toggle-arrow" id="toggle-arrow"></i> --}}
                     </div>
                 </div>
                 <div class="card-body" id="total-details" style="display: none;">
@@ -1333,9 +1335,9 @@
                             data-bs-target="#contactModal">Chỉnh
                             sửa</a>
                     </div>
-                    <p><strong>Hành khách:</strong> PHỤNG</p>
-                    <p><strong>Số điện thoại:</strong> 0987654568</p>
-                    <p><strong>Email:</strong> tuan@gmail.com</p>
+                    <p><strong>Hành khách: </strong>{{session('info_booking')['customer_name']}}</p>
+                    <p><strong>Số điện thoại: </strong>{{session('info_booking')['customer_phone']}}</p>
+                    <p><strong>Email: </strong>{{session('info_booking')['customer_email']}}</p>
                 </div>
             </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="contactModal" aria-labelledby="contactModalLabel">
@@ -1352,18 +1354,18 @@
                     <form>
                         <div class="mb-3">
                             <label for="contactName" class="form-label">Họ tên *</label>
-                            <input type="text" class="form-control" id="contactName" value="PHỤNG">
+                            <input type="text" class="form-control" id="contactName" value="{{session('info_booking')['customer_name']}}">
                         </div>
                         <div class="mb-3">
                             <label for="contactPhone" class="form-label">Số điện thoại *</label>
                             <div class="input-group">
                                 <span class="input-group-text">VN +84</span>
-                                <input type="text" class="form-control" id="contactPhone" value="0987654568">
+                                <input type="text" class="form-control" id="contactPhone" value="{{session('info_booking')['customer_phone']}}">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="contactEmail" class="form-label">Email để nhận thông tin đặt chỗ *</label>
-                            <input type="email" class="form-control" id="contactEmail" value="tuan@gmail.com">
+                            <input type="email" class="form-control" id="contactEmail" value="{{session('info_booking')['customer_email']}}">
                         </div>
                         <div class="alert alert-success">
                             <i class="material-icons-round">check_circle</i> Số điện thoại và email được sử dụng để gửi
@@ -1384,16 +1386,16 @@
     </div>
     
     <div class="fixed-payment-button">
-        <div class="d-flex justify-content-between align-items-center flex-wrap payment-info-container">
+        <div class="d-flex justify-content-center align-items-center flex-wrap payment-info-container">
             <div class="total-money-section">
                 <p class="total-money mb-0" onclick="toggleModal()">Tổng tiền: 900.000đ <span id="toggle-arrow"
                         class="arrow">^</span></p>
             </div>
            <div class="d-flex justify-content-center align-items-center w-75">
-                <button class="btn mt-2 custom-payment-button bg-secondary me-3">
+                <button class="btn mt-2 custom-payment-button text-white bg-secondary me-3" onclick="handleChangeStatusBooking('{{ session('order_code') }}', {{config('apps.common.status_booking.cancel')}})">
                     <i class="bi bi-shield-check"></i> Hủy thanh toán
                 </button>
-                <button class="btn mt-2 custom-payment-button">
+                <button class="btn mt-2 custom-payment-button" onclick="handleChangeStatusBooking('{{ session('order_code') }}', {{config('apps.common.status_booking.pending')}})">
                     <i class="bi bi-shield-check"></i> Đã thanh toán
                 </button>
            </div>
@@ -1428,6 +1430,17 @@
 @push('page-scripts')
 
 <script>
+    function handleChangeStatusBooking(order_code, status) {
+        console.log(order_code, status);
+        $.ajax({
+            url: '{{route("booking.update")}}',
+            type: 'POST',
+            data: {status: status, order_code: order_code},
+        })
+        .done((data) => {
+           window.location.href = data.url;
+        })
+    }
 let timeLeft = 600;
 const countdownTimer = setInterval(function() {
     let minutes = Math.floor(timeLeft / 60);
