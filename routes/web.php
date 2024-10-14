@@ -41,11 +41,11 @@ Route::prefix('/admin')->group(function () {
     Route::prefix('/blogs')->group(function () {
         Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');
         Route::post('/', [BlogController::class, 'store'])->name('admin.blogs.store');
-        Route::get('/{id}', [BlogController::class, 'show'])->name('blogs.show');
+        Route::get('/show/{id}', [BlogController::class, 'show'])->name('blogs.show');
         Route::get('/create', [BlogController::class, 'create'])->name('admin.blogs.create');
-        Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
-        Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
-        Route::delete('/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
+        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+        Route::put('/update/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
+        Route::delete('/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
         Route::get('/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
     });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
