@@ -82,8 +82,9 @@ Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap'
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
 Route::post('/booking-payment',  [BookingController::class, 'store'])->name('booking.store');
+Route::post('/update-booking', [BookingController::class, 'updateBookingStatus'])->name('booking.update');
 //payment
-Route::post('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
 
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');

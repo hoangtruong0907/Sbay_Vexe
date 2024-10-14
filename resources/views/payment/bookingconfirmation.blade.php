@@ -175,6 +175,7 @@
         <input type="hidden" name="pickup_id" value="{{$seatInfo['pickup_id']}}">
         <input type="hidden" name="drop_off_info" value="{{$seatInfo['drop_off_info']}}">
         <input type="hidden" name="drop_off_point_id" value="{{$seatInfo['drop_off_point_id']}}">
+        <input type="hidden" name="data" value="{{$data}}">
         {{-- end set data booking for form --}}
         
         <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px;">

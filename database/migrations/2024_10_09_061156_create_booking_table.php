@@ -19,11 +19,14 @@ return new class extends Migration
             $table->string('customer_phone');
             $table->string('customer_email')->nullable();
             $table->string('seats');
+            $table->string('code');
+            $table->string('booking_code');
+            $table->string('tickets');
             $table->string('price');
             $table->integer('pickup_id')->nullable();
             $table->string('drop_off_info')->nullable();
             $table->integer('drop_off_point_id');
-            $table->integer('status')->default(config('apps.common.status_booking.pending'));
+            $table->integer('status')->default(config('apps.common.status_booking.reserve'));
             $table->timestamps();
         });
     }
