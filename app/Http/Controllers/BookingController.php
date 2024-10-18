@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\helpers;
 use App\Models\Booking;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 class BookingController extends Controller
@@ -159,18 +161,70 @@ class BookingController extends Controller
         }
     }
 
+    public function paymentBooking ($bookingCode) {
+        // Post api 
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        $uniqueToken = Str::uuid();
+        $client = new Client();
+        $response = $client->post( $this->main_url.'/v3/booking/pay', [
+            'headers' => [
+                'Postman-Token' => (string) $uniqueToken,
+                'cache-control' => 'no-cache',
+                'Authorization' => 'Bearer ' .  $token,
+                'Content-Type' => 'application/x-www-form-urlencoded',
+            ],
+            'form_params' => [
+                'code' => $bookingCode,
+            ],
+        ]);
+        $responseBody = json_decode($response->getBody(), true);
+        return $responseBody['data'];
+    }
+
     public function updateBookingStatus(Request $request) {
-        Booking::where('order_code', $request->order_code)->update(['status' => $request->status]);
-        if ($request->status == config('apps.common.status_booking.pending')) {
-            return response()->json([
-                'success' => 200,
-                'url' => '/payment-result'
-            ]);
+        $check_memo = $request->order_code; // truyền vào order_code
+        $check_type = "deposit";    // chỉ lấy giao dịch nhận
+        $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
+
+        // Gọi api giao dịch
+        $response = Http::get('https://sbaygroup.net/global-apis/bun-vcb.php', [
+            'key' => 'tin_sbay_key_vcb',
+            'gidzl' => 'CG1I0wNkjcOm65G2elctPp0LN0I-zBOqV1fSLk_wksCfHmrIkgRlCdiR3rQz--HWAH802ZAWsDDJe-gnQ0'
+        ]);
+        
+        if ($response->successful()) {
+            // đúng giá tiền, ngày hôm nay, và memo 
+            $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
+                return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;
+            });
+
+            if ($result != null) {
+                // Loại bỏ dấu cộng và dấu phẩy
+                $cleanedString = str_replace([',', '+'], '', $result['money']);
+                // Chuyển đổi chuỗi thành số nguyên
+                $amount = intval($cleanedString);
+
+                // lấy ra booking trong Database
+                $booking = Booking::where(['order_code'=> $request->order_code, 'price' => $amount])->first();
+
+                // gọi hàm payment
+                $paymentBooking = $this->paymentBooking($booking->booking_code);
+
+                // Cập nhật lại giá trị của Booking
+                $booking->ticket_code = $paymentBooking['ticket_code'];
+                $booking->vxr_transaction_id = $paymentBooking['vxr_transaction_id'];
+                $booking->status = config('apps.common.status_booking.paid');
+                $booking->save();
+                return response()->json([
+                    'success' => 200,
+                    'url' => '/payment-result'
+                ]);
+                
+            } else {
+                return response()->json(['error' => 'API request failed'], $response->status());
+            }
         } else {
-            return response()->json([
-                'success' => 200,
-                'url' => '/payment-cancel'
-            ]);
+            return response()->json(['error' => 'API request failed'], $response->status());
         }
     }
 }
