@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('code');
             $table->string('booking_code');
             $table->string('tickets');
+            $table->string('ticket_code')->nullable(); // sau khi thanh toán sẽ trả về 
+            $table->string('vxr_transaction_id')->nullable(); // sau khi thanh toán sẽ trả về
             $table->string('price');
             $table->integer('pickup_id')->nullable();
             $table->string('drop_off_info')->nullable();

@@ -21,6 +21,8 @@ class Booking extends Model
         'code',
         'booking_code',
         'tickets',
+        'ticket_code',
+        'vxr_transaction_id',
         'pickup_id',
         'drop_off_info',  
         'drop_off_point_id',   
