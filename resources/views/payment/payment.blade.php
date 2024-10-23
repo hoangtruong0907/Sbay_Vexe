@@ -40,7 +40,7 @@
                             <div class="trip-summary-details">
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg" alt="Bus Icon"
                                     class="trip-icon">
-                                <span class="trip-date">T3, 10/09/2024</span>
+                                <span class="trip-date">{{formatDateTime($bookingData->seatMap->departure_time, 'D, d/m/Y', 0, 0, "vi")}}</span>
                                 <div class="trip-passenger-info">
                                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                                         alt="People Icon" class="trip-icon">
@@ -842,7 +842,7 @@
                             <div class="col-md-4 text-center">
                                 <p>Quét mã bên dưới</p>
                                 @if (session('order_code') && session('order_price'))
-                                    <img class="w-75 h-75" src="https://img.vietqr.io/image/TPB-0794416855-compact.png?amount={{ session('order_price') }}&addInfo={{ session('order_code') }}" alt="QR Code">
+                                    <img class="w-75 h-75" src="https://img.vietqr.io/image/VCB-0021000337309-compact.png?amount={{ session('order_price') }}&addInfo={{ session('order_code') }}" alt="QR Code">
                                 @endif
                                 <p class="mt-2">VIETQR | NAPAS</p>
                             </div>
@@ -915,7 +915,7 @@
                 </div>
     
                 <!-- Thanh toán khi lên xe -->
-                <div class="form-check mb-2">
+                <div class="form-check mb-2 d-none">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod2"
                         onclick="showPaymentDetails()">
                     <label class="form-check-label" for="paymentMethod2">
@@ -1428,7 +1428,6 @@
 @endsection
 
 @push('page-scripts')
-
 <script>
     function handleChangeStatusBooking(order_code, status) {
         console.log(order_code, status);
@@ -1438,7 +1437,11 @@
             data: {status: status, order_code: order_code},
         })
         .done((data) => {
-           window.location.href = data.url;
+            if (data.code == 200) {
+                window.location.href = data.url;
+            } else {
+                console.console.error(data.message);                
+            }
         })
     }
 let timeLeft = 600;
