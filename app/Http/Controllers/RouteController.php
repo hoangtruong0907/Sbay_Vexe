@@ -335,97 +335,103 @@ class RouteController extends Controller
 
     function busListRouteSearch(Request $request)
     {
-        $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
-        $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
-        $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : "";
-        $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : "";
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        try {
+            $busTo = $request->query('bus_to') ? (int)($request->query('bus_to')) : "";
+            $busFrom = $request->query('bus_from') ? (int)$request->query('bus_from') : "";
+            $dateTo = $request->query('date_to') ? formatDate($request->query('date_to')) : "";
+            $dateFrom = $request->query('date_from') ? formatDate($request->query('date_from')) : "";
+            $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
 
-        if ($busTo === null || $busFrom === null || $dateTo === null) {
-            return response()->json(['error' => 'Missing required parameters.'], 400);
-        }
-
-        $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
-
-        $queryParams = [
-            'filter[online_ticket]' => $request->query('online_ticket', 0), // Lọc theo các chuyến đi trực tuyến (0 hoặc 1)
-            'filter[online_reserved]' => $request->query('online_reserved') ?? null, // Lọc theo vị trí ghế đã chọn trước (0 hoặc 1)
-            'filter[is_promotion]' => $request->query('is_promotion') ?? null, // Tham khảo chuyến đi giảm giá (0 hoặc 1)
-            'filter[companies][index]' => $request->query('companies_index') ?? null, // Lọc theo ID công ty xe bus
-            'filter[fare][min]' => $request->query('fare_min') ?? null, // Lọc theo giá vé tối thiểu
-            'filter[fare][max]' => $request->query('fare_max') ?? null, // Lọc theo giá vé tối đa
-            'filter[available_seat][min]' => $request->query('available_seat_min') ?? null, // Lọc theo số lượng ghế trống tối thiểu
-            'filter[available_seat][max]' => $request->query('available_seat_max') ?? null, // Lọc theo số lượng ghế trống tối đa
-            'filter[rating][min]' => $request->query('rating_min') ?? null, // Lọc theo rating tối thiểu
-            'filter[rating][max]' => $request->query('rating_max') ?? null, // Lọc theo rating tối đa
-            'filter[time][min]' => $request->query('time_min') ?? null, // Lọc theo thời gian bắt đầu HH:mm
-            'filter[time][max]' => $request->query('time_max') ?? null, // Lọc theo thời gian kết thúc
-            'filter[limousine]' => $request->query('limousine') ?? null, // Lọc theo loại xe limousine (0 hoặc 1)
-            'filter[seat_type][index]' => $request->query('seat_type_index') ?? null, // Lọc theo loại ghế ngồi (1 - AC Seater, 2 - AC Sleeper, 7 - AC Double Sleeper)
-            'filter[covid_utility]' => $request->query('covid_utility') ?? null, // Đảm bảo COVID-19 (0 hoặc 1)
-            'filter[enabled_gps]' => $request->query('enabled_gps') ?? null, // Theo dõi vị trí xe (0 hoặc 1)
-            'filter[full_trip]' => $request->query('full_trip') ?? null, // Lọc full chuyến (0 hoặc 1)
-            'filter[pickup_points][index][district]' => $request->query('pickup_points_index_district') ?? null, // Lọc theo điểm đón theo quận huyện
-            'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name') ?? null, // Lọc theo điểm đón theo tên
-            'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district') ?? null, // Lọc theo điểm xả theo quận huyện
-            'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name') ?? null, // Lọc theo điểm xả theo tên
-            'sort' => $request->query('sort') ?? "time:asc", // Sort theo giờ (time:asc/time:desc), rating (rating:asc), giá (fare:asc),
-            'page' => $request->query('page', 1), // Phân trang (mặc định là trang 1)
-            'pagesize' => $request->query('pagesize', 8), // Số phần tử mỗi trang (mặc định là 8)
-        ];
-
-        // Thêm các tham số vào URL
-        foreach ($queryParams as $key => $value) {
-            if ($value !== null) {
-                $urlRoute .= '&' . $key . '=' . $value;
+            if ($busTo === null || $busFrom === null || $dateTo === null) {
+                return response()->json(['error' => 'Missing required parameters.'], 400);
             }
-        }
 
-        if (!$token) {
+            $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
+
+            $queryParams = [
+                'filter[online_ticket]' => $request->query('online_ticket', 0), // Lọc theo các chuyến đi trực tuyến (0 hoặc 1)
+                'filter[online_reserved]' => $request->query('online_reserved') ?? null, // Lọc theo vị trí ghế đã chọn trước (0 hoặc 1)
+                'filter[is_promotion]' => $request->query('is_promotion') ?? null, // Tham khảo chuyến đi giảm giá (0 hoặc 1)
+                'filter[companies][index]' => $request->query('companies_index') ?? null, // Lọc theo ID công ty xe bus
+                'filter[fare][min]' => $request->query('fare_min') ?? null, // Lọc theo giá vé tối thiểu
+                'filter[fare][max]' => $request->query('fare_max') ?? null, // Lọc theo giá vé tối đa
+                'filter[available_seat][min]' => $request->query('available_seat_min') ?? null, // Lọc theo số lượng ghế trống tối thiểu
+                'filter[available_seat][max]' => $request->query('available_seat_max') ?? null, // Lọc theo số lượng ghế trống tối đa
+                'filter[rating][min]' => $request->query('rating_min') ?? null, // Lọc theo rating tối thiểu
+                'filter[rating][max]' => $request->query('rating_max') ?? null, // Lọc theo rating tối đa
+                'filter[time][min]' => $request->query('time_min') ?? null, // Lọc theo thời gian bắt đầu HH:mm
+                'filter[time][max]' => $request->query('time_max') ?? null, // Lọc theo thời gian kết thúc
+                'filter[limousine]' => $request->query('limousine') ?? null, // Lọc theo loại xe limousine (0 hoặc 1)
+                'filter[seat_type][index]' => $request->query('seat_type_index') ?? null, // Lọc theo loại ghế ngồi (1 - AC Seater, 2 - AC Sleeper, 7 - AC Double Sleeper)
+                'filter[covid_utility]' => $request->query('covid_utility') ?? null, // Đảm bảo COVID-19 (0 hoặc 1)
+                'filter[enabled_gps]' => $request->query('enabled_gps') ?? null, // Theo dõi vị trí xe (0 hoặc 1)
+                'filter[full_trip]' => $request->query('full_trip') ?? null, // Lọc full chuyến (0 hoặc 1)
+                'filter[pickup_points][index][district]' => $request->query('pickup_points_index_district') ?? null, // Lọc theo điểm đón theo quận huyện
+                'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name') ?? null, // Lọc theo điểm đón theo tên
+                'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district') ?? null, // Lọc theo điểm xả theo quận huyện
+                'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name') ?? null, // Lọc theo điểm xả theo tên
+                'sort' => $request->query('sort') ?? "time:asc", // Sort theo giờ (time:asc/time:desc), rating (rating:asc), giá (fare:asc),
+                'page' => $request->query('page', 1), // Phân trang (mặc định là trang 1)
+                'pagesize' => $request->query('pagesize', 8), // Số phần tử mỗi trang (mặc định là 8)
+            ];
+
+            // Thêm các tham số vào URL
+            foreach ($queryParams as $key => $value) {
+                if ($value !== null) {
+                    $urlRoute .= '&' . $key . '=' . $value;
+                }
+            }
+
+            if (!$token) {
+                return response()->json([
+                    'error' => 'Failed to retrieve token',
+                ], 500);
+            }
+
+            // Lấy dữ liệu chuyến đi
+            $main_url = $this->main_url . '/v3/area/city_district';
+            $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 * 24));
+            // Lấy thông tin từ params
+            $params = (object)([
+                'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
+                'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
+                'dateTo' => $dateTo,
+                'dateFrom' => $dateFrom,
+            ]);
+            $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
+            $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
+
+            // Danh sách chuyến đi cho trang hiện tại
+            $list_routes = $res_routes['data'];
+
+            // Thông tin ảnh nhà xe
+            $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
+
+            // Tính tổng số chuyến đi cho tất cả trang
+            $totalAll = $res_routes['total']; // Lấy tổng từ phản hồi
+
             return response()->json([
-                'error' => 'Failed to retrieve token',
-            ], 500);
+                "message" => "success",
+                'total' => $totalAll, // Tổng số chuyến đi
+                'dataHTML' => view('bus._bus_listResult', [
+                    "list_routes" => $list_routes,
+                    "params" => (object)[
+                        'busFrom' => (object)$busFrom,
+                        'busTo' => (object)$busTo,
+                        'dateTo' => $dateTo,
+                        'dateFrom' => $dateFrom,
+                    ],
+                    'currentPage' => $res_routes['page'],
+                    'pageSize' => $res_routes['page_size'],
+                    'total' => $totalAll, // Cập nhật tổng số chuyến
+                    'totalPages' => $res_routes['total_pages']
+                ])->render(),
+            ], 200);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th);
         }
-
-        // Lấy dữ liệu chuyến đi
-        $main_url = $this->main_url . '/v3/area/city_district';
-        $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 * 24));
-        // Lấy thông tin từ params
-        $params = (object)([
-            'busFrom' => (object)$list_areas->where('id', (int)$busFrom)->first(),
-            'busTo' => (object)$list_areas->where('id', (int)$busTo)->first(),
-            'dateTo' => $dateTo,
-            'dateFrom' => $dateFrom,
-        ]);
-        $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
-        $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
-
-        // Danh sách chuyến đi cho trang hiện tại
-        $list_routes = $res_routes['data'];
-
-        // Thông tin ảnh nhà xe
-        $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
-
-        // Tính tổng số chuyến đi cho tất cả trang
-        $totalAll = $res_routes['total']; // Lấy tổng từ phản hồi
-
-        return response()->json([
-            "message" => "success",
-            'total' => $totalAll, // Tổng số chuyến đi
-            'dataHTML' => view('bus._bus_listResult', [
-                "list_routes" => $list_routes,
-                "params" => (object)[
-                    'busFrom' => (object)$busFrom,
-                    'busTo' => (object)$busTo,
-                    'dateTo' => $dateTo,
-                    'dateFrom' => $dateFrom,
-                ],
-                'currentPage' => $res_routes['page'],
-                'pageSize' => $res_routes['page_size'],
-                'total' => $totalAll, // Cập nhật tổng số chuyến
-                'totalPages' => $res_routes['total_pages']
-            ])->render(),
-        ]);
     }
 
 
