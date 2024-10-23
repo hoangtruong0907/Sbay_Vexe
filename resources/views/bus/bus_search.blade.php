@@ -1588,13 +1588,14 @@
             "date_from": localStorage.getItem('bus_date_from'),
         }
         $.ajax({
-            url: '{{route('bus.list.search')}}',
+            url: '/api/search/xe-khach',
             data: data,
         }).done((data) => {
             $('.wrap-filter .right-filter').html(data.dataHTML);
         })
     }
     loadDataSearchBus();
+
     $("#bus_search").click(() => {loadDataSearchBus()})
 
     $("#bus_date_from").change(function(){
@@ -2144,7 +2145,7 @@
                                     .data('name');
                                 const seats = Object.assign({}, proxies[0]);
                                 const fullCodeVal = Object.values(seats).map(
-                                    seat => seat.fullCode);                                    
+                                    seat => seat.fullCode);
                                 const dataSeat = {
                                     trip_code: tripCode,
                                     seat: fullCodeVal.join(', '),
