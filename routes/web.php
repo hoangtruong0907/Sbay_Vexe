@@ -79,14 +79,6 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
     Route::post('/sort-tau-hoa', [RouteController::class, 'trainRouteSort'])->name('route.sort.train');
 });
-// Bus view api
-Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
-Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch'])->name('bus.list.search');
-Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
-Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
-Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
-// Train view api
-Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap']);
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
 Route::post('/booking-payment',  [BookingController::class, 'store'])->name('booking.store');
