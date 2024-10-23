@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use PhpParser\Node\Stmt\TryCatch;
 
 class InfoController extends Controller
 {
@@ -37,74 +39,30 @@ class InfoController extends Controller
     }
     public function getBookingInfo()
     {
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        
-        if (!$token) {
-            return response()->json([
-                'error' => 'Failed to retrieve token',
-            ], 500);
-        }
-        
-        $bookings = ['EB041S', 'M5416D'];
-        $url = $this->main_url . "/v3/booking";
-        $results = [];
-        
-        try {
-            foreach ($bookings as $booking) {
-                $response = Http::withToken($token)->get($url, [
-                    'code' => $booking,
-                ]);
-        
-                if ($response->successful()) {
-                    $bookingData = $response->json();
-                    
-                
-                    $firstBookingData = $bookingData['data'][0] ; 
-                    if ($firstBookingData) {
-                        $detailInfo = $firstBookingData['ticket']['detail_info'] ; 
-                        if ($detailInfo) {
-                            foreach ($detailInfo as $info) {
-                                $results[] = [
-                                    'name' => $info['name'] ,
-                                    'status' => $info['status'] ,
-                                    'id' => $info['id'],
-                                    'pickup_time' => $info['pickup_time'],
-                                    'seat' => $info['seat'],
-                                    'final_price' => $firstBookingData['final_price'] ,
-                                    'code' => $firstBookingData['code'],
-                                    'customer_id' => $firstBookingData['customer_id'],
-                                    'description'=>$firstBookingData['description'],
-                                ];
-                            }
-                        } else {
-                        
-                            return response()->json([
-                                'error' => 'No detail info found for booking ' . $booking,
-                            ], 404);
-                        }
-                    } else {
-                        
-                        return response()->json([
-                            'error' => 'No booking data found for ' . $booking,
-                        ], 404);
-                    }
-                } else {
-                    return response()->json([
-                        'error' => 'Failed to retrieve booking data for ' . $booking,
-                    ], $response->status());
+        if(auth()->check()){
+            try {
+                $bookings = Booking::where('user_id', auth()->user()->id)->get(); 
+                $results = []; 
+                foreach ($bookings as $booking) {
+                    $results[] = [
+                        'name' => $booking['customer_name'],
+                        'status' => $booking['status'],
+                        'id' => $booking['id'],
+                        'pickup_time' => $booking['created_at'],
+                        'seat' => $booking['seats'],
+                        'final_price' => $booking['price'],
+                        'code' => $booking['code'],
+                        'customer_id' => $booking['user_id'],
+                    ];
                 }
+                return view('account.ticket', ['arrayData' => $results]);
+            } catch (\Throwable $th) {
+                return $th;
             }
-        
-            return view('account.ticket', ['arrayData' => $results]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'An error occurred: ' . $e->getMessage(),
-            ], 500);
+        } else {
+            return redirect()->route('/')->withErrors(['error' => 'Vui lòng đăng nhập tài khoản']);
         }
     }
-
-
-    
     public function reward()
     {
         return view('account.reward');

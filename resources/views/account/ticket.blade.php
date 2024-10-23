@@ -96,7 +96,7 @@
                         @if (isset($arrayData) && !empty($arrayData))
                             <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
                                 @foreach ($arrayData as $result)
-                                    @if ($result['description'] == 'NEW')
+                                    @if ($result['status'] == config('apps.common.status.new'))
                                     <div class="card shadow-sm w-100 mb-3">
                                         <div class="card-body position-relative p-3">
                                             <div class="position-absolute" style="top: 10px; right: 10px;">
@@ -110,7 +110,7 @@
                                             </div>
                                             <div class="fw-bold text-dark mb-2" style="font-size: 1.5rem;">{{ date('H:i', strtotime($result['pickup_time'])) }}</div>
                                             <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['name'] }}</div>
-                                            <div class="text-danger mb-4" style="font-size: 0.8rem;">Vui lòng thanh toán trước {{ $result['final_price'] }}</div>
+                                            <div class="text-danger mb-4" style="font-size: 0.8rem;">Vui lòng thanh toán trước {{ number_format($result['final_price'], 0, ',', '.') }} đ</div>
                                             <div class="text-muted mb-2" style="font-size: 0.9rem;">
                                                 Seat: {{ $result['seat'] }}
                                             </div>
@@ -121,13 +121,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                        
                                     @endif
                                 @endforeach
                             </div>
                             <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
                                 @foreach ($arrayData as $result)
-                                    @if ($result['description'] == 'DONE')
+                                    @if ($result['status'] === config('apps.common.status.confirmed'))
                                         <div class="card shadow-sm w-100 mb-3">
                                             <div class="card-body position-relative p-3">
                                                 <div class="position-absolute" style="top: 10px; right: 10px;">
@@ -157,7 +157,7 @@
                             </div>
                             <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="canceled-tab">
                                 @foreach ($arrayData as $result)
-                                    @if ($result['description'] == 'CANCELED')
+                                    @if ($result['status'] === config('apps.common.status.canceled'))
                                         <div class="card shadow-sm w-100 mb-3">
                                             <div class="card-body position-relative p-3">
                                                 <div class="position-absolute" style="top: 10px; right: 10px;">
