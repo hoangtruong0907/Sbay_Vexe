@@ -8,6 +8,7 @@ use App\Models\Booking;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -118,6 +119,7 @@ class BookingController extends Controller
             $booking = Booking::create([
                 'order_code'        => 'HD' .substr(time(), -4) .substr(str_shuffle('0123456789'), 0, 4),
                 'trip_code'         => $request->trip_code,
+                'user_id'           => Auth::user() ? Auth::id() : null,
                 'customer_name'     => $request->customer_name,
                 'customer_phone'    => $request->customer_phone,
                 'customer_email'    => $request->customer_email,
@@ -163,36 +165,60 @@ class BookingController extends Controller
 
     public function paymentBooking ($bookingCode) {
         // Post api 
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        $uniqueToken = Str::uuid();
-        $client = new Client();
-        $response = $client->post( $this->main_url.'/v3/booking/pay', [
-            'headers' => [
-                'Postman-Token' => (string) $uniqueToken,
-                'cache-control' => 'no-cache',
-                'Authorization' => 'Bearer ' .  $token,
-                'Content-Type' => 'application/x-www-form-urlencoded',
-            ],
-            'form_params' => [
-                'code' => $bookingCode,
-            ],
-        ]);
-        $responseBody = json_decode($response->getBody(), true);
-        return $responseBody['data'];
+       try {
+            $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+            $uniqueToken = Str::uuid();
+            $client = new Client();
+            $response = $client->post( $this->main_url.'/v3/booking/pay', [
+                'headers' => [
+                    'Postman-Token' => (string) $uniqueToken,
+                    'cache-control' => 'no-cache',
+                    'Authorization' => 'Bearer ' .  $token,
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
+                'form_params' => [
+                    'code' => $bookingCode,
+                ],
+            ]);
+            $responseBody = json_decode($response->getBody(), true);
+            return $responseBody['data'];
+       } catch (\Exception $e) {
+            return null;
+       }
+    }
+
+    public function cancelBooking ($order_code) {
+       try {
+            $booking = Booking::where(['order_code'=> $order_code])->first();
+            $booking->status = config('apps.common.status_booking.cancel');
+            $booking->save();
+       } catch (\Throwable $th) {
+            return null;
+       }
     }
 
     public function updateBookingStatus(Request $request) {
         $check_memo = $request->order_code; // truyền vào order_code
         $check_type = "deposit";    // chỉ lấy giao dịch nhận
         $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
-
         // Gọi api giao dịch
         $response = Http::get('https://sbaygroup.net/global-apis/bun-vcb.php', [
             'key' => 'tin_sbay_key_vcb',
             'gidzl' => 'CG1I0wNkjcOm65G2elctPp0LN0I-zBOqV1fSLk_wksCfHmrIkgRlCdiR3rQz--HWAH802ZAWsDDJe-gnQ0'
         ]);
         
-        if ($response->successful()) {
+        if ($request->status == config('apps.common.status_booking.cancel')) {
+            $this->cancelBooking($request->order_code); // update cancel booking
+            session([
+                'order_status' => config('apps.common.status_booking.cancel'),
+            ]);
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'Success',
+                'url' => '/payment-result'
+            ]);
+        } else if ($response->successful() && $request->status == config('apps.common.status_booking.paid')) {
             // đúng giá tiền, ngày hôm nay, và memo 
             $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
                 return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;
@@ -207,24 +233,56 @@ class BookingController extends Controller
                 // lấy ra booking trong Database
                 $booking = Booking::where(['order_code'=> $request->order_code, 'price' => $amount])->first();
 
-                // gọi hàm payment
-                $paymentBooking = $this->paymentBooking($booking->booking_code);
-
-                // Cập nhật lại giá trị của Booking
-                $booking->ticket_code = $paymentBooking['ticket_code'];
-                $booking->vxr_transaction_id = $paymentBooking['vxr_transaction_id'];
-                $booking->status = config('apps.common.status_booking.paid');
-                $booking->save();
-                return response()->json([
-                    'success' => 200,
-                    'url' => '/payment-result'
-                ]);
-                
+                if ($booking) {
+                    // gọi hàm payment
+                    $paymentBooking = $this->paymentBooking($booking->booking_code);
+                    if ($paymentBooking != null) {
+                        // Cập nhật lại giá trị của Booking
+                        $booking->ticket_code = $paymentBooking['ticket_code'];
+                        $booking->vxr_transaction_id = $paymentBooking['vxr_transaction_id'];
+                        $booking->status = config('apps.common.status_booking.paid');
+                        $booking->save();
+                        session([
+                            'order_status' => config('apps.common.status_booking.paid'),
+                        ]);
+                        return response()->json([
+                            'code' => 200,
+                            'message' => 'Success',
+                            'url' => '/payment-result'
+                        ]);
+                    } else {
+                        session([
+                            'order_status' => config('apps.common.status_booking.reserve'),
+                        ]);
+                        return response()->json([
+                            'code' => 200,
+                            'message' => 'Success',
+                            'url' => '/payment-result'
+                        ]);
+                    }
+                } else {
+                    session([
+                        'order_status' => config('apps.common.status_booking.reserve'),
+                    ]);
+                    return response()->json([
+                        'code' => 400,
+                        'message' => 'Không tìm thấy Booking',
+                        'url' => ''
+                    ]);
+                }
             } else {
-                return response()->json(['error' => 'API request failed'], $response->status());
+                return response()->json([
+                    'code' => 400,
+                    'message' => 'Không tìm thấy Booking trong api',
+                    'url' => ''
+                ]);
             }
         } else {
-            return response()->json(['error' => 'API request failed'], $response->status());
+            return response()->json([
+                'code' => 400,
+                'message' => 'Api error',
+                'url' => ''
+            ]);
         }
     }
 }

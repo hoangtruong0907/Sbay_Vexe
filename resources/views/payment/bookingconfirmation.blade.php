@@ -382,7 +382,7 @@
                             <div class="d-flex justify-content-between w-100 pointer" id="totalAmount">
                                 <div class="fw-bold fs-5 mb-0 text-black">Tạm tính</div>
                                 <div class="d-flex align-items-center gap-1">
-                                    <p class="fw-bold fs-5 mb-0">{{$seatTicket['totalFare']}}đ</p>
+                                    <p class="fw-bold fs-5 mb-0">{{number_format($seatTicket['totalFare'], 0, ',', '.')}} đ</p>
                                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                         alt="icon-expand-less" width="20" height="20">
                                 </div>
@@ -838,7 +838,7 @@
                                     <div class="d-flex align-items-center gap-sm-1">
                                         <p class="fw-bold mb-0"
                                             style="font-size: 14px;  line-height: 20px; letter-spacing: 0px">
-                                            {{$seatTicket['totalFare']}}đ
+                                            {{number_format($seatTicket['totalFare'], 0, ',', '.')}} đ
                                         </p>
                                         <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                             alt="icon-expand-less" width="20" height="20">

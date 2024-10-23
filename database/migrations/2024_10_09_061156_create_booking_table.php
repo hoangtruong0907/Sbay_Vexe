@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('order_code');
             $table->string('trip_code');
+            $table->string('user_id')->nullable();
             $table->string('customer_name')->nullable();
             $table->string('customer_phone');
             $table->string('customer_email')->nullable();

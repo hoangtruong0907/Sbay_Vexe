@@ -8,6 +8,8 @@ class PaymentResultController extends Controller
 {
     public function showPaymentResult()
     {
-        return view('payment.payment-result');
+        $infoBooking = session('info_booking');
+        $dataBooking = json_decode(session('info_booking')['data']);
+        return view('payment.payment-result', compact('dataBooking', 'infoBooking'));
     }
 }

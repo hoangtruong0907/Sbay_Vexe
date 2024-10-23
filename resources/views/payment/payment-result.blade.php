@@ -17,36 +17,65 @@
     <div class="row">
         <div class="col-md-8">
             <!-- Đặt chỗ thành công -->
-            <div class="card p-0 mb-4 custom-card">
-                <div class="card-body text-center">
-                    <div class="mb-3">
-                        <i class="fas fa-check-circle"></i>
+            @if (session('order_status') == config('apps.common.status_booking.cancel'))
+                <div class="card p-0 mb-4 custom-card">
+                    <div class="card-body text-center bg-secondary" style="z-index: 10">
+                        <div class="mb-3">
+                            <i class="fas fa-circle-xmark" style="font-size: 50px"></i>
+                        </div>
+                        <img class="confetti-background"
+                            src="https://229a2c9fe669f7b.cmccloud.com.vn/images/confetti_desktop.png" alt="">
+                        <h4 class="font-weight-bold">Vé đã bị hủy</h4>
+                        <p class="mb-0 position-relative">Thông tin chuyến đi đã được gửi đến <a href="https://mail.google.com/" target="_blank" class="text-white"><strong>{{$infoBooking['customer_email']}}</strong></a>, bạn hãy kiểm
+                            tra nhé!</p>
                     </div>
-                    <img class="confetti-background"
-                        src="https://229a2c9fe669f7b.cmccloud.com.vn/images/confetti_desktop.png" alt="">
-                    <h4 class="font-weight-bold">Đặt chỗ thành công</h4>
-                    <p class="mb-0">Thông tin chuyến đi đã được gửi đến <strong>truong@gmail.com</strong>, bạn hãy kiểm
-                        tra nhé!</p>
                 </div>
-            </div>
+            @else 
+                <div class="card p-0 mb-4 custom-card">
+                    <div class="card-body text-center" >
+                        <div class="mb-3">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <img class="confetti-background"
+                            src="https://229a2c9fe669f7b.cmccloud.com.vn/images/confetti_desktop.png" alt="">
+                        <h4 class="font-weight-bold">Đặt chỗ thành công</h4>
+                        <p class="mb-0 position-relative">Thông tin chuyến đi đã được gửi đến <a href="https://mail.google.com/" target="_blank" class="text-white"><strong>{{$infoBooking['customer_email']}}</strong></a>, bạn hãy kiểm
+                            tra nhé!</p>
+                    </div>
+                </div>
+            @endif
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Hướng dẫn thanh toán</h5>
-                    <p class="card-text">
-                        Bạn hãy đến phòng vé của nhà xe Tân Kim Chi để thanh toán số tiền <strong>650,000đ</strong> cho
-                        mã đặt chỗ <strong>3GRR7GQ</strong> trước 20:00 - 23/08/2024.
-                    </p>
-                    <p><strong>Địa chỉ:</strong></p>
-                    <p class="office-label inline-block">Văn phòng Đà Nẵng:</p>
-                    <p class="inline-block">46 Nam Trân</p>
-                    <div class="alert alert-warning custom-1">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <strong>Lưu ý quan trọng:</strong> Hãy hủy vé khi không còn nhu cầu đi chuyến. Vexere sẽ yêu cầu
-                        bạn thanh toán trước cho những lần sau nếu bạn đặt vé nhưng không đi hoặc hủy vé quá nhiều lần.
+                    <div class="qr-details" id="qr-details">
+                        <h5 class="w-full text-center">Chuyển khoản bằng mã QR, tự động điền thông tin</h5>
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <div class="d-flex justify-content-between">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-phone"></i>
+                                        <p>Mở ứng dụng ngân hàng hoặc Ví điện tử</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <i class="fas fa-qrcode"></i>
+                                        <p>Dùng tính năng Mã QR quét hình bên</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-check-circle"></i>
+                                        <p>Hoàn tất thanh toán, chờ Vexere xác nhận</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p>Quét mã bên dưới</p>
+                                @if (session('order_code') && session('order_price'))
+                                    <img class="w-75 h-75" src="https://img.vietqr.io/image/VCB-0021000337309-compact.png?amount={{ $infoBooking['price'] }}&addInfo={{ session('order_code') }}" alt="QR Code">
+                                @endif
+                                <p class="mt-2">VIETQR | NAPAS</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            @include('payment.trip-info')
         </div>
 
         <div class="col-md-4">
@@ -55,24 +84,44 @@
                     <h5 class="card-title fw-bold">Thông tin thanh toán</h5>
                     <div class="d-flex justify-content-between align-items-center mb-2 custom-pay">
                         <span>Trạng thái</span>
-                        <span class="text-danger fw-bold">Chưa thanh toán</span>
+                        @if (session('order_status') == config('apps.common.status_booking.paid'))
+                            <span class="text-primary fw-bold">Đã thanh toán</span>
+                        @else
+                            <span class="text-danger fw-bold">Chưa thanh toán</span>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-2 custom-pay">
                         <span>Phương thức thanh toán</span>
-                        <span class="text-muted custom-text">Tại nhà xe</span>
+                        <span class="text-muted custom-text">Quét mã QR</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center custom-pay">
                         <span>Tổng tiền</span>
                         <span id="toggle-details" class="toggle-details">
-                            650.000đ
+                            {{ number_format($infoBooking['price'], 0, ',', '.') . ' ₫' }}
                             <img id="arrow-icon" class="arrow-icon"
                                 src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg" alt="Toggle Icon">
                         </span>
                     </div>
                     <div id="payment-details" class="payment-details">
-                        <p class="mb-1">Giá vé</p>
-                        <p class="mb-1">Phụ thu điểm đón</p>
-                        <p class="mb-1">Phụ thu điểm trả</p>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-1">Giá vé: </p>
+                            <span id="toggle-details" class="toggle-details">
+                                {{ number_format($infoBooking['price'], 0, ',', '.') . ' ₫' }}
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-1">Phụ thu điểm đón: </p>
+                            <span id="toggle-details" class="toggle-details">
+                                {{ number_format(0, 0, ',', '.') . ' ₫' }}
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-1">Phụ thu điểm trả: </p>
+                            <span id="toggle-details" class="toggle-details">
+                                {{ number_format(0, 0, ',', '.') . ' ₫' }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -295,30 +344,6 @@
                             class="service-image">
                     </div>
                 </a>
-            </div>
-
-            <div class="card">
-                <div class="app-promotion-container">
-                    <h5 class="app-promotion-title">Tích điểm, đổi ưu đãi với app Vexere!</h5>
-                    <div class="app-promotion-content">
-                        <div class="app-qr-code">
-                            <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/landingpagetet2023/download_app_qr.png"
-                                alt="QR down App">
-                        </div>
-                        <div class="app-download-links">
-                            <a href="https://apps.apple.com/vn/app/vexere-v%C3%A9-xe-m%C3%A1y-bay-thu%C3%AA-xe/id1183279479"
-                                class="app-download-link">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/download-app-store.png"
-                                    alt="Download on App Store" class="app-download-icon">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.vexere.vexere&pli=1"
-                                class="app-download-link">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/download-gg-play.png"
-                                    alt="Get it on Google Play" class="app-download-icon">
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
