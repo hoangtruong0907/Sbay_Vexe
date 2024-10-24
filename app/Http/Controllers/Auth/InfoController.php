@@ -41,7 +41,6 @@ class InfoController extends Controller
     {
         if(auth()->check()){
             try {
-                
                 $bookings = Booking::where('user_id', auth()->user()->id)->get(); 
                 $results = []; 
                 foreach ($bookings as $booking) {
