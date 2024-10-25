@@ -100,3 +100,5 @@ Route::get('/payment-result', [PaymentResultController::class, 'showPaymentResul
 Route::get('/load-content', function () {
     return view('components._loading'); // Trả về file Blade cần include
 });
+//update profile
+Route::post('/tai-khoan/thong-tin/update_profile',[InfoController::class,'update_profile'])->name('update_profile');

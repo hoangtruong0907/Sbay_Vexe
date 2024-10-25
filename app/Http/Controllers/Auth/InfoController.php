@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
@@ -29,7 +30,30 @@ class InfoController extends Controller
     }
     public function index()
     {
-        return view('account.info');
+        if(auth()->check()){
+            $user = User::find(Auth::id());
+            return view('account.info',['user' =>$user]);
+        }else{
+            return redirect()->route('/')->withErrors(['error' => 'Vui lòng đăng nhập tài khoản']);
+        }
+    }
+    public function update_profile(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|min:3|max:255', 
+                'birthday' => 'nullable|date|before:today',
+                'sex' => 'required|in:0,1,2',
+            ]);
+            $user = Auth::user();
+            $user->name = $validatedData['name'];
+            $user->sex = $validatedData['sex'];
+            $user->birthdate = $validatedData['birthday'];
+            $user->save();
+            return redirect()->back()->with('success', 'Thông tin của bạn đã được cập nhật thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
+        }
     }
     public function membership()
     {

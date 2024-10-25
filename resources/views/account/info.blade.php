@@ -1,3 +1,19 @@
+<style>
+.validation-icon {
+    margin-left: 10px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+
+</style>
 @extends('layouts.app')
 
 @section('title', 'Thông tin tài khoản')
@@ -68,7 +84,8 @@
             </div>
             <!-- Form Content -->
             <div class="col-md-9">
-                <form class="d-flex flex-column h-100">
+                <form class="d-flex flex-column h-100" method="POST" action="{{ route('update_profile') }}">
+                    @csrf
                     <div class="mb-1">
                         <div class="alert alert-info" role="alert">
                             Bổ sung đầy đủ thông tin sẽ giúp Vexere hỗ trợ bạn tốt hơn khi đặt vé
@@ -76,37 +93,43 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Họ và tên<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" value="Trung Dao">
+                        <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}">
+                        <span id="name-validation" class="validation-icon"></span>
+                        <div id="name-error" class="text-danger" style="display: none;"></div>
                     </div>
+                    
                     <div class="mb-3">
                         <label class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" value="375307021" readonly disabled>
+                        <input type="text" name="phone" class="form-control" value="{{ $user->phone ?? '' }}" readonly disabled>
                     </div>
                     <div class="mb-3">
                         <label for="datepicker" class="form-label">Ngày sinh</label>
-                        <input type="text" id="datepicker" class="form-control" placeholder="Chọn ngày sinh" readonly>
+                        <input type="date" id="birthdate" name="birthday" class="form-control" placeholder="Chọn ngày sinh" value="{{ $user->birthdate ?? '' }}">
+                        <div id="birthdate-validation" class="validation-icon" style="color: green;"></div>
+                        <div id="birthdate-error" class="error-message" style="display: none; color: red;"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Giới tính</label>
                         <div class="d-flex">
                             <div class="btn-group w-100" role="group" aria-label="Gender">
-                                <input type="radio" id="gender-male" name="gender" value="1" class="btn-check"
-                                    checked>
+                                <input type="radio" id="gender-male" name="sex" value="1" class="btn-check" 
+                                    {{ isset($user->sex) && $user->sex == config('apps.common.sex.male') ? 'checked' : '' }}>
                                 <label class="btn btn-outline-primary" for="gender-male">Nam</label>
-
-                                <input type="radio" id="gender-female" name="gender" value="0"
-                                    class="btn-check">
+                    
+                                <input type="radio" id="gender-female" name="sex" value="0" class="btn-check" 
+                                    {{ isset($user->sex) && $user->sex == config('apps.common.sex.female') ? 'checked' : '' }}>
                                 <label class="btn btn-outline-primary" for="gender-female">Nữ</label>
-
-                                <input type="radio" id="gender-other" name="gender" value="2"
-                                    class="btn-check">
+                    
+                                <input type="radio" id="gender-other" name="sex" value="2" class="btn-check" 
+                                    {{ isset($user->sex) && $user->sex == config('apps.common.sex.other') ? 'checked' : '' }}>
                                 <label class="btn btn-outline-primary" for="gender-other">Khác</label>
                             </div>
                         </div>
+                    </div>
                         <hr class="my-3">
                     </div>
                     <div class="mt-auto">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Lưu</button>
+                        <button id="save-button" type="submit" class="btn btn-primary btn-lg btn-block w-100" disabled>Lưu</button>          
                     </div>
                 </form>
             </div>
@@ -122,6 +145,66 @@
         $(document).ready(function() {
             $('#datepicker').datepicker({
                 uiLibrary: 'bootstrap5',
+            });
+        });
+        document.getElementById('name').addEventListener('input', function() {
+            const nameInput = this.value;
+            const validationIcon = document.getElementById('name-validation');
+            const errorDiv = document.getElementById('name-error');
+            const saveButton = document.getElementById('save-button'); // ID của nút lưu
+            if (nameInput.trim() === '') {
+                validationIcon.textContent = ''; // Xóa dấu tích
+                errorDiv.textContent = 'Tên không được để trống.';
+                errorDiv.style.display = 'block';
+                validationIcon.className = 'invalid';
+                saveButton.disabled = true; // Vô hiệu hóa nút lưu
+            } else if (nameInput.length < 5) {
+                validationIcon.textContent = ''; // Xóa dấu tích
+                errorDiv.textContent = 'Tên phải có ít nhất 5 ký tự.';
+                errorDiv.style.display = 'block';
+                validationIcon.className = 'invalid';
+                saveButton.disabled = true; // Vô hiệu hóa nút lưu
+            } else {
+                validationIcon.textContent = '✔'; // Dấu tích xanh
+                errorDiv.textContent = ''; // Xóa thông báo lỗi
+                errorDiv.style.display = 'none';
+                validationIcon.className = 'valid';
+                saveButton.disabled = false; // Kích hoạt nút lưu
+            }
+        });
+        document.getElementById('birthdate').addEventListener('input', function() {
+            const birthdateInput = new Date(this.value);
+            const validationIcon = document.getElementById('birthdate-validation');
+            const errorDiv = document.getElementById('birthdate-error');
+            const saveButton = document.getElementById('save-button'); // ID của nút lưu
+
+            const today = new Date();
+            const minDate = new Date();
+            minDate.setFullYear(today.getFullYear() - 10); // Ngày nhỏ 
+            if (birthdateInput.toDateString() === today.toDateString()) {
+                validationIcon.textContent = ''; // Xóa dấu tích
+                errorDiv.textContent = 'Ngày sinh không được là ngày hiện tại.';
+                errorDiv.style.display = 'block';
+                validationIcon.className = 'invalid';
+                saveButton.disabled = true; // Vô hiệu hóa nút lưu
+            } else if (birthdateInput > minDate) {
+                validationIcon.textContent = ''; // Xóa dấu tích
+                errorDiv.textContent = 'Bạn phải ít nhất 10 tuổi.';
+                errorDiv.style.display = 'block';
+                validationIcon.className = 'invalid';
+                saveButton.disabled = true; // Vô hiệu hóa nút lưu
+            } else {
+                validationIcon.textContent = '✔'; // Dấu tích xanh
+                errorDiv.textContent = ''; // Xóa thông báo lỗi
+                errorDiv.style.display = 'none';
+                validationIcon.className = 'valid';
+                saveButton.disabled = false; // Kích hoạt nút lưu
+            }
+        });
+        document.querySelectorAll('input[name="sex"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                const saveButton = document.getElementById('save-button'); // ID của nút lưu
+                saveButton.disabled = false; // Kích hoạt nút lưu khi chọn giới tính
             });
         });
     </script>
