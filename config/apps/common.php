@@ -1,7 +1,7 @@
 <?php
 return [
     'status_booking' => [
-        'reserve' => 1,
+        'reserve'  => 1,
         'pending' => 2,
         'refund' => 3,
         'paid' => 4,
@@ -12,6 +12,9 @@ return [
         'male' => 1, 
         'other' => 2,
     ],
+    'role' => [
+        'user' => 1,
+        'admin' => 2
+    ]
 ];
-
 

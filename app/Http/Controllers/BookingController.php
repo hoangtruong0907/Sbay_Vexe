@@ -32,6 +32,7 @@ class BookingController extends Controller
     public function index(Request $request)
     {
         $seatInfo = $request->all();
+        // dd($seatInfo);
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
         $tripCode = $seatInfo['trip_code'];
         if (!$token) {
@@ -74,6 +75,7 @@ class BookingController extends Controller
             'selectedDropPoint' => $selectedDropPoint,
             'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
         ];
+        // dd($data);
         return view('payment.bookingconfirmation', [
             "seatInfo" => $seatInfo,
             "seatTicket" => $seatData,
@@ -92,7 +94,7 @@ class BookingController extends Controller
 
         $data_booking = $request->all();
         try {
-            // Post api 
+            // Post api
             $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
             $uniqueToken = Str::uuid();
             $client = new Client();
@@ -137,7 +139,7 @@ class BookingController extends Controller
             $booking->save();
             $order_code = $booking->order_code;
             $order_price = $booking->price;
-            
+
             // Save variables in the session
             session([
                 'order_code' => $order_code,
@@ -146,12 +148,12 @@ class BookingController extends Controller
                 // 'data_booking' => $data_booking['data'],
             ]);
             return redirect()->route('payment');
-            
+
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 $statusCode = $e->getResponse()->getStatusCode();
                 $errorMessage = $e->getResponse()->getBody()->getContents();
-                
+
                 return response()->json([
                     'error' => 'Client error',
                     'status_code' => $statusCode,
@@ -164,7 +166,7 @@ class BookingController extends Controller
     }
 
     public function paymentBooking ($bookingCode) {
-        // Post api 
+        // Post api
        try {
             $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
             $uniqueToken = Str::uuid();
@@ -206,7 +208,7 @@ class BookingController extends Controller
             'key' => 'tin_sbay_key_vcb',
             'gidzl' => 'CG1I0wNkjcOm65G2elctPp0LN0I-zBOqV1fSLk_wksCfHmrIkgRlCdiR3rQz--HWAH802ZAWsDDJe-gnQ0'
         ]);
-        
+
         if ($request->status == config('apps.common.status_booking.cancel')) {
             $this->cancelBooking($request->order_code); // update cancel booking
             session([
@@ -219,7 +221,7 @@ class BookingController extends Controller
                 'url' => '/payment-result'
             ]);
         } else if ($response->successful() && $request->status == config('apps.common.status_booking.pending')) {
-            // đúng giá tiền, ngày hôm nay, và memo 
+            // đúng giá tiền, ngày hôm nay, và memo
             $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
                 return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;
             });

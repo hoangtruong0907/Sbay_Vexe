@@ -68,7 +68,7 @@
                             <div class="col-md-4 text-center">
                                 <p>Quét mã bên dưới</p>
                                 @if (session('order_code') && session('order_price'))
-                                    <img class="w-75 h-75" src="https://img.vietqr.io/image/VCB-0021000337309-compact.png?amount={{ $infoBooking['price'] }}&addInfo={{ session('order_code') }}" alt="QR Code">
+                                    <img class="w-75 h-75" src="{{ session('qr_code') }}" alt="QR Code">
                                 @endif
                                 <p class="mt-2">VIETQR | NAPAS</p>
                             </div>
