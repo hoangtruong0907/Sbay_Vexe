@@ -154,6 +154,7 @@ class RouteController extends Controller
         $list_routes = $res_routes['data'];
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
+
         return view("bus.bus_search", [
             "fromtoPlace" => $request->query('q', null),
             "list_routes" => $list_routes,
@@ -327,7 +328,7 @@ class RouteController extends Controller
                 }
             }
         }
-        // dd(json_encode($allSeatData));
+        // dd($seatMap);
         return response()->json([
             "message" => "success",
             'tripCode' => $tripCode,
@@ -415,6 +416,7 @@ class RouteController extends Controller
 
         // Tính tổng số chuyến đi cho tất cả trang
         $totalAll = $res_routes['total']; // Lấy tổng từ phản hồi
+        // dd($list_routes);
         return response()->json([
             "message" => "success",
             'total' => $totalAll, // Tổng số chuyến đi

@@ -20,8 +20,7 @@
                 </div>
             </div>
             <div class="trust-message">
-                <p class="trust-message-text"><i class="fas fa-shield-alt"></i> Vexere cam kết giữ đúng chỗ
-                    bạn đã chọn.</p>
+                <p class="trust-message-text"><i class="fas fa-shield-alt"></i> Vexere cam kết giữ đúng chỗ của bạn.</p>
             </div>
             {{-- <div class="coupon-container">
                 <div class="wrap-coupon">
@@ -287,26 +286,28 @@
                                 </div>
                             @endforeach
                         @else
-                            <div class="online-note-selection">
-                                <div class="title">
-                                    <div class="d-flex flex-row justify-content-between">
-                                        <p class="p-0 m-0">Số lượng khách</p>
-                                        <div class="content">Ghế còn trống: {{$seatMap['total_bookable_seats']}}</div>
+                            {{-- @if (isset($seatData)) --}}
+                                <div class="online-note-selection">
+                                    <div class="title">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <p class="p-0 m-0">Số lượng khách</p>
+                                            <div class="content">{{$seatMap['vehicle']['seat_type'] !== 1 ? "Giường" : "Ghế"}} còn trống: {{ $seatMap ? $seatMap['total_available_seats'] : "Không" }} </div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="seat-group-selection">
-                                    <div class="d-flex flex-row align-items-center">
-                                        {!! renderSeat($seatMap['vehicle']['seat_type'],'') !!}
-                                        <div style="color: rgb(184, 184, 184);"> · {{ formatCurrency($seatMap['fare']) }}</div>
-                                    </div>
-                                    <div class="unique-quantity-input" data-seats="{{ $allSeatData }}" data-key="{{ $keyId }}" data-unchoosable="{{ $unchoosable }}" >
-                                        <i class="fas fa-minus-circle unique-sub-icon"></i>
-                                        <span id="unique-quantity" data-max-value={{ $seatMap['total_bookable_seats'] }}>0</span>
-                                        <i class="fas fa-plus-circle unique-plus-icon"></i>
+                                    <div class="seat-group-selection">
+                                        <div class="d-flex flex-row align-items-center">
+                                            {!! renderSeat($seatMap['vehicle']['seat_type'],'') !!}
+                                            <div style="color: rgb(184, 184, 184);"> · {{ formatCurrency($seatMap['fare']) }}</div>
+                                        </div>
+                                        <div class="unique-quantity-input" data-seats="{{ $allSeatData }}" data-key="{{ $keyId }}" data-unchoosable="{{ $unchoosable }}" >
+                                            <i class="fas fa-minus-circle unique-sub-icon"></i>
+                                            <span id="unique-quantity" data-max-value={{ $seatMap['total_bookable_seats'] }}>0</span>
+                                            <i class="fas fa-plus-circle unique-plus-icon"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {{-- @endif --}}
                         @endif
                     </div>
                 </div>
