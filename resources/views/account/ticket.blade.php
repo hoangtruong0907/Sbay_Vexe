@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container my-4">
         <!-- Breadcrumb -->
         <div class="d-flex align-items-center mb-3">
             <a href="/" class="text-primary text-decoration-none">
@@ -91,12 +91,12 @@
                         </li>
                     </ul>
 
-                                        <!-- Tab content -->
+                    <!-- Tab content -->
                     <div class="tab-content" id="myTabContent">
                         @if (isset($arrayData) && !empty($arrayData))
                             <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
                                 @foreach ($arrayData as $result)
-                                    @if ($result['status'] == config('apps.common.status.new'))
+                                @if ($result['status'] == config('apps.common.status_booking.pending') || $result['status'] == config('apps.common.status_booking.reserve'))
                                     <div class="card shadow-sm w-100 mb-3">
                                         <div class="card-body position-relative p-3">
                                             <div class="position-absolute" style="top: 10px; right: 10px;">
@@ -106,49 +106,42 @@
                                                 {{ date('D, d/m/Y', strtotime($result['pickup_time'])) }} <!-- Ngày -->
                                             </div>
                                             <div class="text-muted mb-2" style="font-size: 0.9rem;">
-                                                ID: {{ $result['id'] }}
+                                                Mã đặt chỗ: {{ $result['code'] }}
                                             </div>
-                                            <div class="fw-bold text-dark mb-2" style="font-size: 1.5rem;">{{ date('H:i', strtotime($result['pickup_time'])) }}</div>
-                                            <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['name'] }}</div>
-                                            <div class="text-danger mb-4" style="font-size: 0.8rem;">Vui lòng thanh toán trước {{ number_format($result['final_price'], 0, ',', '.') }} đ</div>
-                                            <div class="text-muted mb-2" style="font-size: 0.9rem;">
-                                                Seat: {{ $result['seat'] }}
-                                            </div>
+                                            <div class="fw-bold text-dark mb-2" style="font-size: 1.5rem;">{{ $result['pickup_date'] }}</div>
+                                            <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['trip_name'] }}</div>
+                                            <div class="text-danger mb-4" style="font-size: 0.8rem;">Vui lòng thanh toán trước {{$result['expired_time']}}</div>
                                             <hr>
-                                            <div class="d-flex justify-content-center text-primary">
-                                                <i class="fas fa-phone-alt"></i>
-                                                <span class="ms-2" style="font-size: 0.9rem;">Gọi điện</span>
+                                            <div class="d-flex flex-column align-items-center text-primary">
+                                                <div><i class="fas fa-phone-alt me-1"></i>{{$result['bo_phone_info']}}</div>
+                                                <h6 class="mt-1" style="font-size: 0.9rem;">Gọi điện</span>
                                             </div>
                                         </div>
                                     </div>
-                                        
                                     @endif
                                 @endforeach
                             </div>
                             <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
                                 @foreach ($arrayData as $result)
-                                    @if ($result['status'] === config('apps.common.status.confirmed'))
+                                    @if ($result['status'] === config('apps.common.status_booking.paid'))
                                         <div class="card shadow-sm w-100 mb-3">
                                             <div class="card-body position-relative p-3">
                                                 <div class="position-absolute" style="top: 10px; right: 10px;">
-                                                    <span class="badge bg-success text-white">Đã hoàn thành</span>
+                                                    <span class="badge bg-success text-white">Đã thanh toán</span>
                                                 </div>
                                                 <div class="text-muted mb-2" style="font-size: 0.9rem;">
                                                     {{ date('D, d/m/Y', strtotime($result['pickup_time'])) }} <!-- Ngày -->
                                                 </div>
                                                 <div class="text-muted mb-2" style="font-size: 0.9rem;">
-                                                    ID: {{ $result['id'] }}
+                                                    Mã đặt chỗ: {{ $result['code'] }}
                                                 </div>
                                                 <div class="fw-bold text-dark mb-2" style="font-size: 1.5rem;">{{ date('H:i', strtotime($result['pickup_time'])) }}</div>
-                                                <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['name'] }}</div>
-                                                <div class="text-muted mb-2" style="font-size: 0.9rem;">
-                                                    Seat: {{ $result['seat'] }}
-                                                </div>
+                                                <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['trip_name'] }}</div>
                                                 <hr>
                                             
-                                                <div class="d-flex justify-content-center text-primary">
-                                                    <i class="fas fa-phone-alt"></i>
-                                                    <span class="ms-2" style="font-size: 0.9rem;">Gọi điện</span>
+                                                <div class="d-flex flex-column align-items-center text-primary">
+                                                    <div><i class="fas fa-phone-alt me-1"></i>{{$result['bo_phone_info']}}</div>
+                                                    <h6 class="mt-1" style="font-size: 0.9rem;">Gọi điện</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +150,7 @@
                             </div>
                             <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="canceled-tab">
                                 @foreach ($arrayData as $result)
-                                    @if ($result['status'] === config('apps.common.status.canceled'))
+                                    @if ($result['status'] === config('apps.common.status_booking.cancel'))
                                         <div class="card shadow-sm w-100 mb-3">
                                             <div class="card-body position-relative p-3">
                                                 <div class="position-absolute" style="top: 10px; right: 10px;">
@@ -167,18 +160,14 @@
                                                     {{ date('D, d/m/Y', strtotime($result['pickup_time'])) }} <!-- Ngày -->
                                                 </div>
                                                 <div class="text-muted mb-2" style="font-size: 0.9rem;">
-                                                   ID: {{ $result['id'] }}
+                                                    Mã đặt chỗ: {{ $result['code'] }}
                                                 </div>                                              
                                                 <div class="fw-bold text-dark mb-2" style="font-size: 1.5rem;">{{ date('H:i', strtotime($result['pickup_time'])) }}</div>
-                                                <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['name'] }}</div>
-                                                <div class="text-muted mb-2" style="font-size: 0.9rem;">
-                                                    Seat: {{ $result['seat'] }}
-                                                </div>
+                                                <div class="text-muted mb-2" style="font-size: 0.9rem;">{{ $result['trip_name'] }}</div>
                                                 <hr>
                                                 
                                                 <div class="d-flex justify-content-center text-primary">
-                                                    <i class="fas fa-phone-alt"></i>
-                                                    <span class="ms-2" style="font-size: 0.9rem;">Gọi điện</span>
+                                                    <span class="ms-2" style="font-size: 0.9rem;">Đặt lại</span>
                                                 </div>
                                             </div>
                                         </div>

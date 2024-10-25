@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use Illuminate\Http\Request;
-use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
-use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Str;
+
 
 class InfoController extends Controller
 {
@@ -39,29 +37,33 @@ class InfoController extends Controller
     }
     public function getBookingInfo()
     {
-        if(auth()->check()){
-            try {
-                $bookings = Booking::where('user_id', auth()->user()->id)->get(); 
+        try {
+            if(auth()->check()){
                 $results = []; 
-                foreach ($bookings as $booking) {
-                    $results[] = [
-                        'name' => $booking['customer_name'],
-                        'status' => $booking['status'],
-                        'id' => $booking['id'],
-                        'pickup_time' => $booking['created_at'],
-                        'seat' => $booking['seats'],
-                        'final_price' => $booking['price'],
-                        'code' => $booking['code'],
-                        'customer_id' => $booking['user_id'],
-                    ];
+
+                $user = User::find(Auth::id());
+                foreach ($user->bookings as $booking) {
+                    // Post api 
+                    $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+                    $uniqueToken = Str::uuid();
+                    $client = new Client();
+                    $response = $client->get( $this->main_url.'/v3/booking?code='. $booking->booking_code, [
+                        'headers' => [
+                            'Postman-Token' => (string) $uniqueToken,
+                            'cache-control' => 'no-cache',
+                            'Authorization' => 'Bearer ' .  $token,
+                        ]
+                    ]);
+                    $responseBody = json_decode($response->getBody(), true);
+                    array_push($results, $responseBody['data'][0]); // push data to array result
                 }
                 return view('account.ticket', ['arrayData' => $results]);
-            } catch (\Throwable $th) {
-                return $th;
+            } else {
+                return redirect()->route('/')->withErrors(['error' => 'Vui lòng đăng nhập tài khoản']);
             }
-        } else {
-            return redirect()->route('/')->withErrors(['error' => 'Vui lòng đăng nhập tài khoản']);
-        }
+        } catch (\Throwable $th) {
+            return $th;
+        };
     }
     public function reward()
     {
