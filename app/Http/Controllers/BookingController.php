@@ -218,7 +218,7 @@ class BookingController extends Controller
                 'message' => 'Success',
                 'url' => '/payment-result'
             ]);
-        } else if ($response->successful() && $request->status == config('apps.common.status_booking.paid')) {
+        } else if ($response->successful() && $request->status == config('apps.common.status_booking.pending')) {
             // đúng giá tiền, ngày hôm nay, và memo 
             $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
                 return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;
