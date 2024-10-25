@@ -7,4 +7,8 @@ return [
         'paid' => 4,
         'refund' => 5
     ],
+    'role' => [
+        'user' => 1,
+        'admin' => 2
+    ]
 ];

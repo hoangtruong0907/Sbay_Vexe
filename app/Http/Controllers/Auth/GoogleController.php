@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -23,11 +24,13 @@ class GoogleController extends Controller
             $user = Socialite::driver('google')->user();
             
             // Kiểm tra xem người dùng đã tồn tại trong database chưa
-            $finduser = User::where('google_id', $user->id)->orWhere('email', $user->email)->first();
+            $findUser = User::where('google_id', $user->id)->orWhere('email', $user->email)->first();
 
-            if ($finduser) {
+            if ($findUser) {
+                //update user id cho bookings
+                Booking::where('customer_email', $findUser->email)->update(['user_id' => $findUser->id]);
                 // Nếu đã tồn tại, đăng nhập và chuyển hướng
-                Auth::login($finduser);
+                Auth::login($findUser);
                 return redirect()->intended('/');
             } else {
                 // Nếu chưa tồn tại, tạo người dùng mới
@@ -37,7 +40,7 @@ class GoogleController extends Controller
                     ],
                     [
                         'name' => $user->name,
-                        'role' => 1, // Gán quyền mặc định
+                        'role' => config('apps.common.role.user'), // Gán quyền mặc định
                         'google_id' => $user->id,
                         'password' => bcrypt('12345678') // Dùng bcrypt thay vì encrypt để mã hóa mật khẩu
                     ]
@@ -48,11 +51,11 @@ class GoogleController extends Controller
                 return redirect()->intended('/');
             }
         } catch (Exception $e) {
-            // Log lỗi chi tiết vào file logs để dễ kiểm tra
-            Log::error('Google login error: ' . $e->getMessage());
+        // Log lỗi chi tiết vào file logs để dễ kiểm tra
+        Log::error('Google login error: ' . $e->getMessage());
             
-            // Chuyển hướng người dùng về trang login với thông báo lỗi
-            return redirect('/login')->with('error', 'Đăng nhập bằng Google thất bại. Vui lòng thử lại sau.');
+        // Chuyển hướng người dùng về trang login với thông báo lỗi
+        return redirect('/login')->with('error', 'Đăng nhập bằng Google thất bại. Vui lòng thử lại sau.');
         }
     }
 
