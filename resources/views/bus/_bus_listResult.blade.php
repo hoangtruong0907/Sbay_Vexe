@@ -1,14 +1,14 @@
-<div class="ResultTrips__Container-sc-1j2n4hz-0 trip-Results">
+<div class="pe-3 ps-3 trip-Results">
     <div class="result-trips-container">
-        <p class="base__Heading02-sc-1tvbuqk-5 trip-Results-br color--darkness">
+        <p class="trip-Results-br color--darkness">
             Kết quả: {{ $total }} chuyến
         </p>
     </div>
 </div>
 
-<div class="FilterTop__Wrapper-sc-3qhbho-0 filter-Criteria">
-    <div class="ant-radio-group ant-radio-group-outline ant-radio-group-large DynamicFilter__StyledRadioGroup-boqafm-0 Criteria dynamic-filter">
-        <p class="base__Headline03-sc-1tvbuqk-15 dynamic-Criteria dynamic-filter-title color--darkness">
+<div class="pe-3 ps-3 filter-Criteria">
+    <div class="ant-radio-group ant-radio-group-outline ant-radio-group-large Criteria dynamic-filter">
+        <p class="dynamic-Criteria dynamic-filter-title color--darkness">
             Tiêu chí lọc nhanh phổ biến
         </p>
         <div class="dynamic-filter-scroll-list">
@@ -131,7 +131,7 @@
         <li class="page-item">
             <a class="page-link"
                 href="javascript:void(0);"
-                onclick="loadSearchListBus({{ $currentPage - 1 }}, {{ $pageSize }})"
+                onclick="loadDataSearchBus({{ $currentPage - 1 }})"
                 rel="prev">
                 <i class="fa-solid fa-chevron-left"></i>
             </a>
@@ -147,7 +147,7 @@
         <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
             <a class="page-link"
                 href="javascript:void(0);"
-                onclick="loadSearchListBus({{ $i }}, {{ $pageSize }})">{{ $i }}</a>
+                onclick="loadDataSearchBus({{ $i }})">{{ $i }}</a>
         </li>
         @endfor
 
@@ -156,7 +156,7 @@
         <li class="page-item">
             <a class="page-link"
                 href="javascript:void(0);"
-                 onclick="loadSearchListBus({{ $currentPage + 1 }}, {{ $pageSize }})"
+                 onclick="loadDataSearchBus({{ $currentPage + 1 }})"
                 rel="next"><i class="fa-solid fa-chevron-right"></i>
             </a>
         </li>
@@ -209,17 +209,17 @@
 
     document.querySelectorAll('.dynamic-filter-container[data-filter="discount"]').forEach(container => {
         container.addEventListener('click', function() {
-            
+
             filterDiscountedItems();
 
-            
+
             document.querySelectorAll('.selection-text').forEach(text => {
                 text.style.display = 'none';
             });
             const selectionText = this.querySelector('.selection-text');
             selectionText.style.display = 'inline';
 
-            
+
             document.querySelectorAll('.dynamic-filter-Coupon').forEach(label => {
                 label.classList.remove('selected');
             });
@@ -227,10 +227,10 @@
         });
     });
 
-    
+
     document.querySelectorAll('.dynamic-filter-container[data-filter="no-discount"]').forEach(container => {
         container.addEventListener('click', function() {
-            
+
         });
     });
 </script>
