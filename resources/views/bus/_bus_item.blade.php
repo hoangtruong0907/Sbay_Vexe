@@ -3,7 +3,7 @@
         <div class="ticket-container-l">
             <div class="ticket-body-l">
                 <div class="ticket-image-l">
-                    <img class="operator-l" src="{{ $route['company']['images'][0]['files']['1000x600'] }}"
+                    <img class="operator-l" src="{{ $route['company']['images'][0]['files']['1000x600'] ?? ""}}"
                         alt="Đình Nhân">
                     <div class="ticket-confirm-l">
                         <i class="fa-solid fa-ticket"></i>Xác nhận tức thì
@@ -111,8 +111,11 @@
                                 data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
                                 aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}"
                                 data-trip-code="{{ $dataRoute['schedules'][0]['trip_code'] }}"
+                                data-config="{{ $dataRoute['schedules'][0]['config'] }}"
+                                data-unchoosable="{{ $dataRoute['schedules'][0]['unchoosable'] }}"
+                                data-company-id="{{ $route['company']['id'] }}"
                                 data-key="{{ $key }}">
-                                <span>Chọn chuyến</span>
+                                <span>{{ $dataRoute['schedules'][0]['config'] != "CALLING" ? "Chọn chuyến" : "Gọi điện" }}</span>
                             </button>
                         </div>
                     </div>
