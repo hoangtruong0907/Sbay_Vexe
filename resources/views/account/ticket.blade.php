@@ -113,7 +113,7 @@
                                             <div class="text-danger mb-4" style="font-size: 0.8rem;">Vui lòng thanh toán trước {{$result['expired_time']}}</div>
                                             <hr>
                                             <div class="d-flex flex-column align-items-center text-primary">
-                                                <div><i class="fas fa-phone-alt me-1"></i>{{$result['bo_phone_info']}}</div>
+                                                <div><i class="fas fa-phone-alt me-1"></i>{{$result['bo_phone_info'] ?? ''}}</div>
                                                 <h6 class="mt-1" style="font-size: 0.9rem;">Gọi điện</span>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                                 <hr>
                                             
                                                 <div class="d-flex flex-column align-items-center text-primary">
-                                                    <div><i class="fas fa-phone-alt me-1"></i>{{$result['bo_phone_info']}}</div>
+                                                    <div><i class="fas fa-phone-alt me-1"></i>{{$result['bo_phone_info'] ?? ''}}</div>
                                                     <h6 class="mt-1" style="font-size: 0.9rem;">Gọi điện</h6>
                                                 </div>
                                             </div>
