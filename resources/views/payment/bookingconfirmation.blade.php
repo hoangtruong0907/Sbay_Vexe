@@ -1777,11 +1777,9 @@
             });
         });
         $(document).ready(function() {
-    // Hàm kiểm tra tên
         $('#name').on('input', function() {
             const nameInput = $(this).val();
             const errorDiv = $('#name-error');
-
             if (nameInput.trim() === '') {
                 errorDiv.text('Tên không được để trống.').show();
             } else if (nameInput.length < 5) {
@@ -1790,13 +1788,10 @@
                 errorDiv.text('').hide(); // Ẩn thông báo lỗi
             }
         });
-
-        // Hàm kiểm tra số điện thoại
         $('#phone').on('input', function() {
             const phoneInput = $(this).val();
             const errorDiv = $('#phone-error');
             const phoneRegex = /^[0-9]{10,15}$/; // Kiểm tra số điện thoại từ 10 đến 15 ký tự
-
             if (phoneInput.trim() === '') {
                 errorDiv.text('Số điện thoại không được để trống.').show();
             } else if (!phoneRegex.test(phoneInput)) {
@@ -1805,13 +1800,10 @@
                 errorDiv.text('').hide(); // Ẩn thông báo lỗi
             }
         });
-
-        // Hàm kiểm tra email
         $('#email').on('input', function() {
             const emailInput = $(this).val();
             const errorDiv = $('#email-error');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Kiểm tra định dạng email
-
             if (emailInput.trim() === '') {
                 errorDiv.text('Email không được để trống.').show();
             } else if (!emailRegex.test(emailInput)) {
@@ -1820,31 +1812,23 @@
                 errorDiv.text('').hide(); // Ẩn thông báo lỗi
             }
         });
-
-        // Hàm xử lý thanh toán
         function handlePayment() {
             const isValid = $('#name-error').is(':empty') && 
                             $('#phone-error').is(':empty') && 
                             $('#email-error').is(':empty');
-
             if (isValid) {
                 window.location.href = '{{ route('payment') }}';
             } else {
                 alert('Vui lòng kiểm tra các thông tin nhập vào.'); // Thêm thông báo
             }
         }
-
-        // Gán sự kiện click cho nút thanh toán
         $('#submitButton').on('click', function(e) {
             e.preventDefault(); // Ngăn chặn hành động mặc định
             handlePayment();
         });
-
-        // Kiểm tra tính hợp lệ khi trang tải lên
         $('#name').trigger('input');
         $('#phone').trigger('input');
         $('#email').trigger('input');
     });
-
     </script>
 @endpush
