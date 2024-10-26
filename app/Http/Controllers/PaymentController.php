@@ -11,7 +11,6 @@ class PaymentController extends Controller
     {
         $bookingData = json_decode(session('info_booking')['data']);
         // Trả về view `payments.payment`
-
         $response = Http::post('https://api.vietqr.io/v2/generate', [
             'accountNo' => "0021000337309",
             'accountName' => 'NGUYEN THE TRINH',

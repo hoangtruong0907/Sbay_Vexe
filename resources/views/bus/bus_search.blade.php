@@ -2136,17 +2136,19 @@
                             $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
                                 .hide();
 
-                            $(`#item-bus-${keyId} .next-step`).on('click', function() {
-                                $(`.ticket-step-collapse #step1-${keyId}`)
-                                    .removeClass('active');
-                                $(`.ticket-step-collapse #step2-${keyId}`)
-                                    .addClass('active');
-                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
-                                    .show();
-                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
-                                    .show();
+                             $(`#item-bus-${keyId} .next-step`).on('click', function() {
+                                // Kiểm tra xem có ghế nào được chọn hay không
+                                if (Object.keys(proxies[keyId]).length === 0) {
+                                    alert('Vui lòng chọn ít nhất một ghế trước khi tiếp tục.'); // Thông báo cho người dùng
+                                    return; // Dừng lại nếu không có ghế nào được chọn
+                                }
+                                $(`.ticket-step-collapse #step1-${keyId}`).removeClass('active');
+                                $(`.ticket-step-collapse #step2-${keyId}`).addClass('active');
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`).show();
+                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`).show();
                                 $(this).hide();
                             });
+
 
                             $(`#item-bus-${keyId} .confirm-step`).on("click",
                                 function() {

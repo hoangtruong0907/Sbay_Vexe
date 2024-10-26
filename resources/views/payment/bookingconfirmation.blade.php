@@ -189,43 +189,39 @@
                 <!-- Left section -->
                 <div class=" d-flex flex-column gap-3 w-100">
                     <div class="left-section d-flex border flex-column border-light-subtle p-4 left-top bg-white rounded-2 card-border-radius card-border-radius">
-                        <div class="d-flex justify-content-between align-items-center border border-secondary rounded mb-3"
-                            style="padding: 12px 12px 12px 16px">
-                            <p class="fw-medium mb-0 text-dark   text">Đăng nhập để tự điền thông tin và nhận điểm khi
-                                đặt vé</p>
+                        @if(!Auth::check())
+                        <div class="d-flex justify-content-between align-items-center border border-secondary rounded mb-3" style="padding: 12px 12px 12px 16px">
+                            <p class="fw-medium mb-0 text-dark">Đăng nhập để tự điền thông tin và nhận điểm khi đặt vé</p>
                             <button class="btn btn-dark" type="button" style="width: 120px">Đăng nhập</button>
                         </div>
-
+                        @endif
                         <h1 class="fw-bold fs-5">Thông tin liên hệ</h1>
-                        <div class="form-floating-label mt-2">
-                            <input type="text" id="name" name="customer_name" placeholder=" " required>
-                            <label>
-                                Tên người đi
-                                <span class="text-danger">*</span>
-                            </label>
-                        </div>
-                        <div class="d-flex flex-row">
-                            <div class="me-3 align-items-center border rounded-3 bg-white text-dark pointer"
-                                style="padding: 12px 10px; height: calc(3.1rem + 1px);" data-bs-toggle="offcanvas"
-                                data-bs-target="#countryPhonesRight" aria-controls="countryPhonesRight">
-                                <p class="  mb-0" style="line-height: 1.5;">🇻🇳 +84</p>
-                            </div>
-                            <div class="form-floating-label flex-grow-1">
-                                <input type="text" id="phone" name="customer_phone" placeholder=" " required class="form-control">
-                                <label for="phone">
-                                    Số điện thoại
-                                    <span class="text-danger">*</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <div class="form-floating-label">
-                            <input type="text" id="email" name="customer_email" placeholder=" " required>
-                            <label>
-                                Email để nhận thông tin đặt chỗ
-                                <span class="text-danger">*</span>
-                            </label>
-                        </div>
+                        <form id="bookingForm">
+                            <div class="form-floating-label mt-2">
+                                <input type="text" id="name" name="customer_name" placeholder=" " required value="{{ Auth::user()->name ?? '' }}">
+                                <label for="name">Tên người đi <span class="text-danger">*</span></label>
+                                <div class="error-message text-danger" id="name-error"></div>
+                            </div>
+                        
+                            <div class="d-flex flex-row">
+                                <div class="me-3 align-items-center border rounded-3 bg-white text-dark pointer" style="padding: 12px 10px; height: calc(3.1rem + 1px);" data-bs-toggle="offcanvas" data-bs-target="#countryPhonesRight" aria-controls="countryPhonesRight">
+                                    <p class="mb-0" style="line-height: 1.5;">🇻🇳 +84</p>
+                                </div>
+                                <div class="form-floating-label flex-grow-1">
+                                    <input type="text" id="phone" name="customer_phone" placeholder=" " required value="{{ Auth::user()->phone ?? '' }}" class="form-control">
+                                    <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+                                    <div class="error-message text-danger" id="phone-error"></div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-floating-label">
+                                <input type="email" id="email" name="customer_email" placeholder=" " required value="{{ Auth::user()->email ?? '' }}">
+                                <label for="email">Email để nhận thông tin đặt chỗ <span class="text-danger">*</span></label>
+                                <div class="error-message text-danger" id="email-error"></div>
+                            </div>
+                        </form>
+                        
                         <div class="d-flex align-items-center p-2 rounded-2"
                             style="border-radius: 5px; border: 1px solid #28a745; background-color: #e9f7ec; ">
                             <i class="material-icons-round me-2 text-success">verified_user</i>
@@ -544,12 +540,11 @@
             <div class="container note d-flex py-4 mx-auto" style="max-width: 1016px; gap: 20px;">
                 <div class="d-flex flex-column gap-3 w-100">
                     <div class="note d-flex gap-3 w-100 text-center justify-content-center">
-                        <button type="submit" class="btn fw-bold rounded-3" onclick="window.location.href='{{ route('payment') }}'"
-                            style="color: rgb(44, 44, 44);background: rgb(255, 211, 51); border-color: rgb(255, 211, 51); height: 48px; line-height: 24px; white-space: nowrap;">
+                        <button type="button" class="btn fw-bold rounded-3" id="submitButton"
+                            style="color: rgb(44, 44, 44); background: rgb(255, 211, 51); border-color: rgb(255, 211, 51); height: 48px; line-height: 24px; white-space: nowrap;">
                             <span>Thanh toán</span>
                         </button>
                     </div>
-
                     <div class="flex-fill text-dark lh-base text-center">
                         Bằng việc tiếp tục, bạn đồng ý với
                         <a href="#" class="fw-bold mb-0 text-decoration-underline lh-sm text-primary" target="_blank">
@@ -1781,6 +1776,75 @@
 
             });
         });
+        $(document).ready(function() {
+    // Hàm kiểm tra tên
+        $('#name').on('input', function() {
+            const nameInput = $(this).val();
+            const errorDiv = $('#name-error');
+
+            if (nameInput.trim() === '') {
+                errorDiv.text('Tên không được để trống.').show();
+            } else if (nameInput.length < 5) {
+                errorDiv.text('Tên phải có ít nhất 5 ký tự.').show();
+            } else {
+                errorDiv.text('').hide(); // Ẩn thông báo lỗi
+            }
+        });
+
+        // Hàm kiểm tra số điện thoại
+        $('#phone').on('input', function() {
+            const phoneInput = $(this).val();
+            const errorDiv = $('#phone-error');
+            const phoneRegex = /^[0-9]{10,15}$/; // Kiểm tra số điện thoại từ 10 đến 15 ký tự
+
+            if (phoneInput.trim() === '') {
+                errorDiv.text('Số điện thoại không được để trống.').show();
+            } else if (!phoneRegex.test(phoneInput)) {
+                errorDiv.text('Số điện thoại không hợp lệ.').show();
+            } else {
+                errorDiv.text('').hide(); // Ẩn thông báo lỗi
+            }
+        });
+
+        // Hàm kiểm tra email
+        $('#email').on('input', function() {
+            const emailInput = $(this).val();
+            const errorDiv = $('#email-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Kiểm tra định dạng email
+
+            if (emailInput.trim() === '') {
+                errorDiv.text('Email không được để trống.').show();
+            } else if (!emailRegex.test(emailInput)) {
+                errorDiv.text('Email không hợp lệ.').show();
+            } else {
+                errorDiv.text('').hide(); // Ẩn thông báo lỗi
+            }
+        });
+
+        // Hàm xử lý thanh toán
+        function handlePayment() {
+            const isValid = $('#name-error').is(':empty') && 
+                            $('#phone-error').is(':empty') && 
+                            $('#email-error').is(':empty');
+
+            if (isValid) {
+                window.location.href = '{{ route('payment') }}';
+            } else {
+                alert('Vui lòng kiểm tra các thông tin nhập vào.'); // Thêm thông báo
+            }
+        }
+
+        // Gán sự kiện click cho nút thanh toán
+        $('#submitButton').on('click', function(e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định
+            handlePayment();
+        });
+
+        // Kiểm tra tính hợp lệ khi trang tải lên
+        $('#name').trigger('input');
+        $('#phone').trigger('input');
+        $('#email').trigger('input');
+    });
 
     </script>
 @endpush
