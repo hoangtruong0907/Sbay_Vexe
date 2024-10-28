@@ -15,15 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('order_code');
             $table->string('trip_code');
+            $table->string('user_id')->nullable();
             $table->string('customer_name')->nullable();
             $table->string('customer_phone');
             $table->string('customer_email')->nullable();
             $table->string('seats');
+            $table->string('code');
+            $table->string('booking_code');
+            $table->string('tickets');
+            $table->string('ticket_code')->nullable(); // sau khi thanh toán sẽ trả về 
+            $table->string('vxr_transaction_id')->nullable(); // sau khi thanh toán sẽ trả về
             $table->string('price');
             $table->integer('pickup_id')->nullable();
             $table->string('drop_off_info')->nullable();
             $table->integer('drop_off_point_id');
-            $table->integer('status')->default(config('apps.common.status_booking.pending'));
+            $table->integer('status')->default(config('apps.common.status_booking.reserve'));
             $table->timestamps();
         });
     }

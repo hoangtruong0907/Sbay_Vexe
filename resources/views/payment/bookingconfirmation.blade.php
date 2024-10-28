@@ -175,8 +175,9 @@
         <input type="hidden" name="pickup_id" value="{{$seatInfo['pickup_id']}}">
         <input type="hidden" name="drop_off_info" value="{{$seatInfo['drop_off_info']}}">
         <input type="hidden" name="drop_off_point_id" value="{{$seatInfo['drop_off_point_id']}}">
+        <input type="hidden" name="data" value="{{$data}}">
         {{-- end set data booking for form --}}
-        
+
         <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px;">
             <!-- Back button and image -->
             <div class="d-flex align-items-center mb-3">
@@ -192,9 +193,9 @@
                             style="padding: 12px 12px 12px 16px">
                             <p class="fw-medium mb-0 text-dark   text">Đăng nhập để tự điền thông tin và nhận điểm khi
                                 đặt vé</p>
-                            <button class="btn btn-dark" style="width: 120px">Đăng nhập</button>
+                            <button class="btn btn-dark" type="button" style="width: 120px">Đăng nhập</button>
                         </div>
-    
+
                         <h1 class="fw-bold fs-5">Thông tin liên hệ</h1>
                         <div class="form-floating-label mt-2">
                             <input type="text" id="name" name="customer_name" placeholder=" " required>
@@ -217,7 +218,7 @@
                                 </label>
                             </div>
                         </div>
-    
+
                         <div class="form-floating-label">
                             <input type="text" id="email" name="customer_email" placeholder=" " required>
                             <label>
@@ -308,7 +309,7 @@
                                         </p>
                                     </div>
                                 </div>
-    
+
                                 <div class="d-flex flex-row justify-content-between"
                                     style="padding: 8px 12px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; color: rgb(255, 255, 255);">
                                     <p class="mb-0 fw-normal" style="font-size: 12px; line-height: 16px;">
@@ -322,7 +323,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="d-flex flex-column align-items-center g-3 border-top border-light-subtle pt-2">
                             <div class="d-flex align-items-center justify-content-between w-100 p-1">
                                 <div class="d-flex align-items-center">
@@ -381,29 +382,23 @@
                             <div class="d-flex justify-content-between w-100 pointer" id="totalAmount">
                                 <div class="fw-bold fs-5 mb-0 text-black">Tạm tính</div>
                                 <div class="d-flex align-items-center gap-1">
-                                    <p class="fw-bold fs-5 mb-0">{{$seatTicket['totalFare']}}đ</p>
+                                    <p class="fw-bold fs-5 mb-0">{{ number_format($seatTicket['totalFare'], 0, ',', '.') }} đ</p>
                                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                         alt="icon-expand-less" width="20" height="20">
                                 </div>
                             </div>
-    
+
                             <div class="d-flex flex-column gap-2 d-none" id="showTotalAmount">
                                 <div class="d-flex justify-content-between">
                                     <div class="label color--darkness">Giá vé</div>
                                     <div class="text-end">
-                                        <p class="mb-0 ">240.000đ x 1</p>
-                                        <p class="mb-0" style="font-size: 12px;color: rgb(133, 133, 133) !important;">Mã
-                                            ghế/giường: 06</p>
+                                        @foreach ($seatTicket['seatList'] as $key => $val)
+                                            <p class="mb-0 ">{{ formatCurrency($val['fareSeat'])}} x 1</p>
+                                        @endforeach
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <div class="text-dark">Bảo hiểm chuyến đi</div>
-                                    <div class="content">20.000đ</div>
                                 </div>
                             </div>
                         </div>
-    
-    
                     </div>
                     <!--Right bottom -->
                     <div class="d-flex justify-content-between bg-white border border-light-subtle rounded-2 w-100 p-3 card-border-radius">
@@ -498,7 +493,7 @@
                                                         <div class="text-nowrap mx-auto text-center">
                                                             <p class="fw-bold   mb-0">
                                                                 {{formatDateTime($selectedDropPoint['real_time'], "H:i (d/m)")}}
-    
+
                                                             </p>
                                                         </div>
                                                     </div>
@@ -554,7 +549,7 @@
                             <span>Thanh toán</span>
                         </button>
                     </div>
-    
+
                     <div class="flex-fill text-dark lh-base text-center">
                         Bằng việc tiếp tục, bạn đồng ý với
                         <a href="#" class="fw-bold mb-0 text-decoration-underline lh-sm text-primary" target="_blank">
@@ -565,7 +560,7 @@
                         </a>
                     </div>
                 </div>
-    
+
                 <div style="width: 375px; min-width: 375px;">
                     <div class="d-flex flex-column gap-3">
                         <div class="d-flex flex-column">
@@ -613,8 +608,6 @@
                                     </div>
                                 ">
                                 Chi tiết
-                            </p>
-    
                             </p>
                         </div>
                     </div>
@@ -767,67 +760,69 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-evenly overflow-auto text-center py-1">
-                                    @if (count($seatTemplateMap) > 0)
-                                        @foreach ($seatTemplateMap as $i => $coach)
-                                            <div class="wrap-coach">
-                                                <div class="mb-2 mt-2">
-                                                    <span>{{ $coach['coach_name'] }}</span>
-                                                </div>
-                                                <div class="coach">
-                                                    <table>
-                                                        <tbody>
-                                                            @for ($row = 1; $row <= $coach['num_rows']; $row++)
-                                                                <tr class="coach-row">
-                                                                    @for ($col = 1; $col <= $coach['num_cols']; $col++)
-                                                                        @php
-                                                                            // Tìm ghế tại vị trí hàng và cột tương ứng
-                                                                            $seat = collect($coach['seats'])->firstWhere(function ($s) use ($row, $col) {
-                                                                                return $s['row_num'] == $row && $s['col_num'] == $col;
-                                                                            });
-                                                                        @endphp
-                                                                        @if (isset($seat['is_available']) && $seat['is_available'] == false)
-                                                                            <td class="seat">
-                                                                                <div class="seat-choose-item seat-container"
-                                                                                    data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
-                                                                                    {!! renderSeat($seatMap['vehicle']['seat_type'], 'unselected') !!}
-                                                                                </div>
-                                                                            </td>
-                                                                        @elseif ($seat)
-                                                                            @if (in_array($seat['seat_code'], array_keys($seatTicket['seatList'])))
-                                                                                <td class="seat">
-                                                                                    <div class="seat-choose-item seat-container seat-selected"
-                                                                                    data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
-                                                                                        {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
-                                                                                    </div>
-                                                                                </td>
-                                                                            @else
+                                @if($seatInfo['unchoosable'] != 1)
+                                    <div class="d-flex justify-content-evenly overflow-auto text-center py-1">
+                                        @if (count($seatTemplateMap) > 0)
+                                            @foreach ($seatTemplateMap as $i => $coach)
+                                                <div class="wrap-coach">
+                                                    <div class="mb-2 mt-2">
+                                                        <span>{{ $coach['coach_name'] }}</span>
+                                                    </div>
+                                                    <div class="coach">
+                                                        <table>
+                                                            <tbody>
+                                                                @for ($row = 1; $row <= $coach['num_rows']; $row++)
+                                                                    <tr class="coach-row">
+                                                                        @for ($col = 1; $col <= $coach['num_cols']; $col++)
+                                                                            @php
+                                                                                // Tìm ghế tại vị trí hàng và cột tương ứng
+                                                                                $seat = collect($coach['seats'])->firstWhere(function ($s) use ($row, $col) {
+                                                                                    return $s['row_num'] == $row && $s['col_num'] == $col;
+                                                                                });
+                                                                            @endphp
+                                                                            @if (isset($seat['is_available']) && $seat['is_available'] == false)
                                                                                 <td class="seat">
                                                                                     <div class="seat-choose-item seat-container"
                                                                                         data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
-                                                                                        {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                        {!! renderSeat($seatMap['vehicle']['seat_type'], 'unselected') !!}
+                                                                                    </div>
+                                                                                </td>
+                                                                            @elseif ($seat)
+                                                                                @if (in_array($seat['seat_code'], array_keys($seatTicket['seatList'])))
+                                                                                    <td class="seat">
+                                                                                        <div class="seat-choose-item seat-container seat-selected"
+                                                                                        data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                            {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                        </div>
+                                                                                    </td>
+                                                                                @else
+                                                                                    <td class="seat">
+                                                                                        <div class="seat-choose-item seat-container"
+                                                                                            data-disabled="{{ $seat['is_available'] ? 'false' : 'true' }}">
+                                                                                            {!! renderSeat($seatMap['vehicle']['seat_type'], $seat['seat_code']) !!}
+                                                                                        </div>
+                                                                                    </td>
+                                                                                @endif
+                                                                            @else
+                                                                                <td class="seat">
+                                                                                    <div class="seat-choose-item  seat-none"
+                                                                                        data-disabled="true"
+                                                                                        style="background-color: transparent;">
+                                                                                        <!-- Trường hợp không có ghế -->
                                                                                     </div>
                                                                                 </td>
                                                                             @endif
-                                                                        @else
-                                                                            <td class="seat">
-                                                                                <div class="seat-choose-item  seat-none"
-                                                                                    data-disabled="true"
-                                                                                    style="background-color: transparent;">
-                                                                                    <!-- Trường hợp không có ghế -->
-                                                                                </div>
-                                                                            </td>
-                                                                        @endif
-                                                                    @endfor
-                                                                </tr>
-                                                            @endfor
-                                                        </tbody>
-                                                    </table>
+                                                                        @endfor
+                                                                    </tr>
+                                                                @endfor
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                             <div class="w-100">
                                 <div class="d-flex justify-content-between w-100 pointer" id="totalAmountModal">
@@ -837,13 +832,13 @@
                                     <div class="d-flex align-items-center gap-sm-1">
                                         <p class="fw-bold mb-0"
                                             style="font-size: 14px;  line-height: 20px; letter-spacing: 0px">
-                                            {{$seatTicket['totalFare']}}đ
+                                            {{number_format($seatTicket['totalFare'], 0, ',', '.')}} đ
                                         </p>
                                         <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
                                             alt="icon-expand-less" width="20" height="20">
                                     </div>
                                 </div>
-    
+
                                 <div class="pt-2 d-none" id="showTotalAmountModal">
                                     <div class="d-flex justify-content-between">
                                         <p class="label color--darkness">Giá vé</p>
@@ -958,7 +953,7 @@
                     <p class="fw-normal mb-0" style="font-size: 12px; line-height: 16px;">Khoảng cách từ điểm đón đến
                     </p>
                 </div>
-    
+
                 <div class="d-flex flex-row justify-content-between mt-1">
                     <button type="button" class="d-flex align-items-center p-0 border-0 m-0" id="sortedBy"
                         style="background-color: unset;">
@@ -968,7 +963,7 @@
                         <i class="material-icons-outlined"
                             style="font-size: 16px; line-height: 16px; margin-left: 4px;">arrow_drop_down</i>
                     </button>
-    
+
                     <button type="button" class="d-flex flex-row p-0 border-0 m-0" id="changeLocation"
                         style="background-color: unset;">
                         <p class="fw-bold mb-0" style="font-size: 12px; line-height: 16px;">
@@ -1084,7 +1079,7 @@
                     <p class="fw-normal mb-0" style="font-size: 12px; line-height: 16px;">Khoảng cách từ điểm đón đến
                     </p>
                 </div>
-    
+
                 <div class="d-flex flex-row justify-content-between mt-1">
                     <button type="button" class="d-flex align-items-center p-0 border-0 m-0" id="sortedBy"
                         style="background-color: unset;">
@@ -1094,7 +1089,7 @@
                         <i class="material-icons-outlined"
                             style="font-size: 16px; line-height: 16px; margin-left: 4px;">arrow_drop_down</i>
                     </button>
-    
+
                     <button type="button" class="d-flex flex-row p-0 border-0 m-0" id="changeLocation"
                         style="background-color: unset;">
                         <p class="fw-bold mb-0" style="font-size: 12px; line-height: 16px;">
@@ -1258,16 +1253,16 @@
                         <input type="radio" class="btn-check" name="radio-options" id="radio1" value="time#asc" checked
                             data-bs-dismiss="offcanvas" aria-label="Close">
                         <label class="btn btn-outline-dark" for="radio1">Sớm nhất</label>
-    
+
                         <input type="radio" class="btn-check" name="radio-options" id="radio2" value="time#desc"
                             data-bs-dismiss="offcanvas" aria-label="Close">
                         <label class="btn btn-outline-dark" for="radio2">Muộn nhất</label>
-    
+
                         <input type="radio" class="btn-check" name="radio-options" id="radio3" value="distance#asc"
                             data-bs-dismiss="offcanvas" aria-label="Close">
                         <label class="btn btn-outline-dark" for="radio3">Gần nhất</label>
                     </div>
-    
+
                 </div>
             </div>
             <!--Close button -->
@@ -1419,7 +1414,7 @@
                                     Thông tin sai
                                 </label>
                             </div>
-    
+
                         </div>
                         <div class="text-danger mt-2"></div>
                     </div>
@@ -1437,7 +1432,7 @@
                             lòng không nhập địa chỉ nhà riêng.
                         </p>
                     </div>
-    
+
                     <div class="mt-2">
                         <input class="form-control" id="phone" placeholder="Số điện thoại để liên hệ với bạn"
                             style="height: 52px;"></input>
@@ -1630,7 +1625,7 @@
                                     </p>
                                     <p class="text-black">
                                         Truy cập Cổng Yêu cầu bồi thường của Saladin qua đường dẫn riêng bằng cách:
-    
+
                                     <ul class="text-black">
                                         <li><span class="medium-bold">Cách 1</span>: Vào chi tiết chuyến đi đã chọn &gt;
                                             Tìm
@@ -1648,7 +1643,7 @@
                                     </p>
                                     <p class="text-black">
                                         Lựa chọn Nguyên nhân Yêu cầu bồi thường phù hợp và tiếp tục làm theo hướng dẫn:
-    
+
                                     <ul class="text-black">
                                         <li>Điều trị y tế và/hoặc thương tật vĩnh viễn do tai nạn</li>
                                         <li>Tử vong</li>
@@ -1715,76 +1710,77 @@
 </div>
 <!---------------------------------- End Drawer ---------------------------------->
 @endsection
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleVisibility = (iconId, contentId) => {
-            const toggleIcon = document.getElementById(iconId);
-            const additionalContent = document.getElementById(contentId);
+@push('page-scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleVisibility = (iconId, contentId) => {
+                const toggleIcon = document.getElementById(iconId);
+                const additionalContent = document.getElementById(contentId);
 
-            if (toggleIcon && additionalContent) {
-                toggleIcon.addEventListener('click', () => {
-                    const isHidden = additionalContent.classList.toggle('d-none');
-                    toggleIcon.src = isHidden ?
-                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
-                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+                if (toggleIcon && additionalContent) {
+                    toggleIcon.addEventListener('click', () => {
+                        const isHidden = additionalContent.classList.toggle('d-none');
+                        toggleIcon.src = isHidden ?
+                            'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
+                            'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
+                    });
+                }
+            };
+
+            toggleVisibility('totalAmount', 'showTotalAmount');
+            toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+
+            const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
+                document.querySelectorAll(`#${triggerId}`).forEach(element => {
+                    element.addEventListener('click', event => {
+                        event.preventDefault();
+
+                        if (isModal) {
+                            const modal = new bootstrap.Modal(document.getElementById(
+                                targetId));
+                            modal.show();
+                        } else {
+                            const offcanvas = new bootstrap.Offcanvas(document.getElementById(
+                                targetId));
+                            offcanvas.show();
+                        }
+
+                        const changeRight = document.getElementById('changeRight');
+                        if (changeRight) {
+                            changeRight.classList.add('show');
+                            changeRight.style.visibility = 'visible';
+                        }
+                    });
                 });
-            }
-        };
+            };
 
-        toggleVisibility('totalAmount', 'showTotalAmount');
-        toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+            setupOffcanvasOrModal('sortedBy', 'sortedByShow');
+            setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
+            setupOffcanvasOrModal('reportUs', 'reportUsShow');
+            setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
 
-        const setupOffcanvasOrModal = (triggerId, targetId, isModal = false) => {
-            document.querySelectorAll(`#${triggerId}`).forEach(element => {
-                element.addEventListener('click', event => {
-                    event.preventDefault();
-
-                    if (isModal) {
-                        const modal = new bootstrap.Modal(document.getElementById(
-                            targetId));
-                        modal.show();
-                    } else {
-                        const offcanvas = new bootstrap.Offcanvas(document.getElementById(
-                            targetId));
-                        offcanvas.show();
-                    }
-
-                    const changeRight = document.getElementById('changeRight');
-                    if (changeRight) {
-                        changeRight.classList.add('show');
-                        changeRight.style.visibility = 'visible';
-                    }
-                });
+            const popoverTriggerEl = $('#detailsButton');
+            popoverTriggerEl.popover({
+                trigger: 'manual'
             });
-        };
 
-        setupOffcanvasOrModal('sortedBy', 'sortedByShow');
-        setupOffcanvasOrModal('changeLocation', 'changeLocationShow');
-        setupOffcanvasOrModal('reportUs', 'reportUsShow');
-        setupOffcanvasOrModal('viewLocation', 'viewLocationShow', true);
+            popoverTriggerEl.on('click', function(e) {
+                e.preventDefault();
+                if (popoverTriggerEl.attr('aria-describedby')) {
+                    popoverTriggerEl.popover('hide');
+                } else {
+                    popoverTriggerEl.popover('show');
+                }
+            });
 
-        const popoverTriggerEl = $('#detailsButton');
-        popoverTriggerEl.popover({
-            trigger: 'manual'
+            $(document).on('click', function(e) {
+                if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
+                    $('.popover').has(e.target).length === 0) {
+                    popoverTriggerEl.popover('hide');
+                }
+
+            });
         });
 
-        popoverTriggerEl.on('click', function(e) {
-            e.preventDefault();
-            if (popoverTriggerEl.attr('aria-describedby')) {
-                popoverTriggerEl.popover('hide');
-            } else {
-                popoverTriggerEl.popover('show');
-            }
-        });
-
-        $(document).on('click', function(e) {
-            if (!popoverTriggerEl.is(e.target) && popoverTriggerEl.has(e.target).length === 0 &&
-                $('.popover').has(e.target).length === 0) {
-                popoverTriggerEl.popover('hide');
-            }
-
-        });
-    });
     </script>
 @endpush

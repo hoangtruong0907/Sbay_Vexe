@@ -41,11 +41,11 @@ Route::prefix('/admin')->group(function () {
     Route::prefix('/blogs')->group(function () {
         Route::get('/', [BlogController::class, 'index'])->name('admin.blogs.index');
         Route::post('/', [BlogController::class, 'store'])->name('admin.blogs.store');
-        Route::get('/{id}', [BlogController::class, 'show'])->name('blogs.show');
+        Route::get('/show/{id}', [BlogController::class, 'show'])->name('blogs.show');
         Route::get('/create', [BlogController::class, 'create'])->name('admin.blogs.create');
-        Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('admin.blogs.edit');
-        Route::put('/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
-        Route::delete('/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
+        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+        Route::put('/update/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
+        Route::delete('/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blogs.destroy');
         Route::get('/{id}', [BlogController::class, 'show'])->name('admin.blogs.show');
     });
     Route::get('/vexeretip', [BlogController::class, 'index'])->name('admin.vexeretip.index');
@@ -71,19 +71,12 @@ Route::prefix('/route-search')->group(function () {
     Route::get('/tau-hoa', [RouteController::class, 'trainRouteSearch'])->name('route.search.train');
     Route::post('/sort-tau-hoa', [RouteController::class, 'trainRouteSort'])->name('route.sort.train');
 });
-// Bus view api
-Route::post('/api/utilities',  [RouteController::class, 'busUtilitiesSearch'])->name('route.utilities');
-Route::get('/api/search/xe-khach',  [RouteController::class, 'busListRouteSearch'])->name('bus.list.search');
-Route::get('/api/info/xe-khach/seat-map/{tripCode}/{keyId}',  [RouteController::class, 'busSeatMap']);
-Route::get('/api/info/xe-khach/{companyId}/{type}',  [RouteController::class, 'busInfo']);
-Route::get('/api/info/xe-khach/cancel-policy/{tripCode}/{seatTemplateMap}',  [RouteController::class, 'busCancellationPolicy']);
-// Train view api
-Route::post('/api/info/tau-hoa/seat-map',  [RouteController::class, 'getSeatMap']);
 
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
 Route::post('/booking-payment',  [BookingController::class, 'store'])->name('booking.store');
+Route::post('/update-booking', [BookingController::class, 'updateBookingStatus'])->name('booking.update');
 //payment
-Route::post('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment');
 
 # user login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
@@ -94,7 +87,7 @@ Route::post('/add-phone', [GoogleController::class, 'addPhone'])->name('auth.add
 Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
     Route::get('/thong-tin', [InfoController::class, 'index'])->name('auth.info');
     Route::get('/thanh-vien', [InfoController::class, 'membership'])->name('auth.membership');
-    Route::get('/ve-cua-toi', [InfoController::class, 'ticket'])->name('auth.ticket');
+    Route::get('/ve-cua-toi', [InfoController::class, 'getBookingInfo'])->name('auth.ticket');
     Route::get('/uu-dai', [InfoController::class, 'reward'])->name('auth.reward');
     Route::get('/the-cua-toi', [InfoController::class, 'card'])->name('auth.card');
     Route::get('/nhan-xet', [InfoController::class, 'review'])->name('auth.review');

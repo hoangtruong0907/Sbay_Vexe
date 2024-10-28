@@ -1,9 +1,14 @@
 <?php
 return [
     'status_booking' => [
-        'cancel'   => 0,
-        'pending'  => 1,
-        'waiting_for_confirmation' => 2,
-        'complete' => 3
+        'reserve'  => 1,
+        'pending' => 2,
+        'refund' => 3,
+        'paid' => 4,
+        'cancel' => 5,
     ],
+    'role' => [
+        'user' => 1,
+        'admin' => 2
+    ]
 ];

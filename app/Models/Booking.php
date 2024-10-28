@@ -17,11 +17,23 @@ class Booking extends Model
         'trip_code',
         'seats',
         'price',
+        'status',
+        'code',
+        'booking_code',
+        'tickets',
+        'ticket_code',
+        'vxr_transaction_id',
         'pickup_id',
         'drop_off_info',  
         'drop_off_point_id',   
         'customer_name',
         'customer_phone',
         'customer_email',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
