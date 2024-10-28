@@ -428,6 +428,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="tab-pane fade image-tab" id="image-{{ $key }}" role="tabpanel"
                         aria-labelledby="image-tab" tabindex="3">
                         <div class="d-flex flex-column w-100 h-100 m-2">
@@ -459,9 +461,10 @@
                                     </div>
                                 </button>
                             </div>
-
                         </div>
                     </div>
+
+                    
                     <div class="tab-pane fade policy-tab" id="policy-{{ $key }}" role="tabpanel"
                         aria-labelledby="policy" tabindex="4">
                         {{-- Loading tab policy --}}

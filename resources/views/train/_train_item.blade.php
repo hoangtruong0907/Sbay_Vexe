@@ -585,27 +585,34 @@
                                 </div>
                             </div>
 
-                            <div class="row slide-trains">
-                                <div class="col-md-12" id="slider-thumbs">
-                                    <ul class="list-inline listImg-train">
-                                        <li>
-                                            <a id="carousel-thumb-0" class="selected img-train">
-                                                <img src="https://i.ytimg.com/vi/59QlUqt2c_Y/maxresdefault.jpg;text=1">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a id="carousel-thumb-1" class="img-train">
-                                                <img src="https://i.ytimg.com/vi/ZuTXtYiNmBE/maxresdefault.jpg;text=2">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a id="carousel-thumb-2" class="selected img-train">
-                                                <img src="https://i.ytimg.com/vi/rCtX_s1odhw/maxresdefault.jpg;text=3">
-                                            </a>
-                                        </li>
-                                    </ul>
+                            <div id="carouselTrainAutoplaying-{{ $key }}" class="carousel slide"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="https://i.ytimg.com/vi/59QlUqt2c_Y/maxresdefault.jpg;text=1"
+                                            class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://i.ytimg.com/vi/ZuTXtYiNmBE/maxresdefault.jpg;text=2"
+                                            class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://i.ytimg.com/vi/rCtX_s1odhw/maxresdefault.jpg;text=3"
+                                            class="d-block w-100" alt="...">
+                                    </div>
                                 </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselTrainAutoplaying-{{ $key }}" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselTrainAutoplaying-{{ $key }}" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
+
                         </div>
                     </div>
                 </div>
