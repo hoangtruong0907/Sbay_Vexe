@@ -649,7 +649,7 @@
 .image-tab .carousel-item-next,
 .image-tab .carousel-item-prev,
 .image-tab .carousel-item.active {
-    transition: t !important;
+    transition: none !important;
 }
 
 .image-tab .carousel-item-next,
