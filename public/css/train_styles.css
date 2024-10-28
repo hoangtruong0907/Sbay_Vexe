@@ -1255,6 +1255,13 @@ padding: 16px 0px 8px;
     font-weight: bold;
     margin-right: 8px;
 }
+.left-total-amount-train .left-seat-train {
+    display: inline;
+    color: rgb(0, 96, 196);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
 
 .item-col-train .img-custom {
     display: flex;
@@ -1420,9 +1427,6 @@ margin-left: 10px;
     gap: 16px; 
 }
 
-
-
-
 .carriage-description {
     margin-top: 8px; 
     font-size: 14px; 
@@ -1434,4 +1438,46 @@ margin-left: 10px;
     border: 1px solid #ddd;
     margin-top: 10px;
     background-color: #f9f9f9;
+}
+
+.seat-unavailable {
+    stroke: rgb(179, 179, 179);
+    fill: rgb(224, 224, 224);
+}
+
+.seat-unavailable svg rect {
+    stroke: rgb(179, 179, 179);
+    fill: rgb(224, 224, 224);
+}
+
+.seat-unavailable .icon-selected {
+    display: none;
+}
+
+.seat-selected {
+    stroke: rgb(39, 174, 96);
+    fill: rgb(139, 229, 176);
+}
+
+.seat-selected rect {
+    stroke: rgb(39, 174, 96);
+    fill: rgb(139, 229, 176);
+}
+
+.seat-selected .icon-disabled {
+    display: none;
+}
+
+.trip-train-reponesive {
+    display: none;
+}
+
+ .seat-unavailable {
+    cursor: not-allowed; 
+    pointer-events: none; 
+} 
+
+
+#floating {
+    display: none;
 }

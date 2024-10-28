@@ -1,4 +1,4 @@
-<div id="item-train-{{ $key }}">
+<div id="item-train-{{ $key }}" class="mb-3">
     <div class="container-l">
         <div class="ticket-container-l">
             <div class="ticket-body-l">
@@ -113,6 +113,12 @@
                                         </svg>
                                     </i>
                                 </button>
+                                <button data-tracking-event="selected_route" type="button"
+                                    class="ant-btn btn-booking-l" data-bs-toggle="collapse"
+                                    data-bs-target="#ticket-step-collapse-{{ $key }}" role="button"
+                                    aria-expanded="false" aria-controls="ticket-step-collapse-{{ $key }}">
+                                    <span class="text-chooseeTrip">Chọn chuyến</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -141,8 +147,7 @@
                         <div class="TrainGroupClassItem__Container-sc-1ucei7x-0 compartments">
                             <div class="inner-container">
                                 <div>
-                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 
-Numberofcompartments color--darkness">
+                                    <div class="base__Caption02Highlight-sc-1tvbuqk-12 Numberofcompartments color--darkness">
                                         Số khoang: {{ $carriage['carriage_number'] }}
                                     </div>
                                     <div class="carriage-description">
@@ -257,12 +262,6 @@ Numberofcompartments color--darkness">
                                     </div>
                                     @endforeach
                                 </div>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
@@ -620,6 +619,8 @@ Numberofcompartments color--darkness">
             </div>
         </div>
     </div>
+</div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Kiểm tra phần tử nút và collapse

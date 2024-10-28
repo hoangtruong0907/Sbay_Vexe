@@ -27,30 +27,32 @@ class Helpers
     public static function getToken($main_url, $client_id, $client_secret)
     {
         $tokenData = Cache::get('api_token_vexere');
-        if ($tokenData && isset($tokenData['expires_at']) && $tokenData['expires_at'] > now()) {
-            return $tokenData['token'];
-        }
-        try {
-            $response = Http::asForm()->post($main_url . "/v3/token", [
-                'grant_type' => 'client_credentials',
-                'client_id' => $client_id,
-                'client_secret' => $client_secret,
-            ]);
 
-            if ($response->successful()) {
-                $tokenData = $response->json();
-                $expiresAt = now()->addSeconds($tokenData['expires_in']);
-                Cache::put('api_token_vexere', [
-                    'token' => $tokenData['access_token'],
-                    'expires_at' => $expiresAt,
-                ], $tokenData['expires_in']);
+        if (!$tokenData || !isset($tokenData['expires_at']) || $tokenData['expires_at'] <= now()) {
+            try {
+                $response = Http::asForm()->post($main_url . "/v3/token", [
+                    'grant_type' => 'client_credentials',
+                    'client_id' => $client_id,
+                    'client_secret' => $client_secret,
+                ]);
 
-                return $tokenData['access_token'];
-            } else {
+                if ($response->successful()) {
+                    $tokenData = $response->json();
+                    $expiresAt = now()->addSeconds($tokenData['expires_in']);
+                    Cache::put('api_token_vexere', [
+                        'token' => $tokenData['access_token'],
+                        'expires_at' => $expiresAt,
+                    ], $tokenData['expires_in']);
+
+                    return $tokenData['access_token'];
+                }
+            } catch (\Exception $e) {
                 return null;
             }
-        } catch (\Exception $e) {
             return null;
         }
+
+        return $tokenData['token'];
     }
+
 }

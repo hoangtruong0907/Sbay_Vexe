@@ -19,11 +19,11 @@
             <div class="d-flex align-items-center">
                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg" alt="Bus Icon"
                     class="icon">
-                <span class="text-muted">T3, 10/09/2024</span>
+                <span class="text-muted">{{formatDateTime($bookingData->seatMap->departure_time, 'D, d/m/Y', 0, 0, "vi")}}</span>
                 <div class="d-flex align-items-center ms-3">
                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
                         alt="People Icon" class="icon">
-                    <span class="text-muted ms-1">1</span>
+                    <span class="text-muted ms-1">{{count((array) json_decode(json_encode($bookingData->seatTicket->seatList)))}}</span>
                 </div>
             </div>
             <a href="#" class="text-decoration-none text-primary small custom-link" data-bs-toggle="offcanvas"
@@ -34,20 +34,20 @@
         <div class="trip-details">
             <img src="https://static.vexere.com/production/images/1689135259785.jpeg" alt="Bus Image">
             <div class="trip-info">
-                <h6>Tân Kim Chi</h6>
-                <small>Limousine giường phòng 24 chỗ (CABIN ĐÔI)</small>
+                <h6>{{$bookingData->seatMap->company_name}}</h6>
+                <small>{{$bookingData->seatMap->name}}</small>
             </div>
         </div>
 
         <div class="route-details">
             <div class="route-item">
                 <div class="d-flex align-items-center">
-                    <span class="route-time">18:45</span>
+                    <span class="route-time">{{formatDateTime($bookingData->selectedPickupPoint->real_time, "H:i (d/m)")}}</span>
                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
                         alt="Pickup Icon" class="icon">
                     <div>
-                        <p class="route-location">VP Đà Nẵng</p>
-                        <p class="text-muted">46 Nam Trần, Phường Hòa Minh, Liên Chiểu, Đà Nẵng</p>
+                        <p class="route-location">{{$bookingData->selectedPickupPoint->areaDetail->state_name}}</p>
+                        <p class="text-muted">{{$bookingData->selectedPickupPoint->areaDetail->address}}, {{$bookingData->selectedPickupPoint->areaDetail->city_name}}</p>
                     </div>
                 </div>
                 <a href="#" class="change-link" data-bs-toggle="offcanvas" data-bs-target="#changeLocationRight"
@@ -55,12 +55,12 @@
             </div>
             <div class="route-item">
                 <div class="d-flex align-items-center">
-                    <span class="route-time">06:45</span>
+                    <span class="route-time">{{formatDateTime($bookingData->selectedDropPoint->real_time, "H:i (d/m)")}}</span>
                     <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/dropoff_semantic_negative_12dp.svg"
                         alt="Dropoff Icon" class="icon1">
                     <div>
-                        <p class="route-location">34 Trần Khát Chân</p>
-                        <p class="text-muted">34 Trần Khát Chân, Phường Thanh Nhàn, Hai Bà Trưng, Hà Nội</p>
+                        <p class="route-location">{{$bookingData->selectedDropPoint->areaDetail->state_name}}</p>
+                        <p class="text-muted">{{$bookingData->selectedDropPoint->areaDetail->address}}, {{$bookingData->selectedDropPoint->areaDetail->city_name}}</p>
                     </div>
                 </div>
                 <a href="#" class="change-link" data-bs-toggle="offcanvas" data-bs-target="#changeLocationRight"
