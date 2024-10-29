@@ -53,7 +53,7 @@ $(document).ready(function () {
     });
 
     // -------------- Sửa ------------
-    $(".editUser").on("click", function () {
+    $(document).on("click", ".editUser", function () {
         const userId = $(this).data("id");
         openEditUserModal(userId);
     });
@@ -62,8 +62,6 @@ $(document).ready(function () {
         event.preventDefault();
 
         const userId = $("#userId_edit").val();
-        alert(`vao btn ${userId}`);
-        console.log("userId", userId);
         const formData = {
             name: $("#name_e").val(),
             email: $("#email_e").val(),
@@ -91,16 +89,10 @@ $(document).ready(function () {
             data: JSON.stringify(formData),
             success: function (data) {
                 if (data.success) {
-                    toastr.options = {
-                        onHidden: function () {
-                            location.reload();
-                        },
-                        onCloseClick: function () {
-                            location.reload();
-                        },
-                        timeOut: 1000,
-                        extendedTimeOut: 1000,
-                    };
+                    closeModalEdit();
+                    dataTables.ajax.reload(() => {
+                        dataTables.draw();
+                    });
                     toastr.success(data.message);
                 } else {
                     toastr.error(data.error);
@@ -147,7 +139,6 @@ function closeDeleteModal(event) {
 }
 
 function openEditUserModal(Id) {
-    alert(`vao day ${Id}`);
     $("#editUserModal").removeClass("hidden");
     $("#userId_edit").val(Id);
     $.ajax({

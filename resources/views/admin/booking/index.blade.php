@@ -22,66 +22,23 @@
                 </div>
             </div>
         </div>
-        <div class="panel mt-5 overflow-hidden border-0 p-0">
+        <div class="panel mt-5 overflow-hidden border-0 p-4">
             <div class="table-responsive">
                 <table class="table-striped table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Tên</th>
                             <th>Order_Code</th>
-                            {{-- <th>Trip_Code</th> --}}
-
+                            <th>Tên</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
-                            <th>seats</th>
-                            <th>booking_code</th>
-                            <th>code</th>
-                            <th>pickup_id</th>
-                            <th>tickets</th>
-
-                            <th>   drop_off_info</th>
-                            {{-- <th class="text-nowrap">Ngày cập nhật</th> --}}
-                            <th class="!text-center">Chức năng</th>
+                            <th>Giá tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $key => $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>
-                                    <div class="flex w-max items-center">
-                                        <div class="flex-none mr-3">
-                                            <div class="p-1 bg-white-dark/30 rounded-full"><img
-                                                    class="h-8 w-8 rounded-full object-cover"
-                                                    src="{{ asset('/template/admin/assets/images/user-profile.jpeg') }}" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            {{ $user->customer_name }}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>{{ $user->order_code }}</td>
-                                {{-- <td>{{ $user->trip_code }}</td> --}}
-                                <td>{{ $user->customer_email }}</td>
-                                <td>{{ $user->customer_phone }}</td>
-                                <td>{{ $user->seats }}</td>
-                                <td>{{ $user->booking_code }}</td>
-                                <td>{{ $user->code }}</td>
-                                <td>{{ $user->pickup_id }}</td>
-                                <td>{{ $user->tickets }}</td>
-                                <td>{{ $user->drop_off_info }}</td>
-                               <td class="text-end">
-                                    <div class="flex items-center justify-center gap-4">
-                                        <button class="btn btn-sm btn-outline-primary text-nowrap editUser"
-                                            data-id="{{ $user->id }}">Chỉnh Sửa</button>
-                                        <button class="btn btn-sm btn-outline-danger deleteUser text-nowrap"  onclick="window.location.href='{{ route('admin.booking.detail', ['id' => $user->booking_code]) }}'"
-                                            data-id="{{ $user->booking_code }}" > Chi tiết</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>
@@ -230,51 +187,85 @@
                         </div>
                         <div class="mb-5">
                             <label for="status_e">Status </label>
-                            <input id="status_e" type="text" placeholder="Nhập code" class="form-input">
+                            <select name="status_e" id="status_e" class="form-input">
+                                <option value="1">Chưa chuyển</option>
+                                <option value="2">Đợi thanh toán</option>
+                                <option value="3">Hoàn vé</option>
+                                <option value="4">Hoàn thành</option>
+                                <option value="5">Đã hủy</option>
+                              </select>
                         </div>
-
 
                         <!-- Action Buttons -->
                         <div class="mt-8 flex items-center justify-end">
                             <button type="button" class="btn btn-outline-danger" onclick="closeModalEdit()">Hủy</button>
-                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">Cập
-                                nhật</button>
+                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">Cập nhật</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal Xóa Người dùng -->
-    {{-- <div class="fixed inset-0 z-[999] hidden overflow-y-auto bg-[black]/60 px-4" id="deleteUserModal"
-        onclick="closeDeleteModal(event)">
-        <div class="flex min-h-screen items-center justify-center">
-            <div class="panel my-8 w-[90%] max-w-lg overflow-hidden rounded-lg border-0 p-0 md:w-full"
-                onclick="event.stopPropagation()">
-                <button type="button" class="absolute top-4 text-white-dark hover:text-dark ltr:right-4 rtl:left-4"
-                    onclick="closeDeleteModal()">
-                    <img src="{{ asset('/template/admin/assets/images/icons/ic_close.svg') }} " alt="Icon">
-                </button>
-                <div
-                    class="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pr-5 rtl:pl-[50px] dark:bg-[#121c2c]">
-                    Xoá người dùng
-                </div>
-                <div class="p-5 text-center">
-                    <div class="mx-auto w-fit rounded-full bg-danger p-4 text-white ring-4 ring-danger/30">
-                        <img src="{{ asset('/template/admin/assets/images/icons/ic_delete.svg') }} " alt="Icon">
-                    </div>
-                    <div class="mx-auto mt-5 sm:w-3/4">Bạn có chắc chắn muốn xóa người dùng này không?</div>
-                    <!-- Action Buttons -->
-                    <div class="mt-8 flex items-center justify-center">
-                        <button type="button" class="btn btn-outline-danger" onclick="closeDeleteModal()">Huỷ</button>
-                        <button type="button" class="btn btn-primary ltr:ml-4 rtl:mr-4"
-                            onclick="deleteUser()">Xoá</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection
 @section('scripts')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script>
+        var resultData;
+
+        function dataTable() {
+            $.ajax({
+                url: "{{ route('admin.booking.dataTable') }}",
+                type: 'GET',
+            })
+            .done(function(data) {
+                console.log(data);
+                resultData = data;
+                dataTables.draw();
+            });
+        }
+
+        const dataTables = $('#dataTables-example').DataTable({
+            ajax: ({
+                url: "{{ route('admin.booking.dataTable') }}",
+                type: 'GET',
+            }),
+            columns: [
+                { data: 'order_code' },
+                { data: 'customer_name' },
+                { data: 'customer_email' },
+                { data: 'customer_phone' },
+                { data: 'price' },
+                {
+                    data: 'status',
+                    render: function(data) {
+                        switch(data) {
+                            case 1: return '<span class="badge bg-info">Chưa chuyển</span>';
+                            case 2: return '<span class="badge bg-warning">Đợi thanh toán</span>';
+                            case 3: return '<span class="badge bg-secondary">Hoàn vé</span>';
+                            case 4: return '<span class="badge bg-success">Hoàn thành</span>';
+                            case 5: return '<span class="badge bg-dark">Đã hủy</span>';
+                            default: return '<span class="badge bg-secondary">Unknown</span>';
+                        }
+                    }
+                },
+                { data: 'created_at' },
+                {
+                    data: null,
+                    orderable: false,
+                    render: function(data, type, row) {
+                        return `<div class="flex items-center justify-center gap-2">
+                                <button class="btn btn-sm btn-outline-primary text-nowrap editUser"
+                                    data-id="${data.id}">Chỉnh Sửa</button>
+                                <button class="btn btn-sm btn-outline-success text-nowrap" onclick="window.location.href='/admin/booking/${row.booking_code}'"
+                                    data-id="${data.id}" >Chi tiết</button>
+                            </div>
+                        `;
+                    }
+                },
+            ]
+        });
+    </script>
     <script src="{{ asset('/template/admin/ajax/bookingManagement.js') }}"></script>
 @endsection

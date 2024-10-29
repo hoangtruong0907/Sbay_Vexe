@@ -40,26 +40,16 @@ class AdminBookingController extends Controller
         // dd($users);
         return view('admin.booking.index', compact('users', 'title'));
     }
-    // public function show($id)
-    // {
-    //     $title = 'Detail';
-
-    //     // Giả sử bạn muốn lấy dữ liệu booking theo ID
-    //     $booking = DB::table('booking')->where('id', 1)->first();
-
-    //     // Kiểm tra nếu có dữ liệu booking
-    //     if (!$booking) {
-    //         return response()->json(['error' => 'Không tìm thấy thông tin đặt chỗ.'], 404);
-    //     }
-
-    //     // Truyền dữ liệu sang view
-    //     return view('admin.booking.booking_detail', compact('booking', 'title'));
-    // }
+    public function showDataTable()
+    {
+        $bookings = Booking::get();
+        return response()->json(['data' => $bookings]);
+    }
+    
     public function show($id)
     {
         $title = 'Detail';
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        // dd($token);
         $client = new Client();
         try {
             $response = $client->request('GET', 'https://uat-api.vexere.net/v3/booking', [
