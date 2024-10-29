@@ -95,7 +95,7 @@ Route::post('/add-phone', [GoogleController::class, 'addPhone'])->name('auth.add
 Route::middleware(['auth.google'])->prefix('/tai-khoan')->group(function () {
     Route::get('/thong-tin', [InfoController::class, 'index'])->name('auth.info');
     Route::get('/thanh-vien', [InfoController::class, 'membership'])->name('auth.membership');
-    Route::get('/ve-cua-toi', [InfoController::class, 'ticket'])->name('auth.ticket');
+    Route::get('/ve-cua-toi', [InfoController::class, 'getBookingInfo'])->name('auth.ticket');
     Route::get('/uu-dai', [InfoController::class, 'reward'])->name('auth.reward');
     Route::get('/the-cua-toi', [InfoController::class, 'card'])->name('auth.card');
     Route::get('/nhan-xet', [InfoController::class, 'review'])->name('auth.review');

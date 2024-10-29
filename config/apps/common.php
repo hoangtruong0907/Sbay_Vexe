@@ -7,4 +7,8 @@ return [
         'paid' => 4,    // Đã thanh toán
         'cancel' => 5, // Hủy đặt vé
     ],
+    'role' => [
+        'user' => 1,
+        'admin' => 2
+    ]
 ];
