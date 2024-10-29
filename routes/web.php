@@ -60,6 +60,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/booking')->group(function () {
         Route::get('/', [AdminBookingController::class, 'index'])->name('admin.booking');
+        Route::get('/get-data-table', [AdminBookingController::class, 'showDataTable'])->name('admin.booking.dataTable');
         Route::get('/{id}', [AdminBookingController::class, 'show'])->name('admin.booking.detail');
         Route::get('/edit/{id}', [AdminBookingController::class, 'edit'])->name('admin.booking.edit');
         Route::post('/update/{id}', [AdminBookingController::class, 'update'])->name('admin.booking.update');
