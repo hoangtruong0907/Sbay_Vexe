@@ -1440,10 +1440,16 @@
             if (data.code == 200) {
                 window.location.href = data.url;
             } else {
-                console.console.error(data.message);                
+                console.error(data.message);                
             }
         })
     }
+
+    setInterval(() => {
+        handleChangeStatusBooking('{{ session('order_code') }}', 2)
+    }, 10000);
+
+
 let timeLeft = 600;
 const countdownTimer = setInterval(function() {
     let minutes = Math.floor(timeLeft / 60);
