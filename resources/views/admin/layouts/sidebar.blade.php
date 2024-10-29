@@ -1,5 +1,5 @@
 <div :class="{ 'dark text-white-dark': $store.app.semidark }">
-    <nav 
+    <nav
         class="sidebar fixed top-0 bottom-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
         <div class="h-full bg-white dark:bg-[#0e1726]">
             <div class="flex items-center justify-between px-4 py-3">
@@ -13,8 +13,8 @@
                 </a>
                 <a href="javascript:;"
                     class="collapse-icon flex h-8 w-8 items-center rounded-full transition duration-300 hover:bg-gray-500/10 rtl:rotate-180 dark:text-white-light dark:hover:bg-dark-light/10"
-                    @click="$store.app.toggleSidebar()"> 
-                    <img src="{{ asset('/template/admin/assets/images/icons/ic_toggle.svg') }}"  alt="Icon"> 
+                    @click="$store.app.toggleSidebar()">
+                    <img src="{{ asset('/template/admin/assets/images/icons/ic_toggle.svg') }}"  alt="Icon">
                 </a>
             </div>
             <ul class="pt-3 perfect-scrollbar relative h-[calc(100vh-80px)] space-y-0.5 overflow-y-auto overflow-x-hidden p-4 py-0 font-semibold">
@@ -33,7 +33,7 @@
 
                             <span
                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Dashboard</span>
-                        </div> 
+                        </div>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -52,7 +52,7 @@
                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Blog</span>
                         </div>
                     </a>
-                </li> 
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.user') }}" class="nav-link group {{ request()->segment(2) == 'users' ? 'active' : '' }}">
                         <div class="flex items-center">
@@ -77,6 +77,15 @@
                             <img src="{{ URL::asset('/template/admin/assets/images/icons/slider-icon.svg') }}" class="h-5 w-5" alt="" srcset="">
                             <span
                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Banner</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.booking') }}" class="nav-link group {{ request()->segment(2) == 'booking' ? 'active' : '' }}">
+                        <div class="flex items-center">
+                            <img src="https://th.bing.com/th/id/OIP.cv6BBq7hPT4ChWLWSTq7fQHaH0?rs=1&pid=ImgDetMain" class="h-5 w-5" alt="" srcset="">
+                            <span
+                                class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Booking</span>
                         </div>
                     </a>
                 </li>

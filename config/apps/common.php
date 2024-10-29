@@ -1,11 +1,11 @@
 <?php
 return [
     'status_booking' => [
-        'reserve'  => 1,
-        'pending' => 2,
-        'refund' => 3,
-        'paid' => 4,
-        'cancel' => 5,
+        'reserve'  => 1, // Đang đặt vé nhưng chưa chuyển khoản khoản
+        'pending' => 2, // đợi thanh toán
+        'refund' => 3,   // hoàn tiền
+        'paid' => 4,    // Đã thanh toán
+        'cancel' => 5, // Hủy đặt vé
     ],
     'sex' => [
         'female' => 0,

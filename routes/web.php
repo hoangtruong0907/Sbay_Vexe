@@ -17,7 +17,8 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\PaymentResultController;
 use App\Http\Controllers\PaymentController;
-
+// use App\Http\Controllers\AdminBookingController;
+use App\Http\Controllers\admin\AdminBookingController;
 
 # Admin page
 Route::prefix('/admin')->group(function () {
@@ -55,6 +56,13 @@ Route::prefix('/admin')->group(function () {
     Route::prefix('/banner')->group(function () {
         Route::get('/', [ImageUploadController::class, 'showBanner'])->name('admin.banner');
         Route::post('/update', [ImageUploadController::class, 'updateBanner'])->name('admin.banner.update');
+    });
+
+    Route::prefix('/booking')->group(function () {
+        Route::get('/', [AdminBookingController::class, 'index'])->name('admin.booking');
+        Route::get('/{id}', [AdminBookingController::class, 'show'])->name('admin.booking.detail');
+        Route::get('/edit/{id}', [AdminBookingController::class, 'edit'])->name('admin.booking.edit');
+        Route::post('/update/{id}', [AdminBookingController::class, 'update'])->name('admin.booking.update');
     });
 });
 
