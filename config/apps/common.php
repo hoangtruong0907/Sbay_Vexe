@@ -2,9 +2,9 @@
 return [
     'status_booking' => [
         'reserve'  => 1, // Đang đặt vé nhưng chưa chuyển khoản khoản
-        'pending' => 2,
-        'cancel' => 3, // Hủy đặt vé
+        'pending' => 2, // đợi thanh toán
+        'refund' => 3,   // hoàn tiền
         'paid' => 4,    // Đã thanh toán
-        'refund' => 5   // hoàn tiền
+        'cancel' => 5, // Hủy đặt vé
     ],
 ];
