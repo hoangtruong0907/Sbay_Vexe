@@ -23,7 +23,7 @@ class ImageUploadController extends Controller
 
     public function showBanner () {
         $banner_current = Banner::first();
-        return view("admin.pages.banner.index", compact('banner_current'));
+        return view("admin.pages.Banner.index", compact('banner_current'));
     }
 
     public function updateBanner (Request $request)
