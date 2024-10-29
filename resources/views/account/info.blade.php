@@ -12,6 +12,9 @@
 .invalid {
     color: red;
 }
+.error {
+    color: red; /* Đặt màu cho thông báo lỗi */
+ }
 
 </style>
 @extends('layouts.app')
@@ -143,7 +146,6 @@
 @push('page-scripts')
     {{-- Select Date --}}
  
-
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
@@ -153,55 +155,48 @@
         });
        
         $(document).ready(function() {
-        $('#myForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 5
-                },
-                birthday: {
-                    required: true,
-                    date: true,
-                    min: '2014-10-29' // Để kiểm tra người dùng phải ít nhất 10 tuổi
-                },
-                sex: {
-                    required: true
-                }
-            },
-            messages: {
-                name: {
-                    required: 'Tên không được để trống.',
-                    minlength: 'Tên phải có ít nhất 5 ký tự.'
-                },
-                birthday: {
-                    required: 'Ngày sinh không được để trống.',
-                    date: 'Vui lòng nhập một ngày hợp lệ.',
-                    min: 'Bạn phải ít nhất 10 tuổi.'
-                },
-                sex: {
-                    required: 'Vui lòng chọn giới tính.'
-                }
-            },
-            errorPlacement: function(error, element) {
-                // Đặt thông báo lỗi vào vị trí cụ thể
-                if (element.attr("name") == "name") {
-                    error.appendTo("#name-error");
-                } else if (element.attr("name") == "birthday") {
-                    error.appendTo("#birthdate-error");
-                } else if (element.attr("name") == "sex") {
-                    error.appendTo("#sex-error");
-                } else {
-                    error.insertAfter(element);
-                }
-            },
-            submitHandler: function(form) {
-                // Hiển thị thông báo thành công hoặc thực hiện hành động submit
-                alert('Form đã được submit thành công.');
-                form.submit(); // Bỏ comment nếu muốn submit thực sự
-            }
-        });
-    });
+            // Lấy ngày hiện tại
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+            const day = String(today.getDate()).padStart(2, '0');
 
+            // Tính toán ngày tối thiểu (10 năm trước)
+            const minDate = new Date(year - 10, month - 1, day);
+            const minFormattedDate = `${minDate.getFullYear()}-${String(minDate.getMonth() + 1).padStart(2, '0')}-${String(minDate.getDate()).padStart(2, '0')}`;
+
+            // Xác thực form
+            $('#myForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 5
+                    },
+                    birthday: {
+                        required: true,
+                        date: true,
+                        max: minFormattedDate // Kiểm tra ngày sinh phải nhỏ hơn ngày tối thiểu
+                    },
+                    sex: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Vui lòng nhập họ và tên.",
+                        minlength: "Tên phải có ít nhất 5 ký tự."
+                    },
+                    birthday: {
+                        required: "Vui lòng chọn ngày sinh.",
+                        date: "Vui lòng nhập một ngày hợp lệ.",
+                        max: "Bạn phải ít nhất 10 tuổi."
+                    },
+                    sex: {
+                        required: "Vui lòng chọn giới tính."
+                    }
+                }
+            });
+        });
     </script>
     
 @endpush

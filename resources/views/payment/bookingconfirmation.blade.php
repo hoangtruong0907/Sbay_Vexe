@@ -2,6 +2,7 @@
 <!--Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
 <style scoped>
 .card-border-radius {
     border-radius: 8px;
@@ -196,12 +197,11 @@
                         </div>
                         @endif
                         <h1 class="fw-bold fs-5">Thông tin liên hệ</h1>
-
-                        <form id="bookingForm">
+                        <form id="bookingForm" method="POST" action="{{ route('payment') }}">
                             <div class="form-floating-label mt-2">
-                                <input type="text" id="name" name="customer_name" placeholder=" " required value="{{ Auth::user()->name ?? '' }}">
+                                <input type="text" id="name" name="customer_name" placeholder=" "  value="{{ Auth::user()->name ?? '' }}">
                                 <label for="name">Tên người đi <span class="text-danger">*</span></label>
-                                <div class="error-message text-danger" id="name-error"></div>
+                                <div class="error-message text-danger"></div> <!-- Thông báo lỗi sẽ hiển thị ở đây -->
                             </div>
                         
                             <div class="d-flex flex-row">
@@ -209,27 +209,32 @@
                                     <p class="mb-0" style="line-height: 1.5;">🇻🇳 +84</p>
                                 </div>
                                 <div class="form-floating-label flex-grow-1">
-                                    <input type="text" id="phone" name="customer_phone" placeholder=" " required value="{{ Auth::user()->phone ?? '' }}" class="form-control">
+                                    <input type="text" id="phone" name="customer_phone" placeholder=" "  value="{{ Auth::user()->phone ?? '' }}" class="form-control">
                                     <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
-                                    <div class="error-message text-danger" id="phone-error"></div>
+                                    <div class="error-message text-danger"></div> <!-- Thông báo lỗi sẽ hiển thị ở đây -->
                                 </div>
                             </div>
                         
                             <div class="form-floating-label">
-                                <input type="email" id="email" name="customer_email" placeholder=" " required value="{{ Auth::user()->email ?? '' }}">
+                                <input type="email" id="email" name="customer_email" placeholder=" "  value="{{ Auth::user()->email ?? '' }}">
                                 <label for="email">Email để nhận thông tin đặt chỗ <span class="text-danger">*</span></label>
-                                <div class="error-message text-danger" id="email-error"></div>
+                                <div class="error-message text-danger"></div> <!-- Thông báo lỗi sẽ hiển thị ở đây -->
+                            </div>
+                        
+                            <div class="d-flex align-items-center p-2 rounded-2" style="border-radius: 5px; border: 1px solid #28a745; background-color: #e9f7ec;">
+                                <i class="material-icons-round me-2 text-success">verified_user</i>
+                                <p class="mb-0">Số điện thoại và email được sử dụng để gửi thông tin đơn hàng và liên hệ khi cần thiết.</p>
+                            </div>
+                        
+                            <div class="note d-flex gap-3 w-100 text-center justify-content-center mt-4" style="margin-top: 30px;">
+                                <button type="submit" id="submitButton" class="btn fw-bold rounded-3" 
+                                        style="color: rgb(44, 44, 44); background: rgb(255, 211, 51); border-color: rgb(255, 211, 51); height: 48px; line-height: 24px; white-space: nowrap;">
+                                    <span>Thanh toán</span>
+                                </button>
                             </div>
                         </form>
-                        
-                        <div class="d-flex align-items-center p-2 rounded-2"
-                            style="border-radius: 5px; border: 1px solid #28a745; background-color: #e9f7ec; ">
-                            <i class="material-icons-round me-2 text-success">verified_user</i>
-                            <p class="mb-0">Số điện thoại và email được sử dụng để gửi thông tin đơn hàng và liên hệ khi
-                                cần thiết.</p>
-                        </div>
                     </div>
-                    <!--bottom-left section -->
+                    <!--bottom-left section -->s
                     {{-- <div class="bottom-left d-flex flex-column gap-3 bg-white border border-light-subtle rounded-2 p-4 card-border-radius">
                         <div class="container">
                             <h1 class="fw-bold fs-5 text-black">Tiện ích</h1>
@@ -539,12 +544,7 @@
         <div style="border-top: 1px solid rgb(224, 224, 224); background: white;">
             <div class="container note d-flex py-4 mx-auto" style="max-width: 1016px; gap: 20px;">
                 <div class="d-flex flex-column gap-3 w-100">
-                    <div class="note d-flex gap-3 w-100 text-center justify-content-center">
-                        <button type="button" class="btn fw-bold rounded-3" id="submitButton"
-                            style="color: rgb(44, 44, 44); background: rgb(255, 211, 51); border-color: rgb(255, 211, 51); height: 48px; line-height: 24px; white-space: nowrap;">
-                            <span>Thanh toán</span>
-                        </button>
-                    </div>
+                    
                     <div class="flex-fill text-dark lh-base text-center">
                         Bằng việc tiếp tục, bạn đồng ý với
                         <a href="#" class="fw-bold mb-0 text-decoration-underline lh-sm text-primary" target="_blank">
@@ -1706,6 +1706,7 @@
 <!---------------------------------- End Drawer ---------------------------------->
 @endsection
 @push('page-scripts')
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggleVisibility = (iconId, contentId) => {
@@ -1776,62 +1777,62 @@
 
             });
         });
-        $(document).ready(function() {
-    // Khởi tạo validate trên form
-    $('form').validate({
+
+
+
+$(document).ready(function() {
+    // Xác thực form
+    $('#bookingForm').validate({
         rules: {
-            name: {
+            customer_name: {
                 required: true,
-                minlength: 5
+                minlength: 2
             },
-            phone: {
+            customer_phone: {
                 required: true,
+                digits: true,
                 minlength: 10,
-                maxlength: 15,
-                digits: true // Chỉ cho phép số
+                maxlength: 15
             },
-            email: {
+            customer_email: {
                 required: true,
-                email: true // Kiểm tra định dạng email
+                email: true
             }
         },
         messages: {
-            name: {
-                required: "Tên không được để trống.",
-                minlength: "Tên phải có ít nhất 5 ký tự."
+            customer_name: {
+                required: "Vui lòng nhập tên người đi.",
+                minlength: "Tên phải có ít nhất 2 ký tự."
             },
-            phone: {
-                required: "Số điện thoại không được để trống.",
+            customer_phone: {
+                required: "Vui lòng nhập số điện thoại.",
+                digits: "Số điện thoại chỉ được chứa các chữ số.",
                 minlength: "Số điện thoại phải có ít nhất 10 ký tự.",
-                maxlength: "Số điện thoại không được vượt quá 15 ký tự.",
-                digits: "Số điện thoại chỉ được chứa chữ số."
+                maxlength: "Số điện thoại không được vượt quá 15 ký tự."
             },
-            email: {
-                required: "Email không được để trống.",
-                email: "Email không hợp lệ."
+            customer_email: {
+                required: "Vui lòng nhập email.",
+                email: "Vui lòng nhập một địa chỉ email hợp lệ."
             }
         },
         errorPlacement: function(error, element) {
-            // Đặt thông báo lỗi vào đúng vị trí
-            const errorDivId = element.attr('id') + '-error'; // Lấy id của input và thêm '-error'
-            $('#' + errorDivId).html(error).show();
-        },
-        success: function(label, element) {
-            // Ẩn thông báo lỗi khi hợp lệ
-            const errorDivId = $(element).attr('id') + '-error';
-            $('#' + errorDivId).hide();
+            error.appendTo(element.closest('.form-floating-label').find('.error-message'));
         },
         submitHandler: function(form) {
-            // Thực hiện hành động khi form hợp lệ
-            window.location.href = '{{ route('payment') }}';
+            form.submit();
         }
     });
 
-    // Tự động kiểm tra các trường ngay khi tải trang
-    $('#name').trigger('input');
-    $('#phone').trigger('input');
-    $('#email').trigger('input');
-});
+    // Sự kiện click cho nút thanh toán
+    $('#submitButton').on('click', function() {
+        if ($('#bookingForm').valid()) {
+            $('#bookingForm').submit();
+        } else {
+            console.log("Form không hợp lệ"); // Ghi thông báo ra console nếu không hợp lệ
+        }
+    });
+    });
+
 
     </script>
 @endpush
