@@ -1777,58 +1777,61 @@
             });
         });
         $(document).ready(function() {
-        $('#name').on('input', function() {
-            const nameInput = $(this).val();
-            const errorDiv = $('#name-error');
-            if (nameInput.trim() === '') {
-                errorDiv.text('Tên không được để trống.').show();
-            } else if (nameInput.length < 5) {
-                errorDiv.text('Tên phải có ít nhất 5 ký tự.').show();
-            } else {
-                errorDiv.text('').hide(); // Ẩn thông báo lỗi
+    // Khởi tạo validate trên form
+    $('form').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 5
+            },
+            phone: {
+                required: true,
+                minlength: 10,
+                maxlength: 15,
+                digits: true // Chỉ cho phép số
+            },
+            email: {
+                required: true,
+                email: true // Kiểm tra định dạng email
             }
-        });
-        $('#phone').on('input', function() {
-            const phoneInput = $(this).val();
-            const errorDiv = $('#phone-error');
-            const phoneRegex = /^[0-9]{10,15}$/; // Kiểm tra số điện thoại từ 10 đến 15 ký tự
-            if (phoneInput.trim() === '') {
-                errorDiv.text('Số điện thoại không được để trống.').show();
-            } else if (!phoneRegex.test(phoneInput)) {
-                errorDiv.text('Số điện thoại không hợp lệ.').show();
-            } else {
-                errorDiv.text('').hide(); // Ẩn thông báo lỗi
+        },
+        messages: {
+            name: {
+                required: "Tên không được để trống.",
+                minlength: "Tên phải có ít nhất 5 ký tự."
+            },
+            phone: {
+                required: "Số điện thoại không được để trống.",
+                minlength: "Số điện thoại phải có ít nhất 10 ký tự.",
+                maxlength: "Số điện thoại không được vượt quá 15 ký tự.",
+                digits: "Số điện thoại chỉ được chứa chữ số."
+            },
+            email: {
+                required: "Email không được để trống.",
+                email: "Email không hợp lệ."
             }
-        });
-        $('#email').on('input', function() {
-            const emailInput = $(this).val();
-            const errorDiv = $('#email-error');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Kiểm tra định dạng email
-            if (emailInput.trim() === '') {
-                errorDiv.text('Email không được để trống.').show();
-            } else if (!emailRegex.test(emailInput)) {
-                errorDiv.text('Email không hợp lệ.').show();
-            } else {
-                errorDiv.text('').hide(); // Ẩn thông báo lỗi
-            }
-        });
-        function handlePayment() {
-            const isValid = $('#name-error').is(':empty') && 
-                            $('#phone-error').is(':empty') && 
-                            $('#email-error').is(':empty');
-            if (isValid) {
-                window.location.href = '{{ route('payment') }}';
-            } else {
-                alert('Vui lòng kiểm tra các thông tin nhập vào.'); // Thêm thông báo
-            }
+        },
+        errorPlacement: function(error, element) {
+            // Đặt thông báo lỗi vào đúng vị trí
+            const errorDivId = element.attr('id') + '-error'; // Lấy id của input và thêm '-error'
+            $('#' + errorDivId).html(error).show();
+        },
+        success: function(label, element) {
+            // Ẩn thông báo lỗi khi hợp lệ
+            const errorDivId = $(element).attr('id') + '-error';
+            $('#' + errorDivId).hide();
+        },
+        submitHandler: function(form) {
+            // Thực hiện hành động khi form hợp lệ
+            window.location.href = '{{ route('payment') }}';
         }
-        $('#submitButton').on('click', function(e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định
-            handlePayment();
-        });
-        $('#name').trigger('input');
-        $('#phone').trigger('input');
-        $('#email').trigger('input');
     });
+
+    // Tự động kiểm tra các trường ngay khi tải trang
+    $('#name').trigger('input');
+    $('#phone').trigger('input');
+    $('#email').trigger('input');
+});
+
     </script>
 @endpush
