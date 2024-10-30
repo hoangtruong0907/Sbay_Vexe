@@ -220,7 +220,21 @@ class BookingController extends Controller
                 'message' => 'Success',
                 'url' => '/payment-result'
             ]);
-        } else if ($response->successful() && $request->status == config('apps.common.status_booking.pending')) {
+        } else if ($request->status == config('apps.common.status_booking.pending')) {
+            $booking = Booking::where(['order_code'=> $request->order_code])->first();
+            $booking->status = config('apps.common.status_booking.pending');
+            $booking->save();
+
+            session([
+                'order_status' => config('apps.common.status_booking.pending'),
+            ]);
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'Success',
+                'url' => '/payment-result'
+            ]);
+        } else if ($response->successful() && $request->status == config('apps.common.status_booking.reserve')) {
             // đúng giá tiền, ngày hôm nay, và memo
             $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
                 return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;

@@ -167,7 +167,7 @@
                                                 <hr>
                                                 
                                                 <div class="d-flex justify-content-center text-primary">
-                                                    <span class="ms-2" style="font-size: 0.9rem;">Đặt lại</span>
+                                                    <span class="ms-2" style="font-size: 0.9rem;">Liên Hệ</span>
                                                 </div>
                                             </div>
                                         </div>
