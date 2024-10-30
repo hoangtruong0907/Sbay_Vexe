@@ -5,22 +5,6 @@
     <div class="container mt-5">
         <div class="flex flex-wrap items-center justify-between gap-4">
             <h2 class="text-xl">{{ $title }}</h2>
-            <div class="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center sm:gap-3">
-                <div class="flex gap-3">
-                    <div>
-                        <button type="button" class="btn btn-primary add-user-modal">
-                            <img src="{{ asset('/template/admin/assets/images/icons/ic_add.svg') }} " alt="Icon">
-                            Thêm người dùng
-                        </button>
-                    </div>
-                </div>
-                <div class="relative">
-                    <input type="text" placeholder="Tìm kiếm người dùng" class="peer form-input py-2 ltr:pr-11 rtl:pl-11">
-                    <div class="absolute top-1/2 -translate-y-1/2 peer-focus:text-primary ltr:right-[11px] rtl:left-[11px]">
-                        <img src="{{ asset('/template/admin/assets/images/icons/ic_search.svg') }} " alt="Icon">
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="panel mt-5 overflow-hidden border-0 p-4">
             <div class="table-responsive">
@@ -28,6 +12,7 @@
                     <thead>
                         <tr>
                             <th>Order_Code</th>
+                            <th>Mã đặt chỗ</th>
                             <th>Tên</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
@@ -213,7 +198,7 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script>
         var resultData;
-
+    
         function dataTable() {
             $.ajax({
                 url: "{{ route('admin.booking.dataTable') }}",
@@ -225,7 +210,7 @@
                 dataTables.draw();
             });
         }
-
+    
         const dataTables = $('#dataTables-example').DataTable({
             ajax: ({
                 url: "{{ route('admin.booking.dataTable') }}",
@@ -233,10 +218,20 @@
             }),
             columns: [
                 { data: 'order_code' },
+                { data: 'booking_code' },
                 { data: 'customer_name' },
                 { data: 'customer_email' },
                 { data: 'customer_phone' },
-                { data: 'price' },
+                { 
+                    data: 'price',
+                    render: function(data, type) {
+                        if (type === 'display' || type === 'filter') {
+                            return formatCurrency(data); // Hiển thị giá theo định dạng VND
+                        } else {
+                            return data; // Sắp xếp theo giá trị gốc
+                        }
+                    }
+                },
                 {
                     data: 'status',
                     render: function(data) {
@@ -250,7 +245,16 @@
                         }
                     }
                 },
-                { data: 'created_at' },
+                { 
+                    data: 'created_at',
+                    render: function (data, type) {
+                        if (type === 'display' || type === 'filter') {
+                            return formatDate(data);
+                        } else {
+                            return new Date(data).getTime(); 
+                        }
+                    }
+                },
                 {
                     data: null,
                     orderable: false,
@@ -260,12 +264,21 @@
                                     data-id="${data.id}">Chỉnh Sửa</button>
                                 <button class="btn btn-sm btn-outline-success text-nowrap" onclick="window.location.href='/admin/booking/${row.booking_code}'"
                                     data-id="${data.id}" >Chi tiết</button>
-                            </div>
-                        `;
+                            </div>`;
                     }
                 },
-            ]
+            ],
+            order: [[7, 'desc']], // Sắp xếp mặc định theo cột ngày tạo giảm dần
         });
-    </script>
+    
+        function formatDate(input) {
+            const date = new Date(input);
+            return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} - ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+        }
+    
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        }
+    </script> 
     <script src="{{ asset('/template/admin/ajax/bookingManagement.js') }}"></script>
 @endsection

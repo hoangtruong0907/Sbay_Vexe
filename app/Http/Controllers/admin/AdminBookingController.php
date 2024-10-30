@@ -91,7 +91,7 @@ class AdminBookingController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:15',
+                'phone' => 'required|string|max:20',
                 'seats' => 'required|string',
                 'code' => 'nullable|string',
                 'booking_code' => 'nullable|string',

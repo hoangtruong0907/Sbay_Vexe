@@ -81,7 +81,7 @@
     @endif
 </div>
 <div class="container">
-    <div class="block-recommend">
+    <div class="block-recommend d-none">
         <div class="title-recommend">
             Sản phẩm đề xuất
         </div>

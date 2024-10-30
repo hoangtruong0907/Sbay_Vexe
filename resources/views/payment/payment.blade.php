@@ -850,20 +850,21 @@
                         <div class="mt-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="fw-bold">Không thể thanh toán bằng mã QR?</p>
-                                <p class="show-more-bank" onclick="toggleBankDetails()">Tự nhập thông tin</p>
+                                <p class="show-more-bank" onclick="toggleBankDetails()">THu gọn</p>
     
                             </div>
-                            <div class="bank-details expandable" id="bank-details">
-                                <p><strong>Ngân hàng:</strong> VIETINBANK</p>
-                                <p><strong>Số tài khoản:</strong> 111V78872192
-                                    <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('111V78872192')"
+                            <div class="bank-details" id="bank-details" style="display: block">
+                                <p><strong>Ngân hàng:</strong> VIETCOMBANK</p>
+                                <p><strong>Số tài khoản:</strong> 0021000337309
+                                    <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('0021000337309')"
                                         title="Sao chép"></i>
                                 </p>
-                                <p><strong>Chủ tài khoản:</strong> VEXERE</p>
-                                <p><strong>Tổng tiền:</strong> 700.000đ
-                                    <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('700.000đ')"
+                                <p><strong>Chủ tài khoản:</strong> NGUYEN THE TRINH</p>
+                                <p><strong>Tổng tiền:</strong> {{ number_format(session('order_price'), 0, ',', '.') . ' ₫' }}
+                                    <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('{{session('order_price')}}')"
                                         title="Sao chép"></i>
                                 </p>
+                                <p><strong>Vui lòng nhập lời nhắn là:</strong> {{session('order_code')}}</p>
                                 <p class="text-muted">Hệ thống sẽ tự động xác thực giao dịch</p>
                                 <p class="text-muted">Quét mã QR hỗ trợ nhập nhanh thông tin, hạn chế sai sót trong quá
                                     trình chuyển khoản. Nếu bạn vẫn muốn tự nhập, vui lòng chuyển khoản nhanh 24/7 và
@@ -1438,30 +1439,43 @@
         })
         .done((data) => {
             if (data.code == 200) {
+                localStorage.removeItem("countdownEndTime");
                 window.location.href = data.url;
             } else {
-                console.error(data.message);                
+                console.info(data.message);                
             }
         })
     }
 
+    // tự động check thanh toán 10s/1 lần
     setInterval(() => {
-        handleChangeStatusBooking('{{ session('order_code') }}', 2)
+        handleChangeStatusBooking('{{ session('order_code') }}', 1)
     }, 10000);
 
 
-let timeLeft = 600;
-const countdownTimer = setInterval(function() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    document.getElementById('timer').textContent = `${minutes}:${seconds}`;
-    timeLeft--;
-    if (timeLeft < 0) {
-        clearInterval(countdownTimer);
-        alert('Hết thời gian!');
-    }
-}, 1000);
+    $(document).ready(function() {
+        const countdownDuration = 10 * 60 * 1000; // 10 phút (tính bằng milliseconds)
+        let endTime = localStorage.getItem("countdownEndTime") || (Date.now() + countdownDuration);
+        localStorage.setItem("countdownEndTime", endTime);
+
+        function updateCountdown() {
+            let timeLeft = endTime - Date.now();
+            if (timeLeft <= 0) {
+                $('#timer').text("Đã hết thời gian!");
+                localStorage.removeItem("countdownEndTime");
+                clearInterval(interval);
+                handleChangeStatusBooking('{{ session('order_code') }}', 5) // hết 10p thì update hủy booking
+            } else {
+                let minutes = Math.floor(timeLeft / 60000);
+                let seconds = Math.floor((timeLeft % 60000) / 1000);
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                $('#timer').text(`${minutes}:${seconds}`);
+            }
+        }
+
+        var interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    });
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('toggleSeatInfo');

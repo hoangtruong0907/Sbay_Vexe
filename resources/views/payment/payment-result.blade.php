@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container mt-5 custom-container">
+<div class="container my-5 custom-container">
     <div class="mb-4">
         <a href="/" class="text-decoration-none">
             <div class="chevron_left">
@@ -350,7 +350,12 @@
 </div>
 
 <footer class="footer mt-4 mb-5 d-flex justify-content-center custom-btn">
-    <a href="#" class="btn btn-outline-primary my-ticket-btn">Vé của tôi</a>
+    @guest
+        <button data-bs-toggle="modal" data-bs-target="#authModal" class="btn btn-outline-primary my-ticket-btn">Vé của tôi</button>
+    @endguest
+    @auth
+        <a href="{{route('auth.ticket')}}" class="btn btn-outline-primary my-ticket-btn">Vé của tôi</a>
+    @endauth
     <a href="#" class="btn btn-warning text-dark book-ticket-btn">Đặt chiều vé</a>
 </footer>
 @endsection
