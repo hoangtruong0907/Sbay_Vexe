@@ -27,15 +27,15 @@
                 <div class="modal-header-1">
                     <h5 class="modal-title-1" id="infoModalLabel">Chi tiết chuyến đi</h5>
                     <a href="#" class="close-link-1" data-bs-dismiss="modal" aria-label="Close">Đóng</a>
-    
+
                 </div>
                 <div class="modal-body">
                     <div class="trip-info-card">
                         <div class="trip-header-container">
                             <h4 class="trip-header-title">Thông tin chuyến đi</h4>
-    
+
                         </div>
-    
+
                         <div class="trip-summary-container">
                             <div class="trip-summary-details">
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg" alt="Bus Icon"
@@ -51,7 +51,7 @@
                                     aria-controls="tripDetailsOffcanvas">Xem chi tiết</a>
                             </div>
                         </div>
-    
+
                         <div class="trip-detail-container">
                             <img src="https://static.vexere.com/production/images/1689135259785.jpeg" alt="Bus Image"
                                 class="trip-bus-image">
@@ -60,7 +60,7 @@
                                 <small class="trip-bus-type">Limousine giường phòng 24 chỗ (CABIN ĐÔI)</small>
                             </div>
                         </div>
-    
+
                         <div class="route-info-container">
                             <div class="route-info-item">
                                 <div class="route-info-details">
@@ -105,7 +105,7 @@
                                 <p class="offcanvas-trip-time">15:00 • T4, 11/09/2024</p>
                             </div>
                         </div>
-    
+
                         <div class="offcanvas-body-container">
                             <div class="trip-detail-info">
                                 <div class="trip-detail-row">
@@ -140,7 +140,7 @@
                                                 alt="icon-expand-less">
                                         </div>
                                     </div>
-    
+
                                     <div class="seat-info-content d-flex flex-column gap-2 mt-2 overflow-auto d-none"
                                         id="seatInfoContent">
                                         <div class="seat-info-item d-flex justify-content-end">
@@ -597,7 +597,7 @@
                                                 alt="icon-expand-less" width="20" height="20">
                                         </div>
                                     </div>
-    
+
                                     <div class="total-amount-details pt-2 d-none" id="totalAmountDetails">
                                         <div class="amount-detail-row d-flex justify-content-between">
                                             <p class="price-label color--darkness">Giá vé</p>
@@ -633,13 +633,13 @@
                                         data-bs-target="#modifyLocationOffcanvas"
                                         aria-controls="modifyLocationOffcanvas">Thay đổi</a>
                                 </div>
-    
+
                                 <p class="pickup-location">VP Đà Nẵng</p>
                                 <p class="pickup-address text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng,
                                     Phường Thuận Phước, Hải
                                     Châu, Đà Nẵng</p>
                                 <p class="pickup-time text-secondary">Dự kiến đón lúc: 15:00 11/09/2024</p>
-    
+
                                 <div class="info-group d-flex align-items-center justify-content-between">
                                     <div class="dropoff-info d-flex align-items-center">
                                         <img class="dropoff-icon"
@@ -658,7 +658,7 @@
                                 <p class="dropoff-time text-secondary">Dự kiến trả lúc: 17:00 11/09/2024</p>
                             </div>
                         </div>
-    
+
                         <div class="offcanvas-footer p-3">
                             <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
                                 class="close-offcanvas-button btn btn-primary w-100">
@@ -718,7 +718,7 @@
                                 </div>
                             </label>
                         </div>
-    
+
                         <div
                             class="report-section border-top border-secondary bg-white position-absolute start-0 bottom-0 w-100 p-3">
                             <div class="report-header d-flex justify-content-between align-items-center mb-2">
@@ -748,15 +748,15 @@
                                     data-bs-target="#newContactModal">
                                     Chỉnh sửa liên hệ
                                 </a>
-    
+
                             </div>
                             <p class="unique-class"><strong>Hành khách:</strong> PHỤNG</p>
                             <p class="unique-class"><strong>Số điện thoại:</strong> 0987654568</p>
                             <p class="unique-class"><strong>Email:</strong> tuan@gmail.com</p>
-    
+
                         </div>
                     </div>
-    
+
                     <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="newContactModal"
                         aria-labelledby="contactModalLabel">
                         <div class="offcanvas-header">
@@ -793,9 +793,9 @@
                             </button>
                         </div>
                     </div>
-    
+
                     <!-- Thêm nội dung của bạn vào đây -->
-    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục thanh toán</button>
@@ -810,7 +810,7 @@
                 <h4 class="mb-4">Phương thức thanh toán</h4>
                 <!-- QR chuyển khoản/ Ví điện tử -->
                 <div class="form-check mb-2">
-    
+
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod1" checked
                         onclick="toggleQRDetails()">
                     <label class="form-check-label" for="paymentMethod1">
@@ -851,7 +851,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="fw-bold">Không thể thanh toán bằng mã QR?</p>
                                 <p class="show-more-bank" onclick="toggleBankDetails()">Tự nhập thông tin</p>
-    
+
                             </div>
                             <div class="bank-details expandable" id="bank-details">
                                 <p><strong>Ngân hàng:</strong> VIETINBANK</p>
@@ -874,10 +874,10 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="fw-bold mb-1">Hỗ trợ nhiều ví điện tử & 42 ngân hàng</p>
                                 <p class="show-more-bank toggle-support" onclick="toggleSupport()">Xem tất cả</p>
-    
+
                             </div>
                             <div class="support-info expandable" id="support-info">
-    
+
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-0.png"
                                     alt="MoMo">
                                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-7.png"
@@ -896,7 +896,7 @@
                     </div>
                 </div>
                 <hr>
-    
+
                 <!-- Phần Bảo Hiểm -->
                 <div id="insurance-section" class="insurance-section">
                     <div id="insurance-info" class="insurance-info" style="display: flex;">
@@ -913,7 +913,7 @@
                     <i class="bi bi-exclamation-triangle-fill"></i> Giá khuyến mãi không áp dụng khi thanh toán tại nhà
                     xe hoặc khi lên xe. Bạn hãy chọn phương thức thanh toán khác để được mua vé với giá ưu đãi!
                 </div>
-    
+
                 <!-- Thanh toán khi lên xe -->
                 <div class="form-check mb-2 d-none">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod2"
@@ -924,7 +924,7 @@
                     </label>
                     <p class="text-muted">Bạn có thể thanh toán cho tài xế khi lên xe</p>
                 </div>
-    
+
                 <!-- Hiển thị chi tiết thanh toán khi chọn "Thanh toán khi lên xe" -->
                 <div id="paymentDetails" class="payment-details">
                     <h5>Hướng dẫn thanh toán</h5>
@@ -937,9 +937,9 @@
                         vé quá nhiều lần.
                     </div>
                 </div>
-    
+
                 <hr>
-    
+
                 {{-- <!-- Thẻ thanh toán quốc tế -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod3"
@@ -959,7 +959,7 @@
                             Thẻ được lưu bởi đối tác đạt chuẩn quốc tế PCI DSS cấp độ cao nhất về Bảo mật thanh toán.
                             Một khoản phí nhỏ sẽ được khấu trừ để xác minh thông tin thẻ.
                         </div>
-    
+
                         <div class="row">
                             <div class="col-md-8">
                                 <input type="text" class="form-control" placeholder="Số thẻ tín dụng/ghi nợ">
@@ -984,7 +984,7 @@
                     </div>
                 </div>
                 <hr>
-    
+
                 <!-- Điều Kiện Sử Dụng -->
                 <div id="termsModal" class="modal fade" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -1020,8 +1020,8 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
                 <!-- Ví ShopeePay -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod4"
@@ -1230,7 +1230,7 @@
                     </div>
                 </div>
                 <hr>
-    
+
                 <!-- Tại cửa hàng tiện lợi hoặc siêu thị -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod10"
@@ -1247,7 +1247,7 @@
                             <li>Bạn đến bưu cục Viettel Post bất kỳ hoặc một trong các cửa hàng tiện lợi dưới đây</li>
                         </ol>
                         <div class="store-payment-logos">
-    
+
                             <img src="https://229a2c9fe669f7b.cmccloud.com.vn/httpImage/httt_cash_pc_new.jpg" alt="..">
                         </div>
                         <p>2. Báo với nhân viên là bạn cần thanh toán vé xe đã đặt ở Vé xe rẻ và làm theo hướng dẫn của
@@ -1258,7 +1258,7 @@
                     </div>
                 </div>
                 <hr>
-    
+
                 <!-- Thẻ ATM nội địa / Internet Banking -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod11"
@@ -1321,11 +1321,11 @@
                     <h5 class="mt-3 rich-1">900.000đ</h5>
                 </div>
             </div>
-    
-    
+
+
             <!-- Thông tin chuyến đi -->
             @include('payment.trip-info')
-    
+
             <!-- Thong tin lien he -->
             <div class="card">
                 <div class="card-body">
@@ -1349,7 +1349,7 @@
                         <p class="header-title mb-0">Chỉnh sửa thông tin liên hệ</p>
                     </div>
                 </div>
-    
+
                 <div class="offcanvas-body">
                     <form>
                         <div class="mb-3">
@@ -1374,7 +1374,7 @@
                         </div>
                     </form>
                 </div>
-    
+
                 <div class="footer">
                     <button type="button" class="btn btn-warning text-black fw-bold w-100" data-bs-dismiss="offcanvas">
                         <span>Cập nhật</span>
@@ -1384,7 +1384,7 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
         </div>
     </div>
-    
+
     <div class="fixed-payment-button">
         <div class="d-flex justify-content-center align-items-center flex-wrap payment-info-container">
             <div class="total-money-section">
@@ -1440,7 +1440,7 @@
             if (data.code == 200) {
                 window.location.href = data.url;
             } else {
-                console.error(data.message);                
+                console.error(data.message);
             }
         })
     }

@@ -178,7 +178,7 @@
         <input type="hidden" name="data" value="{{$data}}">
         {{-- end set data booking for form --}}
 
-        <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px;">
+        <div class="container  mx-auto flex-column flex gap-3" style="padding: 20px 0px; min-height: calc(100vh - 208px);">
             <!-- Back button and image -->
             <div class="d-flex align-items-center mb-3">
                 <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/chevron_left_gray.svg" alt="">
@@ -189,12 +189,14 @@
                 <!-- Left section -->
                 <div class=" d-flex flex-column gap-3 w-100">
                     <div class="left-section d-flex border flex-column border-light-subtle p-4 left-top bg-white rounded-2 card-border-radius card-border-radius">
-                        <div class="d-flex justify-content-between align-items-center border border-secondary rounded mb-3"
-                            style="padding: 12px 12px 12px 16px">
-                            <p class="fw-medium mb-0 text-dark   text">Đăng nhập để tự điền thông tin và nhận điểm khi
-                                đặt vé</p>
-                            <button class="btn btn-dark" type="button" style="width: 120px">Đăng nhập</button>
-                        </div>
+                        @guest
+                            <div class="d-flex justify-content-between align-items-center border border-secondary rounded mb-3"
+                                style="padding: 12px 12px 12px 16px">
+                                <p class="fw-medium mb-0 text-dark   text">Đăng nhập để tự điền thông tin và nhận điểm khi
+                                    đặt vé</p>
+                                <button class="btn btn-dark" type="button" style="width: 120px">Đăng nhập</button>
+                            </div>
+                        @endguest
 
                         <h1 class="fw-bold fs-5">Thông tin liên hệ</h1>
                         <div class="form-floating-label mt-2">
@@ -205,11 +207,11 @@
                             </label>
                         </div>
                         <div class="d-flex flex-row">
-                            <div class="me-3 align-items-center border rounded-3 bg-white text-dark pointer"
+                            {{-- <div class="me-3 align-items-center border rounded-3 bg-white text-dark pointer"
                                 style="padding: 12px 10px; height: calc(3.1rem + 1px);" data-bs-toggle="offcanvas"
                                 data-bs-target="#countryPhonesRight" aria-controls="countryPhonesRight">
                                 <p class="  mb-0" style="line-height: 1.5;">🇻🇳 +84</p>
-                            </div>
+                            </div> --}}
                             <div class="form-floating-label flex-grow-1">
                                 <input type="text" id="phone" name="customer_phone" placeholder=" " required class="form-control">
                                 <label for="phone">
@@ -230,7 +232,7 @@
                             style="border-radius: 5px; border: 1px solid #28a745; background-color: #e9f7ec; ">
                             <i class="material-icons-round me-2 text-success">verified_user</i>
                             <p class="mb-0">Số điện thoại và email được sử dụng để gửi thông tin đơn hàng và liên hệ khi
-                                cần thiết.</p>
+                                cần thiết<br> Đảm bảo nhập đúng số điện thoại và email.</p>
                         </div>
                     </div>
                     <!--bottom-left section -->
@@ -544,7 +546,7 @@
             <div class="container note d-flex py-4 mx-auto" style="max-width: 1016px; gap: 20px;">
                 <div class="d-flex flex-column gap-3 w-100">
                     <div class="note d-flex gap-3 w-100 text-center justify-content-center">
-                        <button type="submit" class="btn fw-bold rounded-3" onclick="window.location.href='{{ route('payment') }}'"
+                        <button type="submit" class="btn fw-bold rounded-3 w-100" onclick="window.location.href='{{ route('payment') }}'"
                             style="color: rgb(44, 44, 44);background: rgb(255, 211, 51); border-color: rgb(255, 211, 51); height: 48px; line-height: 24px; white-space: nowrap;">
                             <span>Thanh toán</span>
                         </button>
@@ -560,58 +562,59 @@
                         </a>
                     </div>
                 </div>
-
-                <div style="width: 375px; min-width: 375px;">
-                    <div class="d-flex flex-column gap-3">
-                        <div class="d-flex flex-column">
-                            <p class="fs-6 fw-bold mb-0 text-success">
-                                Đặt thêm chiều về, giảm ngay 20k!
-                            </p>
-                            <p class="fw-normal mb-0 lh-sm" style="letter-spacing: 0px;">
-                                Áp dụng khi đặt cùng nhà xe Hải Phòng Travel (Đất Cảng) (dùng mã giảm giá khứ hồi ở bước
-                                thanh
-                                toán).
-                            <p id="detailsButton"
-                                class="fw-bold mb-0 text-decoration-underline lh-sm text-primary pointer mt-1"
-                                data-bs-toggle="popover" data-bs-trigger="manual" data-bs-placement="top"
-                                data-bs-html="true" title="<div class='text-center'>Phạm vi áp dụng</div>" data-bs-content="
-                                    <div class='popup-info-section terms-and-conditions border-bottom pb-2'>
-                                        <div class='popup-info-row d-flex align-items-center mb-1'>
-                                            <i class='material-icons-round text-muted me-2'>alt_route</i>
-                                            <p class='mb-0 text-dark'>
-                                                <strong>Tuyến đường</strong>: Tất cả tuyến đường
+                @if(isset($isBookingTwo))
+                    <div style="width: 375px; min-width: 375px;">
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex flex-column">
+                                <p class="fs-6 fw-bold mb-0 text-success">
+                                    Đặt thêm chiều về, giảm ngay 20k!
+                                </p>
+                                <p class="fw-normal mb-0 lh-sm" style="letter-spacing: 0px;">
+                                    Áp dụng khi đặt cùng nhà xe Hải Phòng Travel (Đất Cảng) (dùng mã giảm giá khứ hồi ở bước
+                                    thanh
+                                    toán).
+                                <p id="detailsButton"
+                                    class="fw-bold mb-0 text-decoration-underline lh-sm text-primary pointer mt-1"
+                                    data-bs-toggle="popover" data-bs-trigger="manual" data-bs-placement="top"
+                                    data-bs-html="true" title="<div class='text-center'>Phạm vi áp dụng</div>" data-bs-content="
+                                        <div class='popup-info-section terms-and-conditions border-bottom pb-2'>
+                                            <div class='popup-info-row d-flex align-items-center mb-1'>
+                                                <i class='material-icons-round text-muted me-2'>alt_route</i>
+                                                <p class='mb-0 text-dark'>
+                                                    <strong>Tuyến đường</strong>: Tất cả tuyến đường
+                                                </p>
+                                            </div>
+                                            <div class='popup-info-row d-flex align-items-center mb-1'>
+                                                <i class='material-icons-round text-muted me-2'>directions_bus</i>
+                                                <p class='mb-0 text-dark'><strong>Nhà xe</strong>: Hải Phòng Travel</p>
+                                            </div>
+                                            <div class='popup-info-row d-flex align-items-center mb-1'>
+                                                <i class='material-icons-round text-muted me-2'>timer</i>
+                                                <p class='mb-0 text-dark'>
+                                                    <strong>Ngày khởi hành</strong>: T6, 14/06 00:00 - T4, 31/12/2025 00:00 (trừ 30/08 - 04/09; 30/12 - 02/01/2025)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class='popup-info-row d-flex pt-3'>
+                                            <p class='mb-0'>
+                                                Giảm 20k khi đơn hàng mua từ 1 vé trở lên.<br>
+                                                - Lưu ý: Các điều kiện và số tiền giảm giá khứ hồi sẽ được xét và giảm trừ trên chiều về.<br>
+                                                - Chiều đi và chiều về phải cùng một nhà xe và số lượng vé phải bằng nhau.<br>
+                                                - Vé chiều đi và chiều về phải khởi hành trong cùng ngày.<br>
+                                                - Mã giảm giá khứ hồi sẽ không còn được áp dụng nếu đơn hàng bị huỷ 1 chiều hoặc cả 2 chiều.<br>
+                                                - Vé có sử dụng mã giảm giá thuộc chương trình KHÔNG được hoàn/hủy/đổi/trả.<br>
+                                                - Ưu đãi chỉ áp dụng cho KH đặt vé tại Website/App và tổng đài đặt vé VeXeRe. Không áp dụng hình thức thanh toán tại Nhà xe.<br>
+                                                - Có thể áp dụng đồng thời với các chương trình khuyến mãi từ đối tác thanh toán.<br>
+                                                - Số lượng mã giảm giá có giới hạn, chương trình có thể kết thúc sớm hơn so với dự kiến.
                                             </p>
                                         </div>
-                                        <div class='popup-info-row d-flex align-items-center mb-1'>
-                                            <i class='material-icons-round text-muted me-2'>directions_bus</i>
-                                            <p class='mb-0 text-dark'><strong>Nhà xe</strong>: Hải Phòng Travel</p>
-                                        </div>
-                                        <div class='popup-info-row d-flex align-items-center mb-1'>
-                                            <i class='material-icons-round text-muted me-2'>timer</i>
-                                            <p class='mb-0 text-dark'>
-                                                <strong>Ngày khởi hành</strong>: T6, 14/06 00:00 - T4, 31/12/2025 00:00 (trừ 30/08 - 04/09; 30/12 - 02/01/2025)
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class='popup-info-row d-flex pt-3'>
-                                        <p class='mb-0'>
-                                            Giảm 20k khi đơn hàng mua từ 1 vé trở lên.<br>
-                                            - Lưu ý: Các điều kiện và số tiền giảm giá khứ hồi sẽ được xét và giảm trừ trên chiều về.<br>
-                                            - Chiều đi và chiều về phải cùng một nhà xe và số lượng vé phải bằng nhau.<br>
-                                            - Vé chiều đi và chiều về phải khởi hành trong cùng ngày.<br>
-                                            - Mã giảm giá khứ hồi sẽ không còn được áp dụng nếu đơn hàng bị huỷ 1 chiều hoặc cả 2 chiều.<br>
-                                            - Vé có sử dụng mã giảm giá thuộc chương trình KHÔNG được hoàn/hủy/đổi/trả.<br>
-                                            - Ưu đãi chỉ áp dụng cho KH đặt vé tại Website/App và tổng đài đặt vé VeXeRe. Không áp dụng hình thức thanh toán tại Nhà xe.<br>
-                                            - Có thể áp dụng đồng thời với các chương trình khuyến mãi từ đối tác thanh toán.<br>
-                                            - Số lượng mã giảm giá có giới hạn, chương trình có thể kết thúc sớm hơn so với dự kiến.
-                                        </p>
-                                    </div>
-                                ">
-                                Chi tiết
-                            </p>
+                                    ">
+                                    Chi tiết
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
         <!---------------------------------- Drawer ---------------------------------->

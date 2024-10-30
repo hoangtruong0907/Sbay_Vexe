@@ -11,7 +11,7 @@
 @section('content')
 <!-- slide -->
 <div class="total-slide position-relative">
-    <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle">
+    <div class="container-airlinetickets position-absolute top-50 start-50 translate-middle shadow">
         @include('components.search_component', [
         'params' => [],
         'key' => 1,
@@ -77,28 +77,32 @@
     </div>
     @endforeach
     @else
-    <p>No popular blog posts found.</p>
+        <div class="w-100 p-2 d-flex justify-content-center align-items-center">
+            <p>Chưa có bài viết nào. Liên hệ Admin để thêm bài viết.</p>
+        </div>
     @endif
 </div>
-<div class="container">
-    <div class="block-recommend">
-        <div class="title-recommend">
-            Sản phẩm đề xuất
-        </div>
-        <div class="block-items">
-            <div class="card-items">
-                @for ($i = 1; $i < 11; $i++)
-                    <div class="card-item">
-                    <img src="https://picsum.photos/{{$i}}00" alt="" srcset="">
-                    <div class="card-info">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus delectus velit iste magni, possimus autem ipsa error non porro ex id necessitatibus eum voluptatem soluta doloribus corporis maiores?</p>
-                        <div class="price"><small>₫</small>{{$i}}00.000</div>
+    @if (isset($listProduct))
+        <div class="container">
+            <div class="block-recommend">
+                <div class="title-recommend">
+                    Sản phẩm đề xuất
+                </div>
+                <div class="block-items">
+                    <div class="card-items">
+                        @for ($i = 1; $i < 11; $i++)
+                            <div class="card-item">
+                            <img src="https://picsum.photos/{{$i}}00" alt="" srcset="">
+                            <div class="card-info">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus delectus velit iste magni, possimus autem ipsa error non porro ex id necessitatibus eum voluptatem soluta doloribus corporis maiores?</p>
+                                <div class="price"><small>₫</small>{{$i}}00.000</div>
+                            </div>
                     </div>
+                    @endfor
+                </div>
             </div>
-            @endfor
         </div>
-    </div>
-</div>
+    @endif
 </div>
 
 @endsection
