@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\helpers;
+use App\Mail\ExampleMail;
 use App\Models\Booking;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 class BookingController extends Controller
 {
@@ -200,7 +202,7 @@ class BookingController extends Controller
     }
 
     public function updateBookingStatus(Request $request) {
-        $check_memo = $request->order_code; // truyền vào order_code
+        $check_memo = "020097041510311227472024Em0w272371.24887.122743.0961986669"; //$request->order_code; // truyền vào order_code
         $check_type = "deposit";    // chỉ lấy giao dịch nhận
         $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
         // Gọi api giao dịch
@@ -258,6 +260,11 @@ class BookingController extends Controller
                         $booking->vxr_transaction_id = $paymentBooking['vxr_transaction_id'];
                         $booking->status = config('apps.common.status_booking.paid');
                         $booking->save();
+
+                        $data = $this->getInfoBookings($booking->booking_code);
+                        // gửi mail
+                        Mail::to($booking->customer_email)->send(new ExampleMail($data));
+                        // 
                         session([
                             'order_status' => config('apps.common.status_booking.paid'),
                         ]);
@@ -300,5 +307,20 @@ class BookingController extends Controller
                 'url' => ''
             ]);
         }
+    }
+
+    public function getInfoBookings($booking_code) {
+        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        $client = new Client();
+        $response = $client->request('GET', 'https://uat-api.vexere.net/v3/booking', [
+            'query' => ['code' => $booking_code],
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => "Bearer $token",
+            ]
+        ]);
+
+        $data = json_decode($response->getBody(), true);
+        return $data['data'];
     }
 }
