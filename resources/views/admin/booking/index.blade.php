@@ -199,21 +199,9 @@
     <script>
         var resultData;
     
-        function dataTable() {
-            $.ajax({
-                url: "{{ route('admin.booking.dataTable') }}",
-                type: 'GET',
-            })
-            .done(function(data) {
-                console.log(data);
-                resultData = data;
-                dataTables.draw();
-            });
-        }
-    
         const dataTables = $('#dataTables-example').DataTable({
             ajax: ({
-                url: "{{ route('admin.booking.dataTable') }}",
+                url: "/admin/booking/get-data-table",
                 type: 'GET',
             }),
             columns: [
