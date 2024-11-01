@@ -38,7 +38,7 @@
 <body>
     @include('layouts.header')
 
-    <div class="content">
+    <div class="content" id="main-content">
         @yield('content')
     </div>
 
@@ -50,40 +50,6 @@
     </script>
     <script src="{{ asset('js/lightbox.min.js')}}"></script>
     @stack('page-scripts')
-    <script>
-        document.querySelector('.Navbar2__ButtonHotline-sa2air-8').addEventListener('click', function(event) {
-            event.stopPropagation();
-            this.nextElementSibling.classList.toggle('show');
-        });
-
-        document.querySelector('.contact-dropdown').addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
-
-        // Đóng dropdown nếu người dùng nhấp ra ngoài
-        window.onclick = function(event) {
-            var dropdowns = document.getElementsByClassName("contact-dropdown");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-
-        function toggleNav() {
-            const sidenav = document.getElementById("mySidenav");
-            if (sidenav.style.width === "100%") {
-                sidenav.style.width = "0";
-            } else {
-                sidenav.style.width = "100%";
-            }
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
     {{-- user account --}}
     <script src="{{ asset('js/frontend/user.js') }}"></script>
     {{-- login with google  --}}

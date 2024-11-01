@@ -1,7 +1,12 @@
 @media (max-width: 1150px) {
+    .total-header #btn-hotline {
+        display: none;
+    }
+
     .slogan-header {
         display: none;
     }
+
     .content {
         max-width: 100%;
     }
@@ -20,7 +25,15 @@
 }
 
 @media (max-width: 992px) {
+    .total-header #btn-hotline {
+        display: none;
+    }
+
     .total-header {
+        padding: 4px !important;
+    }
+
+    .total-header .material-icons-wrapper {
         display: none;
     }
 
@@ -90,72 +103,6 @@
         width: 100%;
     }
 
-    .slide {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .left-ant-row-flex {
-        display: block;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .flex-sum-left input {
-        width: 290px;
-    }
-
-    .wrap-left-ant-row-flex {
-        display: block;
-    }
-
-    .custom-icon-container {
-        margin-left: 10px;
-    }
-
-    .custom-icon-container .fa-solid {
-        margin-left: -20px;
-    }
-
-    .custom-icon-container .fa-location-dot {
-        margin-left: 0px;
-    }
-
-    .fa fa-plus {
-        margin-left: 10px;
-    }
-
-    .custom-swap-container {
-        display: none;
-    }
-
-    .fa-solid fa-bus-simple span {
-        margin-left: 10px;
-    }
-
-    .custom-icon-section {
-        margin-left: 20px;
-    }
-
-    .right-search-widget-inner-content button {
-        width: 100%;
-    }
-
-    .fa-solid fa-bus-simple {
-        margin-left: 20px;
-    }
-
-    .custom-input-container {
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-
     .departure-bus-date flex-sum-left {
         padding-bottom: 5px;
     }
@@ -189,10 +136,6 @@
         height: 500px;
         max-height: 500px;
         z-index: 0;
-    }
-
-    .sidenav {
-        z-index: 4;
     }
 
     .main-content {
@@ -1025,6 +968,7 @@
     .modal .close-button:hover {
         background-color: #0056b3;
     }
+
     .content {
         max-width: 100%;
     }
@@ -1036,12 +980,15 @@
     .card-image {
         max-width: 100%;
     }
+
     .content-vexere-sbay {
         max-width: 90%;
     }
+
     .post-footer {
         max-width: 70%;
     }
+
     .button-register {
         max-width: 100%;
     }
@@ -1143,6 +1090,12 @@
 
     .custom-hour {
         font-size: 13px;
+    }
+}
+
+@media (min-width: 768px) {
+    .total-header #btn-hotline {
+        display: block;
     }
 }
 

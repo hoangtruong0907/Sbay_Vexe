@@ -98,11 +98,11 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-ads"
             data-bs-slide="prev">
-            <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+            <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carousel-ads"
             data-bs-slide="next">
-            <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+            <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
         </button>
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carousel-ads" data-bs-slide-to="0" class="active"
