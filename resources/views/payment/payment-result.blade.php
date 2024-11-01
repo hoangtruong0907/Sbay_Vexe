@@ -28,9 +28,7 @@
                             <h4 class="font-weight-bold">Vé đã bị hủy</h4>
                             <p class="mb-0 position-relative">Thông tin chuyến đi đã được gửi đến <a
                                     href="https://mail.google.com/" target="_blank"
-                                    class="text-white"><strong>{{ $infoBooking['customer_email'] }}</strong></a>, bạn hãy
-                                kiểm
-                                tra nhé!</p>
+                                    class="text-white"><strong>{{ $infoBooking['customer_email'] }}</strong></a>, bạn hãy kiểm tra nhé!</p>
                         </div>
                     </div>
                 @else

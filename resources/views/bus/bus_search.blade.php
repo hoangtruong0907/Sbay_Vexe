@@ -2170,6 +2170,7 @@
 
                             });
 
+
                             $(`#item-bus-${keyId} .confirm-step`).on("click",
                                 function() {
                                     const checkDropElement = $(

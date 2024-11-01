@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -198,22 +198,10 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script>
         var resultData;
-    
-        function dataTable() {
-            $.ajax({
-                url: "{{ route('admin.booking.dataTable') }}",
-                type: 'GET',
-            })
-            .done(function(data) {
-                console.log(data);
-                resultData = data;
-                dataTables.draw();
-            });
-        }
-    
+
         const dataTables = $('#dataTables-example').DataTable({
             ajax: ({
-                url: "{{ route('admin.booking.dataTable') }}",
+                url: "/admin/booking/get-data-table",
                 type: 'GET',
             }),
             columns: [
@@ -222,7 +210,7 @@
                 { data: 'customer_name' },
                 { data: 'customer_email' },
                 { data: 'customer_phone' },
-                { 
+                {
                     data: 'price',
                     render: function(data, type) {
                         if (type === 'display' || type === 'filter') {
@@ -245,13 +233,13 @@
                         }
                     }
                 },
-                { 
+                {
                     data: 'created_at',
                     render: function (data, type) {
                         if (type === 'display' || type === 'filter') {
                             return formatDate(data);
                         } else {
-                            return new Date(data).getTime(); 
+                            return new Date(data).getTime();
                         }
                     }
                 },
@@ -270,15 +258,15 @@
             ],
             order: [[7, 'desc']], // Sắp xếp mặc định theo cột ngày tạo giảm dần
         });
-    
+
         function formatDate(input) {
             const date = new Date(input);
             return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} - ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
         }
-    
+
         function formatCurrency(amount) {
             return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
         }
-    </script> 
+    </script>
     <script src="{{ asset('/template/admin/ajax/bookingManagement.js') }}"></script>
 @endsection
