@@ -207,8 +207,8 @@ class BookingController extends Controller
         $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
         // Gọi api giao dịch
         $response = Http::get('https://sbaygroup.net/global-apis/bun-vcb.php', [
-            'key' => 'tin_sbay_key_vcb',
-            'gidzl' => 'CG1I0wNkjcOm65G2elctPp0LN0I-zBOqV1fSLk_wksCfHmrIkgRlCdiR3rQz--HWAH802ZAWsDDJe-gnQ0'
+            'key' => env('PAYMENT_VCB_KEY', 'tin_sbay_key_vcb'),
+            'gidzl' => env('PAYMENT_VCB_GIDZL')
         ]);
 
         if ($request->status == config('apps.common.status_booking.cancel')) {

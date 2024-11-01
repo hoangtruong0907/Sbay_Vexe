@@ -9,6 +9,7 @@ use App\Repositories\Interface\AuthRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\BlogRepositoryInterface;
 use App\Repositories\Repository\BlogRepository;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
     }
 }
 
