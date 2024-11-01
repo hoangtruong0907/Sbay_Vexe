@@ -201,113 +201,94 @@ class BookingController extends Controller
        }
     }
 
-    public function updateBookingStatus(Request $request) {
-        $check_memo = $request->order_code; // truyền vào order_code
+    public function updateBookingStatus(Request $request)
+    {
+        $check_memo = "020097042211010859472024SPK2589321.84497.085947.0917134314"; $request->order_code; // truyền vào order_code
         $check_type = "deposit";    // chỉ lấy giao dịch nhận
         $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
+    
         // Gọi api giao dịch
         $response = Http::get('https://sbaygroup.net/global-apis/bun-vcb.php', [
             'key' => 'tin_sbay_key_vcb',
             'gidzl' => 'CG1I0wNkjcOm65G2elctPp0LN0I-zBOqV1fSLk_wksCfHmrIkgRlCdiR3rQz--HWAH802ZAWsDDJe-gnQ0'
         ]);
-
-        if ($request->status == config('apps.common.status_booking.cancel')) {
-            $this->cancelBooking($request->order_code); // update cancel booking
-            session([
-                'order_status' => config('apps.common.status_booking.cancel'),
-            ]);
-
-            return response()->json([
-                'code' => 200,
-                'message' => 'Success',
-                'url' => '/payment-result'
-            ]);
-        } else if ($request->status == config('apps.common.status_booking.pending')) {
-            $booking = Booking::where(['order_code'=> $request->order_code])->first();
-            $booking->status = config('apps.common.status_booking.pending');
-            $booking->save();
-
-            session([
-                'order_status' => config('apps.common.status_booking.pending'),
-            ]);
-
-            return response()->json([
-                'code' => 200,
-                'message' => 'Success',
-                'url' => '/payment-result'
-            ]);
-        } else if ($response->successful() && $request->status == config('apps.common.status_booking.reserve')) {
-            // đúng giá tiền, ngày hôm nay, và memo
+    
+        $status = $request->status;
+        $orderCode = $request->order_code;
+        $statusConfig = config('apps.common.status_booking');
+    
+        // Xử lý trạng thái hủy
+        if ($status == $statusConfig['cancel']) {
+            $this->cancelBooking($orderCode);
+            $booking = Booking::where('order_code', $orderCode)->first();
+    
+            if ($booking) {
+                $data = $this->getInfoBookings($booking->booking_code);
+                Mail::to($booking->customer_email)->send(new ExampleMail($data));
+            }
+    
+            return $this->updateSessionAndRespond($statusConfig['cancel'], 'Success', '/payment-result');
+        } 
+        // Xử lý trạng thái chờ
+        else if ($status == $statusConfig['pending']) {
+            $booking = Booking::where('order_code', $orderCode)->first();
+            if ($booking) {
+                $booking->status = $statusConfig['pending'];
+                $booking->save();
+    
+                $data = $this->getInfoBookings($booking->booking_code);
+                Mail::to($booking->customer_email)->send(new ExampleMail($data));
+            }
+    
+            return $this->updateSessionAndRespond($statusConfig['pending'], 'Success', '/payment-result');
+        } 
+        // Xử lý trạng thái giữ chỗ
+        else if ($response->successful() && $status == $statusConfig['reserve']) {
             $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
                 return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;
             });
-
+    
             if ($result != null) {
-                // Loại bỏ dấu cộng và dấu phẩy
-                $cleanedString = str_replace([',', '+'], '', $result['money']);
-                // Chuyển đổi chuỗi thành số nguyên
-                $amount = intval($cleanedString);
-
-                // lấy ra booking trong Database
-                $booking = Booking::where(['order_code'=> $request->order_code, 'price' => $amount])->first();
-
+                $amount = intval(str_replace([',', '+'], '', $result['money']));
+                $booking = Booking::where(['order_code' => $orderCode, 'price' => $amount])->first();
+    
                 if ($booking) {
-                    // gọi hàm payment
                     $paymentBooking = $this->paymentBooking($booking->booking_code);
                     if ($paymentBooking != null) {
-                        // Cập nhật lại giá trị của Booking
                         $booking->ticket_code = $paymentBooking['ticket_code'];
                         $booking->vxr_transaction_id = $paymentBooking['vxr_transaction_id'];
-                        $booking->status = config('apps.common.status_booking.paid');
+                        $booking->status = $statusConfig['paid'];
                         $booking->save();
-
+    
                         $data = $this->getInfoBookings($booking->booking_code);
-                        // gửi mail
                         Mail::to($booking->customer_email)->send(new ExampleMail($data));
-                        // 
-                        session([
-                            'order_status' => config('apps.common.status_booking.paid'),
-                        ]);
-                        return response()->json([
-                            'code' => 200,
-                            'message' => 'Success',
-                            'url' => '/payment-result'
-                        ]);
+    
+                        return $this->updateSessionAndRespond($statusConfig['paid'], 'Success', '/payment-result');
                     } else {
-                        session([
-                            'order_status' => config('apps.common.status_booking.reserve'),
-                        ]);
-                        return response()->json([
-                            'code' => 200,
-                            'message' => 'Success',
-                            'url' => '/payment-result'
-                        ]);
+                        return $this->updateSessionAndRespond($statusConfig['reserve'], 'Success', '/payment-result');
                     }
                 } else {
-                    session([
-                        'order_status' => config('apps.common.status_booking.reserve'),
-                    ]);
-                    return response()->json([
-                        'code' => 400,
-                        'message' => 'Không tìm thấy Booking',
-                        'url' => ''
-                    ]);
+                    return $this->updateSessionAndRespond($statusConfig['reserve'], 'Không tìm thấy Booking', '', 400);
                 }
             } else {
-                return response()->json([
-                    'code' => 400,
-                    'message' => 'Không tìm thấy Booking trong api',
-                    'url' => ''
-                ]);
+                return $this->jsonResponse(400, 'Không tìm thấy Booking trong api');
             }
         } else {
-            return response()->json([
-                'code' => 400,
-                'message' => 'Api error',
-                'url' => ''
-            ]);
+            return $this->jsonResponse(400, 'Api error');
         }
     }
+    
+    private function updateSessionAndRespond($status, $message, $url, $code = 200)
+    {
+        session(['order_status' => $status]);
+        return response()->json(['code' => $code, 'message' => $message, 'url' => $url]);
+    }
+    
+    private function jsonResponse($code, $message, $url = '')
+    {
+        return response()->json(['code' => $code, 'message' => $message, 'url' => $url]);
+    }
+    
 
     public function getInfoBookings($booking_code) {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
