@@ -205,8 +205,8 @@ class BookingController extends Controller
         $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
         // Gọi api giao dịch
         $response = Http::get('https://sbaygroup.net/global-apis/bun-vcb.php', [
-            'key' => 'tin_sbay_key_vcb',
-            'gidzl' => 'CG1I0wNkjcOm65G2elctPp0LN0I-zBOqV1fSLk_wksCfHmrIkgRlCdiR3rQz--HWAH802ZAWsDDJe-gnQ0'
+            'key' => env('PAYMENT_VCB_KEY', 'tin_sbay_key_vcb'),
+            'gidzl' => env('PAYMENT_VCB_GIDZL')
         ]);
 
         if ($request->status == config('apps.common.status_booking.cancel')) {
@@ -220,7 +220,21 @@ class BookingController extends Controller
                 'message' => 'Success',
                 'url' => '/payment-result'
             ]);
-        } else if ($response->successful() && $request->status == config('apps.common.status_booking.pending')) {
+        } else if ($request->status == config('apps.common.status_booking.pending')) {
+            $booking = Booking::where(['order_code'=> $request->order_code])->first();
+            $booking->status = config('apps.common.status_booking.pending');
+            $booking->save();
+
+            session([
+                'order_status' => config('apps.common.status_booking.pending'),
+            ]);
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'Success',
+                'url' => '/payment-result'
+            ]);
+        } else if ($response->successful() && $request->status == config('apps.common.status_booking.reserve')) {
             // đúng giá tiền, ngày hôm nay, và memo
             $result = array_reduce($response->json()['data'], function ($carry, $item) use ($check_memo, $check_type, $check_date) {
                 return ($item['memo'] == $check_memo && $item['type'] == $check_type && $item['date'] == $check_date) ? $item : $carry;

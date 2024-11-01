@@ -1562,7 +1562,7 @@ body .bg--white {
     background-color: white !important;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
@@ -1589,7 +1589,7 @@ table caption {
     font-size: 1.5em;
     margin: 10px 0;
     text-align: left;
-}
+} */
 
 body .color--darkness {
     color: rgb(20, 20, 20) !important;
@@ -1840,7 +1840,6 @@ body h6 {
     flex-direction: column;
 }
 .left-step-bus1 {
-    width: 50%;
     min-width: 33%;
 }
 
@@ -1848,11 +1847,12 @@ body h6 {
     width: 50%;
 }
 .right-step-bus2 {
-    width: 50%;
+    width: 55%;
 }
 .right-steps-content {
-    width: 50%;
+    width: 60%;
     display: flex;
+    flex-wrap: wrap;
     -webkit-box-pack: center;
     justify-content: center;
     gap: 10px;

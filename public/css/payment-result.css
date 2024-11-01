@@ -353,9 +353,18 @@ a:hover {
     font-size: 14px;
     margin-top: 15px;
 }
-.footer {
+.float-btn {
     margin-bottom: 0rem !important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    background-image: linear-gradient(to right top, #ffa07a, #ffb57d, #ffcb85, #ffe093, #fdf4a5);;
 }
+
+
 .card-title {
     font-size: 18px !important;
 }

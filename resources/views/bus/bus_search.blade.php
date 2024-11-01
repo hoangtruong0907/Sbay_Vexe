@@ -1498,6 +1498,7 @@
             </div>
         </div>
     </div>
+    {{-- Modal thông báo tối đa --}}
     <div class="modal fade" id="modals-warning" tabindex="-1" aria-labelledby="modals-warningLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -1512,6 +1513,22 @@
             </div>
         </div>
     </div>
+    {{-- Modal thông báo tối thiểu --}}
+    <div class="modal fade" id="modals-warning-no" tabindex="-1" aria-labelledby="modals-warningLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex flex-column position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="conent-warning fw-bold">Thông báo</div>
+                    <div class="conent-warning mt-2 mb-2 p-2">Bạn phải chọn ít nhất một ghế để tiếp tục</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal HTML -->
     <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel"
         aria-hidden="true">
@@ -2137,15 +2154,20 @@
                                 .hide();
 
                             $(`#item-bus-${keyId} .next-step`).on('click', function() {
-                                $(`.ticket-step-collapse #step1-${keyId}`)
+                                if(Object.keys(proxies[keyId]).length > 0) {
+                                    $(`.ticket-step-collapse #step1-${keyId}`)
                                     .removeClass('active');
-                                $(`.ticket-step-collapse #step2-${keyId}`)
-                                    .addClass('active');
-                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
-                                    .show();
-                                $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
-                                    .show();
-                                $(this).hide();
+                                    $(`.ticket-step-collapse #step2-${keyId}`)
+                                        .addClass('active');
+                                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-primary.back-step`)
+                                        .show();
+                                    $(`#ticket-step-collapse-${keyId} .total-amount .ant-btn-success.confirm-step`)
+                                        .show();
+                                    $(this).hide();
+                                } else {
+                                    $(`#modals-warning-no`).modal('show');
+                                }
+
                             });
 
                             $(`#item-bus-${keyId} .confirm-step`).on("click",

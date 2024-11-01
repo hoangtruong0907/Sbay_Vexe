@@ -1,946 +1,507 @@
 @extends('layouts.app')
-
 @section('title', 'Payment Method')
-
 @section('styles')
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/payment.css') }}">
-<link rel="stylesheet" href="{{ asset('css/trip-info.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/trip-info.css') }}">
 @endsection
 
 @section('content')
-<div class="container mt-5">
-    <div class="countdown-timer">
-        <div>
-            Thời gian thanh toán còn lại: <span id="timer">10:00</span>
-        </div>
-        <div class="payment-text">
-            <a href="#" class="text-decoration-none text-primary-1" data-bs-toggle="modal"
-                data-bs-target="#infoModal">Chi tiết</a>
-        </div>
-    </div>
-</div>
-<div class="container mx-auto flex-column flex gap-3">
-    <div class="modal" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header-1">
-                    <h5 class="modal-title-1" id="infoModalLabel">Chi tiết chuyến đi</h5>
-                    <a href="#" class="close-link-1" data-bs-dismiss="modal" aria-label="Close">Đóng</a>
-
-                </div>
-                <div class="modal-body">
-                    <div class="trip-info-card">
-                        <div class="trip-header-container">
-                            <h4 class="trip-header-title">Thông tin chuyến đi</h4>
-
-                        </div>
-
-                        <div class="trip-summary-container">
-                            <div class="trip-summary-details">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/bus_blue_24dp.svg" alt="Bus Icon"
-                                    class="trip-icon">
-                                <span class="trip-date">{{formatDateTime($bookingData->seatMap->departure_time, 'D, d/m/Y', 0, 0, "vi")}}</span>
-                                <div class="trip-passenger-info">
-                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/people_alt_black_24dp.svg"
-                                        alt="People Icon" class="trip-icon">
-                                    <span class="trip-passenger-count">1</span>
-                                </div>
-                                <a href="#" class="text-decoration-none text-primary small view-details-link"
-                                    data-bs-toggle="offcanvas" data-bs-target="#tripDetailsOffcanvas"
-                                    aria-controls="tripDetailsOffcanvas">Xem chi tiết</a>
-                            </div>
-                        </div>
-
-                        <div class="trip-detail-container">
-                            <img src="https://static.vexere.com/production/images/1689135259785.jpeg" alt="Bus Image"
-                                class="trip-bus-image">
-                            <div class="trip-company-details">
-                                <h6 class="trip-company-name">Tân Kim Chi</h6>
-                                <small class="trip-bus-type">Limousine giường phòng 24 chỗ (CABIN ĐÔI)</small>
-                            </div>
-                        </div>
-
-                        <div class="route-info-container">
-                            <div class="route-info-item">
-                                <div class="route-info-details">
-                                    <span class="route-time">18:45</span>
-                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
-                                        alt="Pickup Icon" class="route-icon">
-                                    <div>
-                                        <p class="route-location-name">VP Đà Nẵng</p>
-                                        <p class="route-location-address">46 Nam Trần, Phường Hòa Minh, Liên Chiểu, Đà Nẵng
-                                        </p>
-                                    </div>
-                                </div>
-                                <a href="#" class="modify-route-link text-primary" data-bs-toggle="offcanvas"
-                                    data-bs-target="#modifyLocationOffcanvas" aria-controls="modifyLocationOffcanvas">Thay
-                                    đổi</a>
-                            </div>
-                            <div class="route-info-item">
-                                <div class="route-info-details">
-                                    <span class="route-time">06:45</span>
-                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/dropoff_semantic_negative_12dp.svg"
-                                        alt="Dropoff Icon" class="route-icon">
-                                    <div>
-                                        <p class="route-location-name">34 Trần Khát Chân</p>
-                                        <p class="route-location-address">34 Trần Khát Chân, Phường Thanh Nhàn, Hai Bà
-                                            Trưng, Hà Nội</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="modify-route-link text-primary" data-bs-toggle="offcanvas"
-                                    data-bs-target="#modifyLocationOffcanvas" aria-controls="modifyLocationOffcanvas">Thay
-                                    đổi</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="tripDetailsOffcanvas"
-                        aria-labelledby="tripDetailsOffcanvasLabel">
-                        <div class="offcanvas-header-container">
-                            <div class="offcanvas-close-button" data-bs-dismiss="offcanvas" aria-label="Close">
-                                <i class="material-icons-round">arrow_back</i>
-                            </div>
-                            <div class="offcanvas-header-title">
-                                <p class="offcanvas-company-name">Queen Cafe (Cam Ranh)</p>
-                                <p class="offcanvas-trip-time">15:00 • T4, 11/09/2024</p>
-                            </div>
-                        </div>
-
-                        <div class="offcanvas-body-container">
-                            <div class="trip-detail-info">
-                                <div class="trip-detail-row">
-                                    <p class="detail-label-text">Tuyến</p>
-                                    <span class="trip-detail-value">Huế - Đà Lạt</span>
-                                </div>
-                                <div class="trip-detail-row">
-                                    <p class="detail-label-text">Nhà xe</p>
-                                    <span class="trip-detail-value">Queen Cafe (Cam Ranh)</span>
-                                </div>
-                                <div class="trip-detail-row">
-                                    <p class="detail-label-text">Chuyến</p>
-                                    <span class="trip-detail-value">13:00 • T4, 11/09/2024</span>
-                                </div>
-                                <div class="trip-detail-row">
-                                    <p class="detail-label-text">Loại xe</p>
-                                    <span class="trip-detail-value">Limousine 34 chỗ</span>
-                                </div>
-                                <div class="trip-detail-row">
-                                    <p class="detail-label-text">Số lượng</p>
-                                    <span class="trip-detail-value">1 vé</span>
-                                </div>
-                                <div class="seat-code-container w-100">
-                                    <div class="toggle-seat-info d-flex justify-content-between w-100 pointer"
-                                        id="toggleSeatInfo">
-                                        <p class="seat-info-label fw-normal text-nowrap mb-0">Mã ghế/ giường</p>
-                                        <div class="seat-info-toggle d-flex align-items-center gap-sm-1 pointer">
-                                            <p class="seat-info-text fw-bold mb-0">08,07</p>
-                                            <img id="seatToggleIcon" class="toggle-icon ls-is-cached lazyloaded icon-size"
-                                                data-src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
-                                                src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
-                                                alt="icon-expand-less">
-                                        </div>
-                                    </div>
-
-                                    <div class="seat-info-content d-flex flex-column gap-2 mt-2 overflow-auto d-none"
-                                        id="seatInfoContent">
-                                        <div class="seat-info-item d-flex justify-content-end">
-                                            <p class="seat-info fw-normal mb-0">
-                                                Ghế đầu:
-                                                <span class="seat-number">08</span>
-                                            </p>
-                                        </div>
-                                        <div class="seat-info-item d-flex justify-content-end">
-                                            <p class="seat-info fw-normal mb-0">
-                                                Ghế đầu:
-                                                <span class="seat-number">08</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-evenly overflow-auto text-center py-1"
-                                        id="contentSectionn">
-                                        <table class="ms-3 d-inline-block">
-                                            <thead>
-                                                <tr>
-                                                    <th colspan="5" class="table-header"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr id="1">
-                                                    <td id="vxr-1-1">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div class="Seat__SeatImageContainer-sc-5i6bij-1 iGEkJj">
-                                                                <span class="seat-color seat-color-custom">
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M12.305 24h-.61c-.035-.004-.07-.01-.105-.012a11.783 11.783 0 0 1-2.117-.261 12.027 12.027 0 0 1-6.958-4.394A11.933 11.933 0 0 1 .027 12.78L0 12.411v-.822c.005-.042.013-.084.014-.127a11.845 11.845 0 0 1 1.102-4.508 12.007 12.007 0 0 1 2.847-3.852A11.935 11.935 0 0 1 11.728.003c.947-.022 1.883.07 2.81.27 1.22.265 2.369.71 3.447 1.335a11.991 11.991 0 0 1 3.579 3.164 11.876 11.876 0 0 1 2.073 4.317c.178.712.292 1.434.334 2.168.008.146.02.292.029.439v.609c-.004.03-.011.06-.012.089a11.81 11.81 0 0 1-1.05 4.521 12.02 12.02 0 0 1-1.92 2.979 12.046 12.046 0 0 1-6.395 3.812c-.616.139-1.24.23-1.872.265-.149.008-.297.02-.446.03zm8.799-13.416c-.527-3.976-4.078-7.808-9.1-7.811-5.02-.003-8.583 3.823-9.11 7.809h.09c.64-.035 1.278-.092 1.912-.195.815-.131 1.614-.326 2.378-.639.625-.255 1.239-.54 1.855-.816.82-.368 1.673-.593 2.575-.62a7.123 7.123 0 0 1 1.947.187c.585.146 1.136.382 1.68.634.57.264 1.14.526 1.733.736 1.2.424 2.442.62 3.706.7.11.006.222.01.334.015zm-10.95 10.471v-.094c0-1.437 0-2.873-.002-4.31 0-.141-.011-.284-.035-.423a2.787 2.787 0 0 0-.775-1.495c-.564-.582-1.244-.896-2.067-.892-1.414.007-2.827.002-4.24.002h-.09a9.153 9.153 0 0 0 3.125 5.256 9.15 9.15 0 0 0 4.083 1.956zm3.689.001c1.738-.36 3.25-1.137 4.528-2.355 1.4-1.334 2.287-2.956 2.685-4.855l-.077-.003h-4.362c-.237 0-.47.038-.695.112-.667.22-1.188.635-1.588 1.206a2.673 2.673 0 0 0-.494 1.59c.008 1.4.003 2.801.003 4.202v.103zM12.05 14.22c1.215-.035 2.204-1.083 2.165-2.275-.039-1.223-1.095-2.215-2.29-2.166-1.211.05-2.2 1.108-2.15 2.302.051 1.191 1.108 2.186 2.275 2.139z"
-                                                                            fill="#858585">
-                                                                        </path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-1-2">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#ae70ff"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 qIAFz">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-1-3">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#ae70ff"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 qIAFz">
-                                                                <span class="seat-color-selected"><svg width="40"
-                                                                        height="32" viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="2">
-                                                    <td id="vxr-2-1">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#fba442"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-2-2">
-                                                        <div> </div>
-                                                    </td>
-                                                    <td id="vxr-2-3">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#fba442"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="3">
-                                                    <td id="vxr-3-1">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#fba442"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-3-2">
-                                                        <div> </div>
-                                                    </td>
-                                                    <td id="vxr-3-3">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#fba442"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="4">
-                                                    <td id="vxr-4-1">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#fba442"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-4-2">
-                                                        <div> </div>
-                                                    </td>
-                                                    <td id="vxr-4-3">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#fba442"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 hEmbyb">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="5">
-                                                    <td id="vxr-5-1">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#6bd600"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 bjvObm">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-5-2">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#6bd600"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 bjvObm">
-                                                                <span class="seat-color"><svg width="40" height="32"
-                                                                        viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="vxr-5-3">
-                                                        <div class="Seat__SeatContainer-sc-5i6bij-0 hWCxok">
-                                                            <div color="#6bd600"
-                                                                class="Seat__SeatImageContainer-sc-5i6bij-1 bjvObm">
-                                                                <span class="seat-color-selected"><svg width="40"
-                                                                        height="32" viewBox="0 0 40 32" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <rect x="8.75" y="2.75" width="22.5" height="26.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="10.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 10.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="35.25" y="11.75" width="14.5" height="5.5"
-                                                                            rx="2.25" transform="rotate(90 35.25 11.75)"
-                                                                            fill="#FFF" stroke="#B8B8B8" stroke-width="1.5"
-                                                                            stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <rect x="8.75" y="22.75" width="22.5" height="6.5"
-                                                                            rx="2.25" fill="#FFF" stroke="#B8B8B8"
-                                                                            stroke-width="1.5" stroke-linejoin="round">
-                                                                        </rect>
-                                                                        <path class="icon-selected"
-                                                                            d="M20 6.333A6.67 6.67 0 0 0 13.334 13 6.67 6.67 0 0 0 20 19.667 6.67 6.67 0 0 0 26.667 13 6.669 6.669 0 0 0 20 6.333zm-1.333 10L15.333 13l.94-.94 2.394 2.387 5.06-5.06.94.946-6 6z"
-                                                                            fill="transparent"></path>
-                                                                        <path class="icon-disabled"
-                                                                            d="M24.96 9.46l-1.42-1.42L20 11.59l-3.54-3.55-1.42 1.42L18.59 13l-3.55 3.54 1.42 1.42L20 14.41l3.54 3.55 1.42-1.42L21.41 13l3.55-3.54z"
-                                                                            fill="transparent"></path>
-                                                                    </svg></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="temporary-calculation-container w-100">
-                                    <div class="calculation-summary d-flex justify-content-between w-100 pointer"
-                                        id="toggleTotalAmount">
-                                        <p class="calculation-label fw-normal text-nowrap mb-0">Tạm tính</p>
-                                        <div class="amount-info d-flex align-items-center gap-sm-1">
-                                            <p class="total-amount-2 fw-bold mb-0">470.000đ</p>
-                                            <img src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg"
-                                                alt="icon-expand-less" width="20" height="20">
-                                        </div>
-                                    </div>
-
-                                    <div class="total-amount-details pt-2 d-none" id="totalAmountDetails">
-                                        <div class="amount-detail-row d-flex justify-content-between">
-                                            <p class="price-label color--darkness">Giá vé</p>
-                                            <div class="price-details d-flex flex-column">
-                                                <div class="text-end">
-                                                    <p class="price-item mb-0 fw-medium">230.000đ x 1</p>
-                                                    <p class="seat-code mb-0">Mã ghế/giường: 06</p>
-                                                </div>
-                                                <div class="text-end">
-                                                    <p class="price-item mb-0 fw-medium">240.000đ x 1</p>
-                                                    <p class="seat-code mb-0">Mã ghế/giường: 07</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="amount-detail-row d-flex justify-content-between mt-1">
-                                            <p class="price-label color--darkness">Bảo hiểm chuyến đi</p>
-                                            <div class="insurance-price text-end">
-                                                <p class="insurance-cost mb-0">60.000đ</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pickup-dropoff-info">
-                                <div class="info-group d-flex align-items-center justify-content-between">
-                                    <div class="pickup-info d-flex align-items-center">
-                                        <img class="pickup-icon"
-                                            src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/pickup_vex_blue_24dp.svg"
-                                            alt="">
-                                        <h6 class="pickup-title point mb-0 ms-2">Điểm đón</h6>
-                                    </div>
-                                    <a href="#" class="change-pickup-link text-primary" data-bs-toggle="offcanvas"
-                                        data-bs-target="#modifyLocationOffcanvas"
-                                        aria-controls="modifyLocationOffcanvas">Thay đổi</a>
-                                </div>
-
-                                <p class="pickup-location">VP Đà Nẵng</p>
-                                <p class="pickup-address text-secondary">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng,
-                                    Phường Thuận Phước, Hải
-                                    Châu, Đà Nẵng</p>
-                                <p class="pickup-time text-secondary">Dự kiến đón lúc: 15:00 11/09/2024</p>
-
-                                <div class="info-group d-flex align-items-center justify-content-between">
-                                    <div class="dropoff-info d-flex align-items-center">
-                                        <img class="dropoff-icon"
-                                            src="https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/dropoff_semantic_negative_12dp.svg"
-                                            alt="">
-                                        <h6 class="dropoff-title point mb-0 ms-2">Điểm trả</h6>
-                                    </div>
-                                    <a href="#" class="change-dropoff-link text-primary" data-bs-toggle="offcanvas"
-                                        data-bs-target="#modifyLocationOffcanvas"
-                                        aria-controls="modifyLocationOffcanvas">Thay đổi</a>
-                                </div>
-                                <p class="dropoff-location">VP Hội An</p>
-                                <p class="dropoff-address text-secondary">23 Nguyễn Tất Thành, P. Cẩm Phô, Hội An, Phường
-                                    Cẩm Phô, Hội An, Quảng
-                                    Nam</p>
-                                <p class="dropoff-time text-secondary">Dự kiến trả lúc: 17:00 11/09/2024</p>
-                            </div>
-                        </div>
-
-                        <div class="offcanvas-footer p-3">
-                            <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
-                                class="close-offcanvas-button btn btn-primary w-100">
-                                <span>Đóng</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="modifyLocationOffcanvas"
-                        aria-labelledby="modifyLocationOffcanvasLabel">
-                        <div class="offcanvas-header d-flex flex-row align-items-center bg-primary">
-                            <div class="offcanvas-close-button text-white" data-bs-dismiss="offcanvas" aria-label="Close">
-                                <i class="material-icons-round">arrow_back</i>
-                            </div>
-                            <div class="header-content d-flex ms-3">
-                                <p class="offcanvas-title mb-0 text-white fw-bold">Thay đổi điểm trả chiều đi</p>
-                            </div>
-                        </div>
-                        <div class="sorting-section position-sticky d-flex flex-column w-100">
-                            <div class="sorting-header d-flex flex-row justify-content-between">
-                                <p class="sorting-label">Sắp xếp theo</p>
-                                <p class="sorting-label">Khoảng cách từ điểm đón đến</p>
-                            </div>
-                            <div class="sorting-controls d-flex flex-row justify-content-between mt-1">
-                                <button type="button" class="sort-option-button" id="sortByEarliest">
-                                    <p class="sort-option-text fw-bold mb-0">Sớm nhất</p>
-                                    <i class="material-icons-outlined sort-icon">arrow_drop_down</i>
-                                </button>
-                                <button type="button" class="sort-option-button" id="changeLocation">
-                                    <p class="sort-option-text fw-bold mb-0">Vị trí của bạn</p>
-                                    <p class="sort-location-change-link fw-bold mb-0">Thay đổi</p>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="location-options-content d-flex flex-column bg-white">
-                            <label class="location-option-item">
-                                <input class="location-radio-input form-check-input" type="radio" name="flexRadioDefault"
-                                    value="Location1" checked />
-                                <div class="location-option-info">
-                                    <div class="location-details">
-                                        <div class="location-description">
-                                            <p class="location-time">18:00</p>
-                                            <p class="location-name">VP Đà Nẵng</p>
-                                            <p class="location-address-detail">16 Đường 3/2, Thuận Phước, Hải Châu, Đà Nẵng,
-                                                Phường Thuận
-                                                Phước, Hải Châu, Đà Nẵng</p>
-                                            <p class="location-price text-danger">220.000đ / nhóm từ 1-3 khách (trả tại
-                                                website Vexere)</p>
-                                        </div>
-                                        <div class="location-distance">
-                                            <button type="button" class="view-map-button d-flex align-items-center"
-                                                id="viewMapButton">
-                                                <i class="material-icons-round text-primary me-1">place</i>
-                                                <p class="map-view-text mb-0 text-primary">Bản đồ</p>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div
-                            class="report-section border-top border-secondary bg-white position-absolute start-0 bottom-0 w-100 p-3">
-                            <div class="report-header d-flex justify-content-between align-items-center mb-2">
-                                <div class="report-text">Sai hoặc thiếu thông tin?</div>
-                                <p class="report-link text-primary fw-bold text-decoration-underline cursor-pointer"
-                                    id="reportIssue">Báo cáo với chúng tôi</p>
-                            </div>
-                            <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
-                                class="update-button btn btn-warning text-black fw-bold d-flex align-items-center justify-content-center w-100 rounded-pill py-2">
-                                <span>Cập nhật</span>
-                            </button>
-                        </div>
-                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="sortBySidebar"
-                            aria-labelledby="sortBySidebarLabel"
-                            style="border-radius: 16px 16px 0 0;height: auto; width: 560px; right: 0; left: auto;">
-                            <div class="sort-by-header d-flex w-100 justify-content-center">
-                                <h5 class="sort-by-title offcanvas-title mb-0" id="sortBySidebarLabel">Sắp xếp theo</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Thong tin lien he -->
-                    <div class="card">
-                        <div class="card-body-1">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h4 class="info-info">Thông tin liên hệ</h4>
-                                <a href="#" class="custom-text-primary custom-edit-link" data-bs-toggle="offcanvas"
-                                    data-bs-target="#newContactModal">
-                                    Chỉnh sửa liên hệ
-                                </a>
-
-                            </div>
-                            <p class="unique-class"><strong>Hành khách:</strong> PHỤNG</p>
-                            <p class="unique-class"><strong>Số điện thoại:</strong> 0987654568</p>
-                            <p class="unique-class"><strong>Email:</strong> tuan@gmail.com</p>
-
-                        </div>
-                    </div>
-
-                    <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="newContactModal"
-                        aria-labelledby="contactModalLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="contactModalLabel">Chỉnh sửa thông tin liên hệ</h5>
-                            <a href="#" class="close-link-2" data-bs-dismiss="modal" aria-label="Close">Đóng</a>
-                        </div>
-                        <div class="offcanvas-body">
-                            <form>
-                                <div class="contact-112">
-                                    <label for="contactName" class="form-label">Họ tên *</label>
-                                    <input type="text" class="form-control" id="contactName" value="{{session('info_booking')['customer_name']}}">
-                                </div>
-                                <div class="ontact-112">
-                                    <label for="contactPhone" class="form-label">Số điện thoại *</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">VN +84</span>
-                                        <input type="text" class="form-control" id="contactPhone" value="{{session('info_booking')['customer_phone']}}">
-                                    </div>
-                                </div>
-                                <div class="ontact-112">
-                                    <label for="contactEmail" class="form-label">Email để nhận thông tin đặt chỗ *</label>
-                                    <input type="email" class="form-control" id="contactEmail" value="{{session('info_booking')['customer_email']}}">
-                                </div>
-                                <div class="alert alert-success">
-                                    <i class="material-icons-round">check_circle</i> Số điện thoại và email được sử dụng để
-                                    gửi thông tin đơn hàng và liên hệ khi cần thiết.
-                                </div>
-                            </form>
-                        </div>
-                        <div class="offcanvas-footer">
-                            <button type="button" class="btn btn-warning text-black fw-bold w-100"
-                                data-bs-dismiss="offcanvas">
-                                Cập nhật
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Thêm nội dung của bạn vào đây -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục thanh toán</button>
-                </div>
+    @php
+        $dataSeat = [];
+        if (isset(session('info_booking')['data'])) {
+            $dataSeat = json_decode(session('info_booking')['data'], true);
+        }
+        // dd($dataSeat['selectedDropPoint']['real_time'])
+    @endphp
+    <div class="container mt-5">
+        <div class="countdown-timer">
+            <div>
+                Thời gian thanh toán còn lại: <span id="timer">10:00</span>
             </div>
         </div>
     </div>
-    <div class="row">
-        <!-- Payment Method Section -->
-        <div class="col-md-8">
-            <div class="payment-methods">
-                <h4 class="mb-4">Phương thức thanh toán</h4>
-                <!-- QR chuyển khoản/ Ví điện tử -->
-                <div class="form-check mb-2">
+    <div class="container mx-auto flex-column flex gap-3">
+        <div class="row">
+            <!-- Payment Method Section -->
+            <div class="col-md-8">
+                <div class="payment-methods">
+                    <h4 class="mb-4">Phương thức thanh toán</h4>
+                    <!-- QR chuyển khoản/ Ví điện tử -->
+                    <div class="form-check mb-2">
 
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod1" checked
-                        onclick="toggleQRDetails()">
-                    <label class="form-check-label" for="paymentMethod1">
-                        <img src="https://229a2c9fe669f7b.cmccloud.com.vn/httpImage/transfer_va.svg" alt="Icon"
-                            class="payment-icon"> QR chuyển khoản/ Ví
-                        điện tử
-                    </label>
-                    <p class="text-muted">Không cần nhập thông tin. Xác nhận thanh toán tức thì, nhanh chóng và ít sai
-                        sót.</p>
-                    <div class="qr-details" id="qr-details">
-                        <h5>Chuyển khoản bằng mã QR, tự động điền thông tin</h5>
-                        <div class="row align-items-center">
-                            <div class="col-md-8">
-                                <div class="d-flex justify-content-between">
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-phone"></i>
-                                        <p>Mở ứng dụng ngân hàng hoặc Ví điện tử</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <i class="fas fa-qrcode"></i>
-                                        <p>Dùng tính năng Mã QR quét hình bên</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-check-circle"></i>
-                                        <p>Hoàn tất thanh toán, chờ Vexere xác nhận</p>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod1" checked
+                            onclick="toggleQRDetails()">
+                        <label class="form-check-label" for="paymentMethod1">
+                            <img src="https://229a2c9fe669f7b.cmccloud.com.vn/httpImage/transfer_va.svg" alt="Icon"
+                                class="payment-icon"> QR chuyển khoản/ Ví
+                            điện tử
+                        </label>
+                        <p class="text-muted">Không cần nhập thông tin. Xác nhận thanh toán tức thì, nhanh chóng và ít sai
+                            sót.</p>
+                        <div class="qr-details" id="qr-details">
+                            <h5>Chuyển khoản bằng mã QR, tự động điền thông tin</h5>
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="text-center">
+                                            <i class="fa-solid fa-phone"></i>
+                                            <p>Mở ứng dụng ngân hàng hoặc Ví điện tử</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <i class="fas fa-qrcode"></i>
+                                            <p>Dùng tính năng Mã QR quét hình bên</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <i class="fa-solid fa-check-circle"></i>
+                                            <p>Hoàn tất thanh toán, chờ Vexere xác nhận</p>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-4 text-center">
+                                    <p>Quét mã bên dưới</p>
+                                    @if (session('order_code') && session('order_price'))
+                                        <img class="w-75 h-75" src="{{ $qr_code }}" alt="QR Code">
+                                    @endif
+                                    <p class="mt-2">VIETQR | NAPAS</p>
+                                </div>
                             </div>
-                            <div class="col-md-4 text-center">
-                                <p>Quét mã bên dưới</p>
-                                @if (session('order_code') && session('order_price'))
-                                    <img class="w-75 h-75" src="{{$qr_code}}" alt="QR Code">
-                                @endif
-                                <p class="mt-2">VIETQR | NAPAS</p>
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="fw-bold">Không thể thanh toán bằng mã QR?</p>
+                                    <p class="show-more-bank" onclick="toggleBankDetails()">Thu gọn</p>
+
+                                </div>
+                                <div class="bank-details" id="bank-details" style="display: block">
+                                    <p><strong>Ngân hàng:</strong> VIETCOMBANK</p>
+                                    <p><strong>Số tài khoản:</strong> 0021000337309
+                                        <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('0021000337309')"
+                                            title="Sao chép"></i>
+                                    </p>
+                                    <p><strong>Chủ tài khoản:</strong> NGUYEN THE TRINH</p>
+                                    <p><strong>Tổng tiền:</strong>
+                                        {{ number_format(session('order_price'), 0, ',', '.') . ' ₫' }}
+                                        <i class="bi bi-clipboard copy-icon"
+                                            onclick="copyToClipboard('{{ session('order_price') }}')" title="Sao chép"></i>
+                                    </p>
+                                    <p><strong>Vui lòng nhập lời nhắn là:</strong> {{ session('order_code') }}</p>
+                                    <p class="text-muted">Hệ thống sẽ tự động xác thực giao dịch</p>
+                                    <p class="text-muted">Quét mã QR hỗ trợ nhập nhanh thông tin, hạn chế sai sót trong quá
+                                        trình chuyển khoản. Nếu bạn vẫn muốn tự nhập, vui lòng chuyển khoản nhanh 24/7 và
+                                        nhập chính xác thông tin bên trên.</p>
+                                </div>
+                            </div>
+                            <div class="bank-support">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="fw-bold mb-1">Hỗ trợ nhiều ví điện tử & 42 ngân hàng</p>
+                                    <p class="show-more-bank toggle-support" onclick="toggleSupport()">Xem tất cả</p>
+
+                                </div>
+                                <div class="support-info expandable" id="support-info">
+
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-0.png"
+                                        alt="MoMo">
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-7.png"
+                                        alt="viettel">
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-6.png"
+                                        alt="cake">
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-1.png"
+                                        alt="ACB">
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-2.png"
+                                        alt="Bank 1">
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-4.png"
+                                        alt="Bank 2">
+                                    <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-38.png"
+                                        alt="Bank 3">
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="fw-bold">Không thể thanh toán bằng mã QR?</p>
-                                <p class="show-more-bank" onclick="toggleBankDetails()">Tự nhập thông tin</p>
+                    </div>
 
+                    <!-- Phần Bảo Hiểm -->
+                    @if(isset($baohiem))
+                        <hr>
+                        <div id="insurance-section" class="insurance-section">
+                            <div id="insurance-info" class="insurance-info" style="display: flex;">
+                                <span id="insurance-status">Vé có bảo hiểm không áp dụng thanh toán tại nhà xe</span>
+                                <a href="#" id="add-insurance" class="add-insurance">Thêm bảo hiểm</a>
                             </div>
-                            <div class="bank-details expandable" id="bank-details">
-                                <p><strong>Ngân hàng:</strong> VIETINBANK</p>
-                                <p><strong>Số tài khoản:</strong> 111V78872192
-                                    <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('111V78872192')"
-                                        title="Sao chép"></i>
-                                </p>
-                                <p><strong>Chủ tài khoản:</strong> VEXERE</p>
-                                <p><strong>Tổng tiền:</strong> 700.000đ
-                                    <i class="bi bi-clipboard copy-icon" onclick="copyToClipboard('700.000đ')"
-                                        title="Sao chép"></i>
-                                </p>
-                                <p class="text-muted">Hệ thống sẽ tự động xác thực giao dịch</p>
-                                <p class="text-muted">Quét mã QR hỗ trợ nhập nhanh thông tin, hạn chế sai sót trong quá
-                                    trình chuyển khoản. Nếu bạn vẫn muốn tự nhập, vui lòng chuyển khoản nhanh 24/7 và
-                                    nhập chính xác thông tin bên trên.</p>
+                            <div id="insurance-details" class="insurance-details" style="display: none;">
+                                <span><i class="bi bi-info-circle"></i> Vé có bảo hiểm không áp dụng thanh toán tại nhà
+                                    xe</span>
+                                <a href="#" id="remove-insurance" class="remove-insurance">Hủy bảo hiểm</a>
                             </div>
                         </div>
-                        <div class="bank-support">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="fw-bold mb-1">Hỗ trợ nhiều ví điện tử & 42 ngân hàng</p>
-                                <p class="show-more-bank toggle-support" onclick="toggleSupport()">Xem tất cả</p>
+                        <div class="alert alert-warning-custom">
+                            <i class="bi bi-exclamation-triangle-fill"></i> Giá khuyến mãi không áp dụng khi thanh toán tại nhà
+                            xe hoặc khi lên xe. Bạn hãy chọn phương thức thanh toán khác để được mua vé với giá ưu đãi!
+                        </div>
 
-                            </div>
-                            <div class="support-info expandable" id="support-info">
+                        <!-- Thanh toán khi lên xe -->
+                        <div class="form-check mb-2 d-none">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod2"
+                                onclick="showPaymentDetails()">
+                            <label class="form-check-label" for="paymentMethod2">
+                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/httpImage/bus_station.svg" alt="Icon"
+                                    class="payment-icon"> Thanh toán khi lên xe
+                            </label>
+                            <p class="text-muted">Bạn có thể thanh toán cho tài xế khi lên xe</p>
+                        </div>
 
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-0.png"
-                                    alt="MoMo">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-7.png"
-                                    alt="viettel">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Wallet-6.png"
-                                    alt="cake">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-1.png" alt="ACB">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-2.png"
-                                    alt="Bank 1">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-4.png"
-                                    alt="Bank 2">
-                                <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/bank_wallet/Bank-38.png"
-                                    alt="Bank 3">
+                        <!-- Hiển thị chi tiết thanh toán khi chọn "Thanh toán khi lên xe" -->
+                        <div id="paymentDetails" class="payment-details">
+                            <h5>Hướng dẫn thanh toán</h5>
+                            <p>Bạn hãy nói rằng đã đặt chỗ qua Vexere và thanh toán <strong>900.000đ</strong> cho tài xế khi lên
+                                xe.</p>
+                            <h6>Lưu ý quan trọng</h6>
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle-fill"></i> Hãy hủy vé khi không còn nhu cầu di chuyển.
+                                Vexere sẽ yêu cầu bạn thanh toán trước cho những lần sau nếu bạn đặt vé nhưng không đi hoặc hủy
+                                vé quá nhiều lần.
                             </div>
                         </div>
+                        <hr>
+                    @endif
+                    {{-- Các phương thưc thanh toán khác  --}}
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Thông tin chuyến đi -->
+                @include('payment._trip_info', [
+                    'seatMap' => $dataSeat['seatMap'],
+                    'seatTicket' => $dataSeat['seatTicket'],
+                    'selectedDropPoint' => $dataSeat['selectedDropPoint'],
+                    'selectedPickupPoint' => $dataSeat['selectedPickupPoint'],
+                    'isPayment' => true,
+                ])
+                <!-- Thong tin lien he -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mt-4 mb-4 mb-0 info-search">Thông tin liên hệ</h4>
+                        </div>
+                        <p><strong>Hành khách: </strong>{{ session('info_booking')['customer_name'] }}</p>
+                        <p><strong>Số điện thoại: </strong>{{ session('info_booking')['customer_phone'] }}</p>
+                        <p><strong>Email: </strong>{{ session('info_booking')['customer_email'] }}</p>
                     </div>
                 </div>
-                <hr>
+            </div>
+        </div>
 
-                <!-- Phần Bảo Hiểm -->
-                <div id="insurance-section" class="insurance-section">
-                    <div id="insurance-info" class="insurance-info" style="display: flex;">
-                        <span id="insurance-status">Vé có bảo hiểm không áp dụng thanh toán tại nhà xe</span>
-                        <a href="#" id="add-insurance" class="add-insurance">Thêm bảo hiểm</a>
-                    </div>
-                    <div id="insurance-details" class="insurance-details" style="display: none;">
-                        <span><i class="bi bi-info-circle"></i> Vé có bảo hiểm không áp dụng thanh toán tại nhà
-                            xe</span>
-                        <a href="#" id="remove-insurance" class="remove-insurance">Hủy bảo hiểm</a>
-                    </div>
+        <div class="fixed-payment-button">
+            <div class="d-flex justify-content-center align-items-center flex-wrap payment-info-container">
+                <div class="total-money-section">
+                    <p class="total-money mb-0" onclick="toggleModal()">Tổng tiền:
+                        {{ formatCurrency(session('order_price')) }} <span id="toggle-arrow" class="arrow">^</span></p>
                 </div>
-                <div class="alert alert-warning-custom">
-                    <i class="bi bi-exclamation-triangle-fill"></i> Giá khuyến mãi không áp dụng khi thanh toán tại nhà
-                    xe hoặc khi lên xe. Bạn hãy chọn phương thức thanh toán khác để được mua vé với giá ưu đãi!
+                <div class="d-flex justify-content-center align-items-center w-75">
+                    <button class="btn mt-2 custom-payment-button text-white bg-secondary me-3"
+                        onclick="handleChangeStatusBooking('{{ session('order_code') }}', {{ config('apps.common.status_booking.cancel') }})">
+                        <i class="bi bi-shield-check"></i> Hủy thanh toán
+                    </button>
+                    <button class="btn mt-2 custom-payment-button"
+                        onclick="handleChangeStatusBooking('{{ session('order_code') }}', {{ config('apps.common.status_booking.pending') }})">
+                        <i class="bi bi-shield-check"></i> Đã thanh toán
+                    </button>
                 </div>
+                <p class="text-center mt-2 mb-0 w-100 order-1 order-md-0">
+                    Bằng việc nhấn nút Thanh toán, bạn đồng ý với <a href="#" class="text-primary">Chính sách bảo
+                        mật thanh
+                        toán</a>
+                </p>
+                <p class="small-2 mt-2 mb-0 payment-note order-0 order-md-1">
+                    Bạn sẽ sớm nhận được biển số xe, số điện thoại tài xế và dễ dàng thay đổi điểm đón trả sau khi đặt.
+                </p>
+            </div>
+        </div>
+    </div>
 
-                <!-- Thanh toán khi lên xe -->
-                <div class="form-check mb-2 d-none">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod2"
-                        onclick="showPaymentDetails()">
-                    <label class="form-check-label" for="paymentMethod2">
-                        <img src="https://229a2c9fe669f7b.cmccloud.com.vn/httpImage/bus_station.svg" alt="Icon"
-                            class="payment-icon"> Thanh toán khi lên xe
-                    </label>
-                    <p class="text-muted">Bạn có thể thanh toán cho tài xế khi lên xe</p>
-                </div>
+    <!-- Modal Chi Tiết Tổng Tiền -->
+    <div id="totalMoneyModal" class="modal-bottom">
+        <div class="modal-content-bottom">
+            @if (isset($dataSeat))
+                <span class="close" onclick="toggleModal()">&times;</span>
+                <h4 class="total-amount-1">Tổng tiền</h4>
+                <p>Giá vé: {{ formatCurrency(session('order_price')) }}</p>
+                @if ($dataSeat['seatInfo']['unchoosable'] != 1)
+                    @foreach ($dataSeat['seatTicket']['seatList'] as $key => $value)
+                        <p>Mã ghế/giường: {{ $key }} x {{ formatCurrency($value['fareSeat']) }}</p>
+                    @endforeach
+                @endif
+            @endif
+            {{-- <p>Khuyến mãi: -50.000đ</p> --}}
+            <h4 class="total-amount-1">Tổng tiền: {{ formatCurrency(session('order_price')) }}</h4>
+            <button class="btn btn-primary mt-3" onclick="toggleModal()">Đóng</button>
+        </div>
+    </div>
 
-                <!-- Hiển thị chi tiết thanh toán khi chọn "Thanh toán khi lên xe" -->
-                <div id="paymentDetails" class="payment-details">
-                    <h5>Hướng dẫn thanh toán</h5>
-                    <p>Bạn hãy nói rằng đã đặt chỗ qua Vexere và thanh toán <strong>900.000đ</strong> cho tài xế khi lên
-                        xe.</p>
-                    <h6>Lưu ý quan trọng</h6>
-                    <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-triangle-fill"></i> Hãy hủy vé khi không còn nhu cầu di chuyển.
-                        Vexere sẽ yêu cầu bạn thanh toán trước cho những lần sau nếu bạn đặt vé nhưng không đi hoặc hủy
-                        vé quá nhiều lần.
-                    </div>
-                </div>
+    @include('payment._trip_info_draw', array_merge($dataSeat, ['isPayment' => true]))
 
-                <hr>
+@endsection
 
-                {{-- <!-- Thẻ thanh toán quốc tế -->
+@push('page-scripts')
+    <script>
+        function handleChangeStatusBooking(order_code, status) {
+            console.log(order_code, status);
+            $.ajax({
+                    url: '{{ route('booking.update') }}',
+                    type: 'POST',
+                    data: {
+                        status: status,
+                        order_code: order_code
+                    },
+                })
+                .done((data) => {
+                    if (data.code == 200) {
+                        localStorage.removeItem("countdownEndTime");
+                        window.location.href = data.url;
+                    } else {
+                        console.info(data.message);
+                    }
+                })
+        }
+
+        // tự động check thanh toán 10s/1 lần
+        setInterval(() => {
+            handleChangeStatusBooking('{{ session('order_code') }}', 1)
+        }, 10000);
+
+
+        $(document).ready(function() {
+            const countdownDuration = 10 * 60 * 1000; // 10 phút (tính bằng milliseconds)
+            let endTime = localStorage.getItem("countdownEndTime") || (Date.now() + countdownDuration);
+            localStorage.setItem("countdownEndTime", endTime);
+
+            function updateCountdown() {
+                let timeLeft = endTime - Date.now();
+                if (timeLeft <= 0) {
+                    $('#timer').text("Đã hết thời gian!");
+                    localStorage.removeItem("countdownEndTime");
+                    clearInterval(interval);
+                    handleChangeStatusBooking('{{ session('order_code') }}', 5) // hết 10p thì update hủy booking
+                } else {
+                    let minutes = Math.floor(timeLeft / 60000);
+                    let seconds = Math.floor((timeLeft % 60000) / 1000);
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+                    $('#timer').text(`${minutes}:${seconds}`);
+                }
+            }
+
+            var interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('toggleSeatInfo');
+            const contentToShow = document.getElementById('contentToShow');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const contentSection = document.getElementById('contentSectionn');
+
+            if (toggleButton && contentToShow && toggleIcon && contentSection) {
+                contentToShow.classList.add('d-none');
+                contentSection.classList.add('d-none');
+
+                toggleButton.addEventListener('click', () => {
+                    const isHidden = !contentToShow.classList.toggle('d-none');
+                    contentSection.classList.toggle('d-none');
+                    toggleIcon.src = isHidden ?
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg' :
+                        'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg';
+                });
+            }
+
+
+            const toggleVisibility = (iconId, contentId) => {
+                const $toggleIcon = $(`#${iconId}`);
+                const $additionalContent = $(`#${contentId}`);
+
+                if ($toggleIcon.length && $additionalContent.length) {
+                    $toggleIcon.on('click', () => {
+                        const isHidden = $additionalContent.toggleClass('d-none').hasClass('d-none');
+                        $toggleIcon
+                            .toggleClass('fa-angle-down', isHidden)
+                            .toggleClass('fa-angle-up', !isHidden);
+                    });
+                }
+            };
+
+            toggleVisibility('totalAmount', 'showTotalAmount');
+            toggleVisibility('totalAmountModal', 'showTotalAmountModal');
+
+        });
+
+        const addInsuranceButton = document.getElementById('add-insurance');
+        const removeInsuranceButton = document.getElementById('remove-insurance');
+        const insuranceInfo = document.getElementById('insurance-info');
+        const insuranceDetails = document.getElementById('insurance-details');
+        const closeButton = document.querySelector('.close-button');
+
+        if (addInsuranceButton && insuranceInfo && insuranceDetails) {
+            // Thêm bảo hiểm
+            addInsuranceButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (insuranceInfo.style.display !== 'none') {
+                    insuranceInfo.style.display = 'none';
+                    insuranceDetails.style.display = 'flex';
+                }
+            });
+        }
+
+        if (removeInsuranceButton && insuranceInfo && insuranceDetails) {
+            // Hủy bảo hiểm
+            removeInsuranceButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (insuranceDetails.style.display !== 'none') {
+                    insuranceInfo.style.display = 'flex';
+                    insuranceDetails.style.display = 'none';
+                }
+            });
+        }
+
+        if (closeButton) {
+            // Sự kiện nút đóng (có thể thêm logic nếu cần)
+            closeButton.addEventListener('click', function() {
+                console.log("Close button clicked");
+            });
+        }
+
+        function toggleQRDetails() {
+            const qrDetails = document.getElementById('qr-details');
+            if (qrDetails.style.display === 'block') {
+                hideAllDetails();
+            } else {
+                hideAllDetails();
+                qrDetails.style.display = 'block';
+            }
+        }
+
+        function toggleBankDetails() {
+            const bankDetails = document.getElementById('bank-details');
+            const toggleText = document.querySelector('.show-more-bank');
+
+            if (bankDetails.style.display === 'block') {
+                bankDetails.style.display = 'none';
+                toggleText.textContent = 'Tự nhập thông tin';
+            } else {
+                bankDetails.style.display = 'block';
+                toggleText.textContent = 'Thu gọn';
+            }
+        }
+
+        function toggleSupport() {
+            const supportInfo = document.getElementById('support-info');
+            const toggleText = document.querySelector('.toggle-support');
+
+            if (supportInfo.style.display === 'block') {
+                supportInfo.style.display = 'none';
+                toggleText.textContent = 'Xem tất cả';
+            } else {
+                supportInfo.style.display = 'block';
+                toggleText.textContent = 'Thu gọn';
+            }
+        }
+
+        function hideBankDetails() {
+            document.getElementById('bank-details').style.display = 'none';
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert("Đã sao chép: " + text);
+        }
+
+        function showCardPayment() {
+            hideAllDetails();
+            document.getElementById('card-payment-details').style.display = 'block';
+        }
+
+        function showWalletDetails(walletId) {
+            hideAllDetails();
+            document.getElementById(walletId).style.display = 'block';
+        }
+
+        function showBankPaymentDetails() {
+            hideAllDetails();
+            document.getElementById('bankPaymentDetails').style.display = 'block';
+        }
+
+        function showStorePaymentDetails() {
+            hideAllDetails();
+            document.getElementById('storePaymentDetails').style.display = 'block';
+        }
+
+        // Hiển thị chi tiết thanh toán khi chọn "Thanh toán khi lên xe"
+        function showPaymentDetails() {
+            hideAllDetails();
+            document.getElementById('paymentDetails').style.display = 'block';
+        }
+
+        // Ẩn tất cả các chi tiết thanh toán
+        function hideAllDetails() {
+            document.querySelectorAll('.expandable').forEach(el => el.style.display = 'none');
+            document.getElementById('paymentDetails').style.display = 'none';
+            const qrDetails = document.getElementById('qr-details');
+            if (qrDetails) qrDetails.style.display = 'none';
+        }
+
+        function showContactEditForm() {
+            const contactEditForm = document.getElementById('contactEditForm');
+            contactEditForm.style.display = 'block';
+        }
+
+        function hideContactEditForm() {
+            const contactEditForm = document.getElementById('contactEditForm');
+            contactEditForm.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const contactEditForm = document.getElementById('contactEditForm');
+            if (event.target == contactEditForm) {
+                hideContactEditForm();
+            }
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        function toggleTotalDetails() {
+            const totalDetails = document.getElementById('total-details');
+            const toggleArrow = document.getElementById('toggle-arrow');
+            if (totalDetails.style.display === 'none') {
+                totalDetails.style.display = 'block';
+                toggleArrow.classList.add('rotate');
+            } else {
+                totalDetails.style.display = 'none';
+                toggleArrow.classList.remove('rotate');
+            }
+        }
+
+        function toggleModal() {
+            const modal = document.getElementById("totalMoneyModal");
+            const arrow = document.getElementById("toggle-arrow");
+
+            if (modal.classList.contains("open")) {
+                modal.classList.remove("open");
+                modal.style.transform = "translateY(100%)";
+                arrow.classList.remove('rotate');
+            } else {
+                modal.classList.add("open");
+                modal.style.transform = "translateY(0)";
+                arrow.classList.add('rotate');
+            }
+        }
+    </script>
+@endpush
+
+
+
+
+           {{-- <!-- Thẻ thanh toán quốc tế -->
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod3"
                         onclick="showCardPayment()">
@@ -1303,379 +864,3 @@
                         </div>
                     </div>
                 </div> --}}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <!-- tổng tiền -->
-            <div class="card mb-3 money p-2">
-                <div class="card-header d-flex justify-content-between align-items-center" onclick="toggleTotalDetails()">
-                    <h4 class="mb-0 rich">Tổng tiền:</h4>
-                    <div class="d-flex align-items-center">
-                        <h4 class="mb-0 me-2 rich">{{ number_format(session('order_price'), 0, ',', '.') . ' ₫' }}</h4>
-                        {{-- <i class="fa-solid fa-chevron-down toggle-arrow" id="toggle-arrow"></i> --}}
-                    </div>
-                </div>
-                <div class="card-body" id="total-details" style="display: none;">
-                    <p>Mã ghế/giường: A6</p>
-                    <p class="text-success">Khuyến mãi: -50.000đ</p>
-                    <h5 class="mt-3 rich-1">900.000đ</h5>
-                </div>
-            </div>
-
-
-            <!-- Thông tin chuyến đi -->
-            @include('payment.trip-info')
-
-            <!-- Thong tin lien he -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="mt-4 mb-4 mb-0 info-search">Thông tin liên hệ</h4>
-                        <a href="#" class="text-primary edit-link" data-bs-toggle="offcanvas"
-                            data-bs-target="#contactModal">Chỉnh
-                            sửa</a>
-                    </div>
-                    <p><strong>Hành khách: </strong>{{session('info_booking')['customer_name']}}</p>
-                    <p><strong>Số điện thoại: </strong>{{session('info_booking')['customer_phone']}}</p>
-                    <p><strong>Email: </strong>{{session('info_booking')['customer_email']}}</p>
-                </div>
-            </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="contactModal" aria-labelledby="contactModalLabel">
-                <div class="header-section">
-                    <div class="btn-close-custom" data-bs-dismiss="offcanvas" aria-label="Close">
-                        <i class="material-icons-round">arrow_back</i>
-                    </div>
-                    <div class="header-title-container ms-3">
-                        <p class="header-title mb-0">Chỉnh sửa thông tin liên hệ</p>
-                    </div>
-                </div>
-
-                <div class="offcanvas-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="contactName" class="form-label">Họ tên *</label>
-                            <input type="text" class="form-control" id="contactName" value="{{session('info_booking')['customer_name']}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="contactPhone" class="form-label">Số điện thoại *</label>
-                            <div class="input-group">
-                                <span class="input-group-text">VN +84</span>
-                                <input type="text" class="form-control" id="contactPhone" value="{{session('info_booking')['customer_phone']}}">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contactEmail" class="form-label">Email để nhận thông tin đặt chỗ *</label>
-                            <input type="email" class="form-control" id="contactEmail" value="{{session('info_booking')['customer_email']}}">
-                        </div>
-                        <div class="alert alert-success">
-                            <i class="material-icons-round">check_circle</i> Số điện thoại và email được sử dụng để gửi
-                            thông tin đơn
-                            hàng và liên hệ khi cần thiết.
-                        </div>
-                    </form>
-                </div>
-
-                <div class="footer">
-                    <button type="button" class="btn btn-warning text-black fw-bold w-100" data-bs-dismiss="offcanvas">
-                        <span>Cập nhật</span>
-                    </button>
-                </div>
-            </div>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
-        </div>
-    </div>
-
-    <div class="fixed-payment-button">
-        <div class="d-flex justify-content-center align-items-center flex-wrap payment-info-container">
-            <div class="total-money-section">
-                <p class="total-money mb-0" onclick="toggleModal()">Tổng tiền: 900.000đ <span id="toggle-arrow"
-                        class="arrow">^</span></p>
-            </div>
-           <div class="d-flex justify-content-center align-items-center w-75">
-                <button class="btn mt-2 custom-payment-button text-white bg-secondary me-3" onclick="handleChangeStatusBooking('{{ session('order_code') }}', {{config('apps.common.status_booking.cancel')}})">
-                    <i class="bi bi-shield-check"></i> Hủy thanh toán
-                </button>
-                <button class="btn mt-2 custom-payment-button" onclick="handleChangeStatusBooking('{{ session('order_code') }}', {{config('apps.common.status_booking.pending')}})">
-                    <i class="bi bi-shield-check"></i> Đã thanh toán
-                </button>
-           </div>
-            <p class="text-center mt-2 mb-0 w-100 order-1 order-md-0">
-                Bằng việc nhấn nút Thanh toán, bạn đồng ý với <a href="#" class="text-primary">Chính sách bảo mật thanh
-                    toán</a>
-            </p>
-            <p class="small-2 mt-2 mb-0 payment-note order-0 order-md-1">
-                Bạn sẽ sớm nhận được biển số xe, số điện thoại tài xế và dễ dàng thay đổi điểm đón trả sau khi đặt.
-            </p>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Chi Tiết Tổng Tiền -->
-<div id="totalMoneyModal" class="modal-bottom">
-    <div class="modal-content-bottom">
-        <span class="close" onclick="toggleModal()">&times;</span>
-        <h4 class="total-amount-1">Tổng tiền</h4>
-        <p>Giá vé: 950.000đ x 1</p>
-        <p>Mã ghế/giường: A2</p>
-        <p>Khuyến mãi: -50.000đ</p>
-        <h4 class="total-amount-1">Tổng tiền: 900.000đ</h4>
-        <button class="btn btn-primary mt-3" onclick="toggleModal()">Đóng</button>
-    </div>
-</div>
-
-</div>
-
-@endsection
-
-@push('page-scripts')
-<script>
-    function handleChangeStatusBooking(order_code, status) {
-        console.log(order_code, status);
-        $.ajax({
-            url: '{{route("booking.update")}}',
-            type: 'POST',
-            data: {status: status, order_code: order_code},
-        })
-        .done((data) => {
-            if (data.code == 200) {
-                window.location.href = data.url;
-            } else {
-                console.error(data.message);
-            }
-        })
-    }
-
-    setInterval(() => {
-        handleChangeStatusBooking('{{ session('order_code') }}', 2)
-    }, 10000);
-
-
-let timeLeft = 600;
-const countdownTimer = setInterval(function() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    document.getElementById('timer').textContent = `${minutes}:${seconds}`;
-    timeLeft--;
-    if (timeLeft < 0) {
-        clearInterval(countdownTimer);
-        alert('Hết thời gian!');
-    }
-}, 1000);
-
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('toggleSeatInfo');
-    const contentToShow = document.getElementById('contentToShow');
-    const toggleIcon = document.getElementById('toggleIcon');
-    const contentSection = document.getElementById('contentSectionn');
-
-    if (toggleButton && contentToShow && toggleIcon && contentSection) {
-        contentToShow.classList.add('d-none');
-        contentSection.classList.add('d-none');
-
-        toggleButton.addEventListener('click', () => {
-            const isHidden = !contentToShow.classList.toggle('d-none');
-            contentSection.classList.toggle('d-none');
-            toggleIcon.src = isHidden ?
-                'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg' :
-                'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg';
-        });
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleVisibility = (toggleElementId, contentId, iconElement) => {
-        const toggleElement = document.getElementById(toggleElementId);
-        const contentElement = document.getElementById(contentId);
-        const icon = iconElement.querySelector('img');
-
-        if (toggleElement && contentElement && icon) {
-            toggleElement.addEventListener('click', () => {
-                const isHidden = contentElement.classList.toggle('d-none');
-                icon.src = isHidden ?
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_less.svg' :
-                    'https://229a2c9fe669f7b.cmccloud.com.vn/svgIcon/expand_more.svg';
-            });
-        }
-    };
-    toggleVisibility('toggleTotalAmount', 'totalAmountDetails', document.getElementById(
-        'toggleTotalAmount'));
-});
-
-const addInsuranceButton = document.getElementById('add-insurance');
-const removeInsuranceButton = document.getElementById('remove-insurance');
-const insuranceInfo = document.getElementById('insurance-info');
-const insuranceDetails = document.getElementById('insurance-details');
-const closeButton = document.querySelector('.close-button');
-
-if (addInsuranceButton && insuranceInfo && insuranceDetails) {
-    // Thêm bảo hiểm
-    addInsuranceButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (insuranceInfo.style.display !== 'none') {
-            insuranceInfo.style.display = 'none';
-            insuranceDetails.style.display = 'flex';
-        }
-    });
-}
-
-if (removeInsuranceButton && insuranceInfo && insuranceDetails) {
-    // Hủy bảo hiểm
-    removeInsuranceButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (insuranceDetails.style.display !== 'none') {
-            insuranceInfo.style.display = 'flex';
-            insuranceDetails.style.display = 'none';
-        }
-    });
-}
-
-if (closeButton) {
-    // Sự kiện nút đóng (có thể thêm logic nếu cần)
-    closeButton.addEventListener('click', function() {
-        console.log("Close button clicked");
-    });
-}
-
-function toggleQRDetails() {
-    const qrDetails = document.getElementById('qr-details');
-    if (qrDetails.style.display === 'block') {
-        hideAllDetails();
-    } else {
-        hideAllDetails();
-        qrDetails.style.display = 'block';
-    }
-}
-
-function toggleBankDetails() {
-    const bankDetails = document.getElementById('bank-details');
-    const toggleText = document.querySelector('.show-more-bank');
-
-    if (bankDetails.style.display === 'block') {
-        bankDetails.style.display = 'none';
-        toggleText.textContent = 'Tự nhập thông tin';
-    } else {
-        bankDetails.style.display = 'block';
-        toggleText.textContent = 'Thu gọn';
-    }
-}
-
-function toggleSupport() {
-    const supportInfo = document.getElementById('support-info');
-    const toggleText = document.querySelector('.toggle-support');
-
-    if (supportInfo.style.display === 'block') {
-        supportInfo.style.display = 'none';
-        toggleText.textContent = 'Xem tất cả';
-    } else {
-        supportInfo.style.display = 'block';
-        toggleText.textContent = 'Thu gọn';
-    }
-}
-function hideBankDetails() {
-    document.getElementById('bank-details').style.display = 'none';
-}
-
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text);
-    alert("Đã sao chép: " + text);
-}
-
-function showCardPayment() {
-    hideAllDetails();
-    document.getElementById('card-payment-details').style.display = 'block';
-}
-
-function showWalletDetails(walletId) {
-    hideAllDetails();
-    document.getElementById(walletId).style.display = 'block';
-}
-
-function showBankPaymentDetails() {
-    hideAllDetails();
-    document.getElementById('bankPaymentDetails').style.display = 'block';
-}
-
-function showStorePaymentDetails() {
-    hideAllDetails();
-    document.getElementById('storePaymentDetails').style.display = 'block';
-}
-
-// Hiển thị chi tiết thanh toán khi chọn "Thanh toán khi lên xe"
-function showPaymentDetails() {
-    hideAllDetails();
-    document.getElementById('paymentDetails').style.display = 'block';
-}
-
-// Ẩn tất cả các chi tiết thanh toán
-function hideAllDetails() {
-    document.querySelectorAll('.expandable').forEach(el => el.style.display = 'none');
-    document.getElementById('paymentDetails').style.display = 'none';
-    const qrDetails = document.getElementById('qr-details');
-    if (qrDetails) qrDetails.style.display = 'none';
-}
-
-function toggleTotalDetails() {
-    const totalDetails = document.getElementById('total-details');
-    if (totalDetails.style.display === 'none') {
-        totalDetails.style.display = 'block';
-    } else {
-        totalDetails.style.display = 'none';
-    }
-}
-
-function showContactEditForm() {
-    const contactEditForm = document.getElementById('contactEditForm');
-    contactEditForm.style.display = 'block';
-}
-
-function hideContactEditForm() {
-    const contactEditForm = document.getElementById('contactEditForm');
-    contactEditForm.style.display = 'none';
-}
-
-window.onclick = function(event) {
-    const contactEditForm = document.getElementById('contactEditForm');
-    if (event.target == contactEditForm) {
-        hideContactEditForm();
-    }
-}
-
-function openContactModal() {
-    document.getElementById('contactModal').style.display = 'block';
-}
-
-function closeContactModal() {
-    document.getElementById('contactModal').style.display = 'none';
-}
-
-function toggleTotalDetails() {
-    const totalDetails = document.getElementById('total-details');
-    const toggleArrow = document.getElementById('toggle-arrow');
-    if (totalDetails.style.display === 'none') {
-        totalDetails.style.display = 'block';
-        toggleArrow.classList.add('rotate');
-    } else {
-        totalDetails.style.display = 'none';
-        toggleArrow.classList.remove('rotate');
-    }
-}
-document.querySelector('.custom-close-button').addEventListener('click', function() {});
-
-function toggleModal() {
-    const modal = document.getElementById("totalMoneyModal");
-    const arrow = document.getElementById("toggle-arrow");
-
-    if (modal.classList.contains("open")) {
-        modal.classList.remove("open");
-        modal.style.transform = "translateY(100%)";
-        arrow.classList.remove('rotate');
-    } else {
-        modal.classList.add("open");
-        modal.style.transform = "translateY(0)";
-        arrow.classList.add('rotate');
-    }
-}
-</script>
-@endpush

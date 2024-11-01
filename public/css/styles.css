@@ -1045,7 +1045,8 @@ a {
 
 
 .footer {
-    background-image: linear-gradient(to right top, #ffa07a, #ffb57d, #ffcb85, #ffe093, #fdf4a5);
+    /* background-image: linear-gradient(to right top, #ffa07a, #ffb57d, #ffcb85, #ffe093, #fdf4a5); */
+    background-image: linear-gradient(to left bottom, #ffa07a, #ffb57d, #ffcb85, #ffe093, #fdf4a5);
     padding-top: 80px;
     padding-bottom: 40px;
     text-shadow: 0px 5px 5px #999999;
@@ -1133,7 +1134,7 @@ a {
     height: 60px;
     letter-spacing: 0.4px;
     margin: 0;
-    padding: 0 150px 0 20px;
+    padding: 0 50px 0 20px;
     text-align: center;
     text-transform: capitalize;
     width: 100%;
