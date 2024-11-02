@@ -81,6 +81,8 @@ Route::prefix('/route-search')->group(function () {
     Route::post('/sort-tau-hoa', [RouteController::class, 'trainRouteSort'])->name('route.sort.train');
 });
 
+
+Route::get('/bookingconfirmation/ve-tau',  [BookingController::class, 'bookingConfirmationTrain'])->name('booking.train');
 Route::post('/bookingconfirmation/ve-xe-khach',  [BookingController::class, 'index']);
 Route::post('/booking-payment',  [BookingController::class, 'store'])->name('booking.store');
 Route::post('/update-booking', [BookingController::class, 'updateBookingStatus'])->name('booking.update');
