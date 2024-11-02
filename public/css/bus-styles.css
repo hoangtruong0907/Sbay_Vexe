@@ -2230,8 +2230,187 @@ body h6 {
     flex-direction: column;
     padding: 12px 20px;
 }
+
+.text-pick-up-point-maps {
+    margin-left: 4px;
+    text-decoration: underline;
+}
+.text-drop-off-point-maps {
+    color: #000;
+}
+
+.pickup-point {
+    border-right: 1px solid rgb(192, 192, 192);
+}
+
+.container-group-items-pick-up-point {
+    width: 100%;
+    max-height: 290px;
+    overflow: hidden auto;
+    padding: 10px 78px 10px 16px !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: "tnum";
+    font-feature-settings: "tnum";
+    display: inline-block;
+    line-height: unset;
+}
+.value-container button {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    background-color: transparent;
+}
+.address-container {
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+}
+.change-link {
+    margin-left: 10px;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}
+.custom-dropoff-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.custom-dropoff-button .address-container {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-address-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+/* filter */
+.array_filter-radio {
+    width: 20px;
+    height: 20px;
+}
+/* star rating */
+.checked_rating {
+    color: orange;
+}
+
+/* ul li điểm đón, điểm đến   */
+.groupKind {
+    margin-top: 16px;
+    max-height: 208px;
+    overflow-x: auto;
+}
+.cus-tree {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.tree-treenode-switcher {
+    margin: 0;
+    padding: 4px 0;
+    white-space: nowrap;
+    list-style: none;
+}
+
+li span.tree-switcher {
+    margin-right: 0.3rem;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+.cusicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.tree-switcher-icon svg {
+    transform: rotate(-90deg);
+    transition: transform 0.3s;
+}
+.tree-checkbox {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    margin-right: 0.3rem;
+    padding: 0 !important;
+}
+.tree-checkbox-inner {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    transition: border-color 0.3s ease;
+}
+.tree-checkbox-inner::after {
+    content: '';
+    display: none;
+    width: 6px;
+    height: 10px;
+    border: solid #1890ff;
+    border-width: 0 2px 2px 0;
+    position: absolute;
+    transform: rotate(45deg);
+}
+.tree-content {
+    padding: 0 5px;
+    color: rgba(0, 0, 0, 0.65);
+    line-height: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.tree-child-tree {
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+    list-style: none;
+    padding-left: 0;
+}
 .button-infor-train{
+    margin-left: 4px;
     border:none;
+    text-decoration: underline;
 }
 .trip-Results {
     display: flex;

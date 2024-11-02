@@ -559,37 +559,37 @@ $(document).ready(function () {
 });
 
 $("#bus_search").click(() => {
-    // var busTo = $("#bus_to").val();
-    // var busToPlace = $('#bus_to_input option:selected').attr('data-name');
-    // var busFrom = $("#bus_from").val();
-    // var busFromPlace = $('#bus_from_input option:selected').attr('data-name');
-    // var dateTo = $("#bus_date_to").val();
-    // var dateFrom = $("#bus_date_from").val();
+    var busTo = $("#bus_to").val();
+    var busToPlace = $('#bus_to_input option:selected').attr('data-name');
+    var busFrom = $("#bus_from").val();
+    var busFromPlace = $('#bus_from_input option:selected').attr('data-name');
+    var dateTo = $("#bus_date_to").val();
+    var dateFrom = $("#bus_date_from").val();
 
-    // var data = {
-    //     bus_from: busFrom,
-    //     // busFromPlace,
-    //     bus_to: busTo,
-    //     // busToPlace,
-    //     date_from: dateFrom,
-    //     date_to: dateTo,
-    // };
+    var data = {
+        bus_from: busFrom,
+        // busFromPlace,
+        bus_to: busTo,
+        // busToPlace,
+        date_from: dateFrom,
+        date_to: dateTo,
+    };
 
-    // var url =
-    //     "/route-search/xe-khach?q=" +
-    //     convertToSlug(busFromPlace) +
-    //     "-to-" +
-    //     convertToSlug(busToPlace);
-    // var queryString = $.param(data);
-    // url += "&" + queryString;
-    // window.location.href = url;
-    let currentUrl = window.location.href; // Lấy URL hiện tại
-    let searchString = "/route-search/xe-khach"; // Chuỗi cần kiểm tra
+    var url =
+        "/route-search/xe-khach?q=" +
+        convertToSlug(busFromPlace) +
+        "-to-" +
+        convertToSlug(busToPlace);
+    var queryString = $.param(data);
+    url += "&" + queryString;
+    window.location.href = url;
+    // let currentUrl = window.location.href; // Lấy URL hiện tại
+    // let searchString = "/route-search/xe-khach"; // Chuỗi cần kiểm tra
 
-    if (!currentUrl.includes(searchString)) {
-        let url = searchString;
-        window.location.href = url;
-    }
+    // if (!currentUrl.includes(searchString)) {
+    //     // let url = searchString;
+    //     window.location.href = url;
+    // }
 });
 $("#train_search").click(() => {
     var trainTo = $("#train_to_input").val();
