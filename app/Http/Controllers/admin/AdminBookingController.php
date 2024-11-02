@@ -59,7 +59,6 @@ class AdminBookingController extends Controller
             ]
         ]);
         $responseBody = json_decode($response->getBody(), true);
-        dd($responseBody['data']);
         if (!empty($responseBody['data'])) {
             $booking = $responseBody['data'][0];
             $bookingData = [
