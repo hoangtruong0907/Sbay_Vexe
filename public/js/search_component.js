@@ -90,7 +90,7 @@ const busToDropdownList = document.getElementById("dropdown_list_bus_to");
 
 setupBusInput(busTo, busToInput, busToDropdownMenu, busToDropdownList);
 
-// Custom Select slim 
+// Custom Select slim
 var bus_select_from = new SlimSelect({
     select: '.bus_from_input',
     settings: {
@@ -154,6 +154,16 @@ var train_select_from = new SlimSelect({
     localStorage.setItem('train_select_to', train_select_to.getSelected());
     trainFrom.value = train_select_from.getSelected();
     trainTo.value = train_select_to.getSelected();
+
+    // set localStorage for date bus
+    localStorage.setItem('bus_date_to', $('#bus_date_to').val());
+    localStorage.setItem('bus_date_from', $('#bus_date_from').val());
+
+    // set localStorage for date train
+    localStorage.setItem('train_date_to', $('#train_date_to').val());
+    localStorage.setItem('train_date_from', $('#train_date_from').val());
+    console.log('update');
+
 }
 
 // Hàm để khôi phục lựa chọn từ Local Storage
@@ -199,7 +209,7 @@ busSwapButton.addEventListener("click", function () {
 
     // Lưu lựa chọn sau khi hoán đổi
     saveSelections();
-    
+
     //Hiden value
     busFrom.value = toValue;
     busTo.value = fromValue;
@@ -304,12 +314,12 @@ trainSwapButton.addEventListener("click", function () {
     const fromValue = trainFromInput.value;
     const toValue = trainToInput.value;
     const temp = fromValue
-    
+
     busFromInput.value = toValue;
     busToInput.value = temp;
 
     trainFromInput.value = toValue;
-    trainToInput.value = temp;    
+    trainToInput.value = temp;
 
     train_select_from.setSelected(toValue, true);
     train_select_to.setSelected(fromValue, true);
@@ -437,14 +447,16 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             dataTrainSelected = date;
             $(this).val(formattedWithDay);
+
+            localStorage.setItem('train_date_to', formattedDate);
         },
     });
 
-    new AirDatepicker(".data-add-train", {
+    new AirDatepicker(".date-add-train", {
         locale: vn,
         dateFormat: "E, dd/MM/yyyy",
         autoClose: true,
@@ -470,9 +482,11 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             $(this).val(formattedWithDay);
+
+            localStorage.setItem('train_date_from', formattedDate);
         },
     });
 
@@ -501,10 +515,13 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             dataSelected = date;
             $(this).val(formattedWithDay);
+
+            // set localStorage for date bus
+            localStorage.setItem('bus_date_to', formattedDate);
         },
     });
 
@@ -533,9 +550,10 @@ $(document).ready(function () {
             }
         },
         onSelect: function ({ date, formattedDate }) {
-            const dayOfWeek = vn.daysShort[date.getDay()];
+            const dayOfWeek = vn.daysShort[date?.getDay()];
             const formattedWithDay = `${dayOfWeek}, ${formattedDate}`;
             $(this).val(formattedWithDay);
+            localStorage.setItem('bus_date_from', formattedDate);
         },
     });
 });
@@ -565,6 +583,13 @@ $("#bus_search").click(() => {
     var queryString = $.param(data);
     url += "&" + queryString;
     window.location.href = url;
+    // let currentUrl = window.location.href; // Lấy URL hiện tại
+    // let searchString = "/route-search/xe-khach"; // Chuỗi cần kiểm tra
+
+    // if (!currentUrl.includes(searchString)) {
+    //     // let url = searchString;
+    //     window.location.href = url;
+    // }
 });
 $("#train_search").click(() => {
     var trainTo = $("#train_to_input").val();

@@ -16,6 +16,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\BlogPostModel;
 use App\Models\PostType;
 
+use function PHPUnit\Framework\isNull;
 
 class RouteController extends Controller
 {
@@ -150,86 +151,86 @@ class RouteController extends Controller
         $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
         // $list_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, 60 * 20);\
         $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
-        $list_routes = $res_routes['data']; 
+        $list_routes = $res_routes['data'];
 
-        //dữ liệu trong fillter  
-        $dp_points = collect($list_routes) 
-                    ->flatMap(function ($route) { 
-                        return isset($route['route']['pickup_points']) 
-                            ? collect($route['route']['pickup_points'])->map(function ($point) {
-                                return [
-                                    'district' => $point['district'],
-                                    'name' => $point['name'] ?? null, // Lấy cột name nếu tồn tại
-                                ];
-                            })
-                            : collect([]);
-                    })
-                    ->groupBy('district')  
-                    ->map(function ($group) {
+        //dữ liệu trong fillter
+        $dp_points = collect($list_routes)
+            ->flatMap(function ($route) {
+                return isset($route['route']['pickup_points'])
+                    ? collect($route['route']['pickup_points'])->map(function ($point) {
                         return [
-                            'count' => $group->count(),
-                            'names' => $group->pluck('name')->filter()->countBy()
+                            'district' => $point['district'],
+                            'name' => $point['name'] ?? null, // Lấy cột name nếu tồn tại
                         ];
-                    }); 
-        $dd_points = collect($list_routes) 
-                    ->flatMap(function ($route) { 
-                        return isset($route['route']['dropoff_points']) 
-                            ? collect($route['route']['dropoff_points'])->map(function ($point) {
-                                return [
-                                    'district' => $point['district'],
-                                    'name' => $point['name'] ?? null,  
-                                ];
-                            })
-                            : collect([]);
                     })
-                    ->groupBy('district')  
-                    ->map(function ($group) {
+                    : collect([]);
+            })
+            ->groupBy('district')
+            ->map(function ($group) {
+                return [
+                    'count' => $group->count(),
+                    'names' => $group->pluck('name')->filter()->countBy()
+                ];
+            });
+        $dd_points = collect($list_routes)
+            ->flatMap(function ($route) {
+                return isset($route['route']['dropoff_points'])
+                    ? collect($route['route']['dropoff_points'])->map(function ($point) {
                         return [
-                            'count' => $group->count(),
-                            'names' => $group->pluck('name')->filter()->countBy()
+                            'district' => $point['district'],
+                            'name' => $point['name'] ?? null,
                         ];
-                    });       
+                    })
+                    : collect([]);
+            })
+            ->groupBy('district')
+            ->map(function ($group) {
+                return [
+                    'count' => $group->count(),
+                    'names' => $group->pluck('name')->filter()->countBy()
+                ];
+            });
         $companyCounts = collect($list_routes)
-                        ->groupBy('company.id')  
-                        ->map(function ($group) {
-                            return [
-                                'id' => $group->first()['company']['id'],
-                                'name' => $group->first()['company']['name'],
-                                'count' => $group->count()  
-                            ];
-                        });
-        $company_name = $companyCounts->sortBy('name'); 
+            ->groupBy('company.id')
+            ->map(function ($group) {
+                return [
+                    'id' => $group->first()['company']['id'],
+                    'name' => $group->first()['company']['name'],
+                    'count' => $group->count()
+                ];
+            });
+        $company_name = $companyCounts->sortBy('name');
         $vehicle_type = collect($list_routes)
-                        ->flatMap(function ($route) { 
-                            return isset($route['route']['schedules']) 
-                                ? collect($route['route']['schedules'])->pluck('vehicle_type') 
-                                : collect([]);
-                        })->countBy(); 
-                        $seatTypes = collect($list_routes)
-                        ->pluck('available_seat_info') // Lấy mảng available_seat_info
-                        ->map(function ($seatInfo) {
-                            return [
-                                // Kiểm tra nếu 'seat_type' có tồn tại
-                                'seat_type' => isset($seatInfo['seat_type']) ? collect($seatInfo['seat_type'])->keys()->first() : null, 
-                                // Kiểm tra nếu 'seat_group' có tồn tại
-                                'seat_group' => isset($seatInfo['seat_group']) ? collect($seatInfo['seat_group'])->keys()->first() : null,
-                            ];
-                        })
-                        // Loại bỏ các phần tử có seat_group hoặc seat_type là null
-                        ->filter(function ($seatInfo) {
-                            return !is_null($seatInfo['seat_group']) && !is_null($seatInfo['seat_type']);
-                        })
-                        ->groupBy('seat_group') // Nhóm dữ liệu theo seat_group
-                        ->map(function ($group) {
-                            return [
-                                'count' => $group->count(),
-                                'seat_types' => $group->pluck('seat_type')->unique()->values() // Lấy các seat_type
-                            ];
-                        });
-                    
+            ->flatMap(function ($route) {
+                return isset($route['route']['schedules'])
+                    ? collect($route['route']['schedules'])->pluck('vehicle_type')
+                    : collect([]);
+            })->countBy();
+        $seatTypes = collect($list_routes)
+            ->pluck('available_seat_info') // Lấy mảng available_seat_info
+            ->map(function ($seatInfo) {
+                return [
+                    // Kiểm tra nếu 'seat_type' có tồn tại
+                    'seat_type' => isset($seatInfo['seat_type']) ? collect($seatInfo['seat_type'])->keys()->first() : null,
+                    // Kiểm tra nếu 'seat_group' có tồn tại
+                    'seat_group' => isset($seatInfo['seat_group']) ? collect($seatInfo['seat_group'])->keys()->first() : null,
+                ];
+            })
+            // Loại bỏ các phần tử có seat_group hoặc seat_type là null
+            ->filter(function ($seatInfo) {
+                return !is_null($seatInfo['seat_group']) && !is_null($seatInfo['seat_type']);
+            })
+            ->groupBy('seat_group') // Nhóm dữ liệu theo seat_group
+            ->map(function ($group) {
+                return [
+                    'count' => $group->count(),
+                    'seat_types' => $group->pluck('seat_type')->unique()->values() // Lấy các seat_type
+                ];
+            });
+
 
         // Thông tin ảnh nhà xe
-        $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
+        // $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
         return view("bus.bus_search", [
             "fromtoPlace" => $request->query('q', null),
             "list_routes" => $list_routes,
@@ -244,38 +245,9 @@ class RouteController extends Controller
             'list_pp_districts' => $dp_points,
             'list_dp_districts' => $dd_points,
             'list_company_count' => $company_name,
-            'list_vehicle_type' => $vehicle_type, 
+            'list_vehicle_type' => $vehicle_type,
             'list_seat_type' => $seatTypes,
         ]);
-    }
-
-    private function getRouteFilters(Request $request)
-    {
-        return [
-            'filter[online_ticket]' => $request->query('online_ticket', 1),
-            'filter[online_reserved]' => $request->query('online_reserved'),
-            'filter[is_promotion]' => $request->query('is_promotion'),
-            'filter[companies][index]' => $request->query('companies_index'),
-            'filter[fare][min]' => $request->query('fare_min'),
-            'filter[fare][max]' => $request->query('fare_max'),
-            'filter[available_seat][min]' => $request->query('available_seat_min'),
-            'filter[available_seat][max]' => $request->query('available_seat_max'),
-            'filter[rating][min]' => $request->query('rating_min'),
-            'filter[rating][max]' => $request->query('rating_max'),
-            'filter[time][min]' => $request->query('time_min'),
-            'filter[time][max]' => $request->query('time_max'),
-            'filter[limousine]' => $request->query('limousine'),
-            'filter[seat_type][index]' => $request->query('seat_type_index'),
-            'filter[covid_utility]' => $request->query('covid_utility'),
-            'filter[enabled_gps]' => $request->query('enabled_gps'),
-            'filter[full_trip]' => $request->query('full_trip'),
-            'filter[pickup_points][index][district]' => $request->query('pickup_points_index_district'),
-            'filter[pickup_points][0][name]' => $request->query('pickup_points_0_name'),
-            'filter[dropoff_points][index][district]' => $request->query('dropoff_points_index_district'),
-            'filter[dropoff_points][0][name]' => $request->query('dropoff_points_0_name'),
-            'page' => $request->query('page', 1),
-            'pagesize' => $request->query('pagesize', 10),
-        ];
     }
 
     private function addBusImagesToRoutes($token, $list_routes)
@@ -389,6 +361,10 @@ class RouteController extends Controller
     function busSeatMap($tripCode, $keyId, Request $request)
     {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+        $config = request('config', 'none');
+        $companyId = request('companyId', "none");
+        $unchoosable = (int) request('unchoosable', 0);
+        // dd($config);
         if ($tripCode === null) {
             return response()->json(['error' => 'Missing required parameters.'], 400);
         }
@@ -398,18 +374,55 @@ class RouteController extends Controller
                 'error' => 'Failed to retrieve token',
             ], 500);
         }
+
+        if ($config == "CALLING" && $companyId != 'none') {
+            $urlCpn =  $this->main_url . "/v3/company/" . $companyId . "/info_for_agent";
+            $companyData = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlCpn, 60 * 20);
+            $hotline = explode(",", $companyData['hotline_info']);
+            // dd($companyData['name']);
+            return response()->json([
+                "message" => "success",
+                'tripCode' => $tripCode,
+                'dataHTML' => view('bus._bus_stepChooseSeat', [
+                    'config' => $config,
+                    'companyData' => $companyData,
+                    'hotline' => $hotline,
+                    'unchoosable' => (int)$unchoosable,
+                    "pickupPoints" => $seatMap['pickup_points'] ?? [],
+                    "transferPoints" => $seatMap['transfer_points_at_arrive'] ?? [],
+                    "dropOffPoints" => $seatMap['drop_off_points_at_arrive'] ?? [],
+                    "keyId" => $keyId,
+                ])->render(),
+            ]);
+        }
+
         $urlSeatMap = $this->main_url . "/v3/trip/seat_map?trip_code=" . $tripCode;
         $seatMap = Helpers::cacheData("seat-map-bus-" . $tripCode, $token, $urlSeatMap, 60 * 20);
-        // dd($seatTemplateMap);
+        $allSeatData = [];
+        if ($unchoosable == 1 && isset($seatMap['coach_seat_template']) > 0) {
+            foreach ($seatMap['coach_seat_template'] as $template) {
+                foreach ($template['seats'] as $seat) {
+                    $allSeatData[] = [
+                        'seatCode' => $seat['seat_code'],
+                        'fareSeat' => $seatMap['fare'],
+                        'fullCode' => $seat['full_code'],
+                    ];
+                }
+            }
+        }
+        // dd($seatMap);
         return response()->json([
             "message" => "success",
             'tripCode' => $tripCode,
             'dataHTML' => view('bus._bus_stepChooseSeat', [
+                'config' => $config,
+                'unchoosable' => (int)$unchoosable,
                 'tripCode' => $tripCode,
+                'allSeatData' => json_encode($allSeatData),
                 'seatTemplateMap' => $seatMap['coach_seat_template'] ?? [],
                 "pickupPoints" => $seatMap['pickup_points'] ?? [],
-                "transferPoints" => $seatMap['transfer_points_at_arrive'],
-                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'],
+                "transferPoints" => $seatMap['transfer_points_at_arrive'] ?? [],
+                "dropOffPoints" => $seatMap['drop_off_points_at_arrive'] ?? [],
                 "seatMap" => $seatMap,
                 "keyId" => $keyId,
             ])->render(),
@@ -427,28 +440,29 @@ class RouteController extends Controller
         $dp_district_name = $request->query('dp_district_name') ? explode(',', $request->query('dp_district_name')) : [];
         $pp_district_name = $request->query('pp_district_name') ? explode(',', $request->query('pp_district_name')) : [];
         $companyId = $request->query('company_id') ? explode(',', $request->query('company_id')) : [];
-        $seatType = $request->query('seat_type') ? explode(',', $request->query('seat_type')) : [];  
+        $seatType = $request->query('seat_type') ? explode(',', $request->query('seat_type')) : [];
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
 
         if ($busTo === null || $busFrom === null || $dateTo === null) {
             return response()->json(['error' => 'Missing required parameters.'], 400);
         }
+
         $urlRoute = $this->route_url . '/v2/route?filter[from]=' . $busFrom . '&filter[to]=' . $busTo . '&filter[date]=' . $dateTo;
         $queryParams = [];
-        //---Lọc-- 
-        $queryParams = [ 
+        //---Lọc--
+        $queryParams = [
             'filter[time][min]' => $request->query('time_min') ?? null, // Lọc theo thời gian bắt đầu HH:mm
             'filter[time][max]' => $request->query('time_max') ?? null, // Lọc theo thời gian kết thúc HH:mm
             'filter[fare][min]' => $request->query('fare_min') ?? null, // Lọc theo giá vé tối thiểu
-            'filter[fare][max]' => $request->query('fare_max') ?? null, // Lọc theo giá vé tối đa 
+            'filter[fare][max]' => $request->query('fare_max') ?? null, // Lọc theo giá vé tối đa
             'filter[rating][min]' => $request->query('rating_min') ?? null, // Lọc theo rating tối thiểu
             'filter[available_seat][min]' =>  $request->query('available_seat_min') ?? null, // Lọc theo số lượng ghế trống tối thiểu
             'filter[rating][max]' => 5, // Lọc theo rating tối đa
             'sort' => $request->query('sort') ?? "time:asc", // Sort theo giờ (time:asc/time:desc), rating (rating:asc), giá (fare:asc),
-        ]; 
+        ];
         //Lọc tên địa điểm đón
         foreach ($pickupPointsDistrict as $key => $district) {
-            $queryParams["filter[pickup_points][$key][district]"] = $district; 
+            $queryParams["filter[pickup_points][$key][district]"] = $district;
             // Kiểm tra xem tên điểm đến có tồn tại tại chỉ số $key không
             $name = isset($pp_district_name[$key]) ? $pp_district_name[$key] : null;
             $queryParams["filter[pickup_points][$key][name]"] = $name;
@@ -456,19 +470,19 @@ class RouteController extends Controller
         //Lọc tên địa điểm trả
         foreach ($dropOffPointsDistrict as $key => $district) {
             $queryParams["filter[dropoff_points][$key][district]"] = $district;
-        
+
             // Kiểm tra xem tên điểm đến có tồn tại tại chỉ số $key không
             $name = isset($dp_district_name[$key]) ? $dp_district_name[$key] : null;
             $queryParams["filter[dropoff_points][$key][name]"] = $name;
         }
         //Lọc nhà xe
-        foreach ($companyId as $key => $companyName) {  
+        foreach ($companyId as $key => $companyName) {
             $queryParams["filter[companies][$key]"] = $companyName;
-        } 
+        }
         //Lọc Loại ghế / giường
-        foreach ($seatType as $key => $seat_name) {  
+        foreach ($seatType as $key => $seat_name) {
             $queryParams["filter[seat_type][$key]"] = $seat_name;
-        } 
+        }
         // Thêm các tham số vào URL
         foreach ($queryParams as $key => $value) {
             if ($value !== null) {
@@ -482,6 +496,7 @@ class RouteController extends Controller
             ], 500);
         }
 
+        // Lấy dữ liệu chuyến đi
         $main_url = $this->main_url . '/v3/area/city_district';
         $list_areas = collect(Helpers::cacheData('city_district', $token, $main_url, 60 * 60 * 24));
         // Lấy thông tin từ params
@@ -492,23 +507,32 @@ class RouteController extends Controller
             'dateFrom' => $dateFrom,
         ]);
         // Thông tim tuyến đường
-        $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo; 
+        $cacheKeyRoute = 'route_' . $busFrom . '_' . $busTo . '_' . $dateTo;
         $res_routes = Helpers::cacheData($cacheKeyRoute, $token, $urlRoute, $queryParams, 60 * 20, true);
-        $list_routes = $res_routes['data']; 
+        $list_routes = $res_routes['data'];
         // Thông tin ảnh nhà xe
         $list_routes = $this->addBusImagesToRoutes($token, $list_routes);
 
+        // Tính tổng số chuyến đi cho tất cả trang
+        $totalAll = $res_routes['total']; // Lấy tổng từ phản hồi
+        // dd($list_routes);
         return response()->json([
-            "message" => "success",  
+            "message" => "success",
+            'total' => $totalAll, // Tổng số chuyến đi
             'dataHTML' => view('bus._bus_listResult', [
                 "list_routes" => $list_routes,
-                "params" => $params,
+                "params" => (object)[
+                    'busFrom' => (object)$busFrom,
+                    'busTo' => (object)$busTo,
+                    'dateTo' => $dateTo,
+                    'dateFrom' => $dateFrom,
+                ],
                 'currentPage' => $res_routes['page'],
                 'pageSize' => $res_routes['page_size'],
-                'total' => $res_routes['total'],
+                'total' => $totalAll, // Cập nhật tổng số chuyến
                 'totalPages' => $res_routes['total_pages']
             ])->render(),
-        ]);
+        ], 200);
     }
 
 
@@ -591,13 +615,14 @@ class RouteController extends Controller
             ])->render(),
         ]);
     }
-    
+
     // Hiển thị tiện ích của Bus
-    public function busUtilitiesSearch (Request $request) {
+    public function busUtilitiesSearch(Request $request)
+    {
         $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        $urlRoute = $this->main_url . '/v3/company/'.$request->id.'/utility?seat_template_id='. $request->seat_template_id;
+        $urlRoute = $this->main_url . '/v3/company/' . $request->id . '/utility?seat_template_id=' . $request->seat_template_id;
         $list_routes = Helpers::cacheData('utility', $token, $urlRoute);
-        
+
         return response()->json([
             "message" => "success",
             'data'    => $list_routes
@@ -605,10 +630,11 @@ class RouteController extends Controller
     }
 
     // Hàm sắp xếp các chuyến tàu
-    public function trainRouteSort (Request $request) {
+    public function trainRouteSort(Request $request)
+    {
         $list_routes_train = $request->list_train;
         $html_result = '';
-        if ( $list_routes_train != null ) {
+        if ($list_routes_train != null) {
             // Kiểm tra và xử lý dữ liệu nếu cần thiết
             foreach ($list_routes_train as $key => $route) {
                 $data = $this->returnViewItemTrain($route, $key, $list_routes_train);
@@ -624,7 +650,8 @@ class RouteController extends Controller
         ]);
     }
 
-    public function returnViewItemTrain ($route, $key, $list_routes_train) {
+    public function returnViewItemTrain($route, $key, $list_routes_train)
+    {
         return view('train._train_item', [
             'route' => $route,
             'key' => (string) $key,

@@ -1,11 +1,39 @@
 @media (max-width: 1150px) {
+    .total-header #btn-hotline {
+        display: none;
+    }
+
     .slogan-header {
         display: none;
+    }
+
+    .content {
+        max-width: 100%;
+    }
+
+    .cta-button {
+        width: 90%;
+    }
+
+    .card-image {
+        max-width: 100%;
+    }
+
+    .post-footer {
+        max-width: 90%;
     }
 }
 
 @media (max-width: 992px) {
+    .total-header #btn-hotline {
+        display: none;
+    }
+
     .total-header {
+        padding: 4px !important;
+    }
+
+    .total-header .material-icons-wrapper {
         display: none;
     }
 
@@ -75,72 +103,6 @@
         width: 100%;
     }
 
-    .slide {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .left-ant-row-flex {
-        display: block;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .flex-sum-left input {
-        width: 290px;
-    }
-
-    .wrap-left-ant-row-flex {
-        display: block;
-    }
-
-    .custom-icon-container {
-        margin-left: 10px;
-    }
-
-    .custom-icon-container .fa-solid {
-        margin-left: -20px;
-    }
-
-    .custom-icon-container .fa-location-dot {
-        margin-left: 0px;
-    }
-
-    .fa fa-plus {
-        margin-left: 10px;
-    }
-
-    .custom-swap-container {
-        display: none;
-    }
-
-    .fa-solid fa-bus-simple span {
-        margin-left: 10px;
-    }
-
-    .custom-icon-section {
-        margin-left: 20px;
-    }
-
-    .right-search-widget-inner-content button {
-        width: 100%;
-    }
-
-    .fa-solid fa-bus-simple {
-        margin-left: 20px;
-    }
-
-    .custom-input-container {
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-
     .departure-bus-date flex-sum-left {
         padding-bottom: 5px;
     }
@@ -176,10 +138,6 @@
         z-index: 0;
     }
 
-    .sidenav {
-        z-index: 4;
-    }
-
     .main-content {
         flex-direction: column-reverse;
         flex-direction: column;
@@ -197,6 +155,7 @@
     .bottom-left {
         width: 100%;
     }
+
     .image-tab .carousel-icon {
         width: 30px;
         height: 30px;
@@ -211,6 +170,7 @@
         width: 1rem;
         height: 1rem;
     }
+
     .place-l {
         font-size: 13px;
     }
@@ -277,6 +237,7 @@
     .right-section {
         min-width: auto !important;
     }
+
     .cta-button {
         width: 375px;
         max-width: 375px;
@@ -289,9 +250,10 @@
 }
 
 @media (max-width: 768px) {
-    .filters-wrapper > *:not(.filter-title) {
+    .filters-wrapper>*:not(.filter-title) {
         display: none;
     }
+
     .cta-button {
         display: block;
         width: 100%;
@@ -306,6 +268,7 @@
     .post-footer {
         text-align: center;
     }
+
     .fg {
         margin-top: -50px;
     }
@@ -314,6 +277,7 @@
         width: 690px;
         margin-left: 35px;
     }
+
     .wrap-criteria {
         display: none;
     }
@@ -400,20 +364,25 @@
     .d-flex .mb-1 {
         width: 280px;
     }
+
     .container-airlinetickets {
         width: 97%;
         z-index: 3;
     }
+
     .nav-item {
         padding-bottom: 5px;
     }
+
     .nav-item button span {
         font-size: 12px;
     }
+
     .ant-row-flex {
         display: block;
         text-align: center;
     }
+
     .left-ant-row-flex {
         display: block;
         justify-content: flex-start;
@@ -426,6 +395,7 @@
     .wrap-left-ant-row-flex {
         display: block;
     }
+
     .departure-bus-flex,
     .destination-bus-flex,
     .departure-bus-date,
@@ -437,15 +407,19 @@
         height: 40px;
         width: 100%;
     }
+
     .custom-input-container {
         gap: 10px;
     }
+
     .custom-icon-container .fa-location-dot {
         padding-left: 5px;
     }
+
     .custom-swap-container {
         display: none;
     }
+
     #bus_search,
     #train_search {
         width: 100%;
@@ -454,9 +428,11 @@
     .ss-main {
         border: none;
     }
+
     .ss-main .ss-arrow path {
         display: none;
     }
+
     .ss-values {
         font-weight: bold;
     }
@@ -658,6 +634,7 @@
     .ticket-step-collapse-0 span {
         font-size: 12px;
     }
+
     .travel-slider {
         position: relative;
         width: 100%;
@@ -830,7 +807,7 @@
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        height: 200vh;
+
         background-color: #f0f2f5;
     }
 
@@ -991,6 +968,30 @@
     .modal .close-button:hover {
         background-color: #0056b3;
     }
+
+    .content {
+        max-width: 100%;
+    }
+
+    .cta-button {
+        width: 90%;
+    }
+
+    .card-image {
+        max-width: 100%;
+    }
+
+    .content-vexere-sbay {
+        max-width: 90%;
+    }
+
+    .post-footer {
+        max-width: 70%;
+    }
+
+    .button-register {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
@@ -1002,6 +1003,7 @@
     .tab-pane .fade .pickup-tab .active .show {
         margin-left: -20px;
     }
+
     .tab-pane .fade h6 {
         width: 100%;
         white-space: nowrap;
@@ -1077,6 +1079,7 @@
         font-size: 10px;
         white-space: nowrap;
     }
+
     .custom-hour {
         font-size: 15px;
     }
@@ -1087,6 +1090,12 @@
 
     .custom-hour {
         font-size: 13px;
+    }
+}
+
+@media (min-width: 768px) {
+    .total-header #btn-hotline {
+        display: block;
     }
 }
 
@@ -1107,13 +1116,5 @@
 @media (max-width: 1676px) {
     .fg {
         margin-top: -50px;
-    }
-
-    .relatedContent {
-        width: 700px;
-    }
-
-    .cta-button {
-        width: 90%;
     }
 }

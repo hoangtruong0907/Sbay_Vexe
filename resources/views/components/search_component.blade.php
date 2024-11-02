@@ -93,7 +93,7 @@
                     <div class="departure-bus-date-right flex-sum-left">
                         <i class="fa fa-plus" aria-hidden="true"></i> <input type="text"
                             class="date-input data-add-input" id="bus_date_from" placeholder="Thêm ngày về"
-                            autocomplete="off">
+                            autocomplete="off" disabled>
                     </div>
                 </div>
             </div>
@@ -249,7 +249,8 @@
 
                     <div class="departure-train-date flex-sum-left">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <input type="text" id="train_date_to" value="{!! $params->dateToTrain ?? '' !!}"
+                        <input type="text" id="train_date_to"
+                        {{-- value="{!! $params->dateToTrain ?? '' !!}" --}}
                             class="date-input date-default-train" placeholder="Chọn ngày bắt đầu">
                     </div>
                     <div class="departure-train-date-right flex-sum-left">

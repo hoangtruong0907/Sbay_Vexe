@@ -23,9 +23,7 @@ $(document).ready(function () {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
                 success: displayPostDetails,
-                error: function (error) {
-                    console.error('Error fetching post details:', error);
-                }
+                
             });
         });
     });
@@ -112,7 +110,7 @@ function toggleModal(event, modalId, isHidden) {
 function delete_post() {
     const Id = $('#deleteModal').data('Id');
     $.ajax({
-        url: `/admin/blogs/delete/${Id}`,
+        url: `/admin/blogs/destroy/${Id}`,
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

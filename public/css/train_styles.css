@@ -17,6 +17,7 @@
     justify-content: space-between;
     margin-bottom: 16px;
 }
+
 .train-name-l {
     display: flex;
     justify-content: space-between;
@@ -24,6 +25,7 @@
     font-size: 1.2em;
     font-weight: bold;
 }
+
 .ticket-image-v {
     position: relative;
     width: 250px;
@@ -186,6 +188,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 .ticket-confirm-l {
     position: absolute;
     -webkit-box-align: center;
@@ -234,8 +237,8 @@
 .bus-rating-l i {
     color: #fff;
     font-size: 13px;
-    padding:5px;
-    
+    padding: 5px;
+
     color: #ffcc00;
 }
 
@@ -378,7 +381,7 @@
     color: white;
     font-size: 14px;
     padding: 0px 8px;
-border: 0px;
+    border: 0px;
 }
 
 .fare-info-l-train {
@@ -397,6 +400,7 @@ border: 0px;
 }
 
 .seat-available {
+    cursor: pointer;
     text-align: right;
     font-size: 16px;
     color: rgb(72, 72, 72);
@@ -428,7 +432,7 @@ border: 0px;
 
 /* Detail */
 .container-textSeat {
-    
+
     justify-items: center;
     justify-content: space-between;
 }
@@ -552,7 +556,7 @@ border: 0px;
 
 .row-utility .icon-text p {
     max-width: 70%;
-margin: 0;
+    margin: 0;
     color: green;
 }
 
@@ -640,6 +644,7 @@ margin: 0;
     padding: 0px 8px;
     border: 0px;
 }
+
 .action-l {
     display: flex;
     justify-content: space-between;
@@ -737,7 +742,7 @@ margin: 0;
 
 .steps-container-train {
     display: flex;
-align-items: center;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     position: relative;
@@ -889,7 +894,7 @@ align-items: center;
     font-weight: 700;
     font-size: 12px;
     line-height: 12px;
-margin-bottom: 0px;
+    margin-bottom: 0px;
     color: rgb(47, 128, 237);
     text-transform: uppercase;
 }
@@ -987,7 +992,8 @@ margin-bottom: 0px;
     cursor: not-allowed;
 }
 
-.coach-row-train .seat, .coach-row-train .train-hl {
+.coach-row-train .seat,
+.coach-row-train .train-hl {
     padding: 4px;
     border: 0 !important;
 }
@@ -1048,6 +1054,7 @@ margin-bottom: 0px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
 .coach-row-train .seat-train .modal-choose-chair-train {
     margin: 4px;
 }
@@ -1209,7 +1216,7 @@ margin-bottom: 0px;
 .total-amount-train {
     width: 100%;
     border-top: 1px solid rgb(192, 192, 192);
-padding: 16px 0px 8px;
+    padding: 16px 0px 8px;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -1255,6 +1262,14 @@ padding: 16px 0px 8px;
     font-weight: bold;
     margin-right: 8px;
 }
+
+.left-total-amount-train .left-seat-train {
+    display: inline;
+    color: rgb(0, 96, 196);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
 
 .item-col-train .img-custom {
     display: flex;
@@ -1344,17 +1359,19 @@ padding: 16px 0px 8px;
 .step-content-custom-show {
     display: block;
 }
+
 /* Các Loại Ghế */
-.tab-content > .tab-pane {
+.tab-content>.tab-pane {
     transition: opacity 0.3s ease-in-out;
     opacity: 0;
     visibility: hidden;
 }
 
-.tab-content > .tab-pane.show {
+.tab-content>.tab-pane.show {
     opacity: 1;
     visibility: visible;
 }
+
 .bigger-main {
     -webkit-box-align: center;
     align-items: center;
@@ -1362,18 +1379,22 @@ padding: 16px 0px 8px;
     gap: 4px;
     background: rgb(236, 244, 253);
 }
+
 .bigger-main .tail-contai {
-margin-left: 10px;
+    margin-left: 10px;
 }
+
 .cavity .item-container {
     width: 49%;
-    flex: 0 0 calc(50% - 10px); 
+    flex: 0 0 calc(50% - 10px);
     box-sizing: border-box;
     margin-top: -20px;
 }
-.cavity{
+
+.cavity {
     margin-top: 12px;
 }
+
 .cavity .top-group {
     display: flex;
     flex-direction: row;
@@ -1381,27 +1402,31 @@ margin-left: 10px;
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
+
 .compartments {
     flex-direction: column;
-    
+
     align-items: flex-start;
     -webkit-box-pack: start;
     justify-content: flex-start;
     border-radius: 4px;
     padding: 8px;
 }
+
 .compartments .inner-container {
     width: 100%;
-    padding: 12px; 
+    padding: 12px;
     background-color: rgb(242, 242, 242);
     border-radius: 4px
 }
+
 .Numberofcompartments {
     font-size: 13px;
     font-weight: 700;
     line-height: 12px;
     margin-bottom: 0px;
 }
+
 .priceToTrain {
     color: rgb(36, 116, 229);
 }
@@ -1414,24 +1439,66 @@ margin-left: 10px;
     width: 100%;
     margin-top: 3px;
 }
+
 .top-group {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 16px; 
+    flex-wrap: wrap;
+    gap: 16px;
 }
-
-
-
 
 .carriage-description {
-    margin-top: 8px; 
-    font-size: 14px; 
-    color: #666; 
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
 }
+
 .carriage-details {
-    display: none; /* Ẩn mô tả mặc định */
+    display: none;
+    /* Ẩn mô tả mặc định */
     padding: 10px;
     border: 1px solid #ddd;
     margin-top: 10px;
     background-color: #f9f9f9;
+}
+
+.seat-unavailable {
+    stroke: rgb(179, 179, 179);
+    fill: rgb(224, 224, 224);
+}
+
+.seat-unavailable svg rect {
+    stroke: rgb(179, 179, 179);
+    fill: rgb(224, 224, 224);
+}
+
+.seat-unavailable .icon-selected {
+    display: none;
+}
+
+.seat-selected {
+    stroke: rgb(39, 174, 96);
+    fill: rgb(139, 229, 176);
+}
+
+.seat-selected rect {
+    stroke: rgb(39, 174, 96);
+    fill: rgb(139, 229, 176);
+}
+
+.seat-selected .icon-disabled {
+    display: none;
+}
+
+.trip-train-reponesive {
+    display: none;
+}
+
+.seat-unavailable {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+#floating {
+    display: none;
 }

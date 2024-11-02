@@ -24,6 +24,8 @@ class User extends Authenticatable
         'role',
         'password',
         'google_id',
+        'sex',
+        'birthdate',
     ];
 
     /**
@@ -47,5 +49,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
     }
 }
