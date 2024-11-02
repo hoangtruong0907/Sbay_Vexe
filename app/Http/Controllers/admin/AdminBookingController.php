@@ -48,30 +48,80 @@ class AdminBookingController extends Controller
     
     public function show($id)
     {
-        $title = 'Detail';
-        $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
-        $client = new Client();
-        try {
-            $response = $client->request('GET', 'https://uat-api.vexere.net/v3/booking', [
-                'query' => ['code' => $id],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => "Bearer $token",
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true);
-            if ($data) {
-                $users = $data;
-            } else {
-                $users = [];
+    $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+    $client = new Client();
+    try {
+        $response = $client->get($this->main_url . '/v3/booking?code=' . $id, [
+            'headers' => [
+                'Postman-Token' => (string) $token,
+                'cache-control' => 'no-cache',
+                'Authorization' => 'Bearer ' . $token,
+            ]
+        ]);
+        $responseBody = json_decode($response->getBody(), true);
+        dd($responseBody['data']);
+        if (!empty($responseBody['data'])) {
+            $booking = $responseBody['data'][0];
+            $bookingData = [
+                'booking_id' => $booking['booking_id'],
+                'status' => $booking['status'],
+                'description' => $booking['description'],
+                'final_price' => $booking['final_price'] ?? 0,
+                'from' => $booking['from'],
+                'to' => $booking['to'],
+                'trip_name' => $booking['trip_name'],
+                'trip_date' => $booking['trip_date'],
+                'pickup_time' => $booking['pickup_time'],
+                'drop_off_time' => $booking['drop_off_time'] ?? null,
+                'created_user' => $booking['created_user'], 
+                'created_date' => $booking['created_date'],
+                'customer' => [
+                    'customer_id' => $booking['customer_id'],
+                    'name' => $booking['customer']['name'],
+                    'phone' => $booking['customer']['phone'],
+                    'email' => $booking['customer']['email'],
+                ],
+                'seat_codes' => $booking['seat_codes'] ?? [],
+                'company' => $booking['company'],
+                'comp_id' => $booking['comp_id'],
+                'agent_id' => $booking['agent_id'],
+                'is_confirmed' => $booking['is_confirmed'] ?? false,
+                'is_bms_confirmed' => $booking['is_bms_confirmed'] ?? false,
+                'cancelled_date' => $booking['cancelled_date'],
+                'arrival_date' => $booking['arrival_date'],
+                'bo_phone_info' => $booking['bo_phone_info'] ?? null,
+            ];
+            
+            if (isset($booking['ticket']) && !empty($booking['ticket']['detail_info'])) {
+                $tickets = [];
+                foreach ($booking['ticket']['detail_info'] as $ticketDetail) {
+                    $tickets[] = [
+                        'code' => $ticketDetail['id'],
+                        'status' => $ticketDetail['status'],
+                        'fare' => $ticketDetail['fare'], // Thêm giá vé nếu cần
+                        'customer_name' => $ticketDetail['customer_name'], // Thêm tên khách hàng nếu cần
+                        'customer_phone' => $ticketDetail['customer_phone'], // Thêm số điện thoại nếu cần
+                        'pickup_time' => $ticketDetail['pickup_time'], // Thêm thời gian đón nếu cần
+                        'drop_off_time' => $ticketDetail['drop_off_time'],  
+                        'seat'=>$ticketDetail['seat'], // Thêm thời gian trả nếu cần
+            ];
             }
-
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Lỗi khi lấy dữ liệu từ API: ' . $e->getMessage()], 500);
+                $bookingData['ticket'] = $tickets;
+            } else {
+                $bookingData['ticket'] = [];
+            }
+            
+            return view('admin.booking.booking_detail', ['arrayData' => $bookingData]);
+        } else {
+            return response()->json(['message' => 'Booking not found.'], 404);
         }
-        return view('admin.booking.booking_detail', compact('data', 'title'));
+       
+    } catch (Exception $e) {
+        // Xử lý lỗi
+        return response()->json(['message' => 'Error occurred: ' . $e->getMessage()], 500);
     }
+    }
+    
         public function edit($id)
         {
 
