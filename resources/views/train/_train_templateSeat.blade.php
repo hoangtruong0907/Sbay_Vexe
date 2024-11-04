@@ -23,6 +23,9 @@
                         </div> --}}
                     </span>
                 </div>
+                <div class="type-seat flex mt-3">
+                    {{-- Render items in here --}}
+                </div>
             </div>
         </div>
         {{-- List template seat  --}}
@@ -237,5 +240,36 @@
                 maximumFractionDigits: 3
             }) + 'đ';
         }
+
+        function handleRenderTypeUser() {
+            for (let index = 0; index < userPresent.child; index++) {
+                let count = index + 1;
+                $('.type-seat').append(
+                    `<div class="item-child">
+                        <label for="child-${count}" class="child-type">
+                            <h6><b>Trẻ em ${count}</b></h6>
+                            <div>Bấm để chọn chỗ</div>
+                        </label>
+                        <input type="radio" value="" name="user_type" id="child-${count}"/>
+                    </div>`
+                );
+            }
+
+            for (let index = 0; index < userPresent.adult; index++) {
+                let count = index + 1;
+                $('.type-seat').append(
+                    `<div class="item-child">
+                        <label for="adult-${count}" class="child-type">
+                            <h6><b>Người lớn ${count}</b></h5>
+                            <div>Bấm để chọn chỗ</div>
+                        </label>
+                        <input type="radio" value="" name="user_type" id="adult-${count}"/>
+                    </div>`
+                );
+            }
+
+            $('.child-type').first().find('input').attr('checked', 'checked');
+        }
+        handleRenderTypeUser();
     });
 </script>

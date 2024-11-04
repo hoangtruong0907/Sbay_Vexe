@@ -307,7 +307,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade rating-tab show active" id="rating-{{ $key }}" role="tabpanel"
+                        {{-- <div class="tab-pane fade rating-tab show active" id="rating-{{ $key }}" role="tabpanel"
                             aria-labelledby="rating-tab" tabindex="2">
                             <div class="d-flex align-items-center">
                                 <div class="container-star d-flex align-items-center rating-info">
@@ -633,7 +633,7 @@
                                 </button>
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -671,7 +671,7 @@
 
             // Xử lý sự kiện cho nút "Chọn chuyến"
             chooseTripButton.addEventListener('click', function (event) {
-                event.preventDefault();
+                event.preventDefault();                
 
                 if (detailCollapse.classList.contains('show')) {
                     closeCollapse(detailCollapse);

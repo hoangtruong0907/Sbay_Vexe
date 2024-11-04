@@ -285,33 +285,33 @@
                             <div class="item-decs">Từ trên 10-59 tuổi vào ngày khời hành</div>
                         </div>
                         <div class="item-action">
-                            <button type="button" class="btn action minus-btn false">
+                            <button type="button" class="btn action minus-btn false" data-value="adult">
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
                             </button>
                             <div class="item-number">1</div>
-                            <button type="button" class="btn action add-btn active">
+                            <button type="button" class="btn action add-btn active" data-value="adult">
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
                             </button>
                         </div>
                     </div>
                     {{-- children --}}
-                    <div class="item-info" id="children">
+                    <div class="item-info mb-4" id="children">
                         <div class="item-title-decs">
                             <div class="item-title">Trẻ em</div>
                             <div class="item-decs">Từ trên 0-10 tuổi vào ngày khời hành, ưu đãi áp dụng cho công dân Việt Nam</div>
                         </div>
                         <div class="item-action">
-                            <button type="button" class="btn action minus-btn false" disabled>
+                            <button type="button" class="btn action minus-btn false" disabled data-value="child">
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_minus.svg') }} " alt="Icon">
                             </button>
                             <div class="item-number">0</div>
-                            <button type="button" class="btn action add-btn active">
+                            <button type="button" class="btn action add-btn active" data-value="child">
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
                             </button>
                         </div>
                     </div>
                     {{-- elderly --}}
-                    <div class="item-info" id="elderly">
+                    {{-- <div class="item-info" id="elderly">
                         <div class="item-title-decs">
                             <div class="item-title">Người cao tuổi</div>
                             <div class="item-decs">Từ trên 60 tuổi trở lên vào ngày khời hành, ưu đãi áp dụng cho công dân Việt Nam</div>
@@ -325,9 +325,9 @@
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- student --}}
-                    <div class="item-info" id="student">
+                    {{-- <div class="item-info" id="student">
                         <div class="item-title-decs">
                             <div class="item-title">Sinh viên</div>
                             <div class="item-decs">Ưu đãi chỉ áp dụng cho công dân Việt Nam đem theo thẻ sinh viên khi đi tàu</div>
@@ -341,9 +341,9 @@
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- union --}}
-                    <div class="item-info mb-4" id="union">
+                    {{-- <div class="item-info mb-4" id="union">
                         <div class="item-title-decs">
                             <div class="item-title">Đoàn viên công đoàn</div>
                             <div class="item-decs">Ưu đãi chỉ áp dụng cho công dân Việt Nam đem theo thẻ đoàn viên hợp lệ khi đi tàu</div>
@@ -357,7 +357,7 @@
                                 <img src="{{ asset('/template/admin/assets/images/icons/ic_plus.svg') }} " alt="Icon">
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- close button --}}
                     <div class="icon-close">
                         <i class="fa-solid fa-circle-xmark"></i>
