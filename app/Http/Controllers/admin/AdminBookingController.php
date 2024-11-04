@@ -13,7 +13,9 @@ use GuzzleHttp\Client;
 
 use App\Helpers\helpers;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 class AdminBookingController extends Controller
@@ -40,10 +42,43 @@ class AdminBookingController extends Controller
         // dd($users);
         return view('admin.booking.index', compact('users', 'title'));
     }
+
     public function showDataTable()
     {
         $bookings = Booking::get();
         return response()->json(['data' => $bookings]);
+    }
+
+    public function showDataTransactionsTable() {
+        // Gọi api giao dịch
+        // $response = Http::get('https://sbaygroup.net/global-apis/bun-vcb.php', [
+        //     'key' => env('PAYMENT_VCB_KEY', 'tin_sbay_key_vcb'),
+        //     'gidzl' => env('PAYMENT_VCB_GIDZL')
+        // ]);
+
+        $filePath = 'C:/Users/nguye/OneDrive/Desktop/dataTransaction.json';
+
+        if (file_exists($filePath)) {
+            $jsonContent = file_get_contents($filePath);
+            $data = json_decode($jsonContent, true);
+
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $filteredData = collect($data['data'] ?? [])->filter(function ($item) {
+                    $createdAt = Carbon::createFromTimestamp($item['createdAt']);
+                    $threeDaysAgo = Carbon::now()->subDays(3);
+
+                    return $createdAt >= $threeDaysAgo
+                        && strpos($item['memo'], 'HD') === 0
+                        && $item['type'] === 'deposit';
+                })->values()->all();
+                // Đảm bảo trả về một mảng, ngay cả khi không có dữ liệu
+                return response()->json(['data' => $filteredData]);
+            } else {
+                return response()->json([]);
+            }
+        } else {
+            return response()->json([]);
+        }
     }
     
     public function show($id)

@@ -4,9 +4,9 @@
 @section('contents')
     <div class="container mt-5">
         <div class="flex flex-wrap items-center justify-between gap-4">
-            <h2 class="text-xl">{{ $title }}</h2>
         </div>
         <div class="panel mt-5 overflow-hidden border-0 p-4">
+            <div class="flex" style="justify-content: space-between"><h2 class="text-xl fw-bold">{{ $title }}</h2><button class="restart_table" style="transition: transform 0.5s"><img src="{{ asset('/template/admin/assets/images/icons/ic_restart.svg') }}" alt="Icon"></button></div>
             <div class="table-responsive">
                 <table class="table-striped table-hover" id="dataTables-example">
                     <thead>
@@ -23,7 +23,25 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- Render data in here --}}
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
+        <div class="panel mt-5 overflow-hidden border-0 p-4">
+            <div class="w-full text-center"><h2 class="fw-bold text-xl">Bảng giao dịch gần đây</h2></div>
+            <div class="table-responsive mt-2">
+                <table class="table-striped table-hover" id="table_transaction">
+                    <thead>
+                        <tr>
+                            <th>Order_Code</th>
+                            <th>Số tiền</th>
+                            <th>Ngày tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- Render data in here --}}
                     </tbody>
                 </table>
             </div>
@@ -267,6 +285,34 @@
         function formatCurrency(amount) {
             return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
         }
+        
+        // -------------------
+        const dataTransactionTables = $('#table_transaction').DataTable({
+            ajax: ({
+                url: "{{route('admin.booking.dataTransactionTable')}}",
+                type: 'GET',
+            }),
+            columns: [
+                { data: 'memo' },
+                { data: 'money' },
+                { data: 'date' },
+            ],
+            ordering: false // Tắt chức năng sắp xếp mặc định
+        });
+
+        let rotation = 0; // Biến để lưu góc xoay hiện tại
+        $('.restart_table').on('click', function() {
+            dataTables.ajax.reload(() => {
+                dataTables.draw();
+            });
+
+            dataTransactionTables.ajax.reload(() => {
+                dataTables.draw();
+            });
+
+            rotation += 360; // Tăng góc xoay thêm 360 độ
+            $(this).css('transform', `rotate(${rotation}deg)`);
+        })
     </script>
     <script src="{{ asset('/template/admin/ajax/bookingManagement.js') }}"></script>
 @endsection
