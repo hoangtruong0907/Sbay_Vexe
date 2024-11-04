@@ -83,8 +83,8 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.booking') }}" class="nav-link group {{ request()->segment(2) == 'booking' ? 'active' : '' }}">
                         <div class="flex items-center">
-                            <img src="https://th.bing.com/th/id/OIP.cv6BBq7hPT4ChWLWSTq7fQHaH0?rs=1&pid=ImgDetMain" class="h-5 w-5" alt="" srcset="">
-                            <span
+                            <i class="fa-solid fa-ticket"></i>
+                               <span
                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Booking</span>
                         </div>
                     </a>
