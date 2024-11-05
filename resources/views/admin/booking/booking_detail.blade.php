@@ -61,6 +61,17 @@
                                 </div>
                                 <div class="px-4 ltr:text-right rtl:text-left">
                                     <div class="mt-6 space-y-1 text-white-dark">
+                                        @php  
+                                        switch($arrayData['status']) {
+                                            case 1: echo '<span class="badge bg-info">Chưa chuyển</span>'; break;
+                                            case 2: echo '<span class="badge bg-warning">Đợi thanh toán</span>'; break;
+                                            case 3: echo '<span class="badge bg-secondary">Hoàn vé</span>'; break;
+                                            case 4: echo '<span class="badge bg-success">Hoàn thành</span>'; break;
+                                            case 5: echo '<span class="badge bg-dark">Đã hủy</span>'; break;
+                                            default: echo '<span class="badge bg-secondary">Unknown</span>'; break;
+                                        }
+                                        @endphp
+                                    
                                         <div>Họ và tên: {{$arrayData['customer']['name']}}</div>
                                         <div>SDT: {{$arrayData['customer']['phone']}}</div>
                                         <div>Email: {{$arrayData['customer']['email']}}</div>
@@ -77,7 +88,6 @@
                                             <tr>
                                                 <th>Mã Vé</th>
                                                 <th>Vị trí</th>
-                                                <th>Trạng thái</th>
                                                 <th>Giá vé</th>
                                             </tr>
                                         </thead>
@@ -86,28 +96,6 @@
                                             <tr>
                                                 <td>{{ $ticket['code'] }}</td>
                                                 <td>{{ $ticket['seat'] }}</td>
-                                                <td>
-                                                    @switch($ticket['status'])
-                                                        @case(config('apps.common.status_booking.reserve'))
-                                                            Chưa xác nhận
-                                                            @break
-                                                        @case(config('apps.common.status_booking.pending'))
-                                                            Đợi thanh toán
-                                                            @break
-                                                        @case(config('apps.common.status_booking.refund'))
-                                                            Hoàn tiền
-                                                        @break
-                                                        @case(config('apps.common.status_booking.paid'))
-                                                            Đã thanh toán
-                                                        @break
-                                                        @case(config('apps.common.status_booking.cancel'))
-                                                            Hủy đặt vé
-                                                        @break
-
-                                                        @default
-                                                            Trạng thái không xác định
-                                                    @endswitch
-                                                </td>
                                                  <td>{{ number_format($ticket['fare'], 0, ',', '.') }} đ</td>
                                             </tr>
                                             
@@ -118,7 +106,9 @@
                                 </div>
                                 
                                 <div class="mt-6 grid grid-cols-1 px-4 sm:grid-cols-2">
-                                    <div></div>
+                                    <div>
+                                        <button type="button" class="btn bg-black text-white gap-2"onclick="window.history.back();">Thoát</button>
+                                    </div>
                                     @php 
                                     $totalFare = 0; 
                                     foreach ($arrayData['ticket'] as $ticket) {
@@ -134,11 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end main content section -->
-
                     </div>
-
-                
                 </div>
             </div>
             <script src="assets/js/alpine-collaspe.min.js"></script>
@@ -147,281 +133,4 @@
             <script defer="" src="assets/js/alpine-focus.min.js"></script>
             <script defer="" src="assets/js/alpine.min.js"></script>
             <script src="assets/js/custom.js"></script>
-
-            {{-- <script>
-                document.addEventListener('alpine:init', () => {
-                    // main section
-                    Alpine.data('scrollToTop', () => ({
-                        showTopButton: false,
-                        init() {
-                            window.onscroll = () => {
-                                this.scrollFunction();
-                            };
-                        },
-
-                        scrollFunction() {
-                            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                                this.showTopButton = true;
-                            } else {
-                                this.showTopButton = false;
-                            }
-                        },
-
-                        goToTop() {
-                            document.body.scrollTop = 0;
-                            document.documentElement.scrollTop = 0;
-                        },
-                    }));
-
-                    // theme customization
-                    Alpine.data('customizer', () => ({
-                        showCustomizer: false,
-                    }));
-
-                    // sidebar section
-                    Alpine.data('sidebar', () => ({
-                        init() {
-                            const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
-                            if (selector) {
-                                selector.classList.add('active');
-                                const ul = selector.closest('ul.sub-menu');
-                                if (ul) {
-                                    let ele = ul.closest('li.menu').querySelectorAll('.nav-link');
-                                    if (ele) {
-                                        ele = ele[0];
-                                        setTimeout(() => {
-                                            ele.click();
-                                        });
-                                    }
-                                }
-                            }
-                        },
-                    }));
-
-                    // header section
-                    Alpine.data('header', () => ({
-                        init() {
-                            const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
-                            if (selector) {
-                                selector.classList.add('active');
-                                const ul = selector.closest('ul.sub-menu');
-                                if (ul) {
-                                    let ele = ul.closest('li.menu').querySelectorAll('.nav-link');
-                                    if (ele) {
-                                        ele = ele[0];
-                                        setTimeout(() => {
-                                            ele.classList.add('active');
-                                        });
-                                    }
-                                }
-                            }
-                        },
-
-                        notifications: [
-                            {
-                                id: 1,
-                                profile: 'user-profile.jpeg',
-                                message: '<strong class="text-sm mr-1">StarCode Kh</strong>invite you to <strong>Prototyping</strong>',
-                                time: '45 min ago',
-                            },
-                            {
-                                id: 2,
-                                profile: 'profile-34.jpeg',
-                                message: '<strong class="text-sm mr-1">Adam Nolan</strong>mentioned you to <strong>UX Basics</strong>',
-                                time: '9h Ago',
-                            },
-                            {
-                                id: 3,
-                                profile: 'profile-16.jpeg',
-                                message: '<strong class="text-sm mr-1">Anna Morgan</strong>Upload a file',
-                                time: '9h Ago',
-                            },
-                        ],
-
-                        messages: [
-                            {
-                                id: 1,
-                                image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-success-light dark:bg-success text-success dark:text-success-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>',
-                                title: 'Congratulations!',
-                                message: 'Your OS has been updated.',
-                                time: '1hr',
-                            },
-                            {
-                                id: 2,
-                                image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-info-light dark:bg-info text-info dark:text-info-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></span>',
-                                title: 'Did you know?',
-                                message: 'You can switch between artboards.',
-                                time: '2hr',
-                            },
-                            {
-                                id: 3,
-                                image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-danger-light dark:bg-danger text-danger dark:text-danger-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>',
-                                title: 'Something went wrong!',
-                                message: 'Send Reposrt',
-                                time: '2days',
-                            },
-                            {
-                                id: 4,
-                                image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-warning-light dark:bg-warning text-warning dark:text-warning-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">    <circle cx="12" cy="12" r="10"></circle>    <line x1="12" y1="8" x2="12" y2="12"></line>    <line x1="12" y1="16" x2="12.01" y2="16"></line></svg></span>',
-                                title: 'Warning',
-                                message: 'Your password strength is low.',
-                                time: '5days',
-                            },
-                        ],
-
-                        languages: [
-                            {
-                                id: 1,
-                                key: 'Khmer',
-                                value: 'kh',
-                            },
-                            {
-                                id: 2,
-                                key: 'Danish',
-                                value: 'da',
-                            },
-                            {
-                                id: 3,
-                                key: 'English',
-                                value: 'en',
-                            },
-                            {
-                                id: 4,
-                                key: 'French',
-                                value: 'fr',
-                            },
-                            {
-                                id: 5,
-                                key: 'German',
-                                value: 'de',
-                            },
-                            {
-                                id: 6,
-                                key: 'Greek',
-                                value: 'el',
-                            },
-                            {
-                                id: 7,
-                                key: 'Hungarian',
-                                value: 'hu',
-                            },
-                            {
-                                id: 8,
-                                key: 'Italian',
-                                value: 'it',
-                            },
-                            {
-                                id: 9,
-                                key: 'Japanese',
-                                value: 'ja',
-                            },
-                            {
-                                id: 10,
-                                key: 'Polish',
-                                value: 'pl',
-                            },
-                            {
-                                id: 11,
-                                key: 'Portuguese',
-                                value: 'pt',
-                            },
-                            {
-                                id: 12,
-                                key: 'Russian',
-                                value: 'ru',
-                            },
-                            {
-                                id: 13,
-                                key: 'Spanish',
-                                value: 'es',
-                            },
-                            {
-                                id: 14,
-                                key: 'Swedish',
-                                value: 'sv',
-                            },
-                            {
-                                id: 15,
-                                key: 'Turkish',
-                                value: 'tr',
-                            },
-                            {
-                                id: 16,
-                                key: 'Arabic',
-                                value: 'ae',
-                            },
-                        ],
-
-                        removeNotification(value) {
-                            this.notifications = this.notifications.filter((d) => d.id !== value);
-                        },
-
-                        removeMessage(value) {
-                            this.messages = this.messages.filter((d) => d.id !== value);
-                        },
-                    }));
-
-                    //invoice preview
-                    Alpine.data('invoicePreview', () => ({
-                        items: [
-                            {
-                                id: 1,
-                                title: 'Calendar App Customization',
-                                quantity: 1,
-                                price: '120',
-                                amount: '120',
-                            },
-                            {
-                                id: 2,
-                                title: 'Chat App Customization',
-                                quantity: 1,
-                                price: '230',
-                                amount: '230',
-                            },
-                            {
-                                id: 3,
-                                title: 'Laravel Integration',
-                                quantity: 1,
-                                price: '405',
-                                amount: '405',
-                            },
-                            {
-                                id: 4,
-                                title: 'Backend UI Design',
-                                quantity: 1,
-                                price: '2500',
-                                amount: '2500',
-                            },
-                        ],
-                        columns: [
-                            {
-                                key: 'id',
-                                label: 'S.NO',
-                            },
-                            {
-                                key: 'title',
-                                label: 'ITEMS',
-                            },
-                            {
-                                key: 'quantity',
-                                label: 'QTY',
-                            },
-                            {
-                                key: 'price',
-                                label: 'PRICE',
-                                class: 'ltr:text-right rtl:text-left',
-                            },
-                            {
-                                key: 'amount',
-                                label: 'AMOUNT',
-                                class: 'ltr:text-right rtl:text-left',
-                            },
-                        ],
-
-                        print() {
-                            window.print();
-                        },
-                    }));
-                });
-            </script> --}}
     @endsection
