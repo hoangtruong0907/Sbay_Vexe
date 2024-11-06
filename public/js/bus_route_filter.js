@@ -575,3 +575,9 @@ $(document).ready(function () {
         loadSearchListBus(url, data);
     });
 });
+
+// Hàm mở/đóng menu
+function toggleMenuFilter() {
+    const sidebar = document.getElementById("sidebar-filter");
+    sidebar.classList.toggle("active-filter");
+}

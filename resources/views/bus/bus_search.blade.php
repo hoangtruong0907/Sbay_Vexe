@@ -24,1142 +24,343 @@
             ])
         </div>
         <div class="wrap-filter">
-            <!-- /////// lọc mobile///////// -->
-            <div id="floating" class="floating-container">
-                <button onclick="openFilterModal()">
-                    <span>&#9881;</span> Lọc
-                </button>
-                <button onclick="openSortModal()">
-                    <span>&#9650;</span> Sắp xếp
-                </button>
-            </div>
-
-            <div id="filterModal" class="modal">
-                <div class="modal-content filter-content">
-                    <span class="close" onclick="closeFilterModal()">&times;</span>
-                    <div class="filter-title">
-                        <div class="filter-header">Lọc</div>
-                        <p class="btn-clear">Xóa lọc</p>
-                    </div>
-                    <div class="travel-time-group">
-                        <div class="travel-time-header">
-                            <p class="travel-time-label">Giờ đi</p>
-                            <div class="toggle-arrow"><i class="fa fa-angle-down"></i></div>
+            <div class="sidebar-filter" id="sidebar-filter">
+                <button class="close-button-filter" onclick="toggleMenuFilter()">✖</button>
+                <div class="left-filter left-filter-mmenu">
+                    <div class="wrap-arrange-top">
+                        <div class="text-arrange">
+                            <h3>Sắp xếp</h3>
                         </div>
-                        <div class="travel-time-content">
-                            <div class="travel-slider-container">
-                                <div class="travel-slider">
-                                    <div class="travel-slider-background"></div>
-                                    <div class="travel-slider-active"></div>
-                                    <div class="travel-slider-handle travel-slider-handle-start" tabindex="0"></div>
-                                    <div class="travel-slider-handle travel-slider-handle-end" tabindex="0"></div>
-                                </div>
+                        <div class="radio-group sort-options">
+                            <div class="form-check d-flex align-items-center">
+                                <input type="radio" id="defaul" class="form-check-input array_filter-radio"
+                                    name="opt_array" value="rating:desc" checked>
+                                <label class="form-check-label ms-2" for="defaul">Mặc định</label>
                             </div>
-                            <div class="travel-time-inputs">
-                                <div class="travel-time-input-item">
-                                    <label class="travel-time-input-label">Từ</label>
-                                    <input type="text" value="00:00" class="travel-time-input travel-start-time">
-                                </div>
-                                <div class="travel-time-divider">-</div>
-                                <div class="travel-time-input-item">
-                                    <label class="travel-time-input-label">Đến</label>
-                                    <input type="text" value="17:00" class="travel-time-input travel-end-time">
-                                </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input type="radio" id="timeAsc" class="form-check-input array_filter-radio"
+                                    name="opt_array" value="time:asc">
+                                <label class="form-check-label ms-2" for="timeAsc">Giờ đi sớm nhất</label>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input type="radio" id="timeDesc" class="form-check-input array_filter-radio"
+                                    name="opt_array" value="time:desc">
+                                <label class="form-check-label ms-2" for="timeDesc">Giờ đi muộn nhất</label>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input type="radio" id="ratingDesc" class="form-check-input array_filter-radio"
+                                    name="opt_array" value="rating:desc">
+                                <label class="form-check-label ms-2" for="ratingDesc">Đánh giá cao nhất</label>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input type="radio" id="fareAsc" class="form-check-input array_filter-radio"
+                                    name="opt_array" value="fare:asc">
+                                <label class="form-check-label ms-2" for="fareAsc">Giá tăng dần</label>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input type="radio" id="fareDesc" class="form-check-input array_filter-radio"
+                                    name="opt_array" value="fare:desc">
+                                <label class="form-check-label ms-2" for="fareDesc">Giá giảm dần</label>
                             </div>
                         </div>
                     </div>
-                    <div class="filter-group filter-operator">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Nhà xe</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content filter-content-nhaxe">
-                            <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
-                                value="">
-                            <div class="checkbox-group">
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Bảo Ngọc (Huy Phúc) (2)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Đương Hương (1)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hồng Vinh Limousine (8)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hà Sơn ( Hà Tĩnh - Sapa) (3)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hùng Cúc (2)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hùng Thủy (1)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hải Phú (1)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hồng Hà (1)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Khánh Hạnh (1)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Mận Tịnh (14)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Mận Vũ (9)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Mạnh Hà (Thái Nguyên) (2)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nam Quỳnh Anh (39)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nhuận Năm (1)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Phương Oanh (8)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Phú Quý (6)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Phú Thành (6)</span>
-                                </label>
+                    <div class="wrap-arrange-bottom">
+                        <div class="filters-wrapper">
+                            <div class="filter-title">
+                                <div class="filter-header">Lọc</div>
+                                <p class="btn-clear">Xóa lọc</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="ticket-filter-group">
-                        <div class="ticket-filter-header">
-                            <p class="ticket-filter-label">Giá vé</p>
-                            <div class="ticket-expand-icon">
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="ticket-filter-content">
-                            <div class="ticket-slider-info">
-                                <div class="ticket-slider-container">
-                                    <div class="ticket-slider">
-                                        <div class="ticket-slider-rail"></div>
-                                        <div class="ticket-slider-track ticket-slider-track-start"
-                                            style="left: 0%; width: 100%;"></div>
-                                        <div tabindex="0" class="ticket-slider-handle ticket-slider-handle-start"
-                                            role="slider" aria-valuemin="0" aria-valuemax="2000000" aria-valuenow="0"
-                                            style="left: 0%;"></div>
-                                        <div tabindex="0" class="ticket-slider-handle ticket-slider-handle-end"
-                                            role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                            aria-valuenow="2000000" style="left: 100%;"></div>
+                            <div class="filter-item">
+                                <div class="filter-group filter-times">
+                                    <div class="filter-header-container">
+                                        <p class="filter-label">Giờ đi</p>
+                                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                                     </div>
-                                </div>
-                                <div class="ticket-value-info ticket-value-left">0 đ</div>
-                                <div class="ticket-value-info ticket-value-right">2,000,000 đ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-group filter-operator">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Điểm đón</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content filter-content-nhaxe">
-                            <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
-                                value="">
-                            <div class="checkbox-group">
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hoàng Mai (190)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Đống Đa (162)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hai Bà Trưng (104)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nam Từ Liêm (104)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Cầu Giấy (95)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Thanh Xuân (53)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hoàn Kiếm (34)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Thường Tín (33)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Sóc Sơn (28)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Từ Liêm (24)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Hà Đông (23)</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-group filter-dropoff">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Điểm trả</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content filter-content-diemtra">
-                            <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
-                                value="">
-                            <div class="checkbox-group">
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Diếm Châu (283)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Vinh(239)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <span class="checkbox-wrapper">
-                                        <input type="checkbox" class="checkbox-input" value="">
-                                        <span class="checkbox-inner"></span>
-                                    </span>
-                                    <span>Nghi Lộc (177)</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group filter-popular">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Tiêu chí phổ biến</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content">
-                            <div class="group-items-n">
-                                <label class="checkbox-group-n ant-checkbox-wrapper">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Xác nhận đặt chỗ ngay lập tức
-                                        <svg class="confirm-icon-n" width="18" height="14" viewBox="0 0 18 14"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M17.332 2v3.333c-.916 0-1.666.75-1.666 1.667s.75 1.667 1.666 1.667V12c0 .917-.75 1.667-1.666 1.667H2.332c-.916 0-1.666-.75-1.666-1.667V8.667c.925 0 1.666-.75 1.666-1.667S1.591 5.333.674 5.333V2A1.66 1.66 0 0 1 2.332.333h13.334c.916 0 1.666.742 1.666 1.667zM8.01 11.344a.3.3 0 0 0 .558.193l.397-.696c.49-.859 1.355-2.372 2.597-4.539.115-.244 0-.343-.208-.343H9.525l.469-3.303a.3.3 0 0 0-.558-.192C8.842 3.51 8.314 4.436 7.853 5.245c-.549.963-1.003 1.76-1.36 2.39l-.001.003c-.026.037-.281.404.163.404h1.823l-.469 3.302z"
-                                                fill="#27AE60"></path>
-                                        </svg> (58)
-                                    </span>
-                                </label>
-                                <span class="filter-description-n">Nhà xe nhận được thông tin ngay khi bạn đặt
-                                    vé</span>
-
-                                <label class="checkbox-group-n ant-checkbox-wrapper">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Không cần thanh toán trước (42)</span>
-                                </label>
-                                <span class="filter-description-n">Chuyến có thể thanh toán tại văn phòng nhà xe hoặc
-                                    khi lên xe</span>
-
-                                <label class="checkbox-group-n ant-checkbox-wrapper">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Chuyến có trung chuyển đón/trả (85)</span>
-                                </label>
-                                <span class="filter-description-n">Chuyến có đón/trả tận nơi tại một số khu vực nhất
-                                    định</span>
-
-                                <label class="checkbox-group-n ant-checkbox-wrapper">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Chuyến có giảm giá &amp; khuyến mãi (4)</span>
-                                </label>
-                                <span class="filter-description-n">Chuyến có giảm giá trực tiếp từ nhà xe hoặc có mã
-                                    giảm giá của Vexere</span>
-                                <label class="checkbox-group-n ant-checkbox-wrapper">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Cho phép xem vị trí xe (9)</span>
-                                </label>
-                                <span class="filter-description-n">Chuyến có cung cấp tín hiệu định vị cho phép bạn
-                                    theo dõi vị trí xe khi di chuyển</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group filter-seats">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Vị trí ghế</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content">
-                            <div class="filter-item-n">
-                                <div class="filter-item-content-n">
-                                    <p class="base__Body02-sc-1tvbuqk-23 gymsWw color--darkness">Số ghế trống</p>
-                                    <div class="quantity-input-n">
-                                        <button disabled="" type="button"
-                                            class="ant-btn-n QuantityInput__RoundButton-sc-5ap7dx-1 bVEmRj decrease-n">
-                                            <i class="fa fa-minus-square" aria-hidden="true"></i>
-                                        </button>
-                                        <div class="quantity-value-n">
-                                            <p
-                                                class="base__SubHeadline-sc-1tvbuqk-10 dFjQag color--darkness quantity-value-text-n">
-                                                1</p>
+                                    <div class="filter-content">
+                                        <div class="slider-container">
+                                            <div class="slider">
+                                                <div class="slider-rail"></div>
+                                                <div class="slider-track" style="left: 0%; width: 100%;"></div>
+                                                <div class="slider-step"></div>
+                                                <div tabindex="0" class="slider-handle slider-handle-1" style="left: 0%;"
+                                                    role="slider" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0">
+                                                </div>
+                                                <div tabindex="0" class="slider-handle slider-handle-2" style="left: 100%;"
+                                                    role="slider" aria-valuemin="0" aria-valuemax="24" aria-valuenow="24">
+                                                </div>
+                                                <div class="slider-mark"></div>
+                                            </div>
                                         </div>
-                                        <button type="button"
-                                            class="ant-btn-n QuantityInput__RoundButton-sc-5ap7dx-1 bVEmRj increase-n">
-                                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                        </button>
+                                        <div class="input-group">
+                                            <div class="input-item">
+                                                <p class="input-label">Từ</p>
+                                                <input type="text" value="00:00" class="input-time from-time"
+                                                    id="fromTime">
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="input-item">
+                                                <p class="input-label">Đến</p>
+                                                <input type="text" value="24:00" class="input-time to-time"
+                                                    id="toTime">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="filter-item-n">
-                                <div class="filter-item-content-n">
-                                    <p class="base__Body02-sc-1tvbuqk-23 gymsWw color--darkness">Hàng ghế đầu</p>
-                                    <label class="ant-checkbox-wrapper-n">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="filter-item-n">
-                                <div class="filter-item-content-n">
-                                    <p class="base__Body02-sc-1tvbuqk-23 gymsWw color--darkness">Hàng ghế giữa</p>
-                                    <label class="ant-checkbox-wrapper-n">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="filter-item-n filter-item-last-n">
-                                <div class="filter-item-content-n">
-                                    <p class="base__Body02-sc-1tvbuqk-23 gymsWw color--darkness">Hàng ghế cuối</p>
-                                    <label class="ant-checkbox-wrapper-n">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group filter-bus-type">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Loại xe</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content filter-content-diemtra">
-                            <input class="ant-input inputText" placeholder="Tìm trong danh sách" type="text"
-                                value="">
-                            <div class="groupKind-n">
-                                <label class="checkBoxGroup-n ant-checkbox-wrapper-n">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Cabin 21 khoang Vip (1)</span>
-                                </label>
-                                <label class="checkBoxGroup-n ant-checkbox-wrapper-n">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Ghế ngồi 45 chỗ (2)</span>
-                                </label>
-                                <label class="checkBoxGroup-n ant-checkbox-wrapper-n">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Giường nằm 34 chỗ (1)</span>
-                                </label>
-                                <label class="checkBoxGroup-n ant-checkbox-wrapper-n">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Giường nằm 38 chỗ (17)</span>
-                                </label>
-                                <label class="checkBoxGroup-n ant-checkbox-wrapper-n">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>Giường nằm 40 chỗ (37)</span>
-                                </label>
-                                <label class="checkBoxGroup-n ant-checkbox-wrapper-n">
-                                    <span class="ant-checkbox-n">
-                                        <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                        <span class="ant-checkbox-inner-n"></span>
-                                    </span>
-                                    <span>giường nằm 40 chỗ (2)</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group filter-seat-type">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Loại ghế / giường</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content">
-                            <div class="group-items-b">
-                                <label class="checkBoxGroup-b Filter_ACSeater ant-checkbox-wrapper-b">
-                                    <span class="ant-checkbox-b">
-                                        <input type="checkbox" class="ant-checkbox-input-b" value="">
-                                        <span class="ant-checkbox-inner-b"></span>
-                                    </span>
-                                    <span>Ghế ngồi (6)</span>
-                                </label>
-                                <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                                    <span class="ant-checkbox-b">
-                                        <input type="checkbox" class="ant-checkbox-input-b" value="">
-                                        <span class="ant-checkbox-inner-b"></span>
-                                    </span>
-                                    <span>Giường nằm (245)</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group filter-rating">
-                        <div class="filter-header-container">
-                            <p class="filter-label">Đánh giá</p>
-                            <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="filter-content">
-
-                        </div>
-                    </div>
-                    <div>
-                        <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
-                        <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
-                    </div>
-                </div>
-
-            </div>
-            <!-- ///////// sắp xếp /////////// -->
-            <div id="sortModal" class="modal">
-                <div class="modal-content-1">
-                    <span class="close" onclick="closeSortModal()">&times;</span>
-                    <h2>Sắp xếp</h2>
-                    <div class="radio-group sort-options">
-                        <label class="radio-wrapper checked">
-                            <span class="radio checked">
-                                <input type="radio" class="radio-input" value="">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Mặc định</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" class="radio-input" value="time:asc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giờ đi sớm nhất</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" class="radio-input" value="time:desc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giờ đi muộn nhất</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" class="radio-input" value="rating:desc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Đánh giá cao nhất</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" class="radio-input" value="fare:asc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giá tăng dần</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" class="radio-input" value="fare:desc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giá giảm dần</p>
-                            </span>
-                        </label>
-                    </div>
-                    <button class="close-button" onclick="closeSortModal()">Đóng</button>
-                </div>
-            </div>
-             <!--  lọc web -->
-            <!-- Bộ lọc bên trái-->
-            <div class="left-filter">
-                <div class="wrap-arrange-top">
-                    <div class="text-arrange">
-                        <h3>Sắp xếp</h3>
-                    </div>
-                    <div class="radio-group sort-options">
-                        <div class="form-check d-flex align-items-center">
-                            <input type="radio" id="defaul" class="form-check-input array_filter-radio"
-                                name="opt_array" value="rating:desc" checked>
-                            <label class="form-check-label ms-2" for="defaul">Mặc định</label>
-                        </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input type="radio" id="timeAsc" class="form-check-input array_filter-radio"
-                                name="opt_array" value="time:asc">
-                            <label class="form-check-label ms-2" for="timeAsc">Giờ đi sớm nhất</label>
-                        </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input type="radio" id="timeDesc" class="form-check-input array_filter-radio"
-                                name="opt_array" value="time:desc">
-                            <label class="form-check-label ms-2" for="timeDesc">Giờ đi muộn nhất</label>
-                        </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input type="radio" id="ratingDesc" class="form-check-input array_filter-radio"
-                                name="opt_array" value="rating:desc">
-                            <label class="form-check-label ms-2" for="ratingDesc">Đánh giá cao nhất</label>
-                        </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input type="radio" id="fareAsc" class="form-check-input array_filter-radio"
-                                name="opt_array" value="fare:asc">
-                            <label class="form-check-label ms-2" for="fareAsc">Giá tăng dần</label>
-                        </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input type="radio" id="fareDesc" class="form-check-input array_filter-radio"
-                                name="opt_array" value="fare:desc">
-                            <label class="form-check-label ms-2" for="fareDesc">Giá giảm dần</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-arrange-bottom">
-                    <div class="filters-wrapper">
-                        <div class="filter-title">
-                            <div class="filter-header">Lọc</div>
-                            <p class="btn-clear">Xóa lọc</p>
-                        </div>
-                        <div class="filter-item">
-                            <div class="filter-group filter-times">
+                            <div class="filter-group filter-operator">
                                 <div class="filter-header-container">
-                                    <p class="filter-label">Giờ đi</p>
+                                    <p class="filter-label">Nhà xe</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content filter-content-nhaxe">
+                                    <input class="ant-input inputText" id="companySearchInput"
+                                        placeholder="Tìm trong danh sách công ty" type="text" value="">
+                                    <div class="checkbox-group" id="companyList">
+                                        @foreach ($list_company_count as $companyId => $companyData)
+                                            <label class="checkbox-item list-search_filter">
+                                                <span class="checkbox-wrapper">
+                                                    <input type="checkbox" class="checkbox-input select_company"
+                                                        value="{{ $companyData['id'] }}">
+                                                    <span class="checkbox-inner"></span>
+                                                </span>
+                                                <span>{{ $companyData['name'] }} ({{ $companyData['count'] }})</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group filter-price">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Giá vé</p>
                                     <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                                 </div>
                                 <div class="filter-content">
-                                    <div class="slider-container">
-                                        <div class="slider">
-                                            <div class="slider-rail"></div>
-                                            <div class="slider-track" style="left: 0%; width: 100%;"></div>
-                                            <div class="slider-step"></div>
-                                            <div tabindex="0" class="slider-handle slider-handle-1" style="left: 0%;"
-                                                role="slider" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0">
-                                            </div>
-                                            <div tabindex="0" class="slider-handle slider-handle-2" style="left: 100%;"
-                                                role="slider" aria-valuemin="0" aria-valuemax="24" aria-valuenow="24">
-                                            </div>
-                                            <div class="slider-mark"></div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-item">
-                                            <p class="input-label">Từ</p>
-                                            <input type="text" value="00:00" class="input-time from-time"
-                                                id="fromTime">
-                                        </div>
-                                        <div class="divider"></div>
-                                        <div class="input-item">
-                                            <p class="input-label">Đến</p>
-                                            <input type="text" value="24:00" class="input-time to-time"
-                                                id="toTime">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-group filter-operator">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Nhà xe</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content filter-content-nhaxe">
-                                <input class="ant-input inputText" id="companySearchInput"
-                                    placeholder="Tìm trong danh sách công ty" type="text" value="">
-                                <div class="checkbox-group" id="companyList">
-
-                                    {{-- @php
-                                        dd($list_company_count);
-                                    @endphp --}}
-                                    @foreach ($list_company_count as $companyId => $companyData)
-                                        <label class="checkbox-item list-search_filter">
-                                            <span class="checkbox-wrapper">
-                                                <input type="checkbox" class="checkbox-input select_company"
-                                                    value="{{ $companyData['id'] }}">
-                                                <span class="checkbox-inner"></span>
-                                            </span>
-                                            <span>{{ $companyData['name'] }} ({{ $companyData['count'] }})</span>
-                                        </label>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-group filter-price">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Giá vé</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="custom-group-info">
-                                    <div class="custom-slider-container">
-                                        <div class="custom-slider">
-                                            <div class="custom-slider-rail"></div>
-                                            <div class="custom-slider-track custom-slider-track-1"
-                                                style="left: 0%; width: 100%;"></div>
-                                            <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
-                                                role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="0" style="left: 0%;">
-                                            </div>
-                                            <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
-                                                role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="2000000" style="left: 100%;"></div>
-                                        </div>
-                                    </div>
-                                    <div class="custom-value-info custom-value-left">0&nbsp;₫</div>
-                                    <div class="custom-value-info custom-value-right">2.000.000&nbsp;₫</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-group filter-operator">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Điểm đón</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content filter-content-nhaxe">
-                                <input class="ant-input inputText" id="ppSearchInput" placeholder="Tìm trong danh sách"
-                                    type="text" value="">
-                                <div class="groupKind" id="ppDistrictList">
-                                    <ul class="cus-tree">
-                                        @foreach ($list_pp_districts as $districtName => $info)
-                                            <li class="tree-treenode-switcher list-search_filter">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="tree-switcher show-pp_district_name">
-                                                        <i class="cusicon tree-switcher-icon">
-                                                            <svg viewBox="0 0 1024 1024" width="1em" height="1em"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path
-                                                                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-                                                                </path>
-                                                            </svg>
-                                                        </i>
-                                                    </span>
-                                                    <span class="tree-checkbox">
-                                                        <input type="checkbox"
-                                                            class="form-check-input tree-checkbox-inner select_pp_district"
-                                                            value="{{ $districtName }}">
-                                                    </span>
-                                                    <span class="tree-content district-name" for="pp_district">
-                                                        {{ $districtName }} ({{ $info['count'] }})
-                                                    </span>
+                                    <div class="custom-group-info">
+                                        <div class="custom-slider-container">
+                                            <div class="custom-slider">
+                                                <div class="custom-slider-rail"></div>
+                                                <div class="custom-slider-track custom-slider-track-1"
+                                                    style="left: 0%; width: 100%;"></div>
+                                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
+                                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                                                    aria-valuenow="0" style="left: 0%;">
                                                 </div>
-                                                <!-- tên địa điểm -->
-                                                <ul class="tree-child-tree d-none">
-                                                    @foreach ($info['names']->unique() as $name => $count)
-                                                        <li class="tree-treenode-switcher d-flex">
-                                                            <span class="tree-checkbox">
-                                                                <input type="checkbox"
-                                                                    class="form-check-input tree-checkbox-inner select_pp_district_name"
-                                                                    value="{{ $name }}">
-                                                            </span>
-                                                            <span class="tree-content district-name">
-                                                                {{ $name }}({{ $count }})
-                                                            </span>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-group filter-dropoff">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Điểm trả</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content filter-content-diemtra">
-                                <input class="ant-input inputText" id="dpSearchInput" placeholder="Tìm trong danh sách"
-                                    type="text" value="">
-                                <div class="groupKind" id="dpDistrictList">
-                                    <ul class="cus-tree">
-                                        @foreach ($list_dp_districts as $districtName => $info)
-                                            <li class="tree-treenode-switcher list-search_filter">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="tree-switcher show-dp_district_name">
-                                                        <i class="cusicon tree-switcher-icon">
-                                                            <svg viewBox="0 0 1024 1024" width="1em" height="1em"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path
-                                                                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-                                                                </path>
-                                                            </svg>
-                                                        </i>
-                                                    </span>
-                                                    <span class="tree-checkbox">
-                                                        <input type="checkbox"
-                                                            class="form-check-input tree-checkbox-inner select_dp_district"
-                                                            value="{{ $districtName }}">
-                                                    </span>
-                                                    <span class="tree-content district-name" for="pp_district">
-                                                        {{ $districtName }} ({{ $info['count'] }})
-                                                    </span>
-                                                </div>
-                                                <!-- tên địa điểm -->
-                                                <ul class="tree-child-tree d-none">
-                                                    @foreach ($info['names']->unique() as $name => $count)
-                                                        <li class="tree-treenode-switcher d-flex">
-                                                            <span class="tree-checkbox">
-                                                                <input type="checkbox"
-                                                                    class="form-check-input tree-checkbox-inner select_dp_district_name"
-                                                                    value="{{ $name }}">
-                                                            </span>
-                                                            <span class="tree-content district-name">
-                                                                {{ $name }} ({{ $count }})
-                                                            </span>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- <div class="filter-group filter-popular">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Tiêu chí phổ biến</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="group-items-n">
-                                    <label class="checkbox-group-n ant-checkbox-wrapper">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                        <span>Xác nhận đặt chỗ ngay lập tức
-                                            <svg class="confirm-icon-n" width="18" height="14"
-                                                viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M17.332 2v3.333c-.916 0-1.666.75-1.666 1.667s.75 1.667 1.666 1.667V12c0 .917-.75 1.667-1.666 1.667H2.332c-.916 0-1.666-.75-1.666-1.667V8.667c.925 0 1.666-.75 1.666-1.667S1.591 5.333.674 5.333V2A1.66 1.66 0 0 1 2.332.333h13.334c.916 0 1.666.742 1.666 1.667zM8.01 11.344a.3.3 0 0 0 .558.193l.397-.696c.49-.859 1.355-2.372 2.597-4.539.115-.244 0-.343-.208-.343H9.525l.469-3.303a.3.3 0 0 0-.558-.192C8.842 3.51 8.314 4.436 7.853 5.245c-.549.963-1.003 1.76-1.36 2.39l-.001.003c-.026.037-.281.404.163.404h1.823l-.469 3.302z"
-                                                    fill="#27AE60"></path>
-                                            </svg> (58)
-                                        </span>
-                                    </label>
-                                    <span class="filter-description-n">Nhà xe nhận được thông tin ngay khi bạn đặt
-                                        vé</span>
-
-                                    <label class="checkbox-group-n ant-checkbox-wrapper">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                        <span>Không cần thanh toán trước (42)</span>
-                                    </label>
-                                    <span class="filter-description-n">Chuyến có thể thanh toán tại văn phòng nhà xe hoặc
-                                        khi lên xe</span>
-
-                                    <label class="checkbox-group-n ant-checkbox-wrapper">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                        <span>Chuyến có trung chuyển đón/trả (85)</span>
-                                    </label>
-                                    <span class="filter-description-n">Chuyến có đón/trả tận nơi tại một số khu vực nhất
-                                        định</span>
-
-                                    <label class="checkbox-group-n ant-checkbox-wrapper">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                        <span>Chuyến có giảm giá &amp; khuyến mãi (4)</span>
-                                    </label>
-                                    <span class="filter-description-n">Chuyến có giảm giá trực tiếp từ nhà xe hoặc có mã
-                                        giảm giá của Vexere</span>
-                                    <label class="checkbox-group-n ant-checkbox-wrapper">
-                                        <span class="ant-checkbox-n">
-                                            <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                            <span class="ant-checkbox-inner-n"></span>
-                                        </span>
-                                        <span>Cho phép xem vị trí xe (9)</span>
-                                    </label>
-                                    <span class="filter-description-n">Chuyến có cung cấp tín hiệu định vị cho phép bạn
-                                        theo dõi vị trí xe khi di chuyển</span>
-                                </div>
-                            </div>
-                        </div> --}}
-
-                        <div class="filter-group filter-seats">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Vị trí ghế</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="filter-item-n">
-                                    <div class="filter-item-content-n">
-                                        <p class="base__Body02-sc-1tvbuqk-23 gymsWw color--darkness">Số ghế trống</p>
-                                        <div class="quantity-input-n">
-                                            <button disabled="" type="button"
-                                                class="ant-btn-n QuantityInput__RoundButton-sc-5ap7dx-1 bVEmRj"
-                                                id="seat_decrease">
-                                                <i class="fa fa-minus-square" aria-hidden="true"></i>
-                                            </button>
-                                            <div class="quantity-value-n">
-                                                <p class="color--darkness" id="quantity-value">1</p>
+                                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
+                                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                                                    aria-valuenow="2000000" style="left: 100%;"></div>
                                             </div>
-                                            <button type="button"
-                                                class="ant-btn-n QuantityInput__RoundButton-sc-5ap7dx-1 bVEmRj"
-                                                id="seat_increase">
-                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                            </button>
+                                        </div>
+                                        <div class="custom-value-info custom-value-left">0&nbsp;₫</div>
+                                        <div class="custom-value-info custom-value-right">2.000.000&nbsp;₫</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group filter-operator">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Điểm đón</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content filter-content-nhaxe">
+                                    <input class="ant-input inputText" id="ppSearchInput" placeholder="Tìm trong danh sách"
+                                        type="text" value="">
+                                    <div class="groupKind" id="ppDistrictList">
+                                        <ul class="cus-tree">
+                                            @foreach ($list_pp_districts as $districtName => $info)
+                                                <li class="tree-treenode-switcher list-search_filter">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="tree-switcher show-pp_district_name">
+                                                            <i class="cusicon tree-switcher-icon">
+                                                                <svg viewBox="0 0 1024 1024" width="1em" height="1em"
+                                                                    fill="currentColor" aria-hidden="true">
+                                                                    <path
+                                                                        d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+                                                                    </path>
+                                                                </svg>
+                                                            </i>
+                                                        </span>
+                                                        <span class="tree-checkbox">
+                                                            <input type="checkbox"
+                                                                class="form-check-input tree-checkbox-inner select_pp_district"
+                                                                value="{{ $districtName }}">
+                                                        </span>
+                                                        <span class="tree-content district-name" for="pp_district">
+                                                            {{ $districtName }} ({{ $info['count'] }})
+                                                        </span>
+                                                    </div>
+                                                    <!-- tên địa điểm -->
+                                                    <ul class="tree-child-tree d-none">
+                                                        @foreach ($info['names']->unique() as $name => $count)
+                                                            <li class="tree-treenode-switcher d-flex">
+                                                                <span class="tree-checkbox">
+                                                                    <input type="checkbox"
+                                                                        class="form-check-input tree-checkbox-inner select_pp_district_name"
+                                                                        value="{{ $name }}">
+                                                                </span>
+                                                                <span class="tree-content district-name">
+                                                                    {{ $name }}({{ $count }})
+                                                                </span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group filter-dropoff">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Điểm trả</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content filter-content-diemtra">
+                                    <input class="ant-input inputText" id="dpSearchInput" placeholder="Tìm trong danh sách"
+                                        type="text" value="">
+                                    <div class="groupKind" id="dpDistrictList">
+                                        <ul class="cus-tree">
+                                            @foreach ($list_dp_districts as $districtName => $info)
+                                                <li class="tree-treenode-switcher list-search_filter">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="tree-switcher show-dp_district_name">
+                                                            <i class="cusicon tree-switcher-icon">
+                                                                <svg viewBox="0 0 1024 1024" width="1em" height="1em"
+                                                                    fill="currentColor" aria-hidden="true">
+                                                                    <path
+                                                                        d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+                                                                    </path>
+                                                                </svg>
+                                                            </i>
+                                                        </span>
+                                                        <span class="tree-checkbox">
+                                                            <input type="checkbox"
+                                                                class="form-check-input tree-checkbox-inner select_dp_district"
+                                                                value="{{ $districtName }}">
+                                                        </span>
+                                                        <span class="tree-content district-name" for="pp_district">
+                                                            {{ $districtName }} ({{ $info['count'] }})
+                                                        </span>
+                                                    </div>
+                                                    <!-- tên địa điểm -->
+                                                    <ul class="tree-child-tree d-none">
+                                                        @foreach ($info['names']->unique() as $name => $count)
+                                                            <li class="tree-treenode-switcher d-flex">
+                                                                <span class="tree-checkbox">
+                                                                    <input type="checkbox"
+                                                                        class="form-check-input tree-checkbox-inner select_dp_district_name"
+                                                                        value="{{ $name }}">
+                                                                </span>
+                                                                <span class="tree-content district-name">
+                                                                    {{ $name }} ({{ $count }})
+                                                                </span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group filter-seats">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Vị trí ghế</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content">
+                                    <div class="filter-item-n">
+                                        <div class="filter-item-content-n">
+                                            <p class="base__Body02-sc-1tvbuqk-23 gymsWw color--darkness">Số ghế trống</p>
+                                            <div class="quantity-input-n">
+                                                <button disabled="" type="button"
+                                                    class="ant-btn-n QuantityInput__RoundButton-sc-5ap7dx-1 bVEmRj"
+                                                    id="seat_decrease">
+                                                    <i class="fa fa-minus-square" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="quantity-value-n">
+                                                    <p class="color--darkness" id="quantity-value">1</p>
+                                                </div>
+                                                <button type="button"
+                                                    class="ant-btn-n QuantityInput__RoundButton-sc-5ap7dx-1 bVEmRj"
+                                                    id="seat_increase">
+                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <div class="filter-item-n">
-                                    <div class="filter-item-content-n">
-                                        <p class="color--darkness">Hàng ghế đầu</p>
-                                        <label class="ant-checkbox-wrapper-n">
-                                            <span class="ant-checkbox-n">
-                                                <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                                <span class="ant-checkbox-inner-n"></span>
-                                            </span>
-                                        </label>
-                                    </div>
+                            </div>
+    
+                            <div class="filter-group filter-bus-type">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Loại xe</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                                 </div>
-
-                                <div class="filter-item-n">
-                                    <div class="filter-item-content-n">
-                                        <p class="color--darkness">Hàng ghế giữa</p>
-                                        <label class="ant-checkbox-wrapper-n">
-                                            <span class="ant-checkbox-n">
-                                                <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                                <span class="ant-checkbox-inner-n"></span>
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="filter-item-n filter-item-last-n">
-                                    <div class="filter-item-content-n">
-                                        <p class="color--darkness">Hàng ghế cuối</p>
-                                        <label class="ant-checkbox-wrapper-n">
-                                            <span class="ant-checkbox-n">
-                                                <input type="checkbox" class="ant-checkbox-input-n" value="">
-                                                <span class="ant-checkbox-inner-n"></span>
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div> --}}
-                            </div>
-                        </div>
-
-                        <div class="filter-group filter-bus-type">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Loại xe</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content filter-content-diemtra">
-                                <input class="ant-input inputText" placeholder="Tìm trong danh sách"
-                                    id="vehicle_typeSearchInput" type="text" value="">
-                                <div class="checkbox-group" id="list_vehicle_typeList">
-                                    @foreach ($list_vehicle_type as $vehicleType => $count)
-                                        <label class="checkbox-item list-search_filter">
-                                            <span class="ant-checkbox-n">
-                                                <input type="checkbox" class="ant-checkbox-input-n"
-                                                    value="{{ $vehicleType }}">
-                                                <span class="ant-checkbox-inner-n"></span>
-                                            </span>
-                                            <span>{{ $vehicleType }} ({{ $count }})</span>
-                                        </label>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="filter-group filter-seat-type">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Loại ghế / giường</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="group-items-b">
-                                    @foreach ($list_seat_type as $seat_group => $data)
-                                        @foreach ($data['seat_types'] as $seat_type)
-                                            <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                                                <span class="ant-checkbox-b">
-                                                    <input type="checkbox" class="ant-checkbox-input-b selectSeat_type"
-                                                        value="{{ $seat_type }}">
-                                                    <span class="ant-checkbox-inner-b"></span>
+                                <div class="filter-content filter-content-diemtra">
+                                    <input class="ant-input inputText" placeholder="Tìm trong danh sách"
+                                        id="vehicle_typeSearchInput" type="text" value="">
+                                    <div class="checkbox-group" id="list_vehicle_typeList">
+                                        @foreach ($list_vehicle_type as $vehicleType => $count)
+                                            <label class="checkbox-item list-search_filter">
+                                                <span class="ant-checkbox-n">
+                                                    <input type="checkbox" class="ant-checkbox-input-n"
+                                                        value="{{ $vehicleType }}">
+                                                    <span class="ant-checkbox-inner-n"></span>
                                                 </span>
-                                                <span>{{ $seat_group }} ({{ $data['count'] }})</span>
+                                                <span>{{ $vehicleType }} ({{ $count }})</span>
                                             </label>
                                         @endforeach
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="filter-group filter-rating">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Đánh giá</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+    
+                            <div class="filter-group filter-seat-type">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Loại ghế / giường</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content">
+                                    <div class="group-items-b">
+                                        @foreach ($list_seat_type as $seat_group => $data)
+                                            @foreach ($data['seat_types'] as $seat_type)
+                                                <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                                                    <span class="ant-checkbox-b">
+                                                        <input type="checkbox" class="ant-checkbox-input-b selectSeat_type"
+                                                            value="{{ $seat_type }}">
+                                                        <span class="ant-checkbox-inner-b"></span>
+                                                    </span>
+                                                    <span>{{ $seat_group }} ({{ $data['count'] }})</span>
+                                                </label>
+                                            @endforeach
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
-                            <div class="filter-content">
-                                <div class="groupItems">
-                                    <div class="Rates__GroupRate-sc-1ioptsc-1 dfQbde" style="cursor: pointer;">
-                                        <span class="fa fa-star checked_rating"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span style="color: rgb(20, 20, 20);">trở lên (<span
-                                                id="rating-count">1</span>)</span>
+    
+                            <div class="filter-group filter-rating">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Đánh giá</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content">
+                                    <div class="groupItems">
+                                        <div class="Rates__GroupRate-sc-1ioptsc-1 dfQbde" style="cursor: pointer;">
+                                            <span class="fa fa-star checked_rating"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span style="color: rgb(20, 20, 20);">trở lên (<span
+                                                    id="rating-count">1</span>)</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {{-- <div>
+                            <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
+                            <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
+                        </div> --}}
                     </div>
-                    {{-- <div>
-                        <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
-                        <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
-                    </div> --}}
                 </div>
             </div>
 
@@ -1312,163 +513,6 @@
 
 
             $(document).ready(function() {
-                // Lọc Giờ slide
-                // document.addEventListener('DOMContentLoaded', function() {
-                //     const slider = document.querySelector('.slider');
-                //     const handle1 = slider.querySelector('.slider-handle-1');
-                //     const handle2 = slider.querySelector('.slider-handle-2');
-                //     const track = slider.querySelector('.slider-track');
-                //     const inputFrom = document.querySelector('.from-time');
-                //     const inputTo = document.querySelector('.to-time');
-                //     const max = 24; // Max value for the slider in hours
-
-                //     // Function to convert time to hours
-                //     function timeToHours(time) {
-                //         return parseInt(time.split(':')[0]);
-                //     }
-
-                //     // Function to convert hours to time
-                //     function hoursToTime(hours) {
-                //         return `${String(hours).padStart(2, '0')}:00`;
-                //     }
-
-                //     // Function to update track and input values
-                //     function updateTrack() {
-                //         const value1 = parseFloat(handle1.style.left);
-                //         const value2 = parseFloat(handle2.style.left);
-                //         track.style.left = Math.min(value1, value2) + '%';
-                //         track.style.width = Math.abs(value1 - value2) + '%';
-                //         inputFrom.value = hoursToTime(Math.round(Math.min(value1, value2) * max / 100));
-                //         inputTo.value = hoursToTime(Math.round(Math.max(value1, value2) * max / 100));
-                //     }
-
-                //     // Function to handle dragging
-                //     function onDrag(event, handle) {
-                //         const sliderRect = slider.getBoundingClientRect();
-                //         const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect
-                //             .width);
-                //         const valueInHours = Math.round((newLeft / sliderRect.width) *
-                //             max); // Round to nearest hour
-                //         handle.style.left = (valueInHours / max) * 100 + '%';
-                //         updateTrack();
-                //     }
-
-                //     function onDragEnd() {
-                //         document.removeEventListener('mousemove', onMouseMove);
-                //         document.removeEventListener('mouseup', onMouseUp);
-                //     }
-
-                //     function onMouseMove(event) {
-                //         onDrag(event, draggingHandle);
-                //     }
-
-                //     function onMouseUp(event) {
-                //         onDrag(event, draggingHandle);
-                //         onDragEnd();
-                //     }
-
-                //     let draggingHandle;
-
-                //     handle1.addEventListener('mousedown', function(event) {
-                //         draggingHandle = handle1;
-                //         document.addEventListener('mousemove', onMouseMove);
-                //         document.addEventListener('mouseup', onMouseUp);
-                //     });
-
-                //     handle2.addEventListener('mousedown', function(event) {
-                //         draggingHandle = handle2;
-                //         document.addEventListener('mousemove', onMouseMove);
-                //         document.addEventListener('mouseup', onMouseUp);
-                //     });
-
-                //     // Set initial positions and update track
-                //     handle1.style.left = '0%';
-                //     handle2.style.left = '100%';
-                //     updateTrack();
-
-                //     // Update the slider based on input change
-                //     inputFrom.addEventListener('change', function() {
-                //         const hours = Math.min(Math.max(timeToHours(inputFrom.value), 0), max);
-                //         handle1.style.left = (hours / max) * 100 + '%';
-                //         updateTrack();
-                //     });
-
-                //     inputTo.addEventListener('change', function() {
-                //         const hours = Math.min(Math.max(timeToHours(inputTo.value), 0), max);
-                //         handle2.style.left = (hours / max) * 100 + '%';
-                //         updateTrack();
-                //     });
-                // });
-                // // Lọc slide tiền
-                // document.addEventListener('DOMContentLoaded', function() {
-                //     const slider = document.querySelector('.custom-slider');
-                //     const handle1 = slider.querySelector('.custom-slider-handle-1');
-                //     const handle2 = slider.querySelector('.custom-slider-handle-2');
-                //     const track = slider.querySelector('.custom-slider-track-1');
-                //     const valueLeft = document.querySelector('.custom-value-left');
-                //     const valueRight = document.querySelector('.custom-value-right');
-                //     const max = 2000000; // Max value for the slider
-
-                //     // Function to format currency
-                //     function formatCurrency(value) {
-                //         return value.toLocaleString('vi-VN', {
-                //             style: 'currency',
-                //             currency: 'VND'
-                //         });
-                //     }
-
-                //     // Function to update track and value display
-                //     function updateTrack() {
-                //         const value1 = parseFloat(handle1.style.left);
-                //         const value2 = parseFloat(handle2.style.left);
-                //         track.style.left = Math.min(value1, value2) + '%';
-                //         track.style.width = Math.abs(value1 - value2) + '%';
-                //         valueLeft.textContent = formatCurrency(Math.min(value1, value2) * max / 100);
-                //         valueRight.textContent = formatCurrency(Math.max(value1, value2) * max / 100);
-                //     }
-
-                //     // Function to handle dragging
-                //     function onDrag(event, handle) {
-                //         const sliderRect = slider.getBoundingClientRect();
-                //         const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect
-                //             .width);
-                //         handle.style.left = (newLeft / sliderRect.width) * 100 + '%';
-                //         updateTrack();
-                //     }
-
-                //     function onDragEnd() {
-                //         document.removeEventListener('mousemove', onMouseMove);
-                //         document.removeEventListener('mouseup', onMouseUp);
-                //     }
-
-                //     function onMouseMove(event) {
-                //         onDrag(event, draggingHandle);
-                //     }
-
-                //     function onMouseUp(event) {
-                //         onDrag(event, draggingHandle);
-                //         onDragEnd();
-                //     }
-
-                //     let draggingHandle;
-
-                //     handle1.addEventListener('mousedown', function(event) {
-                //         draggingHandle = handle1;
-                //         document.addEventListener('mousemove', onMouseMove);
-                //         document.addEventListener('mouseup', onMouseUp);
-                //     });
-
-                //     handle2.addEventListener('mousedown', function(event) {
-                //         draggingHandle = handle2;
-                //         document.addEventListener('mousemove', onMouseMove);
-                //         document.addEventListener('mouseup', onMouseUp);
-                //     });
-
-                //     // Set initial positions and update track
-                //     handle1.style.left = '0%';
-                //     handle2.style.left = '100%';
-                //     updateTrack();
-                // });
                 // Chọn hành khách
                 const searchContainer = $('.search-container');
                 const passengerSelection = $('.passenger-selection');
