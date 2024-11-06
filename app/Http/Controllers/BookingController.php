@@ -196,6 +196,23 @@ class BookingController extends Controller
             $booking = Booking::where(['order_code'=> $order_code])->first();
             $booking->status = config('apps.common.status_booking.cancel');
             $booking->save();
+
+            $token = Helpers::getToken($this->main_url, $this->client_id, $this->client_secret);
+            $uniqueToken = Str::uuid();
+            $client = new Client();
+            $response = $client->post( $this->main_url.'/v3/booking/refund', [
+                'headers' => [
+                    'Postman-Token' => (string) $uniqueToken,
+                    'cache-control' => 'no-cache',
+                    'Authorization' => 'Bearer ' .  $token,
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
+                'form_params' => [
+                    'code' => $order_code,
+                ],
+            ]);
+            $responseBody = json_decode($response->getBody(), true);
+            return $responseBody;
        } catch (\Throwable $th) {
             return null;
        }

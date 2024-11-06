@@ -95,7 +95,7 @@ $(document).ready(function () {
                     });
                     toastr.success(data.message);
                 } else {
-                    toastr.error(data.error);
+                    toastr.error(data.message);
                 }
             },
             error: function (jqXHR) {
@@ -162,6 +162,11 @@ function openEditUserModal(Id) {
                 $("#droff_off_info_e").val(data.user.drop_off_info);
                 $("#droff_off_point_id_e").val(data.user.drop_off_point_id);
 
+                if (data.user.status == 4 || data.user.status == 5) { // disabled khi status là cancel và đã hoàn thành 
+                    $("#status_e").attr("disabled", true);
+                } else {
+                    $("#status_e").attr("disabled", false);
+                }
                 $("#status_e").val(data.user.status);
             } else {
                 toastr.error("Không thể tải dữ liệu người dùng.");
