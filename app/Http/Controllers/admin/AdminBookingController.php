@@ -232,6 +232,17 @@ class AdminBookingController extends Controller
             $booking->status = $request->status;
         }
         
+        $booking->customer_name     = $request->name;
+        $booking->customer_email    = $request->email;
+        $booking->customer_phone    = $request->phone;
+        $booking->seats             = $request->seats;
+        $booking->code              = $request->code;
+        $booking->booking_code      = $request->booking_code;
+        $booking->tickets           = $request->ticket;
+        $booking->price             = $request->price;
+        $booking->pickup_id         = $request->pickup_id;
+        $booking->drop_off_info     = $request->droff_off_info;
+        $booking->drop_off_point_id = $request->droff_off_point_id;
         $booking->save();
 
         return response()->json([
