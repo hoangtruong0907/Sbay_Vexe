@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="{{ asset('/template/admin/assets/css/css2?family=Nunito:wght@400;500;600;700;800&display=swap') }}"
         rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="{{ asset('/template/admin/assets/css/perfect-scrollbar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/admin/assets/css/style.css') }}">

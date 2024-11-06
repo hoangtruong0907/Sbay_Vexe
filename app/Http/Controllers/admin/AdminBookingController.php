@@ -144,7 +144,7 @@ class AdminBookingController extends Controller
             } else {
                 $bookingData['ticket'] = [];
             }
-            
+            // dd($bookingData);
             return view('admin.booking.booking_detail', ['arrayData' => $bookingData]);
         } else {
             return response()->json(['message' => 'Booking not found.'], 404);
