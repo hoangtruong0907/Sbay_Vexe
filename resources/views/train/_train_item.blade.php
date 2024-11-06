@@ -315,8 +315,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade rating-tab show active" id="rating-{{ $key }}"
-                            role="tabpanel" aria-labelledby="rating-tab" tabindex="2">
+                        {{-- <div class="tab-pane fade rating-tab show active" id="rating-{{ $key }}" role="tabpanel"
+                            aria-labelledby="rating-tab" tabindex="2">
                             <div class="d-flex align-items-center">
                                 <div class="container-star d-flex align-items-center rating-info">
                                     <button class="btn btn-primary p-1"><i class="fa-solid fa-star"></i>
@@ -653,7 +653,7 @@
                                 </button>
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -668,9 +668,33 @@
                 const detailCollapse = document.getElementById(`ticket-detail-collapse-${key}`);
                 const stepCollapse = document.getElementById(`ticket-step-collapse-${key}`);
 
-                if (!detailButton || !chooseTripButton || !detailCollapse || !stepCollapse) {
-                    console.warn(`Some elements not found for key ${key}`);
-                    return;
+            if (!detailButton || !chooseTripButton || !detailCollapse || !stepCollapse) {
+                console.warn(`Some elements not found for key ${key}`);
+                return;
+            }
+
+            let isChooseTrip = true;
+
+            function updateButtonText() {
+                const textElement = chooseTripButton.querySelector('.text-chooseeTrip');
+                if (textElement) {
+                    textElement.textContent = isChooseTrip ? 'Chọn chuyến' : 'Đóng';
+                }
+            }
+
+            function closeCollapse(element) {
+                const bsCollapse = bootstrap.Collapse.getInstance(element);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            }
+
+            // Xử lý sự kiện cho nút "Chọn chuyến"
+            chooseTripButton.addEventListener('click', function (event) {
+                event.preventDefault();                
+
+                if (detailCollapse.classList.contains('show')) {
+                    closeCollapse(detailCollapse);
                 }
 
                 let isChooseTrip = true;

@@ -1502,3 +1502,36 @@
 #floating {
     display: none;
 }
+
+/* Choose type chain */
+.item-child {
+    position: relative;
+}
+
+.item-child input[type="radio"] {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+}
+
+.type-seat .child-type {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ffbf62;
+    background-color: #ffce8700;
+    border-radius: 15px;
+    margin: 10px 0;
+}
+
+.type-seat .child-type.active {
+    border: 1px solid #ffce87;
+    background-color: #ffce8736;
+}
+.type-seat .child-type:hover {
+    cursor: pointer;
+}
+
+.type-seat .child-type h6 {
+    display: flex;
+    justify-content: space-between;
+}

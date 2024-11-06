@@ -203,7 +203,7 @@ class BookingController extends Controller
 
     public function updateBookingStatus(Request $request)
     {
-        $check_memo = "020097042211010859472024SPK2589321.84497.085947.0917134314"; $request->order_code; // truyền vào order_code
+        $check_memo = $request->order_code; // truyền vào order_code
         $check_type = "deposit";    // chỉ lấy giao dịch nhận
         $check_date = Carbon::now()->format('d/m/Y'); // Lấy giao dịch trong ngày hôm nay
 
