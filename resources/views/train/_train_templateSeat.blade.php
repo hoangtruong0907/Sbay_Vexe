@@ -195,10 +195,10 @@
 </div>
 <script>
     $(document).ready(function() {
-        let listSeatChoosed = {}; 
+        let listSeatChoosed = {};
         $('.seat-container').on('click', function() {
             if ($(this).data('disabled') === 'true') {
-                return; 
+                return;
             }
 
             const seatCode = $(this).data('seat-code');
@@ -207,7 +207,7 @@
 
             if ($(this).hasClass('seat-selected')) {
                 delete listSeatChoosed[seatCode];
-                $(this).removeClass('seat-selected'); 
+                $(this).removeClass('seat-selected');
             } else {
                 if (Object.keys(listSeatChoosed).length < $('input[name="user_type"]').length) {
                     
@@ -261,7 +261,7 @@
 
                 } else {
                     $('#modals-warning').modal('show');
-                    return; 
+                    return;
                 }
             }
             updateTotalAndSeats();
@@ -274,7 +274,7 @@
 
             // Tính tổng giá tiền
             for (const seat of selectedSeats) {
-                total += listSeatChoosed[seat].fareSeat; 
+                total += listSeatChoosed[seat].fareSeat;
             }
             $('.right-total-train').text(formatCurrency(total)); // Cập nhật tổng tiền
             $('.left-seat-train').text(seatNumbers); // Cập nhật ghế đã chọn
