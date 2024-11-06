@@ -138,7 +138,7 @@
         $user = Auth::user();
     @endphp
 
-    @if (is_null($user->phone))
+    {{-- @if (is_null($user->phone))
         <div class="modal fade" id="addPhonenumberModal" tabindex="-1" aria-labelledby="addPhonenumberModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -167,5 +167,5 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 @endauth

@@ -582,6 +582,7 @@ $("#bus_search").click(() => {
         convertToSlug(busToPlace);
     var queryString = $.param(data);
     url += "&" + queryString;
+    // localStorage.setItem("lastSearchURL", url);
     window.location.href = url;
     // let currentUrl = window.location.href; // Lấy URL hiện tại
     // let searchString = "/route-search/xe-khach"; // Chuỗi cần kiểm tra

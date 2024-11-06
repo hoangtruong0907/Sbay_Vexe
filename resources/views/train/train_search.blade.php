@@ -541,7 +541,26 @@
         });
 
         $("#pills-bus-tab").on("click", function(e) {
-            window.location.href = "/route-search/xe-khach";
+            var busTo = localStorage.getItem("bus_select_to");
+                var busFrom = localStorage.getItem("bus_select_from");
+                var dateTo = localStorage.getItem("bus_date_to");
+                var dateFrom = localStorage.getItem("bus_date_from");
+                var data = {
+                    bus_from: busFrom,
+                    bus_to: busTo,
+                    date_from: dateFrom,
+                    date_to: dateTo,
+                };
+                var url = "/route-search/xe-khach?q=";
+                var queryString = $.param(data);
+                url += "&" + queryString;
+                window.location.href = url;
+            // var lastSearchURL = localStorage.getItem("lastSearchURL");
+            // if (lastSearchURL) {
+            //     window.location.href = lastSearchURL;
+            // } else {
+            //     window.location.href = "/route-search/xe-khach";
+            // }
         });
 
         // Lọc Giờ slide

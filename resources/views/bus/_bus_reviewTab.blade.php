@@ -73,23 +73,27 @@
                         </div>
                         <p class="mb-1">{{ $review['comment'] ?? '' }}</p>
                         <div class="d-flex list-img-review flex-row">
-                            <a href="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg" data-lightbox="gallery" data-title="Hình ảnh 1">
+                            {{-- <a href="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg" data-lightbox="gallery" data-title="Hình ảnh 1">
                                 <img class="thumb-img-review" src="https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/anh-gai-xinh-1-17.jpg" alt="thumb-1">
-                            </a>
+                            </a> --}}
                             <a href="https://storage.googleapis.com/fe-production/images/review/C5L9PG5/img_1723897621661.jpg" data-lightbox="gallery" data-title="Hình ảnh 2">
                                 <img class="thumb-img-review" src="https://storage.googleapis.com/fe-production/images/review/C5L9PG5/img_1723897621661.jpg" alt="thumb-2">
                             </a>
                             <a href="https://danangfantasticity.com/wp-content/uploads/2018/10/cau-rong-top-20-cay-cau-ky-quai-nhat-the-gioi-theo-boredom-therapy-02.jpg" data-lightbox="gallery" data-title="Hình ảnh 3">
                                 <img class="thumb-img-review" src="https://danangfantasticity.com/wp-content/uploads/2018/10/cau-rong-top-20-cay-cau-ky-quai-nhat-the-gioi-theo-boredom-therapy-02.jpg" alt="thumb-3">
                             </a>
-                        
                             @if (count($review['images']) > 0)
-                                @foreach ($review['images'] as $img)
+                            @foreach ($review['images'] as $img)
+                                @php
+                                    $headers = get_headers($img['large'], 1);
+                                @endphp
+                                @if (strpos($headers[0], '200') !== false)
                                     <a href="{{ $img['large'] }}" data-lightbox="gallery" data-title="Hình ảnh từ review">
                                         <img class="thumb-img-review" src="{{ $img['thumb'] }}" alt="thumb-{{ $loop->index + 1 }}">
                                     </a>
-                                @endforeach
-                            @endif
+                                @endif
+                            @endforeach
+                        @endif
                         </div>
                         
                         <div class="d-flex align-items-center">

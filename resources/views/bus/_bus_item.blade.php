@@ -12,7 +12,7 @@
                 <div class="ticket-info-l">
                     <div class="ticket-bus-info-l">
                         <div class="bus-name-l">{{ $route['company']['name'] }}
-                            <button type="button" class="ant-btn bus-rating-button-l">
+                            <button type="button" class="ant-btn ant-btn-bus bus-rating-button-l" data-id="{{ $key }}">
                                 <div class="bus-rating-l">
                                     <i class="fa-solid fa-star"></i>
                                     <span>{{ $route['company']['ratings']['overall'] }}
@@ -87,7 +87,7 @@
                         </div>
                         <div class="action-l">
                             <button type="button" class="ant-btn btn-detail-l ant-btn-link-l" data-bs-toggle="collapse"
-                                data-bs-target="#ticket-detail-collapse-{{ $key }}" role="button"
+                                data-bs-target="#ticket-detail-collapse-{{ $key }}" role="button" id="ticket-button-collapse-{{ $key }}"
                                 aria-expanded="false" aria-controls="ticket-detail-collapse-{{ $key }}">
                                 <span>Thông tin chi tiết</span>
                                 <i aria-label="icon: caret-down" class="anticon anticon-caret-down">

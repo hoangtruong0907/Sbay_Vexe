@@ -233,4 +233,10 @@
 
         });
     });
+
+    $('.ant-btn-bus').click(function () {
+        const id_button = $(this).attr('data-id');
+        $('#ticket-button-collapse-'+ id_button).click();
+        $('#rating-tab-'+id_button).click();
+    })
 </script>
