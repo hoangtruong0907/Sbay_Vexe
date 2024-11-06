@@ -250,9 +250,6 @@
 }
 
 @media (max-width: 768px) {
-    .filters-wrapper>*:not(.filter-title) {
-        display: none;
-    }
 
     .cta-button {
         display: block;
@@ -1097,6 +1094,39 @@
     .total-header #btn-hotline {
         display: block;
     }
+}
+
+@media (max-width: 1045px) {
+    .slider-handle {
+        width: 15px !important;
+        height: 15px !important;
+        top: -6px !important;
+    }
+    .menu-button-filter{
+        display: block;
+    }
+    .left-filter-mmenu{
+        display: block !important;
+        width: 280px !important;
+        padding: 0px 13px;
+    }
+    .sidebar-filter {
+        width: 280px;
+        height: 100vh;
+        background-image: linear-gradient(to right top, #ffa07a, #ffb57d, #ffcb85, #ffe093, #fdf4a5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        padding-top: 50px;
+        z-index: 1000;
+        overflow-y: auto; 
+    }
+    .close-button-filter {
+        display: block;
+    }
+
 }
 
 @media (max-width: 1400px) {

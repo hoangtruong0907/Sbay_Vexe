@@ -1,6 +1,7 @@
 <header>
     <div class="total-header shadow">
         <div class="left-header">
+            <button class="menu-button-filter" id="menuButton" onclick="toggleMenuFilter()">☰</button>
             <div class="logo-header">
                 <a href="/">
                     <img src="{{ asset('images/logo-svexere.svg') }}" alt="logo">
@@ -169,3 +170,4 @@
         </div>
     @endif
 @endauth
+
