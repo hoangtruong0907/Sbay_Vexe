@@ -841,9 +841,7 @@
                     _token: $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-                    console.log(response);
                     $(`.card-body-train #template-seat-${trainId}`).html(response.dataHTML);
-                    console.log($(`.wrap-steps-train #template-seat-${trainId}`));
 
                     // if (response.status === 'success') {
 

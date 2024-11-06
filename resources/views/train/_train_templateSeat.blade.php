@@ -23,6 +23,10 @@
                         </div> --}}
                     </span>
                 </div>
+                <div class="type-seat flex mt-3">
+                    <h5>Hành khách: </h5>
+                    {{-- Render items in here --}}
+                </div>
             </div>
         </div>
         {{-- List template seat  --}}
@@ -113,6 +117,10 @@
                     </div> --}}
                     </span>
                 </div>
+                <div class="type-seat flex mt-3">
+                    <h5>Hành khách: </h5>
+                    {{-- Render items in here --}}
+                </div>
             </div>
         </div>
         {{-- List template seat  --}}
@@ -177,7 +185,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="mt-2 mb-2">Bạn chỉ được đặt tối đa 3 ghế cho mỗi lần đặt.</p>
+                <p class="mt-2 mb-2">Bạn đã chọn tối đa hành khách, vui lòng chọn thêm hành khách.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đã hiểu</button>
@@ -201,12 +209,56 @@
                 delete listSeatChoosed[seatCode];
                 $(this).removeClass('seat-selected'); 
             } else {
-                if (Object.keys(listSeatChoosed).length < 3) {
-                    listSeatChoosed[seatCode] = {
-                        fareSeat: seatFare,
-                        fullCode: fullCode
-                    };
-                    $(this).addClass('seat-selected'); 
+                if (Object.keys(listSeatChoosed).length < $('input[name="user_type"]').length) {
+                    
+                    // Lấy giá trị của input radio đã được chọn
+                    const selectedType = $('input[name="user_type"]:checked').val();
+                    let isUpdated = false; // Biến để kiểm tra xem đã cập nhật hay chưa
+
+                    // Duyệt qua từng phần tử trong obj để kiểm tra và cập nhật
+                    for (let key in listSeatChoosed) {
+                        if (listSeatChoosed[key].type === selectedType) {
+                            // Nếu type trùng, cập nhật fareSeat và fullCode
+                            listSeatChoosed[key].fareSeat = seatFare; // Giá trị mới cho fareSeat
+                            listSeatChoosed[key].fullCode = fullCode; // Giá trị mới cho fullCode
+                            isUpdated = true; // Đánh dấu là đã cập nhật
+                            break; // Thoát khỏi vòng lặp khi đã tìm thấy và cập nhật
+                        }
+                    }
+
+                    // Nếu không có type nào trùng, tạo mới phần tử
+                    if (!isUpdated) {
+                        // Thêm phần tử mới vào obj
+                        listSeatChoosed[seatCode] = {
+                            fareSeat: seatFare,
+                            fullCode: fullCode,
+                            type: selectedType
+                        };
+                    }
+
+
+                    $(this).addClass('seat-selected');
+                    
+                    // Tìm ô radio hiện đang được chọn
+                    var currentChecked = $('input[name="user_type"]:checked');
+
+                    if (currentChecked.length > 0) {
+                        // Tìm tất cả các ô radio trong nhóm
+                        var radios = $('input[name="user_type"]');
+                        // Lấy chỉ số của ô radio hiện đang được chọn
+                        var currentIndex = radios.index(currentChecked);
+
+                        // Tìm ô radio tiếp theo nếu tồn tại
+                        var nextIndex = currentIndex + 1;
+                        if (nextIndex < radios.length) {
+                            radios.eq(nextIndex).prop('checked', true);
+                        }
+                    } else {
+                        // Nếu chưa có ô nào được chọn, đánh dấu ô đầu tiên
+                        $('input[name="user_type"]').first().prop('checked', true);
+                    }
+
+
                 } else {
                     $('#modals-warning').modal('show');
                     return; 
@@ -237,5 +289,42 @@
                 maximumFractionDigits: 3
             }) + 'đ';
         }
+
+        var totalArrayUsersType = [];
+        function handleRenderTypeUser() {
+
+            for (let index = 0; index < userPresent.child; index++) {
+                let count = index + 1;
+                const dataHtml = 
+                    `<div class="item-child">
+                        <label for="child-${count}" class="child-type">
+                            <h6><b>Trẻ em ${count}</b></h6>
+                            <div>Bấm để chọn chỗ</div>
+                        </label>
+                        <input type="radio" value="child-${count}" name="user_type" id="child-${count}"/>
+                    </div>`;
+
+                $('.type-seat').append(dataHtml);
+                totalArrayUsersType.push({id: 'child-' + count});
+            }
+
+            for (let index = 0; index < userPresent.adult; index++) {
+                let count = index + 1;
+                const dataHtml = 
+                `<div class="item-child">
+                    <label for="adult-${count}" class="child-type">
+                        <h6><b>Người lớn ${count}</b></h5>
+                        <div>Bấm để chọn chỗ</div>
+                    </label>
+                    <input type="radio" value="adult-${count}" name="user_type" id="adult-${count}"/>
+                </div>`;
+                
+                $('.type-seat').append(dataHtml);
+                totalArrayUsersType.push({id: 'adult-' + count});
+            }
+
+            $('input[name="user_type"]').first().prop('checked', true);
+        }
+        handleRenderTypeUser();
     });
 </script>
