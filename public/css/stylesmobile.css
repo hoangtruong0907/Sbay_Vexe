@@ -1097,6 +1097,11 @@
 }
 
 @media (max-width: 1045px) {
+    .custom-slider-handle{
+        width: 15px !important;
+        height: 15px !important;
+        top: -6px !important;
+    }
     .slider-handle {
         width: 15px !important;
         height: 15px !important;
