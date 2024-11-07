@@ -24,216 +24,219 @@
             ])
         </div>
         <div class="wrap-filter">
-            <div class="left-filter">
-                <div class="wrap-arrange-top">
-                    <div class="text-arrange">
-                        <h3>Sắp xếp</h3>
+            <div class="sidebar-filter" id="sidebar-filter">
+                <button class="close-button-filter" onclick="toggleMenuFilter()">✖</button>
+                <div class="left-filter left-filter-mmenu">
+                    <div class="wrap-arrange-top">
+                        <div class="text-arrange">
+                            <h3>Sắp xếp</h3>
+                        </div>
+                        <div class="radio-group sort-options">
+                            <label class="radio-wrapper checked">
+                                <span class="radio checked">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Mặc định</p>
+                                </span>
+                            </label>
+                            <label class="radio-wrapper">
+                                <span class="radio">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="fare:asc">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Giá tăng dần</p>
+                                </span>
+                            </label>
+                            <label class="radio-wrapper">
+                                <span class="radio">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="fare:desc">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Giá giảm dần</p>
+                                </span>
+                            </label>
+                            <label class="radio-wrapper">
+                                <span class="radio">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:asc">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Giờ đi sớm nhất</p>
+                                </span>
+                            </label>
+                            <label class="radio-wrapper">
+                                <span class="radio">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:desc">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Giờ đi muộn nhất</p>
+                                </span>
+                            </label>
+                            <label class="radio-wrapper">
+                                <span class="radio">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:asc">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Giờ đến sớm nhất</p>
+                                </span>
+                            </label>
+                            <label class="radio-wrapper">
+                                <span class="radio">
+                                    <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:desc">
+                                    <span class="radio-inner"></span>
+                                </span>
+                                <span>
+                                    <p class="option-label">Giờ đến muộn nhất</p>
+                                </span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="radio-group sort-options">
-                        <label class="radio-wrapper checked">
-                            <span class="radio checked">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Mặc định</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="fare:asc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giá tăng dần</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="fare:desc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giá giảm dần</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:asc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giờ đi sớm nhất</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:desc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giờ đi muộn nhất</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:asc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giờ đến sớm nhất</p>
-                            </span>
-                        </label>
-                        <label class="radio-wrapper">
-                            <span class="radio">
-                                <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:desc">
-                                <span class="radio-inner"></span>
-                            </span>
-                            <span>
-                                <p class="option-label">Giờ đến muộn nhất</p>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <div class="wrap-arrange-bottom">
-                    <div class="filters-wrapper">
-                        <div class="filter-title">
-                            <div class="filter-header">Lọc</div>
-                            <p class="btn-clear">Xóa lọc</p>
-                        </div>
-                        {{-- Giờ đi --}}
-                        <div class="filter-item">
-                            <div class="filter-group filter-times">
-                                <div class="filter-header-container">
-                                    <p class="filter-label">Giờ đi</p>
-                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                                </div>
-                                <div class="filter-content">
-                                    <div class="d-flex filter-time">
-                                        <div class="group-time" data-value="timeGo:6h">
-                                            <b>Sáng sớm</b>
-                                            <div>00:00 - 06:00</div>
-                                        </div>
-                                        <div class="group-time" data-value="timeGo:12h">
-                                            <b>Buổi sáng</b>
-                                            <div>06:01 - 12:00</div>
-                                        </div>
-                                        <div class="group-time" data-value="timeGo:18h">
-                                            <b>Buổi chiều</b>
-                                            <div>12:01 - 18:00</div>
-                                        </div>
-                                        <div class="group-time" data-value="timeGo:23h">
-                                            <strong>Buổi tối</strong>
-                                            <div>18:01 - 23:59</div>
-                                        </div>
+                    <div class="wrap-arrange-bottom">
+                        <div class="filters-wrapper">
+                            <div class="filter-title">
+                                <div class="filter-header">Lọc</div>
+                                <p class="btn-clear">Xóa lọc</p>
+                            </div>
+                            {{-- Giờ đi --}}
+                            <div class="filter-item">
+                                <div class="filter-group filter-times">
+                                    <div class="filter-header-container">
+                                        <p class="filter-label">Giờ đi</p>
+                                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Giờ đến --}}
-                        <div class="filter-item">
-                            <div class="filter-group filter-times">
-                                <div class="filter-header-container">
-                                    <p class="filter-label">Giờ đến</p>
-                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                                </div>
-                                <div class="filter-content">
-                                    <div class="d-flex filter-time">
-                                        <div class="group-time" data-value="timeCome:6h">
-                                            <b>Sáng sớm</b>
-                                            <div>00:00 - 06:00</div>
-                                        </div>
-                                        <div class="group-time" data-value="timeCome:12h">
-                                            <b>Buổi sáng</b>
-                                            <div>06:01 - 12:00</div>
-                                        </div>
-                                        <div class="group-time" data-value="timeCome:18h">
-                                            <b>Buổi chiều</b>
-                                            <div>12:01 - 18:00</div>
-                                        </div>
-                                        <div class="group-time" data-value="timeCome:23h">
-                                            <strong>Buổi tối</strong>
-                                            <div>18:01 - 23:59</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Giá vé --}}
-                        <div class="filter-group filter-price">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Giá vé</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="custom-group-info">
-                                    <div class="custom-slider-container">
-                                        <div class="custom-slider">
-                                            <div class="custom-slider-rail"></div>
-                                            <div class="custom-slider-track custom-slider-track-1" style="left: 0%; width: 100%;"></div>
-                                            <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
-                                                role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="0" style="left: 0%;">
+                                    <div class="filter-content">
+                                        <div class="d-flex filter-time">
+                                            <div class="group-time" data-value="timeGo:6h">
+                                                <b>Sáng sớm</b>
+                                                <div>00:00 - 06:00</div>
                                             </div>
-                                            <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
-                                                role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                                aria-valuenow="2000000" style="left: 100%;">
+                                            <div class="group-time" data-value="timeGo:12h">
+                                                <b>Buổi sáng</b>
+                                                <div>06:01 - 12:00</div>
+                                            </div>
+                                            <div class="group-time" data-value="timeGo:18h">
+                                                <b>Buổi chiều</b>
+                                                <div>12:01 - 18:00</div>
+                                            </div>
+                                            <div class="group-time" data-value="timeGo:23h">
+                                                <strong>Buổi tối</strong>
+                                                <div>18:01 - 23:59</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="custom-value-info custom-value-left">0 đ</div>
-                                    <div class="custom-value-info custom-value-right">2,000,000 đ</div>
                                 </div>
                             </div>
-                        </div>
-
-                        {{-- Loại ghế/giường --}}
-                        <div class="filter-group filter-seat-type">
-                            <div class="filter-header-container">
-                                <p class="filter-label">Loại ghế / giường</p>
-                                <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="filter-content">
-                                <div class="group-items-b">
-                                    <label class="Filter_ACSeater ant-checkbox-wrapper-b" style="margin: 10px; display:flex">
-                                        <span class="ant-checkbox-b">
-                                            <input type="checkbox" class="ant-checkbox-input-b" value="" id="allSeats">
-                                            <span class="ant-checkbox-inner-b"></span>
-                                        </span>
-                                        <span>Tất cả</span>
-                                    </label>
-                                    <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                                        <span class="ant-checkbox-b">
-                                            <input type="checkbox" class="ant-checkbox-input-b" value="NGC">
-                                            <span class="ant-checkbox-inner-b"></span>
-                                        </span>
-                                        <span>Ngồi cứng</span>
-                                    </label>
-                                    <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                                        <span class="ant-checkbox-b">
-                                            <input type="checkbox" class="ant-checkbox-input-b" value="NGM">
-                                            <span class="ant-checkbox-inner-b"></span>
-                                        </span>
-                                        <span>Ngồi mềm</span>
-                                    </label>
-                                    <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                                        <span class="ant-checkbox-b">
-                                            <input type="checkbox" class="ant-checkbox-input-b" value="NAC">
-                                            <span class="ant-checkbox-inner-b"></span>
-                                        </span>
-                                        <span>Nằm khoang 4</span>
-                                    </label>
-                                    <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                                        <span class="ant-checkbox-b">
-                                            <input type="checkbox" class="ant-checkbox-input-b" value="NAM">
-                                            <span class="ant-checkbox-inner-b"></span>
-                                        </span>
-                                        <span>Nằm khoang 6</span>
-                                    </label>
+                            {{-- Giờ đến --}}
+                            <div class="filter-item">
+                                <div class="filter-group filter-times">
+                                    <div class="filter-header-container">
+                                        <p class="filter-label">Giờ đến</p>
+                                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                    </div>
+                                    <div class="filter-content">
+                                        <div class="d-flex filter-time">
+                                            <div class="group-time" data-value="timeCome:6h">
+                                                <b>Sáng sớm</b>
+                                                <div>00:00 - 06:00</div>
+                                            </div>
+                                            <div class="group-time" data-value="timeCome:12h">
+                                                <b>Buổi sáng</b>
+                                                <div>06:01 - 12:00</div>
+                                            </div>
+                                            <div class="group-time" data-value="timeCome:18h">
+                                                <b>Buổi chiều</b>
+                                                <div>12:01 - 18:00</div>
+                                            </div>
+                                            <div class="group-time" data-value="timeCome:23h">
+                                                <strong>Buổi tối</strong>
+                                                <div>18:01 - 23:59</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            {{-- Giá vé --}}
+                            <div class="filter-group filter-price">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Giá vé</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content">
+                                    <div class="custom-group-info">
+                                        <div class="custom-slider-container">
+                                            <div class="custom-slider">
+                                                <div class="custom-slider-rail"></div>
+                                                <div class="custom-slider-track custom-slider-track-1" style="left: 0%; width: 100%;"></div>
+                                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
+                                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                                                    aria-valuenow="0" style="left: 0%;">
+                                                </div>
+                                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
+                                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
+                                                    aria-valuenow="2000000" style="left: 100%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-value-info custom-value-left">0 đ</div>
+                                        <div class="custom-value-info custom-value-right">2,000,000 đ</div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            {{-- Loại ghế/giường --}}
+                            <div class="filter-group filter-seat-type">
+                                <div class="filter-header-container">
+                                    <p class="filter-label">Loại ghế / giường</p>
+                                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="filter-content">
+                                    <div class="group-items-b">
+                                        <label class="Filter_ACSeater ant-checkbox-wrapper-b" style="margin: 10px; display:flex">
+                                            <span class="ant-checkbox-b">
+                                                <input type="checkbox" class="ant-checkbox-input-b" value="" id="allSeats">
+                                                <span class="ant-checkbox-inner-b"></span>
+                                            </span>
+                                            <span>Tất cả</span>
+                                        </label>
+                                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                                            <span class="ant-checkbox-b">
+                                                <input type="checkbox" class="ant-checkbox-input-b" value="NGC">
+                                                <span class="ant-checkbox-inner-b"></span>
+                                            </span>
+                                            <span>Ngồi cứng</span>
+                                        </label>
+                                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                                            <span class="ant-checkbox-b">
+                                                <input type="checkbox" class="ant-checkbox-input-b" value="NGM">
+                                                <span class="ant-checkbox-inner-b"></span>
+                                            </span>
+                                            <span>Ngồi mềm</span>
+                                        </label>
+                                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                                            <span class="ant-checkbox-b">
+                                                <input type="checkbox" class="ant-checkbox-input-b" value="NAC">
+                                                <span class="ant-checkbox-inner-b"></span>
+                                            </span>
+                                            <span>Nằm khoang 4</span>
+                                        </label>
+                                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
+                                            <span class="ant-checkbox-b">
+                                                <input type="checkbox" class="ant-checkbox-input-b" value="NAM">
+                                                <span class="ant-checkbox-inner-b"></span>
+                                            </span>
+                                            <span>Nằm khoang 6</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -246,240 +249,6 @@
                     ])
                 @endforeach
             </div>
-        </div>
-    </div>
-    
-    <!-- /////// lọc mobile///////// -->
-    <div id="floating" class="floating-container">
-        <button onclick="openFilterModal()">
-            <span>&#9881;</span> Lọc
-        </button>
-        <button onclick="openSortModal()">
-            <span>&#9650;</span> Sắp xếp
-        </button>
-    </div>
-
-    {{--  --}}
-    <div id="filterModal" class="modal">
-        <div class="modal-content">
-            <span class="close mb-4" onclick="closeFilterModal()">&times;</span>
-            <div class="filter-title">
-                <div class="filter-header">Lọc</div>
-                <p class="btn-clear">Xóa lọc</p>
-            </div>
-
-            {{-- Giờ đi --}}
-            <div class="filter-item">
-                <div class="filter-group filter-times">
-                    <div class="filter-header-container">
-                        <p class="filter-label">Giờ đi</p>
-                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                    </div>
-                    <div class="filter-content">
-                        <div class="d-flex filter-time">
-                            <div class="group-time" data-value="timeGo:6h">
-                                <b>Sáng sớm</b>
-                                <div>00:00 - 06:00</div>
-                            </div>
-                            <div class="group-time" data-value="timeGo:12h">
-                                <b>Buổi sáng</b>
-                                <div>06:01 - 12:00</div>
-                            </div>
-                            <div class="group-time" data-value="timeGo:18h">
-                                <b>Buổi chiều</b>
-                                <div>12:01 - 18:00</div>
-                            </div>
-                            <div class="group-time" data-value="timeGo:23h">
-                                <strong>Buổi tối</strong>
-                                <div>18:01 - 23:59</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- Giờ đến --}}
-            <div class="filter-item">
-                <div class="filter-group filter-times">
-                    <div class="filter-header-container">
-                        <p class="filter-label">Giờ đến</p>
-                        <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                    </div>
-                    <div class="filter-content">
-                        <div class="d-flex filter-time">
-                            <div class="group-time" data-value="timeCome:6h">
-                                <b>Sáng sớm</b>
-                                <div>00:00 - 06:00</div>
-                            </div>
-                            <div class="group-time" data-value="timeCome:12h">
-                                <b>Buổi sáng</b>
-                                <div>06:01 - 12:00</div>
-                            </div>
-                            <div class="group-time" data-value="timeCome:18h">
-                                <b>Buổi chiều</b>
-                                <div>12:01 - 18:00</div>
-                            </div>
-                            <div class="group-time" data-value="timeCome:23h">
-                                <strong>Buổi tối</strong>
-                                <div>18:01 - 23:59</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Giá vé --}}
-            <div class="filter-group filter-price">
-                <div class="filter-header-container">
-                    <p class="filter-label">Giá vé</p>
-                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                </div>
-                <div class="" style="display: none">
-                    <div class="custom-group-info">
-                        <div class="custom-slider-container">
-                            <div class="custom-slider">
-                                <div class="custom-slider-rail"></div>
-                                <div class="custom-slider-track custom-slider-track-1" style="left: 0%; width: 100%;"></div>
-                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-1"
-                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                    aria-valuenow="0" style="left: 0%;">
-                                </div>
-                                <div tabindex="0" class="custom-slider-handle custom-slider-handle-2"
-                                    role="slider" aria-valuemin="0" aria-valuemax="2000000"
-                                    aria-valuenow="2000000" style="left: 100%;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="custom-value-info custom-value-left">0 đ</div>
-                        <div class="custom-value-info custom-value-right">2,000,000 đ</div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Loại ghế/giường --}}
-            <div class="filter-group filter-seat-type">
-                <div class="filter-header-container">
-                    <p class="filter-label">Loại ghế / giường</p>
-                    <div class="expand-icon"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
-                </div>
-                <div class="filter-content">
-                    <div class="group-items-b">
-                        <label class="Filter_ACSeater ant-checkbox-wrapper-b" style="margin: 10px; display:flex">
-                            <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="" id="allSeats">
-                                <span class="ant-checkbox-inner-b"></span>
-                            </span>
-                            <span>Tất cả</span>
-                        </label>
-                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                            <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="NGC">
-                                <span class="ant-checkbox-inner-b"></span>
-                            </span>
-                            <span>Ngồi cứng</span>
-                        </label>
-                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                            <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="NGM">
-                                <span class="ant-checkbox-inner-b"></span>
-                            </span>
-                            <span>Ngồi mềm</span>
-                        </label>
-                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                            <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="NAC">
-                                <span class="ant-checkbox-inner-b"></span>
-                            </span>
-                            <span>Nằm khoang 4</span>
-                        </label>
-                        <label class="checkBoxGroup-b Filter_ACSleeper ant-checkbox-wrapper-b">
-                            <span class="ant-checkbox-b">
-                                <input type="checkbox" class="ant-checkbox-input-b" value="NAM">
-                                <span class="ant-checkbox-inner-b"></span>
-                            </span>
-                            <span>Nằm khoang 6</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <button class="close-button" onclick="closeFilterModal()">Xem 36 chuyến</button>
-                <button class="close-button" onclick="closeFilterModal()">Xóa Lọc</button>
-            </div>
-        </div>
-
-    </div>
-    <!-- ///////// sắp xếp/////////// -->
-    <div id="sortModal" class="modal">
-        <div class="modal-content-1">
-            <span class="close" onclick="closeSortModal()">&times;</span>
-            <h2>Sắp xếp</h2>
-            <div class="radio-group sort-options">
-                <label class="radio-wrapper checked">
-                    <span class="radio checked">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Mặc định</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="fare:asc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giá tăng dần</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="fare:desc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giá giảm dần</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:asc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giờ đi sớm nhất</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="hourGo:desc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giờ đi muộn nhất</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:asc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giờ đến sớm nhất</p>
-                    </span>
-                </label>
-                <label class="radio-wrapper">
-                    <span class="radio">
-                        <input type="radio" name="radio-date-time" class="radio-input" value="hourCome:desc">
-                        <span class="radio-inner"></span>
-                    </span>
-                    <span>
-                        <p class="option-label">Giờ đến muộn nhất</p>
-                    </span>
-                </label>
-            </div>
-            <button class="close-button" onclick="closeSortModal()">Đóng</button>
         </div>
     </div>
 @endsection
@@ -656,6 +425,7 @@
                 updateTrack();
             });
         });
+        
         // Lọc slide tiền
         document.addEventListener('DOMContentLoaded', function() {
             const slider = document.querySelector('.custom-slider');
@@ -686,8 +456,9 @@
 
             // Function to handle dragging
             function onDrag(event, handle) {
+                const clientX = event.clientX || event.touches[0].clientX; // Support both mouse and touch events
                 const sliderRect = slider.getBoundingClientRect();
-                const newLeft = Math.min(Math.max(0, event.clientX - sliderRect.left), sliderRect.width);
+                const newLeft = Math.min(Math.max(0, clientX - sliderRect.left), sliderRect.width);
                 handle.style.left = (newLeft / sliderRect.width) * 100 + '%';
                 updateTrack();
             }
@@ -695,6 +466,8 @@
             function onDragEnd() {
                 document.removeEventListener('mousemove', onMouseMove);
                 document.removeEventListener('mouseup', onMouseUp);
+                document.removeEventListener('touchmove', onMouseMove);
+                document.removeEventListener('touchend', onMouseUp);
                 filterByPrice(valueLeft.textContent, valueRight.textContent)
             }
 
@@ -715,10 +488,24 @@
                 document.addEventListener('mouseup', onMouseUp);
             });
 
+            handle1.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                draggingHandle = handle1;
+                document.addEventListener('touchmove', onMouseMove);
+                document.addEventListener('touchend', onMouseUp);
+            });
+
             handle2.addEventListener('mousedown', function(event) {
                 draggingHandle = handle2;
                 document.addEventListener('mousemove', onMouseMove);
                 document.addEventListener('mouseup', onMouseUp);
+            });
+
+            handle2.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                draggingHandle = handle2;
+                document.addEventListener('touchmove', onMouseMove);
+                document.addEventListener('touchend', onMouseUp);
             });
 
             // Set initial positions and update track
@@ -726,6 +513,7 @@
             handle2.style.left = '100%';
             updateTrack();
         });
+
         //
         $(document).ready(function() {
             // Sắp xếp

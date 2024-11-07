@@ -65,7 +65,13 @@
         @endauth
         });
     </script>
-
+    <script>
+        // Hàm mở/đóng menu bộ lọc
+        function toggleMenuFilter() {
+            const sidebar = document.getElementById("sidebar-filter");
+            sidebar.classList.toggle("active-filter");
+        }
+    </script>
 </body>
 
 </html>

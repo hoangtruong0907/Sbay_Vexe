@@ -385,52 +385,76 @@ $(document).ready(function () {
     const track = slider.querySelector(".slider-track");
     const inputFrom = document.querySelector(".from-time");
     const inputTo = document.querySelector(".to-time");
-    const max = 24; // Max value for the slider in hours
+    const maxTime = 24;
+
     function updateTrack() {
         const value1 = parseFloat(handle1.style.left);
         const value2 = parseFloat(handle2.style.left);
         track.style.left = Math.min(value1, value2) + "%";
         track.style.width = Math.abs(value1 - value2) + "%";
-        inputFrom.value = hoursToTime(
-            Math.round((Math.min(value1, value2) * max) / 100)
-        );
-        inputTo.value = hoursToTime(
-            Math.round((Math.max(value1, value2) * max) / 100)
-        );
+        inputFrom.value = hoursToTime(Math.round((Math.min(value1, value2) * maxTime) / 100));
+        inputTo.value = hoursToTime(Math.round((Math.max(value1, value2) * maxTime) / 100));
     }
+
     function onDrag(event, handle) {
         const sliderRect = slider.getBoundingClientRect();
-        const newLeft = Math.min(
-            Math.max(0, event.clientX - sliderRect.left),
-            sliderRect.width
-        );
-        const valueInHours = Math.round((newLeft / sliderRect.width) * max); // Round to nearest hour
-        handle.style.left = (valueInHours / max) * 100 + "%";
+        const newLeft = Math.min(Math.max(0, (event.clientX || event.touches[0].clientX) - sliderRect.left), sliderRect.width);
+        const valueInHours = Math.round((newLeft / sliderRect.width) * maxTime);
+        handle.style.left = (valueInHours / maxTime) * 100 + "%";
         updateTrack();
     }
-    function onDragEnd() {
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
+
+    let draggingHandle;
+    function onMouseDown(event, handle) {
+        draggingHandle = handle;
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
     }
+
+    function onTouchStart(event, handle) {
+        draggingHandle = handle;
+        document.addEventListener("touchmove", onTouchMove, { passive: false });
+        document.addEventListener("touchend", onTouchEnd);
+    }
+
     function onMouseMove(event) {
         onDrag(event, draggingHandle);
     }
-    function onMouseUp(event) {
-        onDrag(event, draggingHandle);
-        onDragEnd();
+
+    function onMouseUp() {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
     }
-    let draggingHandle;
+
+    function onTouchMove(event) {
+        event.preventDefault(); // Prevent scrolling while dragging
+        onDrag(event, draggingHandle);
+    }
+
+    function onTouchEnd(event) {
+        onDrag(event.changedTouches[0], draggingHandle);
+        document.removeEventListener("touchmove", onTouchMove);
+        document.removeEventListener("touchend", onTouchEnd);
+        applyFilters();
+    }
+
     handle1.addEventListener("mousedown", function (event) {
-        draggingHandle = handle1;
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseup", onMouseUp);
+        onMouseDown(event, handle1);
     });
+
     handle2.addEventListener("mousedown", function (event) {
-        draggingHandle = handle2;
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseup", onMouseUp);
+        onMouseDown(event, handle2);
     });
-    // Set initial positions and update track
+
+    handle1.addEventListener("touchstart", function (event) {
+        onTouchStart(event, handle1);
+    });
+
+    handle2.addEventListener("touchstart", function (event) {
+        onTouchStart(event, handle2);
+    });
+
+    // Initial position setup
     handle1.style.left = "0%";
     handle2.style.left = "100%";
     updateTrack();
@@ -447,60 +471,88 @@ $(document).ready(function () {
     });
     /* -------------------------------------------*/
 
-    /* -------------- Lọc giá vé -----------------------------*/
+    /* -------------- Lọc giá vé ----------------------------- */
     const sliderM = document.querySelector(".custom-slider");
     const handleM1 = sliderM.querySelector(".custom-slider-handle-1");
     const handleM2 = sliderM.querySelector(".custom-slider-handle-2");
     const trackM = sliderM.querySelector(".custom-slider-track-1");
     const valueLeft = document.querySelector(".custom-value-left");
     const valueRight = document.querySelector(".custom-value-right");
-    const maxM = 2000000; // Max value for the slider
-    // Function to update track and value display
+    const maxM = 2000000; // Giá trị tối đa cho thanh trượt
+
+    // Hàm cập nhật hiển thị và vị trí của thanh trượt
     function updateTrack2() {
         const value1 = parseFloat(handleM1.style.left);
         const value2 = parseFloat(handleM2.style.left);
         trackM.style.left = Math.min(value1, value2) + "%";
         trackM.style.width = Math.abs(value1 - value2) + "%";
-        valueLeft.textContent = formatCurrency(
-            (Math.min(value1, value2) * maxM) / 100
-        );
-        valueRight.textContent = formatCurrency(
-            (Math.max(value1, value2) * maxM) / 100
-        );
+        valueLeft.textContent = formatCurrency((Math.min(value1, value2) * maxM) / 100);
+        valueRight.textContent = formatCurrency((Math.max(value1, value2) * maxM) / 100);
     }
-    // Function to handle dragging
+
+    // Hàm xử lý khi kéo thanh trượt
     function onDragM(event, handle) {
         const sliderRect = sliderM.getBoundingClientRect();
         const newLeft = Math.min(
-            Math.max(0, event.clientX - sliderRect.left),
+            Math.max(0, (event.clientX || event.touches[0].clientX) - sliderRect.left),
             sliderRect.width
         );
         handle.style.left = (newLeft / sliderRect.width) * 100 + "%";
         updateTrack2();
     }
-    function onDragEndM() {
-        document.removeEventListener("mousemove", onMouseMoveM);
-        document.removeEventListener("mouseup", onMouseUpM);
+
+    let draggingHandleM;
+    function onMouseDownM(event, handle) {
+        draggingHandleM = handle;
+        document.addEventListener("mousemove", onMouseMoveM);
+        document.addEventListener("mouseup", onMouseUpM);
     }
+
+    function onTouchStartM(event, handle) {
+        draggingHandleM = handle;
+        document.addEventListener("touchmove", onTouchMoveM, { passive: false });
+        document.addEventListener("touchend", onTouchEndM);
+    }
+
     function onMouseMoveM(event) {
         onDragM(event, draggingHandleM);
     }
-    function onMouseUpM(event) {
-        onDragM(event, draggingHandleM);
-        onDragEndM();
+
+    function onMouseUpM() {
+        document.removeEventListener("mousemove", onMouseMoveM);
+        document.removeEventListener("mouseup", onMouseUpM);
+        applyFilters(); // Áp dụng bộ lọc sau khi kéo xong trên máy tính
     }
-    let draggingHandleM;
+
+    function onTouchMoveM(event) {
+        event.preventDefault(); // Ngăn cuộn trang khi kéo trên di động
+        onDragM(event, draggingHandleM);
+    }
+
+    function onTouchEndM() {
+        document.removeEventListener("touchmove", onTouchMoveM);
+        document.removeEventListener("touchend", onTouchEndM);
+        applyFilters(); // Áp dụng bộ lọc ngay khi thả trên thiết bị di động
+    }
+
+    // Thêm sự kiện cho chuột và cảm ứng
     handleM1.addEventListener("mousedown", function (event) {
-        draggingHandleM = handleM1;
-        document.addEventListener("mousemove", onMouseMoveM);
-        document.addEventListener("mouseup", onMouseUpM);
+        onMouseDownM(event, handleM1);
     });
+
     handleM2.addEventListener("mousedown", function (event) {
-        draggingHandleM = handleM2;
-        document.addEventListener("mousemove", onMouseMoveM);
-        document.addEventListener("mouseup", onMouseUpM);
+        onMouseDownM(event, handleM2);
     });
-    // Set initial positions and update track
+
+    handleM1.addEventListener("touchstart", function (event) {
+        onTouchStartM(event, handleM1);
+    });
+
+    handleM2.addEventListener("touchstart", function (event) {
+        onTouchStartM(event, handleM2);
+    });
+
+    // Thiết lập vị trí ban đầu và cập nhật thanh trượt
     handleM1.style.left = "0%";
     handleM2.style.left = "100%";
     updateTrack2();
@@ -575,9 +627,3 @@ $(document).ready(function () {
         loadSearchListBus(url, data);
     });
 });
-
-// Hàm mở/đóng menu
-function toggleMenuFilter() {
-    const sidebar = document.getElementById("sidebar-filter");
-    sidebar.classList.toggle("active-filter");
-}

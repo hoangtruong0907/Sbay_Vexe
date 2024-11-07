@@ -1450,6 +1450,11 @@
     margin-top: 8px;
     font-size: 14px;
     color: #666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .carriage-details {
