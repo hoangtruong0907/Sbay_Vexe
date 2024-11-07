@@ -57,3 +57,4 @@ $('.minus-btn').click( function () {
         minusUser()
     }
 });
+

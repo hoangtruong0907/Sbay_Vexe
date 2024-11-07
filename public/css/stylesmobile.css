@@ -1088,6 +1088,49 @@
     .custom-hour {
         font-size: 13px;
     }
+    .compartments .bottom-container{
+        display: block !important;
+    }
+    .carriage-description{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 63px;
+    }
+    .ticket-image-l{
+        display: none;
+    }
+    .fare-l{
+        margin-top: -40px !important;
+    }
+    .from-to-content-l {
+        margin-right: 0px !important;
+        gap: 8% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .footer .copyright{
+        margin-top: 5px;
+        padding-top: 20px;
+    }
+    .footer .single_footer h4{
+        font-size: 18px;
+    }
+    .carriage-description{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 42px;
+    }
 }
 
 @media (min-width: 768px) {
