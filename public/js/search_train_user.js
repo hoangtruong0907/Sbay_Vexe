@@ -81,4 +81,3 @@ $('.minus-btn').click( function () {
         }
     }
 });
-
