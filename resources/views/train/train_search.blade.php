@@ -536,12 +536,39 @@
                 closeSortModal();
             }
         }
+        
         $("#pills-train-tab").on("click", function(e) {
-            window.location.href = "/route-search/tau-hoa";
+            let trainTo = localStorage.getItem("train_select_to");
+            let trainFrom = localStorage.getItem("train_select_from");
+            let dateTo = localStorage.getItem("train_date_to");
+            let dateFrom = localStorage.getItem("train_date_from");
+            let data = {
+                train_from: trainFrom,
+                train_to: trainTo,
+                date_from: dateFrom,
+                date_to: dateTo,
+            };
+            let url = "/route-search/tau-hoa?q=";
+            let queryString = $.param(data);
+            url += "&" + queryString;
+            window.location.href = url;
         });
 
         $("#pills-bus-tab").on("click", function(e) {
-            window.location.href = "/route-search/xe-khach";
+            let busTo = localStorage.getItem("bus_select_to");
+            let busFrom = localStorage.getItem("bus_select_from");
+            let dateTo = localStorage.getItem("bus_date_to");
+            let dateFrom = localStorage.getItem("bus_date_from");
+            let data = {
+                bus_from: busFrom,
+                bus_to: busTo,
+                date_from: dateFrom,
+                date_to: dateTo,
+            };
+            let url = "/route-search/xe-khach?q=";
+            let queryString = $.param(data);
+            url += "&" + queryString;
+            window.location.href = url;
         });
 
         // Lọc Giờ slide
