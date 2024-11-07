@@ -16,7 +16,12 @@ body {
     padding: 0px 10px;
     margin: auto;
 }
-
+.post-content img {
+    max-width: 100%;
+    height: auto; 
+    display: block;
+    margin: 0 auto; 
+}
 .total-header {
     display: flex;
     -webkit-box-align: center;
