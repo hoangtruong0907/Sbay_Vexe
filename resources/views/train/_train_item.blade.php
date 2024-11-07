@@ -481,8 +481,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <small>3 days ago</small>
                                     </div>
-                                    {{-- <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    <p class="mb-1">The single cabin was nice. The bed was a little short,
                                         but it was wide and pleasant. Each cabin was provided with bottled
                                         water, wet wipes and blankets. The bed was clean and the staff was very
                                         friendly, so I had a great experience.</p>
@@ -501,7 +502,7 @@
                                             <i class="fa-solid fa-ticket"></i>
                                             <small>Đã mua vé</small>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="list-group-item list-group-item-action p-3" aria-current="true">
                                     <div class="d-flex w-100 justify-content-between">
@@ -521,8 +522,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <small>3 days ago</small>
                                     </div>
-                                    {{-- <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    <p class="mb-1">The single cabin was nice. The bed was a little short,
                                         but it was wide and pleasant. Each cabin was provided with bottled
                                         water, wet wipes and blankets. The bed was clean and the staff was very
                                         friendly, so I had a great experience.</p>
@@ -541,7 +543,7 @@
                                             <i class="fa-solid fa-ticket"></i>
                                             <small>Đã mua vé</small>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="list-group-item list-group-item-action p-3" aria-current="true">
                                     <div class="d-flex w-100 justify-content-between">
@@ -561,8 +563,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <small>3 days ago</small>
                                     </div>
-                                    {{-- <p class="mb-1">The single cabin was nice. The bed was a little short,
+                                    <p class="mb-1">The single cabin was nice. The bed was a little short,
                                         but it was wide and pleasant. Each cabin was provided with bottled
                                         water, wet wipes and blankets. The bed was clean and the staff was very
                                         friendly, so I had a great experience.</p>
@@ -580,7 +583,7 @@
                                             <i class="fa-solid fa-ticket"></i>
                                             <small>Đã mua vé</small>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
